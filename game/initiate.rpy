@@ -67,6 +67,11 @@ label initialize:
 
 
     #character-settings
+    #character settings
+    define diary = ('Diary')
+    define frisk = ('Frisk')
+    define xxxfrisk = ('XXX')
+    define toriel = ('Toriel')
     define narration = Character(kind=nvl)
     define system = Character('', color="#FFFFFF")
     define papyrusChar = Character('Papyrus', color="#FFFFFF", what_prefix='{font=font/Parchment-MF.ttf}{size=40}', what_suffix='{/size}{/font}')
