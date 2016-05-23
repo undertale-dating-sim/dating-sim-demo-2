@@ -6,6 +6,6 @@ label start:
     call initialize
     stop music
     #scene-welcome
-    "Hello World"
+    jump prologue
 
 

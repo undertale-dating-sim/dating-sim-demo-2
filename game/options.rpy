@@ -92,7 +92,7 @@ init -1 python hide:
     ## respectively.
 
     style.window.background = Frame("text-box2.png", 21, 21)
-    style.frame.background = Frame("text-box3.png",21, 21)
+    #style.frame.background = Frame("text-box3.png",21, 21)
     ## Margin is space surrounding the window, where the background
     ## is not drawn.
 

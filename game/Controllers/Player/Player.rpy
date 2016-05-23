@@ -10,4 +10,5 @@ init -1 python:
             self.bravery        = 0
             self.perseverance   = 0
             self.kindness       = 0
-            self.justice        = 0 
+            self.justice        = 0
+            self.current_room = "Nowhere"
