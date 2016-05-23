@@ -17,4 +17,4 @@ label prologue:
 
 
 label prologue_end:
-    jump the_fall
+    jump name_select

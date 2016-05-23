@@ -22,4 +22,5 @@ label name_select:
         #We could add a function here to capitalize the name, or not.
         "Hello, [player_name]!"
 
-    return
+label name_select_end:
+    jump the_fall
