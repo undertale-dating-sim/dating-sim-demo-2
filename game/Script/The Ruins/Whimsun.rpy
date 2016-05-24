@@ -6,24 +6,26 @@ init:
 label whimsun_start:
     scene
     "You come upon a group of Loox and Migosp bullying a Whimsun."
-    menu
+    menu:
         "They look like they deserve it.":
             $ player.modify_cruelty(5)
             "The monsters turn to sneer at you, then go back to bullying the Whimsun."
             "You walk away."
             return
+            
 
         "Take Whimun's arm and run away.":
             $ player.modify_cowardice(4)
             "You quickly snatch the Whimsun away from the bullies and the two of you rush to another room."
             "For some reason, Whimsun doesn't look any happier."
             call whimsun_ruins_run
-            return
+            
 
         "Hey- stop hurting them!":
             $ player.modify_bravery(3)
             call whisun_ruins_facebullies
-            return
+            
+    return
 
 label whimsun_ruins_facebullies:
     "They stop bullying the Whimsun, but now they're looking at you."
@@ -57,7 +59,7 @@ label whimsun_ruins_facebullies:
                     $ player.modify_kindness(3)
                     "Whimsun bursts into tears and runs away."
                     return
-                "Do you want me to walk you home?"
+                "Do you want me to walk you home?":
                     $ player.modify_kindness(3)
                     "Whimsun bursts into tears and runs away."
                     return
@@ -134,8 +136,11 @@ label whimsun_ruins_run:
         "Why were they bullying you?":
             "Whimsun doens't answer.  They just curl up and look ashamed."
             menu:
-                "Who, okay. I guess I understand why they were picking on you now.":
+                "Wow, okay. I guess I understand why they were picking on you now.":
                     $ player.modify_cruelty(5)
+                    "Whimsun curls up more. There's no use trying to talk to them now."
+                    "You walk away."
+                    return
                 "I'm sorry for asking.":
                     "They look a little relieved, but otherwise not much better."
                     menu:
