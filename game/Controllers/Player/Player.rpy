@@ -15,41 +15,41 @@ init -1 python:
             self.justice_apathy        = 0
             self.current_room = "Nowhere"
 
-            def modify_patience(self,amount):
-                self.patience_impulsiveness += amount
+        def modify_patience(self,amount):
+            self.patience_impulsiveness += amount
 
-            def modify_integrity(self,amount):
-                self.integrity_deceit   += amount
+        def modify_integrity(self,amount):
+            self.integrity_deceit   += amount
 
-            def modify_bravery(self,amount):
-                self.bravery_cowardice  += amount
+        def modify_bravery(self,amount):
+            self.bravery_cowardice  += amount
 
-            def modify_perseverance(self,amount):
-                self.perseverance_surrender += amount
+        def modify_perseverance(self,amount):
+            self.perseverance_surrender += amount
 
-            def modify_kindness(self,amount):
-                self.kindness_cruelty   += amount
+        def modify_kindness(self,amount):
+            self.kindness_cruelty   += amount
 
-            def modify_justice(self,amount):
-                self.justice_apathy += amount
+        def modify_justice(self,amount):
+            self.justice_apathy += amount
 
-            def modify_impulsiveness(self,amount):
-                self.patience_impulsiveness -= amount
+        def modify_impulsiveness(self,amount):
+            self.patience_impulsiveness -= amount
 
-            def modify_deceit(self,amount):
-                 self.integrity_deceit  -= amount
+        def modify_deceit(self,amount):
+             self.integrity_deceit  -= amount
 
-            def modify_cowardice(self,amount):
-                self.bravery_cowardice  -= amount
+        def modify_cowardice(self,amount):
+            self.bravery_cowardice  -= amount
 
-            def modify_surrender(self,amount):
-                self.perseverance_surrender -= amount
+        def modify_surrender(self,amount):
+            self.perseverance_surrender -= amount
 
-            def modify_cruelty(self,amount):
-                self.kindness_cruelty   -= amount
+        def modify_cruelty(self,amount):
+            self.kindness_cruelty   -= amount
 
-            def modify_apathy(self,amount):
-                self.justice_apathy -= amount
+        def modify_apathy(self,amount):
+            self.justice_apathy -= amount
             
            
             
