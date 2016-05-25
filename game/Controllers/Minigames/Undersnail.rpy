@@ -4,12 +4,6 @@ init:
 label demo_undersnail:
     hide screen show_menu_button
 
-
-    "oh hey"
-    show wilson ph at Position(xpos=0.5,ypos=0.75)
-    with moveinbottom
-    play music "audio/Nyeh_Heh_Heh.MP3"
-    wilson "Howdy, I'm Wilson! Minigame Dev for the current Demo."
     "Welcome to UnderSnail!!!"
     menu:
         "Need an explanation?"
@@ -24,8 +18,6 @@ label demo_undersnail:
         "no":
             "Cool."
     "For the current demo, the game ends at three captures.  This is still a WIP.  Shoot me a message on skype with any bugs you find."
-    hide wilson
-    with dissolve
     jump UnderSnail
 
 label UnderSnail:
@@ -49,16 +41,14 @@ label UnderSnail:
         "Random":
             $ mission = "random"
 
-    hide wilson ph
     stop music
     python:
         ui.add(UnderSnail())
         winner = ui.interact(suppress_overlay=True, suppress_underlay=True)
 
     if winner == 'win':
-        show wilson ph at Position(xpos=0.5,ypos=0.75)
         "good job"
-        wilson "you did it"
+        "you did it"
 
     menu:
         "Try again?"
