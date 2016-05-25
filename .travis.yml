@@ -1,0 +1,19 @@
+language: python
+python:
+  - "2.7"
+before_script:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
+  - export RENPY_DISABLE_SOUND=pss
+# command to install dependencies
+install:
+  - cd ..
+  - wget http://www.renpy.org/dl/6.99.10/renpy-6.99.10-sdk.tar.bz2
+  - tar xf renpy-6.99.10-sdk.tar.bz2
+  - rm renpy-6.99.10-sdk.tar.bz2
+  - mv renpy-6.99.10-sdk renpy
+  - ls
+  - cd renpy
+# command to run tests
+script: ./renpy.sh "../demo" lint && ./renpy.sh launcher distribute "../demo"
