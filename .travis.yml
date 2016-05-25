@@ -16,4 +16,4 @@ install:
   - ls
   - cd renpy
 # command to run tests
-script: ./renpy.sh "../demo" lint && ./renpy.sh launcher distribute "../demo"
+script: ./renpy.sh "../dating-sim-demo-2" lint && ./renpy.sh launcher distribute "../dating-sim-demo-2"
