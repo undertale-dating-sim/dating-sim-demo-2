@@ -23,7 +23,7 @@ label whimsun_start:
 
         "Hey- stop hurting them!":
             $ player.modify_bravery(3)
-            call whisun_ruins_facebullies
+            call whimsun_ruins_facebullies
             
     return
 
