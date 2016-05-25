@@ -5,3 +5,4 @@ log.txt
 tmp/*
 traceback.txt
 errors.txt
+.DS_Store
