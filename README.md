@@ -1,4 +1,7 @@
 # dating-sim-demo-2
+
+[![Build Status](https://travis-ci.org/undertale-dating-sim/dating-sim-demo-2.svg?branch=master)](https://travis-ci.org/undertale-dating-sim/dating-sim-demo-2)
+
 The second official demo<br>
 This demo will be the area from the start of the game to Toriel's Door.<br><br>
 
