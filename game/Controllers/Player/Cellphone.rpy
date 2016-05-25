@@ -1,5 +1,6 @@
 screen cell:
     frame pos(0.3,0.05):
+        background Frame("text-box3.png",21, 21)
         vbox:
             textbutton "Frisk":
                 action [ui.callsinnewcontext("call_Frisk")] background "#000000"
