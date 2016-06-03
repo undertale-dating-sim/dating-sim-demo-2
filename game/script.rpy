@@ -30,6 +30,8 @@ label dev_label:
                         jump whimsun_start
             "Frisk":
                 jump frisk_start
+            "Flowey":
+                jump flowey_start
 label demo_end:
     "This demo ends here. Thanks for playing!"
     "Stay determined..."
