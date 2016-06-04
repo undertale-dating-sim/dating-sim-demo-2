@@ -1,3 +1,8 @@
+#character-images
+init:
+    image flowey normal = "Character-Flowey-Normal.png"
+
+
 
 #This takes place after the MC has heard about Frisk from Toriel.
 label start:
