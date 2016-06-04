@@ -18,6 +18,8 @@ label dev_label:
                 jump demo_undersnail
             "Prologue":
                 jump prologue
+            "Meet Flowey":
+                jump meet_flowey
             "Name Select":
                 jump name_select
             "The Fall":
@@ -31,7 +33,8 @@ label dev_label:
             "Frisk":
                 jump frisk_start
             "Flowey":
-                jump flowey_start
+                jump flowey_ruins
+
 label demo_end:
     "This demo ends here. Thanks for playing!"
     "Stay determined..."
