@@ -204,6 +204,7 @@ label flowey_nopie:
             else:
                 jump flowey_hangout2
         "Back to menu":
+            $ flowey_nopie_talked = 0
             jump flowey_ruins
 
 label flowey_hangout2:
