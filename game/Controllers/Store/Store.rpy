@@ -1,3 +1,6 @@
+$ screen_width = config.screen_width
+$ screen_height = config.screen_height
+
 init -1 python:
     class store_menu():
         def __init__(self):
@@ -17,21 +20,25 @@ init -1 python:
 screen show_store_button:
     textbutton "Show Store" action [Play ("sound", "audio/click.wav"),Show("storekeeper"),Show("store_dialog"),Hide("show_store_button")] align(.70,.05) background Frame("text-box3.png",50, 21)
 
-screen storekeeper:
+screen storekeeper():
     textbutton "Hide Store" action [Play ("sound", "audio/click.wav"),Hide("storekeeper"),Hide("store_dialog"),Show("show_store_button")] align(.70,.05)  background Frame("text-box3.png",50, 21)
-    frame pos(.8,.8):
+    frame pos(.5,.7):
         background Frame("text-box3.png",21,21)
         hbox:
             vbox:
+                xminimum (config.screen_width*.5)
+                yminimum config.screen_width*.2
                 text "Patience:"
                 text "Integrity:"
                 text "Bravery:"
                 text "Perseverance:"
 screen store_dialog:
-    frame pos(0,.8):
+    frame pos(.01,.7):
         background Frame("text-box3.png",21, 21)
         hbox:
             vbox:
+                xminimum (config.screen_width*.5)-21
+                yminimum config.screen_width*.2
                 text "Patience:"
                 text "Integrity:"
                 text "Bravery:"

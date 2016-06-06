@@ -104,6 +104,9 @@ label initialize:
         $ left = Position(xpos = 0.25, xanchor = 'left')
         $ center = Position(xpos = 0.5, xanchor = 'center')
         $ right = Position(xpos = 0.75, xanchor = 'right')
+        $ screen_width = config.screen_width
+        $ screen_height = config.screen_height
+
 
     init python:
         # Wrapper to capitalize Papyrus' text
