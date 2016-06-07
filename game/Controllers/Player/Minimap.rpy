@@ -91,7 +91,9 @@ screen show_map:
             background Frame("text-box3.png",21, 21)
             xminimum screen_width-20
             yminimum screen_height-80
+            xmaximum screen_width-20
+            ymaximum screen_height-80
             vbox:
                 add Appearing("CoffeeSnail.png", 100, 200):
-                    xalign 0.5
+                    xalign 0.6
                     yalign 0.5
