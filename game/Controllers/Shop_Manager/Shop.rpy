@@ -56,20 +56,31 @@ screen shop_dialog_talk:
 screen shop_dialog_buy:
     frame pos(int(screen_width*.02),.74):
         background Frame("text-box3.png",21,21)
-        vbox align(0.01,0.01) box_wrap True:
-                #xmaximum int(screen_width*.65)
-                anchor(0,0)
-                maximum(int(screen_width*.68),int(screen_height*.215))
-                minimum(int(screen_width*.68),int(screen_height*.215))
-                vbox:
-                    text "Sans" size 25
-                vbox: #make grid of 4
-                    hbox:
-                        textbutton "Fried Snow - 50G" action [Play ("sound", "audio/click.wav")] background "#000000"
-                        textbutton "Fried Snow - 50G" action [Play ("sound", "audio/click.wav")] background "#000000"
-                    hbox:
-                        textbutton "Fried Snow - 50G" action [Play ("sound", "audio/click.wav")] background "#000000"
-                        textbutton "Fried Snow - 50G" action [Play ("sound", "audio/click.wav")] background "#000000"
+        window xmargin -21 ymargin -21:
+            maximum(int(screen_width*.68),int(screen_height*.215))
+            minimum(int(screen_width*.68),int(screen_height*.215))
+            has vbox:
+                text "Sans" size 25
+                hbox:
+                    textbutton "Fried Snow - 50G" action [Play ("sound", "audio/click.wav")] background "#000000"
+                    textbutton "Fried Snow - 50G" action [Play ("sound", "audio/click.wav")] background "#000000"
+                hbox:
+                    textbutton "Fried Snow - 50G" action [Play ("sound", "audio/click.wav")] background "#000000"
+                    textbutton "Fried Snow - 50G" action [Play ("sound", "audio/click.wav")] background "#000000"
+        #vbox align(0.01,0.01) box_wrap True:
+        #        #xmaximum int(screen_width*.65)
+        #        anchor(0,0)
+        #        maximum(int(screen_width*.68),int(screen_height*.215))
+        #        minimum(int(screen_width*.68),int(screen_height*.215))
+        #        vbox:
+        #            text "Sans" size 25
+        #        vbox: #make grid of 4
+        #            hbox:
+        #                textbutton "Fried Snow - 50G" action [Play ("sound", "audio/click.wav")] background "#000000"
+        #                textbutton "Fried Snow - 50G" action [Play ("sound", "audio/click.wav")] background "#000000"
+        #            hbox:
+        #                textbutton "Fried Snow - 50G" action [Play ("sound", "audio/click.wav")] background "#000000"
+        #                textbutton "Fried Snow - 50G" action [Play ("sound", "audio/click.wav")] background "#000000"
 screen shop_dialog_sell:
     frame pos(int(screen_width*.02),.74):
         background Frame("text-box3.png",21,21)
