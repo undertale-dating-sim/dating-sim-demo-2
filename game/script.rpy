@@ -16,7 +16,7 @@ label start:
 
 label dev_label:
     show screen show_menu_button
-    show screen show_store_button
+    show screen show_shop_button
     show screen show_map_button
     while True:
         menu:
