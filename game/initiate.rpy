@@ -106,6 +106,8 @@ label initialize:
         $ right = Position(xpos = 0.75, xanchor = 'right')
         $ screen_width = config.screen_width
         $ screen_height = config.screen_height
+        $ shop_dialog_width = int(screen_width*.68)
+        $ shop_dialog_height = int(screen_height*.215)
 
 
     init python:
@@ -129,4 +131,6 @@ label initialize:
         player = Player()
         day = 0
         menu_state = "stats"
-        
+        #init shopkeeper
+        shop = Shop()
+
