@@ -47,7 +47,7 @@ init -1 python:
     menu_selected_item = False
 
     inventory = Inventory()
-
+    
 
 screen items:
         frame pos(0.3,0.05):
@@ -65,15 +65,15 @@ screen items:
       
                 hbox:
                     textbutton "Use":
-                        action [ui.callsinnewcontext("show_item_description")]
+                        action [If(menu_selected_item,ui.callsinnewcontext("show_item_description")),SetVariable("menu_selected_item",False)]
                         background "#000000"
 
                     textbutton "Info":
-                        action [ui.callsinnewcontext("show_item_description")]
+                        action [If(menu_selected_item,ui.callsinnewcontext("show_item_description")),SetVariable("menu_selected_item",False)]
                         background "#000000"
                         
                     textbutton "Drop":
-                        action [ui.callsinnewcontext("drop_item")]
+                        action [If(menu_selected_item,ui.callsinnewcontext("drop_item")),SetVariable("menu_selected_item",False)]
                         background "#000000"
                         
 
@@ -108,3 +108,4 @@ init -1 python:
             Item.__init__(self)
             self.name = "Heart Locket"
             self.pickup_text = "It doesn't seem to open, but it is pretty nonetheless, golden and strung on a red ribbon."
+    inventory.add(Heart_Locket())

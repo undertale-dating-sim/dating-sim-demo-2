@@ -25,6 +25,7 @@ init -1 python hide:
     config.name = "inLOVE: An Undertale Dating Simulator (Demo)"
     config.version = "0.0"
 
+    config.layers = [ 'master', 'transient', 'screens', 'overlay','ui']
     #########################################
     # Themes
 
@@ -66,7 +67,7 @@ init -1 python hide:
         ## The background of the main menu. This can be a color
         ## beginning with '#', or an image filename. The latter
         ## should take up the full height and width of the screen.
-        mm_root = "backgrounds/inLOVE_Title.jpg",
+        mm_root = "backgrounds/ui/inLOVE_Title.jpg",
 
         ## The background of the game menu. This can be a color
         ## beginning with '#', or an image filename. The latter
@@ -168,7 +169,7 @@ init -1 python hide:
 
     ## Sounds that are used when button and imagemaps are clicked.
 
-    # style.button.activate_sound = "click.wav"
+    #style.button.activate_sound = "click.wav"
     # style.imagemap.activate_sound = "click.wav"
 
     ## Sounds that are used when entering and exiting the game menu.

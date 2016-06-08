@@ -6,3 +6,4 @@ tmp/*
 traceback.txt
 errors.txt
 .DS_Store
+*.bak
