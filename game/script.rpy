@@ -7,6 +7,9 @@ init:
 #This takes place after the MC has heard about Frisk from Toriel.
 label start:
     stop music
+    hide screen show_menu_button
+    jump FlappySans
+    jump the_fall
 
     jump dev_label
     #jump frisk_start

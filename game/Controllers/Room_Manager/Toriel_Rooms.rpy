@@ -214,7 +214,7 @@ label wilson_label:
     show wilson down at Position(xpos=0.7,ypos=0.75)
     show papyrus disgust at right
     stop music
-    play music 'audio/Nyeh_Heh_Heh.MP3'
+    play music 'audio/music/Nyeh_Heh_Heh.MP3'
     wilson "So if sphaghetti==1 then pap needs to go. yeah that will work."
     play sound "audio/typing.wav"
     wilson "<type type type type>"

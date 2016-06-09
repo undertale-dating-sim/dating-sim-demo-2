@@ -60,16 +60,16 @@ label initialize:
     image background intro = "backgrounds/background-intro.png"
 
     #flowerbed
-    image background flowerfall = "backgrounds/background-ruins-flowerpatch.png"
-    image background floweyroom = "backgrounds/background-ruins-floweyroom.png"
+    image background flowerfall = "backgrounds/Ruins/background-ruins-flowerpatch.jpg"
+    image background floweyroom = "backgrounds/Ruins/background-ruins-floweyroom.png"
 
     image background floweyroomplaceholder = "backgrounds/placeholders/background-ruins-floweyroom.png"
     #the ruins
-    image background ruins_outside_house = "backgrounds/background-ruins-blacktree.png"
-    image background ruins_froggit_room = "backgrounds/background-ruins-froggitroom.png"
-    image background ruins_first_entrance = "backgrounds/background-ruins-firstentrance.png"
-    image background ruins_toy_knife_room = "backgrounds/background-ruins-toykniferoom.png"
-    image background ruins_spider_bakery = "backgrounds/background-ruins-spiderbakery.png"
+    image background ruins_outside_house = "backgrounds/Ruins/background-ruins-blacktree.png"
+    image background ruins_froggit_room = "backgrounds/Ruins/background-ruins-froggitroom.png"
+    image background ruins_first_entrance = "backgrounds/Ruins/background-ruins-firstentrance.png"
+    image background ruins_toy_knife_room = "backgrounds/Ruins/background-ruins-toykniferoom.png"
+    image background ruins_spider_bakery = "backgrounds/Ruins/background-ruins-spiderbakery.png"
 
 
     #toriel house

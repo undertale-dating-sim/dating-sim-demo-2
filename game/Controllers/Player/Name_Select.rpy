@@ -199,31 +199,31 @@ init python:
                         if pygame.Rect(l.x,l.y,Text(l.let).size()[0],Text(l.let).size()[1]).collidepoint(x,y):
                             if len(self.name) < 15:
                                 self.name += l.let
-                                renpy.sound.play("audio/click.wav")
+                                renpy.sound.play("audio/sfx/click.wav")
                     if self.quitbutton.isclicked(x,y):
-                        renpy.sound.play("audio/click.wav")
+                        renpy.sound.play("audio/sfx/click.wav")
                         #quit
                         self.quit = True
                         return
                     if self.backspacebutton.isclicked(x,y):
-                        renpy.sound.play("audio/click.wav")
+                        renpy.sound.play("audio/sfx/click.wav")
                         #backspace
                         if len(self.name) > 0:
                             self.name = self.name[:-1]
                         return
                     if self.donebutton.isclicked(x,y):
                         if len(self.name) > 0:
-                            renpy.sound.play("audio/click.wav")
+                            renpy.sound.play("audio/sfx/click.wav")
                             #done
                             self.confirm = True
                         return
                 else:
                     if self.yesbutton.isclicked(x,y):
-                        renpy.sound.play("audio/click.wav")
+                        renpy.sound.play("audio/sfx/click.wav")
                         self.done = True
                         return
                     if self.nobutton.isclicked(x,y) or self.backbutton.isclicked(x,y):
-                        renpy.sound.play("audio/click.wav")
+                        renpy.sound.play("audio/sfx/click.wav")
                         self.confirm = False
 
                 
