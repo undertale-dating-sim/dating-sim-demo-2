@@ -8,7 +8,7 @@ init:
 label start:
     stop music
     hide screen show_menu_button
-    jump FlappySans
+    #jump FlappySans
     jump the_fall
 
     jump dev_label
