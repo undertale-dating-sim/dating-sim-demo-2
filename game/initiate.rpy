@@ -134,7 +134,6 @@ label initialize:
         $ left = Position(xpos = 0.25, xanchor = 'left')
         $ center = Position(xpos = 0.5, xanchor = 'center')
         $ right = Position(xpos = 0.75, xanchor = 'right')
-        
 
 
     init python:

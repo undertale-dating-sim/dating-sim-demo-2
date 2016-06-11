@@ -18,13 +18,6 @@ label shop_test_talk:
     payneShop "Of course, there's not much to say."
     jump shop_test_talk
 
-label shop_test_buy:
-    show screen show_menu_button
-    show screen shop_menu
-    show screen shop_dialog_buy
-    nvl clear
-    payneShop "Testing the Shop Dialog Buy Button. No extra dialog on this."
-    jump shop_test_buy
 
 
 label shop_test_sell:
