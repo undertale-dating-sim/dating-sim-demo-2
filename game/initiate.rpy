@@ -89,11 +89,42 @@ label initialize:
     define torielChar = Character('Toriel', color="#FFFFFF")
     define wilsonChar = Character('Wilson', color="#FFFFFF")
     define flowey = Character('Flowey', color="#FFFFFF")
+    init:
+        $ screen_width = config.screen_width # 800
+        $ screen_height = config.screen_height # 600
+        $ shop_dialog_width = int(screen_width*.70)
+        $ shop_dialog_height = int(screen_height*.215)
+
+    #a LOT of guesswork went into this one
+    define payneShop = Character('PayneGray',
+        window_background=Frame("text-box3.png",21,21),
+            window_left_margin = int(screen_width*.02),
+            window_right_margin = int(screen_width*.265),
+            window_top_margin = -6,
+            window_bottom_margin = 16,
+            window_top_padding = 10,
+            window_bottom_padding = 10,
+            window_left_padding = 15,
+            window_right_padding = 15)
+
+
+
+        #frame pos(int(screen_width*.02),.74):
+        #background 
+        #window xmargin -21 ymargin -21:
+        #    maximum(shop_dialog_width,shop_dialog_height)
+        #    minimum(shop_dialog_width,shop_dialog_height)
+        #    has vbox:
+        #        text "[shop.keeper]" size 25
+        #        text "[shop.talk_dialog[0]]"
+
+
     #sprite positions
     init:
         $ left = Position(xpos = 0.25, xanchor = 'left')
         $ center = Position(xpos = 0.5, xanchor = 'center')
         $ right = Position(xpos = 0.75, xanchor = 'right')
+
 
     init python:
         # Wrapper to capitalize Papyrus' text
@@ -116,4 +147,4 @@ label initialize:
         player = Player()
         day = 0
         menu_state = "stats"
-        
+

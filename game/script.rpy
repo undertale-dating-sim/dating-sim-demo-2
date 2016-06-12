@@ -18,6 +18,7 @@ label start:
 
 label dev_label:
     show screen show_menu_button
+    #show screen show_map_button
     while True:
         menu:
             "Where would you like to go?"
@@ -43,6 +44,8 @@ label dev_label:
                 jump frisk_start
             "Flowey":
                 jump flowey_ruins
+            "Shop Test":
+                jump shop_test_talk
 
 label demo_end:
     "This demo ends here. Thanks for playing!"
