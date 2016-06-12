@@ -1,5 +1,5 @@
 init:
-    image background field = "field.png"
+    image background field = "minigames/field.png"
     $ mission = ''
 label demo_undersnail:
     hide screen show_menu_button
@@ -72,7 +72,7 @@ init python:
     class Flower(renpy.Displayable):
         def __init__(self,x,y):
             renpy.Displayable.__init__(self)
-            self.sprite = Image("Flowers.png")
+            self.sprite = Image("minigames/Flowers.png")
             self.w = 50
             self.h = 50
             self.x = x
@@ -96,7 +96,7 @@ init python:
     class Snail(renpy.Displayable):
         def __init__(self,xpos,ypos,speed,dx,dy):
             renpy.Displayable.__init__(self)
-            self.sprite = Image("Snail.png")
+            self.sprite = Image("minigames/Snail.png")
             self.w = 42
             self.h = 27
             self.xpos = xpos
@@ -126,7 +126,7 @@ init python:
     class Book_Snail(Snail):
         def __init__(self,xpos,ypos,speed,dx,dy):
             Snail.__init__(self,xpos,ypos,speed,dx,dy)
-            self.sprite = Image("ReaderSnail.png")
+            self.sprite = Image("minigames/ReaderSnail.png")
             self.speed = .5
             self.timer = 200
             self.width = 50
@@ -155,7 +155,7 @@ init python:
     class Rocket_Snail(Snail):
         def __init__(self,xpos,ypos,speed,dx,dy):
             Snail.__init__(self,xpos,ypos,speed,dx,dy)
-            self.sprite = Image("RocketSnail.png")
+            self.sprite = Image("minigames/RocketSnail.png")
             self.width = 100
             self.height = 56
 
@@ -174,7 +174,7 @@ init python:
     class House_Snail(Snail):
         def __init__(self,xpos,ypos,speed,dx,dy):
             Snail.__init__(self,xpos,ypos,speed,dx,dy)
-            self.sprite = Image("HouseSnail.png")
+            self.sprite = Image("minigames/HouseSnail.png")
             self.speed = .25
             
             directions = [(1,0),(0,1),(-1,0),(0,-1)]
@@ -193,7 +193,7 @@ init python:
     class Coffee_Snail(Snail):
         def __init__(self,xpos,ypos,speed,dx,dy):
             Snail.__init__(self,xpos,ypos,speed,dx,dy)
-            self.sprite = Image("CoffeeSnail.png")
+            self.sprite = Image("minigames/CoffeeSnail.png")
             self.speed = 2
             self.dir_timer = 0
             self.change_now = renpy.random.randint(25,50)
@@ -222,10 +222,10 @@ init python:
             renpy.Displayable.__init__(self)
             
             #setting synchro to true for testing
-            renpy.music.play("audio/snail_book.mp3","nerd",True,None,True)
-            renpy.music.play("audio/snail_coffee.mp3","coffee",True,None,True)
-            renpy.music.play("audio/snail_rocket.mp3","rocket",True,None,True)
-            renpy.music.play("audio/snail_house.mp3","house",True,None,True)
+            renpy.music.play("audio/music/snail_book.mp3","nerd",True,None,True)
+            renpy.music.play("audio/music/snail_coffee.mp3","coffee",True,None,True)
+            renpy.music.play("audio/music/snail_rocket.mp3","rocket",True,None,True)
+            renpy.music.play("audio/music/snail_house.mp3","house",True,None,True)
 
             
             #game variables

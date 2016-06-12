@@ -1,14 +1,16 @@
 init:
 #flowerbed
-    image background ruins_caveroom = "backgrounds/ruins/background-ruins-flowerpatch.png"
-    image background ruins_floweyroom = "backgrounds/ruins/background-ruins-floweyroom.png"
+    image background ruins_caveroom = "backgrounds/Ruins/background-ruins-flowerpatch.jpg"
+    image background ruins_floweyroom = "backgrounds/Ruins/background-ruins-floweyroom.jpg"
 
 #the ruins
-    image background ruins_outside_house = "backgrounds/ruins/background-ruins-blacktree.png"
-    image background ruins_froggit_room = "backgrounds/ruins/background-ruins-froggitroom.png"
-    image background ruins_first_entrance = "backgrounds/ruins/background-ruins-firstentrance.png"
-    image background ruins_toy_knife_room = "backgrounds/ruins/background-ruins-toykniferoom.png"
-    image background ruins_spider_bakery = "backgrounds/ruins/background-ruins-spiderbakery.png"
+    image background ruins_outside_house = "backgrounds/Ruins/background-ruins-blacktree.png"
+    image background ruins_froggit_room = "backgrounds/Ruins/background-ruins-froggitroom.png"
+    image background ruins_first_entrance = "backgrounds/Ruins/background-ruins-firstentrance.jpg"
+    image background ruins_toy_knife_room = "backgrounds/Ruins/background-ruins-toykniferoom.jpg"
+    image background ruins_spider_bakery = "backgrounds/Ruins/background-ruins-spiderbakery.jpg"
+    image background ruins_sassyrock_room = "backgrounds/Ruins/background-ruins-sassyrock.png"
+    image background ruins_blooky_room = "backgrounds/Ruins/background-ruins-blookyroom.png"
 
 
 init -1 python:
@@ -76,7 +78,7 @@ init -1 python:
             self.x = 11
             self.y = 3
             self.desc = "The room before you is long and filled with odd items. There is a sign hanging on the wall closest to you, three grey rocks set on top of strange square pads on the ground, and a moat crossing the opposite side of the hall, a short bridge extended across the still water. There is an exit across the bridge."
-            self.bg = "background ruins_caveroom"
+            self.bg = "background ruins_sassyrock_room"
 
     class ruins_blookyroom(Room):
         def __init__(self):
@@ -85,7 +87,7 @@ init -1 python:
             self.x = 12
             self.y = 3
             self.desc = "The room is average sized and divided by a wall halfway through, separating the side of the room you are on from two exits on the other side. There is a narrow opening in the wall, it’s floor spread with a scattering of red leaves."
-            self.bg = "background ruins_caveroom"
+            self.bg = "background ruins_blooky_room"
 
     class ruins_spiderbakery(Room):
         def __init__(self):
@@ -94,7 +96,7 @@ init -1 python:
             self.x = 13
             self.y = 3
             self.desc = "The small room feels and smells homey, despite being covered ceiling to floor with cobwebs; there is a permeating scent of baked goods coming from somewhere within. A sign has been erected in front of two of the densest clusters of webbing. The only way out is how you came in."
-            self.bg = "background ruins_caveroom"
+            self.bg = "background ruins_spider_bakery"
             self.locknorth = True
     class ruins_snailhuntingroom(Room):
         def __init__(self):

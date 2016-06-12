@@ -6,6 +6,7 @@ init -1 python:
             self.x = x
             self.y = y
             self.desc = desc
+            self.visited = False
             #place holder to stop people from moving into the room.
             self.locked = locked
             self.bg = bg
@@ -46,6 +47,14 @@ init -1 python:
             for room in self.rooms:
                 if not room.locked:
                     if room.x == dirx and room.y == diry:
+
+                        if room.visited:
+                            player.time += 50
+                            player.stamina -= 1
+                        else:
+                            player.time += 100
+                            player.stamina -= 5
+
                         self.current_room = room
                         renpy.jump("load_room")
 
@@ -88,6 +97,7 @@ init -1 python:
 label load_room:
     #scene background ruins_caveroom
     $ renpy.scene()
+    $ room_manager.current_room.visited = True
     $ renpy.show(room_manager.current_room.bg)
     with fade
     "[room_manager.current_room.desc]"
