@@ -10,7 +10,7 @@ screen buy_box(name,obj):
                 grid 2 2: #Find a way to count this stuff. Len(obj)?
                     for item in obj:
                         textbutton "[item]" action [Play ("sound", "audio/click.wav")] background "#000000"
-screen shop_box(name,items):
+screen shop_box(shop):
     #textbutton "Hide Shop" action [Play ("sound", "audio/click.wav"),Hide("shop_dialog_exit"),Hide("shop_dialog_talk"),Hide("shop_dialog_buy"),Hide("shop_menu"),Show("show_shop_button")] align(.70,.05) background Frame("text-box3.png",50, 21)
     frame pos(int(screen_width*.728),.74): #position within the screen
         background Frame("text-box3.png",21,21)
@@ -19,10 +19,14 @@ screen shop_box(name,items):
             
             maximum(int(screen_width*.24),int(screen_height*.215))
             minimum(int(screen_width*.24),int(screen_height*.215))
-            textbutton "TALK"action [Play ("sound", "audio/click.wav")] background "#000000"
-            textbutton "BUY" action [Play ("sound", "audio/click.wav"),Show("buy_box",transition=None,name = name,obj=items)] background "#000000" #call buy box
-            textbutton "SELL" action [Play ("sound", "audio/click.wav")] background "#000000"
-            textbutton "EXIT" action [Play ("sound", "audio/click.wav")] background "#000000"
+            textbutton "TALK" action [Play ("sound", "audio/click.wav"),ui.callsinnewcontext("shop_text", shop=shop,dialog = shop.talk_dialog) ] background "#000000"
+            textbutton "BUY" action [Play ("sound", "audio/click.wav"),Show("buy_box",transition=None,name = shop.name,obj=shop.items)] background "#000000" #call buy box
+            textbutton "SELL" action [Play ("sound", "audio/click.wav"),ui.callsinnewcontext("shop_text", shop=shop,dialog = shop.sell_dialog)] background "#000000"
+            textbutton "EXIT" action [Play ("sound", "audio/click.wav"),ui.callsinnewcontext("shop_text", shop=shop,dialog = shop.exit_dialog)] background "#000000"
+label shop_text(shop,dialog):
+    show screen shop_box(shop)
+    payneShop.copy("[shop.name]") "[dialog[0]]"
+    #payneShop.copy("[shop.name]") "[dialog[1]]"
 
 init -1 python:
     class Shop():
@@ -30,7 +34,7 @@ init -1 python:
             self.name = "PayneGray"
             self.items = []
             self.cost = []
-            self.talk_dialog = ["This is the talk dialog."]
+            self.talk_dialog = ["This is the talk dialog.","This is more dialog."]
             self.sell_dialog = ["This is the sell dialog."]
             self.exit_dialog = ["This is the exit dialog."]
         def set_name(self, name):
@@ -53,7 +57,8 @@ init -1 python:
         def add_exit(self,exit_dialog):
             self.exit_dialog.append(exit_dialog)
         def start(self):
-            renpy.call_screen('shop_box',self.name,self.items)
+            renpy.call_screen('shop_box',self)
+            #,self.name,self.items,self.talk_dialog,self.sell_dialog,self.exit_dialog,
     #class Shop_Menu():
         
         #accesses dialog boxes
