@@ -108,15 +108,15 @@ label initialize:
     #a LOT of guesswork went into this one
     define payneShop = Character('PayneGray',
         window_background=Frame("text-box3.png",21,21),
-            window_left_margin = int(screen_width*.02),
-            window_right_margin = int(screen_width*.265),
-            window_top_margin = -6,
-            window_bottom_margin = 16,
-            window_top_padding = 10,
-            window_bottom_padding = 10,
-            window_left_padding = 15,
-            window_right_padding = 15)
-
+        window_left_margin = int(screen_width*.02),
+        window_right_margin = int(screen_width*.265),
+        window_top_margin = -6,
+        window_bottom_margin = 16,
+        window_top_padding = 10,
+        window_bottom_padding = 10,
+        window_left_padding = 15,
+        window_right_padding = 15)
+    define niceCreamShop = payneShop.copy('Nice Cream Guy')
 
 
         #frame pos(int(screen_width*.02),.74):
