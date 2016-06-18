@@ -6,3 +6,4 @@ tmp/*
 traceback.txt
 errors.txt
 .DS_Store
+game/Controllers/Shop_Manager/Shop_System

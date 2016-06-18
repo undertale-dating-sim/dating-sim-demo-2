@@ -45,7 +45,7 @@ init -1 python:
 
     #holds the description for the menu.  HAS to be a better way to do this
     menu_selected_item = False
-
+    #move to global portion of initiate.rpy later
     inventory = Inventory()
 
 
@@ -108,3 +108,25 @@ init -1 python:
             Item.__init__(self)
             self.name = "Heart Locket"
             self.pickup_text = "It doesn't seem to open, but it is pretty nonetheless, golden and strung on a red ribbon."
+
+    class Spider_Donut(Item):
+        def __init__(self):
+            Item.__init__(self)
+            self.name = "Spider Donut"
+            self.pickup_text = "Made with real spiders."
+    class Spider_Cider(Item):
+        def __init__(self):
+            Item.__init__(self)
+            self.name = "Spider Cider"
+            self.pickup_text = "Made with real spiders."
+
+    class Spider_Waffle(Item):
+        def __init__(self):
+            Item.__init__(self)
+            self.name = "Spider Waffle"
+            self.pickup_text = "Made with real spiders."
+    class Spider_Cake(Item):
+        def __init__(self):
+            Item.__init__(self)
+            self.name = "Spider Cake"
+            self.pickup_text = "Made with real spiders."
