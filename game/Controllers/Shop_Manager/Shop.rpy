@@ -14,8 +14,8 @@ init -1 python:
             self.exit_dialog = ["This is the exit dialog.","I should also make it so that","return is used at the end."]
 
 
-            self.no_space_dialog = []
-            self.no_gold_dialog = []
+            self.no_space_dialog = ["You have no space in your bag."]
+            self.no_gold_dialog = ["You don't have enough gold.", "Get out."]
 
             self.images = []
 
@@ -41,8 +41,9 @@ init -1 python:
             self.exit_dialog.append(exit_dialog)
             #return
         def start(self):
-            renpy.say(payneShop.copy(self.name),self.opening_dialog[0])
-            renpy.call_screen('shop_box',self)
+            #renpy.say(payneShop.copy(self.name),self.opening_dialog[0])
+            #renpy.call_screen('shop_box',self)
+            renpy.call(label='shop_opening',shop=self)
 
 
     

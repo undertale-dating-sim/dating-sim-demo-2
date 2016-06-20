@@ -30,7 +30,8 @@ label shop_text(shop,dialog):
     show screen empty_dialog
     # Bug: clicking the empty dialog makes this move to the next label, shop_item. A fix would be to make the dialog box unclickable. Or prompt a hidden menu
     # Fixed: Separated shop_text and shop_item into different files
-    pause
+
+    call shop_opening(shop=shop)
 
 screen empty_dialog:
     frame pos(int(screen_width*.02),.74):
@@ -38,3 +39,8 @@ screen empty_dialog:
         window xmargin -21 ymargin -21:
             maximum(shop_dialog_width,shop_dialog_height)
             minimum(shop_dialog_width,shop_dialog_height)
+
+label shop_opening(shop):
+    show screen shop_box(shop=shop)
+    hide screen buy_box
+    call shop_text(shop=shop,dialog=shop.opening_dialog)
