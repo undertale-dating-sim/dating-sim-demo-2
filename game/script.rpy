@@ -40,6 +40,8 @@ label dev_label:
                 jump frisk_start
             "Flowey":
                 jump flowey_ruins
+            "Toriel":
+                jump toriel_ruins
             "Shop Test":
                 jump Muffet_Shop
 

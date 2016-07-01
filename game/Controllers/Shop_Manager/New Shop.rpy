@@ -25,8 +25,21 @@ define payneShop = Character('PayneGray',
 
 
 init -1 python:
+    class Shop_Click(Action):
+        def __init__(self):
+            clicked = False
+        def __call__(self,choice):
+            if clicked:
+                #disable all buttons
+                #call dialog
+                #enable buttons
+                return
+            #make buttons disabled
+            #clear all dialogs nvl
 
     class Shop():
+
+
         def __init__(self):
             self.name = "PayneGray"
             self.template = payneShop.copy(self.name)
@@ -72,6 +85,10 @@ init -1 python:
         def add_no_gold(self,sprite,string): self.no_gold.append([sprite,string])
         def add_thanks(self,sprite,string): self.thanks.append([sprite,string])
 
+
+        def buy_box():
+            return
+            #view new screen with 4 items on them
         def buy_item(self, item):
             cost = item.cost
             if not inventory.has_space():
@@ -129,21 +146,22 @@ init -1 python:
             for i in self.sprites:
                 renpy.hide(i)
         def say(self,choice):
-            #place these in new function hideallimages
-            
+            #clear all current dialogs
             renpy.show_screen("shop_box",self)
             for line in self.dialog(choice):
                 self.hide_sprites()
                 renpy.show(line[0])
                 renpy.say(self.template,line[1])
-
+            #start()
         def show_shop_box(self):
             renpy.show_screen("shop_box",self)
 
 
-        def running(self,bool):
-            if bool == False:
-                self.exit()
+        def clickable(self,bool):
+            if bool==True:
+                say(self.template,"Buttons may now be clicked")
+            elif bool == False:
+                say(self.template,"Buttons cannot be clicked")
 screen shop_box(shop):
     frame pos(int(screen_width*.728),.74):
         background Frame("text-box3.png",21,21)
@@ -152,13 +170,22 @@ screen shop_box(shop):
             
             maximum(int(screen_width*.24),int(screen_height*.215))
             minimum(int(screen_width*.24),int(screen_height*.215))
-            textbutton "TALK" action [Play ("sound", "audio/click.wav"),renpy.curried_invoke_in_new_context(shop.say,"talk") ] background "#000000"
+            #maybe all the action stuff should be on a function
+            textbutton "TALK":
+                action [Play ("sound", "audio/click.wav"),renpy.curried_invoke_in_new_context(shop.say,"talk")]#return clicked
+                background "#000000"
             textbutton "BUY" action [Play ("sound", "audio/click.wav")] background "#000000"
             textbutton "SELL" action [Play ("sound", "audio/click.wav"),renpy.curried_invoke_in_new_context(shop.say,"sell")] background "#000000"
             textbutton "EXIT" action [Play ("sound", "audio/click.wav"),renpy.curried_invoke_in_new_context(shop.say,"exit")] background "#000000"
 
 
 label Muffet_Shop:
+    python:
+        muffetShop = Shop()
+
+        muffetShop.enter()
+
+label Sans_Shop:
     python:
         muffetShop = Shop()
 

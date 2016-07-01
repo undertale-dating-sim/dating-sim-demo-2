@@ -1,5 +1,7 @@
 label initialize:
     #papyrus
+
+    
     image papyrus normal = "characters/Character-Papyrus-Normal.png"
     image papyrus bigsmile = "characters/Character-Papyrus-BigSmile.png"
     image papyrus disgust = "characters/Character-Papyrus-disgust.png"
