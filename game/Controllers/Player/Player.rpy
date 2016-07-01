@@ -4,7 +4,7 @@ init -1 python:
             self.name           = "Bob"
             self.current_health = 20
             self.total_health   = 20
-            self.gold           = 1000
+            self.gold           = 10
 
             #the stats go positive or negative, do not know the maximum values yet.
             self.patience_impulsiveness = 0
