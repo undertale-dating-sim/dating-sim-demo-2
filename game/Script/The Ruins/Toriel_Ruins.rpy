@@ -11,14 +11,31 @@ label toriel_ruins:
     menu:
         "So how are you settling in?":
             jump toriel_event1
+        "The Stunted Golden Flower":
+            jump toriel_event4
+        "FLOWER DATE":
+            jump toriel_flower_date
         "Exit":
-            return
+            jump start
     
 label toriel_event1:
-#Event Name: So how are you settling in?
-#Event Trigger: 1. Spending (3) consecutive nights at the ruins.
-#Toriel inquires about the player's well-being. This is the first event wherein Toriel really opens up to the player, as she has become attached now- and begins to believe that the player is here to stay.
-#The first subject Toriel truly opens up on is Frisk – because Frisk is so important to her it's the first personal thing that she's willing to talk about.
+
+    #Event Name: So how are you settling in?
+    #Event Trigger: 1. Spending (3) consecutive nights at the ruins.
+    #Toriel inquires about the player's well-being. This is the first event wherein Toriel really opens up to the player, as she has become attached now- and begins to believe that the player is here to stay.
+    #The first subject Toriel truly opens up on is Frisk – because Frisk is so important to her it's the first personal thing that she's willing to talk about.
+
+    menu:
+        "FP with Frisk is >-5 (Event starter)":
+            jump toriel_event1_Q1
+        "FP WITH FRISK >=15":
+            jump toriel_event1_Q2
+        "FP WITH FRISK -5<FP<15":
+            jump toriel_event1_Q3
+        "FP WITH FRISK Below -5FP and relationship is negative":
+            jump toriel_event1_Q4
+        "Other events":
+            jump toriel_ruins
 
     label toriel_event1_Q1:
         # Happens when FP with Frisk is >-5
@@ -40,7 +57,7 @@ label toriel_event1:
         #/// If >(FP WITH FRISK ≥15)<, jump toriel_event1_Q2
         #/// If >(FP WITH FRISK -5<FP<15), jump toriel_event1_Q3
         #/// If the player on the other hand has been mean to Frisk (Below -5FP), and their relationship is negative – Toriel will take this chance to take the player out to the side and talk to them about their behaviour. She will reprimand them, and tell them that this behaviour will not be tolerated., jump toriel_event1_Q4
-
+        jump toriel_event1
 
 
 
@@ -65,7 +82,7 @@ label toriel_event1:
         toriel "Again, thank you. That was all I had to say."
         #return
         #jump toriel_ruins
-
+        jump toriel_event1
     label toriel_event1_Q3:
         #//(+6)
         #*thoughtful*
@@ -90,9 +107,10 @@ label toriel_event1:
         #(snail pie +1)
 
         toriel "Make sure to take the shells out before you dig in!"
+    
         #return
         #jump toriel_ruins
-
+        jump toriel_event1
     label toriel_event1_Q4:
         #*neutral*
         toriel "Actually, I have been meaning to talk to you. I wanted to know how you were getting along. Are you having fun in the ruins?"
@@ -131,6 +149,7 @@ label toriel_event1:
         #*smile* 
         toriel "Well, that will be that. I am glad we had this conversation. Please, do get back to whatever it is you were doing."
         #return
+        jump toriel_event1
         #jump toriel_ruins
     
 #label toriel_event2:
@@ -248,8 +267,9 @@ label toriel_event4:
             toriel "Ah yes. I suppose love is said to be the most powerful source… Still – you must have had a lot of love for that flower for it to bloom so fast..."
             toriel "Although, love or no – it appears you have a way with plants."
             #JUMP TO LABEL: 'FLOWER DATE'
+    jump toriel_ruins
 
-label flower_date:
+label toriel_flower_date:
     #LABEL: 'FLOWER DATE'
     toriel "That is already miles more than I can say for myself. It is not that I haven't tried. I have, and many times... but it seems I have a 'black thumb' of sorts. I am not terribly good at keeping anything alive for very long. Truthfully, it is impressive the flower survived as long as it did."
 
@@ -266,3 +286,4 @@ label flower_date:
                 toriel: Either way, there is no need to worry about it for now. Just approach me if you would like to start."
             #//END EVENT
     
+    jump toriel_ruins

@@ -44,8 +44,10 @@ label dev_label:
                 jump frisk_start
             "Flowey":
                 jump flowey_ruins
+            "Toriel":
+                jump toriel_ruins
             "Shop Test":
-                jump shop_test_talk
+                jump Muffet_Shop
 
 label demo_end:
     "This demo ends here. Thanks for playing!"

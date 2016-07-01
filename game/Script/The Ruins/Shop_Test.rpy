@@ -1,19 +1,15 @@
 
 label shop_test_talk:
-    show screen show_menu_button
-    show screen shop_menu
+    #show screen show_menu_button
+    #show screen shop_menu
     nvl clear
-   
-    #shop:
-    #    talk: 
-            
-    #    buy:
-          
-    #    sell:
-           
-    #    exit:
-           
-   
+    #shop declarations
+    #set dialogs, buttons, everything
+    #show
+    #set. then show.
+
+    
+
     payneShop "Testing the Shop Dialog Talk Button, click on this, and we'll have more text."
     payneShop "Of course, there's not much to say."
     jump shop_test_talk
