@@ -75,20 +75,20 @@ init python:
 
 
 screen show_map_button:
-    textbutton "Show Map" action [Play ("sound", "audio/click.wav"),Show("show_map"),Hide("show_map_button")] align(.45,.05) background Frame("text-box3.png",50, 21)
+    textbutton "Show Map" action [Play ("sound", "audio/click.wav"),Show("show_map"),Hide("show_map_button")] align(.45,.05) background Frame("UI/text-box3.png",50, 21)
 
 screen show_map:
     
     add "#0008"
     modal True
     #hide button
-    textbutton "Hide Map" action [Play ("sound", "audio/click.wav"),Hide("show_map"),Show("show_map_button")] align(.45,.05)  background Frame("text-box3.png",50, 21)
+    textbutton "Hide Map" action [Play ("sound", "audio/click.wav"),Hide("show_map"),Show("show_map_button")] align(.45,.05)  background Frame("UI/text-box3.png",50, 21)
     
 
 
     vbox xalign 0.5 ypos 0.12:
         frame:
-            background Frame("text-box3.png",21, 21)
+            background Frame("UI/text-box3.png",21, 21)
             xminimum screen_width-20
             yminimum screen_height-80
             xmaximum screen_width-20

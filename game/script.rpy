@@ -7,7 +7,7 @@ init:
 #This takes place after the MC has heard about Frisk from Toriel.
 label start:
     stop music
-
+    "test"
     #jump FlappySans
 
     jump dev_label

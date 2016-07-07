@@ -51,7 +51,7 @@ init -1 python:
 
 screen items:
         frame pos(0.3,0.05):
-            background Frame("text-box3.png",21, 21)
+            background Frame("UI/text-box3.png",21, 21)
             vbox:
                 for item in inventory.items:
                     if isinstance(item,Empty):

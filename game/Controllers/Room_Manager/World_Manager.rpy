@@ -1,15 +1,15 @@
-init python:
+init -10 python:
     
     class Monster():
 
-        def self.__init__(self):
+        def __init__(self):
             self.name = "Bob"
 
     class Area():
 
-        self.currentRoom = False
         def __init__(self):
             self.rooms = []
+            self.currentRoom = False
             #self.random_scenes = ['papyrus_random','sans_random','toriel_random','flowey_random']
         
         def add_room(self,room):
@@ -100,15 +100,14 @@ init python:
 
     class World():
 
-        self.areas = []
-        self.currentArea = False
-        self.monsters = []
-        self.currentTime = 0
-        self.timeZones = {"Night":0,"Morning":480,"Day":720,"Afternoon":960,"Evening":1200}
-
-
-        def self.__init__(self):
+    
+        def __init__(self):
             self.name = "Underground"
+            self.areas = []
+            self.currentArea = False
+            self.monsters = []
+            self.currentTime = 0
+            self.timeZones = {"Night":0,"Morning":480,"Day":720,"Afternoon":960,"Evening":1200}
 
         def add_monster(self,monster):
             if isinstance(monster,Monster):
@@ -136,5 +135,40 @@ label load_room:
     while True:
         pause
     return
+
+screen show_nav_button:
+    textbutton "Show Nav (E)" action [Play ("sound", "audio/sfx/click.wav"), Show("navigation_buttons"), Hide("show_nav_button")] align(.95,.1) background Frame("text-box3.png",50, 21)
+    key 'e' action [Play ("sound", "audio/sfx/click.wav"), Show("navigation_buttons"), Hide("show_nav_button")]
+screen navigation_buttons:
+    add "#0008"
+    modal True
+
+    $dirs = room_manager.cr_get_neighbors()
+
+    textbutton "Hide Nav (E)" action [Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button')] align(.95,.1) background Frame("text-box3.png",50, 21)
+    key 'e' action [Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button')]
+    if dirs.count('north') > 0:
+        textbutton "north (w)" background Frame("text-box3.png",50, 21) align(0.5,0.0) action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(room_manager.move_dir,'north')]
+        key 'w' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(room_manager.move_dir,'north')]
+
+    if dirs.count('south') > 0:
+        textbutton "south (s)" background Frame("text-box3.png",50, 21) align(0.5,1.0) action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(room_manager.move_dir,'south')]
+        key 's' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(room_manager.move_dir,'south')]
+
+    if dirs.count('east') > 0:
+        textbutton "east (d)" background Frame("text-box3.png",50, 21) align(1.0,0.5)  action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(room_manager.move_dir,'east')]
+        key 'd' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(room_manager.move_dir,'east')]
+
+    if dirs.count('west') > 0:
+        textbutton "west (a)" background Frame("text-box3.png",50, 21) align(0.00,0.5) action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(room_manager.move_dir,'west')]
+        key 'a' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(room_manager.move_dir,'west')]
+
+    text '[room_manager.current_room.name]' align(0.5,0.5)
+
+
+#until we find a way to figure out what order the files are loaded in, all the rooms have to go in here.
+
+
+
 
 
