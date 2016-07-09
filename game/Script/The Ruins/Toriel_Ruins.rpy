@@ -45,13 +45,13 @@ label toriel_event1:
         menu:
             toriel "Actually, I have been meaning to talk to you. It is nothing serious, do not be concerned! I just wanted to know how you were getting along. Have you had time to adjust to the ruins yet?{fast}"
 
-            "Yes, I love it here.": #(+8)
+            "Yes, I love it here.": #(+5)
                 #happy
                 toriel "That is wonderful. I was worried that the ruins would get boring quickly for someone like you. Of course, it is a charming place to be, but every day is more or less the same."
-            "I’m enjoying myself so far.":#(+5)
+            "I’m enjoying myself so far.":#(+3)
                 #happy
                 toriel "That is encouraging. I was worried that the ruins would get boring quickly for someone like you. Of course, it is charming place to be, but every day is more or less the same."
-            "I can’t wait to get out of here.":#(-5)
+            "I can’t wait to get out of here.":#(-4)
                 #disappointed
                 toriel "I must say, that is a little upsetting to hear. Ah well, I will not press the issue further."
         #/// If >(FP WITH FRISK ≥15)<, jump toriel_event1_Q2
@@ -76,7 +76,7 @@ label toriel_event1:
         toriel "..."
         toriel "Oh! I had nearly forgot. I had some spare ingredients lying about, so I baked a small snail pie to show you my gratitude."
 
-        toriel "If you're not in the mood to eat it now, feel free to take a slice and save it for later. Just... make sure to take the shells out before digging in. "
+        toriel "If you are not in the mood to eat it now, feel free to take a slice and save it for later. Just... make sure to take the shells out before digging in. "
         #(snail pie +1)
         toriel "..." 
         toriel "Again, thank you. That was all I had to say."
@@ -103,7 +103,7 @@ label toriel_event1:
 
         toriel "Oh hold on just one moment! I had nearly forgot. I actually baked a snail pie to show you my gratitude." 
 
-        toriel "If you're not in the mood to eat it now, feel free to take a slice and save it for later." 
+        toriel "If you are not in the mood to eat it now, feel free to take a slice and save it for later." 
         #(snail pie +1)
 
         toriel "Make sure to take the shells out before you dig in!"
@@ -112,6 +112,9 @@ label toriel_event1:
         #jump toriel_ruins
         jump toriel_event1
     label toriel_event1_Q4:
+
+        #remember to bold certain text
+
         #*neutral*
         toriel "Actually, I have been meaning to talk to you. I wanted to know how you were getting along. Are you having fun in the ruins?"
         menu:
@@ -147,98 +150,38 @@ label toriel_event1:
             "Yes, sorry.": #//(+5)
                 toriel "I accept your apology. As long as your behaviour changes, I am willing to put this in the past."
         #*smile* 
-        toriel "Well, that will be that. I am glad we had this conversation. Please, do get back to whatever it is you were doing."
-        #return
-        jump toriel_event1
-        #jump toriel_ruins
-    
-#label toriel_event2:
-#[OMITTED IN THE DEMO] Event Name: Something New, Something Tasty.
-#Event Trigger: 1. (50) FP with Toriel.
-#               2. (20) FP with Frisk
+        toriel "Well, that will be that. I am glad we had this conversation."
 
-
-    #In this event, Toriel confesses that she is worried Frisk is not receiving proper nutrition, since Toriel feeds them only what she can find in the ruins. In this event, Toriel gives you some money, and politely asks if you could go out of the ruins and come back with 'something new and tasty.' She instructs you to buy 3 of the same thing, so all of you can eat together.
-    #Accepting this increases FP (+5).
-
-
-    #When the player goes outside, they have a choice of what to buy. Toriel will react differently to almost all foods. They can also spend the money on something else, in which case they can either work to get the money back, or come back to Toriel.
-    #The latter decreases FP (-10), DP (-8) and INTEGRITY. It also ends the event.
-
-
-    #This event gives a chance for the player to ask the other characters about their opinion on Toriel. The shopkeepers will ask who the player is buying all the food for, and the player has the option to continue the conversation onto Toriel. Other characters may overhear and join into the conversation, asking about how well the Queen's doing, when she's planning on coming back etc…
-
-
-    #Possible food items you can bring back:
-        
-    #    Cinnamon    Bun -  Toriel   =   Positive reaction.  Frisk   =   Positive reaction.
-        
-    #    Crab    Apple – Toriel  =   Very positive reaction. She likes the idea of eating 'healthy' food.
-        
-    #    Bisicle/Unisicle    – Toriel    =   Positive reaction.  Frisk   =   Positive reaction.
-        
-    #    Nicecream   – Toriel    =    Frisk  =
-        
-    #    Spider  Cider – Toriel  =    Frisk  =
-        
-    #    Spider  Donut – Toriel  =    Frisk  =
-        
-    #    Chocolate   – Toriel    =   Mild reaction.  Frisk   =   Very positive reaction. Greatly increases Chara's/Frisk's FP.
-        
-    #    Any     food from Grillby's -  Toriel   =    Frisk  =
-        
-    #    Any     food from MTT –     Toriel  =   Frisk   =
-        
-    #    etc….
-
-
-    #When the player returns, Toriel will ask them how it went, and the player has the option to either be honest and increase INTEGRITY but reduce fp by a small amount (-5), by stating that people miss her – or choosing not to say anything.
-
-
-
-#label toriel_event3:
-#Event Name: The Queen
-#Event Trigger: 1. (100) FP with Toriel.
-
-
-    #This event explores Toriel's guilt upon leaving everyone that is above the ruins. Toriel could potentially get a letter through the door, asking her about whether she'd like to visit the monsters  outside the ruins somehow. This would likely be triggered by/ linked to the player talking about Toriel in the last event.
-    #It is a chance for Toriel to reflect on how she has acted – whether she made the right choice or whether she was being brash.
-    #The player could also give share their opinions on whether Toriel was justified in her actions.
-
-
-    #With enough convincing, Toriel goes up to meet the other monsters again with Frisk. (This would be quite a big event), or she could stay inside like a recluse. This outcome of the event raises the most FP (+15) and DP (+15), as well as raising an extra (+10) FP with Frisk. (Advising her to stay home while simultaneously saying that it was for her best could be a fun way of driving this event down to the manipulative heartbreak end. Further separating Toriel from any contact that she may have had outside of the ruins means she is forced to depend completely on the m/c and therefore can't effectively separate herself from an abusive relationship.)
-
-
-    #Otherwise, Toriel stays at home with Frisk, and there is little/no increase in FP or DP.
+        menu:
+            "FP with Toriel >10?"
+            "Yes":
+                toriel "As a sign that I am willing to put this behind us, I had a spare piece of snail pie that I was going to save for later, but instead - I will give it to you. It would be a waste to let it get cold after all, would it not?"
+                #(snail pie +1)
+                toriel "Make sure to eat the shells. They are a bit crunchy."
+                toriel "Please, do get back to whatever it is you were doing."
+                jump toriel_event1
+                #return
+            "No":
+                toriel "Please, do get back to whatever it is you were doing."
+                jump toriel_event1
+                #return
 
 label toriel_event4:
 #Event Name: The Stunted Golden Flower
 #This flower can be watered every two 'days'. Since the game does not have a day/night system, the flower can be re-watered after the player goes to sleep (2) times. This flower has to be watered every two/three days, otherwise the timer resets, and the cycle has to be started over.
-
-    #Dialogue for THE GOLDEN FLOWER:
-
-    #DAY     1:
-
-    #///If>(“NOT WATERED”)<
-    #*This flower pot is home to a yellow flower, but the earth inside it is dry. Water it?
-    #Selection X
-    #    Y (Yes.)                                             //(0)
-    #    Z (No.)                                     //(-15)
-
-    #///If >Y(Yes.)<
-    #(“WATERED”)
-    #*You pour some tap water into a cup and use it to water the flower.
-
-    #///If >Z(No.)<
-    #*You decide not to water the flower.
-
-    #///If>(“WATERED”)<
-    #*This flower pot is home to a yellow flower. It looks refreshed.
-
-    #DAY     2:
+    "*this flower pot is home to a yellow flower, but the earth inside it is dry."
+    menu:
+        "*this flower pot is home to a yellow flower, but the earth inside it is dry.{fast}"
+        "(water it)":
+            #(0)
+            "*it perks up immediately"
+        "(don't water it)":
+            #(-15)
+            "*you must be thirstier, huh?"
+    #if WATERED
+    "*this flower pot is home to a yellow flower. It looks refreshed for now."
     #///If>(“WATERED PREVIOUS DAY”)<
-    #*This flower pot is home to a yellow flower. The earth is still a little damp.
-
+    "*this flower pot is home to a yellow flower. The earth is still a little damp."
 
     #(If the player remembers to water the flower every two/three days for a consecutive of 10 or so days, their PERSEVERANCE increases greatly, and the stunted flower blooms [sprite changes?])
 
@@ -264,7 +207,7 @@ label toriel_event4:
         "It’s the power of love.":# //(+8DP)
             #///If >R(It’s the power of love.)<
             #*deep in thought*
-            toriel "Ah yes. I suppose love is said to be the most powerful source… Still – you must have had a lot of love for that flower for it to bloom so fast..."
+            toriel "Ah yes. I suppose love is said to be the most powerful source... Still – you must have had a lot of love for that flower for it to bloom so fast..."
             toriel "Although, love or no – it appears you have a way with plants."
             #JUMP TO LABEL: 'FLOWER DATE'
     jump toriel_ruins
