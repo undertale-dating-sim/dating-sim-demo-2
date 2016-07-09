@@ -1,7 +1,31 @@
 init:
     $ flowey_nopie_talked = 0
     $ nopie = True
-    
+    #times flowey's been given items
+    $ flowey_buttspie = 0
+    $ flowey_snailpie = 0
+    $ flowey_mnstrcndy = 0
+    $ flowey_spidrdont = 0
+    $ flowey_spidrcidr = 0
+    $ flowey_milkchoco = 0
+    $ flowey_whitchoco = 0
+    $ flowey_gave_items = 2
+    python:
+        def flowey_say(dialogue):
+            renpy.hide("flowey")
+            if len(dialogue)>=1:
+                for part in dialogue:
+                    renpy.show(part[0])
+                    renpy.say(flowey,part[1])
+            else:
+                renpy.show(dialogue[0])
+                renpy.say(flowey,dialogue[1])
+            renpy.hide("flowey")
+        def give_flowey(item,dialogue):
+            gave = {"buttspie":flowey_buttspie,"snailpie":flowey_snailpie,"mnstrcndy":flowey_mnstrcndy,"spidrdont":flowey_spidrdont, "spidrcidr":flowey_spidrcidr,"milkchoco":flowey_milkchoco,"whitchoco":flowey_whitchoco,"gave_items":flowey_gave_items}
+
+            gave[item]+=1
+
 #default-font
 init python:
     style.default.font = "font/DTM-Mono.otf"
@@ -10,7 +34,9 @@ label flowey_ruins:
     scene background floweyroomplaceholder
     hide flowey
     menu:
-        "Flowey Hangout1":
+        "Item Dialogue":
+            jump flowey_item_dialogue
+        "flowey Hangout1":
             jump flowey_hangout1
         "No Snail Pie in Inventory (After Finishing Hangout1)":
             jump flowey_nopie
@@ -18,13 +44,201 @@ label flowey_ruins:
             jump flowey_hangout2
         "Exit Event":
             return
+label flowey_item_dialogue:
+        
+
+        
+
+    menu:
+        "Give Flowey"
+        #what if I call the labels instead?
+        "Butterscotch Pie":
+            jump flowey_give_buttspie
+        "Snail Pie":
+            jump flowey_give_snailpie
+        "Monster Candy":
+            jump flowey_give_mnstrcndy
+        "Spider Donut":
+            jump flowey_give_spidrdont
+        "Spider Cider":
+            jump flowey_give_spidrcidr
+        "Milky Chocolate":
+            jump flowey_give_milkchoco
+        "White Chocolate":
+            jump flowey_give_whitchoco
+        "Multiple Items":
+            jump flowey_give_multi_items
+
+    label flowey_give_buttspie:
+        ##/// If >[GIVE]---> >Butterscotch Pie<
+        
+        $ give_buttspie = [[["flowey sad","What?! Where did you get this? ...Thanks... I guess..."]], #+10 FP
+                        [["flowey annoyed","Okay, seriously, where did you get this?! Why do you keep giving it to me?!"]],#+0 FP
+                        [["flowey annoyed","Are you trying to get me to say something?!"]], #+0 FP
+                        [["flowey angry","Hey! Cut it out! You’re enjoying this, aren’t you?!"]]] #-5 FP
+
+        #does this have to be a global variable? I gotta ask later
+        if flowey_buttspie >=len(give_buttspie): 
+            $ flowey_say(give_buttspie[-1])
+        else:
+            $ flowey_say(give_buttspie[flowey_buttspie])
+        $ flowey_buttspie += 1
+
+        menu:
+            "Give Flowey another Butterscotch Pie":
+                jump flowey_give_buttspie
+            "Back to Give Item Menu":
+                $ flowey_buttspie = 0
+                hide flowey
+                jump flowey_item_dialogue
+
+    label flowey_give_snailpie:
+        #/// If >[GIVE]---> >Snail Pie<
+        #make a function that only takes all of the dialogue
+
+        $ flowey_snailpie_dialogue = [[["flowey excited","Woah! Seriously?!"],["flowey normal","Uh... I mean... Whatever..."]],#+10 fp
+                        [["flowey normal","Pffft. You honestly think I'd want another one of these?"],["flowey normal","... But I guess I’ll take it. You know, since you offered. Not for any reason in particular, really."]],#+5 FP
+                        [["flowey annoyed","... Are you trying to win me over?"]],#+0 FP
+                        [["flowey angry","You are, Aren’t you!? Stop it! Get away from me, you sicko!"]]]#-3 FP
+        if flowey_snailpie >=len(flowey_snailpie_dialogue): 
+            $ flowey_say(flowey_snailpie_dialogue[-1])
+        else:
+            $ flowey_say(flowey_snailpie_dialogue[flowey_snailpie])
+        $ flowey_snailpie += 1
+        menu:
+            "Give Flowey another Snail Pie":
+                jump flowey_give_snailpie
+            "Back to Give Item Menu":
+                $ flowey_snailpie = 0
+                hide flowey
+                jump flowey_item_dialogue
+
+    label flowey_give_mnstrcndy:
+        #/// If >[GIVE]----> >Monster Candy<
+        $ flowey_mnstrcndy_dialogue = [[["flowey annoyed","Bleh! These things are beyond gross! What’d you expect me to do with this?! Eat it?! Yeah, as if. I’d rather eat whatever’s on the bottom of your shoe."]], #-3 FP
+                            [["flowey annoyed","I told you these are gross! Stop giving them to me, you idiot!"]], #-5 FP 
+                            [["flowey angry","Are you trying to gross me out?! Knock it off!"]], #-8 FP
+                           [["flowey angry","You’re irritating me on purpose! Get lost, ya loser!"]]] #-10 FP 
+        if flowey_mnstrcndy >=len(flowey_mnstrcndy_dialogue): 
+            $ flowey_say(flowey_mnstrcndy_dialogue[-1])
+        else:
+            $ flowey_say(flowey_mnstrcndy_dialogue[flowey_mnstrcndy])
+        $ flowey_mnstrcndy += 1
+        menu:
+            "Give Flowey another Monster Candy":
+                jump flowey_give_mnstrcndy
+            "Back to Give Item Menu":
+                $ flowey_mnstrcndy = 0
+                hide flowey
+                jump flowey_item_dialogue
+
+    label flowey_give_spidrdont:
+        #/// If >[GIVE]----> >Spider Donut<
+        $ flowey_spidrdont_dialogue = [[["flowey annoyed","Ugh. Those spiders probably made you buy this, didn’t they? Jeez. They’re so obnoxious. The way they rant about their missing spider clan or whatever. Why would you put spiders in your donuts? It’s disgusting."]], #-3 FP 
+            [["flowey annoyed","I don’t care about those stupid spiders! They can go die in the cold for all I care."]], #-5 FP 
+            [["flowey annoyed","I don’t want anymore of these dumb sponges they dare to call donuts. Stop it."]], #-8 FP 
+            [["flowey angry","You’re really starting to get on my nerves with this. You might wanna stop."],["flowey horrorface","... before I get too mad."]]]  #-10 FP 
+
+        if flowey_spidrdont >=len(flowey_spidrdont_dialogue): 
+            $ flowey_say(flowey_spidrdont_dialogue[-1])
+        else:
+            $ flowey_say(flowey_spidrdont_dialogue[flowey_spidrdont])
+        $ flowey_spidrdont += 1
+        menu:
+            "Give Flowey another Spider Donut":
+                jump flowey_give_spidrdont
+            "Back to Give Item Menu":
+                $ flowey_spidrdont = 0
+                hide flowey
+                jump flowey_item_dialogue
+
+    label flowey_give_spidrcidr:
+        #/// If >[GIVE]----> >Spider Cider<
+        $ flowey_spidrcidr_dialogue = [[["flowey annoyed","This is the only thing worse than spider donuts! It tastes like dirt!"],["flowey side glance","That’s really saying something... Get it? Because I’m a flower!"],["flowey laugh","Hahahahaha!"]], #-3 FP 
+            [["flowey annoyed","Okay, but seriously, I really do think it’s gross. Don’t give it to me anymore."]], #-5 FP 
+            [["flowey annoyed","You’re really starting to tick me off, buddy."]], #-8 FP 
+            [["flowey angry","You're starting to remind me of dirt yourself, bucko."]]] #-10 FP 
+
+        if flowey_spidrcidr >=len(flowey_spidrcidr_dialogue): 
+            $ flowey_say(flowey_spidrcidr_dialogue[-1])
+        else:
+            $ flowey_say(flowey_spidrcidr_dialogue[flowey_spidrcidr])
+        $ flowey_spidrcidr += 1
+        menu:
+            "Give Flowey another Spider Cider":
+                jump flowey_give_spidrcidr
+            "Back to Give Item Menu":
+                $ flowey_spidrcidr = 0
+                hide flowey
+                jump flowey_item_dialogue
+
+    label flowey_give_milkchoco:
+
+        $ flowey_milkchoco_dialogue = [[["flowey normal","Huh. The last time I saw this brand was...  Nevermind. Thanks or whatever"]], #+5 FP
+        [["flowey side glance","Uh, you already gave me one of these. But okay."]], #+3 FP
+        [["flowey annoyed","You know, I can only eat so much of this. Have you even noticed how small I am?"]], #+0 FP
+        [["flowey annoyed","Okay, stop it. I know you’re probably trying to kill me at this point."]]] #-3 FP
+
+        if flowey_milkchoco >=len(flowey_milkchoco_dialogue): 
+            $ flowey_say(flowey_milkchoco_dialogue[-1])
+        else:
+            $ flowey_say(flowey_milkchoco_dialogue[flowey_milkchoco])
+        $ flowey_milkchoco += 1
+        menu:
+            "Give Flowey another Milky Chocolate":
+                jump flowey_give_milkchoco
+            "Back to Give Item Menu":
+                $ flowey_milkchoco = 0
+                hide flowey
+                jump flowey_item_dialogue
+
+    label flowey_give_whitchoco:
+        $ flowey_whitchoco_dialogue = [[["flowey annoyed","What's this garbage!? It has the nerve to call itself ‘Chocolate’. There's not even chocolate in it! Disgusting."]], #-5 FP
+        [["flowey annoyed","Why are you giving me this imposter of a candy again?! Get this humanosrity out of my face."]], #-8 FP
+        [["flowey angry","You know, you’re really starting to remind me of this bar of junk."]], #-10 FP
+        [["flowey smug","Well, I guess you're turning into quite the sadist, aren't you? I can't blame you, though."], ["flowey wink","I mean, look who you're talking to!"],["flowey laugh","Hahahaha!"]]] #-12 FP
+
+        if flowey_whitchoco >=len(flowey_whitchoco_dialogue): 
+            $ flowey_say(flowey_whitchoco_dialogue[-1])
+        else:
+            $ flowey_say(flowey_whitchoco_dialogue[flowey_whitchoco])
+        $ flowey_whitchoco += 1
+        menu:
+            "Give Flowey another White Chocolate":
+                jump flowey_give_whitchoco
+            "Back to Give Item Menu":
+                $ flowey_whitchoco = 0
+                hide flowey
+                jump flowey_item_dialogue
+
+    label flowey_give_multi_items:
+        #Reactions to multiple items in one day:
+        $ flowey_multi_items_dialogue = [[["flowey sad","Why are you being... So nice to me? You keep giving me stuff... Why?"]],
+        [["flowey annoyed","Okay, now you're being kinda weird."]],
+        [["flowey annoyed","Okay NOW it’s just getting creepy. Stop it."]],
+        [["flowey annoyed","You know, monsters will deduct friendship points if you give them too many items in one sitting. From this point on, you’ll freak them out."],["flowey sideglance","You don't want them to hate you,do you?"],["flowey horrorface","You'll lose all your friends this way."],["flowey sideglance","And I'm not an exception."],["flowey wink",""]]] #-5 FP
+
+        if flowey_gave_items >=len(flowey_multi_items_dialogue): 
+            $ flowey_say(flowey_multi_items_dialogue[-1])
+        else:
+            $ flowey_say(flowey_multi_items_dialogue[flowey_gave_items-2])
+        $ flowey_gave_items += 1
+        menu:
+            "Give Flowey another Item":
+                jump flowey_give_multi_items
+            "Back to Give Item Menu":
+                $ flowey_gave_items = 0
+                hide flowey
+                jump flowey_item_dialogue
+
+
 label flowey_hangout1:
     scene background floweyroomplaceholder
     
 
     #Hangout 1 
     #{After tutorial}
-    #This initial “Hangout” dialogue will occur regardless if player has or has not yet met the prerequisites for a friendship with Flowey
+    #This initial "Hangout" dialogue will occur regardless if player has or has not yet met the prerequisites for a friendship with flowey
     #*Surprised* 
     show flowey surprised with dissolve
     flowey "Wha-?! You snuck up on me."
@@ -45,7 +259,7 @@ label flowey_hangout1:
                 jump flowey_hangout1_Q2
 
     label flowey_hangout1_Q2:
-        #/// If >(...I’d just like to chat.)< OR ///If >(I’d like to talk to you, Flower)<
+        ##/// If >(...I’d just like to chat.)< OR ///If >(I’d like to talk to you, Flower)<
         #*Evil* 
         show flowey evil
         flowey "I d i o t . You’re in the wrong place. Get out before you piss me off. I’m busy."
@@ -65,7 +279,7 @@ label flowey_hangout1:
 
     label flowey_hangout1_Q3:
         label flowey_hangout1_Q3_choice1:
-            #floweyQ3: /// If >(Busy? Busy doing what?)< 
+            #floweyQ3: #/// If >(Busy? Busy doing what?)< 
             flowey "Why don’t you go and find someone to play with?"
             menu:
                 flowey "Why don’t you go and find someone to play with?{fast}"
@@ -106,8 +320,8 @@ label flowey_hangout1:
                 #(((Player shouldnt be forced to leave or get HB points. Add another option here)))
     label flowey_hangout1_Q4:
         label flowey_hangout1_Q4_choice1:
-            #F Q4: /// If >(Busy? Busy doing what?)< /// If >(I’m just interested in what life is like down here.)< 
-            #OR ///If >(What does a flower have to do?)< /// If >(I’m just interested in what life is like down here.)< 
+            #F Q4: #/// If >(Busy? Busy doing what?)< #/// If >(I’m just interested in what life is like down here.)< 
+            #OR ///If >(What does a flower have to do?)< #/// If >(I’m just interested in what life is like down here.)< 
             menu:
                 flowey "Stop trolling and wasting both of our time.{fast}"
                 "Ya got me, I’m a big troll.":#//Decrease - FP
@@ -115,14 +329,14 @@ label flowey_hangout1:
                 "I’m not interested in them right now. Maybe I could help you.":#   //Increase + FP
                     jump flowey_hangout1_Q4_choice3
         label flowey_hangout1_Q4_choice2:
-            #/// If >(Ya got me, I’m a big troll.)<
+            ##/// If >(Ya got me, I’m a big troll.)<
             #*Evil* 
             show flowey evil
             flowey "That’s pretty funny, troll. Now, go before I kill ya."
             #-Player exits encounter-
             jump flowey_ruins
         label flowey_hangout1_Q4_choice3:
-            #/// If >(I’m not interested in them right now. Maybe I could help you.)<
+            ##/// If >(I’m not interested in them right now. Maybe I could help you.)<
             #*Surprised* 
             show flowey surprised
             flowey "Help me?" 
@@ -198,7 +412,7 @@ label flowey_nopie:
         $ renpy.say(flowey,nopie_dialog[flowey_nopie_talked])
         $ flowey_nopie_talked += 1
     menu:
-        "Talk to Flowey":
+        "Talk to flowey":
             if nopie:
                 jump flowey_nopie
             else:
@@ -288,7 +502,7 @@ label flowey_hangout2:
 
     label flowey_hangout2_Q5:
         label flowey_hangout2_Q5_choice1:
-            #F Q5: /// If >(It’s a gift. You can take it or leave it.)< OR /// If >(Someone made it, just for me. I didn’t want it. Take it as a gift.)< 
+            #F Q5: #/// If >(It’s a gift. You can take it or leave it.)< OR #/// If >(Someone made it, just for me. I didn’t want it. Take it as a gift.)< 
             flowey "Wait, gifts? I don’t need any gifts."
             #*Suspicious* 
             show flowey suspicious
@@ -313,7 +527,7 @@ label flowey_hangout2:
                     flowey "What even is it? It better be great."
                     jump flowey_hangout2_Q6_choice2
         label flowey_hangout2_Q5_choice2:
-            #F: *Anger* 
+            #flowey *Anger* 
             show flowey angry
             flowey "You think you can just bribe someone into friendship? That’s not how it works. That’s not how I work. You might have the others fooled, but never forget:"
             #*Evil* 
@@ -360,16 +574,16 @@ label flowey_hangout2:
                     #-player exits encounter-
                     jump flowey_ruins
 
-    #F Q6: /// If >(It’s a gift. You can take it or leave it.)< /// If >(You don’t know that yet.)< 
-    #OR  /// If >(Suddenly interested, huh?)< /// If >(I was just trying to help, jeeze...)<
-    #OR /// If >(“Everyone needs a friend. And since no one else is offering, it looks like I’m your only option.”)<
+    #F Q6: #/// If >(It’s a gift. You can take it or leave it.)< #/// If >(You don’t know that yet.)< 
+    #OR  #/// If >(Suddenly interested, huh?)< #/// If >(I was just trying to help, jeeze...)<
+    #OR #/// If >("Everyone needs a friend. And since no one else is offering, it looks like I’m your only option.")<
         
         
         label flowey_hangout2_Q6_choice2:
             menu:
                 "Well... Here you go, jerk. It’s snail pie.": #// Increase + HB
                     jump flowey_hangout2_Q7
-                "Ask him “Wouldn’t you like to know~” and leave": #//Increase + +HB
+                "Ask him \"Wouldn’t you like to know~\" and leave": #//Increase + +HB
                     #-player exits encounter-
                     jump flowey_ruins
 
