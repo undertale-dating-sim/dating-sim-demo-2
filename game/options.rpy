@@ -92,9 +92,9 @@ init -1 python hide:
     ## are the size of the left/right and top/bottom borders,
     ## respectively.
 
-    style.window.background = Frame("text-box2.png", 21, 21)
-    style.button.background = Frame("text-box3.png",21, 21)
-    style.frame.background = Frame("text-box3.png",21, 21)
+    style.window.background = Frame("UI/text-box2.png", 21, 21)
+    style.button.background = Frame("UI/text-box3.png",21, 21)
+    style.frame.background = Frame("UI/text-box3.png",21, 21)
     ## Margin is space surrounding the window, where the background
     ## is not drawn.
 

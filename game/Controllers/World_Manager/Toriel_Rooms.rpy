@@ -1,4 +1,4 @@
-init -1 python:
+init python:
     
     random_rooms = []
     class th_staircase(Room):
@@ -68,15 +68,15 @@ init -1 python:
             self.scene = "toriel_house_toriel_room"
             self.locked = True
     
-    room_manager.add_room(th_staircase())
-    room_manager.add_room(th_kitchen())
-    room_manager.add_room(th_living_room())
-    room_manager.add_room(th_corridor())
-    room_manager.add_room(th_your_room())
-    room_manager.add_room(th_frisk_room())
-    room_manager.add_room(th_toriel_room())
+    # room_manager.add_room(th_staircase())
+    # room_manager.add_room(th_kitchen())
+    # room_manager.add_room(th_living_room())
+    # room_manager.add_room(th_corridor())
+    # room_manager.add_room(th_your_room())
+    # room_manager.add_room(th_frisk_room())
+    # room_manager.add_room(th_toriel_room())
     
-    room_manager.current_room = room_manager.rooms[0]
+    # room_manager.current_room = room_manager.rooms[0]
     
 label toriel_house_corridor:
     scene background toriel_house_corridor

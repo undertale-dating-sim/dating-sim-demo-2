@@ -137,21 +137,7 @@ init -1 python:
 
 
     
-    room_manager.add_room(ruins_caveroom())
-    room_manager.add_room(ruins_grassroom())
-    room_manager.add_room(ruins_ruinsentrance())
-    room_manager.add_room(ruins_tunnels())
-    room_manager.add_room(ruins_dummyroom())
-    room_manager.add_room(ruins_froggitleaves())
-    room_manager.add_room(ruins_sassyrock())
-    room_manager.add_room(ruins_blookyroom())
-    room_manager.add_room(ruins_spiderbakery())
-    room_manager.add_room(ruins_snailhuntingroom())
-    room_manager.add_room(ruins_tunneldivide())
-    room_manager.add_room(ruins_overlook())
-    room_manager.add_room(ruins_blacktreeroom())
-
-    room_manager.current_room = room_manager.rooms[0]
+   
 
 
     

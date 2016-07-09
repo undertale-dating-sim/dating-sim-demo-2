@@ -120,4 +120,5 @@ label initialize:
         player = Player()
         day = 0
         menu_state = "stats"
+        world = World()
 
