@@ -118,7 +118,6 @@ label initialize:
     init python:
         #init the player
         player = Player()
-        day = 0
         menu_state = "stats"
         world = World()
 

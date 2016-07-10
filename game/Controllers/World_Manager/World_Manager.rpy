@@ -108,8 +108,21 @@ init -10 python:
             self.currentArea = False
             self.monsters = []
             self.currentTime = 0
+            self.day = 1
             self.timeZones = {"Night":0,"Morning":480,"Day":720,"Afternoon":960,"Evening":1200}
             self.generate_ruins()
+
+        def get_current_timezone(self):
+            
+            timezone = "Morning"
+            for z in self.timeZones:
+                if self.currentTime < self.timeZones[z]:
+                    break
+                if self.currentTime >= self.timeZones[z]:
+                    timezone = z
+
+
+            return timezone
 
         def add_monster(self,monster):
             if isinstance(monster,Monster):
@@ -151,8 +164,8 @@ label load_room:
 
     with fade
 
-    # if !world.currentArea.currentRoom.visited:
-    #     #"[world.currentArea.currentRoom.desc]"
+    if not world.currentArea.currentRoom.visited:
+        "[world.currentArea.currentRoom.desc]"
     #     "test"
     $ world.currentArea.currentRoom.visited = True
     while True:
