@@ -12,7 +12,9 @@ screen show_menu:
             background Frame("UI/text-box3.png",21, 21)       
             vbox:
                 text "[player.name]"
-                text "Day: [day]"
+                text "Day: [world.day]"
+                text "Time: [world.currentTime]"
+                text world.get_current_timezone()
                 text "HP:  [player.current_health]/[player.total_health]"
                 text "G:   [player.gold]"
 
