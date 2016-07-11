@@ -11,6 +11,11 @@ init:
     $ flowey_whitchoco = 0
     $ flowey_gave_items = 2
     python:
+        class Give():
+            def __init__(self):
+                return
+        give = Give()
+        
         def flowey_say(dialogue):
             renpy.hide("flowey")
             if len(dialogue)>=1:
@@ -21,10 +26,30 @@ init:
                 renpy.show(dialogue[0])
                 renpy.say(flowey,dialogue[1])
             renpy.hide("flowey")
-        def give_flowey(item,dialogue):
+        def give_flowey(item,dialogue,timesgiven):
             gave = {"buttspie":flowey_buttspie,"snailpie":flowey_snailpie,"mnstrcndy":flowey_mnstrcndy,"spidrdont":flowey_spidrdont, "spidrcidr":flowey_spidrcidr,"milkchoco":flowey_milkchoco,"whitchoco":flowey_whitchoco,"gave_items":flowey_gave_items}
+            if gave[item] >= len(dialogue):
+                flowey_say(dialogue[-1])
+            else:
+                flowey_say(dialogue[gave[item]])
+            gave[item]+=1 
 
-            gave[item]+=1
+
+            #if flowey_buttspie >=len(give_buttspie): 
+            #    $ flowey_say(give_buttspie[-1])
+            #else:
+            #    $ flowey_say(give_buttspie[flowey_buttspie])
+            #$ flowey_buttspie += 1
+
+            #menu:
+            #    "Give Flowey another Butterscotch Pie":
+            #        jump flowey_give_buttspie
+            #    "Back to Give Item Menu":
+            #        $ flowey_buttspie = 0
+            #        hide flowey
+            #        jump flowey_item_dialogue
+            
+
 
 #default-font
 init python:
@@ -72,18 +97,18 @@ label flowey_item_dialogue:
     label flowey_give_buttspie:
         ##/// If >[GIVE]---> >Butterscotch Pie<
         
-        $ give_buttspie = [[["flowey sad","What?! Where did you get this? ...Thanks... I guess..."]], #+10 FP
+        $ flowey_buttspie_dialogue = [[["flowey sad","What?! Where did you get this? ...Thanks... I guess..."]], #+10 FP
                         [["flowey annoyed","Okay, seriously, where did you get this?! Why do you keep giving it to me?!"]],#+0 FP
                         [["flowey annoyed","Are you trying to get me to say something?!"]], #+0 FP
                         [["flowey angry","Hey! Cut it out! You’re enjoying this, aren’t you?!"]]] #-5 FP
 
         #does this have to be a global variable? I gotta ask later
-        if flowey_buttspie >=len(give_buttspie): 
-            $ flowey_say(give_buttspie[-1])
+        if flowey_buttspie >=len(flowey_buttspie_dialogue): 
+            $ flowey_say(flowey_buttspie_dialogue[-1])
         else:
-            $ flowey_say(give_buttspie[flowey_buttspie])
+            $ flowey_say(flowey_buttspie_dialogue[flowey_buttspie])
         $ flowey_buttspie += 1
-
+        #$ give_flowey("buttspie",flowey_buttspie_dialogue)
         menu:
             "Give Flowey another Butterscotch Pie":
                 jump flowey_give_buttspie

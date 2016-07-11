@@ -6,6 +6,8 @@ init -1 python:
             self.drop_text =    "default"
             self.negative_text = "default"
             self.positive_text = "default"
+        def give(self,character):
+            return
     class Empty(Item):
         def __init__(self):
             Item.__init__(self)
