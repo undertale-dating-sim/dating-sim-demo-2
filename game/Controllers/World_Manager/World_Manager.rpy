@@ -107,6 +107,7 @@ init -10 python:
             self.areas = []
             self.currentArea = False
             self.monsters = []
+            self.maxTime = 1440
             self.currentTime = 0
             self.day = 1
             self.timeZones = {"Night":0,"Morning":480,"Day":720,"Afternoon":960,"Evening":1200}
@@ -123,6 +124,35 @@ init -10 python:
 
 
             return timezone
+
+        #sets the current time
+        def set_current_time(self,time,update_day = False):
+
+            if time > 1440 or time < 0:
+                renpy.notify("Time too high or negative for set_current_time.")
+                return
+
+            if update_day:
+                if self.currentTime > time:
+                    self.day += 1
+
+            self.currenttime = time
+
+
+        #Adds minutes to the current time
+        #Updates current day if time goes over
+        def update_current_time(self,amount):
+
+            #check to see if we added more than one day
+
+            new_time = self.currentTime + amount
+
+            if new_time > self.maxTime:
+                day += 1
+                new_time -= self.maxTime
+
+            self.currentTime = new_time
+
 
         def add_monster(self,monster):
             if isinstance(monster,Monster):
@@ -163,11 +193,13 @@ label load_room:
     $ renpy.show(world.currentArea.currentRoom.bg)
 
     with fade
-
+    $ world.update_current_time(200)
     if not world.currentArea.currentRoom.visited:
         "[world.currentArea.currentRoom.desc]"
     #     "test"
     $ world.currentArea.currentRoom.visited = True
+
+    
     while True:
         pause
     return
