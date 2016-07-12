@@ -241,6 +241,14 @@ label blooky_event2:
     #                Finding Napstablook in Toriel’s garden
     #Synopsis: Napstablook notices you've been catching a lot of snails recently, and offers to help.
 
+    $ ruinsnails_asked = False
+    $ net_asked = False
+    $ extrasnails_asked = False
+    
+    $ torielsnails_asked = True
+    $ blookyfavsnail_asked = True
+    $ boughtsnails_asked = True
+
     blooky "hi.... i see you’ve been catching a lot of snails lately and, um...."
     blooky "i was wondering if... maybe... you wanted some advice? n-not that you’re not doing well on your own........."
     
@@ -261,13 +269,6 @@ label blooky_event2:
 label snail_advice:
 #Napstablook is giving you snail-hunting advice.
 
-    $ ruinsnails_asked = False
-    $ net_asked = False
-    $ extrasnails_asked = False
-    $ torielsnails_asked = False
-    $ blookyfavsnail_asked = False
-    $ boughtsnails_asked = False
-
     menu:
         "What types of snails are there in the Ruins?" if ruinsnails_asked is False: #(+1 FP)
             blooky "oh, there’s a lot..."
@@ -275,7 +276,11 @@ label snail_advice:
             blooky "then there’s the book snail.... not to be confused with a book worm.... they really like to read, and don’t always pay attention to where they’re going..."
             blooky "there are some snails that are addicted to coffee... their movements are so random, i sometimes have a hard time catching them..."
             blooky "lastly, there’s the rocket snails. they like to consider themselves daredevils.... i don’t know how to tell them that they’re only flying a few inches in the air, and aren’t actually in any danger. maybe it’s better that way......"
+            
             $ ruinsnails_asked = True
+            $ torielsnails_asked = False
+            $ blookyfavsnail_asked = False
+            
             jump snail_advice
             
         "My net is too slow and big… is there anywhere I can get a better one?" if net_asked is False: #(+2 FP)
@@ -289,25 +294,32 @@ label snail_advice:
             blooky "oh, i’ll take them.... if you don’t want them...."
             blooky "or you could sell them to Toriel.... i think she’ll give you 1G per snail."
             blooky "but, um.... if you happened to find me in the ruins.... i’ll give you a better deal...."
+            
             $ extrasnails_asked = True
+            $ boughtsnails_asked = False
+            
             jump snail_advice
             
-        "Why are there so many snails in Toriel’s garden?" if ruinsnails_asked is True: #and if torielsnails_asked is False: #(+1 FP)
+        "Why are there so many snails in Toriel’s garden?" if torielsnails_asked is False: #(+1 FP)
             blooky "i don’t actually know.... they all just seem to prefer her house, for some reason."
             blooky "i thought i saw her spreading something on the ground once..... but i didn’t ask her what it was.... i didn’t want to bother her...."
-            $ torielsnails_asked
+            
+            $ torielsnails_asked = True
+            
             jump snail_advice
             
-        "What’s your favorite kind of snail?" if ruinsnails_asked is True: #and if blookyfavsnail_asked is False: #(+2 FP)
+        "What’s your favorite kind of snail?" if blookyfavsnail_asked is False: #(+2 FP)
             blooky "oh...... that’s a difficult question......."
             blooky "i don’t think i have a favorite kind. i like all snails.... especially the ones that live on my farm."
             $ blookyfavsnail_asked = True
             jump snail_advice
             
-        "What do you do with the snails you buy?" if extrasnails_asked is True: #and boughtsnails_asked is False: #(+1 FP)
+        "What do you do with the snails you buy?" if boughtsnails_asked is False: #(+1 FP)
             blooky "i just bring them back to my farm.... it’s in waterfall..."
             blooky "people will pay more for snails there than they will in the ruins. that’s how we stay in business."
+            
             $ boughtsnails_asked = True
+            
             jump snail_advice
             
         "That’s all I wanted to know.": #(+0 FP)
@@ -342,12 +354,12 @@ label snailnet_q:
             
 label snail_judgement:
     #if snail_score < 5 and snail_score > 0 #Adjust as needed
-    blook "oh.... um... you did......... fine........"
-    blook "i’m sure you’ll do better next time, now that you’ve practiced."
+    blooky "oh.... um... you did......... fine........"
+    blooky "i’m sure you’ll do better next time, now that you’ve practiced."
     
     #if snail_score > 5 #Adjust as needed
     #Smiles
-    blook "i guess my advice really helped..... i’m glad...."
+    blooky "i guess my advice really helped..... i’m glad...."
     
     #if snail_score < 0
     #blook "um...... i'm not a snail......... i'm sorry....."
@@ -358,7 +370,7 @@ label end_blook_hangout2:
     #neutral
     blooky "well, that’s all i have to say...."
     blooky "if you have any more questions about snails, you can always find me..... i’ll be around...."
-    
+    jump blooky_ruins
     
     
 ##################################################################      HANGOUT 3       ##################################################################
@@ -369,11 +381,82 @@ label blooky_event3:
     #Event Name: "One Man's Trash..."
     #Event Triggers: Returning to the trash pile room after having explored all of Waterfall
     #                Having at least +20 FP with Napstablook
+    #Synopsis: Napstablook has broken his headphones. Help Napstablook hunt for a new pair of headphones at the Dump.
     
+    blooky "..........."
     
-    "Hey!"
-    "It's a small white dog, chewing on the remnants of a script."
-    "The Annoying Dog has fled."
+    menu:
+        "Hey… Napstablook?": #(+1 FP)
+            blooky "huh? oh, hi........."
+            jump somethings_wrong
+            
+        "Sneak up on Napstablook and frighten them.": #(-3 FP)
+            blooky "..........."
+            #Surprised
+            blooky "oh! oh....... it’s just you...."
+            jump somethings_wrong
+            
+        "Leave before they notice you.": #(+0 FP)
+            blooky "..........."
+            "You ditched Napstablook."
+            jump end_blook_hangout3
+            
+label somethings_wrong:
+    blooky "..........."
+    
+    menu:
+        "What are you doing?": #(+1 FP)
+            blooky "oh.... nothing... it doesn’t matter..."
+        "You seem distracted.": #(+0 FP)
+            blooky "..........."
+            blooky "what? oh, sorry....."
+            
+    menu:
+        "Tell me what’s wrong.": #(-1 FP)
+            blooky "oh, um... i guess... if you say so......."
+        "If something happened, you can tell me.": #(+2 FP)
+            blooky "well....... it’s not that big of a deal, really... but i guess, if you want to know...."
+            
+    blooky "my headphones.... they broke yesterday. they’re pretty old, so it’s not that surprising, but....... i really liked them......"
+    blooky "so i’m looking for new ones. none of the shops sell them.... or not good ones, anyway. i have to find them in the garbage......"
+    
+    menu:
+        "I’ll help you look!": #(+3 FP)
+            blooky "wow, really? that’d be nice.... thanks........"
+            blooky "um, you can just start wherever, if you want... i’ll keep looking in this pile....."
+            "Where will you look?"
+            
+            $ bigtrash_searched = 1
+            $ medtrash_searched = 1
+            $ smltrash_searched = 1
+            
+            jump search_trash
+        "Good luck with that!": #(+0 FP)
+            blooky "oh, thanks.... i should probably get back to looking... bye, i guess......."
+            jump end_blook_hangout3
+
+label search_trash:
+    menu:
+        "Look in the big trash pile.":
+            if bigtrash_searched is 1:
+                "There doesn't seem to be anything useful here."
+            if bigtrash_searched is 2:
+                "There’s an action figure. What will you do with it?"
+            if bigtrash_searched is 3:
+                "Seems there’s nothing but trash left in this trash pile."
+            if bigtrash_searched >= 4:
+                "You really like this trash pile, huh? It’s served you well, but that doesn’t change the fact that there’s nothing here."
+            $ bigtrash_searched += 1
+            jump search_trash
+        "Look in the medium-sized trash pile.":
+            "blork"
+        "Look in the small trash pile.":
+            "woof"
+        "Stop searching.":
+            jump end_blook_hangout3
+    
+
+label end_blook_hangout3:
     jump blooky_ruins
 
 
