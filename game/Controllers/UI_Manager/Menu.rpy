@@ -1,12 +1,12 @@
 
 screen show_menu_button:
-    textbutton "Show Menu" action [Play ("sound", "audio/sfx/click.wav"),Show("show_menu"),Hide("show_menu_button"),Show("stats")] align(.95,.05) background Frame("UI/text-box3.png",50, 21)
+    textbutton "Show Menu" action [Play ("sound", "audio/sfx/click.wav"),Show("show_menu"),Hide("show_menu_button"),Show("stats"),Show("debug_monsters")] align(.95,.05) background Frame("UI/text-box3.png",50, 21)
 
 screen show_menu:
     add "#0008"
     modal True
     #hide button
-    textbutton "Hide Menu" action [Play ("sound", "audio/sfx/click.wav"),Hide("show_menu"),Show("show_menu_button"),Hide("items"),Hide("stats"),Hide("cell"),Hide("show_item_description")] align(.95,.05)  background Frame("UI/text-box3.png",50, 21)
+    textbutton "Hide Menu" action [Play ("sound", "audio/sfx/click.wav"),Hide("show_menu"),Show("show_menu_button"),Hide("items"),Hide("stats"),Hide("cell"),Hide("show_item_description"),Hide("debug_monsters")] align(.95,.05)  background Frame("UI/text-box3.png",50, 21)
     vbox xalign 0.1 ypos 0.1:
         frame:
             background Frame("UI/text-box3.png",21, 21)       
@@ -26,7 +26,30 @@ screen show_menu:
                 textbutton "CELL" action [Play ("sound", "audio/sfx/click.wav"),Show("cell"),Hide("stats"),Hide("items")] background "#000000"
 
 
-
+screen debug_monsters:
+    frame pos(.3,.5):
+        background Frame("UI/text-box3.png",21,21)
+        vbox:
+            for a in world.areas:
+                for r in a.rooms:
+                    for m in r.monsters:
+                        hbox:
+                            text "Name"
+                            text "      "
+                            text "Location"
+                        hbox:
+                            text "[m.name]"
+                            text "      "
+                            text "[r.name]"
+                        text "Schedule"
+                        for s,t in m.schedule.iteritems():
+                            for x in t:
+                                hbox:
+                                    text "[s]"
+                                    text "  "
+                                    text "[x]"
+                                    text "  "
+                                    text t[x].label
 screen stats:
     frame pos(0.3,0.05):
         background Frame("UI/text-box3.png",21, 21)

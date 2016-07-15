@@ -2,8 +2,34 @@ init -10 python:
     
     class Monster():
 
-        def __init__(self):
-            self.name = "Bob"
+        def __init__(self,name="bob"):
+            self.name = name
+            self.specialEvents = []
+            self.specialEvents.append(Event('test_label'))
+            self.schedule = {}
+            self.currentRoom = None
+            
+        def move_to_room(self,room):
+            for a in world.areas:
+                for r in a.rooms:
+                    if r.name == room:
+                        #we found the room, so move them there
+                        if self.currentRoom:
+                            self.currentRoom.monsters.remove(self)
+                        self.currentRoom = r
+                        self.currentRoom.monsters.append(self)
+                        return
+
+            renpy.notify("Can't find room "+room)
+
+        def get_current_event(self):
+            timezone = world.get_current_timezone()
+            if timezone in self.schedule:
+                for x,t in self.schedule[timezone].iteritems():
+                    return t[x]
+            return False
+
+
 
     class Area():
 
@@ -98,6 +124,45 @@ init -10 python:
             self.locknorth = False
             self.lockeast = False
             self.lockwest = False
+            self.events = []
+            self.monsters = []
+
+
+        #First check to see if the room itself has an event to do
+        #Then check to see if the room has a monster event to do
+        def has_event(self):
+
+            for e in self.events:
+                if e.completed == False:
+                    return e
+            for m in self.monsters:
+                for e in m.specialEvents:
+                    if e.completed == False:
+                        return e
+
+                if m.get_current_event():
+                    return m.get_current_event()
+
+            return False
+
+        def add_monster(self,Monster):
+            Monster.currentRoom = self
+            self.monsters.append(Monster)
+
+        def remove_monster(self,Monster):
+            self.monsters.remove(Monster)
+
+
+    class Event():
+        def __init__(self,label = "flowey_hangout"):
+            self.completed = False
+            self.label = label
+            self.owner = False
+
+
+        def call_event(self):
+            renpy.call_in_new_context(self.label)
+            self.completed = True
 
     class World():
 
@@ -106,7 +171,6 @@ init -10 python:
             self.name = "Underground"
             self.areas = []
             self.currentArea = False
-            self.monsters = []
             self.maxTime = 1440
             self.currentTime = 0
             self.day = 1
@@ -115,15 +179,27 @@ init -10 python:
 
         def get_current_timezone(self):
             
-            timezone = "Morning"
-            for z in self.timeZones:
-                if self.currentTime < self.timeZones[z]:
-                    break
-                if self.currentTime >= self.timeZones[z]:
-                    timezone = z
-
+            timezone = "Night"
+            for t,z in self.timeZones.iteritems():
+                if self.currentTime > z and self.timeZones[timezone] <= z:
+                    timezone = t
 
             return timezone
+
+        def update_world(self):
+
+            timezone = self.get_current_timezone()
+            renpy.notify(timezone)
+            for a in self.areas:
+                for r in a.rooms:
+                    for m in r.monsters:
+                        if timezone in m.schedule:
+                            for x,t in m.schedule[timezone].iteritems():
+                                m.move_to_room(x)
+
+
+
+            return
 
         #sets the current time
         def set_current_time(self,time,update_day = False):
@@ -139,6 +215,9 @@ init -10 python:
             self.currenttime = time
 
 
+            self.update_world()
+
+
         #Adds minutes to the current time
         #Updates current day if time goes over
         def update_current_time(self,amount):
@@ -152,7 +231,7 @@ init -10 python:
                 new_time -= self.maxTime
 
             self.currentTime = new_time
-
+            self.update_world()
 
         def add_monster(self,monster):
             if isinstance(monster,Monster):
@@ -185,6 +264,10 @@ init -10 python:
             self.currentArea.currentRoom = self.currentArea.rooms[0]
 
 
+
+label test_label:
+    "Awesome, it worked."
+    return
 #This is the label that handles the loading
 #shows the current background, if the room hasn't been visited shows the description, sets visited to True, then Pauses to allow player to do things
 label load_room:
@@ -196,9 +279,13 @@ label load_room:
     $ world.update_current_time(200)
     if not world.currentArea.currentRoom.visited:
         "[world.currentArea.currentRoom.desc]"
-    #     "test"
     $ world.currentArea.currentRoom.visited = True
 
+    $ temp_event = world.currentArea.currentRoom.has_event()
+
+    while temp_event:
+        $ temp_event.call_event()
+        $ temp_event = world.currentArea.currentRoom.has_event()
     
     while True:
         pause
