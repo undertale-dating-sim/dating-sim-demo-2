@@ -24,16 +24,23 @@ label initialize:
     #flowey
     image flowey placeholder = "characters/flowey_ph.png"
 
-    image flowey normal = "characters/floweyplaceholders/Character-Flowey-Normal.png"
-    image flowey angry = "characters/floweyplaceholders/Character-Flowey-Angry.png"
-    image flowey evil = "characters/floweyplaceholders/Character-Flowey-Evil.png"
+
+    image flowey angry = "characters/Flowey/FloweyLineart-Angrycolor.png"
+    image flowey annoyed = "characters/Flowey/FloweyLineart-Annoyedcolor.png"
+    image flowey excited = "characters/Flowey/FloweyLineart-Excitedcolor.png"
+    image flowey evil = "characters/Flowey/FloweyLineart-Horrorcolor.png"
+    image flowey laugh = "characters/Flowey/FloweyLineart-LaughingColor.png"
+    image flowey normal = "characters/Flowey/FloweyLineart-Normalcolor1.png"
+    image flowey sad = "characters/Flowey/FloweyLineart-Sadcolor.png"
+    image flowey sideglance = "characters/Flowey/FloweyLineart-SideGlarecolor.png"
+    image flowey smug = "characters/Flowey/FloweyLineart-Smugcolor.png"
+    image flowey wink = "characters/Flowey/FloweyLineart-Winkcolor.png"
+   
+
     image flowey surprised = "characters/floweyplaceholders/Character-Flowey-Surprise.png"
     image flowey suspicious = "characters/floweyplaceholders/Character-Flowey-Suspicious.png"
     image flowey back = "characters/floweyplaceholders/Character-Flowey-Back.png"
-    image flowey annoyed = "characters/floweyplaceholders/Character-Flowey-Annoyed.png"
     image flowey bashful = "characters/floweyplaceholders/Character-Flowey-Bashful.png"
-    image flowey smug = "characters/floweyplaceholders/Character-Flowey-Smug.png"
-    image flowey wink = "characters/floweyplaceholders/Character-Flowey-Wink.png"
 
 
     #toriel

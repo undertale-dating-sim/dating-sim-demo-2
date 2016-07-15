@@ -17,8 +17,9 @@ init -1 python:
         def __init__(self):
             self.items = []
             self.max_items = 5
+            self.empty_spaces = self.max_items
             self.fill_empty_space()
-
+            
         def add(self, item): # a simple method that adds an item;
             if self.has_space():
                 self.items.insert(self.first_empty(),item)
@@ -44,6 +45,7 @@ init -1 python:
         def fill_empty_space(self):
             while len(self.items) < self.max_items:
                 self.items.append(Empty())
+                self.empty_spaces -=1
 
     #holds the description for the menu.  HAS to be a better way to do this
     menu_selected_item = False
@@ -100,13 +102,3 @@ label pickup_item(item):
         call inventory_full from _call_inventory_full
     return
 
-#items
-
-init -1 python:
-    
-
-    class Heart_Locket(Item):
-        def __init__(self):
-            Item.__init__(self)
-            self.name = "Heart Locket"
-            self.pickup_text = "It doesn't seem to open, but it is pretty nonetheless, golden and strung on a red ribbon."
