@@ -141,7 +141,8 @@ init -10 python:
                         return e
 
                 if m.get_current_event():
-                    return m.get_current_event()
+                    if m.get_current_event().completed == False:
+                        return m.get_current_event()
 
             return False
 
