@@ -25,11 +25,21 @@ screen show_menu:
                 textbutton "STAT" action [Play ("sound", "audio/sfx/click.wav"),Show("stats"),Hide("items"),Hide("cell")] background "#000000"
                 textbutton "CELL" action [Play ("sound", "audio/sfx/click.wav"),Show("cell"),Hide("stats"),Hide("items")] background "#000000"
 
+label increment_time:
+    $ world.update_current_time(300)
+    return
+
+label decrement_time:
+    $ world.update_current_time(-300)
+    return
 
 screen debug_monsters:
     frame pos(.3,.5):
         background Frame("UI/text-box3.png",21,21)
         vbox:
+            hbox:
+                textbutton "Time Back" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("decrement_time")]
+                textbutton "Time Forward" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("increment_time")]
             for a in world.areas:
                 for r in a.rooms:
                     for m in r.monsters:

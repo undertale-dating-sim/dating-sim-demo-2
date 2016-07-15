@@ -26,7 +26,7 @@ init -10 python:
             timezone = world.get_current_timezone()
             if timezone in self.schedule:
                 for x,t in self.schedule[timezone].iteritems():
-                    return t[x]
+                    return t
             return False
 
 
@@ -227,8 +227,11 @@ init -10 python:
             new_time = self.currentTime + amount
 
             if new_time > self.maxTime:
-                day += 1
+                self.day += 1
                 new_time -= self.maxTime
+            if new_time < 0:
+                self.day -= 1
+                new_time += self.maxTime
 
             self.currentTime = new_time
             self.update_world()
@@ -276,7 +279,6 @@ label load_room:
     $ renpy.show(world.currentArea.currentRoom.bg)
 
     with fade
-    $ world.update_current_time(200)
     if not world.currentArea.currentRoom.visited:
         "[world.currentArea.currentRoom.desc]"
     $ world.currentArea.currentRoom.visited = True
