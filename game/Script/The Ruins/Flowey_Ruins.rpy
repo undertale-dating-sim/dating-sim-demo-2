@@ -11,6 +11,11 @@ init:
     $ flowey_whitchoco = 0
     $ flowey_gave_items = 2
     python:
+        class Give():
+            def __init__(self):
+                return
+        give = Give()
+        
         def flowey_say(dialogue):
             renpy.hide("flowey")
             if len(dialogue)>=1:
@@ -21,10 +26,30 @@ init:
                 renpy.show(dialogue[0])
                 renpy.say(flowey,dialogue[1])
             renpy.hide("flowey")
-        def give_flowey(item,dialogue):
+        def give_flowey(item,dialogue,timesgiven):
             gave = {"buttspie":flowey_buttspie,"snailpie":flowey_snailpie,"mnstrcndy":flowey_mnstrcndy,"spidrdont":flowey_spidrdont, "spidrcidr":flowey_spidrcidr,"milkchoco":flowey_milkchoco,"whitchoco":flowey_whitchoco,"gave_items":flowey_gave_items}
+            if gave[item] >= len(dialogue):
+                flowey_say(dialogue[-1])
+            else:
+                flowey_say(dialogue[gave[item]])
+            gave[item]+=1 
 
-            gave[item]+=1
+
+            #if flowey_buttspie >=len(give_buttspie): 
+            #    $ flowey_say(give_buttspie[-1])
+            #else:
+            #    $ flowey_say(give_buttspie[flowey_buttspie])
+            #$ flowey_buttspie += 1
+
+            #menu:
+            #    "Give Flowey another Butterscotch Pie":
+            #        jump flowey_give_buttspie
+            #    "Back to Give Item Menu":
+            #        $ flowey_buttspie = 0
+            #        hide flowey
+            #        jump flowey_item_dialogue
+            
+
 
 #default-font
 init python:
@@ -72,18 +97,18 @@ label flowey_item_dialogue:
     label flowey_give_buttspie:
         ##/// If >[GIVE]---> >Butterscotch Pie<
         
-        $ give_buttspie = [[["flowey sad","What?! Where did you get this? ...Thanks... I guess..."]], #+10 FP
+        $ flowey_buttspie_dialogue = [[["flowey sad","What?! Where did you get this? ...Thanks... I guess..."]], #+10 FP
                         [["flowey annoyed","Okay, seriously, where did you get this?! Why do you keep giving it to me?!"]],#+0 FP
                         [["flowey annoyed","Are you trying to get me to say something?!"]], #+0 FP
                         [["flowey angry","Hey! Cut it out! You’re enjoying this, aren’t you?!"]]] #-5 FP
 
         #does this have to be a global variable? I gotta ask later
-        if flowey_buttspie >=len(give_buttspie): 
-            $ flowey_say(give_buttspie[-1])
+        if flowey_buttspie >=len(flowey_buttspie_dialogue): 
+            $ flowey_say(flowey_buttspie_dialogue[-1])
         else:
-            $ flowey_say(give_buttspie[flowey_buttspie])
+            $ flowey_say(flowey_buttspie_dialogue[flowey_buttspie])
         $ flowey_buttspie += 1
-
+        #$ give_flowey("buttspie",flowey_buttspie_dialogue)
         menu:
             "Give Flowey another Butterscotch Pie":
                 jump flowey_give_buttspie
@@ -137,7 +162,7 @@ label flowey_item_dialogue:
         $ flowey_spidrdont_dialogue = [[["flowey annoyed","Ugh. Those spiders probably made you buy this, didn’t they? Jeez. They’re so obnoxious. The way they rant about their missing spider clan or whatever. Why would you put spiders in your donuts? It’s disgusting."]], #-3 FP 
             [["flowey annoyed","I don’t care about those stupid spiders! They can go die in the cold for all I care."]], #-5 FP 
             [["flowey annoyed","I don’t want anymore of these dumb sponges they dare to call donuts. Stop it."]], #-8 FP 
-            [["flowey angry","You’re really starting to get on my nerves with this. You might wanna stop."],["flowey horrorface","... before I get too mad."]]]  #-10 FP 
+            [["flowey angry","You’re really starting to get on my nerves with this. You might wanna stop."],["flowey evil","... before I get too mad."]]]  #-10 FP 
 
         if flowey_spidrdont >=len(flowey_spidrdont_dialogue): 
             $ flowey_say(flowey_spidrdont_dialogue[-1])
@@ -154,7 +179,7 @@ label flowey_item_dialogue:
 
     label flowey_give_spidrcidr:
         #/// If >[GIVE]----> >Spider Cider<
-        $ flowey_spidrcidr_dialogue = [[["flowey annoyed","This is the only thing worse than spider donuts! It tastes like dirt!"],["flowey side glance","That’s really saying something... Get it? Because I’m a flower!"],["flowey laugh","Hahahahaha!"]], #-3 FP 
+        $ flowey_spidrcidr_dialogue = [[["flowey annoyed","This is the only thing worse than spider donuts! It tastes like dirt!"],["flowey sideglance","That’s really saying something... Get it? Because I’m a flower!"],["flowey laugh","Hahahahaha!"]], #-3 FP 
             [["flowey annoyed","Okay, but seriously, I really do think it’s gross. Don’t give it to me anymore."]], #-5 FP 
             [["flowey annoyed","You’re really starting to tick me off, buddy."]], #-8 FP 
             [["flowey angry","You're starting to remind me of dirt yourself, bucko."]]] #-10 FP 
@@ -175,7 +200,7 @@ label flowey_item_dialogue:
     label flowey_give_milkchoco:
 
         $ flowey_milkchoco_dialogue = [[["flowey normal","Huh. The last time I saw this brand was...  Nevermind. Thanks or whatever"]], #+5 FP
-        [["flowey side glance","Uh, you already gave me one of these. But okay."]], #+3 FP
+        [["flowey sideglance","Uh, you already gave me one of these. But okay."]], #+3 FP
         [["flowey annoyed","You know, I can only eat so much of this. Have you even noticed how small I am?"]], #+0 FP
         [["flowey annoyed","Okay, stop it. I know you’re probably trying to kill me at this point."]]] #-3 FP
 
@@ -216,7 +241,7 @@ label flowey_item_dialogue:
         $ flowey_multi_items_dialogue = [[["flowey sad","Why are you being... So nice to me? You keep giving me stuff... Why?"]],
         [["flowey annoyed","Okay, now you're being kinda weird."]],
         [["flowey annoyed","Okay NOW it’s just getting creepy. Stop it."]],
-        [["flowey annoyed","You know, monsters will deduct friendship points if you give them too many items in one sitting. From this point on, you’ll freak them out."],["flowey sideglance","You don't want them to hate you,do you?"],["flowey horrorface","You'll lose all your friends this way."],["flowey sideglance","And I'm not an exception."],["flowey wink",""]]] #-5 FP
+        [["flowey annoyed","You know, monsters will deduct friendship points if you give them too many items in one sitting. From this point on, you’ll freak them out."],["flowey sideglance","You don't want them to hate you,do you?"],["flowey evil","You'll lose all your friends this way."],["flowey sideglance","And I'm not an exception."],["flowey wink",""]]] #-5 FP
 
         if flowey_gave_items >=len(flowey_multi_items_dialogue): 
             $ flowey_say(flowey_multi_items_dialogue[-1])
@@ -240,7 +265,7 @@ label flowey_hangout1:
     #{After tutorial}
     #This initial "Hangout" dialogue will occur regardless if player has or has not yet met the prerequisites for a friendship with flowey
     #*Surprised* 
-    show flowey surprised with dissolve
+    show flowey normal with dissolve
     flowey "Wha-?! You snuck up on me."
 
     label flowey_hangout1_Q1:
