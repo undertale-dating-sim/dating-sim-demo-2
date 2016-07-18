@@ -128,6 +128,7 @@ init -1 python:
             self.desc = "The small room feels and smells homey, despite being covered ceiling to floor with cobwebs; there is a permeating scent of baked goods coming from somewhere within. A sign has been erected in front of two of the densest clusters of webbing. The only way out is how you came in."
             self.bg = "background ruins_spider_bakery"
             self.locknorth = True
+            self.events.append(Event("Muffet_Shop",True))
     class ruins_snailhuntingroom(Room):
         def __init__(self):
             Room.__init__(self)

@@ -77,4 +77,37 @@ screen stats:
                 text "[player.bravery_cowardice]"
                 text "[player.perseverance_surrender]"
                 text "[player.kindness_cruelty]"
-                text "[player.justice_apathy]"                    
+                text "[player.justice_apathy]"  
+
+
+screen show_nav_button:
+    textbutton "Show Nav (E)" action [Play ("sound", "audio/sfx/click.wav"), Show("navigation_buttons"), Hide("show_nav_button")] align(.95,.1) background Frame("UI/text-box3.png",50, 21)
+    key 'e' action [Play ("sound", "audio/sfx/click.wav"), Show("navigation_buttons"), Hide("show_nav_button")]
+screen navigation_buttons:
+    add "#0008"
+    modal True
+
+    vbox pos(.2,0):
+        for r in world.currentArea.rooms:
+            textbutton "[r.name]" action [Play ("sound", "audio/sfx/click.wav"),Function(world.currentArea.move_to_room,r.name)]
+    $dirs = world.currentArea.cr_get_neighbors()
+
+    textbutton "Hide Nav (E)" action [Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button')] align(.95,.1) background Frame("UI/text-box3.png",50, 21)
+    key 'e' action [Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button')]
+    if dirs.count('north') > 0:
+        textbutton "north (w)" background Frame("UI/text-box3.png",50, 21) align(0.5,0.0) action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.currentArea.move_dir,'north')]
+        key 'w' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.currentArea.move_dir,'north')]
+
+    if dirs.count('south') > 0:
+        textbutton "south (s)" background Frame("UI/text-box3.png",50, 21) align(0.5,1.0) action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.currentArea.move_dir,'south')]
+        key 's' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.currentArea.move_dir,'south')]
+
+    if dirs.count('east') > 0:
+        textbutton "east (d)" background Frame("UI/text-box3.png",50, 21) align(1.0,0.5)  action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.currentArea.move_dir,'east')]
+        key 'd' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.currentArea.move_dir,'east')]
+
+    if dirs.count('west') > 0:
+        textbutton "west (a)" background Frame("UI/text-box3.png",50, 21) align(0.00,0.5) action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.currentArea.move_dir,'west')]
+        key 'a' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.currentArea.move_dir,'west')]
+
+    text '[world.currentArea.currentRoom.name]' align(0.5,0.5)                  

@@ -46,6 +46,7 @@ init -10 python:
             for r in self.rooms:
                 if r.name == name:
                     self.currentRoom = r
+                    renpy.jump("load_room")
                     break
 
         def move_dir(self,direction):
@@ -64,13 +65,6 @@ init -10 python:
             for room in self.rooms:
                 if not room.locked:
                     if room.x == dirx and room.y == diry:
-
-                        if room.visited:
-                            player.time += 50
-                            player.stamina -= 1
-                        else:
-                            player.time += 100
-                            player.stamina -= 5
 
                         self.currentRoom = room
                         renpy.jump("load_room")
@@ -130,7 +124,7 @@ init -10 python:
 
         #First check to see if the room itself has an event to do
         #Then check to see if the room has a monster event to do
-        def has_event(self):
+        def get_event(self):
 
             for e in self.events:
                 if e.completed == False:
@@ -155,15 +149,17 @@ init -10 python:
 
 
     class Event():
-        def __init__(self,label = "flowey_hangout"):
+        def __init__(self,label = "flowey_hangout",perm = False):
             self.completed = False
             self.label = label
             self.owner = False
+            self.permanent = perm
 
 
         def call_event(self):
             renpy.call_in_new_context(self.label)
-            self.completed = True
+            if self.permanent == False:
+                self.completed = True
 
     class World():
 
@@ -236,6 +232,7 @@ init -10 python:
 
             self.currentTime = new_time
             self.update_world()
+            renpy.call("load_room")
 
         def add_monster(self,monster):
             if isinstance(monster,Monster):
@@ -279,49 +276,24 @@ label load_room:
     
     $ renpy.show(world.currentArea.currentRoom.bg)
 
+    show screen show_nav_button
+    show screen show_menu_button
+    
     with fade
     if not world.currentArea.currentRoom.visited:
         "[world.currentArea.currentRoom.desc]"
     $ world.currentArea.currentRoom.visited = True
 
-    $ temp_event = world.currentArea.currentRoom.has_event()
+    $ temp_event = world.currentArea.currentRoom.get_event()
 
     while temp_event:
         $ temp_event.call_event()
-        $ temp_event = world.currentArea.currentRoom.has_event()
+        $ temp_event = world.currentArea.currentRoom.get_event()
     
     while True:
         pause
     return
 
-screen show_nav_button:
-    textbutton "Show Nav (E)" action [Play ("sound", "audio/sfx/click.wav"), Show("navigation_buttons"), Hide("show_nav_button")] align(.95,.1) background Frame("UI/text-box3.png",50, 21)
-    key 'e' action [Play ("sound", "audio/sfx/click.wav"), Show("navigation_buttons"), Hide("show_nav_button")]
-screen navigation_buttons:
-    add "#0008"
-    modal True
-
-    $dirs = world.currentArea.cr_get_neighbors()
-
-    textbutton "Hide Nav (E)" action [Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button')] align(.95,.1) background Frame("UI/text-box3.png",50, 21)
-    key 'e' action [Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button')]
-    if dirs.count('north') > 0:
-        textbutton "north (w)" background Frame("UI/text-box3.png",50, 21) align(0.5,0.0) action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.currentArea.move_dir,'north')]
-        key 'w' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.currentArea.move_dir,'north')]
-
-    if dirs.count('south') > 0:
-        textbutton "south (s)" background Frame("UI/text-box3.png",50, 21) align(0.5,1.0) action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.currentArea.move_dir,'south')]
-        key 's' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.currentArea.move_dir,'south')]
-
-    if dirs.count('east') > 0:
-        textbutton "east (d)" background Frame("UI/text-box3.png",50, 21) align(1.0,0.5)  action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.currentArea.move_dir,'east')]
-        key 'd' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.currentArea.move_dir,'east')]
-
-    if dirs.count('west') > 0:
-        textbutton "west (a)" background Frame("UI/text-box3.png",50, 21) align(0.00,0.5) action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.currentArea.move_dir,'west')]
-        key 'a' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.currentArea.move_dir,'west')]
-
-    text '[world.currentArea.currentRoom.name]' align(0.5,0.5)
 
 
 #until we find a way to figure out what order the files are loaded in, all the rooms have to go in here.
