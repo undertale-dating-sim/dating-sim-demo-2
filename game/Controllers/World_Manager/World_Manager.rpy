@@ -2,8 +2,34 @@ init -10 python:
     
     class Monster():
 
-        def __init__(self):
-            self.name = "Bob"
+        def __init__(self,name="bob"):
+            self.name = name
+            self.specialEvents = []
+            self.specialEvents.append(Event('test_label'))
+            self.schedule = {}
+            self.currentRoom = None
+            
+        def move_to_room(self,room):
+            for a in world.areas:
+                for r in a.rooms:
+                    if r.name == room:
+                        #we found the room, so move them there
+                        if self.currentRoom:
+                            self.currentRoom.monsters.remove(self)
+                        self.currentRoom = r
+                        self.currentRoom.monsters.append(self)
+                        return
+
+            renpy.notify("Can't find room "+room)
+
+        def get_current_event(self):
+            timezone = world.get_current_timezone()
+            if timezone in self.schedule:
+                for x,t in self.schedule[timezone].iteritems():
+                    return t
+            return False
+
+
 
     class Area():
 
@@ -20,6 +46,7 @@ init -10 python:
             for r in self.rooms:
                 if r.name == name:
                     self.currentRoom = r
+                    renpy.jump("load_room")
                     break
 
         def move_dir(self,direction):
@@ -38,13 +65,6 @@ init -10 python:
             for room in self.rooms:
                 if not room.locked:
                     if room.x == dirx and room.y == diry:
-
-                        if room.visited:
-                            player.time += 50
-                            player.stamina -= 1
-                        else:
-                            player.time += 100
-                            player.stamina -= 5
 
                         self.currentRoom = room
                         renpy.jump("load_room")
@@ -98,6 +118,48 @@ init -10 python:
             self.locknorth = False
             self.lockeast = False
             self.lockwest = False
+            self.events = []
+            self.monsters = []
+
+
+        #First check to see if the room itself has an event to do
+        #Then check to see if the room has a monster event to do
+        def get_event(self):
+
+            for e in self.events:
+                if e.completed == False:
+                    return e
+            for m in self.monsters:
+                for e in m.specialEvents:
+                    if e.completed == False:
+                        return e
+
+                if m.get_current_event():
+                    if m.get_current_event().completed == False:
+                        return m.get_current_event()
+
+            return False
+
+        def add_monster(self,Monster):
+            Monster.currentRoom = self
+            self.monsters.append(Monster)
+
+        def remove_monster(self,Monster):
+            self.monsters.remove(Monster)
+
+
+    class Event():
+        def __init__(self,label = "flowey_hangout",perm = False):
+            self.completed = False
+            self.label = label
+            self.owner = False
+            self.permanent = perm
+
+
+        def call_event(self):
+            renpy.call_in_new_context(self.label)
+            if self.permanent == False:
+                self.completed = True
 
     class World():
 
@@ -106,7 +168,7 @@ init -10 python:
             self.name = "Underground"
             self.areas = []
             self.currentArea = False
-            self.monsters = []
+            self.maxTime = 1440
             self.currentTime = 0
             self.day = 1
             self.timeZones = {"Night":0,"Morning":480,"Day":720,"Afternoon":960,"Evening":1200}
@@ -114,15 +176,63 @@ init -10 python:
 
         def get_current_timezone(self):
             
-            timezone = "Morning"
-            for z in self.timeZones:
-                if self.currentTime < self.timeZones[z]:
-                    break
-                if self.currentTime >= self.timeZones[z]:
-                    timezone = z
-
+            timezone = "Night"
+            for t,z in self.timeZones.iteritems():
+                if self.currentTime > z and self.timeZones[timezone] <= z:
+                    timezone = t
 
             return timezone
+
+        def update_world(self):
+
+            timezone = self.get_current_timezone()
+            renpy.notify(timezone)
+            for a in self.areas:
+                for r in a.rooms:
+                    for m in r.monsters:
+                        if timezone in m.schedule:
+                            for x,t in m.schedule[timezone].iteritems():
+                                m.move_to_room(x)
+
+
+
+            return
+
+        #sets the current time
+        def set_current_time(self,time,update_day = False):
+
+            if time > 1440 or time < 0:
+                renpy.notify("Time too high or negative for set_current_time.")
+                return
+
+            if update_day:
+                if self.currentTime > time:
+                    self.day += 1
+
+            self.currenttime = time
+
+
+            self.update_world()
+
+
+        #Adds minutes to the current time
+        #Updates current day if time goes over
+        def update_current_time(self,amount):
+
+            #check to see if we added more than one day
+
+            new_time = self.currentTime + amount
+
+            if new_time > self.maxTime:
+                self.day += 1
+                new_time -= self.maxTime
+            if new_time < 0:
+                self.day -= 1
+                new_time += self.maxTime
+
+            self.currentTime = new_time
+            self.update_world()
+            renpy.call("load_room")
 
         def add_monster(self,monster):
             if isinstance(monster,Monster):
@@ -155,6 +265,10 @@ init -10 python:
             self.currentArea.currentRoom = self.currentArea.rooms[0]
 
 
+
+label test_label:
+    "Awesome, it worked."
+    return
 #This is the label that handles the loading
 #shows the current background, if the room hasn't been visited shows the description, sets visited to True, then Pauses to allow player to do things
 label load_room:
@@ -162,44 +276,24 @@ label load_room:
     
     $ renpy.show(world.currentArea.currentRoom.bg)
 
+    show screen show_nav_button
+    show screen show_menu_button
+    
     with fade
-
     if not world.currentArea.currentRoom.visited:
         "[world.currentArea.currentRoom.desc]"
-    #     "test"
     $ world.currentArea.currentRoom.visited = True
+
+    $ temp_event = world.currentArea.currentRoom.get_event()
+
+    while temp_event:
+        $ temp_event.call_event()
+        $ temp_event = world.currentArea.currentRoom.get_event()
+    
     while True:
         pause
     return
 
-screen show_nav_button:
-    textbutton "Show Nav (E)" action [Play ("sound", "audio/sfx/click.wav"), Show("navigation_buttons"), Hide("show_nav_button")] align(.95,.1) background Frame("UI/text-box3.png",50, 21)
-    key 'e' action [Play ("sound", "audio/sfx/click.wav"), Show("navigation_buttons"), Hide("show_nav_button")]
-screen navigation_buttons:
-    add "#0008"
-    modal True
-
-    $dirs = world.currentArea.cr_get_neighbors()
-
-    textbutton "Hide Nav (E)" action [Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button')] align(.95,.1) background Frame("UI/text-box3.png",50, 21)
-    key 'e' action [Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button')]
-    if dirs.count('north') > 0:
-        textbutton "north (w)" background Frame("UI/text-box3.png",50, 21) align(0.5,0.0) action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.currentArea.move_dir,'north')]
-        key 'w' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.currentArea.move_dir,'north')]
-
-    if dirs.count('south') > 0:
-        textbutton "south (s)" background Frame("UI/text-box3.png",50, 21) align(0.5,1.0) action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.currentArea.move_dir,'south')]
-        key 's' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.currentArea.move_dir,'south')]
-
-    if dirs.count('east') > 0:
-        textbutton "east (d)" background Frame("UI/text-box3.png",50, 21) align(1.0,0.5)  action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.currentArea.move_dir,'east')]
-        key 'd' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.currentArea.move_dir,'east')]
-
-    if dirs.count('west') > 0:
-        textbutton "west (a)" background Frame("UI/text-box3.png",50, 21) align(0.00,0.5) action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.currentArea.move_dir,'west')]
-        key 'a' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.currentArea.move_dir,'west')]
-
-    text '[world.currentArea.currentRoom.name]' align(0.5,0.5)
 
 
 #until we find a way to figure out what order the files are loaded in, all the rooms have to go in here.

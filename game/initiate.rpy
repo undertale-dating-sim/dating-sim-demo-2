@@ -127,4 +127,5 @@ label initialize:
         player = Player()
         menu_state = "stats"
         world = World()
+        world.set_current_time(0)
 
