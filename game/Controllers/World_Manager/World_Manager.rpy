@@ -278,6 +278,7 @@ label load_room:
 
     show screen show_nav_button
     show screen show_menu_button
+    show screen show_map_button
     
     with fade
     if not world.currentArea.currentRoom.visited:
