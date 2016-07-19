@@ -87,9 +87,9 @@ screen navigation_buttons:
     add "#0008"
     modal True
 
-    vbox pos(.2,0):
+    vbox pos(.2,.25):
         for r in world.currentArea.rooms:
-            textbutton "[r.name]" action [Play ("sound", "audio/sfx/click.wav"),Function(world.currentArea.move_to_room,r.name)]
+            textbutton "[r.name]" action [Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Function(world.currentArea.move_to_room,r.name)]
     $dirs = world.currentArea.cr_get_neighbors()
 
     textbutton "Hide Nav (E)" action [Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button')] align(.95,.1) background Frame("UI/text-box3.png",50, 21)
