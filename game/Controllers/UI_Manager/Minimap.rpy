@@ -27,7 +27,7 @@ init python:
             
 
             for r in world.currentArea.rooms:
-                x = 800 - (r.x * 50) + xmargin
+                x = 800 - ((20 - r.x) * 50) + xmargin
                 y = 600 - (r.y * 40) + ymargin
                 if world.currentArea.currentRoom == r:
                     render.canvas().rect("#0F0", (x,y, 10, 10))
