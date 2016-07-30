@@ -129,3 +129,6 @@ label initialize:
         world = World()
         world.set_current_time(0)
 
+        #This is sloppy, but we will just put the monsters after the world init.  They can just call the world.  Don't do this at a professional job.
+        flowey = Flowey()
+

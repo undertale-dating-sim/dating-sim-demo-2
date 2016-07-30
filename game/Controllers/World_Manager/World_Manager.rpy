@@ -1,3 +1,7 @@
+label default_event:
+    "You shouldn't see this.  Its the default. Tell Wilson."
+    return
+
 init -10 python:
     
     class Monster():
@@ -5,9 +9,11 @@ init -10 python:
         def __init__(self,name="bob"):
             self.name = name
             self.specialEvents = []
-            self.specialEvents.append(Event('test_label'))
             self.schedule = {}
             self.currentRoom = None
+            self.default_event = Event('default_event')
+            self.FP_events = {}
+            self.FP = 0
             
         def move_to_room(self,room):
             for a in world.areas:
@@ -22,14 +28,14 @@ init -10 python:
 
             renpy.notify("Can't find room "+room)
 
+
+        #will need to add math about the FP
         def get_current_event(self):
             timezone = world.get_current_timezone()
             if timezone in self.schedule:
                 for x,t in self.schedule[timezone].iteritems():
                     return t
-            return False
-
-
+            return self.default_event
 
     class Area():
 
