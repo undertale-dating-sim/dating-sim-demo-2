@@ -98,6 +98,12 @@ label initialize:
     define torielChar = Character('Toriel', color="#FFFFFF")
     define wilsonChar = Character('Wilson', color="#FFFFFF")
     define flowey = Character('Flowey', color="#FFFFFF")
+    define froggit = Character('Froggit', color="#FFFFFF")
+    define whimsun = Character('Whimsun', color="#FFFFFF")
+    define loox = Character('Loox', color="#FFFFFF")
+    define moldsmal = Character('Moldsmal', color="#FFFFFF")
+    define vegetoid = Character('Vegetoid', color="#FFFFFF")
+    define migosp = Character('Migosp', color="#FFFFFF")
 
     #sprite positions
     init:
@@ -125,10 +131,17 @@ label initialize:
     init python:
         #init the player
         player = Player()
+        froggit_actor = Froggit()
         menu_state = "stats"
         world = World()
         world.set_current_time(0)
 
         #This is sloppy, but we will just put the monsters after the world init.  They can just call the world.  Don't do this at a professional job.
-        flowey = Flowey()
+        #flowey = Flowey()
+        
+       # whimsun = Whimsun()
+        #loox    =   Loox()
+        #moldsmal = Moldsmal()
+        #vegetoid = Vegetoid()
+        #migosp = Migosp()
 

@@ -4,39 +4,6 @@ label default_event:
 
 init -10 python:
     
-    class Monster():
-
-        def __init__(self,name="bob"):
-            self.name = name
-            self.specialEvents = []
-            self.schedule = {}
-            self.currentRoom = None
-            self.default_event = Event('default_event')
-            self.FP_events = {}
-            self.FP = 0
-            
-        def move_to_room(self,room):
-            for a in world.areas:
-                for r in a.rooms:
-                    if r.name == room:
-                        #we found the room, so move them there
-                        if self.currentRoom:
-                            self.currentRoom.monsters.remove(self)
-                        self.currentRoom = r
-                        self.currentRoom.monsters.append(self)
-                        return
-
-            renpy.notify("Can't find room "+room)
-
-
-        #will need to add math about the FP
-        def get_current_event(self):
-            timezone = world.get_current_timezone()
-            if timezone in self.schedule:
-                for x,t in self.schedule[timezone].iteritems():
-                    return t
-            return self.default_event
-
     class Area():
 
         def __init__(self,name):
@@ -196,9 +163,10 @@ init -10 python:
             for a in self.areas:
                 for r in a.rooms:
                     for m in r.monsters:
-                        if timezone in m.schedule:
-                            for x,t in m.schedule[timezone].iteritems():
-                                m.move_to_room(x)
+                        if m.schedule:
+                            if timezone in m.schedule:
+                                for x,t in m.schedule[timezone].iteritems():
+                                    m.move_to_room(x)
 
 
 
