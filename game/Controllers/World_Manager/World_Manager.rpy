@@ -250,9 +250,7 @@ label load_room:
     
     $ renpy.show(world.currentArea.currentRoom.bg)
 
-    show screen show_nav_button
-    show screen show_menu_button
-    show screen show_map_button
+    call show_buttons
     
     with fade
     if not world.currentArea.currentRoom.visited:

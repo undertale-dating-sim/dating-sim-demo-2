@@ -14,8 +14,8 @@ init -9 python:
 
 #this is floweys default scene
 label froggit_default_dialogue:
-    
-    show flowey normal
+    call show_buttons
+    show froggit normal
 
     if not froggit_actor.visited:
         froggit "Oh, hello!"
@@ -27,8 +27,12 @@ label froggit_default_dialogue:
     elif not froggit_actor.dialogue_toggle:
         froggit "Is this the first time for you to talk to a Froggit?"
         froggit "Sometimes people forget about us so it feels nice..."
+        hide froggit
+        show froggit happy
         froggit "I am glad we don't have to fight!"
         froggit "Hum?"
+        hide froggit
+        show froggit happy
         froggit "Oh yes, monsters used to fight humans..."
         froggit "But that is in the past, we mostly talk now!"
         $ froggit_actor.dialogue_toggle = True
@@ -38,7 +42,6 @@ label froggit_default_dialogue:
         froggit "But hey, if you want to, you just have to click!"
         $ froggit_actor.dialogue_toggle = False
     
-    while True:
-        pause
+    $ renpy.pause()
     return
 

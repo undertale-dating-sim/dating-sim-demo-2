@@ -82,6 +82,12 @@ label initialize:
     image background toriel_house_corridor = "backgrounds/background-ruins-corridor.png"
 
 
+
+    #random monsters
+    image froggit normal = "characters/Froggit/Froggit_Normalcolor.png"
+    image froggit happy = "characters/Froggit/Froggit_Smilecolor.png"
+
+
     #character-settings
     #character settings
     define diary = ('Diary')
