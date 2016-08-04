@@ -19,19 +19,12 @@ define payneShop = Character('PayneGray',
 
 screen shop_box(shop):
     ### Main Shop Menu Box###
-    frame pos(int(screen_width*.73),.688):#int(screen_height*.00117)
+    frame pos(int(screen_width*.73),.688):
         background Frame("text-box3.png",21,21)
-        #maximum(int(screen_width*.24),int(screen_height*.269))
-        #minimum(int(screen_width*.24),int(screen_height*.269))
         vbox:
             anchor(-.25,0)
-            #maximum(int(screen_width*.24),int(screen_height*.215))
-            #minimum(int(screen_width*.24),int(screen_height*.215))
             maximum(int(screen_width*.24),int(screen_height*.267))
             minimum(int(screen_width*.24),int(screen_height*.267))
-            #change this into text prompt stuff
-            #if buy is clicked = What would you like to buy?
-            #and make sure to have an exit
             textbutton "BUY" background "#000000" action [Play ("sound", "audio/click.wav"),If(shop.buy_button_clickable,NullAction(),NullAction())]
             textbutton "SELL" background "#000000" action [Play ("sound", "audio/click.wav"),If(shop.sell_button_clickable,renpy.curried_invoke_in_new_context(shop.say,"sell"),NullAction())]
             textbutton "TALK" background "#000000" action [Play ("sound", "audio/click.wav"),If(shop.talk_button_clickable,[renpy.curried_invoke_in_new_context(shop.say,"talk")],NullAction())] 
@@ -45,7 +38,8 @@ screen shop_box(shop):
                 vbox:
                     #anchor(-40,0)
                     text "[inventory.empty_spaces]/[inventory.max_items]" text_align 1.0
-screen buy_box:
+
+screen buy_box(shop):
     ###  ###
     #frame pos(int(screen_width*.02),.10):
     frame pos(int(screen_width*.02),.688):
@@ -58,8 +52,26 @@ screen buy_box:
                 textbutton "Test - 5G" background "#000000" 
                 textbutton "Test - 5G" background "#000000" 
                 textbutton "Test - 5G" background "#000000" 
-                textbutton "Exit" background "#000000" action [Play ("sound", "audio/click.wav"),If(shop.buy_button_clickable,NullAction(),NullAction())]
+                textbutton "Exit" background "#000000" action [Play ("sound", "audio/click.wav")]
 
+screen buy_dialogue(shop):
+    frame pos(int(screen_width*.73),.688):
+        background Frame("text-box3.png",21,21)
+        vbox:
+            anchor(-.25,0)
+            maximum(int(screen_width*.24),int(screen_height*.267))
+            minimum(int(screen_width*.24),int(screen_height*.267))
+            text "Shopkeeper"
+            text "would say"
+            text "some stuff"
+            text "here"
+            hbox:
+                vbox:
+                    anchor(42,0)
+                    text "[player.gold]G" xalign 0.5
+
+                vbox:
+                    text "[inventory.empty_spaces]/[inventory.max_items]" text_align 1.0
 init -1 python:
     class Shop():
         def __init__(self):
@@ -86,19 +98,11 @@ init -1 python:
         ###Shop Access Functions###
 
         def enter(self):
-            #renpy.say(self.buy_template,"Testing")
-            #renpy.show_screen("buy_box",self)
             renpy.scene()
             
             renpy.show(self.scene)
-
-            #renpy.show_screen("shop_box",self)
             self.say("welcome")
-            
-            
-            #nvl_show
-            #self.buy()
-        #def buy(self):
+            self.buy_enter()
             
         ### Dialog Access Functions ###
 
@@ -115,7 +119,7 @@ init -1 python:
                 renpy.say(self.template,line[1])
 
             self.enable_buttons()
-            renpy.call_in_new_context(label="window_hide",shop=self)
+            #renpy.call_in_new_context(label="window_hide",shop=self)
             #if choice = buy
             #show buy box
             #if exit is clicked, then self.enter
@@ -134,6 +138,15 @@ init -1 python:
             self.sell_button_clickable = False
             self.exit_button_clickable = False
 
+
+
+
+        def buy_enter(self):
+            renpy.call(label="buy_screen_enter")
+
+        def buy_exit(self):
+            renpy.call_in_new_context(label="buy_screen_exit")
+            self.enter()
         def dialog(self,choice):
             dialog = {"talk":self.talk,"sell":self.sell,"exit":self.exit,"welcome":self.welcome}
             return dialog[choice]
@@ -150,14 +163,22 @@ label Muffet_Shop:
         muffetShop = Shop()
         muffetShop.enter()
 
-label nvl_clear:
-    nvl clear
-label window_hide(shop):
+
+label buy_screen_enter:
     window hide
-    show screen buy_box
-    show screen shop_box(shop)
-    pause
-    pause
-    window show
+#    hide shop_box
+#    show screen buy_box(shop)
+#    show screen buy_dialogue(shop)
+
+label buy_screen_exit:
+    window hide
+
+
+
 #label window_show:
 #    window show
+
+
+
+label test_buy_screen:
+    
