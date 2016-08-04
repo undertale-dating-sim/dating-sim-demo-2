@@ -236,7 +236,7 @@ init -10 python:
             self.currentArea.add_room(ruins_tunneldivide())
             self.currentArea.add_room(ruins_overlook())
             self.currentArea.add_room(ruins_blacktreeroom())
-            self.currentArea.currentRoom = self.currentArea.rooms[0]
+            self.currentArea.currentRoom = self.currentArea.rooms[8]
 
 
 
