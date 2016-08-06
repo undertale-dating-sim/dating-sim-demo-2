@@ -26,7 +26,7 @@ screen shop_box(shop):
             textbutton "BUY" background "#000000" action [Play ("sound", "audio/sfx/click.wav"),Show("buy_box")]
             textbutton "SELL" background "#000000" action [Play ("sound", "audio/sfx/click.wav"),ui.callsinnewcontext(shop.shop_sell)]
             textbutton "TALK" background "#000000" action [Play ("sound", "audio/sfx/click.wav"),ui.callsinnewcontext(shop.shop_dialogue)] 
-            textbutton "EXIT" background "#000000" action [Play ("sound", "audio/sfx/click.wav")]
+            textbutton "EXIT" background "#000000" action [Play ("sound", "audio/sfx/click.wav"),Hide("buy_box"),Hide("shop_box"),Show("show_nav_button"),Show("show_menu_button")]
             hbox:
                 #anchor(0,0)
                 vbox:
@@ -58,10 +58,6 @@ screen buy_dialogue(shop):
             anchor(-.25,0)
             maximum(int(screen_width*.24),int(screen_height*.267))
             minimum(int(screen_width*.24),int(screen_height*.267))
-            text "Shopkeeper"
-            text "would say"
-            text "some stuff"
-            text "here"
             hbox:
                 vbox:
                     anchor(42,0)
@@ -75,38 +71,22 @@ init -1 python:
         def __init__(self):
             self.name = "PayneGray"
             self.template = payneShop.copy(self.name,window_top_margin = int(screen_height*(-.064)))
-            self.sprites = ["sans","flowey"]
-
-            self.talk_button_clickable = True
-            self.buy_button_clickable = True
-            self.sell_button_clickable = True
-            self.exit_button_clickable = True
-
-            self.items = [["Snow Sans",50],["Snow Sans",50],["Snow Sans",50],["Snow Sans",50]]
-
-            #self.welcome = [ ["flowey normal","Welcome to my store!!\nHurray!\nHurray!\nHurray!"]]
             self.welcome = {}
             self.welcome['sprite'] = 'flowey normal'
             self.welcome['text'] = ()
-            self.welcome['text'] = "Welcome to my store!", "Howdy", "Howdy"
+            self.welcome['text'] = "There doesn't seem to be anybody here.","There are some items sitting on the ground.","Spiders look down at you from the ceiling."
     
             #adding this so the label can be dynamic
             self.shop_dialogue = "Shop_Dialogue"
             self.shop_sell = "Shop_Sell"
+            self.shop_exit = "Shop_Exit"
 
-            #talk would lead to several dialog options, but I'll leave it like this for now
-            self.sell = [["sans normal","Hello"], ["flowey normal","testing sell"]]
-            self.exit = [["sans normal","Hello"], ["flowey normal","testing exit"]]
 
 
         ###Shop Access Functions###
 
         def enter(self):
             renpy.jump("Shop_Intro")
-
-
-        ### Shop Functions ###
-        def add_item(self,item): self.items.append(item)
 
 
         def buy(self,item):
@@ -126,7 +106,6 @@ label buy_item(item):
     return
 
 label Shop_Intro:
-    call show_buttons
     $ count = 0
 
     while count < len(muffetShop.welcome['text']):
@@ -153,10 +132,16 @@ label Shop_Sell:
     "They are here to make money, not buy your trash."
 
     return
+    
+
 
 label Muffet_Shop:
     python:
         muffetShop = Shop()
         muffetShop.enter()
+    return
 
+label Shop_Exit:
+    hide screen shop_box
+    hide screen buy_box
     
