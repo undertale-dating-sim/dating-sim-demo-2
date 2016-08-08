@@ -13,7 +13,7 @@ init -9 python:
 
 
 #this is floweys default scene
-label vegetoid_manager_default(owner):
+label vegetoid_manager_default(owner=False):
     
     show vegetoid normal
 

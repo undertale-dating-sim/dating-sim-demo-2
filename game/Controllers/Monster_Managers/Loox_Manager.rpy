@@ -12,7 +12,7 @@ init -9 python:
 
 
 #this is floweys default scene
-label loox_manager_default(owner):
+label loox_manager_default(owner = False):
     
     show loox normal
 

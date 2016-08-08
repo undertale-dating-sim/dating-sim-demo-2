@@ -140,7 +140,10 @@ init -10 python:
 
 
         def call_event(self):
-            renpy.call_in_new_context(self.label,self.arg)
+            if self.arg:
+                renpy.call_in_new_context(self.label,self.arg)
+            else:
+                renpy.call_in_new_context(self.label)
             if self.permanent == False:
                 self.completed = True
 
@@ -294,7 +297,7 @@ label load_room:
         $ temp_event = world.currentArea.currentRoom.get_event()
     
     while True:
-        
+
         pause
     return
 

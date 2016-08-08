@@ -12,7 +12,7 @@ init -9 python:
 
 
 #this is floweys default scene
-label moldsmol_manager_default(owner):
+label moldsmol_manager_default(owner=False):
     
     show moldsmol normal
 

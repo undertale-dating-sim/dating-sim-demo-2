@@ -12,7 +12,7 @@ init -9 python:
 
 
 #this is floweys default scene
-label Whimsun_manager_default(owner):
+label Whimsun_manager_default(owner = False):
     
     show whimsun normal
     call show_buttons

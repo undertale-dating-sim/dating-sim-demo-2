@@ -12,7 +12,7 @@ init -9 python:
 
 
 #this is floweys default scene
-label migosp_manager_default(owner):
+label migosp_manager_default(owner = False):
     
     show migosp normal
     call show_buttons
