@@ -36,7 +36,7 @@ init -1 python:
         def __init__(self):
             Area.__init__(self,"The Ruins")
             self.random_areas = []
-            self.random_monsters = [Loox(),Vegetoid(),Moldsmal(),Whimsun(),Migosp(),Froggit()]
+            self.random_monsters = [Loox(),Vegetoid(),Moldsmol(),Whimsun(),Migosp(),Froggit()]
             self.add_room(ruins_caveroom())
             self.add_room(ruins_grassroom())
             self.add_room(ruins_ruinsentrance())

@@ -7,7 +7,7 @@ init -10 python:
             self.specialEvents = []
             self.schedule = {}
             self.currentRoom = None
-            self.default_event = Event('default_event')
+            self.default_event = Event('default_event',self)
             self.FP_events = {}
             self.FP = 0
             self.visited = False

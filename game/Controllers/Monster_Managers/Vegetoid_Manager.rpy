@@ -6,15 +6,18 @@ init -9 python:
         def __init__(self):
             Monster.__init__(self)
             self.default_event = Event("vegetoid_manager_default",True)
+            self.name = 'Vegetoid'
 
 
 
 
 
 #this is floweys default scene
-label vegetoid_manager_default:
+label vegetoid_manager_default(owner):
     
     show vegetoid normal
+
+    call show_buttons
     $ renpy.pause()
 
     return

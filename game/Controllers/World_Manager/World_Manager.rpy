@@ -3,7 +3,7 @@ label default_event:
     return
 
 init -10 python:
-    
+    import random
     class Area():
 
         def __init__(self,name):
@@ -131,15 +131,16 @@ init -10 python:
 
 
     class Event():
-        def __init__(self,label = "flowey_hangout",perm = False):
+        def __init__(self,label = "flowey_hangout",perm = False,arg = False):
             self.completed = False
             self.label = label
             self.owner = False
             self.permanent = perm
+            self.arg = arg
 
 
         def call_event(self):
-            renpy.call_in_new_context(self.label)
+            renpy.call_in_new_context(self.label,self.arg)
             if self.permanent == False:
                 self.completed = True
 
@@ -174,10 +175,28 @@ init -10 python:
         #this function will seed all of the random monsters to the various rooms they can be in.
         #rooms with events already in them should be ignored.
         def seed_random_monsters(self):
+            for a in self.areas:
+                #we need to add each random monster to a different room
+
+                #first we get a list of all the rooms in the area
+                room_list = list(a.rooms)
+                #now we remove every room that has an event, or another monster in it
+                for r in room_list:
+                    if len(r.monsters) > 0 or len(r.events) > 0:
+                        room_list.remove(r)
+
+                #now we seed the monsters into random rooms in the list, removing each room as we do it.
+                #we will do this until we run out of rooms
+                random.shuffle(a.random_monsters)
+                random.shuffle(room_list)
+                for m in a.random_monsters:
+                    if len(room_list) > 0:
+                        m.move_to_room(room_list[0].name)
+                        room_list.remove(room_list[0])
 
             return
 
-        def update_world(self):
+        def update_world(self,update_day = False):
 
             timezone = self.get_current_timezone()
             renpy.notify(timezone)
@@ -189,7 +208,8 @@ init -10 python:
                                 for x,t in m.schedule[timezone].iteritems():
                                     m.move_to_room(x)
 
-
+            if update_day:
+                self.update_day()
 
             return
 
@@ -204,10 +224,11 @@ init -10 python:
                 if self.currentTime > time:
                     self.day += 1
 
+
             self.currenttime = time
 
 
-            self.update_world()
+            self.update_world(update_day)
 
 
         #Adds minutes to the current time
@@ -217,16 +238,19 @@ init -10 python:
             #check to see if we added more than one day
 
             new_time = self.currentTime + amount
+            update_day_check = False
 
             if new_time > self.maxTime:
                 self.day += 1
                 new_time -= self.maxTime
+                update_day_check = True
             if new_time < 0:
                 self.day -= 1
                 new_time += self.maxTime
+                update_day_check = True
 
             self.currentTime = new_time
-            self.update_world()
+            self.update_world(update_day_check)
             renpy.call("load_room")
 
         def add_monster(self,monster):
@@ -257,8 +281,6 @@ label load_room:
     $ renpy.scene()
     
     $ renpy.show(world.currentArea.currentRoom.bg)
-
-    call show_buttons
     
     with fade
     if not world.currentArea.currentRoom.visited:
@@ -272,6 +294,7 @@ label load_room:
         $ temp_event = world.currentArea.currentRoom.get_event()
     
     while True:
+        
         pause
     return
 

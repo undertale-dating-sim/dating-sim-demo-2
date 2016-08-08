@@ -94,9 +94,9 @@ label initialize:
     image loox normal = "characters/Loox/loox_happy.png"
     image loox normal = "characters/Loox/loox_surprised.png"
 
-    image moldsmal normal = "characters/Moldsmal/moldsmal_normal.png"
-    image moldsmal happy = "characters/Moldsmal/moldsmal_happy.png"
-    image moldsmal nervous = "characters/Moldsmal/moldsmal_nervous.png"
+    image moldsmol normal = "characters/Moldsmol/moldsmol_normal.png"
+    image moldsmol happy = "characters/Moldsmol/moldsmol_happy.png"
+    image moldsmol nervous = "characters/Moldsmol/moldsmol_nervous.png"
 
     image napstablook normal = "characters/Napstablook/napstablook_normal.png"
 
@@ -122,7 +122,7 @@ label initialize:
     define froggit = Character('Froggit', color="#FFFFFF")
     define whimsun = Character('Whimsun', color="#FFFFFF")
     define loox = Character('Loox', color="#FFFFFF")
-    define moldsmal = Character('Moldsmal', color="#FFFFFF")
+    define moldsmol = Character('Moldsmol', color="#FFFFFF")
     define vegetoid = Character('Vegetoid', color="#FFFFFF")
     define migosp = Character('Migosp', color="#FFFFFF")
 
@@ -154,14 +154,6 @@ label initialize:
         player = Player()
         menu_state = "stats"
         world = World()
-        world.set_current_time(0)
+        world.set_current_time(0,True)
 
-        #This is sloppy, but we will just put the monsters after the world init.  They can just call the world.  Don't do this at a professional job.
-        #flowey = Flowey()
-        
-       # whimsun = Whimsun()
-        #loox    =   Loox()
-        #moldsmal = Moldsmal()
-        #vegetoid = Vegetoid()
-        #migosp = Migosp()
 

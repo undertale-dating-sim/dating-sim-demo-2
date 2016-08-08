@@ -6,15 +6,18 @@ init -9 python:
         def __init__(self):
             Monster.__init__(self)
             self.default_event = Event("loox_manager_default",True)
-
+            self.name = "Loox"
 
 
 
 
 #this is floweys default scene
-label loox_manager_default:
+label loox_manager_default(owner):
     
     show loox normal
+
+
+    call show_buttons
     $ renpy.pause()
 
     return
