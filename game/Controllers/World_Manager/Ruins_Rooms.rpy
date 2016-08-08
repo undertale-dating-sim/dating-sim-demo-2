@@ -36,7 +36,7 @@ init -1 python:
         def __init__(self):
             Area.__init__(self,"The Ruins")
             self.random_areas = []
-            self.random_monsters = []
+            self.random_monsters = [Loox(),Vegetoid(),Moldsmal(),Whimsun(),Migosp(),Froggit()]
             self.add_room(ruins_caveroom())
             self.add_room(ruins_grassroom())
             self.add_room(ruins_ruinsentrance())
@@ -69,7 +69,6 @@ init -1 python:
             self.y = 0
             self.desc = "The large cavern you are in is lit by the light coming from far above, shining into the corners of the cave and illuminating the path of flowers that broke your fall. There is one exit from the cavern, a large, ornate doorway leading to another cave."
             self.bg = "background ruins_caveroom"
-            self.add_monster(froggit_actor);
 
     class ruins_grassroom(Room):
         def __init__(self):
@@ -79,7 +78,6 @@ init -1 python:
             self.y = 0
             self.desc = "Littering the edges of the much smaller cave are mounds of trash, a few pieces sparkling in the sparse light filtering through a crack in the ceiling. The scattered sunshine feeds a small mound of grass in the center of the cave and illuminates one exit from the cavern… though the other exit seems to be covered by a curtain of vines."
             self.bg = "background ruins_floweyroom"
-            #self.monsters.append(Monster("Steve"))
 
     class ruins_ruinsentrance(Room):
         def __init__(self):
@@ -89,7 +87,6 @@ init -1 python:
             self.y = 1
             self.desc = "The long stone hallway’s floor is covered in red leaves, gathered in drifts in corners or scattered across the path that leads to a set of curving staircases. The stairs climb up to a landing that supports a large, ivy covered building, its entrance yawning darkly and flanked by two high windows."
             self.bg = "background ruins_first_entrance"
-            #self.monsters.append(Monster("Bob"))
 
     class ruins_tunnels(Room):
         def __init__(self):

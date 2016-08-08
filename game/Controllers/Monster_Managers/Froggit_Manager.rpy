@@ -17,6 +17,8 @@ label froggit_default_dialogue:
     call show_buttons
     show froggit normal
 
+    $ renpy.pause()
+
     if not froggit_actor.visited:
         froggit "Oh, hello!"
         froggit "Try to watch out where you walk."
@@ -42,6 +44,5 @@ label froggit_default_dialogue:
         froggit "But hey, if you want to, you just have to click!"
         $ froggit_actor.dialogue_toggle = False
     
-    $ renpy.pause()
     return
 

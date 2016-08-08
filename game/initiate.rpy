@@ -87,6 +87,21 @@ label initialize:
     image froggit normal = "characters/Froggit/Froggit_normal.png"
     image froggit happy = "characters/Froggit/Froggit_happy.png"
 
+    image vegetoid normal = "characters/Vegetoid/vegetoid_normal.png"
+    image vegetoid happy = "characters/Vegetoid/vegetoid_happy.png"
+
+    image loox normal = "characters/Loox/loox_normal.png"
+    image loox normal = "characters/Loox/loox_happy.png"
+    image loox normal = "characters/Loox/loox_surprised.png"
+
+    image moldsmal normal = "characters/Moldsmal/moldsmal_normal.png"
+    image moldsmal happy = "characters/Moldsmal/moldsmal_happy.png"
+    image moldsmal nervous = "characters/Moldsmal/moldsmal_nervous.png"
+
+    image napstablook normal = "characters/Napstablook/napstablook_normal.png"
+
+    image whimsun normal = "characters/Whimsun/whimsun_normal.png"
+
 
     #character-settings
     #character settings
@@ -137,7 +152,6 @@ label initialize:
     init python:
         #init the player
         player = Player()
-        froggit_actor = Froggit()
         menu_state = "stats"
         world = World()
         world.set_current_time(0)

@@ -15,6 +15,7 @@ init -9 python:
 label flowey_manager_default:
     
     show flowey normal
+    $ renpy.pause()
     $ ftalk = True
     while ftalk:
         menu:
@@ -23,8 +24,5 @@ label flowey_manager_default:
                 $ flowey.FP += 10
             "Leave":
                 $ ftalk = False
-
-    while True:
-        pause
 
     return

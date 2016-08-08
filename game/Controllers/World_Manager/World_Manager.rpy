@@ -44,6 +44,13 @@ init -10 python:
                         self.currentRoom = room
                         renpy.jump("load_room")
 
+        def get_random_monster(self,name):
+            for x in self.random_monsters:
+                if x.name == name:
+                    return x
+
+            return False
+
 
         def cr_get_neighbors(self):
             dirs = []

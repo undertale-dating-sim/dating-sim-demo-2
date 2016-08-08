@@ -5,7 +5,7 @@ init -9 python:
     class Whimsun(Monster):
         def __init__(self):
             Monster.__init__(self)
-            self.default_event = Event("flowey_manager_default",True)
+            self.default_event = Event("Whimsun_manager_default",True)
 
 
 
@@ -14,17 +14,7 @@ init -9 python:
 #this is floweys default scene
 label Whimsun_manager_default:
     
-    show flowey normal
-    $ ftalk = True
-    while ftalk:
-        menu:
-            "FP   :   [flowey.FP]"
-            "Raise FP +10":
-                $ flowey.FP += 10
-            "Leave":
-                $ ftalk = False
-
-    while True:
-        pause
+    show whimsun normal
+    $ renpy.pause()
 
     return
