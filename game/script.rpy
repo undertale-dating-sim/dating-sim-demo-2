@@ -12,8 +12,7 @@ label show_buttons:
 label start:
     stop music
     call show_buttons
-    $ world.currentArea.move_to_room('Spider Bakery')
-    #jump load_room
+    jump load_room
     #jump dev_label
     #jump frisk_start
 

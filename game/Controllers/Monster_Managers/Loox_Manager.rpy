@@ -15,14 +15,6 @@ init -9 python:
 label loox_manager_default:
     
     show flowey normal
-    $ ftalk = True
-    while ftalk:
-        menu:
-            "FP   :   [flowey.FP]"
-            "Raise FP +10":
-                $ flowey.FP += 10
-            "Leave":
-                $ ftalk = False
 
     while True:
         pause

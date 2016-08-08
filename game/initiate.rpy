@@ -84,8 +84,8 @@ label initialize:
 
 
     #random monsters
-    image froggit normal = "characters/Froggit/Froggit_Normalcolor.png"
-    image froggit happy = "characters/Froggit/Froggit_Smilecolor.png"
+    image froggit normal = "characters/Froggit/Froggit_normal.png"
+    image froggit happy = "characters/Froggit/Froggit_happy.png"
 
 
     #character-settings

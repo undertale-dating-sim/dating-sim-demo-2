@@ -32,7 +32,25 @@ label bob_test_night:
 
 init -1 python:
     
-    
+    class TheRuins(Area):
+        def __init__(self):
+            Area.__init__(self,"The Ruins")
+            self.random_areas = []
+            self.random_monsters = []
+            self.add_room(ruins_caveroom())
+            self.add_room(ruins_grassroom())
+            self.add_room(ruins_ruinsentrance())
+            self.add_room(ruins_tunnels())
+            self.add_room(ruins_dummyroom())
+            self.add_room(ruins_froggitleaves())
+            self.add_room(ruins_sassyrock())
+            self.add_room(ruins_blookyroom())
+            self.add_room(ruins_spiderbakery())
+            self.add_room(ruins_snailhuntingroom())
+            self.add_room(ruins_tunneldivide())
+            self.add_room(ruins_overlook())
+            self.add_room(ruins_blacktreeroom())
+
     class Bob(Monster):
         def __init__(self):
             Monster.__init__(self)

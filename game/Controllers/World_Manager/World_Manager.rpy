@@ -10,6 +10,8 @@ init -10 python:
             self.rooms = []
             self.currentRoom = False
             self.name = name
+            self.random_areas = []
+            self.random_monsters = []
             #self.random_scenes = ['papyrus_random','sans_random','toriel_random','flowey_random']
         
         def add_room(self,room):
@@ -156,6 +158,18 @@ init -10 python:
 
             return timezone
 
+        #this function should be called at the beginning of every day.
+        #it will update all of the areas for whatever we need.
+        def update_day(self):
+            self.seed_random_monsters()
+
+
+        #this function will seed all of the random monsters to the various rooms they can be in.
+        #rooms with events already in them should be ignored.
+        def seed_random_monsters(self):
+
+            return
+
         def update_world(self):
 
             timezone = self.get_current_timezone()
@@ -221,22 +235,9 @@ init -10 python:
                 renpy.notify("Illegal Type: not an Area")
 
         def generate_ruins(self):
-            self.add_area(Area("The Ruins"))
+            self.add_area(TheRuins())
             self.currentArea = self.areas[0]
-            self.currentArea.add_room(ruins_caveroom())
-            self.currentArea.add_room(ruins_grassroom())
-            self.currentArea.add_room(ruins_ruinsentrance())
-            self.currentArea.add_room(ruins_tunnels())
-            self.currentArea.add_room(ruins_dummyroom())
-            self.currentArea.add_room(ruins_froggitleaves())
-            self.currentArea.add_room(ruins_sassyrock())
-            self.currentArea.add_room(ruins_blookyroom())
-            self.currentArea.add_room(ruins_spiderbakery())
-            self.currentArea.add_room(ruins_snailhuntingroom())
-            self.currentArea.add_room(ruins_tunneldivide())
-            self.currentArea.add_room(ruins_overlook())
-            self.currentArea.add_room(ruins_blacktreeroom())
-            self.currentArea.currentRoom = self.currentArea.rooms[8]
+            self.currentArea.currentRoom = self.currentArea.rooms[0]
 
 
 
