@@ -2,12 +2,18 @@
 init:
     image flowey normal = "Character-Flowey-Normal.png"
 
-
+label show_buttons:
+    show screen show_menu_button
+    show screen show_nav_button
+    show screen show_map_button
+    return
 
 #This takes place after the MC has heard about Frisk from Toriel.
 label start:
     stop music
-    jump dev_label
+    call show_buttons
+    jump load_room
+    #jump dev_label
     #jump frisk_start
 
 

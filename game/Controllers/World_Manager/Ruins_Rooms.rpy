@@ -9,9 +9,10 @@ init:
     image background ruins_first_entrance = "backgrounds/Ruins/background-ruins-firstentrance.jpg"
     image background ruins_toy_knife_room = "backgrounds/Ruins/background-ruins-toykniferoom.jpg"
     image background ruins_spider_bakery = "backgrounds/Ruins/background-ruins-spiderbakery.jpg"
-    image background ruins_sassyrock_room = "backgrounds/Ruins/background-ruins-sassyrock.png"
-    image background ruins_blooky_room = "backgrounds/Ruins/background-ruins-blookyroom.png"
-
+    image background ruins_sassyrock_room = "backgrounds/Ruins/background-ruins-sassyrock.jpg"
+    image background ruins_blooky_room = "backgrounds/Ruins/background-ruins-blookyroom.jpg"
+    image background ruins_dummy_room = "backgrounds/Ruins/background-ruins-dummyroom.jpg"
+    image background ruins_hallway = "backgrounds/Ruins/background-ruins-hallway.jpg"
 
 label bob_test_night:
     "Good night!"
@@ -31,7 +32,25 @@ label bob_test_night:
 
 init -1 python:
     
-    
+    class TheRuins(Area):
+        def __init__(self):
+            Area.__init__(self,"The Ruins")
+            self.random_areas = []
+            self.random_monsters = [Loox(),Vegetoid(),Moldsmol(),Whimsun(),Migosp(),Froggit()]
+            self.add_room(ruins_caveroom())
+            self.add_room(ruins_grassroom())
+            self.add_room(ruins_ruinsentrance())
+            self.add_room(ruins_tunnels())
+            self.add_room(ruins_dummyroom())
+            self.add_room(ruins_froggitleaves())
+            self.add_room(ruins_sassyrock())
+            self.add_room(ruins_blookyroom())
+            self.add_room(ruins_spiderbakery())
+            self.add_room(ruins_snailhuntingroom())
+            self.add_room(ruins_tunneldivide())
+            self.add_room(ruins_overlook())
+            self.add_room(ruins_blacktreeroom())
+
     class Bob(Monster):
         def __init__(self):
             Monster.__init__(self)
@@ -50,8 +69,6 @@ init -1 python:
             self.y = 0
             self.desc = "The large cavern you are in is lit by the light coming from far above, shining into the corners of the cave and illuminating the path of flowers that broke your fall. There is one exit from the cavern, a large, ornate doorway leading to another cave."
             self.bg = "background ruins_caveroom"
-            self.add_monster(Bob())
-           # self.monsters.append(Monster("Larry"))
 
     class ruins_grassroom(Room):
         def __init__(self):
@@ -61,7 +78,6 @@ init -1 python:
             self.y = 0
             self.desc = "Littering the edges of the much smaller cave are mounds of trash, a few pieces sparkling in the sparse light filtering through a crack in the ceiling. The scattered sunshine feeds a small mound of grass in the center of the cave and illuminates one exit from the cavern… though the other exit seems to be covered by a curtain of vines."
             self.bg = "background ruins_floweyroom"
-            #self.monsters.append(Monster("Steve"))
 
     class ruins_ruinsentrance(Room):
         def __init__(self):
@@ -71,7 +87,6 @@ init -1 python:
             self.y = 1
             self.desc = "The long stone hallway’s floor is covered in red leaves, gathered in drifts in corners or scattered across the path that leads to a set of curving staircases. The stairs climb up to a landing that supports a large, ivy covered building, its entrance yawning darkly and flanked by two high windows."
             self.bg = "background ruins_first_entrance"
-            #self.monsters.append(Monster("Bob"))
 
     class ruins_tunnels(Room):
         def __init__(self):
@@ -80,7 +95,7 @@ init -1 python:
             self.x = 9
             self.y = 2
             self.desc = "The tunnels criss-crossing through the various rooms you pass through are riddled with what appear to be disabled traps and puzzles."
-            self.bg = "background ruins_caveroom"
+            self.bg = "background ruins_hallway"
 
 
     class ruins_dummyroom(Room):
@@ -90,7 +105,7 @@ init -1 python:
             self.x = 9
             self.y = 3
             self.desc = "The small, curved room has a much lower ceiling than the caves before it, and houses a training dummy, set up beside the arched doorway leading on to further rooms, as well as a ghost that seems to be speaking to the dummy. The dummy looks friendly, a smile sewn into its burlap face, but the ghost looks almost… scared."
-            self.bg = "background ruins_caveroom"
+            self.bg = "background ruins_dummy_room"
 
     class ruins_froggitleaves(Room):
         def __init__(self):
@@ -129,6 +144,7 @@ init -1 python:
             self.bg = "background ruins_spider_bakery"
             self.locknorth = True
             self.events.append(Event("Muffet_Shop",True))
+
     class ruins_snailhuntingroom(Room):
         def __init__(self):
             Room.__init__(self)
@@ -145,7 +161,7 @@ init -1 python:
             self.x = 12
             self.y = 4
             self.desc = "The tunnel here splits into two, one offshoot leading north and the other east."
-            self.bg = "background ruins_caveroom"
+            self.bg = "background ruins_hallway"
 
     class ruins_overlook(Room):
         def __init__(self):
