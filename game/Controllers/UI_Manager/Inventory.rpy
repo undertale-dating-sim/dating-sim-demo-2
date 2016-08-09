@@ -9,6 +9,7 @@ init -1 python:
             self.sale_cost = 1
             self.shop_text = "default"
             self.use_text = ""
+            self.sprite = ""
 
         def give(self,character):
             return
@@ -24,6 +25,8 @@ init -1 python:
             self.name = "Spider Donut"
             self.use_text = "You bite down, but something stops you. It had a coin in it?  What was the point of buying this?"
             self.pickup_text = "It is a donut.  Made of spiders.  Crunchy!"
+            self.sprite = "items/item_spiderdonut.png"
+
             
 
     class Spider_Cider(Item):
@@ -33,6 +36,7 @@ init -1 python:
             self.sale_cost = 5
             self.use_text = "Spiders pour over your face. It had "+str(self.sale_cost)+" coin(s) in it.  What was the point of buying this?"
             self.pickup_text = "A jug full of spiders.  You can hear coins jiggle if you shake it."
+            self.sprite = "items/item_spidercider.png"
 
 
     class Inventory():
@@ -59,6 +63,8 @@ init -1 python:
     menu_selected_item = False
     #move to global portion of initiate.rpy later
     inventory = Inventory()
+    inventory.add(Spider_Cider())
+    inventory.add(Spider_Donut())
     
 
 screen items:
@@ -86,6 +92,8 @@ screen items:
                     textbutton "Drop":
                         action [If(menu_selected_item,ui.callsinnewcontext("drop_item",menu_selected_item)),SetVariable("menu_selected_item",False)]
                         background "#000000"
+
+                        
                         
 
 label show_item_description(item):
