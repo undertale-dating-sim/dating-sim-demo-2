@@ -14,7 +14,8 @@ init -1 python:
             self.kindness_cruelty       = 0
             self.justice_apathy        = 0
             self.current_room = "Nowhere"
-            self.stamina = 100
+            self.current_stamina = 100
+            self.max_stamina = 100
 
 
             self.time = 0

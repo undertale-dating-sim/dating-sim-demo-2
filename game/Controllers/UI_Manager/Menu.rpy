@@ -13,9 +13,10 @@ screen show_menu:
             vbox:
                 text "[player.name]"
                 text "Day: [world.day]"
-                text "Time: [world.currentTime]"
+                text "Time: "+world.get_current_time()
                 text world.get_current_timezone()
                 text "HP:  [player.current_health]/[player.total_health]"
+                text "STAM:  [player.current_stamina]/[player.max_stamina]"
                 text "G:   [player.gold]"
 
         frame  ypos 0.5:
@@ -33,6 +34,20 @@ label decrement_time:
     $ world.update_current_time(-300)
     return
 
+label increment_stamina:
+    python:
+        player.current_stamina += 10
+        if player.current_stamina > player.max_stamina:
+            player.current_stamina = player.max_stamina
+    return
+
+label decrement_stamina:
+    python:
+        player.current_stamina -= 10
+        if player.current_stamina < 0:
+            player.current_stamina = 0
+    return
+
 screen debug_monsters:
     frame pos(.3,.5):
         background Frame("UI/text-box3.png",21,21)
@@ -40,6 +55,11 @@ screen debug_monsters:
             hbox:
                 textbutton "Time Back" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("decrement_time")]
                 textbutton "Time Forward" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("increment_time")]
+
+            hbox:
+                textbutton "Stam Down" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("decrement_stamina")]
+                textbutton "Stam Up" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("increment_stamina")]
+
             for a in world.areas:
                 for r in a.rooms:
                     for m in r.monsters:
@@ -78,6 +98,20 @@ screen stats:
                 text "[player.perseverance_surrender]"
                 text "[player.kindness_cruelty]"
                 text "[player.justice_apathy]"  
+
+screen show_information_overlay:
+
+    hbox pos(0.25,0.01):
+        if player.current_stamina < 25:
+            text 'Stamina : {color=#f00}[player.current_stamina]'
+        elif player.current_stamina < 50:
+            text 'Stamina : {color=#FF0}[player.current_stamina]'
+        elif player.current_stamina < 75:
+            text 'Stamina : {color=#00FF00}[player.current_stamina]'
+        else:
+            text 'Stamina : {color=#008000}[player.current_stamina]'    
+        text '              '
+        text world.get_current_time()
 
 
 screen show_nav_button:

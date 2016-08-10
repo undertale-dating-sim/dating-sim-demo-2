@@ -216,6 +216,12 @@ init -10 python:
 
             return
 
+        def get_current_time(self):
+            seconds = self.currentTime * 60
+            m, s = divmod(seconds, 60)
+            h, m = divmod(m, 60)
+            return "%d:%02d" % (h, m)
+
         #sets the current time
         def set_current_time(self,time,update_day = False):
 
@@ -297,7 +303,7 @@ label load_room:
         $ temp_event = world.currentArea.currentRoom.get_event()
     
     while True:
-
+        call show_buttons
         pause
     return
 

@@ -6,6 +6,7 @@ label show_buttons:
     show screen show_menu_button
     show screen show_nav_button
     show screen show_map_button
+    show screen show_information_overlay
     return
 
 #This takes place after the MC has heard about Frisk from Toriel.

@@ -53,14 +53,14 @@ init python:
 
 
 screen show_map_button:
-    textbutton "Show Map" action [Play ("sound", "audio/sfx/click.wav"),Show("show_map"),Hide("show_map_button")] align(.45,.05) background Frame("UI/text-box3.png",50, 21)
+    textbutton "Show Map" action [Play ("sound", "audio/sfx/click.wav"),Show("show_map"),Hide("show_map_button")] align(.95,.15) background Frame("UI/text-box3.png",50, 21)
 
 screen show_map:
     
     add "#0008"
     modal True
     #hide button
-    textbutton "Hide Map" action [Play ("sound", "audio/sfx/click.wav"),Hide("show_map"),Show("show_map_button")] align(.45,.05)  background Frame("UI/text-box3.png",50, 21)
+    textbutton "Hide Map" action [Play ("sound", "audio/sfx/click.wav"),Hide("show_map"),Show("show_map_button")] align(.95,.15)  background Frame("UI/text-box3.png",50, 21)
     
 
 
