@@ -69,7 +69,6 @@ init -1 python:
 
 screen items:
         frame pos(0.3,0.05):
-            background Frame("UI/text-box3.png",21, 21)
             vbox:
                 for item in inventory.items:
                     textbutton "[item.name]":
@@ -92,6 +91,12 @@ screen items:
                     textbutton "Drop":
                         action [If(menu_selected_item,ui.callsinnewcontext("drop_item",menu_selected_item)),SetVariable("menu_selected_item",False)]
                         background "#000000"
+
+        if menu_selected_item:
+            frame pos(0.3,0.5):
+                vbox:
+                    text "[menu_selected_item.name]"
+                    image LiveComposite((150,150),(0,0),"items/item_spiderdonut.png")
 
                         
                         

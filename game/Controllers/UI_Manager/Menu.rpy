@@ -1,13 +1,14 @@
 
 screen show_menu_button:
-    textbutton "Show Menu" action [Play ("sound", "audio/sfx/click.wav"),Show("show_menu"),Hide("show_menu_button"),Show("stats"),Show("debug_monsters")] align(.95,.05) 
+#Show("debug_monsters")
+    textbutton "Show Menu" action [Play ("sound", "audio/sfx/click.wav"),Show("show_menu"),Hide("show_menu_button"),Show("stats")] align(.95,.05) 
 
 screen show_menu:
     add "#0008"
     modal True
     #hide button
     textbutton "Hide Menu" action [Play ("sound", "audio/sfx/click.wav"),Hide("show_menu"),Show("show_menu_button"),Hide("items"),Hide("stats"),Hide("cell"),Hide("show_item_description"),Hide("debug_monsters")] align(.95,.05)  
-    vbox xalign 0.1 ypos 0.1:
+    vbox xalign 0.05 ypos 0.1:
         frame:
             background Frame("UI/text-box3.png",21, 21)       
             vbox:
@@ -80,6 +81,7 @@ screen debug_monsters:
                                     text "[x]"
                                     text "  "
                                     text t[x].label
+
 screen stats:
     frame pos(0.3,0.05):
         background Frame("UI/text-box3.png",21, 21)
