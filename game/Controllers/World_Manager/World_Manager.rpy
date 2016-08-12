@@ -102,6 +102,7 @@ init -10 python:
             self.lockwest = False
             self.events = []
             self.monsters = []
+            self.current_monster = False
 
 
         #First check to see if the room itself has an event to do
@@ -114,10 +115,12 @@ init -10 python:
             for m in self.monsters:
                 for e in m.specialEvents:
                     if e.completed == False:
+                        self.current_monster = m
                         return e
 
                 if m.get_current_event():
                     if m.get_current_event().completed == False:
+                        self.current_monster = m
                         return m.get_current_event()
 
             return False

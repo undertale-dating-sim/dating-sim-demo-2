@@ -9,7 +9,7 @@ init -10 python:
             self.currentRoom = None
             self.default_event = Event('default_event',self)
             self.FP_events = {}
-            self.FP = 0
+            self.FP = False
             self.visited = False
             self.dialogue_toggle = False
             

@@ -44,10 +44,6 @@ label initialize:
     image flowey back = "characters/floweyplaceholders/Character-Flowey-Back.png"
     image flowey bashful = "characters/floweyplaceholders/Character-Flowey-Bashful.png"
 
-
-    #toriel
-    image toriel placeholder = "characters/toriel_ph.png"
-
     #stupid stuff for demo
     image wilson large = im.FactorScale("avatar.png",4.0)
     image wilson ph = "avatar.png"
@@ -102,6 +98,8 @@ label initialize:
 
     image whimsun normal = "characters/Whimsun/whimsun_normal.png"
 
+    #initialize the monsters
+    call initialize_toriel
 
     #character-settings
     #character settings

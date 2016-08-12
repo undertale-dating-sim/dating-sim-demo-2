@@ -102,18 +102,21 @@ screen stats:
                 text "[player.justice_apathy]"  
 
 screen show_information_overlay:
-
-    hbox pos(0.25,0.01):
-        if player.current_stamina < 25:
-            text 'Stamina : {color=#f00}[player.current_stamina]'
-        elif player.current_stamina < 50:
-            text 'Stamina : {color=#FF0}[player.current_stamina]'
-        elif player.current_stamina < 75:
-            text 'Stamina : {color=#00FF00}[player.current_stamina]'
-        else:
-            text 'Stamina : {color=#008000}[player.current_stamina]'    
-        text '              '
-        text world.get_current_time()
+    vbox:
+        hbox pos(0.25,0.01):
+            if player.current_stamina < 25:
+                text 'Stamina : {color=#f00}[player.current_stamina]'
+            elif player.current_stamina < 50:
+                text 'Stamina : {color=#FF0}[player.current_stamina]'
+            elif player.current_stamina < 75:
+                text 'Stamina : {color=#00FF00}[player.current_stamina]'
+            else:
+                text 'Stamina : {color=#008000}[player.current_stamina]'    
+            text '              '
+            text world.get_current_time()
+        hbox xpos .25:
+            if world.currentArea.currentRoom.current_monster and world.currentArea.currentRoom.current_monster != False:
+                text "[world.currentArea.currentRoom.current_monster.name]         FP:[world.currentArea.currentRoom.current_monster.FP]"
 
 
 screen show_nav_button:
