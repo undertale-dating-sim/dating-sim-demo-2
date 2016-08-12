@@ -8,7 +8,7 @@ screen show_menu:
     modal True
     #hide button
     textbutton "Hide Menu" action [Play ("sound", "audio/sfx/click.wav"),Hide("show_menu"),Show("show_menu_button"),Hide("items"),Hide("stats"),Hide("cell"),Hide("show_item_description"),Hide("debug_monsters")] align(.95,.05)  
-    vbox xalign 0.05 ypos 0.1:
+    vbox xalign 0.05 ypos 0.05:
         frame:
             background Frame("UI/text-box3.png",21, 21)       
             vbox:

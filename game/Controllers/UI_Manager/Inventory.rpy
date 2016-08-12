@@ -10,6 +10,7 @@ init -1 python:
             self.shop_text = "default"
             self.use_text = ""
             self.sprite = ""
+            self.menu_desc = ""
 
         def give(self,character):
             return
@@ -24,8 +25,9 @@ init -1 python:
             Item.__init__(self)
             self.name = "Spider Donut"
             self.use_text = "You bite down, but something stops you. It had a coin in it?  What was the point of buying this?"
-            self.pickup_text = "It is a donut.  Made of spiders.  Crunchy!"
+            self.pickup_text = "It is a donut. Made of spiders. Crunchy!"
             self.sprite = "items/item_spiderdonut.png"
+            self.menu_desc = "It is a donut. \nRestore 10 Stamina"
 
             
 
@@ -35,8 +37,9 @@ init -1 python:
             self.name = "Spider Cider"
             self.sale_cost = 5
             self.use_text = "Spiders pour over your face. It had "+str(self.sale_cost)+" coin(s) in it.  What was the point of buying this?"
-            self.pickup_text = "A jug full of spiders.  You can hear coins jiggle if you shake it."
+            self.pickup_text = "A bottle full of spiders. You can hear coins jiggle if you shake it."
             self.sprite = "items/item_spidercider.png"
+            self.menu_desc = "A bottle full of spiders. \nRestore 50 Stamina"
 
 
     class Inventory():
@@ -94,9 +97,15 @@ screen items:
 
         if menu_selected_item:
             frame pos(0.3,0.5):
-                vbox:
-                    text "[menu_selected_item.name]"
-                    image LiveComposite((150,150),(0,0),"items/item_spiderdonut.png")
+                hbox:
+                    image menu_selected_item.sprite
+                    vbox:
+                        box_wrap True
+                        spacing 5
+                        xmaximum 150
+                        text "[menu_selected_item.name]"
+                        text "[menu_selected_item.menu_desc]"
+
 
                         
                         
