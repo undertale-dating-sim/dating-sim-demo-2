@@ -34,3 +34,9 @@ init -10 python:
                 for x,t in self.schedule[timezone].iteritems():
                     return t
             return self.default_event
+
+        def open_gift_menu(self):
+            renpy.menu(['test'])
+        def give_gift(self,item = False):
+            renpy.say(self.name,"You shouldn't see this. Testing Lag.")
+

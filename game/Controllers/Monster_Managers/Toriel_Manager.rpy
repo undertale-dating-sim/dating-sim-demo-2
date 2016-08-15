@@ -9,6 +9,10 @@ init -9 python:
             self.name = "Toriel"
             self.FP = 20
 
+        def give_gift():
+            renpy.say(self.name,"Oh? What do you have there?")
+            
+
 
 label initialize_toriel:
         
@@ -44,5 +48,7 @@ label Toriel_manager_default(owner = False):
             $ owner.FP += 10
         "Lower FP 10":
             $ owner.FP -= 10
+        "Give Gift":
+            $ owner.open_gift_menu()
 
     return
