@@ -62,7 +62,6 @@ init -1 python:
             return False
 
 
-    #holds the description for the menu.  HAS to be a better way to do this
     menu_selected_item = False
     #move to global portion of initiate.rpy later
     inventory = Inventory()

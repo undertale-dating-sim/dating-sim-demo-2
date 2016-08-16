@@ -35,8 +35,41 @@ init -10 python:
                     return t
             return self.default_event
 
-        def open_gift_menu(self):
-            renpy.menu(['test'])
         def give_gift(self,item = False):
             renpy.say(self.name,"You shouldn't see this. Testing Lag.")
 
+label give_item(owner,item):
+    python:
+        if owner.give_gift(item):
+            inventory.drop(item)
+    return
+
+
+screen gift_item_menu(owner):
+    add "#0008"
+    modal True
+    frame pos(0.2,0.4):
+        vbox:
+            for item in inventory.items:
+                textbutton "[item.name]":
+                    action [SetVariable("menu_selected_item",item)]
+                    background "#000000"
+            for i in range(0,inventory.max_items - len(inventory.items)):
+                textbutton "----------":
+                    background "#000000"
+ 
+            hbox:
+                textbutton "Give":
+                    action [If(menu_selected_item,ui.callsinnewcontext("give_item",owner,menu_selected_item)),SetVariable("menu_selected_item",False),Hide("gift_item_menu"),Return()]
+                    background "#000000"
+
+    if menu_selected_item:
+        frame pos(0.5,0.4):
+            hbox:
+                image menu_selected_item.sprite
+                vbox:
+                    box_wrap True
+                    spacing 6
+                    xmaximum 200
+                    text "[menu_selected_item.name]"
+                    text "[menu_selected_item.pickup_text]"
