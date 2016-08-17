@@ -59,17 +59,23 @@ screen gift_item_menu(owner):
                     background "#000000"
  
             hbox:
-                textbutton "Give":
-                    action [If(menu_selected_item,ui.callsinnewcontext("give_item",owner,menu_selected_item)),SetVariable("menu_selected_item",False),Hide("gift_item_menu"),Return()]
+                textbutton "Exit":
+                    action [Hide("gift_item_menu"),Return()]
                     background "#000000"
 
     if menu_selected_item:
         frame pos(0.5,0.4):
             hbox:
-                image menu_selected_item.sprite
+                vbox:
+                    image menu_selected_item.sprite
+                    textbutton "Give":
+                        action [If(menu_selected_item,ui.callsinnewcontext("give_item",owner,menu_selected_item)),SetVariable("menu_selected_item",False),Hide("gift_item_menu"),Return()]
+                        background "#000000"
                 vbox:
                     box_wrap True
                     spacing 6
                     xmaximum 200
                     text "[menu_selected_item.name]"
                     text "[menu_selected_item.pickup_text]"
+                    
+

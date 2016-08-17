@@ -3,9 +3,9 @@ label call_Toriel:
     $ location = world.currentArea.currentRoom
     toriel "Hello, Toriel here!"
 
-    if location.name == "Cave Room":
-        call call_Toriel_Cave_Room
-
+    #Ruins
+    if renpy.has_label("call_Toriel_"+location.name.replace(" ","_")):
+        $ renpy.call_in_new_context("call_Toriel_"+location.name.replace(" ","_"))
     else:
         call call_Toriel_Unknown
 
@@ -41,44 +41,53 @@ label call_Toriel_Ruins_Entrance:
             toriel "That is what I would say. Still, I can not bring myself to get rid of the leaves if Frisk likes them so much. I hope you understand."
     return
     
-# Tunnels (no bg art)-
-# toriel "Oh, I have a fun fact concerning these rooms!
-# toriel "They used to be full of puzzles that you had to solve before getting through. Some of them were a little dangerous, so I did my best to remove as much of them as I could.
-# toriel "I hope that does not upset you. 
-# toriel "To be perfectly honest, I think you might have found repeating the same puzzles everyday a little boring. 
+label call_Toriel_Tunnels:
+    toriel "Oh, I have a fun fact concerning these rooms!"
+    toriel "They used to be full of puzzles that you had to solve before getting through. Some of them were a little dangerous, so I did my best to remove as much of them as I could."
+    toriel "I hope that does not upset you."
+    toriel "To be perfectly honest, I think you might have found repeating the same puzzles everyday a little boring."
+    return
 
-# Dummy Room-
-# toriel "Feel free to talk to the dummy! It is not much for conversation, but I am sure it would appreciate being able to listen to someone talk anyway.
+label call_Toriel_Dummy_Room:
+    toriel "Feel free to talk to the dummy! It is not much for conversation, but I am sure it would appreciate being able to listen to someone talk anyway."
+    return
 
-# Froggit w/ Leaves Room-
-# toriel "I hope the froggits caused you no trouble. They do not mean to - but they can get carried away sometimes.
-# toriel "If they want to fight, just give them this look.
-# *Toriel sends an emoji. It looks angry.
+label call_Toriel_Froggit_Room:
+    toriel "I hope the froggits caused you no trouble. They do not mean to - but they can get carried away sometimes."
+    toriel "If they want to fight, just give them this look."
+    toriel ">:["
+    return
 
-# *sassy Rock Room-
-# toriel "Have you met the rock? Don’t pay much mind to him, he likes to tease newcomers.
-# toriel "If he starts being a big nuisance, just let him know that you are with me - and I am sure he will listen to whatever you have to say.
+label call_Toriel_Sassy_Rock_Room:
+    toriel "Have you met the rock? Don’t pay much mind to him, he likes to tease newcomers."
+    toriel "If he starts being a big nuisance, just let him know that you are with me - and I am sure he will listen to whatever you have to say."
+    return
 
-# Blooky Room-
-# toriel "Believe it or not, there used to be a little ghost here that blocked the path. He stopped coming after the first few times I saw him, but Frisk told me that he still comes sometimes - if he thinks there is no one around.
-# toriel "He seems nice, albeit awfully shy. If you see him, do be sure to tell him he can come over for snail pie anytime.
+label call_Toriel_Blooky_Room:
+    toriel "Believe it or not, there used to be a little ghost here that blocked the path. He stopped coming after the first few times I saw him, but Frisk told me that he still comes sometimes - if he thinks there is no one around."
+    toriel "He seems nice, albeit awfully shy. If you see him, do be sure to tell him he can come over for snail pie anytime."
+    return
 
-# Spider Bakery-
+label call_Toriel_Spider_Bakery:
+    toriel "You must be in the room with the spider bake sale!"
+    toriel "The spiders here are very friendly. If I happen to be in the mood for a spider donut when I am on my morning walk, I will buy a couple for myself and Frisk. Apparently they are collecting money for a good cause, though I have never stopped long enough to ask what it is."
+    return
 
-# toriel "You must be in the room with the spider bake sale!
-# toriel "The spiders here are very friendly. If I happen to be in the mood for a spider donut when I am on my morning walk, I will buy a couple for myself and Frisk. Apparently they are collecting money for a good cause, though I have never stopped long enough to ask what it is.
+label call_Toriel_Snail_Hunter:
+    toriel "Are you in the mood to catch some snails? We have actually got enough for today, but I do appreciate the enthusiasm!"
+    return
 
-# Snail Hunting Room-
+label call_Toriel_Tunnel_Divide:
+    toriel "Unless I am wrong, you are at the crossroads right now. Go north to come back home, and east to go to nowhere in particular!"
+    return
 
-# toriel "Are you in the mood to catch some snails? We have actually got enough for today, but I do appreciate the enthusiasm!
+label call_Toriel_Overlook:
+    toriel "The view from here is really something, is it not? Sometimes I walk here in the evening to see all the lights being turned on as the monsters go back to their homes."
+    toriel "I suppose it somewhat reminds me of the city."
+    toriel "I wonder how everyone is doing up there."
+    return
 
-# Tunnel Divide (no bg art)-
-# toriel "Unless I am wrong, you are at the crossroads right now. Go north to come back home, and east to go to nowhere in particular!
-
-# Knife Room/ Ruins Overlook- ((EAST))
-# toriel "The view from here is really something, is it not? Sometimes I walk here in the evening to see all the lights being turned on as the monsters go back to their homes.
-# toriel "*sad* I suppose it somewhat reminds me of the city.
-# toriel "I wonder how everyone is doing up there.
-
-# Black Tree Room/ Front of Toriel’s House- ((NORTH))
-# toriel "You must be just outside our house. Be careful, or you might trip over the leaves. toriel "*annoyed* That pesky black tree keeps dropping them no matter how many times I try to clean them up.
+label call_Toriel_Black_Tree_Room:
+    toriel "You must be just outside our house. Be careful, or you might trip over the leaves."
+    toriel "That pesky black tree keeps dropping them no matter how many times I try to clean them up."
+    return
