@@ -155,4 +155,6 @@ label initialize:
         world = World()
         world.set_current_time(0,True)
 
+        cell_convos = []
+
 
