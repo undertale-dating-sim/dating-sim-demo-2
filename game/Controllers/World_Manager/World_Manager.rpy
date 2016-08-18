@@ -290,6 +290,7 @@ label test_label:
 #This is the label that handles the loading
 #shows the current background, if the room hasn't been visited shows the description, sets visited to True, then Pauses to allow player to do things
 label load_room:
+    $ cell_convo_count = 0
     $ renpy.scene()
     
     $ renpy.show(world.currentArea.currentRoom.bg)

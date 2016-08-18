@@ -3,26 +3,27 @@ screen cell:
         background Frame("UI/text-box3.png",21, 21)
         vbox:
             textbutton "Frisk":
-                action [ui.callsinnewcontext("call_Frisk")] background "#000000"
+                action [ui.callsinnewcontext("call_Monster","Frisk")] background "#000000"
             textbutton "Toriel":
-                action [ui.callsinnewcontext("call_Toriel")] background "#000000"
+                action [ui.callsinnewcontext("call_Monster","Toriel")] background "#000000"
             textbutton "Napstablook":
-                action [ui.callsinnewcontext("call_Napstablook")] background "#000000"
+                action [ui.callsinnewcontext("call_Monster","Napstablook")] background "#000000"
             
+label call_Monster(monster = "Frisk"):
 
-label call_Frisk:
-    "ring..."
-    ".ring..."
-    "..ring..."
-    "Hello? This is Frisk."
-    $ talking = True
-    while talking:
-        menu:
-            "Hello!":
-                "I don't really have anything to say to you."
-                "-click-"
-                return
-            "Goodbye!":
-                "-click-"
-                return
+    $ location = world.currentArea.currentRoom
+    $ loc_name = "call_"+monster+"_"+location.name.replace(" ","_")
+
+    if renpy.has_label(loc_name):
+        call expression loc_name pass (cell_convo_count)
+        $ cell_convo_count += 1
+    elif renpy.has_label("call_[monster]_Unknown"):
+        call expression "call_[monster]_Unknown"
+    else:
+        call unknown_Call
+    return
+
+label unknown_Call:
+    "But nobody answered."
+    "Rude."
     return

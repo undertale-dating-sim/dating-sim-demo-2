@@ -101,13 +101,11 @@ label initialize:
     #initialize the monsters
     call initialize_toriel
     call initialize_napstablook
+    call initialize_frisk
 
     #character-settings
     #character settings
     define diary = ('Diary')
-    define frisk = ('Frisk')
-    define xxxfrisk = ('XXX')
-    define toriel = ('Toriel')
     define narration = Character(kind=nvl)
     define system = Character('', color="#FFFFFF")
     define papyrusChar = Character('Papyrus', color="#FFFFFF", what_prefix='{font=font/Parchment-MF.ttf}{size=40}', what_suffix='{/size}{/font}')
@@ -115,7 +113,6 @@ label initialize:
     define xxxsans = Character('xxx', color="#FFFFFF", what_prefix='{font=font/ComicRelief.ttf}{size=20}', what_suffix='{/size}{/font}')
     define sans = Character('Sans', color="#FFFFFF", what_prefix='{font=font/ComicRelief.ttf}{size=20}', what_suffix='{/size}{/font}')
     define floweyChar = Character('Flowey', color="#FFFFFF")
-    define torielChar = Character('Toriel', color="#FFFFFF")
     define wilsonChar = Character('Wilson', color="#FFFFFF")
     define flowey = Character('Flowey', color="#FFFFFF")
     define froggit = Character('Froggit', color="#FFFFFF")
@@ -138,8 +135,6 @@ label initialize:
             papyrusChar(text, *args, **kwargs)
         def flowey(text, *args, **kwargs):
             floweyChar(text, *args, **kwargs)
-        def toriel(text, *args, **kwargs):
-            torielChar(text, *args, **kwargs)
         def wilson(text, *args, **kwargs):
             wilsonChar(text, *args, **kwargs)
 
@@ -155,6 +150,6 @@ label initialize:
         world = World()
         world.set_current_time(0,True)
 
-        cell_convos = []
+        cell_convo_count = 0
 
 
