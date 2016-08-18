@@ -69,7 +69,7 @@ init -1 python:
             self.y = 0
             self.desc = "The large cavern you are in is lit by the light coming from far above, shining into the corners of the cave and illuminating the path of flowers that broke your fall. There is one exit from the cavern, a large, ornate doorway leading to another cave."
             self.bg = "background ruins_caveroom"
-            self.add_monster(Toriel())
+            self.add_monster(Flowey())
 
     class ruins_grassroom(Room):
         def __init__(self):
@@ -79,6 +79,7 @@ init -1 python:
             self.y = 0
             self.desc = "Littering the edges of the much smaller cave are mounds of trash, a few pieces sparkling in the sparse light filtering through a crack in the ceiling. The scattered sunshine feeds a small mound of grass in the center of the cave and illuminates one exit from the cavern… though the other exit seems to be covered by a curtain of vines."
             self.bg = "background ruins_floweyroom"
+            self.add_monster(Toriel())
 
     class ruins_ruinsentrance(Room):
         def __init__(self):

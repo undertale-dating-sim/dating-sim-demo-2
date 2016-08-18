@@ -23,26 +23,7 @@ label initialize:
     image sans sad = "characters/sans-sad.png"
     image sans silhouette = "characters/sans-shakemyhand.png"
     image sans shakehand = "characters/sans-shakemyhand2.png"
-    #flowey
-    image flowey placeholder = "characters/flowey_ph.png"
-
-
-    image flowey angry = "characters/Flowey/FloweyLineart-Angrycolor.png"
-    image flowey annoyed = "characters/Flowey/FloweyLineart-Annoyedcolor.png"
-    image flowey excited = "characters/Flowey/FloweyLineart-Excitedcolor.png"
-    image flowey evil = "characters/Flowey/FloweyLineart-Horrorcolor.png"
-    image flowey laugh = "characters/Flowey/FloweyLineart-LaughingColor.png"
-    image flowey normal = "characters/Flowey/FloweyLineart-Normalcolor1.png"
-    image flowey sad = "characters/Flowey/FloweyLineart-Sadcolor.png"
-    image flowey sideglance = "characters/Flowey/FloweyLineart-SideGlarecolor.png"
-    image flowey smug = "characters/Flowey/FloweyLineart-Smugcolor.png"
-    image flowey wink = "characters/Flowey/FloweyLineart-Winkcolor.png"
-   
-
-    image flowey surprised = "characters/floweyplaceholders/Character-Flowey-Surprise.png"
-    image flowey suspicious = "characters/floweyplaceholders/Character-Flowey-Suspicious.png"
-    image flowey back = "characters/floweyplaceholders/Character-Flowey-Back.png"
-    image flowey bashful = "characters/floweyplaceholders/Character-Flowey-Bashful.png"
+ 
 
     #stupid stuff for demo
     image wilson large = im.FactorScale("avatar.png",4.0)
@@ -63,9 +44,6 @@ label initialize:
     #prologue
     image background prologue1 = "backgrounds/prologue.jpg"
     image background intro = "backgrounds/background-intro.png"
-
-    image background floweyroomplaceholder = "backgrounds/placeholders/background-ruins-floweyroom.png"
-
 
     #toriel house
     image background toriel_house_corridor = "backgrounds/background-ruins-corridor.png"
@@ -102,6 +80,7 @@ label initialize:
     call initialize_toriel
     call initialize_napstablook
     call initialize_frisk
+    call initialize_flowey
 
     #character-settings
     #character settings
@@ -112,9 +91,7 @@ label initialize:
     define xxxpapyrus = Character('xxx', color="#FFFFFF", what_prefix='{font=font/Parchment-MF.ttf}{size=40}', what_suffix='{/size}{/font}')
     define xxxsans = Character('xxx', color="#FFFFFF", what_prefix='{font=font/ComicRelief.ttf}{size=20}', what_suffix='{/size}{/font}')
     define sans = Character('Sans', color="#FFFFFF", what_prefix='{font=font/ComicRelief.ttf}{size=20}', what_suffix='{/size}{/font}')
-    define floweyChar = Character('Flowey', color="#FFFFFF")
     define wilsonChar = Character('Wilson', color="#FFFFFF")
-    define flowey = Character('Flowey', color="#FFFFFF")
     define froggit = Character('Froggit', color="#FFFFFF")
     define whimsun = Character('Whimsun', color="#FFFFFF")
     define loox = Character('Loox', color="#FFFFFF")
@@ -133,8 +110,7 @@ label initialize:
         # Wrapper to capitalize Papyrus' text
         def papyrus(text, *args, **kwargs):
             papyrusChar(text, *args, **kwargs)
-        def flowey(text, *args, **kwargs):
-            floweyChar(text, *args, **kwargs)
+
         def wilson(text, *args, **kwargs):
             wilsonChar(text, *args, **kwargs)
 

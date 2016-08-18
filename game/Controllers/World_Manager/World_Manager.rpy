@@ -70,20 +70,6 @@ init -10 python:
 
             return dirs
 
-        def get_random_scene(self):
-            
-            s = False
-            if len(self.random_scenes) > 0:
-                if renpy.random.randint(0,100) < 101:
-                    s = self.random_scenes[renpy.random.randint(0,len(self.random_scenes)-1)]
-                        #remove so it doesn't happen again
-                    self.random_scenes.remove(s)
-                    if len(self.random_scenes) == 0 and wilson_locked:
-                        renpy.call_in_new_context("wilson_unlock")
-                    return s
-            
-            return s
-
     class Room():
         def __init__(self,name = 'default', x = 0, y=0 , desc = 'default',locked = False, bg = 'nothing'):
             self.name = name

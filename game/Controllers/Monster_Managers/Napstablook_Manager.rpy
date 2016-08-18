@@ -36,7 +36,6 @@ label initialize_napstablook:
                napstablookChar(text, *args, **kwargs)
     return
 
-#this is Toriels default scene
 label Napstablook_manager_default(owner = False):
 
 

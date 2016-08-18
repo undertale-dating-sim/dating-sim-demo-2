@@ -12,6 +12,9 @@ init -10 python:
             self.FP = False
             self.visited = False
             self.dialogue_toggle = False
+
+        def get_relationship(self):
+            return "Neutral"
             
         def move_to_room(self,room):
             for a in world.areas:
