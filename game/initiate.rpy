@@ -100,6 +100,7 @@ label initialize:
 
     #initialize the monsters
     call initialize_toriel
+    call initialize_napstablook
 
     #character-settings
     #character settings

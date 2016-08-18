@@ -6,6 +6,8 @@ screen cell:
                 action [ui.callsinnewcontext("call_Frisk")] background "#000000"
             textbutton "Toriel":
                 action [ui.callsinnewcontext("call_Toriel")] background "#000000"
+            textbutton "Napstablook":
+                action [ui.callsinnewcontext("call_Napstablook")] background "#000000"
             
 
 label call_Frisk:
