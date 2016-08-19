@@ -9,12 +9,23 @@ init -10 python:
             self.currentRoom = None
             self.default_event = Event('default_event',self)
             self.FP_events = {}
-            self.FP = False
+            self.FP = 0
             self.visited = False
             self.dialogue_toggle = False
 
         def get_relationship(self):
-            return "Neutral"
+
+            if self.FP <= 20:
+                return "Hated"
+            elif self.FP <= 40:
+                return "Disliked"
+            elif self.FP <= 60:
+                return "Neutral"
+            elif self.FP <= 80:
+                return "Friend"
+            else:
+                return "Loved"
+            
             
         def move_to_room(self,room):
             for a in world.areas:
@@ -63,7 +74,7 @@ screen gift_item_menu(owner):
  
             hbox:
                 textbutton "Exit":
-                    action [Hide("gift_item_menu"),Return()]
+                    action [Hide("gift_item_menu"),Return('cancel')]
                     background "#000000"
 
     if menu_selected_item:

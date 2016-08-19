@@ -32,19 +32,96 @@ label initialize_flowey:
 #this is floweys default scene
 label flowey_manager_default(owner = False):
 
-    show flowey excited
+    call show_flowey_sprite(owner)
+
     call show_buttons
     $ renpy.pause()
 
+    call flowey_greeting(owner)
     menu:
-        "Raise FP 10":
-            $ owner.FP += 10
-        "Lower FP 10":
-            $ owner.FP -= 10
+        "Raise FP 20":
+            $ owner.FP += 20
+        "Lower FP 20":
+            $ owner.FP -= 20
         "Give Gift" if len(inventory.items) > 0:
-            show screen gift_item_menu(owner)
-            "What should you give them?"
+            call flowey_gift_menu_open(owner)
+            $ result = renpy.call_screen("gift_item_menu",owner)
+            if result == 'cancel':
+                call flowey_gift_menu_cancel(owner)
+            
+        "Leave":
+            call flowey_goodbye(owner)
 
+    return
+
+label flowey_gift_menu_open(owner):
+    if owner.get_relationship() == "Hated":
+        show flowey sideglance
+        flowey "You have my attention..."
+    elif owner.get_relationship() == "Disliked":
+        show flowey suspicious
+        flowey "Huh, what's that?"
+    elif owner.get_relationship() == "Neutral":
+        show flowey sideglance
+        flowey "You... have something for me?"
+    return
+
+
+
+label flowey_gift_menu_cancel(owner):
+    if owner.get_relationship() == "Hated":
+        show flowey annoyed
+        flowey "Ha ha, very funny."
+    elif owner.get_relationship() == "Disliked":
+        show flowey suspicious
+        flowey "Ha ha, very funny."
+    elif owner.get_relationship() == "Neutral":
+        show flowey annoyed
+        flowey "Ha ha, very funny."
+
+    return
+
+label show_flowey_sprite(owner):
+
+    if owner.get_relationship() == "Hated":
+        show flowey angry
+    elif owner.get_relationship() == "Disliked":
+        show flowey annoyed
+    elif owner.get_relationship() == "Neutral":
+        show flowey normal
+    else:
+        show flowey normal
+        "relationship sprite not found"
+    return
+
+label flowey_greeting(owner):
+    
+    if owner.get_relationship() == "Hated":
+        show flowey angry
+        flowey "Go away. I'm busy right now."
+    elif owner.get_relationship() == "Disliked":
+        show flowey annoyed
+        flowey "What do you want?"
+    elif owner.get_relationship() == "Neutral":
+        show flowey normal
+        flowey "What?"
+    else:
+        flowey "GREETING NOT FOUND"
+    return
+
+label flowey_goodbye(owner):
+
+    if owner.get_relationship() == "Hated":
+        show flowey annoyed
+        flowey "Good riddance."
+    elif owner.get_relationship() == "Disliked":
+        show flowey annoyed
+        flowey "Finally."
+    elif owner.get_relationship() == "Neutral":
+        show flowey normal
+        flowey "Bye."
+    else:
+        flowey "GREETING NOT FOUND"
     return
 
 
