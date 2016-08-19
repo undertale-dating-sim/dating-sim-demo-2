@@ -12,6 +12,9 @@ label show_buttons:
 #This takes place after the MC has heard about Frisk from Toriel.
 label start:
     stop music
+    play music "audio/music/scary.ogg"
+    #call super_secret_console
+
     call show_buttons
     jump load_room
     #jump dev_label
@@ -52,6 +55,8 @@ label dev_label:
                 jump Muffet_Shop
             "Flowey_Regular_Dialogue":
                 jump Flowey_Regular_Dialogue
+
+
 
 label demo_end:
     "This demo ends here. Thanks for playing!"

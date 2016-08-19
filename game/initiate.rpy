@@ -27,7 +27,7 @@ label initialize:
 
     #stupid stuff for demo
     image wilson large = im.FactorScale("avatar.png",4.0)
-    image wilson ph = "avatar.png"
+    image wilson ph = "characters/Wilson/avatar1.png"
     #background-images
 
     #snowdin
