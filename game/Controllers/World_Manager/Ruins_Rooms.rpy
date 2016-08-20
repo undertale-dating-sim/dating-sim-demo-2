@@ -5,7 +5,7 @@ init:
 
 #the ruins
     image background ruins_outside_house = "backgrounds/Ruins/background-ruins-blacktree.png"
-    image background ruins_froggit_room = "backgrounds/Ruins/background-ruins-froggitroom.png"
+    image background ruins_froggit_room = im.Scale("backgrounds/Ruins/background-ruins-froggitroom.jpg",800,600)
     image background ruins_first_entrance = "backgrounds/Ruins/background-ruins-firstentrance.jpg"
     image background ruins_toy_knife_room = "backgrounds/Ruins/background-ruins-toykniferoom.jpg"
     image background ruins_spider_bakery = "backgrounds/Ruins/background-ruins-spiderbakery.jpg"

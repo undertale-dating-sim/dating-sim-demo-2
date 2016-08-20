@@ -13,8 +13,7 @@ label show_buttons:
 label start:
     stop music
     play music "audio/music/scary.ogg"
-    #call super_secret_console
-
+    #call super_secret_console"
     call show_buttons
     jump load_room
     #jump dev_label
