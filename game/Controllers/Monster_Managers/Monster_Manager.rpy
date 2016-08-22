@@ -5,9 +5,10 @@ init -10 python:
         def __init__(self,name="bob"):
             self.name = name
             self.specialEvents = []
-            self.schedule = {}
+            self.schedule = {"Sunday":{},"Monday":{},"Tuesday":{},"Wednesday":{},"Thursday":{},"Friday":{},"Saturday":{}}
             self.currentRoom = None
             self.default_event = Event('default_event',self)
+            self.default_room = "Cave Room"
             self.FP_events = {}
             self.FP = 0
             self.visited = False
@@ -44,13 +45,21 @@ init -10 python:
         #will need to add math about the FP
         def get_current_event(self):
             timezone = world.get_current_timezone()
-            if timezone in self.schedule:
-                for x,t in self.schedule[timezone].iteritems():
-                    return t
+            day = world.get_current_day()
+            if day in self.schedule:
+                if timezone in self.schedule[day]:
+                    for x,t in self.schedule[day][timezone].iteritems():
+                        return t
             return self.default_event
 
         def give_gift(self,item = False):
-            renpy.say(self.name,"You shouldn't see this. Testing Lag.")
+            renpy.say(self.name,"You shouldn't see this.")
+
+        def update_schedule(self,day,timezone,location,event):
+
+            self.schedule[day][timezone] = {location:event}
+
+            return
 
 label give_item(owner,item):
     python:

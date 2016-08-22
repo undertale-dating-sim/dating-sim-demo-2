@@ -6,8 +6,10 @@ init -9 python:
         def __init__(self):
             Monster.__init__(self)
             self.default_event = Event("Toriel_manager_default",True,self)
+            self.default_room = "Toriel's Room"
             self.name = "Toriel"
             self.FP = 20
+            self.handle_schedule()
 
         def give_gift(self,item):
             renpy.say(self.name,"Oh? What do you have there?")
@@ -20,9 +22,13 @@ init -9 python:
             if isinstance(item,Spider_Donut):
                 renpy.say(self.name,"I don't like donuts.")
                 self.FP -= 20
-                return False
+                return FalseR
             return
+        def handle_schedule(self):
 
+            self.update_schedule('Sunday','Morning','Cave Room',self.default_event)
+
+            return
             
 
 

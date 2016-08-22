@@ -143,7 +143,7 @@ init -10 python:
             self.areas = []
             self.currentArea = False
             self.maxTime = 1440
-            self.currentTime = 0
+            self.currentTime = 700
             self.day = 1
             self.timeZones = {"Night":0,"Morning":480,"Day":720,"Afternoon":960,"Evening":1200}
             self.days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
@@ -162,7 +162,8 @@ init -10 python:
         #this function should be called at the beginning of every day.
         #it will update all of the areas for whatever we need.
         def update_day(self):
-            self.seed_random_monsters()
+            #self.seed_random_monsters()
+            return
 
         def get_current_day(self):
             return self.days[self.day % 7]
@@ -193,14 +194,17 @@ init -10 python:
         def update_world(self,update_day = False):
 
             timezone = self.get_current_timezone()
-            renpy.notify(timezone)
+            day = self.get_current_day()
             for a in self.areas:
                 for r in a.rooms:
                     for m in r.monsters:
                         if m.schedule:
-                            if timezone in m.schedule:
-                                for x,t in m.schedule[timezone].iteritems():
+
+                            if timezone in m.schedule[day]:
+                                for x,t in m.schedule[day][timezone].iteritems():
                                     m.move_to_room(x)
+                            else:
+                                m.move_to_room(m.default_room)
 
             if update_day:
                 self.update_day()

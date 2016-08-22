@@ -27,12 +27,24 @@ screen show_menu:
                 textbutton "STAT" action [Play ("sound", "audio/sfx/click.wav"),Show("stats"),Hide("items"),Hide("cell")] background "#000000"
                 textbutton "CELL" action [Play ("sound", "audio/sfx/click.wav"),Show("cell"),Hide("stats"),Hide("items")] background "#000000"
 
-label increment_time:
-    $ world.day += 1
+label increment_time(arg = 'day'):
+    python:
+        if arg == 'day':
+            world.day += 1
+        else:
+            world.currentTime += 400
+        world.update_world()
+        renpy.jump("load_room")
     return
 
-label decrement_time:
-    $ world.day -= 1
+label decrement_time(arg = 'day'):
+    python:
+        if arg == 'day':
+            world.day -= 1
+        else:
+            world.currentTime += 400
+        world.update_world()
+        renpy.jump("load_room")
     return
 
 label increment_stamina:
@@ -55,8 +67,11 @@ screen debug_monsters:
         ymaximum 300
         vbox:
             hbox:
-                textbutton "Time Back" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("decrement_time")]
-                textbutton "Time Forward" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("increment_time")]
+                textbutton "Day Back" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("decrement_time","day")]
+                textbutton "Day Forward" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("increment_time","day")]
+            hbox:
+                textbutton "Time Back" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("decrement_time","hour")]
+                textbutton "Time Forward" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("increment_time","hour")]
 
             hbox:
                 textbutton "Stam Down" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("decrement_stamina")]
