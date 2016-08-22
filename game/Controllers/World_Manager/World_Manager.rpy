@@ -71,7 +71,7 @@ init -10 python:
             return dirs
 
     class Room():
-        def __init__(self,name = 'default', x = 0, y=0 , desc = 'default',locked = False, bg = 'nothing'):
+        def __init__(self,name = 'default', x = 0, y=0 , desc = 'default',locked = False, bg = False):
             self.name = name
             self.x = x
             self.y = y
@@ -137,7 +137,6 @@ init -10 python:
                 self.completed = True
 
     class World():
-
     
         def __init__(self):
             self.name = "Underground"
@@ -147,7 +146,9 @@ init -10 python:
             self.currentTime = 0
             self.day = 1
             self.timeZones = {"Night":0,"Morning":480,"Day":720,"Afternoon":960,"Evening":1200}
+            self.days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
             self.generate_ruins()
+            self.areas.append(Toriel_House())
 
         def get_current_timezone(self):
             
@@ -163,7 +164,8 @@ init -10 python:
         def update_day(self):
             self.seed_random_monsters()
 
-
+        def get_current_day(self):
+            return self.days[self.day % 7]
         #this function will seed all of the random monsters to the various rooms they can be in.
         #rooms with events already in them should be ignored.
         def seed_random_monsters(self):
@@ -251,6 +253,17 @@ init -10 python:
             self.update_world(update_day_check)
             renpy.call("load_room")
 
+        def move_to_room(self,name):
+            for area in self.areas:
+                for room in area.rooms:
+                    if room.name == name:
+                        self.currentArea = area
+                        self.currentArea.currentRoom = room
+                        renpy.jump("load_room")
+                        break
+            renpy.notify(name + " not found.")
+
+
         def add_monster(self,monster):
             if isinstance(monster,Monster):
                 self.monsters.append()
@@ -270,19 +283,24 @@ init -10 python:
 
 
 
+
 label test_label:
     "Awesome, it worked."
     return
 #This is the label that handles the loading
 #shows the current background, if the room hasn't been visited shows the description, sets visited to True, then Pauses to allow player to do things
 label load_room:
-    $ cell_convo_count = 0
-    $ renpy.scene()
     
-    $ renpy.show(world.currentArea.currentRoom.bg)
-    
+    call hide_buttons
+
+    python:
+        cell_convo_count = 0
+        renpy.scene()
+        if world.currentArea.currentRoom.bg:
+            renpy.show(world.currentArea.currentRoom.bg)
+
     with fade
-    if not world.currentArea.currentRoom.visited:
+    if not world.currentArea.currentRoom.visited and world.currentArea.currentRoom.desc:
         "[world.currentArea.currentRoom.desc]"
     $ world.currentArea.currentRoom.visited = True
 

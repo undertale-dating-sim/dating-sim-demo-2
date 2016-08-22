@@ -1,7 +1,7 @@
 
 screen show_menu_button:
-#Show("debug_monsters")
-    textbutton "Show Menu" action [Play ("sound", "audio/sfx/click.wav"),Show("show_menu"),Hide("show_menu_button"),Show("stats")] align(.95,.05) 
+    
+    textbutton "Show Menu" action [Play ("sound", "audio/sfx/click.wav"),Show("show_menu"),Hide("show_menu_button"),Show("stats"),Show("debug_monsters")] align(.95,.05) 
 
 screen show_menu:
     add "#0008"
@@ -13,7 +13,7 @@ screen show_menu:
             background Frame("UI/text-box3.png",21, 21)       
             vbox:
                 text "[player.name]"
-                text "Day: [world.day]"
+                text "Day: "+world.get_current_day()
                 text "Time: "+world.get_current_time()
                 text world.get_current_timezone()
                 text "HP:  [player.current_health]/[player.total_health]"
@@ -28,11 +28,11 @@ screen show_menu:
                 textbutton "CELL" action [Play ("sound", "audio/sfx/click.wav"),Show("cell"),Hide("stats"),Hide("items")] background "#000000"
 
 label increment_time:
-    $ world.update_current_time(300)
+    $ world.day += 1
     return
 
 label decrement_time:
-    $ world.update_current_time(-300)
+    $ world.day -= 1
     return
 
 label increment_stamina:
@@ -52,6 +52,7 @@ label decrement_stamina:
 screen debug_monsters:
     frame pos(.3,.5):
         background Frame("UI/text-box3.png",21,21)
+        ymaximum 300
         vbox:
             hbox:
                 textbutton "Time Back" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("decrement_time")]
@@ -60,27 +61,32 @@ screen debug_monsters:
             hbox:
                 textbutton "Stam Down" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("decrement_stamina")]
                 textbutton "Stam Up" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("increment_stamina")]
-
-            for a in world.areas:
-                for r in a.rooms:
-                    for m in r.monsters:
-                        hbox:
-                            text "Name"
-                            text "      "
-                            text "Location"
-                        hbox:
-                            text "[m.name]"
-                            text "      "
-                            text "[r.name]"
-                        text "Schedule"
-                        for s,t in m.schedule.iteritems():
-                            for x in t:
-                                hbox:
-                                    text "[s]"
-                                    text "  "
-                                    text "[x]"
-                                    text "  "
-                                    text t[x].label
+            vpgrid:
+                draggable True
+                mousewheel True
+                scrollbars "vertical,horizontal"
+                side_xalign 0.5
+                cols 1
+                hbox:
+                    text "Name"
+                    text "      "
+                    text "Location"
+                for a in world.areas:
+                    for r in a.rooms:
+                        for m in r.monsters:
+                            hbox:
+                                text "[m.name]"
+                                text "      "
+                                text "[r.name]"
+                            # text "Schedule"
+                            # for s,t in m.schedule.iteritems():
+                            #     for x in t:
+                            #         hbox:
+                            #             text "[s]"
+                            #             text "  "
+                            #             text "[x]"
+                            #             text "  "
+                            #             text t[x].label
 
 screen stats:
     frame pos(0.3,0.05):
@@ -126,9 +132,10 @@ screen navigation_buttons:
     add "#0008"
     modal True
 
-    vbox pos(.2,.25):
-        for r in world.currentArea.rooms:
-            textbutton "[r.name]" action [Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Function(world.currentArea.move_to_room,r.name)]
+    vbox pos(.2,.1):
+        for area in world.areas:
+            for r in area.rooms:
+                textbutton "[r.name]" action [Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Function(world.move_to_room,r.name)]
     $dirs = world.currentArea.cr_get_neighbors()
 
     textbutton "Hide Nav (E)" action [Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button')] align(.95,.1) 

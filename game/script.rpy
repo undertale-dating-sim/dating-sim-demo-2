@@ -1,6 +1,7 @@
-#character-images
-init:
-    image flowey normal = "Character-Flowey-Normal.png"
+label splashscreen:
+
+
+    return
 
 label show_buttons:
     show screen show_menu_button
@@ -9,13 +10,21 @@ label show_buttons:
     show screen show_information_overlay
     return
 
+label hide_buttons:
+    hide screen show_menu_button
+    hide screen show_nav_button
+    hide screen show_map_button
+    hide screen show_information_overlay
+    return 
+
 #This takes place after the MC has heard about Frisk from Toriel.
 label start:
     stop music
     play music "audio/music/scary.ogg"
-    #call super_secret_console"
+    #call super_secret_console
     call show_buttons
-    jump load_room
+    $ world.move_to_room("Staircase")
+    #jump load_room
     #jump dev_label
     #jump frisk_start
 

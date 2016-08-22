@@ -14,22 +14,6 @@ init:
     image background ruins_dummy_room = "backgrounds/Ruins/background-ruins-dummyroom.jpg"
     image background ruins_hallway = "backgrounds/Ruins/background-ruins-hallway.jpg"
 
-label bob_test_night:
-    "Good night!"
-    return
-label bob_test_morning:
-    "Good morning!"
-    return
-label bob_test_day:
-    "Good Day!"
-    return
-label bob_test_afternoon:
-    "Good Afternoon!"
-    return
-label bob_test_night:
-    "Good Night!"
-    return
-
 init -1 python:
     
     class TheRuins(Area):
@@ -50,6 +34,7 @@ init -1 python:
             self.add_room(ruins_tunneldivide())
             self.add_room(ruins_overlook())
             self.add_room(ruins_blacktreeroom())
+            self.add_room(ruins_to_toriel_house())
 
     class Bob(Monster):
         def __init__(self):
@@ -184,9 +169,19 @@ init -1 python:
             self.desc = "The long room houses a large, majestic looking, black barked tree, it’s boughs bare but surrounded by large quantities of red leaves. The room itself is dusted with drifts of the same leaves, filling the corners and layering the front of the quaint little house at the opposite end of the room. The house looks warm and inviting."
             self.bg = "background ruins_outside_house"
 
-
+    class ruins_to_toriel_house(Room):
+        def __init__(self):
+            Room.__init__(self)
+            self.name = "Exit"
+            self.x = 12
+            self.y = 6
+            self.desc = ""
+            self.bg = ""
+            self.events.append(Event("port_to_toriel_house",True))
     
-   
+label port_to_toriel_house:
+    "This is a test"
+    $ world.move_to_room("Staircase")
 
 
     

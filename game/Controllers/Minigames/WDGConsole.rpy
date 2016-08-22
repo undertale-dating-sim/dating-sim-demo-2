@@ -45,7 +45,7 @@ init python:
 
             self.x = x
             self.y = y
-            self.text = Text(let,size=25,color='#FFFFFF',font='wingdings.tff')
+            self.text = Text(let,size=25,color='#FFFFFF')
 
         def set_pos(self,x,y):
             self.jigglex = (renpy.random.randint(0,2) - 1) + x
@@ -96,7 +96,7 @@ init python:
 
             self.whitealpha = 0
 
-            self.title = Text("System Operational",size = 25,font = 'wingdings')
+            self.title = Text("Sy t m Op r ti n l  5%",size = 25)
 
             self.quitbutton = text_button("Quit",x=50,y=50,size=30)
             self.backspacebutton = text_button("Backspace",size=30)
@@ -106,6 +106,13 @@ init python:
             self.nobutton = text_button("No", size = 30)
             self.backbutton = text_button("Go Back", size = 30)
 
+            self.monitor = im.MatrixColor("Monitor.png", im.matrix.opacity(.7))
+
+            self.outputlist = ["Rebooting Systems...","Recalibrating Flux Components...","Anomaly Detected...","Critical Error....","Attempting to corredfasdsafdsafdsafvc"]
+            self.displaylist = ["","","","",""]
+            self.linecount = 0
+            self.charcount = 0
+            self.chartimer = 0
 
             #game width and height, probably need to figure out how to make this dynamic
             self.WIDTH = 800
@@ -115,7 +122,7 @@ init python:
         
         #Builds the upper and lower case letter list objects and places them on the xy grid
         def build_letters(self):
-            self.upper_letters = [click_letter('A'),click_letter('B'),click_letter('C'),click_letter('D'),click_letter('E'),click_letter('F'),click_letter('G'),click_letter('H'),click_letter('I'),click_letter('J'),click_letter('K'),click_letter('L'),click_letter('M'),click_letter('N'),click_letter('O'),click_letter('P'),click_letter('Q'),click_letter('R'),click_letter('S'),click_letter('T'),click_letter('U'),click_letter('V'),click_letter('W'),click_letter('X'),click_letter('Y'),click_letter('Z')]
+            self.upper_letters = [click_letter('A'),click_letter(' '),click_letter('C'),click_letter('D'),click_letter('E'),click_letter(' '),click_letter('G'),click_letter('H'),click_letter(' '),click_letter(' '),click_letter('K'),click_letter(' '),click_letter(' '),click_letter('N'),click_letter(' '),click_letter('P'),click_letter(' '),click_letter(' '),click_letter('S'),click_letter('T'),click_letter(' '),click_letter(' '),click_letter(' '),click_letter('X'),click_letter(' '),click_letter('Z')]
 
             row_count = 0
 
@@ -157,24 +164,6 @@ init python:
             else:
                 return False
 
-        # #not sure what this does but you have to put all children in here
-        # def visit(self):            
-        #     return False
-        def get_rejects(self,name):
-            if name.lower() == 'sans':
-                return "nope."
-            else:
-                return False
-
-        def get_response(self,name):
-            if name.lower() == 'papyrus':
-                return "I'LL ALLOW IT!!!!"
-            elif name.lower() == 'sempai' or name.lower() == 'senpai':
-                return "NOTICE ME!"
-            elif name.lower() == 'wilson':
-                return "The best name of all."
-            else:
-                return False
 
         #handles all of the clicking
         def event(self, ev, x, y, st):
@@ -204,14 +193,6 @@ init python:
                             #done
                             self.confirm = True
                         return
-                else:
-                    if self.yesbutton.isclicked(x,y):
-                        renpy.sound.play("audio/sfx/click.wav")
-                        self.done = True
-                        return
-                    if self.nobutton.isclicked(x,y) or self.backbutton.isclicked(x,y):
-                        renpy.sound.play("audio/sfx/click.wav")
-                        self.confirm = False
 
                 
             # if self.score >= cap:
@@ -249,13 +230,36 @@ init python:
                     l.update()
                     r.blit(renpy.render(l.text,width,height,st,at),(l.x,l.y))
                 
+
+                r.blit(renpy.render(self.title,width,height,st,at),(width/2 - self.title.size()[0]/2,45))
+
+                liney = 75
+                
+                if self.chartimer > 5:
+                    if self.linecount < len(self.outputlist):
+                        if self.displaylist[self.linecount] == self.outputlist[self.linecount]:
+                            self.linecount += 1
+                            self.charcount = 1
+                        else:
+                            self.displaylist[self.linecount] = self.outputlist[self.linecount][:self.charcount]
+                            self.charcount+=1
+                    self.chartimer = 0
+                else:
+                    self.chartimer += 1
+
+                for line in self.displaylist:
+                    r.blit(renpy.render(Text(line),width,height,st,at),(150,liney))
+                    liney += 30
+
+
+
+
                 #draw the player name
                 self.pname = Text(self.name)
                 r.blit(renpy.render(self.pname,width,height,st,at),(width/2 - self.pname.size()[0]/2,140))
 
                 #draw the title
-                r.blit(renpy.render(self.title,width,height,st,at),(width/2 - self.title.size()[0]/2,45))
-                
+                r.blit(renpy.render(self.monitor,width,height,st,at),(100,25))
                 #draw the quit button
                 self.quitbutton.setPos(width*.25 - self.quitbutton.text.size()[0]/2,height * .8)
                 render = renpy.render(self.quitbutton.text,width,height,st,at)

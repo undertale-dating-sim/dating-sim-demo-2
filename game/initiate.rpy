@@ -45,18 +45,6 @@ label initialize:
     image background prologue1 = "backgrounds/prologue.jpg"
     image background intro = "backgrounds/background-intro.png"
 
-    #toriel house
-    image background toriel_house_corridor = "backgrounds/background-ruins-corridor.png"
-    image background toriel_house_frisk_room = "backgrounds/background-ruins-friskroom.png"
-    image background toriel_house_kitchen = "backgrounds/background-ruins-kitchen.png"
-    image background toriel_house_livingroom = "backgrounds/background-ruins-livingroom.png"
-    image background toriel_house_staircase = "backgrounds/background-ruins-staircase.png"
-    image background toriel_house_toriel_room = "backgrounds/background-ruins-torielroom.png"
-    image background toriel_house_your_room = "backgrounds/background-ruins-yourroom.png"
-    image background toriel_house_corridor = "backgrounds/background-ruins-corridor.png"
-
-
-
     #random monsters
     image froggit normal = "characters/Froggit/Froggit_normal.png"
     image froggit happy = "characters/Froggit/Froggit_happy.png"
@@ -117,15 +105,10 @@ label initialize:
     #default-font
     init python:
         style.default.font = "font/DTM-Mono.otf"
-
-    #global variables
-    init python:
-        #init the player
         player = Player()
         menu_state = "stats"
         world = World()
         world.set_current_time(0,True)
-
         cell_convo_count = 0
 
 

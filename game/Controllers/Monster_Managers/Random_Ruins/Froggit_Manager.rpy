@@ -18,7 +18,7 @@ label froggit_default_dialogue(owner):
     show froggit normal
 
     $ renpy.pause()
-
+    
     if not owner.visited:
         froggit "Oh, hello!"
         froggit "Try to watch out where you walk."
