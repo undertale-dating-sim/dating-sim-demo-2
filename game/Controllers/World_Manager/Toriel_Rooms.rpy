@@ -22,6 +22,7 @@ init python:
             self.add_room(th_frisk_room())
             self.add_room(th_your_room())
             self.add_room(th_toriel_room())
+            self.add_room(th_basement_door())
 
     class th_staircase(Room):
         def __init__(self):
@@ -31,6 +32,16 @@ init python:
             self.y = 0
             self.desc = "This is the Stair case."
             self.bg = "background toriel_house_staircase"
+
+    class th_basement_door(Room):
+        def __init__(self):
+            Room.__init__(self)
+            self.name = "Basement Door"
+            self.x = 5
+            self.y = 1
+            self.desc = "This is the exit."
+            
+
 
     class th_corridor(Room):
         def __init__(self):
@@ -97,9 +108,15 @@ label toriel_house_corridor:
         menu:
             "There are three doors here."
             "Frisk's Room":
-                $ world.move_to_room("Frisk's Room")
+                if world.get_current_timezone() == "Night":
+                    "The door is locked."
+                else:
+                    $ world.move_to_room("Frisk's Room")
             "Toriel's Room":
-                $ world.move_to_room("Toriel's Room")
+                if world.get_current_timezone() == "Night":
+                    "The door is locked."
+                else:
+                    $ world.move_to_room("Toriel's Room")
             "Your Room":
                 $ world.move_to_room("Your Room")
     return

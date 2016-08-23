@@ -7,7 +7,51 @@ init -9 python:
             Monster.__init__(self)
             self.default_event = Event("flowey_manager_default",True,self)
             self.name = "Flowey"
+            self.handle_schedule()
 
+    #update_schedule(self,day,timezone,location,event):
+
+        def handle_schedule(self):
+            #night
+            self.update_schedule("Sunday","Night","Cave Room",self.default_event)
+            self.update_schedule("Monday","Night","Cave Room",self.default_event)
+            self.update_schedule("Tuesday","Night","Cave Room",self.default_event)
+            self.update_schedule("Wednesday","Night","Cave Room",self.default_event)
+            self.update_schedule("Thursday","Night","Cave Room",self.default_event)
+            self.update_schedule("Friday","Night","Cave Room",self.default_event)
+            self.update_schedule("Saturday","Night","Cave Room",self.default_event)
+            #morning
+            self.update_schedule("Sunday","Morning","Overlook",self.default_event)
+            self.update_schedule("Monday","Morning","Cave Room",self.default_event)
+            self.update_schedule("Tuesday","Morning","Cave Room",self.default_event)
+            self.update_schedule("Wednesday","Morning","Grass Room",self.default_event)
+            self.update_schedule("Thursday","Morning","Cave Room",self.default_event)
+            self.update_schedule("Friday","Morning","Grass Room",self.default_event)
+            self.update_schedule("Saturday","Morning","Grass Room",self.default_event)
+            #day
+            #self.update_schedule("Sunday","Day","Cave Room",self.default_event)
+            self.update_schedule("Monday","Day","Ruins Entrance",self.default_event)
+            self.update_schedule("Tuesday","Day","Overlook",self.default_event)
+            self.update_schedule("Wednesday","Day","Ruins Entrance",self.default_event)
+            self.update_schedule("Thursday","Day","Overlook",self.default_event)
+            self.update_schedule("Friday","Day","Ruins Entrance",self.default_event)
+            self.update_schedule("Saturday","Day","Overlook",self.default_event)
+            #afternoon
+            self.update_schedule("Sunday","Afternoon","Grass Room",self.default_event)
+            self.update_schedule("Monday","Afternoon","Grass Room",self.default_event)
+            self.update_schedule("Tuesday","Afternoon","Grass Room",self.default_event)
+            self.update_schedule("Wednesday","Afternoon","Cave Room",self.default_event)
+            self.update_schedule("Thursday","Afternoon","Grass Room",self.default_event)
+            self.update_schedule("Friday","Afternoon","Cave Room",self.default_event)
+            self.update_schedule("Saturday","Afternoon","Cave Room",self.default_event)
+            #evening
+            #self.update_schedule("Sunday","Evening","Cave Room",self.default_event)
+            self.update_schedule("Monday","Evening","Snail Hunting Room",self.default_event)
+            #self.update_schedule("Tuesday","Evening","Cave Room",self.default_event)
+            self.update_schedule("Wednesday","Evening","Snail Hunting Room",self.default_event)
+            #self.update_schedule("Thursday","Evening","Cave Room",self.default_event)
+            self.update_schedule("Friday","Evening","Snail Hunting Room",self.default_event)
+            #self.update_schedule("Saturday","Evening","Cave Room",self.default_event)
 
 
 label initialize_flowey:

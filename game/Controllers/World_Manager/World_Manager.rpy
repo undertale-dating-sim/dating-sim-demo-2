@@ -71,7 +71,7 @@ init -10 python:
             return dirs
 
     class Room():
-        def __init__(self,name = 'default', x = 0, y=0 , desc = 'default',locked = False, bg = False):
+        def __init__(self,name = 'default', x = 0, y=0 , desc = 'default',locked = False, bg = "background deadroom"):
             self.name = name
             self.x = x
             self.y = y

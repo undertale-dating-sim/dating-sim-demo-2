@@ -20,7 +20,7 @@ label hide_buttons:
 #This takes place after the MC has heard about Frisk from Toriel.
 label start:
     stop music
-    play music "audio/music/scary.ogg"
+    play music "audio/music/music-home.mp3"
     #call super_secret_console
     call show_buttons
     $ world.move_to_room("Staircase")

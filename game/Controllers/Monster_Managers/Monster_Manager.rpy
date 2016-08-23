@@ -8,7 +8,7 @@ init -10 python:
             self.schedule = {"Sunday":{},"Monday":{},"Tuesday":{},"Wednesday":{},"Thursday":{},"Friday":{},"Saturday":{}}
             self.currentRoom = None
             self.default_event = Event('default_event',self)
-            self.default_room = "Cave Room"
+            self.default_room = "Dead Room"
             self.FP_events = {}
             self.FP = 0
             self.visited = False

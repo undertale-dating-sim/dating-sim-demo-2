@@ -13,6 +13,7 @@ init:
     image background ruins_blooky_room = "backgrounds/Ruins/background-ruins-blookyroom.jpg"
     image background ruins_dummy_room = "backgrounds/Ruins/background-ruins-dummyroom.jpg"
     image background ruins_hallway = "backgrounds/Ruins/background-ruins-hallway.jpg"
+    image background deadroom = im.Scale("backgrounds/gaster.png",800,600)
 
 init -1 python:
     
@@ -24,6 +25,7 @@ init -1 python:
             self.add_room(ruins_caveroom())
             self.add_room(ruins_grassroom())
             self.add_room(ruins_ruinsentrance())
+            self.add_room(dead_room())
             self.add_room(ruins_tunnels())
             self.add_room(ruins_dummyroom())
             self.add_room(ruins_froggitleaves())
@@ -35,6 +37,7 @@ init -1 python:
             self.add_room(ruins_overlook())
             self.add_room(ruins_blacktreeroom())
             self.add_room(ruins_to_toriel_house())
+            
 
     class Bob(Monster):
         def __init__(self):
@@ -46,6 +49,17 @@ init -1 python:
             self.schedule["Afternoon"] = {"Tunnels":Event("bob_test_afternoon")}
             self.schedule["Evening"] = {"Dummy Room":Event("bob_test_evening")}
 
+    class dead_room(Room):
+        def __init__(self):
+            Room.__init__(self)
+            self.name = "Dead Room"
+            self.x = -666
+            self.y = -666
+            self.desc = "You shouldn't be here."
+            self.visited = True
+            self.bg = "background deadroom"
+            self.events.append(Event("dead_room",True))
+
     class ruins_caveroom(Room):
         def __init__(self):
             Room.__init__(self)
@@ -54,7 +68,7 @@ init -1 python:
             self.y = 0
             self.desc = "The large cavern you are in is lit by the light coming from far above, shining into the corners of the cave and illuminating the path of flowers that broke your fall. There is one exit from the cavern, a large, ornate doorway leading to another cave."
             self.bg = "background ruins_caveroom"
-            #self.add_monster(Flowey())
+            self.add_monster(Flowey())
 
     class ruins_grassroom(Room):
         def __init__(self):
@@ -135,7 +149,7 @@ init -1 python:
     class ruins_snailhuntingroom(Room):
         def __init__(self):
             Room.__init__(self)
-            self.name = "Snail Hunter"
+            self.name = "Snail Hunting Room"
             self.x = 10
             self.y = 4
             self.desc = "The small, brightly lit room sports a large bed of vegetation, fruit and vegetable bearing plants interspersed with various breeds of flower. A crack in the roof of the cave allows beams of sunlight from the surface to penetrate to the floor, encouraging the growth of the plants. You can see the spiraled shells of snails moving about the vegetation. The only way out is how you came in."
@@ -182,6 +196,14 @@ init -1 python:
 label port_to_toriel_house:
     "This is a test"
     $ world.move_to_room("Staircase")
+
+label dead_room:
+    stop music
+    play music "audio/music/scary.ogg"
+    show wilson scary
+    "Howdy"
+    "{cps=3}You shouldn't be here.{/cps}"
+    return
 
 
     

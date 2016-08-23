@@ -22,13 +22,49 @@ init -9 python:
             if isinstance(item,Spider_Donut):
                 renpy.say(self.name,"I don't like donuts.")
                 self.FP -= 20
-                return FalseR
+                return False
             return
         def handle_schedule(self):
-
-            self.update_schedule('Sunday','Morning','Cave Room',self.default_event)
-
-            return
+            #night
+            self.update_schedule("Sunday","Night","Toriel's Room",self.default_event)
+            self.update_schedule("Monday","Night","Toriel's Room",self.default_event)
+            self.update_schedule("Tuesday","Night","Toriel's Room",self.default_event)
+            self.update_schedule("Wednesday","Night","Toriel's Room",self.default_event)
+            self.update_schedule("Thursday","Night","Toriel's Room",self.default_event)
+            self.update_schedule("Friday","Night","Toriel's Room",self.default_event)
+            self.update_schedule("Saturday","Night","Toriel's Room",self.default_event)
+            #morning
+            self.update_schedule("Sunday","Morning","Kitchen",self.default_event)
+            self.update_schedule("Monday","Morning","Kitchen",self.default_event)
+            self.update_schedule("Tuesday","Morning","Kitchen",self.default_event)
+            self.update_schedule("Wednesday","Morning","Kitchen",self.default_event)
+            self.update_schedule("Thursday","Morning","Kitchen",self.default_event)
+            self.update_schedule("Friday","Morning","Kitchen",self.default_event)
+            self.update_schedule("Saturday","Morning","Kitchen",self.default_event)
+            #day
+            self.update_schedule("Sunday","Day","Cave Room",self.default_event)
+            #self.update_schedule("Monday","Day","",self.default_event)
+            self.update_schedule("Tuesday","Day","Cave Room",self.default_event)
+            #self.update_schedule("Wednesday","Day","",self.default_event)
+            self.update_schedule("Thursday","Day","Cave Room",self.default_event)
+            #self.update_schedule("Friday","Day","",self.default_event)
+            self.update_schedule("Saturday","Day","Cave Room",self.default_event)
+            #afternoon
+            self.update_schedule("Sunday","Afternoon","Spider Bakery",self.default_event)
+            self.update_schedule("Monday","Afternoon","Dummy Room",self.default_event)
+            self.update_schedule("Tuesday","Afternoon","Sassy Rock Room",self.default_event)
+            self.update_schedule("Wednesday","Afternoon","Dummy Room",self.default_event)
+            self.update_schedule("Thursday","Afternoon","Sassy Rock Room",self.default_event)
+            self.update_schedule("Friday","Afternoon","Dummy Room",self.default_event)
+            self.update_schedule("Saturday","Afternoon","Sassy Rock Room",self.default_event)
+            #evening
+            self.update_schedule("Sunday","Evening","Toriel's Room",self.default_event)
+            self.update_schedule("Monday","Evening","Living Room",self.default_event)
+            self.update_schedule("Tuesday","Evening","Living Room",self.default_event)
+            self.update_schedule("Wednesday","Evening","Toriel's Room",self.default_event)
+            self.update_schedule("Thursday","Evening","Living Room",self.default_event)
+            self.update_schedule("Friday","Evening","Toriel's Room",self.default_event)
+            self.update_schedule("Saturday","Evening","Living Room",self.default_event)
             
 
 

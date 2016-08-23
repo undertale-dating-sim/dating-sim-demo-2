@@ -32,7 +32,7 @@ label increment_time(arg = 'day'):
         if arg == 'day':
             world.day += 1
         else:
-            world.currentTime += 400
+            world.currentTime += 200
         world.update_world()
         renpy.jump("load_room")
     return
@@ -42,7 +42,7 @@ label decrement_time(arg = 'day'):
         if arg == 'day':
             world.day -= 1
         else:
-            world.currentTime += 400
+            world.currentTime += 200
         world.update_world()
         renpy.jump("load_room")
     return
@@ -82,6 +82,7 @@ screen debug_monsters:
                 scrollbars "vertical,horizontal"
                 side_xalign 0.5
                 cols 1
+                spacing 30
                 hbox:
                     text "Name"
                     text "      "

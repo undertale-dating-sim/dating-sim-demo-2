@@ -23,6 +23,48 @@ init -9 python:
                 return False
             return
 
+        def handle_schedule(self):
+            #night
+            self.update_schedule("Sunday","Night","Frisk's Room",self.default_event)
+            self.update_schedule("Monday","Night","Frisk's Room",self.default_event)
+            self.update_schedule("Tuesday","Night","Frisk's Room",self.default_event)
+            self.update_schedule("Wednesday","Night","Frisk's Room",self.default_event)
+            self.update_schedule("Thursday","Night","Frisk's Room",self.default_event)
+            self.update_schedule("Friday","Night","Frisk's Room",self.default_event)
+            self.update_schedule("Saturday","Night","Frisk's Room",self.default_event)
+            #morning
+            self.update_schedule("Sunday","Morning","Overlook",self.default_event)
+            self.update_schedule("Monday","Morning","Grass Room",self.default_event)
+            self.update_schedule("Tuesday","Morning","Grass Room",self.default_event)
+            self.update_schedule("Wednesday","Morning","Frisk's Room",self.default_event)
+            self.update_schedule("Thursday","Morning","Dummy Room",self.default_event)
+            self.update_schedule("Friday","Morning","Frisk's Room",self.default_event)
+            self.update_schedule("Saturday","Morning","Dummy Room",self.default_event)
+            #day
+            self.update_schedule("Sunday","Day","Snail Hunting Room",self.default_event)
+            self.update_schedule("Monday","Day","Snail Hunting Room",self.default_event)
+            self.update_schedule("Tuesday","Day","Snail Hunting Room",self.default_event)
+            self.update_schedule("Wednesday","Day","Snail Hunting Room",self.default_event)
+            self.update_schedule("Thursday","Day","Snail Hunting Room",self.default_event)
+            self.update_schedule("Friday","Day","Snail Hunting Room",self.default_event)
+            self.update_schedule("Saturday","Day","Snail Hunting Room",self.default_event)
+            #afternoon
+            self.update_schedule("Sunday","Afternoon","Black Tree Room",self.default_event)
+            self.update_schedule("Monday","Afternoon","Black Tree Room",self.default_event)
+            self.update_schedule("Tuesday","Afternoon","Frisk's Room",self.default_event)
+            self.update_schedule("Wednesday","Afternoon","Black Tree Room",self.default_event)
+            self.update_schedule("Thursday","Afternoon","Frisk's Room",self.default_event)
+            self.update_schedule("Friday","Afternoon","Black Tree Room",self.default_event)
+            self.update_schedule("Saturday","Afternoon","Frisk's Room",self.default_event)
+            #evening
+            self.update_schedule("Sunday","Evening","Living Room",self.default_event)
+            #self.update_schedule("Monday","Evening","Living Room",self.default_event)
+            self.update_schedule("Tuesday","Evening","Frisk's Room",self.default_event)
+            #self.update_schedule("Wednesday","Evening","Toriel's Room",self.default_event)
+            self.update_schedule("Thursday","Evening","Frisk's Room",self.default_event)
+            #self.update_schedule("Friday","Evening","Toriel's Room",self.default_event)
+            self.update_schedule("Saturday","Evening","Frisk's Room",self.default_event)
+
             
 
 

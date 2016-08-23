@@ -23,6 +23,48 @@ init -9 python:
                 return False
             return
 
+        def handle_schedule(self):
+            #night
+            # self.update_schedule("Sunday","Night","Toriel's Room",self.default_event)
+            # self.update_schedule("Monday","Night","Toriel's Room",self.default_event)
+            # self.update_schedule("Tuesday","Night","Toriel's Room",self.default_event)
+            # self.update_schedule("Wednesday","Night","Toriel's Room",self.default_event)
+            # self.update_schedule("Thursday","Night","Toriel's Room",self.default_event)
+            # self.update_schedule("Friday","Night","Toriel's Room",self.default_event)
+            # self.update_schedule("Saturday","Night","Toriel's Room",self.default_event)
+            #morning
+            self.update_schedule("Sunday","Morning","Snail Hunting Room",self.default_event)
+            self.update_schedule("Monday","Morning","Snail Hunting Room",self.default_event)
+            self.update_schedule("Tuesday","Morning","Snail Hunting Room",self.default_event)
+            self.update_schedule("Wednesday","Morning","Snail Hunting Room",self.default_event)
+            self.update_schedule("Thursday","Morning","Snail Hunting Room",self.default_event)
+            self.update_schedule("Friday","Morning","Snail Hunting Room",self.default_event)
+            self.update_schedule("Saturday","Morning","Snail Hunting Room",self.default_event)
+            #day
+            self.update_schedule("Sunday","Day","Snail Hunting Room",self.default_event)
+            self.update_schedule("Monday","Day","Snail Hunting Room",self.default_event)
+            self.update_schedule("Tuesday","Day","Snail Hunting Room",self.default_event)
+            self.update_schedule("Wednesday","Day","Snail Hunting Room",self.default_event)
+            self.update_schedule("Thursday","Day","Snail Hunting Room",self.default_event)
+            self.update_schedule("Friday","Day","Snail Hunting Room",self.default_event)
+            self.update_schedule("Saturday","Day","Snail Hunting Room",self.default_event)
+            #afternoon
+            self.update_schedule("Sunday","Afternoon","Snail Hunting Room",self.default_event)
+            self.update_schedule("Monday","Afternoon","Snail Hunting Room",self.default_event)
+            self.update_schedule("Tuesday","Afternoon","Snail Hunting Room",self.default_event)
+            self.update_schedule("Wednesday","Afternoon","Snail Hunting Room",self.default_event)
+            self.update_schedule("Thursday","Afternoon","Snail Hunting Room",self.default_event)
+            self.update_schedule("Friday","Afternoon","Snail Hunting Room",self.default_event)
+            self.update_schedule("Saturday","Afternoon","Snail Hunting Room",self.default_event)
+            #evening
+            # self.update_schedule("Sunday","Evening","Toriel's Room",self.default_event)
+            # self.update_schedule("Monday","Evening","Living Room",self.default_event)
+            # self.update_schedule("Tuesday","Evening","Living Room",self.default_event)
+            # self.update_schedule("Wednesday","Evening","Toriel's Room",self.default_event)
+            # self.update_schedule("Thursday","Evening","Living Room",self.default_event)
+            # self.update_schedule("Friday","Evening","Toriel's Room",self.default_event)
+            # self.update_schedule("Saturday","Evening","Living Room",self.default_event)
+
             
 
 
