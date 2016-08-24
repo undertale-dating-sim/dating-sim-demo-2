@@ -23,7 +23,6 @@ label start:
     play music "audio/music/music-home.mp3"
     #call super_secret_console
     call show_buttons
-    $ world.move_to_room("Staircase")
     #jump load_room
     #jump dev_label
     #jump frisk_start
@@ -36,33 +35,19 @@ label dev_label:
     #show screen show_map_button
     while True:
         menu:
-            "Where would you like to go?"
-            "Movement Demo":
-                show screen show_menu_button
-                show screen show_nav_button
+            "Where would you like to go? Warning, you will probably have to completely restart to get back. Nothing is done."
+            "The Ruins":
                 jump load_room
             "Undersnail":
                 jump demo_undersnail
-            "Prologue":
-                jump prologue
             "Name Select":
                 jump name_select
-            "The Fall":
-                jump the_fall
             "Random Encounters":
                 menu:
                     "Vegetoid":
                         jump vegetoid_start
                     "Whimsun":
                         jump whimsun_start
-            "Frisk":
-                jump frisk_start
-            "Flowey":
-                jump flowey_ruins
-            "Shop Test":
-                jump Muffet_Shop
-            "Flowey_Regular_Dialogue":
-                jump Flowey_Regular_Dialogue
 
 
 
