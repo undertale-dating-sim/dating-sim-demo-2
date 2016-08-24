@@ -105,6 +105,7 @@ label initialize:
 
     #default-font
     init python:
+        import webbrowser
         style.default.font = "font/DTM-Mono.otf"
         player = Player()
         menu_state = "stats"

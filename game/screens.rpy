@@ -194,6 +194,7 @@ screen main_menu():
         textbutton _("Start Game") action Start()
         textbutton _("Load Game") action ShowMenu("load")
         textbutton _("Preferences") action ShowMenu("preferences")
+        textbutton _("Feedback") action Jump("Feedback")
         textbutton _("Help") action Help()
         textbutton _("Quit") action Quit(confirm=False)
 
@@ -204,7 +205,9 @@ init -2:
         size_group "mm"
 
 
-
+label Feedback:
+    $ webbrowser.open("https://goo.gl/forms/imVfvnNXL39SAD423")
+    return
 ##############################################################################
 # Navigation
 #
