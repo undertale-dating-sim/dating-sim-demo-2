@@ -12,7 +12,7 @@ label call_Napstablook_Cave_Room(cell_convo_count = 0):
 label call_Napstablook_Grass_Room(cell_convo_count = 0):
 
     if cell_convo_count == 0:
-        napstablook "this room? sometimes old stuff falls down here....... i never take anything, though... none of it belongs to me."
+        napstablook "this room? sometimes old stuff falls down here....... i never take anything, though... none of it belongs to me"
 
     else:
         napstablook "did you take some of that old stuff? oh, i didn’t mean to make you feel bad about it......"
