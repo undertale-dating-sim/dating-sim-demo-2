@@ -54,9 +54,8 @@ screen multiple_monster_click_screen:
     for monster in world.currentArea.currentRoom.monsters:
         $ x = count * width
         mousearea:
-            area ((count-1)* width, .4, width-2, .6)
+            area ((count-1)* width, .4, width, .6)
             hovered [SetVariable('talking',monster.name),Notify(monster.name),Show("talking_text")]
-            unhovered [SetVariable('talking',False),Notify("stop"),Hide("talking_text")]
 
         $ count+= 1
 
