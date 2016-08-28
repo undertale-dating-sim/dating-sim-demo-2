@@ -24,16 +24,16 @@ label call_Napstablook_Ruins_Entrance(cell_convo_count = 0):
     if cell_convo_count == 0:
         napstablook "it’s the entrance to the ruins...... i don’t know where the vines came from, they’ve just always been there...."
     else:
-        napstablook "maybe they grew down here from the surface?"
+        napstablook "maybe they grew down here from the surface..?"
     return
     
 label call_Napstablook_Tunnels(cell_convo_count = 0):
     if cell_convo_count == 0:
-        napstablook "these puzzles have been disabled for awhile.. i’m not sure but i think Frisk was the one who did it."
+        napstablook "these puzzles have been disabled for awhile.. i’m not sure but i think Frisk was the one who did it"
     elif cell_convo_count == 1:
         napstablook "... they probably just got tired of having to go through them all the time…"
     else:
-        napstablook "i know i would have gotten tired of doing puzzles.... you know..… if i couldn’t float over them."
+        napstablook "i know i would have gotten tired of doing puzzles.... you know..… if i couldn’t float over them"
     return
 
 label call_Napstablook_Dummy_Room(cell_convo_count = 0):
@@ -50,7 +50,7 @@ label call_Napstablook_Froggit_Room(cell_convo_count = 0):
     if cell_convo_count == 0:
         napstablook "those leaves sound crunchy... i can hear you stepping on them......"
     else:
-        napstablook "it might be fun to play in the leaves..... if, you know...... i was corporeal."
+        napstablook "it might be fun to play in the leaves..... if, you know...... i was corporeal"
         napstablook "but that’s okay.... it’s fine.........."
     return
 
@@ -94,7 +94,7 @@ label call_Napstablook_Tunnel_Divide(cell_convo_count = 0):
     if cell_convo_count == 0:
         napstablook "isn’t there some poem…. about two roads diverged..?"
     else:
-        napstablook "… well i suppose it doesn’t really matter which you pick."
+        napstablook "… well i suppose it doesn’t really matter which you pick"
     return
 
 label call_Napstablook_Overlook(cell_convo_count = 0):
