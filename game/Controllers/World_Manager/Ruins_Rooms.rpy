@@ -58,7 +58,8 @@ init -1 python:
             self.desc = "You shouldn't be here."
             self.visited = True
             self.bg = "background deadroom"
-            self.events.append(Event("dead_room",True))
+            self.events["dead_room"] = Event("dead_room",True)
+            self.mappable = False
 
     class ruins_caveroom(Room):
         def __init__(self):
@@ -79,6 +80,8 @@ init -1 python:
             self.desc = "Littering the edges of the much smaller cave are mounds of trash, a few pieces sparkling in the sparse light filtering through a crack in the ceiling. The scattered sunshine feeds a small mound of grass in the center of the cave and illuminates one exit from the cavern… though the other exit seems to be covered by a curtain of vines."
             self.bg = "background ruins_floweyroom"
             self.add_monster(Toriel())
+            self.add_monster(Napstablook())
+
 
     class ruins_ruinsentrance(Room):
         def __init__(self):
@@ -144,7 +147,7 @@ init -1 python:
             self.desc = "The small room feels and smells homey, despite being covered ceiling to floor with cobwebs; there is a permeating scent of baked goods coming from somewhere within. A sign has been erected in front of two of the densest clusters of webbing. The only way out is how you came in."
             self.bg = "background ruins_spider_bakery"
             self.locknorth = True
-            self.events.append(Event("Muffet_Shop",True))
+            self.events["Muffet_Shop"] = Event("Muffet_Shop",True)
 
     class ruins_snailhuntingroom(Room):
         def __init__(self):
@@ -191,7 +194,8 @@ init -1 python:
             self.y = 6
             self.desc = ""
             self.bg = ""
-            self.events.append(Event("port_to_toriel_house",True))
+            self.mappable = False
+            self.events["port_to_toriel_house"] = Event("port_to_toriel_house",True)
     
 label port_to_toriel_house:
     "This is a test"

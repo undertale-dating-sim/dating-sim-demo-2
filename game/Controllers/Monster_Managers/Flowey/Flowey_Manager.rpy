@@ -8,6 +8,8 @@ init -9 python:
             self.default_event = Event("flowey_manager_default",True,self)
             self.name = "Flowey"
             self.handle_schedule()
+            self.default_sprite = 'flowey normal'
+            self.hover_sprite = "flowey annoyed"
 
     #update_schedule(self,day,timezone,location,event):
 
@@ -22,7 +24,8 @@ init -9 python:
             self.update_schedule("Saturday","Night","Cave Room",self.default_event)
             #morning
             self.update_schedule("Sunday","Morning","Overlook",self.default_event)
-            self.update_schedule("Monday","Morning","Cave Room",self.default_event)
+            #self.update_schedule("Monday","Morning","Cave Room",self.default_event)
+            self.update_schedule("Monday","Morning","Basement Door",self.default_event)
             self.update_schedule("Tuesday","Morning","Cave Room",self.default_event)
             self.update_schedule("Wednesday","Morning","Grass Room",self.default_event)
             self.update_schedule("Thursday","Morning","Cave Room",self.default_event)
@@ -79,7 +82,6 @@ label flowey_manager_default(owner = False):
     call show_flowey_sprite(owner)
 
     call show_buttons
-    $ renpy.pause()
 
     call flowey_greeting(owner)
     menu:

@@ -27,7 +27,7 @@ label initialize:
 
     #stupid stuff for demo
     image wilson large = im.FactorScale("avatar.png",4.0)
-    image wilson ph = "characters/Wilson/avatar1.png"
+    image wilson ph = "characters/Wilson/avatar_hover.png"
     image wilson scary = im.FactorScale("characters/Wilson/nightmare_pupper.png",2.0)
     #background-images
 
@@ -90,9 +90,9 @@ label initialize:
 
     #sprite positions
     init:
-        $ left = Position(xpos = 0.25, xanchor = 'left')
+        $ left = Position(xpos = 0.0, xanchor = 'left')
         $ center = Position(xpos = 0.5, xanchor = 'center')
-        $ right = Position(xpos = 0.75, xanchor = 'right')
+        $ right = Position(xpos = .95, xanchor = 'right')
 
 
     init python:

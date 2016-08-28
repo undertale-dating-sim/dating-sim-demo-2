@@ -10,6 +10,8 @@ init -9 python:
             self.name = "Toriel"
             self.FP = 20
             self.handle_schedule()
+            self.default_sprite = "toriel normal"
+            self.hover_sprite = "toriel annoyed"
 
         def give_gift(self,item):
             renpy.say(self.name,"Oh? What do you have there?")
@@ -35,7 +37,8 @@ init -9 python:
             self.update_schedule("Saturday","Night","Toriel's Room",self.default_event)
             #morning
             self.update_schedule("Sunday","Morning","Kitchen",self.default_event)
-            self.update_schedule("Monday","Morning","Kitchen",self.default_event)
+            #self.update_schedule("Monday","Morning","Kitchen",self.default_event)
+            self.update_schedule("Monday","Morning","Basement Door",self.default_event)
             self.update_schedule("Tuesday","Morning","Kitchen",self.default_event)
             self.update_schedule("Wednesday","Morning","Kitchen",self.default_event)
             self.update_schedule("Thursday","Morning","Kitchen",self.default_event)
@@ -95,9 +98,9 @@ label Toriel_manager_default(owner = False):
         show toriel blushing
 
     call show_buttons
-    $ renpy.pause()
 
     menu:
+        "Toriel"
         "Raise FP 10":
             $ owner.FP += 10
         "Lower FP 10":
@@ -105,6 +108,8 @@ label Toriel_manager_default(owner = False):
         "Give Gift" if len(inventory.items) > 0:
             show screen gift_item_menu(owner)
             "What should you give them?"
+        "Exit":
+            "okay."
 
     
     return

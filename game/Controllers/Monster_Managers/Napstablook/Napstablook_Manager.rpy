@@ -7,6 +7,7 @@ init -9 python:
             Monster.__init__(self)
             self.default_event = Event("Napstablook_manager_default",True,self)
             self.name = "Napstablook"
+            self.default_sprite = "napstablook normal"
             self.FP = 20
 
         def give_gift(self,item):
@@ -69,7 +70,15 @@ init -9 python:
 
 
 label initialize_napstablook:
-    #here is where the sprites go
+        
+    image napstablook placeholder = "characters/Toriel/toriel_ph.png"
+    image napstablook angry = "characters/Toriel/Toriel_Angry_colored.png"
+    image napstablook annoyed = "characters/Toriel/Toriel_Annoyed_colors.png"
+    image napstablook awkward = "characters/Toriel/Toriel_Awkward_colors.png"
+    image napstablook blushing = "characters/Toriel/Toriel_Blushing_colors.png"
+    image napstablook laughing = "characters/Toriel/Toriel_Laughing_colors.png"
+    image napstablook normal = "characters/Toriel/Toriel_Neutral_colors.png"
+    image napstablook reallysad = "characters/Toriel/Toriel_ReallySad_colors.png"
 
     define napstablook = ('Napstablook')
     define napstablookChar = Character('Napstablook', color="#FFFFFF")
@@ -82,9 +91,10 @@ label Napstablook_manager_default(owner = False):
 
 
     call show_buttons
-    $ renpy.pause()
+    #$ renpy.pause()
 
     menu:
+        "Napstablook"
         "Raise FP 10":
             $ owner.FP += 10
         "Lower FP 10":
@@ -92,6 +102,8 @@ label Napstablook_manager_default(owner = False):
         "Give Gift" if len(inventory.items) > 0:
             show screen gift_item_menu(owner)
             "What should you give them?"
+        "Exit":
+            "okay."
 
     
     return

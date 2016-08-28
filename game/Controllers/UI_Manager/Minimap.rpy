@@ -26,18 +26,19 @@ init python:
             ymargin = -300
             
 
-            for r in world.currentArea.rooms:
-                x = 800 - ((20 - r.x) * 50) + xmargin
-                y = 600 - (r.y * 40) + ymargin
-                if world.currentArea.currentRoom == r:
-                    render.canvas().rect("#0F0", (x,y, 10, 10))
-                elif len(r.monsters) > 0:
-                    render.canvas().rect("#F00", (x,y, 10, 10))
-                elif r.visited == True:
-                    render.canvas().rect("#d3d3d3", (x,y, 10, 10))
-                else:
-                    render.canvas().rect("#000", (x,y, 10, 10))
-                # render.blit(renpy.render(Text("%d"%(r.visited)),width,height,st,at),(x,y))
+            for r_name,r in world.currentArea.rooms.iteritems():
+                if r.mappable:
+                    x = 800 - ((20 - r.x) * 50) + xmargin
+                    y = 600 - (r.y * 40) + ymargin
+                    if world.currentArea.currentRoom == r:
+                        render.canvas().rect("#0F0", (x,y, 10, 10))
+                    elif len(r.monsters) > 0:
+                        render.canvas().rect("#F00", (x,y, 10, 10))
+                    elif r.visited == True:
+                        render.canvas().rect("#d3d3d3", (x,y, 10, 10))
+                    else:
+                        render.canvas().rect("#000", (x,y, 10, 10))
+                    # render.blit(renpy.render(Text("%d"%(r.visited)),width,height,st,at),(x,y))
 
             
             # Return the render.

@@ -87,8 +87,8 @@ screen debug_monsters:
                     text "Name"
                     text "      "
                     text "Location"
-                for a in world.areas:
-                    for r in a.rooms:
+                for a_name,a in world.areas.iteritems():
+                    for r_name,r in a.rooms.iteritems():
                         for m in r.monsters:
                             hbox:
                                 text "[m.name]"
@@ -149,8 +149,8 @@ screen navigation_buttons:
     modal True
 
     vbox pos(.2,.1):
-        for area in world.areas:
-            for r in area.rooms:
+        for area_name,area in world.areas.iteritems():
+            for r_name,r in area.rooms.iteritems():
                 textbutton "[r.name]" action [Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Function(world.move_to_room,r.name)]
     $dirs = world.currentArea.cr_get_neighbors()
 

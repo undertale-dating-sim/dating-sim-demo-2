@@ -24,6 +24,13 @@ init python:
             self.add_room(th_toriel_room())
             self.add_room(th_basement_door())
 
+
+        def setup_breakfast_day2(self):
+
+
+            return
+
+
     class th_staircase(Room):
         def __init__(self):
             Room.__init__(self)
@@ -52,7 +59,7 @@ init python:
             self.desc = "This is the hallway."
             self.bg = "background toriel_house_corridor"
             self.locknorth = False
-            self.events.append(Event("toriel_house_corridor",True))
+            self.events['toriel_house_corridor'] = Event("toriel_house_corridor",True)
 
     class th_kitchen(Room):
         def __init__(self):

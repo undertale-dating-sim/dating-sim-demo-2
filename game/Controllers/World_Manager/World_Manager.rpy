@@ -7,15 +7,15 @@ init -10 python:
     class Area():
 
         def __init__(self,name):
-            self.rooms = []
+            self.rooms = {}
             self.currentRoom = False
             self.name = name
-            self.random_areas = []
+            self.random_areas = {}
             self.random_monsters = []
             #self.random_scenes = ['papyrus_random','sans_random','toriel_random','flowey_random']
         
         def add_room(self,room):
-            self.rooms.append(room)
+            self.rooms[room.name] = room
 
         def move_to_room(self,name):
             for r in self.rooms:
@@ -37,7 +37,7 @@ init -10 python:
             if direction == 'west':
                 dirx -= 1
 
-            for room in self.rooms:
+            for room_name,room in self.rooms.iteritems():
                 if not room.locked:
                     if room.x == dirx and room.y == diry:
 
@@ -55,7 +55,7 @@ init -10 python:
         def cr_get_neighbors(self):
             dirs = []
 
-            for r in self.rooms:
+            for r_name,r in self.rooms.iteritems():
                 if r.x == self.currentRoom.x and r.y == self.currentRoom.y+1 and not r.locked and not r.locksouth:
                     dirs.append('north')
                     continue
@@ -80,24 +80,29 @@ init -10 python:
             #place holder to stop people from moving into the room.
             self.locked = locked
             self.bg = bg
+            self.mappable = True
 
             #stop people from leaving room in wrong direction
             self.locksouth = False
             self.locknorth = False
             self.lockeast = False
             self.lockwest = False
-            self.events = []
+            self.events = {}
             self.monsters = []
             self.current_monster = False
+
+
 
 
         #First check to see if the room itself has an event to do
         #Then check to see if the room has a monster event to do
         def get_event(self):
 
-            for e in self.events:
-                if e.completed == False:
-                    return e
+            for event_name,event in self.events.iteritems():
+                if event.completed == False:
+                    return event
+            if len(self.monsters) > 1:
+                return Event('multiple_monster',True)
             for m in self.monsters:
                 for e in m.specialEvents:
                     if e.completed == False:
@@ -140,7 +145,7 @@ init -10 python:
     
         def __init__(self):
             self.name = "Underground"
-            self.areas = []
+            self.areas = {}
             self.currentArea = False
             self.maxTime = 1440
             self.currentTime = 700
@@ -148,7 +153,7 @@ init -10 python:
             self.timeZones = {"Night":0,"Morning":480,"Day":720,"Afternoon":960,"Evening":1200}
             self.days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
             self.generate_ruins()
-            self.areas.append(Toriel_House())
+            self.areas["Toriel_House"] = Toriel_House()
 
         def get_current_timezone(self):
             
@@ -195,8 +200,8 @@ init -10 python:
 
             timezone = self.get_current_timezone()
             day = self.get_current_day()
-            for a in self.areas:
-                for r in a.rooms:
+            for an,a in self.areas.iteritems():
+                for rn,r in a.rooms.iteritems():
                     for m in r.monsters:
                         if m.schedule:
 
@@ -258,32 +263,49 @@ init -10 python:
             renpy.call("load_room")
 
         def move_to_room(self,name):
-            for area in self.areas:
-                for room in area.rooms:
+            for area_name,area in self.areas.iteritems():
+                for room_name,room in area.rooms.iteritems():
                     if room.name == name:
                         self.currentArea = area
                         self.currentArea.currentRoom = room
                         renpy.jump("load_room")
                         break
             renpy.notify(name + " not found.")
+        def get_room(self,name):
+            for area_name,area in self.areas.iteritems():
+                for room_name,room in area.rooms.iteritems():
+                    if room.name == name:
+                        return room
+                        
+            renpy.notify(name + " not found.")
+            return False
 
+        def get_monster(self,name):
+            for area_name,area in self.areas.iteritems():
+                for room_name,room in area.rooms.iteritems():
+                    for monster in room.monsters:
+                        if monster.name == name:
+                            return monster
+
+            renpy.notify("Could not find "+name);
+            return False
 
         def add_monster(self,monster):
             if isinstance(monster,Monster):
-                self.monsters.append()
+                self.monster[monster.name] = monster
             else:
                 renpy.notify("Illegal Type: not a Monster")
 
         def add_area(self,area):
             if isinstance(area,Area):
-                self.areas.append(area)
+                self.areas[area.name] = area
             else:
                 renpy.notify("Illegal Type: not an Area")
 
         def generate_ruins(self):
             self.add_area(TheRuins())
-            self.currentArea = self.areas[0]
-            self.currentArea.currentRoom = self.currentArea.rooms[0]
+            self.currentArea = self.areas["The Ruins"]
+            self.currentArea.currentRoom = self.currentArea.rooms["Grass Room"]
 
 
 
@@ -291,6 +313,9 @@ init -10 python:
 label test_label:
     "Awesome, it worked."
     return
+
+
+
 #This is the label that handles the loading
 #shows the current background, if the room hasn't been visited shows the description, sets visited to True, then Pauses to allow player to do things
 label load_room:
@@ -307,6 +332,7 @@ label load_room:
     if not world.currentArea.currentRoom.visited and world.currentArea.currentRoom.desc:
         "[world.currentArea.currentRoom.desc]"
     $ world.currentArea.currentRoom.visited = True
+
 
     $ temp_event = world.currentArea.currentRoom.get_event()
 

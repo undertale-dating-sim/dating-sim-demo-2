@@ -1,0 +1,24 @@
+Overviews of Scripts, their usages, and any variables they might use that might need to be saved in the future.
+
+
+
+
+Toriel's House
+	
+	Rooms
+		Toriel's Room
+		Your Room
+		Frisk's Room
+		Living Room
+		Kitchen
+		Corridor
+		Basement Door
+		Staircase
+	
+	Vars
+		basement_visit_count
+
+	Labels
+		toriel_return_from_basement
+		frisk_return_from_basement
+		flowey_basement_demo
