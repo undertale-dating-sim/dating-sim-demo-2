@@ -31,6 +31,6 @@ label migosp_manager_default(owner = False):
         migosp "I'm always myself when the human is here."
 
     #swap to the other
-    owner.dialogue_toggle = not owner.dialogue_toggle
+    $ owner.dialogue_toggle = not owner.dialogue_toggle
 
     return

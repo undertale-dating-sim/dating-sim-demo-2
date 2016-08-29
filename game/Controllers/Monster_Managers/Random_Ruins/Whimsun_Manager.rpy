@@ -33,6 +33,6 @@ label Whimsun_manager_default(owner = False):
         whimsun "I.....I am sorry."
 
     #swap to the other
-    owner.dialogue_toggle = not owner.dialogue_toggle
+    $ owner.dialogue_toggle = not owner.dialogue_toggle
 
     return

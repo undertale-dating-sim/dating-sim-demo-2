@@ -9,7 +9,7 @@ init -9 python:
             self.default_room = "Toriel's Room"
             self.name = "Toriel"
             self.FP = 20
-            self.handle_schedule()
+            self.seed_default_schedule()
             self.default_sprite = "toriel normal"
             self.hover_sprite = "toriel annoyed"
 

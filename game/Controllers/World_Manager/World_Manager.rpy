@@ -94,6 +94,7 @@ init -10 python:
 
 
 
+
         #First check to see if the room itself has an event to do
         #Then check to see if the room has a monster event to do
         def get_event(self):

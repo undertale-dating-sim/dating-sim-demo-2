@@ -34,6 +34,6 @@ label moldsmol_manager_default(owner=False):
 
 
     #swap to the other
-    owner.dialogue_toggle = not owner.dialogue_toggle
+    $ owner.dialogue_toggle = not owner.dialogue_toggle
 
     return

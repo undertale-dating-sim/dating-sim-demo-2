@@ -4,7 +4,10 @@ init -10 python:
 
         def __init__(self,name="bob"):
             self.name = name
-            self.specialEvents = []
+
+            #This event will be used to override the schedule
+            self.specialEvent = None
+
             self.schedule = {"Sunday":{},"Monday":{},"Tuesday":{},"Wednesday":{},"Thursday":{},"Friday":{},"Saturday":{}}
             self.default_sprite = None
             self.currentRoom = None
@@ -46,11 +49,18 @@ init -10 python:
 
             renpy.notify("Can't find room "+room)
 
+        def set_special_event(self,event):
+            if renpy.has_label(event):
+                self.specialEvent = Event(event,True,self)
+            else:
+                renpy.notify("Couldn't find event [event]")
 
         #will need to add math about the FP
         def get_current_event(self):
         
-        #get the normal events
+            if self.specialEvent:
+                return self.specialEvent
+            #get the normal events
             timezone = world.get_current_timezone()
             day = world.get_current_day()
             if day in self.schedule:

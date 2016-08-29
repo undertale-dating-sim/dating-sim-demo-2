@@ -34,6 +34,6 @@ label vegetoid_manager_default(owner=False):
         "Vegetoid is inviting you to eat some vegetables..."
 
     #swap to the other
-    owner.dialogue_toggle = not owner.dialogue_toggle
+    $ owner.dialogue_toggle = not owner.dialogue_toggle
 
     return
