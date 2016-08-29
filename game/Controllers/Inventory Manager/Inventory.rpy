@@ -11,6 +11,7 @@ init -1 python:
             self.use_text = ""
             self.sprite = ""
             self.menu_desc = ""
+            self.usable = True
 
         def give(self,character):
             return
@@ -20,26 +21,7 @@ init -1 python:
             inventory.drop(self)
             return
 
-    class Spider_Donut(Item):
-        def __init__(self):
-            Item.__init__(self)
-            self.name = "Spider Donut"
-            self.use_text = "You bite down, but something stops you. It had a coin in it?  What was the point of buying this?"
-            self.pickup_text = "It is a donut. Made of spiders. Crunchy!"
-            self.sprite = "items/item_spiderdonut.png"
-            self.menu_desc = "It is a donut. \nRestore 10 Stamina"
 
-            
-
-    class Spider_Cider(Item):
-        def __init__(self):
-            Item.__init__(self)
-            self.name = "Spider Cider"
-            self.sale_cost = 5
-            self.use_text = "Spiders pour over your face. It had "+str(self.sale_cost)+" coin(s) in it.  What was the point of buying this?"
-            self.pickup_text = "A bottle full of spiders. You can hear coins jiggle if you shake it."
-            self.sprite = "items/item_spidercider.png"
-            self.menu_desc = "A bottle full of spiders. \nRestore 50 Stamina"
 
 
     class Inventory():
@@ -65,8 +47,6 @@ init -1 python:
     menu_selected_item = False
     #move to global portion of initiate.rpy later
     inventory = Inventory()
-    inventory.add(Spider_Cider())
-    inventory.add(Spider_Donut())
     
 
 screen items:

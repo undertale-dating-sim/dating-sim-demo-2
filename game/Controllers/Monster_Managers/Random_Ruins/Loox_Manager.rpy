@@ -20,4 +20,24 @@ label loox_manager_default(owner = False):
     call show_buttons
     $ renpy.pause()
 
+
+    if not owner.visited:
+        loox "Hey!"
+        loox "Don't look at me like that, it's rude."
+        loox "Especially with two eyes."
+        loox "Do I do that to you? Huh?"
+
+    elif not owner.dialogue_toggle:
+        
+        loox "It is always calm here, which is why we try to hang out so we don't get bored."
+        loox "Sometimes the human even joins us, but I feel like their mom doesn't like that too much." 
+
+    else:
+        loox "Some of my friends seem to pick on Whimsum..."
+        loox "The human told them to stop but I don't think it did any good."
+
+
+    #swap to the other
+    owner.dialogue_toggle = not owner.dialogue_toggle
+
     return

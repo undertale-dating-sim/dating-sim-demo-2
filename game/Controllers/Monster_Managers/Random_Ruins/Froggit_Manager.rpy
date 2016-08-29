@@ -46,3 +46,10 @@ label froggit_default_dialogue(owner):
     
     return
 
+label froggit_advice_stats(owner):
+
+    froggit "Hmm?"
+    froggit "Oh sorry..."
+    froggit "Just got turned down by another Froggit..."
+    froggit "She said she wouldn’t date me because we didnt have enough skills in common."
+    froggit "I think that’s just silly, but oh well.""
