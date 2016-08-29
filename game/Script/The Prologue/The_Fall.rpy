@@ -58,9 +58,6 @@ label the_fall:
                 call tf_lie_down from _call_tf_lie_down
             "Look around" if not tf_show_exit:
                 call tf_look_around from _call_tf_look_around
-            "Approach the door" if tf_show_exit:
-                $ tf_loop = False
-                jump tf_item_room
 
 
 label tf_scream:
@@ -128,16 +125,4 @@ label tf_look_around:
     return
 
 
-label tf_item_room:
-    
-    "This room reeks of being a placeholder..."
-    
-    #for each item, add it to the inventory and then clean up the variable
-    while True:
-        menu:   
-            "There are some items on the floor."
-            "Heart Locket":
-                call pickup_item(Heart_Locket())
-            # "Pocket Mirror":
-            # "Stick":
-            # "Flower":
+

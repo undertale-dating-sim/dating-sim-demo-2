@@ -16,6 +16,9 @@ init -10 python:
             self.dialogue_toggle = False
             self.hover_sprite = None
 
+        def reset_schedule(self):
+            self.schedule = {"Sunday":{},"Monday":{},"Tuesday":{},"Wednesday":{},"Thursday":{},"Friday":{},"Saturday":{}}
+        
         def get_relationship(self):
 
             if self.FP <= 20:
@@ -46,6 +49,8 @@ init -10 python:
 
         #will need to add math about the FP
         def get_current_event(self):
+        
+        #get the normal events
             timezone = world.get_current_timezone()
             day = world.get_current_day()
             if day in self.schedule:

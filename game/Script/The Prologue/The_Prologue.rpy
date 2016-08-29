@@ -9,7 +9,7 @@ label prologue:
     "HUMANS and MONSTERS."
     "One day, war broke out between the two races."
     "After a long battle, the humans were victorious."
-    "They sealed the monserts underground with a magic spell."
+    "They sealed the monsters underground with a magic spell."
     "Many years later...."
     "MT. Ebott"
     "Legends say that those who climb the mountain never return."

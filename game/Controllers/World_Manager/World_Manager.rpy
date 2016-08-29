@@ -104,10 +104,6 @@ init -10 python:
             if len(self.monsters) > 1:
                 return Event('multiple_monster',True)
             for m in self.monsters:
-                for e in m.specialEvents:
-                    if e.completed == False:
-                        self.current_monster = m
-                        return e
 
                 if m.get_current_event():
                     if m.get_current_event().completed == False:

@@ -26,7 +26,8 @@ init -9 python:
                 self.FP -= 20
                 return False
             return
-        def handle_schedule(self):
+        def seed_default_schedule(self):
+            self.reset_schedule() 
             #night
             self.update_schedule("Sunday","Night","Toriel's Room",self.default_event)
             self.update_schedule("Monday","Night","Toriel's Room",self.default_event)
