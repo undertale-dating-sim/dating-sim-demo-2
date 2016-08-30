@@ -1,12 +1,4 @@
 
-
-label unlock_movement_engine:
-    
-    $ world.move_to_room("Cave Room")
-
-    return
-
-
 label the_beginning:
 
     scene
@@ -94,10 +86,15 @@ label tf_look_around:
         "You think one side of the cave is actually brighter so you decide to investigate."
         "Huh?!?"
         "There is a door here.  A fancy door."
-        
-        jump unlock_movement_engine
-
     return
+        
+
+
+label unlock_movement_engine:
+    $ world.get_room("Grass Room").add_event("tf_item_room")
+    $ world.move_to_room("Cave Room")
+
+    
 
 
 

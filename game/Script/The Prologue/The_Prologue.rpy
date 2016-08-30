@@ -9,6 +9,8 @@ label start_the_game:
     $ world.get_monster("flowey").move_to_room("Dead Room")
     $ world.get_monster("flowey").reset_schedule()
 
+    jump tf_item_room
+
 label prologue:
     
     #Notes from the video
