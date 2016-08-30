@@ -1,46 +1,19 @@
-label the_fall:
+
+
+label unlock_movement_engine:
     
-    scene
-    with fade
+    $ world.move_to_room("Cave Room")
 
-    #play wind sfx
-    play music "audio/sfx/Falling_down_wind.wav"
-
-    #pause for a few seconds
-    $ renpy.pause(delay=3,hard=True)
-    
-    "..."
-    "falling."
-    "....you're falling."
-    "How did this happen?"
-    "In the distance...you hear someone calling your name..."
-    
-    $ temp_loop = True
-    while temp_loop:
-        call Name_Select
-        "[player.name]"
-        "...was that your name?"
-        menu:
-            "yes":
-                "...right. That was it."
-                "How could you have forgotten?"
-                $ temp_loop = False
-            "no":
-                "Well, what is it then?"
-
-    $ renpy.pause(delay=3,hard=True)
-
-    #play thud
-    stop music
-    play sound "audio/sfx/Hitting_the_ground.wav"
+    return
 
 
+label the_beginning:
 
     scene
     with vpunch
     "thud"
 
-    scene background flowerfall
+    $ renpy.show(world.get_room("Cave Room").bg)
     with fade
 
     "Ow"
@@ -121,7 +94,9 @@ label tf_look_around:
         "You think one side of the cave is actually brighter so you decide to investigate."
         "Huh?!?"
         "There is a door here.  A fancy door."
-        $ tf_show_exit = True
+        
+        jump unlock_movement_engine
+
     return
 
 

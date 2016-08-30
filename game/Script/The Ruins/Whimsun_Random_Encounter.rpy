@@ -1,9 +1,5 @@
-init:
-    define whimsun = ('Whimsun')
-
-
-
-label whimsun_start:
+#Whimsun Random Encounter for the Ruins
+label whimsun_re_start:
     scene
     "You come upon a group of Loox and Migosp bullying a Whimsun."
     menu:

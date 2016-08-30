@@ -93,14 +93,18 @@ init -10 python:
 
 
 
-
+        def add_event(self,event,permanent):
+            if renpy.has_label(event):
+                self.events[event] = Event(event,permanent)
+            else:
+                renpy.notify("Can't find label [event]")
 
         #First check to see if the room itself has an event to do
         #Then check to see if the room has a monster event to do
         def get_event(self):
 
             for event_name,event in self.events.iteritems():
-                if event.completed == False:
+                if event.completed == False or event.permanent:
                     return event
             if len(self.monsters) > 1:
                 return Event('multiple_monster',True)
@@ -281,7 +285,7 @@ init -10 python:
             for area_name,area in self.areas.iteritems():
                 for room_name,room in area.rooms.iteritems():
                     for monster in room.monsters:
-                        if monster.name == name:
+                        if monster.name.lower() == name.lower():
                             return monster
 
             renpy.notify("Could not find "+name);

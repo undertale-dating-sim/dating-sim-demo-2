@@ -1,11 +1,4 @@
 
-
-#character-settings
-define toriel = Character('Toriel')
-
-#default-font
-init python:
-    style.default.font = "font/DTM-Mono.otf"
     
 label toriel_ruins:
     menu:
