@@ -58,7 +58,7 @@ init -1 python:
             self.desc = "You shouldn't be here."
             self.visited = True
             self.bg = "background deadroom"
-            self.events["dead_room"] = Event("dead_room",True)
+            #self.events["dead_room"] = Event("dead_room",True)
             self.mappable = False
 
     class ruins_caveroom(Room):

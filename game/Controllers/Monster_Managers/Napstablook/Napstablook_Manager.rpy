@@ -92,7 +92,7 @@ label Napstablook_manager_default(owner = False):
 
     call show_buttons
     #$ renpy.pause()
-
+    show napstablook normal
     menu:
         "Napstablook"
         "Raise FP 10":

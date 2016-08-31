@@ -4,7 +4,7 @@ label splashscreen:
     return
 
 label after_load:
-
+    jump start_the_game
     return
 
 label show_buttons:
@@ -44,7 +44,7 @@ screen multiple_monster_click_screen:
         $ x = count * width
         mousearea:
             area ((count-1)* width, .4, width, .6)
-            hovered [SetVariable('talking',monster.name),Notify(monster.name),Show("talking_text")]
+            hovered [SetVariable('talking',monster.name),Notify(monster.name)]
 
         $ count+= 1
 

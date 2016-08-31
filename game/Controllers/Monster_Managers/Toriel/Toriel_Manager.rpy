@@ -11,7 +11,6 @@ init -9 python:
             self.FP = 20
             self.seed_default_schedule()
             self.default_sprite = "toriel normal"
-            self.hover_sprite = "toriel annoyed"
 
         def give_gift(self,item):
             renpy.say(self.name,"Oh? What do you have there?")
@@ -100,6 +99,8 @@ label Toriel_manager_default(owner = False):
 
     call show_buttons
 
+    "Good morning!"
+    
     menu:
         "Toriel"
         "Raise FP 10":

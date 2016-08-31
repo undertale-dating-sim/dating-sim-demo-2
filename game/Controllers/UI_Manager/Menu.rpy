@@ -1,7 +1,7 @@
 
 screen show_menu_button:
-    
-    textbutton "Show Menu" action [Play ("sound", "audio/sfx/click.wav"),Show("show_menu"),Hide("show_menu_button"),Show("stats"),Show("debug_monsters")] align(.95,.05) 
+    #Show("debug_monsters")
+    textbutton "Show Menu" action [Play ("sound", "audio/sfx/click.wav"),Show("show_menu"),Hide("show_menu_button"),Show("stats")] align(.95,.05) 
 
 screen show_menu:
     add "#0008"
@@ -148,10 +148,10 @@ screen navigation_buttons:
     add "#0008"
     modal True
 
-    vbox pos(.2,.1):
-        for area_name,area in world.areas.iteritems():
-            for r_name,r in area.rooms.iteritems():
-                textbutton "[r.name]" action [Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Function(world.move_to_room,r.name)]
+    # vbox pos(.2,.1):
+    #     for area_name,area in world.areas.iteritems():
+    #         for r_name,r in area.rooms.iteritems():
+    #             textbutton "[r.name]" action [Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Function(world.move_to_room,r.name)]
     $dirs = world.currentArea.cr_get_neighbors()
 
     textbutton "Hide Nav (E)" action [Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button')] align(.95,.1) 
