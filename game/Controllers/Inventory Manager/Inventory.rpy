@@ -21,9 +21,6 @@ init -1 python:
             inventory.drop(self)
             return
 
-
-
-
     class Inventory():
         def __init__(self):
             self.items = []
