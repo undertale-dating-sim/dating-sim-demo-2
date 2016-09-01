@@ -22,8 +22,11 @@ label tf_item_room:
                 "Heart Locket":
                     $ inventory.pick
                 "Mirror":
+                    "mirror"
                 "Stick":
+                    "stick"
                 "Flower":
+                    "flower"
 
     
     return

@@ -10,15 +10,28 @@ screen show_menu:
     textbutton "Hide Menu" action [Play ("sound", "audio/sfx/click.wav"),Hide("show_menu"),Show("show_menu_button"),Hide("items"),Hide("stats"),Hide("cell"),Hide("show_item_description"),Hide("debug_monsters")] align(.95,.05)  
     vbox xalign 0.05 ypos 0.05:
         frame:
-            background Frame("UI/text-box3.png",21, 21)       
-            vbox:
-                text "[player.name]"
-                text "Day: "+world.get_current_day()
-                text "Time: "+world.get_current_time()
-                text world.get_current_timezone()
-                text "HP:  [player.current_health]/[player.total_health]"
-                text "STAM:  [player.current_stamina]/[player.max_stamina]"
-                text "G:   [player.gold]"
+            background Frame("UI/text-box3.png",21, 21)
+            hbox:    
+                vbox:
+                    text "[player.name]"
+                    text "Day: "
+                    text "Time: "
+                    text world.get_current_timezone()
+                    text "HP:"
+                    text "STAM:"
+                    text "G:"
+                    if player.equipped_item:
+                        text "Equip: "
+                vbox:
+                    text ""
+                    text world.get_current_day()
+                    text world.get_current_time()
+                    text ""
+                    text "[player.current_health]/[player.total_health]"
+                    text "[player.current_stamina]/[player.max_stamina]"
+                    text "[player.gold]"
+                    if player.equipped_item:
+                        text player.equipped_item.name
 
         frame  ypos 0.5:
             background Frame("UI/text-box3.png",21, 21)
@@ -105,7 +118,7 @@ screen debug_monsters:
                             #             text t[x].label
 
 screen stats:
-    frame pos(0.3,0.05):
+    frame pos(0.4,0.05):
         background Frame("UI/text-box3.png",21, 21)
         hbox:
             vbox:
@@ -121,7 +134,8 @@ screen stats:
                 text "[player.bravery_cowardice]"
                 text "[player.perseverance_surrender]"
                 text "[player.kindness_cruelty]"
-                text "[player.justice_apathy]"  
+                text "[player.justice_apathy]" 
+
 
 screen show_information_overlay:
     vbox:

@@ -17,6 +17,7 @@ init -1 python:
             self.current_stamina = 100
             self.max_stamina = 100
 
+            self.equipped_item = False
 
             self.time = 0
 
