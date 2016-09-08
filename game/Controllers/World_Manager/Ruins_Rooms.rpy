@@ -58,7 +58,7 @@ init -1 python:
             self.desc = "You shouldn't be here."
             self.visited = True
             self.bg = "background deadroom"
-            #self.events["dead_room"] = Event("dead_room",True)
+            self.events["dead_room"] = Event("dead_room",True)
             self.mappable = False
 
     class ruins_caveroom(Room):
@@ -205,8 +205,7 @@ label dead_room:
     stop music
     play music "audio/music/scary.ogg"
     show wilson scary
-    "Howdy"
-    "{cps=3}You shouldn't be here.{/cps}"
+    "{size=+5}{font=Pixelated_Wingdings.ttf}You   SHOULDN'T    BE     HERE{/font}"
     return
 
 
