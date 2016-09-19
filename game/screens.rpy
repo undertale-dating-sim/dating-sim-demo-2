@@ -195,6 +195,7 @@ screen main_menu():
         textbutton _("Load Game") action ShowMenu("load")
         textbutton _("Preferences") action ShowMenu("preferences")
         textbutton _("Feedback") action Jump("Feedback")
+        textbutton _("Admin_Controls") action ShowMenu("admin_controls")
         textbutton _("Help") action Help()
         textbutton _("Quit") action Quit(confirm=False)
 
@@ -336,12 +337,47 @@ init -2:
     style file_picker_button is large_button
     style file_picker_text is large_button_text
 
+#######################################
+# Admin Controls
+# Customer Screen made by Wilson to control finer parts of the game.  Should be taken out of public release
+#\
 
 ##############################################################################
 # Preferences
 #
 # Screen that allows the user to change the preferences.
 # http://www.renpy.org/doc/html/screen_special.html#prefereces
+
+screen admin_controls():
+    tag menu
+
+    use navigation
+
+    grid 3 1:
+
+        style_group "prefs"
+        xfill True
+
+        vbox:
+            frame:
+                style_group "pref"
+                has vbox
+                label _("Test")
+                textbutton _("Test") action Notify('test')
+        vbox:
+            frame:
+                style_group "pref"
+                has vbox
+                label _("Test")
+                textbutton _("Test") action Notify('test')
+        vbox:
+            frame:
+                style_group "pref"
+                has vbox
+                label _("Test")
+                textbutton _("Test") action Notify('test')
+
+
 
 screen preferences():
 

@@ -4,7 +4,7 @@ label splashscreen:
     return
 
 label after_load:
-    jump start_the_game
+    jump start
     return
 
 label show_buttons:
@@ -19,7 +19,8 @@ label hide_buttons:
     hide screen show_nav_button
     hide screen show_map_button
     hide screen show_information_overlay
-    return 
+    return
+
 
 #This takes place after the MC has heard about Frisk from Toriel.
 label start:
@@ -28,8 +29,9 @@ label start:
     #call super_secret_console
     #call show_buttons
     $ talking = False
+    jump scrolling_credits
     #$ world.get_monster("Toriel").move_to_room("Basement Door")
-    jump start_the_game
+    #jump start_the_game
     #jump load_room
     #jump dev_label
     #jump frisk_start
