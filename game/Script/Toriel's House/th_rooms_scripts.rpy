@@ -1,6 +1,9 @@
 init python:
     basement_visit_count = 0
 
+
+
+    
 label toriel_return_from_basement:
     toriel "*surprised* Back already? "
     toriel "*smiles* Oh, I am not complaining, just surprised is all."
