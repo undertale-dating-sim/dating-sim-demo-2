@@ -48,7 +48,7 @@ init -1 python:
     menu_selected_item = False
     #move to global portion of initiate.rpy later
     inventory = Inventory()
-    inventory.add(Spider_Cider())
+    inventory.add(Sleeping_Potion())
     inventory.add(Spider_Donut())
     inventory.add(Heart_Locket())
     inventory.add(Mirror())

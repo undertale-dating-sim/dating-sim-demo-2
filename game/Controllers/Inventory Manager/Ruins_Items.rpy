@@ -111,3 +111,22 @@ init -4 python:
             self.pickup_text = "A bottle full of spiders. You can hear coins jiggle if you shake it."
             self.sprite = "items/item_spidercider.png"
             self.menu_desc = "A bottle full of spiders. \nRestore 50 Stamina"
+
+    class Sleeping_Potion(Item):
+        def __init__(self):
+            Item.__init__(self)
+            self.name = "Sleeping_Potion"
+            self.sale_cost = 5
+            self.use_text = "You drink the thick, white goop.  It tastes disgusting."
+            self.pickup_text = "You find a potion. It is warm to the touch?"
+            self.sprite = "items/item_spidercider.png"
+            self.menu_desc = "Puts you to sleep."
+
+        def use(self):
+            player.current_stamina = 0
+            player.update_player()
+
+
+
+
+

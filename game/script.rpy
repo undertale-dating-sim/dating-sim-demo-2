@@ -27,11 +27,11 @@ label start:
     stop music
     #play music "audio/music/music-home.mp3"
     #call super_secret_console
-    #call show_buttons
+    call show_buttons
     $ talking = False
-    jump scrolling_credits
+    #jump scrolling_credits
     #$ world.get_monster("Toriel").move_to_room("Basement Door")
-    #jump start_the_game
+    jump start_the_game
     #jump load_room
     #jump dev_label
     #jump frisk_start

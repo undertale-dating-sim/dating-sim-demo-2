@@ -20,6 +20,7 @@ init -1 python:
             self.equipped_item = False
 
             self.time = 0
+            self.safe_room = "Your Room"
 
         def modify_patience(self,amount):
             self.patience_impulsiveness += amount
@@ -59,6 +60,24 @@ init -1 python:
             
            
             
-            
+        def update_player(self):
+            if self.current_stamina <= 0:
+                renpy.call_in_new_context("player_passes_out")
+
+label player_waking_up(day_change = 1, stam_refill = player.max_stamina):
+    $ world.set_current_time(480,True)
+    $ player.current_stamina = stam_refill
+    "You feel refreshed! (Stamina refilled)"
+    return
+
+label player_passes_out:
+    "Oh no, you ran out of stamina..."
+    "The world goes dark."
+    scene
+    with fade
+    "Oh no, it looks like they ran out of energy."
+    "Let's carry them home..."
+    $ world.move_to_room(player.safe_room)
+
             
             

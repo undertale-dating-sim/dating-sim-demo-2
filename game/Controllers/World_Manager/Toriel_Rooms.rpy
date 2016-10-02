@@ -46,6 +46,7 @@ init python:
             self.name = "Basement Door"
             self.x = 5
             self.y = 1
+            self.lockeast = True
             self.desc = "This is the exit."
             
 
@@ -98,6 +99,7 @@ init python:
             self.desc = "This is your room."
             self.bg = "background toriel_house_your_room"
             self.locked = True
+            self.events['th_your_room'] = Event("th_your_room",True)
 
     class th_toriel_room(Room):
         def __init__(self):
@@ -109,8 +111,29 @@ init python:
             self.bg = "background toriel_house_toriel_room"
             self.locked = True
     
-    
+label player_sleeping_th:
+    "You fall asleep in your bed."
+    $ renpy.show(world.currentArea.currentRoom.bg)
+    call player_waking_up
+    return
+
+
+
+label th_your_room:
+    call show_buttons
+    if player.current_stamina <= 0:
+        call player_waking_up
+    pause
+    menu:
+        "Sleep" if player.current_stamina < player.max_stamina:
+            call player_sleeping_th
+        "Not Tired":
+            return
+    return
+
 label toriel_house_corridor:
+    call show_buttons
+    pause
     while True:
         menu:
             "There are three doors here."
@@ -126,4 +149,6 @@ label toriel_house_corridor:
                     $ world.move_to_room("Toriel's Room")
             "Your Room":
                 $ world.move_to_room("Your Room")
+            "Exit":
+                return
     return

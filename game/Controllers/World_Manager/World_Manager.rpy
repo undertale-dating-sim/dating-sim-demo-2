@@ -23,7 +23,7 @@ init -10 python:
             
             timezone = "Night"
             for t,z in self.timeZones.iteritems():
-                if self.currentTime > z and self.timeZones[timezone] <= z:
+                if self.currentTime >= z and self.timeZones[timezone] < z:
                     timezone = t
 
             return timezone
@@ -94,11 +94,10 @@ init -10 python:
                 return
 
             if update_day:
-                if self.currentTime > time:
-                    self.day += 1
+                self.day += 1
 
 
-            self.currenttime = time
+            self.currentTime = time
 
 
             self.update_world(update_day)
@@ -211,7 +210,6 @@ label load_room:
 
 
 
-#until we find a way to figure out what order the files are loaded in, all the rooms have to go in here.
 
 
 
