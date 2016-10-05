@@ -1,18 +1,18 @@
 init:
 #flowerbed
-    image background ruins_caveroom = "backgrounds/Ruins/background-ruins-flowerpatch.jpg"
-    image background ruins_floweyroom = "backgrounds/Ruins/background-ruins-floweyroom.jpg"
+    image background ruins_caveroom = im.Scale("backgrounds/Ruins/background-ruins-flowerpatch.jpg",800,600)
+    image background ruins_floweyroom = im.Scale("backgrounds/Ruins/background-ruins-floweyroom.jpg",800,600)
 
 #the ruins
-    image background ruins_outside_house = "backgrounds/Ruins/background-ruins-blacktree.png"
+    image background ruins_outside_house = im.Scale("backgrounds/Ruins/background-ruins-blacktree.png",800,600)
     image background ruins_froggit_room = im.Scale("backgrounds/Ruins/background-ruins-froggitroom.jpg",800,600)
-    image background ruins_first_entrance = "backgrounds/Ruins/background-ruins-firstentrance.jpg"
-    image background ruins_toy_knife_room = "backgrounds/Ruins/background-ruins-toykniferoom.jpg"
-    image background ruins_spider_bakery = "backgrounds/Ruins/background-ruins-spiderbakery.jpg"
-    image background ruins_sassyrock_room = "backgrounds/Ruins/background-ruins-sassyrock.jpg"
-    image background ruins_blooky_room = "backgrounds/Ruins/background-ruins-blookyroom.jpg"
-    image background ruins_dummy_room = "backgrounds/Ruins/background-ruins-dummyroom.jpg"
-    image background ruins_hallway = "backgrounds/Ruins/background-ruins-hallway.jpg"
+    image background ruins_first_entrance = im.Scale("backgrounds/Ruins/background-ruins-firstentrance.jpg",800,600)
+    image background ruins_toy_knife_room = im.Scale("backgrounds/Ruins/background-ruins-toykniferoom.jpg",800,600)
+    image background ruins_spider_bakery = im.Scale("backgrounds/Ruins/background-ruins-spiderbakery.jpg",800,600)
+    image background ruins_sassyrock_room = im.Scale("backgrounds/Ruins/background-ruins-sassyrock.jpg",800,600)
+    image background ruins_blooky_room = im.Scale("backgrounds/Ruins/background-ruins-blookyroom.jpg",800,600)
+    image background ruins_dummy_room = im.Scale("backgrounds/Ruins/background-ruins-dummyroom.jpg",800,600)
+    image background ruins_hallway = im.Scale("backgrounds/Ruins/background-ruins-hallway.jpg",800,600)
     image background deadroom = im.Scale("backgrounds/gaster.png",800,600)
 
 init -1 python:
@@ -38,16 +38,6 @@ init -1 python:
             self.add_room(ruins_blacktreeroom())
             self.add_room(ruins_to_toriel_house())
             
-
-    class Bob(Monster):
-        def __init__(self):
-            Monster.__init__(self)
-            self.name = "Bob"
-            self.schedule["Night"] = {"Grass Room":Event("bob_test_night")}
-            self.schedule["Morning"] = {"Cave Room":Event("bob_test_morning")}
-            self.schedule["Day"] = {"Ruins Entrance":Event("bob_test_day")}
-            self.schedule["Afternoon"] = {"Tunnels":Event("bob_test_afternoon")}
-            self.schedule["Evening"] = {"Dummy Room":Event("bob_test_evening")}
 
     class dead_room(Room):
         def __init__(self):
@@ -198,7 +188,7 @@ init -1 python:
             self.events["port_to_toriel_house"] = Event("port_to_toriel_house",True)
     
 label port_to_toriel_house:
-    "This is a test"
+    "Toriels House"
     $ world.move_to_room("Staircase")
 
 label dead_room:

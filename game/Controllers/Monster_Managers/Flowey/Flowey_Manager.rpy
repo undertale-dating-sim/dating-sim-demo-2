@@ -77,12 +77,15 @@ label initialize_flowey:
     return
 
 #this is floweys default scene
-label flowey_manager_default(owner = False):
+label flowey_manager_default(owner = False,pause = True):
 
     call show_flowey_sprite(owner)
 
     call show_buttons
 
+    if pause:
+        $ renpy.pause()
+        
     call flowey_greeting(owner)
     menu:
         "convo":

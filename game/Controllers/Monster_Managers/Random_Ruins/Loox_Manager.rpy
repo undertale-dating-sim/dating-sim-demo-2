@@ -5,20 +5,22 @@ init -9 python:
     class Loox(Monster):
         def __init__(self):
             Monster.__init__(self)
-            self.default_event = Event("loox_manager_default",True)
+            self.default_event = Event("loox_manager_default",True,self)
             self.name = "Loox"
+            self.default_sprite = 'loox normal'
 
 
 
 
 #this is floweys default scene
-label loox_manager_default(owner = False):
+label loox_manager_default(owner = False,pause = True):
     
     show loox normal
 
 
     call show_buttons
-    $ renpy.pause()
+    if pause:
+        $ renpy.pause()
 
 
     if not owner.visited:

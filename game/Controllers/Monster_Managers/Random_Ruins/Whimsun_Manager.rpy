@@ -5,17 +5,19 @@ init -9 python:
     class Whimsun(Monster):
         def __init__(self):
             Monster.__init__(self)
-            self.default_event = Event("Whimsun_manager_default",True)
+            self.default_event = Event("Whimsun_manager_default",True,self)
             self.name = "Whimsun"
+            self.default_sprite = 'whimsun normal'
 
 
 
 #this is floweys default scene
-label Whimsun_manager_default(owner = False):
+label Whimsun_manager_default(owner = False,pause = True):
     
     show whimsun normal
     call show_buttons
-    $ renpy.pause()
+    if pause:
+        $ renpy.pause()
 
     
     if not owner.visited:

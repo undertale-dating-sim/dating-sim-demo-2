@@ -19,6 +19,7 @@ label hide_buttons:
     hide screen show_nav_button
     hide screen show_map_button
     hide screen show_information_overlay
+    hide screen multiple_monster_click_screen
     return
 
 
@@ -35,63 +36,12 @@ label start:
     #jump load_room
     #jump dev_label
     #jump frisk_start
+    return
 
 screen talking_text():
     text "Talk to [talking]?" xpos .5 ypos .2
 
-screen multiple_monster_click_screen:
-    $ count = 1
-    $ width = (1.0/(len(world.currentArea.currentRoom.monsters)))
-    for monster in world.currentArea.currentRoom.monsters:
-        $ x = count * width
-        mousearea:
-            area ((count-1)* width, .4, width, .6)
-            hovered [SetVariable('talking',monster.name),Notify(monster.name)]
 
-        $ count+= 1
-
-        #unhovered SetVariable('talking',False)
-    # mousearea:
-    #     area (.33, 0, .33, 1.0)
-    #     hovered [SetVariable('talking',world.currentArea.currentRoom.monsters[1].name),Notify(world.currentArea.currentRoom.monsters[1].name)]
-    #     #unhovered SetVariable('talking',False)
-
-    # mousearea:
-    #     area (.66, 0, .33, 1.0)
-    #     hovered [SetVariable('talking',world.currentArea.currentRoom.monsters[2].name),Notify(world.currentArea.currentRoom.monsters[2].name)]
-    #     #unhovered SetVariable('talking',False)
-
-
-    #     #hovered Show("buttons", transition=dissolve)
-    #     #unhovered Hide("buttons", transition=dissolve)
-
-label multiple_monster:
-    
-    #show the background
-    call show_buttons
-    show screen multiple_monster_click_screen
-    python:
-        renpy.scene()
-        if world.currentArea.currentRoom.bg:
-            renpy.show(world.currentArea.currentRoom.bg)
-    #for each monster, we need to figure out where to put them
-    while True:
-        python:
-            count = 1
-            
-            for monster in world.currentArea.currentRoom.monsters:
-                width = (1.0/(len(world.currentArea.currentRoom.monsters)+1))
-                x = count * width
-                
-                if monster.name != talking:
-                    renpy.show(monster.default_sprite,[Position(xpos = x, xanchor = 'center')])
-
-                count += 1  
-        
-        pause
-        if talking:
-            call expression world.get_monster(talking).default_event.label pass(world.get_monster(talking))
-    return
 
 label dev_label:
     show screen show_menu_button

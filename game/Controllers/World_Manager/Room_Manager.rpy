@@ -52,3 +52,62 @@ init -10 python:
 
         def remove_monster(self,Monster):
             self.monsters.remove(Monster)
+
+screen multiple_monster_click_screen:
+    $ count = 1
+
+    $ width = (1.0/(len(world.currentArea.currentRoom.monsters)))
+    for monster in world.currentArea.currentRoom.monsters:
+        $ x = count * width
+        mousearea:
+            area ((count-1)* width, .4, width, .6)
+            hovered [SetVariable('talking',monster.name),Notify(monster.name)]
+
+        $ count+= 1
+
+        #unhovered SetVariable('talking',False)
+    # mousearea:
+    #     area (.33, 0, .33, 1.0)
+    #     hovered [SetVariable('talking',world.currentArea.currentRoom.monsters[1].name),Notify(world.currentArea.currentRoom.monsters[1].name)]
+    #     #unhovered SetVariable('talking',False)
+
+    # mousearea:
+    #     area (.66, 0, .33, 1.0)
+    #     hovered [SetVariable('talking',world.currentArea.currentRoom.monsters[2].name),Notify(world.currentArea.currentRoom.monsters[2].name)]
+    #     #unhovered SetVariable('talking',False)
+
+
+    #     #hovered Show("buttons", transition=dissolve)
+    #     #unhovered Hide("buttons", transition=dissolve)
+
+label multiple_monster:
+    
+    #show the background
+    call show_buttons
+    show screen multiple_monster_click_screen
+    python:
+        renpy.scene()
+        if world.currentArea.currentRoom.bg:
+            renpy.show(world.currentArea.currentRoom.bg)
+    #for each monster, we need to figure out where to put them
+    while True:
+        python:
+            count = 1
+            
+            for monster in world.currentArea.currentRoom.monsters:
+                width = (1.0/(len(world.currentArea.currentRoom.monsters)+1))
+                x = count * width
+                
+                if monster.name != talking:
+                    renpy.show(monster.default_sprite,[Position(xpos = x, xanchor = 'center')])
+
+
+                count += 1  
+        if talking:
+            pause
+        else:
+            pause 1.0
+        if talking:
+            call expression world.get_monster(talking).default_event.label pass(world.get_monster(talking),False)
+ 
+    return

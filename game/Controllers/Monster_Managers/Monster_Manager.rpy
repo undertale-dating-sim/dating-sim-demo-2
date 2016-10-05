@@ -37,6 +37,12 @@ init -10 python:
             
             
         def move_to_room(self,room):
+
+            if room == 'Random':
+                room = random.choice(world.currentArea.rooms.keys())
+
+
+
             for an,a in world.areas.iteritems():
                 for rn,r in a.rooms.iteritems():
                     if r.name == room:

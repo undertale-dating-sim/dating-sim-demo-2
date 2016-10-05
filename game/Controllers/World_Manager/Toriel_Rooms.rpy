@@ -1,13 +1,13 @@
 init:
     #toriel house
-    image background toriel_house_corridor = "backgrounds/TorielsHouse/background-ruins-corridor.png"
-    image background toriel_house_frisk_room = "backgrounds/TorielsHouse/background-ruins-friskroom.png"
-    image background toriel_house_kitchen = "backgrounds/TorielsHouse/background-ruins-kitchen.png"
-    image background toriel_house_livingroom = "backgrounds/TorielsHouse/background-ruins-livingroom.png"
-    image background toriel_house_staircase = "backgrounds/TorielsHouse/background-ruins-staircase.png"
-    image background toriel_house_toriel_room = "backgrounds/TorielsHouse/background-ruins-torielroom.png"
-    image background toriel_house_your_room = "backgrounds/TorielsHouse/background-ruins-yourroom.png"
-    image background toriel_house_corridor = "backgrounds/TorielsHouse/background-ruins-corridor.png"
+    image background toriel_house_corridor = im.Scale("backgrounds/TorielsHouse/background-ruins-corridor.png",800,600)
+    image background toriel_house_frisk_room = im.Scale("backgrounds/TorielsHouse/background-ruins-friskroom.png",800,600)
+    image background toriel_house_kitchen = im.Scale("backgrounds/TorielsHouse/background-ruins-kitchen.png",800,600)
+    image background toriel_house_livingroom = im.Scale("backgrounds/TorielsHouse/background-ruins-livingroom.png",800,600)
+    image background toriel_house_staircase = im.Scale("backgrounds/TorielsHouse/background-ruins-staircase.png",800,600)
+    image background toriel_house_toriel_room = im.Scale("backgrounds/TorielsHouse/background-ruins-torielroom.png",800,600)
+    image background toriel_house_your_room = im.Scale("backgrounds/TorielsHouse/background-ruins-yourroom.png",800,600)
+    image background toriel_house_corridor = im.Scale("backgrounds/TorielsHouse/background-ruins-corridor.png",800,600)
 
 
 init python:
@@ -23,6 +23,7 @@ init python:
             self.add_room(th_your_room())
             self.add_room(th_toriel_room())
             self.add_room(th_basement_door())
+            self.add_room(toriel_house_to_ruins())
 
 
         def setup_breakfast_day2(self):
@@ -110,6 +111,21 @@ init python:
             self.desc = "This is toriel's room."
             self.bg = "background toriel_house_toriel_room"
             self.locked = True
+
+    class toriel_house_to_ruins(Room):
+        def __init__(self):
+            Room.__init__(self)
+            self.name = "TH Exit"
+            self.x = 5
+            self.y = -1
+            self.desc = ""
+            self.bg = ""
+            self.mappable = False
+            self.events["port_to_black_tree_room"] = Event("port_to_black_tree_room",True)
+    
+label port_to_black_tree_room:
+    "The Ruins"
+    $ world.move_to_room("Black Tree Room")
     
 label player_sleeping_th:
     "You fall asleep in your bed."

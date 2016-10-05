@@ -5,18 +5,20 @@ init -9 python:
     class Migosp(Monster):
         def __init__(self):
             Monster.__init__(self)
-            self.default_event = Event("migosp_manager_default",True)
+            self.default_event = Event("migosp_manager_default",True,self)
             self.name = "Migosp"
+            self.default_sprite = 'migosp normal'
 
 
 
 
 #this is floweys default scene
-label migosp_manager_default(owner = False):
+label migosp_manager_default(owner = False,pause = True):
     
     show migosp normal
     call show_buttons
-    $ renpy.pause()
+    if pause:
+        $ renpy.pause()
 
     if not owner.visited:
         migosp "La la la....Hey!"

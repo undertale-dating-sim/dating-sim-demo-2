@@ -79,7 +79,7 @@ label initialize_frisk:
     return
 
 #this is Toriels default scene
-label Frisk_manager_default(owner = False):
+label Frisk_manager_default(owner = False,pause = True):
 
 
     call show_buttons

@@ -87,12 +87,14 @@ label initialize_napstablook:
                napstablookChar(text, *args, **kwargs)
     return
 
-label Napstablook_manager_default(owner = False):
+label Napstablook_manager_default(owner = False, pause = True):
 
 
     call show_buttons
-    #$ renpy.pause()
     show napstablook normal
+    if pause:
+        $ renpy.pause()
+    
     menu:
         "Napstablook"
         "Raise FP 10":

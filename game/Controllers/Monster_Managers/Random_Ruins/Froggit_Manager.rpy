@@ -7,17 +7,19 @@ init -9 python:
             Monster.__init__(self)
             self.name = "Froggit"
             self.default_event = Event("froggit_default_dialogue",True,self)
+            self.default_sprite = 'froggit normal'
 
 
 
 
 
 #this is floweys default scene
-label froggit_default_dialogue(owner):
+label froggit_default_dialogue(owner,pause = True):
     call show_buttons
     show froggit normal
 
-    $ renpy.pause()
+    if pause:
+        $ renpy.pause()
     
     if not owner.visited:
         froggit "Oh, hello!"

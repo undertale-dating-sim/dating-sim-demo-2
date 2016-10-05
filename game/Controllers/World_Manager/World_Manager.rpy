@@ -31,7 +31,7 @@ init -10 python:
         #this function should be called at the beginning of every day.
         #it will update all of the areas for whatever we need.
         def update_day(self):
-            #self.seed_random_monsters()
+            self.seed_random_monsters()
             return
 
         def get_current_day(self):
@@ -39,27 +39,34 @@ init -10 python:
         #this function will seed all of the random monsters to the various rooms they can be in.
         #rooms with events already in them should be ignored.
         def seed_random_monsters(self):
-            for a in self.areas:
-                #we need to add each random monster to a different room
+            for an,a in self.areas.iteritems():
 
-                #first we get a list of all the rooms in the area
-                room_list = list(a.rooms)
-                #now we remove every room that has an event, or another monster in it
-                for r in room_list:
-                    if len(r.monsters) > 0 or len(r.events) > 0:
-                        room_list.remove(r)
+                for r in a.random_monsters:
+                    r.move_to_room("Random")
 
-                #now we seed the monsters into random rooms in the list, removing each room as we do it.
-                #we will do this until we run out of rooms
-                random.shuffle(a.random_monsters)
-                random.shuffle(room_list)
-                for m in a.random_monsters:
-                    if len(room_list) > 0:
-                        m.move_to_room(room_list[0].name)
-                        room_list.remove(room_list[0])
 
-            return
 
+
+
+
+
+                # #first we get a list of all the rooms in the area
+                # room_list = list(a.rooms.iteritems())
+                # #now we remove every room that has an event, or another monster in it
+                # for rn,r in room_list:
+                #     if len(r.monsters) > 0 or len(r.events) > 0:
+                #         room_list.remove(r)
+
+                # #now we seed the monsters into random rooms in the list, removing each room as we do it.
+                # #we will do this until we run out of rooms
+                # random.shuffle(a.random_monsters)
+                # random.shuffle(room_list)
+                # for m in a.random_monsters:
+                #     if len(room_list) > 0:
+                #         m.move_to_room(room_list[0].name)
+                #         room_list.remove(room_list[0])
+
+            
         def update_world(self,update_day = False):
 
             timezone = self.get_current_timezone()
@@ -192,8 +199,9 @@ label load_room:
             renpy.show(world.currentArea.currentRoom.bg)
 
     with fade
-    if not world.currentArea.currentRoom.visited and world.currentArea.currentRoom.desc:
-        "[world.currentArea.currentRoom.desc]"
+    if ADMIN_ROOM_DESC:
+        if not world.currentArea.currentRoom.visited and world.currentArea.currentRoom.desc:
+            "[world.currentArea.currentRoom.desc]"
     $ world.currentArea.currentRoom.visited = True
 
 

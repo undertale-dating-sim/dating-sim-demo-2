@@ -5,19 +5,21 @@ init -9 python:
     class Vegetoid(Monster):
         def __init__(self):
             Monster.__init__(self)
-            self.default_event = Event("vegetoid_manager_default",True)
+            self.default_event = Event("vegetoid_manager_default",True,self)
             self.name = 'Vegetoid'
+            self.default_sprite = 'vegetoid normal'
 
 
 
 
 
 #this is floweys default scene
-label vegetoid_manager_default(owner=False):
+label vegetoid_manager_default(owner=False,pause = True):
     
     show vegetoid normal
     call show_buttons
-    $ renpy.pause()
+    if pause:
+        $ renpy.pause()
 
     if not owner.visited:
         vegetoid "..."

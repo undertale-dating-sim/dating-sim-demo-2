@@ -65,6 +65,10 @@ label initialize:
 
     image whimsun normal = "characters/Whimsun/whimsun_normal.png"
 
+    image migosp normal = "characters/Migosp/migosp_normal.png"
+    image migosp angry = "characters/Migosp/migosp_angry.png"
+    
+
     #initialize the monsters
     call initialize_toriel
     call initialize_napstablook

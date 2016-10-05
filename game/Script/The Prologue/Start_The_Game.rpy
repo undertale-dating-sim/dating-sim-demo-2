@@ -9,7 +9,8 @@ label start_the_game:
    # $ world.get_monster("flowey").move_to_room("Dead Room")
     #$ world.get_monster("flowey").reset_schedule()
     #world.move_to_room("Dead Room")
-    $ world.move_to_room("Your Room")
+    $ world.move_to_room("Cave Room")
+    return
 
 label prologue:
     

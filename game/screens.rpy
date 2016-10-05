@@ -337,6 +337,9 @@ init -2:
     style file_picker_button is large_button
     style file_picker_text is large_button_text
 
+init -3:
+    $ ADMIN_ROOM_DESC = False
+
 #######################################
 # Admin Controls
 # Customer Screen made by Wilson to control finer parts of the game.  Should be taken out of public release
@@ -362,8 +365,8 @@ screen admin_controls():
             frame:
                 style_group "pref"
                 has vbox
-                label _("Test")
-                textbutton _("Test") action Notify('test')
+                label _("Room Descriptions [ADMIN_ROOM_DESC]")
+                textbutton _("toggle") action ToggleVariable("ADMIN_ROOM_DESC")
         vbox:
             frame:
                 style_group "pref"

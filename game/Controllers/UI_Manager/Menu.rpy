@@ -1,7 +1,7 @@
 
 screen show_menu_button:
-    #Show("debug_monsters")
-    textbutton "Show Menu" action [Play ("sound", "audio/sfx/click.wav"),Show("show_menu"),Hide("show_menu_button"),Show("stats")] align(.95,.05) 
+    
+    textbutton "Show Menu" action [Play ("sound", "audio/sfx/click.wav"),Show("show_menu"),Hide("show_menu_button"),Show("stats"),Show("debug_monsters")] align(.95,.05) 
 
 screen show_menu:
     add "#0008"
@@ -155,9 +155,10 @@ screen show_information_overlay:
                 text "[world.currentArea.currentRoom.current_monster.name]         FP:[world.currentArea.currentRoom.current_monster.FP]"
 
 
+#if you look, I have added the multiple monster screen here.  It was causing a divide by zero error and I'm not sure how to fix it
 screen show_nav_button:
     textbutton "Show Nav (E)" action [Play ("sound", "audio/sfx/click.wav"), Show("navigation_buttons"), Hide("show_nav_button")] align(.95,.1) 
-    key 'e' action [Play ("sound", "audio/sfx/click.wav"), Show("navigation_buttons"), Hide("show_nav_button")]
+    key 'e' action [Play ("sound", "audio/sfx/click.wav"), Show("navigation_buttons"), Hide("show_nav_button"),Hide("multiple_monster_click_screen")]
 screen navigation_buttons:
     add "#0008"
     modal True
@@ -168,7 +169,7 @@ screen navigation_buttons:
     #             textbutton "[r.name]" action [Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Function(world.move_to_room,r.name)]
     $dirs = world.currentArea.cr_get_neighbors()
 
-    textbutton "Hide Nav (E)" action [Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button')] align(.95,.1) 
+    textbutton "Hide Nav (E)" action [Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Hide("multiple_monster_click_screen")] align(.95,.1) 
     key 'e' action [Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button')]
     if dirs.count('north') > 0:
         imagebutton auto "UI/button_north_%s.gif"  align(0.5,0.0) action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.currentArea.move_dir,'north')]

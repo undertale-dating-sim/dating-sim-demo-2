@@ -84,7 +84,7 @@ label initialize_toriel:
     return
 
 #this is Toriels default scene
-label Toriel_manager_default(owner = False):
+label Toriel_manager_default(owner = False,pause = True):
     
     if owner.FP < 20:
         show toriel reallysad
@@ -97,6 +97,8 @@ label Toriel_manager_default(owner = False):
     else:
         show toriel blushing
 
+    if pause:
+        $renpy.pause()
     call show_buttons
 
     "Good morning!"
