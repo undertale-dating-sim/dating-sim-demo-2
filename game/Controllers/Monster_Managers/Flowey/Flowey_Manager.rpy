@@ -90,6 +90,8 @@ label flowey_manager_default(owner = False,pause = True):
     menu:
         "convo":
             call flowey_default_conversation(owner) from _call_flowey_default_conversation
+        "remember test":
+            $r = renpy.call_screen("remember",owner)
         "Raise FP 20":
             $ owner.FP += 20
         "Lower FP 20":

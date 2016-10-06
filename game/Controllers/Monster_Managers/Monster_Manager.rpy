@@ -83,6 +83,12 @@ init -10 python:
             self.schedule[day][timezone] = {location:event}
 
             return
+    
+
+screen remember(owner):
+    
+    text "[owner.name] will remember that." xpos .01 ypos .2
+    timer 2.0 action [Hide("remember",transition=dissolve),Return()]
 
 label give_item(owner,item):
     python:

@@ -4,6 +4,8 @@ label splashscreen:
     return
 
 label after_load:
+    $ talking = False
+    hide screen multiple_monster_click_screen
     jump start
     return
 
@@ -28,11 +30,10 @@ label updater:
 #This takes place after the MC has heard about Frisk from Toriel.
 label start:
     stop music
-    play music "audio/music/music-home.mp3"
+    #play music "audio/music/music-home.mp3"
     
     #call super_secret_console
     call show_buttons from _call_show_buttons_11
-    $ talking = False
     #jump scrolling_credits
     #$ world.get_monster("Toriel").move_to_room("Basement Door")
     jump start_the_game
