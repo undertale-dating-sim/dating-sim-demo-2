@@ -90,10 +90,12 @@ label initialize_napstablook:
 label Napstablook_manager_default(owner = False, pause = True):
 
 
-    call show_buttons
+    call show_buttons from _call_show_buttons_7
     show napstablook normal
     if pause:
         $ renpy.pause()
+
+    $ x = x / 0
     
     menu:
         "Napstablook"

@@ -19,32 +19,32 @@ label flowey_default_conversation(owner):
         "How's the weather down there?":
             "nyi"
         "What do you think about....":
-            call flowey_ruins_think_about(owner)
+            call flowey_ruins_think_about(owner) from _call_flowey_ruins_think_about
         "Do you believe in fate or destiny?":
-            call flowey_ruins_fate(owner)
+            call flowey_ruins_fate(owner) from _call_flowey_ruins_fate
     return
 
 label flowey_ruins_think_about(owner):
     menu:
         "What do you think about..."
         "Toriel":
-            call flowey_think_about_monster(owner,"Toriel")
+            call flowey_think_about_monster(owner,"Toriel") from _call_flowey_think_about_monster
         "Frisk":
-            call flowey_think_about_monster(owner,"Frisk")
+            call flowey_think_about_monster(owner,"Frisk") from _call_flowey_think_about_monster_1
         "Napstablook":
-            call flowey_think_about_monster(owner,"Napstablook")
+            call flowey_think_about_monster(owner,"Napstablook") from _call_flowey_think_about_monster_2
         "Mattaton":
-            call flowey_think_about_monster(owner,"Mattaton")
+            call flowey_think_about_monster(owner,"Mattaton") from _call_flowey_think_about_monster_3
         "Sans":
-            call flowey_think_about_monster(owner,"Sans")
+            call flowey_think_about_monster(owner,"Sans") from _call_flowey_think_about_monster_4
         "Papyrus":
-            call flowey_think_about_monster(owner,"Papyrus")
+            call flowey_think_about_monster(owner,"Papyrus") from _call_flowey_think_about_monster_5
         "Undyne":
-            call flowey_think_about_monster(owner,"Undyne")
+            call flowey_think_about_monster(owner,"Undyne") from _call_flowey_think_about_monster_6
         "Alphys":
-            call flowey_think_about_monster(owner,"Alphys")
+            call flowey_think_about_monster(owner,"Alphys") from _call_flowey_think_about_monster_7
         "Asgore":
-            call flowey_think_about_monster(owner,"Asgore")
+            call flowey_think_about_monster(owner,"Asgore") from _call_flowey_think_about_monster_8
     return
 
 label flowey_think_about_monster(owner,monster):

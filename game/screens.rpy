@@ -196,7 +196,7 @@ screen main_menu():
         textbutton _("Preferences") action ShowMenu("preferences")
         textbutton _("Feedback") action Jump("Feedback")
         textbutton _("Admin_Controls") action ShowMenu("admin_controls")
-        textbutton _("Help") action Help()
+        textbutton _("Update") action Jump("updater")
         textbutton _("Quit") action Quit(confirm=False)
 
 init -2:

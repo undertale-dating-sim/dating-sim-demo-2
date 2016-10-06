@@ -79,29 +79,29 @@ label initialize_flowey:
 #this is floweys default scene
 label flowey_manager_default(owner = False,pause = True):
 
-    call show_flowey_sprite(owner)
+    call show_flowey_sprite(owner) from _call_show_flowey_sprite
 
-    call show_buttons
+    call show_buttons from _call_show_buttons_14
 
     if pause:
         $ renpy.pause()
         
-    call flowey_greeting(owner)
+    call flowey_greeting(owner) from _call_flowey_greeting
     menu:
         "convo":
-            call flowey_default_conversation(owner)
+            call flowey_default_conversation(owner) from _call_flowey_default_conversation
         "Raise FP 20":
             $ owner.FP += 20
         "Lower FP 20":
             $ owner.FP -= 20
         "Give Gift" if len(inventory.items) > 0:
-            call flowey_gift_menu_open(owner)
+            call flowey_gift_menu_open(owner) from _call_flowey_gift_menu_open
             $ result = renpy.call_screen("gift_item_menu",owner)
             if result == 'cancel':
-                call flowey_gift_menu_cancel(owner)
+                call flowey_gift_menu_cancel(owner) from _call_flowey_gift_menu_cancel
             
         "Leave":
-            call flowey_goodbye(owner)
+            call flowey_goodbye(owner) from _call_flowey_goodbye
 
     return
 

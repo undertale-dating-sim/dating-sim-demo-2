@@ -18,7 +18,7 @@ label loox_manager_default(owner = False,pause = True):
     show loox normal
 
 
-    call show_buttons
+    call show_buttons from _call_show_buttons_8
     if pause:
         $ renpy.pause()
 

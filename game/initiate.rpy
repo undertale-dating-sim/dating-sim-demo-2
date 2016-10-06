@@ -70,10 +70,10 @@ label initialize:
     
 
     #initialize the monsters
-    call initialize_toriel
-    call initialize_napstablook
-    call initialize_frisk
-    call initialize_flowey
+    call initialize_toriel from _call_initialize_toriel
+    call initialize_napstablook from _call_initialize_napstablook
+    call initialize_frisk from _call_initialize_frisk
+    call initialize_flowey from _call_initialize_flowey
 
     #character-settings
     #character settings

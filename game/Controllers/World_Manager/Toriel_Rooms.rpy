@@ -48,6 +48,7 @@ init python:
             self.x = 5
             self.y = 1
             self.lockeast = True
+            self.lockwest = True
             self.desc = "This is the exit."
             
 
@@ -130,25 +131,25 @@ label port_to_black_tree_room:
 label player_sleeping_th:
     "You fall asleep in your bed."
     $ renpy.show(world.currentArea.currentRoom.bg)
-    call player_waking_up
+    call player_waking_up from _call_player_waking_up
     return
 
 
 
 label th_your_room:
-    call show_buttons
+    call show_buttons from _call_show_buttons_12
     if player.current_stamina <= 0:
-        call player_waking_up
+        call player_waking_up from _call_player_waking_up_1
     pause
     menu:
         "Sleep" if player.current_stamina < player.max_stamina:
-            call player_sleeping_th
+            call player_sleeping_th from _call_player_sleeping_th
         "Not Tired":
             return
     return
 
 label toriel_house_corridor:
-    call show_buttons
+    call show_buttons from _call_show_buttons_13
     pause
     while True:
         menu:

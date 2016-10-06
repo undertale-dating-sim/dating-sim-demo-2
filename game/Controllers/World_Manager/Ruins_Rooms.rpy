@@ -195,7 +195,7 @@ label dead_room:
     stop music
     play music "audio/music/scary.ogg"
     show wilson scary
-    "{size=+5}{font=Pixelated_Wingdings.ttf}You   SHOULDN'T    BE     HERE{/font}"
+    "{size=+5}{font=font/Pixelated_Wingdings.ttf}You   SHOULDN'T    BE     HERE{/font}"
     return
 
 

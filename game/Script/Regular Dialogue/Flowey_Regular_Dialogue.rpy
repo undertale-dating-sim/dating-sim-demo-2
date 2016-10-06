@@ -6,15 +6,15 @@ label Flowey_Regular_Dialogue:
         "Change Standing":
             jump Flowey_Change_Standing
         "Ruins":
-            call Flowey_Ruins_Regular
+            call Flowey_Ruins_Regular from _call_Flowey_Ruins_Regular
         "Flowers":
-            call Flowey_When_In_Flowers_Regular
+            call Flowey_When_In_Flowers_Regular from _call_Flowey_When_In_Flowers_Regular
         "Waterfall: Echo Flower Room":
-            call Flowey_Waterfall_Echo_Flower_Room
+            call Flowey_Waterfall_Echo_Flower_Room from _call_Flowey_Waterfall_Echo_Flower_Room
         "Distant Castle View Room":
-            call Flowey_Distant_Castle_View_Room_Regular
+            call Flowey_Distant_Castle_View_Room_Regular from _call_Flowey_Distant_Castle_View_Room_Regular
         "Casual Chats":
-            call Flowey_Casual_Chats
+            call Flowey_Casual_Chats from _call_Flowey_Casual_Chats
 
 label Flowey_Change_Standing:
     menu:
@@ -307,7 +307,7 @@ label Flowey_Casual_Chats:
         menu:
             "Toriel":
                 if flowey_hated or flowey_disliked:
-                    call Flowey_Casual_Hated
+                    call Flowey_Casual_Hated from _call_Flowey_Casual_Hated
                 else:
                     flowey "She’s got a green thumb I guess?"
                     flowey "I don’t think much of her, if that matters."
@@ -316,7 +316,7 @@ label Flowey_Casual_Chats:
                     flowey "The end."                        
             "Frisk":
                 if flowey_hated or flowey_disliked:
-                    call Flowey_Casual_Hated
+                    call Flowey_Casual_Hated from _call_Flowey_Casual_Hated_1
                 else:
                     flowey "The one who fell before you..."
                     flowey "And spontaneously decided \"Let’s just stay why the hell not?\""
@@ -326,7 +326,7 @@ label Flowey_Casual_Chats:
 
             "Napstablook":
                 if flowey_hated or flowey_disliked:
-                    call Flowey_Casual_Hated
+                    call Flowey_Casual_Hated from _call_Flowey_Casual_Hated_2
                 else:
                     flowey "...."
                     flowey "What’s there to think about?"
@@ -335,14 +335,14 @@ label Flowey_Casual_Chats:
                     flowey "...’nuff said."
             "Mettaton":
                 if flowey_hated or flowey_disliked:
-                    call Flowey_Casual_Hated
+                    call Flowey_Casual_Hated from _call_Flowey_Casual_Hated_3
                 else:
                     flowey "I will not tell a lie."
                     flowey "Those are some mighty fine legs."
                     flowey "If only they could be used to beat the rest of himself with."
             "Sans":
                 if flowey_hated or flowey_disliked:
-                    call Flowey_Casual_Hated
+                    call Flowey_Casual_Hated from _call_Flowey_Casual_Hated_4
                 else:
                     flowey "...."
                     flowey "I refer to him as Smiley Trashbag."
@@ -350,7 +350,7 @@ label Flowey_Casual_Chats:
                     flowey "....Don’t you have anyone better to talk about?"
             "Papyrus":
                 if flowey_hated or flowey_disliked:
-                    call Flowey_Casual_Hated
+                    call Flowey_Casual_Hated from _call_Flowey_Casual_Hated_5
                 else:
                     flowey "...."
                     flowey "Papyrus is a rather special case."
@@ -358,14 +358,14 @@ label Flowey_Casual_Chats:
                     flowey "....which you really don’t need to know my opinion on him so let’s move along, shall we?"
             "Undyne":
                 if flowey_hated or flowey_disliked:
-                    call Flowey_Casual_Hated
+                    call Flowey_Casual_Hated from _call_Flowey_Casual_Hated_6
                 else:
                     flowey "What’s there to think about?"
                     flowey "She’s the generic hero in most stories."
                     flowey "Get to know her better and see for yourself."
             "Alphys":
                 if flowey_hated or flowey_disliked:
-                    call Flowey_Casual_Hated
+                    call Flowey_Casual_Hated from _call_Flowey_Casual_Hated_7
                 else:
                     flowey "..."
                     flowey "There’s so many things that can be said about that one."
@@ -374,7 +374,7 @@ label Flowey_Casual_Chats:
                     flowey "that’s for you to decide later on, isn’t it?"
             "Asgore":
                 if flowey_hated or flowey_disliked:
-                    call Flowey_Casual_Hated
+                    call Flowey_Casual_Hated from _call_Flowey_Casual_Hated_8
                 else:
                     flowey "..."
                     flowey "Also a green thumb,"

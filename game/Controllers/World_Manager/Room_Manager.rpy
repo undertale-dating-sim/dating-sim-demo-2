@@ -83,8 +83,9 @@ screen multiple_monster_click_screen:
 label multiple_monster:
     
     #show the background
-    call show_buttons
+    call show_buttons from _call_show_buttons_3
     show screen multiple_monster_click_screen
+    $ talking = False
     python:
         renpy.scene()
         if world.currentArea.currentRoom.bg:
@@ -108,6 +109,6 @@ label multiple_monster:
         else:
             pause 1.0
         if talking:
-            call expression world.get_monster(talking).default_event.label pass(world.get_monster(talking),False)
+            call expression world.get_monster(talking).default_event.label pass(world.get_monster(talking),False) from _call_expression
  
     return

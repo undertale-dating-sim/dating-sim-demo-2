@@ -190,7 +190,7 @@ label test_label:
 #shows the current background, if the room hasn't been visited shows the description, sets visited to True, then Pauses to allow player to do things
 label load_room:
     
-    call hide_buttons
+    call hide_buttons from _call_hide_buttons
 
     python:
         cell_convo_count = 0
@@ -212,7 +212,7 @@ label load_room:
         $ temp_event = world.currentArea.currentRoom.get_event()
     
     while True:
-        call show_buttons
+        call show_buttons from _call_show_buttons_9
         pause
     return
 

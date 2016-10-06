@@ -49,7 +49,7 @@ label the_fall:
     
     $ temp_loop = True
     while temp_loop:
-        call Name_Select
+        call Name_Select from _call_Name_Select
         "[player.name]"
         "...was that your name?"
         menu:

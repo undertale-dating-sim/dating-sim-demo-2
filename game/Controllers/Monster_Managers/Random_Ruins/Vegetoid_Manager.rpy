@@ -17,7 +17,7 @@ init -9 python:
 label vegetoid_manager_default(owner=False,pause = True):
     
     show vegetoid normal
-    call show_buttons
+    call show_buttons from _call_show_buttons_5
     if pause:
         $ renpy.pause()
 

@@ -16,7 +16,7 @@ init -9 python:
 label moldsmol_manager_default(owner=False,pause=True):
     
     show moldsmol normal
-    call show_buttons
+    call show_buttons from _call_show_buttons_4
     if pause:
         $ renpy.pause()
 

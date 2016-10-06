@@ -300,7 +300,7 @@ init python:
 
     ## If True, Ren'Py will include update information into packages. This
     ## allows the updater to run.
-    build.include_update = False
+    build.include_update = True
 
     ## File patterns:
     ##

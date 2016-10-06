@@ -15,7 +15,7 @@ init -9 python:
 label Whimsun_manager_default(owner = False,pause = True):
     
     show whimsun normal
-    call show_buttons
+    call show_buttons from _call_show_buttons_10
     if pause:
         $ renpy.pause()
 

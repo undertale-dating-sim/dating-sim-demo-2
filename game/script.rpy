@@ -21,14 +21,17 @@ label hide_buttons:
     hide screen show_information_overlay
     hide screen multiple_monster_click_screen
     return
-
+label updater:
+    $ updater.update(url='http://www.apartmentgaming.com/update/updates.json')
+    return
 
 #This takes place after the MC has heard about Frisk from Toriel.
 label start:
     stop music
-    #play music "audio/music/music-home.mp3"
+    play music "audio/music/music-home.mp3"
+    
     #call super_secret_console
-    call show_buttons
+    call show_buttons from _call_show_buttons_11
     $ talking = False
     #jump scrolling_credits
     #$ world.get_monster("Toriel").move_to_room("Basement Door")

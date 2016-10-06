@@ -16,7 +16,7 @@ init -9 python:
 label migosp_manager_default(owner = False,pause = True):
     
     show migosp normal
-    call show_buttons
+    call show_buttons from _call_show_buttons_2
     if pause:
         $ renpy.pause()
 

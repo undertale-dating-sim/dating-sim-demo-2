@@ -15,7 +15,7 @@ init -9 python:
 
 #this is floweys default scene
 label froggit_default_dialogue(owner,pause = True):
-    call show_buttons
+    call show_buttons from _call_show_buttons_1
     show froggit normal
 
     if pause:

@@ -14,12 +14,12 @@ label whimsun_re_start:
             $ player.modify_cowardice(4)
             "You quickly snatch the Whimsun away from the bullies and the two of you rush to another room."
             "For some reason, Whimsun doesn't look any happier."
-            call whimsun_ruins_run
+            call whimsun_ruins_run from _call_whimsun_ruins_run
             
 
         "Hey- stop hurting them!":
             $ player.modify_bravery(3)
-            call whimsun_ruins_facebullies
+            call whimsun_ruins_facebullies from _call_whimsun_ruins_facebullies
             
     return
 
