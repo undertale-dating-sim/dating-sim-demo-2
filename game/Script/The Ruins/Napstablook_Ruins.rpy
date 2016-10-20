@@ -20,7 +20,7 @@ label blooky_ruins:
         "One Man's Trash...":
             jump blooky_event3
         "Blooky's Date":
-            jump blooky_questions_date
+            jump blooky_hb_date
         "Exit":
             jump start
             
@@ -626,12 +626,1013 @@ label blooky_ruins:
                 
                 
                 
-    label blooky_questions_date:
+    label blooky_hb_date:
         #Event Name: "Blooky's Date"
-        #Event Trigger:
+        #Event Trigger: A meddling small white dog
         
+        ####### TEMP TESTING!!!! #######
+        $ isdancer = True
         
-        "Hey!"
-        "It's a small white dog, chewing on the remnants of a script."
-        "The Annoying Dog has fled."
-        jump blooky_ruins
+        python:
+            question_num = 0
+            prev_qs = [0]
+            
+            likesart = False
+            likesreading = False
+            likesguns = False
+            likescooking = False
+            likesexercise = False
+            
+            didnothing = False
+            asked_ghostfood = False
+            feelliketrash = False
+            dislikedmusic = False
+            
+            asked_1 = False
+            asked_2 = False
+            asked_3 = False
+            asked_4 = False
+            asked_5 = False
+            asked_6 = False
+            asked_7 = False
+            asked_8 = False
+            asked_9 = False
+            asked_10 = False
+        
+        #Surprised
+        blooky "really?"
+        blooky "hangout........with me? that’d be nice..."
+        #Normal/Happy
+        blooky "sure.....if it’s not too much of a bother..."
+        blooky "..... ...well i know a place nearby we can go..."
+        blooky "follow me...."
+        
+        #Fade black
+        
+        blooky "..."
+        
+        #Scene chage: Front of Ruins
+        
+        blooky "oh good"
+        blooky "it’s empty"
+        
+        menu:
+            "Just the two of us, then.": #(+ DP)
+                #Normal/Happy
+                blooky "yeah..."
+                blooky "just you and me..."
+                blooky "i hope that’s okay.... ...i come to the ruins to usually be alone so..."
+                blooky "usually my music is good company"
+                
+                #tiny smile
+                
+                blooky ".... ....but so are you"
+            "Is that okay?": #(+ FP, +Kindness)
+                blooky "i think so yeah..."
+                blooky "i usually like being alone with my music..."
+                blooky "i don’t mind it at all..."
+            
+            "Are people avoiding you?": #(+ HB)
+                #Sad
+                blooky "i don’t know......"
+                blooky "i really wouldn’t be surprised if they did....."
+                blooky "i can understand that i’m a downer"
+                blooky "i learned to accept it......"
+                
+                jump downer_response
+        jump date_start
+                
+        label downer_response:
+            menu:
+                "Well I don’t think you’re a downer.": #(+ HB)
+                    #Happy/ Tiny smile
+                    blooky "oh.... good..."
+                    blooky "im glad.... ... at least there’s still you"
+                "Quietly smile.": 
+                    #(+0 HB FP DP)    
+                    $ bump = 0
+            jump date_start
+                    
+        label date_start:
+            
+            blooky "so"
+            blooky "how do we start this?"
+            
+            #Blushing deeply
+            
+            blooky "to be honest... ...it’s been awhile since i last got to hang out with someone....."
+            blooky "....."
+            blooky "..........."
+            blooky "maybe we could... ask each other questions? that’s how people get to know each other.... right?"
+            
+            menu:
+                "The cliche approach. How original.": #(+ HB)
+                    blooky "oh...thanks... it’s no big deal...."
+                    blooky "well... i guess...... we can take turns..... or something..."
+                "I guess, if that’s what you want to do…": #(+ FP)
+                    blooky "oh..... um........ okay...."
+                    blooky "i  guess i’ll start...... we can take turns....."
+            jump blooky_date_questions
+        
+        label blooky_date_questions:
+            python:
+                blooky_asking = True
+                while blooky_asking is True:
+                    randnum = renpy.random.randint(1, 11)
+                    if randnum in prev_qs:
+                        continue
+                    else:
+                        prev_qs.append(randnum)
+                        blooky_asking = False
+                        question_num += 1
+                        
+            #$ randnum = 1
+            "%(randnum)d" 
+            
+            if (randnum is 1) and (asked_1 is False):
+                $ asked_1 = True
+                # Normal
+                blooky "um......."
+                blooky "if you don’t...... mind me asking......."
+                blooky "how did.... you end up down here...?"
+                blooky "i know you fell but..... how did you..... manage to fall into.... such a big hole?"
+                blooky "how did you wind up down here?"
+                
+                menu:
+                    "I mean, it was a {i}really big hole.{/i}": #(+HB)
+                        blooky "well....... i can understand that......."
+                        blooky "i didn’t mean to sound...... offensive or......."
+                        blooky "to come off in such a way...... sorry...."
+                        blooky "i was just wondering........"
+                        blooky "because........... well........"
+                        blooky "i’ve heard some people don’t actually...... fall down here for good reasons...."
+                        blooky "....but...."
+                        blooky "..........."
+                        #Sad
+                        blooky "i’m sorry..... maybe this is a touchy subject........."
+                    "I wasn’t really paying attention too much where I was going.": #(+FP)
+                        blooky "i get it... sometimes i’m not paying too much attention either..."
+                        blooky "though...i never run into anything or fall really..."
+                        blooky "since you know….i’m a ghost..."
+                        blooky "........"
+                        #Sad
+                        blooky "i...hope you didn’t hurt yourself too much..."
+                        blooky "...when you fell down here"
+                        #Normal
+                        blooky "just...be careful, okay?"
+                    "...": #(+0 FP DP)
+                        blooky "it’s ok...."
+                        blooky "......you don’t have to answer"
+                        blooky "..........."
+                        #Sad
+                        blooky "i’m sorry..... maybe this is a touchy subject........."
+                    "I’m not really comfortable… answering.": #(+FP)
+                        #Sad
+                        blooky "oh......"
+                        blooky "i understand... it’s ok it’s....."
+                        blooky "it was wrong of me to ask........ i understand, i’m sorry"
+                        #Normal
+                        blooky "but..... for whatever reason it might be......."
+                        #Smile
+                        blooky "i’m.....glad you’re here"
+            if (randnum is 2) and (asked_2 is False):
+                $ asked_2 = True
+                #Normal
+                blooky "i really find this place.... well......"
+                #Smile
+                blooky "peaceful"
+                blooky "...... what do you think about this part of the ruins?"
+                
+                menu:
+                    "It’s not the best place for a first date...": #(+HB)
+                        #Surprised
+                        blooky "oh..... date.......?"
+                        #Normal
+                        blooky "i just... figured maybe this would be better than....... .....a busy place...."
+                        blooky "i don’t really like crowded places and this is the most quiet...... um....."
+                        blooky ".....sorry, maybe i should have asked you where you wanted to go"
+                        
+                        menu:
+                            "Maybe next time I’ll tell you where to go, it’ll be fine.": #(+HB)
+                                #Surprised
+                                blooky "n-next time.....?"
+                                blooky "......."
+                                #Blushing
+                                blooky "i....... okay..... i’d like that......."
+                            "Yeah you should’ve.": #(+HB)
+                                #Sad
+                                blooky "i-i’m sorry......"
+                                blooky "....... really.... really sorry........."
+                                blooky "um......"
+                                blooky "lets just... keep going......."                            
+                            "No, this is fine, don’t worry!": #(+FP)
+                                #Normal
+                                blooky "oh..... are you sure?"
+                                blooky "well....... thanks..... "
+                                #Smile
+                                blooky "......i’m glad you like this place...."
+                                blooky "even if it’s only a little bit"
+                    "It’s kind of eerily quiet.": #(+FP)
+                        blooky ".....is it?"
+                        blooky "i like it quiet sometimes....."
+                        blooky "don’t be worried… we’re here together, so....."
+                        blooky "maybe it won’t be as scary as you think....."
+                    "I don’t really like it here.": #(-HB)
+                        #Sad
+                        blooky "o-oh.........."
+                        blooky "...sorry, i guess i should’ve picked more carefully..."
+                        blooky "........"
+                        blooky "sorry..."
+                    "I couldn’t really care less about this place.": #(+HB)
+                        #Sad
+                        blooky "oh"
+                        blooky "........you don't like it?"
+                        
+                        menu:
+                            "I like you, but not this place.": #(+HB)
+                                #Blushing
+                                blooky "o-oh..... really?"
+                                blooky "well........"
+                                #Smile
+                                blooky "i guess that means... so long as we’re together... we’ll be alright"
+                            "Well maybe a little bit.": #(+FP)
+                                #Smile
+                                blooky "oh, good....."
+                                #Normal
+                                blooky "i was worried that..... I chose a bad spot..."
+                                #Smile
+                                blooky "i'm glad you like it though..."
+                                blooky "even just a little"
+                            "Nah.": #(-FP)
+                                #Sad
+                                blooky "oh..... i'm sorry....."
+                                blooky "maybe....... next time i’ll try to find someplace else.........."
+                                blooky ".....i'm sorry....."
+                        
+            if (randnum is 3) and (asked_3 is False):
+                $ asked_3 = True
+                blooky "i know you haven’t been underground that long, but..."
+                blooky ".....i hope you’re enjoying yourself"
+                blooky "........"
+                #Sad
+                blooky "“i hope i’m not boring you too much either........ i'm sorry........"
+                
+                menu:
+                    "This could be worse, but at least you’re trying.": #(+HB)
+                        blooky "yeah...sorry... i wanted to pick something you’d like..."
+                        blooky "sorry...if i’m getting on your nerves..."
+                        blooky "..."
+                    "I’m just a little tired, but I’m having fun.": #(+FP)
+                        blooky ".......oh..... do you need to rest?"
+                        blooky "i’m happy you’re having fun..... but......"
+                        blooky "if you’re tired you should really get some rest......."
+                        blooky "i don’t want to be....... taking up your time"
+                        
+                        menu:
+                            "You're not.": #(+FP)
+                                blooky "are you sure?"
+                                blooky "well..... ok then....."
+                                blooky "so long as you’re okay....."
+                            "I'll get over it.": #(+0)
+                                blooky "ah........... alright..."
+                                blooky "if you're sure......."
+                                blooky "hm........."
+                    "It gets pretty dull around here, I won't lie.": #(-FP)
+                        blooky "you think so?"
+                        blooky "i’m sorry....... i wish i was better at entertaining people......."
+                        blooky "i don’t go out much..... and i’m usually alone so......"
+                        blooky "this is all new to me...... too......"
+                        #Sad
+                        blooky "i'm sorry......."
+            if (randnum is 4) and (asked_4 is False):
+                $ asked_4 = True
+                blooky "actually......"
+                blooky "i think you’d get along with my cousin......"
+                blooky "for some reason..... you two seem alike......"
+                blooky "........"
+                blooky "what do you think of robots?"
+                
+                menu:
+                    "Robots are cool.": #(+HB)
+                        $temp = 0
+                        jump coolrobot
+                    "They’re pretty neat, I guess.": #(+FP)
+                        label coolrobot:
+                            #Smile
+                            blooky "yeah?"
+                            blooky ".....my cousin is a robot....."
+                            blooky "and if you like robots....... then you two will get along really well....."
+                            blooky "that...... makes me happy."
+                    "Depends on the robot...": #(+0)
+                        blooky "well....."
+                        blooky "the kind that cook...dance..... sing......."
+                        blooky "star in their own movies and shows"
+                        blooky "......the kind that can do anything i guess?"
+                        blooky "do you like those kind of robots?"
+                        
+                        menu:
+                            "Oh, definitely!": #(+FP)
+                                #Smile
+                                blooky "yeah?"
+                                blooky ".....my cousin is a robot....."
+                                blooky "and if you like robots....... then you two will get along really well....."
+                                blooky "that...... makes me happy."
+                            "They're alright, I guess.": #(+HB)
+                                blooky "......."
+                                blooky "i’m sorry if the conversation is boring......."
+                                blooky "we can talk about something else......."
+                            "Not really.":
+                                blooky ".....oh......"
+                                blooky "well..... ok..."
+                                
+                                menu:
+                                    "I hope that didn’t come out wrong!": #(+FP)
+                                        blooky "no... no it's ok..."
+                                        blooky "i just..... wish you'd give robots a chance....."
+                                        blooky "......but oh well..."
+                                    "But I do like ghosts.": #(+HB)
+                                        blooky "a-ah....."
+                                        #Blushing
+                                        blooky "well........"
+                                        blooky "that’s good........ i think"
+                                    "Shrug.":
+                                        blooky "........."
+            if (randnum is 5) and (asked_5 is False):
+                $ asked_5 = True
+                blooky "well....... i only really ever come here to relax..."
+                blooky "sometimes, i’m just not in the mood to talk or do anything"
+                blooky "........not all the time..."
+                blooky "but most of the time"
+                blooky "..."
+                blooky "do....... you ever feel like escaping sometimes?"
+                
+                menu:
+                    "Yeah, for the most part.": #(+HB)
+                        blooky "really? i can relate....."
+                        blooky "that...... makes me relieved."
+                        blooky "i always thought i was the only one"
+                        #Smile
+                        blooky ".........this is nice"
+                    "Not really, no.": #(+FP)
+                        blooky "..........must be nice"
+                        blooky "to not have to worry about....... running away....."
+                        blooky "........."
+                    "Only from people with an emotional crisis.": #(-FP)
+                        blooky "........"
+                        blooky "......oh"
+                        #Sad
+                        blooky "i’m sorry i....... i didn’t realize......."
+                        #Normal
+                        
+                        menu:
+                            "That’s not what I meant, I’m sorry...": #(+FP)
+                                blooky "oh.....?"
+                                blooky "it's ok....."
+                                blooky "i was just worried that..... i was annoying you....."
+                                blooky "i wouldn't be surprised..... but it's fine......"
+                            "It’s okay, I’ll be around to cheer you up.": #(+HB)
+                                blooky "...really?"
+                                blooky "oh..... good."
+                                blooky "i know that i..... get sad a lot..... it can make people uncomfortable and upset....."
+                                blooky "maybe with you around i can cheer up more"
+                            "Don’t worry about it.": #(+0)
+                                blooky ".........."
+                                blooky "alright....... i won't..."
+            if (randnum is 6) and (asked_6 is False):
+                $ asked_6 = False
+                blooky "i wouldn’t call myself a hermit but"
+                blooky "i like to be alone a lot..."
+                blooky "....."
+                blooky "if i want company i usually just go to work on the family snail farm..."
+                blooky "or sometimes i even turn on the tv to watch something"
+                blooky "it’s nice to go out now and again, though"
+                blooky "..."
+                #Contemplative
+                blooky "while you were on the surface,"
+                blooky "were there places you wanted to go to meet new people?"
+                
+                menu:
+                    "Yes.": #(+HB)
+                        blooky "you..... don’t sound very happy about that..."
+                        blooky "but i guess any chance you could get was a good one..... right?"
+                        blooky "that must feel nice though..... to meet new people..."
+                    "A few places.": #(+FP)
+                        blooky ".....well, even a few places is better than no place, right?"
+                        blooky "that's good......"
+                    "I don’t socialize much.":
+                        blooky "oh..... really?"
+                        blooky "well..... i don’t either... if that makes it any better..."
+                        
+                        menu:
+                            "I’d rather just talk to you.": #(+HB)
+                                #Blush
+                                blooky "that's........."
+                                blooky "......."
+                                #Smile
+                                blooky "you're really nice....."
+                            "That’s why we get along so well.": #(+FP)
+                                blooky "yeah?"
+                                blooky "we do..... don't we....."
+                                blooky "hehe....."
+                            "I just don’t see a point in it.": #(-FP)
+                                blooky "i understand..."
+                                blooky "i’m the same way sometimes, but......"
+                                blooky "some days it’s really nice to go to a friend..... or just..... let go....."
+                                blooky ".....well for me at least"
+            if (randnum is 7) and (asked_7 is False):
+                $ asked_7 = True
+                blooky "i actually come here to cry sometimes..."
+                blooky ".....not a lot, but enough i guess to not want others to see what i’m doing"
+                blooky ".....and i like to lay down in my house and feel like trash..."
+                blooky "i could stay home where no one can see me, but....."
+                blooky "some days i wind up here anyway..."
+                blooky "......."
+                blooky ".....do you ever feel like trash?"
+                
+                label trash_q:
+                    menu:
+                        "Excuse me?!" if feelliketrash is False: #(-FP)
+                            blooky "huh?"
+                            blooky "n-no..... not..... bad..... but-"
+                            blooky "i don’t know how to....... explain myself..."
+                            blooky "just laying around....... not caring what happens?"
+                            blooky "just..... laying around... like trash........"
+                            blooky "......."
+                            
+                            menu:
+                                "Oh... well, in that case...":
+                                    $ feelliketrash = True
+                                    jump trash_q
+                                "I am NOT trash!": #(+HB)
+                                    blooky "i-i didn’t mean for it to sound like....."
+                                    blooky "that’s not......."
+                                    #Sad
+                                    blooky "i’m so sorry....... i’m sorry............"
+                                    blooky "........ah........  i’m really bad at this..... forgive me......."
+                                        
+                                    menu:
+                                        "It’s okay, I’ll forgive you this time.": #(+HB)
+                                            #Smile
+                                            blooky "oh... thank you..."
+                                        "Oh, no, it’s okay. Sorry I overreacted.": #(+FP)
+                                            blooky "really... are you sure?"
+                                            #Smile
+                                            blooky "...thank you..."
+                            #Normal
+                        "Yes, I do sometimes.": #(+FP)
+                            blooky "maybe..... then....."
+                            blooky "we could feel like trash together?"
+                            blooky "sometime?"
+                        "Not really.": #(+FP)
+                            blooky "oh....."
+                            blooky "well..... maybe you should try it sometime..."
+                            blooky "it’s not so bad..... it’s kinda relaxing....."
+                        "Only trash should feel like trash.": #(+HB)
+                            blooky "i... well......"
+                            blooky "i am trash..."
+                            
+                            menu:
+                                "Then I guess you’re cute and classy trash.": #(+HB)
+                                    blooky "heheheh........."
+                                    #Smile
+                                    blooky ".....do you really think i’m classy?"
+                                    blooky "........maybe some other time..... i can show you my....."
+                                    blooky "{i}dapperblook{/i}"
+                                "No you aren’t!":#()
+                                    blooky "i just..... feel like it sometimes......."
+                                    blooky "but..... i know i shouldn’t talk that way around people......."
+                                    blooky "i’m sorry..."
+            if (randnum is 8) and (asked_8 is False):
+                $ asked_8 = True
+                blooky "......."
+                blooky "did i mention that i own a snail farm?"
+                blooky "probably but my memory isn’t great....."
+                blooky "it’s been in the blook family for generations"
+                blooky "there’s racing and show snails for everyone to see......."
+                blooky "there aren’t many of us left... just me....... so i’m taking care of it..."
+                blooky "do you like snails?"
+                
+                menu:
+                    "Yes.": #(+HB)
+                        blooky "oh, cool..."
+                        blooky "maybe you can stop by the farm sometime..."
+                        blooky "i think you’ll like it"
+                    "I don’t ‘dislike’ them?": #(+FP)
+                        blooky "well..... that's good..."
+                        blooky "maybe you can stop by the farm sometime..."
+                        blooky "you might like it..."
+                    "Ew, no!": #(+FP)
+                        blooky "........oh"
+                        blooky "well....... that's ok..."
+                        blooky "we can always go somewhere else...... so..... i'm not worried about that..."
+                        
+            if (randnum is 9) and (asked_9 is False):
+                $ asked_9 = True
+                blooky "what type of music do you like listening to?"
+                blooky "if it’s okay to ask....... you probably haven’t heard anything in awhile since you fell..."
+                blooky "but....... did you like anything when you used to be on the surface?"
+            
+                label musicq:
+                    menu:
+                        "Pop":
+                            blooky "pop?"
+                            blooky "isn’t that a drink...?"
+                            blooky "well....... i guess that would sound cool..."
+                            blooky "i think i like pop, too"
+                        "Hip Hop and R&B":
+                            blooky "hip..... hop.....?"
+                            blooky "i don’t think i’ve heard of that before..."
+                            blooky "it must be hip"
+                            blooky "does it get humans to hop?"
+                        "Trap and Trance":
+                            blooky "trap?"
+                            blooky "there are a lot of old puzzles and tests through the ruins..."
+                            blooky "i’m sure if you get a few wrong, you’ll find plenty of traps..."
+                            blooky "........."
+                            blooky "though i don’t think they sound all that great, to be honest"
+                        "Dance and Techno":
+                            blooky "dance and techno... huh..."
+                            blooky "technology types of things sound like something the royal scientist would know about..."
+                            blooky "and i can’t dance..."
+                            blooky "at least........ not well..."
+                        "Classical and Instrumental":
+                            blooky "i don’t know what classical is... but..."
+                            blooky "instrumental i do."
+                            blooky "i think..... i like instrumental, too..."
+                            blooky "i don’t have a lot of instruments, though....."
+                            blooky "......."
+                            blooky ".......sometimes, i hear someone playing a trombone..."
+                        "Kpop and Jpop":
+                            blooky "what do the k and j stand for?"
+                            blooky "is it different from the regular pop?"
+                            blooky "........"
+                            blooky "sounds unique..."
+                        "Oldies music":
+                            blooky "oldies?"
+                            blooky "old music?"
+                            blooky "........"
+                            blooky "i do have a few records in my room..."
+                            blooky "...maybe you’ll like to hear them sometime..."
+                        "Jazz and Swing.":
+                            blooky "i’ve heard of jazz and swing before..."
+                            blooky "i can’t say i listen to it all the time...... but it’s nice every now and then"
+                            blooky "we have similar tastes"
+                            blooky "......."
+                            #Smile
+                            blooky "that's cool"
+                        "I don't like music." if dislikedmusic is False: #(-FP)
+                            blooky "really?"
+                            blooky "well......"
+                            blooky "what do you like?"
+                            
+                            menu:
+                                "I messed up, I actually do like music.": #(+FP)
+                                    $ dislikedmusic = True
+                                    blooky "oh, that’s ok."
+                                    blooky "so... what kind of music do you like?"
+                                    jump musicq
+                                "Well, it's not music.":
+                                    #Sad
+                                    blooky "........"
+                                    blooky "well..... that's ok"
+                                    blooky "..................."
+                                    blooky "i guess....."
+                                "You.": #(+HB)
+                                    blooky ".....o-oh.....?"
+                                    blooky "well..... well....."
+                                    blooky "i like you too..."
+                                    blooky "......"
+                                    #Smile
+                                    blooky "...but i also like music."
+            if (randnum is 10) and (asked_10 is false):
+                $ asked_10 = True
+                blooky "um....."
+                blooky "sorry..... i’m not very talkative"
+                blooky "it's hard to get to know people... or talk to people..... or purposefully approach people......."
+                blooky "you know?"
+                
+                menu:
+                    "Yeah, I understand how you feel.": #(+FP)
+                        blooky "yeah"
+                        blooky "it feels..... like it takes up a lot of energy"
+                        blooky ".....i get tired easily and i start to feel..... small....."
+                        blooky "it’s easier to just avoid it altogether"
+                    "Don't worry, you never have to feel that way with me.": #(+HB)
+                        blooky "oh........ well, that's nice........"
+                        blooky "i'm glad......"
+                        blooky ".....you make me feel very..... relaxed"
+                        #Smile
+                        blooky "it's really..... nice"
+                    "Um... no? I don't know.": #(-FP)
+                        blooky "oh..... well....."
+                        blooky "that's fine..... i guess"
+                        blooky "we don’t have to have everything in common to be friends"
+                        
+        label ask_blooky:
+            # Normal
+            if question_num is 1:
+                blooky "okay.... um..... i think it’s your turn to.... ask a question. if you want to, i mean..."
+            if question_num is 2:
+                blooky "um.... it’s your turn... again....."
+            if question_num is 3:
+                blooky "i’m sorry..... is this boring? maybe this question thing was a bad idea....."
+                menu:
+                    "I'm having fun! Let's keep going!": #(+FP)
+                        #Happy
+                        "really? okay, it's your turn then..."
+                    "It's never boring hanging out with you.": #(+DP)
+                        #Blushing
+                        blooky "o-oh..... ha..... that's nice of you to say......"
+                        blooky "let's keep going, then, if you're having fun...... it's your turn, then....."
+                    "Yeah, I'm bored. Let's stop.": #(-DP)
+                        jump end_blook_date
+            if question_num is 4:
+                blooky "okay, you go... i think i like it better when it's your turn to ask the questions..... it's less pressure......"
+            if question_num is 5:
+                blooky "i think i'm out of questions.... i can't think of any more...."
+                blooky "sorry, i guess we should stop......"
+                blooky "oh, but that's not fair..... i've asked five questions, and you've only asked four.... do you want to ask another question?"
+                menu:
+                    "Yeah, just one more!": #(+ FP)
+                        blooky "okay.... make it a good one..... or don't...... whatever you want."
+                    "No, I'm done, too.": #(+0)
+                        blooky "okay..... well......"
+                        jump end_blook_date
+            if question_num >= 6:
+                jump end_blook_date
+                
+            menu:
+                "What do you think of humans?": #(+ DP)
+                    blooky "they seem really nice..."
+                    #Happy
+                    blooky "...and so are you... so..."
+                    #Normal
+                    blooky "i think monsters might really have... a chance....."
+                    blooky "once we get out of here...... maybe."
+                    blooky "it's been a long time since the last human fell down here......"
+                    blooky "a really long time, it feels like...."
+                    #Happy
+                    blooky "but they're just as nice as you... so all humans must be, right?"
+                    
+                    menu: 
+                        "I'd like to think so!": #(+DP)
+                            #Smile
+                            blooky "hehehe...."
+                            blooky "me too."
+                        "Definitely not.": #(-FP)
+                            $ temp = 0
+                            jump notnice
+                        "Not all of us are nice.": #(+HB)
+                            label notnice:
+                                blooky "huh?"
+                                blooky "what do you mean?"
+                                menu:
+                                    "Some people are just jerks.": #(-FP)
+                                        blooky "oh"
+                                        blooky "..........well, i just hope that..."
+                                        blooky "you aren’t one of them..."
+                                    "Nothing, sorry about that.":
+                                        blooky ".....oh..."
+                                        blooky "it’s ok..."
+                                    "I’m worried that I’m the only that can be trusted.": #(+HB)
+                                        blooky "that’s....that’s not true..."
+                                        blooky ".....frisk is another human like you and....."
+                                        blooky "and they would never hurt anyone.... they said so themselves..."
+                                        blooky "........."
+                                        blooky "i know.... that.... its hard, ‘cause i’m the same way..."
+                                        blooky "if..... if anything..."
+                                        blooky "you can always trust me........ know that"
+                "Can you eat normal food? Does it phase through you?": #(+ FP)
+                    $ asked_ghostfood == True
+                    blooky "human food passes through me, yeah"
+                    blooky "but ghost food... and monster food...."
+                    blooky "that i can actually digest"
+                    blooky "....."
+                    blooky "........."
+                    blooky "have you ever had a ghost sandwich?"
+                    blooky "they’re my favorite thing to eat when i’m at home......"
+                    blooky "last time i offered a human a ghost sandwich.... ....they had trouble holding it"
+                    blooky "i felt bad that they didn’t get to try it......."
+                    blooky "so i think it’s the other way around... humans can’t eat ghost food?"
+                    blooky "........"
+                    blooky "i’m sorry......i got carried away... i talk too much sometimes..."
+                    
+                    menu:
+                        "What do ghost sandwiches taste like?":
+                             blooky "well....."
+                             blooky "they taste light and fluffy..."
+                             blooky "like a ghost"
+                             blooky "......."
+                             blooky "not that i eat ghosts"
+                             blooky "i think that’s called cannibalism"
+                        "No need to apologize!": #(+FP)
+                            blooky "oh, i’m..."
+                            blooky "i’m just so used to apologizing that it kind of just slips..."
+                            blooky "i’m sor--"
+                            blooky ".........heh........."
+                            blooky "..........my bad."
+                        "I’m probably the only person who likes your rambling.": #(+HB)
+                            blooky "yeah......probably.........."
+                            blooky ".....but....... that’s good...... right?"
+                            blooky "so long as i’m not.... boring you or anything......."
+                            blooky "then i guess it’s ok..."
+                            
+                "What's up with the waterworks?": #(++ HB)
+                    # Sad
+                    blooky "i-i. ......"
+                    blooky "i get emotional sometimes it just.... ....i don’t...."
+                    blooky "i don’t know......"
+                    blooky "does it bother you?"
+                    blooky "......"
+                    blooky "......that i cry too much?"
+                    blooky "i can’t help it... i’m sorry if it bothers you..."
+                    blooky "i guess lying around feeling like trash helps..."
+                    
+                    menu:
+                        "Must be adorable trash, then.": #(+HB)
+                            # Blushing
+                            blooky "huh?"
+                            blooky "im........i wouldn’t say that....."
+                            blooky "i don’t think so.....at least, but....."
+                            blooky "thanks.......i think..."
+                        "You’re not trash, you’re just cute!": #(+FP)
+                            # Blushing
+                            blooky ".............i...."
+                            blooky ".......i don’t know what to say"
+                            blooky "oh..... that sounds.... it's pretty..... uh........ spiffy"
+                        "Maybe!": #(+FP)
+                            #Smiles
+                            blooky "hehehe"
+                            blooky ".....it’s the only thing that makes sense"
+                "What are your hobbies?": #(+HB +FP)
+                    $ hobbies_asked = True
+                    
+                    blooky "i like to make music"
+                    blooky ".....i like to think i’m good at it... i’ve been told it’s pretty good, but..."
+                    blooky "i’m afraid to show it to too many people........"
+                    blooky "i don’t want to bother everyone with myself....."
+                    blooky "......oh..."
+                    #Sad
+                    blooky "i made myself sad... i’m sorry"
+                    
+                    menu: 
+                        "Don’t be sad, that’s cool!": #(+FP)
+                            #Happy
+                            blooky "do you really think so?"
+                            blooky ".....well......i enjoy it a lot..."
+                            blooky "........i really would like to invite you to hear it sometime"
+                            blooky "if.... you think it’s cool now"
+                            blooky "wait until you hear it........"
+                            #Smile
+                            blooky "heheh......"
+                        "Oh, I’m sorry.": #(+FP)
+                            blooky "its not your fault....."
+                            blooky "i always make myself sad........."
+                            blooky "its just my thing.....it’s ok"
+                        "Say nothing.": #(+0)
+                            blooky ".........."
+                            blooky "well......"
+                            blooky "thanks for...... being patient......"
+                            blooky "letting me cry it out........ it always feels good to cry"
+                "Were you ever even alive?": #(+HB)
+                    blooky "but... i am alive......"
+                    blooky "..."
+                    blooky "i’ve always been like this..."
+                    blooky "for as long as i can remember......"
+                    blooky "which isn’t that far back, really...... i have a bad memory"
+                    blooky "thinking about it hurts, though......"
+                    blooky "and i don’t know why......."
+                    blooky "......."
+                    blooky "i'm sorry... i'm rambling again, you must be bored..."
+                    blooky "now i feel bad..."
+                    
+                    menu:
+                        "Most would say you're dead, but I like ghosts.": #(+HB)
+                            blooky "oh... well....."
+                            blooky ".......i'm glad you like ghosts..."
+                            blooky "i’ve always been this way...... there’s no changing me......"
+                            blooky "even if i wanted to change"
+                            blooky ".....thanks for accepting me, though"
+                        "Don't feel bad, this is interesting.": #(+FP)
+                            blooky "is it?"
+                            blooky "i’m sure that..... for most...... my rambling gets annoying"
+                            blooky "i’m surprised you aren’t trying to... run or something."
+                            blooky "........but..."
+                            blooky "i’m glad you’re interested"
+                        "I'm sorry, it was rude of me to ask...": #(+0)
+                            blooky "n-no it’s okay, really"
+                            blooky "i can see why some would wonder......."
+                            blooky "i wish i had a better..... answer of..... some sort........"
+                            blooky "........."
+                            blooky "but i don’t"
+                            blooky "i’m glad you’re interested, though"
+                            
+                "Why is everyone down here so creepy looking?": #(+HB +FP)
+                    blooky "o-oh..... i mean..... i don't know"
+                    blooky "i wouldn’t think everyone was creepy looking"
+                    blooky "......."
+                    blooky "everyone just looks different...... that's all."
+                    blooky "i can understand that not a lot of humans are..... used to seeing people like..... us....."
+                    blooky "monsters, and ghosts i mean."
+                    blooky "but don’t be afraid..... not everyone is as scary as they look......."
+                    blooky "......i know a few who are really kind..."
+                    blooky "i think you have nothing to worry about"
+                    
+                    menu:
+                        "So long as they’re nice, I think I’ll be alright here.": #(+FP)
+                            blooky "yeah..."
+                            blooky "everyone is just great...... in their own way"
+                            blooky "i think you’ll like it.......here........ for as long as you stay, of course"
+                            blooky "i know..... like frisk..... humans that fall down here...... must be worried"
+                            blooky "maybe you want to try going home........"
+                            blooky "but maybe... also like frisk... you'll consider staying..... after you meet everyone?"
+                        "I wasn’t worried!": #(+HB)
+                            blooky "really?"
+                            blooky "that's good..."
+                            blooky "it means........ maybe you’ll have fun while you’re down here, right?"
+                            blooky "i hope so, at least...... .i think you’ll like it here"
+                        "Not you, though.": #(+HB)
+                            blooky "...huh?"
+                            blooky "oh...... um....... i'm glad you think so--"
+                            blooky ".....or don’t think so i guess.....?"
+                            
+                            menu:
+                                "That was me flirting, Blooky.": #(+HB)
+                                    #Surprised
+                                    blooky "f-flirting?"
+                                    #Blushing
+                                    blooky "oh..... oh i...."
+                                    blooky "i don’t think....... anyone's ever flirted with me before......."
+                                    blooky "..........ah...... i'm sorry........."
+                                "Well anyway, let's keep talking.":
+                                    #Normal
+                                    blooky "alright....."
+                                    blooky "let’s keep talking then"
+                    
+                "Did you choose to be a loner?": #(+HB)
+                    blooky "n-no..... not really..."
+                    blooky "that’s all i can say..... i just have trouble getting..... comfortable around people"
+                    blooky "i can’t help it..... i find myself just..... drifting away from people..."
+                    blooky "there’s a few i’m close to, and some that i’m not"
+                    blooky "i'm..... difficult to be around, so i can understand why not many want to be around me......."
+                    blooky "and some days i don’t blame them because i don’t want to be around people either"
+                    blooky "......"
+                    blooky "sorry that i’m not much help with your questions......."
+                    blooky "i hope i’m not troubling you..."
+                    
+                    menu:
+                        "I was just curious, it’s alright.": #(+HB)
+                            blooky "......."
+                            blooky "if you're sure......."
+                            blooky ".......i wish i could explain myself more..... but i can't."
+                            blooky "......oh well......"
+                        "You’re no trouble at all!": #(+FP)
+                            blooky "are you sure?"
+                            blooky "i feel like...... i’ve just been bothering you....."
+                            blooky "but...... if you say so, then..... i'll believe you"
+                            blooky "......oh well......"
+                            blooky "maybe i won't be such a loner with you around....."
+                    
+                "Weren’t monsters just a myth or some legend?": #(+FP)
+                    blooky "i thought humans were a myth, too"
+                    blooky "......then i saw frisk..."
+                    blooky "though, i never bumped into humans as much as i did other monsters"
+                    blooky "probably the same as you not bumping into many monsters when you were on the surface..."
+                    blooky "it takes some getting used to, i bet... ...but you’ll manage fine"
+                    
+                    menu:
+                        "I read about them in books and stories, but I never thought they could be real.":
+                            blooky "well........."
+                            blooky "here..... we are....."
+                            #Smile
+                            blooky "...........tada"
+                            #Contemplative
+                            blooky "...........hm....."
+                            blooky "don't worry...... you’ll get used to it"
+                            #Normal
+                            blooky "if it’s just like in the books, then maybe you’ll already..... know a bit about everyone..."
+                        "I feel like I fit in already.": #(+HB)
+                            #Smile
+                            blooky "that's..... that’s good"
+                            blooky "i'm glad..."
+                            #Normal
+                            blooky "it's not... so bad down here when you get used to it, i’m sure..."
+                            blooky "everyone’s nice......"
+                            blooky "..."
+                            blooky "i think"
+                        "I don’t think I could ever get used to this...": #(-FP -HB)
+                            blooky ".......i'm ........sorry"
+                            blooky "i wish i could help...... but......."
+                            #Sad
+                            blooky "i’m never much....help with anything"
+                            blooky "........oh.......um......"
+                            #Normal
+                            blooky "well........it just....takes time"
+                            blooky "and with patience and kindness.....i think you’ll do ok."
+                "Are you self conscious about being a shut-in?": #(+HB)
+                    blooky "w-well....... a little bit..."
+                    blooky "i know i can be awkward sometimes......."
+                    blooky "i know i bother people just by being around them......."
+                    blooky "is it that noticeable?"
+                    
+                    menu:
+                        "I’m sure everyone knows, but don’t worry about what they think.": #(+HB)
+                            blooky "i... i’ll try not to..."
+                            blooky "it’s hard...... though..."
+                            blooky "i usually don’t worry about what others think because..... i already know..."
+                            blooky "......it’s hard to shut everything out sometimes......"
+                            blooky "but.... i'll try"
+                            #Smile
+                            blooky "thank you for dealing with me......"
+                            blooky "really....i appreciate it"
+                        "Not at all, you blend in well.": #(+HB)
+                            blooky "oh......."
+                            #Smile
+                            blooky "thank you........"
+                            blooky "that's just..... what i wanted, too"
+                            blooky "i don’t want to be noticed........"
+                            blooky "i just want to..... fit in......."
+                            blooky "even if that means being invisible"
+                        "Yes, you should fix that.": #(-FP -HB)
+                            blooky "......i will......"
+                            blooky "eventually..."
+                            blooky "i....... know i will, someday..."
+                            blooky "........i hope"
+                            blooky ".............."
+                        "Just be yourself, always!": #(+FP)
+                            #Smile
+                            blooky "heh........... well..."
+                            blooky "i tried that already....... but..."
+                            #Indifferent/Content
+                            blooky "it doesn’t always........ work.........."
+                            #Normal
+                            blooky ".....i'll keep trying though."
+                            blooky "...maybe...... it’ll all work out"
+            jump blooky_date_questions 
+            
+        label end_blook_date:
+            #python:
+            #       HB_threshold = XXXXX
+            #       FP_threshold = XXXXX
+            #       date_success = False
+            #       friendzoned = False
+            #
+            #       if (HB > HB_threshold) && (FP < FP_threshold):
+            #               jump HB_ending
+            #       else if (HB < HB_threshold) && (FP > FP_threshold):
+            #               jump FP_ending
+            #       else:
+            #               jump date_failed
+            
+            ###TEMPORARY- FOR TESTING PURPOSES ONLY ###
+            "Jump to..."
+            menu:
+                "HB":
+                    jump HB_ending
+                "FP":
+                    jump FP_ending
+                "Failed Date":
+                    jump Failed_ending
+            
+            jump blooky_ruins
+            
+        label HB_ending:
+            blooky "this was nice... i enjoyed hanging out with you"
+            blooky "i’m glad we got to know eachother better"
+            blooky "............"
+            blooky "i should really get going......"
+            blooky "......"
+            #Smile
+            blooky "this was fun, though"
+            blooky "i hope..... that we can hang out again sometime..."
+            #Fades away
+            blooky "bye..."
+            blooky "..."
+            # $ date_success = True
+            jump blooky_ruins
+        
+        label FP_ending:
+            blooky "this was fun... it really was..."
+            blooky "it’s been...... so long since i last got to just relax and talk to someone..."
+            blooky "i almost forgot what it was like...... hehe......."
+            blooky "........."
+            #Smile
+            blooky "i'm glad we're friends........"
+            #Fades away
+            blooky "bye..."
+            blooky "..."
+            # $ friendzoned = True
+            jump blooky_ruins
+            
+        label Failed_ending:
+            blooky "um.....i hope i wasn’t too boring....."
+            blooky "i’m sorry if i was..."
+            blooky "......."
+            blooky "it just felt like........ i thought........."
+            blooky ".............."
+            blooky "this just isn’t going to work out... i’m not good at these things... i’m sorry"
+            blooky "..............well, i guess i'll see you around....."
+            #Fades away
+            blooky "bye..."
+            blooky "..."
+            jump blooky_ruins
