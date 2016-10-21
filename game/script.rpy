@@ -1,14 +1,30 @@
-label splashscreen:
-
+'''
+    Our basic start label.  Will usually go to start the game.
+'''
+label start:
+    stop music
+    #play music "audio/music/music-home.mp3"
+    #jump choosemenu
+    call show_buttons
+    jump start_the_game
 
     return
 
+'''
+    This label is mainly for dev purposes.  It goes off after we hit Shift + R.
+
+    It currently just resets the multiple monster code, but it isn't perfect.  Needs more tweaking.
+'''
 label after_load:
     $ talking = False
     hide screen multiple_monster_click_screen
     jump start
     return
 
+'''
+    This label shows all of the UI Buttons.  Needs to be called at the start of each room for the player to be able to see the UI since
+    we are creating new contexts in each room.
+'''
 label show_buttons:
     show screen show_menu_button
     show screen show_nav_button
@@ -16,6 +32,9 @@ label show_buttons:
     show screen show_information_overlay
     return
 
+'''
+    Same as the above function, except that it hides the buttons.
+'''
 label hide_buttons:
     hide screen show_menu_button
     hide screen show_nav_button
@@ -23,51 +42,15 @@ label hide_buttons:
     hide screen show_information_overlay
     hide screen multiple_monster_click_screen
     return
+
+'''
+    Label to call the updater.  Aims at my own personal site, which means I have to FTP the update files there for it to work.
+    Look at the documentation for it.
+'''
+
 label updater:
     $ updater.update(url='http://www.apartmentgaming.com/update/updates.json')
     return
 
-#This takes place after the MC has heard about Frisk from Toriel.
-label start:
-    stop music
-    #play music "audio/music/music-home.mp3"
-    
-    #call super_secret_console
-    call show_buttons from _call_show_buttons_11
-    #jump scrolling_credits
-    #$ world.get_monster("Toriel").move_to_room("Basement Door")
-    jump start_the_game
-    #jump load_room
-    #jump dev_label
-    #jump frisk_start
-    return
-
-screen talking_text():
-    text "Talk to [talking]?" xpos .5 ypos .2
 
 
-
-label dev_label:
-    show screen show_menu_button
-    #show screen show_map_button
-    while True:
-        menu:
-            "Where would you like to go? Warning, you will probably have to completely restart to get back. Nothing is done."
-            "The Ruins":
-                jump load_room
-            "Undersnail":
-                jump demo_undersnail
-            "Name Select":
-                jump name_select
-            "Random Encounters":
-                menu:
-                    "Vegetoid":
-                        jump vegetoid_start
-                    "Whimsun":
-                        jump whimsun_start
-
-
-
-label demo_end:
-    "This demo ends here. Thanks for playing!"
-    "Stay determined..."
