@@ -10,7 +10,7 @@ init -10 python:
 
             self.schedule = {"Sunday":{},"Monday":{},"Tuesday":{},"Wednesday":{},"Thursday":{},"Friday":{},"Saturday":{}}
             self.default_sprite = None
-            self.currentRoom = None
+            self.current_room = None
             self.default_event = Event('default_event',self)
             self.default_room = "Dead Room"
             self.FP_events = {}
@@ -47,10 +47,10 @@ init -10 python:
                 for rn,r in a.rooms.iteritems():
                     if r.name == room:
                         #we found the room, so move them there
-                        if self.currentRoom:
-                            self.currentRoom.monsters.remove(self)
-                        self.currentRoom = r
-                        self.currentRoom.monsters.append(self)
+                        if self.current_room:
+                            self.current_room.monsters.remove(self)
+                        self.current_room = r
+                        self.current_room.monsters.append(self)
                         return
 
             renpy.notify("Can't find room "+room)

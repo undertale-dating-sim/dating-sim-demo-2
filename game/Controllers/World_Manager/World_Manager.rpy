@@ -137,7 +137,7 @@ init -10 python:
                 for room_name,room in area.rooms.iteritems():
                     if room.name == name:
                         self.currentArea = area
-                        self.currentArea.currentRoom = room
+                        self.currentArea.current_room = room
                         renpy.jump("load_room")
                         break
             renpy.notify(name + " not found.")
@@ -175,7 +175,7 @@ init -10 python:
         def generate_ruins(self):
             self.add_area(TheRuins())
             self.currentArea = self.areas["The Ruins"]
-            self.currentArea.currentRoom = self.currentArea.rooms["Grass Room"]
+            self.currentArea.current_room = self.currentArea.rooms["Grass Room"]
 
 
 
@@ -195,21 +195,21 @@ label load_room:
     python:
         cell_convo_count = 0
         renpy.scene()
-        if world.currentArea.currentRoom.bg:
-            renpy.show(world.currentArea.currentRoom.bg)
+        if world.currentArea.current_room.bg:
+            renpy.show(world.currentArea.current_room.bg)
 
     with fade
     if ADMIN_ROOM_DESC:
-        if not world.currentArea.currentRoom.visited and world.currentArea.currentRoom.desc:
-            "[world.currentArea.currentRoom.desc]"
-    $ world.currentArea.currentRoom.visited = True
+        if not world.currentArea.current_room.visited and world.currentArea.current_room.desc:
+            "[world.currentArea.current_room.desc]"
+    $ world.currentArea.current_room.visited = True
 
 
-    $ temp_event = world.currentArea.currentRoom.get_event()
+    $ temp_event = world.currentArea.current_room.get_event()
 
     while temp_event:
         $ temp_event.call_event()
-        $ temp_event = world.currentArea.currentRoom.get_event()
+        $ temp_event = world.currentArea.current_room.get_event()
     
     while True:
         call show_buttons from _call_show_buttons_9

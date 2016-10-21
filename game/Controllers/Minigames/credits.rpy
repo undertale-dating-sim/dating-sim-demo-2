@@ -1,3 +1,6 @@
+#Please ignore this file.  It shouldnt exist.  Why did I spend time making this.  Its a bad joke.
+
+
 init python:
     credit_text = ["Voice Actor\n","Writers\n","Artists\n"]
     credit_speed = 25

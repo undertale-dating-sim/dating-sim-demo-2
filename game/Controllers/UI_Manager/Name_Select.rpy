@@ -1,5 +1,10 @@
-label Name_Select:
 
+# This label is for the Name Select Screen
+# I tried to duplicate the Undertale version of it.  Might need a little bit of polish.
+
+
+label Name_Select:
+    
     python:
         ui.add(Name_Select())
         name = ui.interact(suppress_overlay=True, suppress_underlay=True)
@@ -320,10 +325,6 @@ init python:
                     else:
                         self.leave = True
 
-
-
-            # text_render = renpy.render(self.scoretext,width,height,st,at)
-            # r.blit(text_render,(0.1,0.1))
 
             #redraw the frames    
             renpy.redraw(self, 0)

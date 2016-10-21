@@ -151,8 +151,8 @@ screen show_information_overlay:
             text '              '
             text world.get_current_time()
         hbox xpos .25:
-            if world.currentArea.currentRoom.current_monster and world.currentArea.currentRoom.current_monster != False:
-                text "[world.currentArea.currentRoom.current_monster.name]         FP:[world.currentArea.currentRoom.current_monster.FP]"
+            if world.currentArea.current_room.current_monster and world.currentArea.current_room.current_monster != False:
+                text "[world.currentArea.current_room.current_monster.name]         FP:[world.currentArea.current_room.current_monster.FP]"
 
 
 #if you look, I have added the multiple monster screen here.  It was causing a divide by zero error and I'm not sure how to fix it
@@ -187,4 +187,4 @@ screen navigation_buttons:
         imagebutton auto "UI/button_west_%s.gif"  align(0.00,0.5) action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.currentArea.move_dir,'west')]
         key 'a' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.currentArea.move_dir,'west')]
 
-    text '[world.currentArea.currentRoom.name]' align(0.5,0.5)                  
+    text '[world.currentArea.current_room.name]' align(0.5,0.5)                  

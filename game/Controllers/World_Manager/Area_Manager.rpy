@@ -3,7 +3,7 @@ init -10 python:
 
         def __init__(self,name):
             self.rooms = {}
-            self.currentRoom = False
+            self.current_room = False
             self.name = name
             self.random_areas = {}
             self.random_monsters = []
@@ -15,13 +15,13 @@ init -10 python:
         def move_to_room(self,name):
             for r in self.rooms:
                 if r.name == name:
-                    self.currentRoom = r
+                    self.current_room = r
                     renpy.jump("load_room")
                     break
 
         def move_dir(self,direction):
-            dirx = self.currentRoom.x
-            diry = self.currentRoom.y
+            dirx = self.current_room.x
+            diry = self.current_room.y
 
             if direction == 'north':
                 diry += 1
@@ -36,7 +36,7 @@ init -10 python:
                 if not room.locked:
                     if room.x == dirx and room.y == diry:
 
-                        self.currentRoom = room
+                        self.current_room = room
                         renpy.jump("load_room")
 
         def get_random_monster(self,name):
@@ -51,16 +51,16 @@ init -10 python:
             dirs = []
 
             for r_name,r in self.rooms.iteritems():
-                if r.x == self.currentRoom.x and r.y == self.currentRoom.y+1 and not r.locked and not r.locksouth:
+                if r.x == self.current_room.x and r.y == self.current_room.y+1 and not r.locked and not r.locksouth:
                     dirs.append('north')
                     continue
-                if r.x == self.currentRoom.x and r.y == self.currentRoom.y-1 and not r.locked and not r.locknorth:
+                if r.x == self.current_room.x and r.y == self.current_room.y-1 and not r.locked and not r.locknorth:
                     dirs.append('south')
                     continue
-                if r.x == self.currentRoom.x+1 and r.y == self.currentRoom.y and not r.locked and not r.lockwest:
+                if r.x == self.current_room.x+1 and r.y == self.current_room.y and not r.locked and not r.lockwest:
                     dirs.append('east')
                     continue
-                if r.x == self.currentRoom.x-1 and r.y == self.currentRoom.y and not r.locked and not r.lockeast:
+                if r.x == self.current_room.x-1 and r.y == self.current_room.y and not r.locked and not r.lockeast:
                     dirs.append('west')
 
             return dirs

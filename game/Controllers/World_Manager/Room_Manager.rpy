@@ -47,7 +47,7 @@ init -10 python:
             return False
 
         def add_monster(self,Monster):
-            Monster.currentRoom = self
+            Monster.current_room = self
             self.monsters.append(Monster)
 
         def remove_monster(self,Monster):
@@ -56,8 +56,8 @@ init -10 python:
 screen multiple_monster_click_screen:
     $ count = 1
 
-    $ width = (1.0/(len(world.currentArea.currentRoom.monsters)))
-    for monster in world.currentArea.currentRoom.monsters:
+    $ width = (1.0/(len(world.currentArea.current_room.monsters)))
+    for monster in world.currentArea.current_room.monsters:
         $ x = count * width
         mousearea:
             area ((count-1)* width, .4, width, .6)
@@ -68,12 +68,12 @@ screen multiple_monster_click_screen:
         #unhovered SetVariable('talking',False)
     # mousearea:
     #     area (.33, 0, .33, 1.0)
-    #     hovered [SetVariable('talking',world.currentArea.currentRoom.monsters[1].name),Notify(world.currentArea.currentRoom.monsters[1].name)]
+    #     hovered [SetVariable('talking',world.currentArea.current_room.monsters[1].name),Notify(world.currentArea.current_room.monsters[1].name)]
     #     #unhovered SetVariable('talking',False)
 
     # mousearea:
     #     area (.66, 0, .33, 1.0)
-    #     hovered [SetVariable('talking',world.currentArea.currentRoom.monsters[2].name),Notify(world.currentArea.currentRoom.monsters[2].name)]
+    #     hovered [SetVariable('talking',world.currentArea.current_room.monsters[2].name),Notify(world.currentArea.current_room.monsters[2].name)]
     #     #unhovered SetVariable('talking',False)
 
 
@@ -88,15 +88,15 @@ label multiple_monster:
     $ talking = False
     python:
         renpy.scene()
-        if world.currentArea.currentRoom.bg:
-            renpy.show(world.currentArea.currentRoom.bg)
+        if world.currentArea.current_room.bg:
+            renpy.show(world.currentArea.current_room.bg)
     #for each monster, we need to figure out where to put them
     while True:
         python:
             count = 1
             
-            for monster in world.currentArea.currentRoom.monsters:
-                width = (1.0/(len(world.currentArea.currentRoom.monsters)+1))
+            for monster in world.currentArea.current_room.monsters:
+                width = (1.0/(len(world.currentArea.current_room.monsters)+1))
                 x = count * width
                 
                 if monster.name != talking:

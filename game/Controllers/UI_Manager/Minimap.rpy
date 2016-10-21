@@ -1,6 +1,8 @@
 init python:
 
     import math
+    
+    #This is for the minimap that appears in the menu.
 
     class Minimap(renpy.Displayable):
 
@@ -30,7 +32,7 @@ init python:
                 if r.mappable:
                     x = 800 - ((20 - r.x) * 50) + xmargin
                     y = 600 - (r.y * 40) + ymargin
-                    if world.currentArea.currentRoom == r:
+                    if world.currentArea.current_room == r:
                         render.canvas().rect("#0F0", (x,y, 10, 10))
                     elif len(r.monsters) > 0:
                         render.canvas().rect("#F00", (x,y, 10, 10))
