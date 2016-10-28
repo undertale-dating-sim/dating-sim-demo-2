@@ -1,8 +1,41 @@
+init python:
+
+    
+    def beepy_voice(event, interact=True, **kwargs):
+        
+        
+        if not interact:
+            return
+        if event == "show":
+            renpy.sound.play("audio/sfx/voice_sans.wav",channel="audio")
+        #if event == "slow_done":
+            #renpy.sound.stop()
+
+    def telemetry(string):
+
+        dummy = list(string)
+        dummy2 = "{cps=100}"
+        for d in dummy:
+            if d != ' ':
+                dummy2 += "{w=0}"+d
+            else:
+                dummy2 += d
+        dummy2 += "{/cps}"
+        return dummy2
+
+define test = Character("Sans", callback=beepy_voice)
+
+
 ###################
 #    Our basic start label.  Will usually go to start the game.
 ###################
 label start:
     stop music
+
+    $ renpy.say(test,telemetry("this is a test of the papyrus system"))
+    #test "This is also a test."
+
+    call start
     #play music "audio/music/music-home.mp3"
     #jump choosemenu
     call show_buttons
