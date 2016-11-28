@@ -6,7 +6,7 @@ label call_Frisk_Cave_Room(cell_convo_count = 0):
  
     if cell_convo_count == 0:
         frisk  "This is where I first fell into the ruins. Good thing that bed of flowers was there, it really cushioned my fall…"
-        frisk  "Oh, you’re probably glad for that too, huh? I forget that I’m not the only one who’s fallen down through there."
+        frisk  "Oh, you’re probably glad for that too, huh? I forget I’m not the only one who’s fallen down through there."
     elif cell_convo_count == 1:
         frisk  "...Do you ever want to go back?"
         frisk  "I know how strange it was for me, to discover this world of monsters living beneath our feet..."
@@ -18,7 +18,7 @@ label call_Frisk_Cave_Room(cell_convo_count = 0):
 label call_Frisk_Grass_Room(cell_convo_count = 0):
 
     if cell_convo_count == 0:
-        frisk  "It’s kind of dark in here, isn’t it...? All kinds of things crawl around in the dark.  ... But, um, I’m sure it’ll be fine."
+        frisk  "It’s kind of dark in here, isn’t it...? All kinds of things crawl around in the dark... But, um, I’m sure it’ll be fine."
     else:
         frisk  "There’s no reason to be scared of the dark... Really."
     return
@@ -39,13 +39,13 @@ label call_Frisk_Tunnels(cell_convo_count = 0):
     frisk  "This room used to have a bunch of puzzles in it."
     frisk  "Mom used to think they were too dangerous for me and made me hold her hand as we went through them.  "
     frisk  "But, as I got older, she let me do them by myself."
-    frisk  "Eventually it just started just getting annoying, so I asked her to take them out. So that’s why it’s so empty in there."
+    frisk  "Eventually it just started just getting annoying, so I asked her to take them out. That’s why it’s so empty in there."
     return
 
 label call_Frisk_Dummy_Room(cell_convo_count = 0):
 
     if cell_convo_count == 0:
-        frisk  "Mom first tried to teach me how to handle conflict here. ...That dummy wasn’t much of a conversationalist though."
+        frisk  "Mom first tried to teach me how to handle conflict here. ...That dummy wasn’t much of a conversationalist, though."
     else:
         frisk  "I’ve tried talking to it before, but it never seems to want to talk back. "
         frisk  "And if you ignore it, it’ll just leave the room and you’ll end up talking to a wall."
@@ -55,21 +55,26 @@ label call_Frisk_Dummy_Room(cell_convo_count = 0):
 label call_Frisk_Froggit_Room(cell_convo_count = 0):
 
     if cell_convo_count == 0:
-        frisk   "That Froggit is quite friendly actually. I was a bit nervous when I first met him... "
-        frisk   "He tried to attack me at first.. But he turned out to not be so bad!"
+        frisk   "That Froggit is quite friendly, actually. I was a bit nervous when I first met him... "
+        frisk   "He tried to attack me at first... But he turned out to not be so bad!"
     else:
         frisk  "I’m actually really good friends with all of the Froggits now. "
-        frisk  "Life is a little hard for them, but they’re a good Monster to be friends with."
+        frisk  "Life is a little hard for them, but they’re good monsters to be friends with."
 
+    return
+
+label call_Frisk_Monster_Candy_Room(cell_convo_count = 0):
+    if cell_convo_count == 0:
+        frisk   "You shouldn’t take more than one… Leave some for everyone else!"
         
     return
 
 label call_Frisk_Sassy_Rock_Room(cell_convo_count = 0):
  
     if cell_convo_count == 0:
-        frisk  "Oh, hey, have you met the talking rock? It’s actually a pretty cool person once you get to know it."
+        frisk  "Oh, hey, have you met the talking rock? He’s actually a pretty cool person once you get to know him."
     elif cell_convo_count == 1:
-        frisk  "Oh, rocks actually respond pretty well to politeness."
+        frisk  "Rocks actually respond well to politeness."
     else:
         frisk  "Well, if you see any talking rocks, tell them I say ‘hi.’"
         
@@ -80,25 +85,26 @@ label call_Frisk_Blooky_Room(cell_convo_count = 0):
     if cell_convo_count == 0:
         frisk  "You might encounter a sleeping ghost in here. But don’t worry, they’re nice!"
     elif cell_convo_count == 1:
-        frisk  "They’re really shy at first, but once you get to know them, they’re actually pretty cool!"
+        frisk  "They’re really shy at first, but once you get to know them, they’re actually kinda cool!"
     else:
-        frisk  "I’ve gotten kinda close to them. They show me the music that they made a lot. And it’s surprisingly good. "
+        frisk  "Blooky and I are good friends. They like to show me the music they make, and it's surprisingly good."
+        frisk  "They're to nervous to show most people, though... It's a shame."
     return
 
 label call_Frisk_Spider_Bakery(cell_convo_count = 0):
 
     if cell_convo_count == 0:
-        frisk  "To be honest, I don’t like the taste of the stuff they sell here... But I like to donate anyway."
+        frisk  "I love the donuts here! Plus, it goes to a good cause, so why not donate?"
     else:
-        frisk  "Mom buys things from them sometimes as well but I think she actually enjoys their pastries."
-        frisk  "Um, I’d appreciate it if you don’t tell the spiders that I said I don’t like their stuff.    "
+        frisk  "Mom buys things from them sometimes as well, but I think she enjoys their cider more."
     return
 
 label call_Frisk_Snail_Hunter(cell_convo_count = 0):
 
     if cell_convo_count == 0:
         frisk  "Did you need something? "
-        frisk  "The Snail Hunting Room, huh? Mom and I come here a lot. She really likes snails.I’m not too big on them myself, but I like seeing Mom happy, so it’s always fun to go.    "
+        frisk  "The Snail Hunting Room, huh? Mom and I come here a lot. She really likes snails. "
+        frisk  "I’m not too big on them myself, but I like seeing Mom happy, so it’s always fun to go.    "
     else:
         frisk  "I have yet to win one of these races. Is it possible to be too encouraging?        "
     return
@@ -114,15 +120,34 @@ label call_Frisk_Overlook(cell_convo_count = 0):
     if cell_convo_count == 0:
         frisk   "... ... ... Nice view, huh?"
     else:
-        frisk  "It’s a shame no one else lives here. No one else can enjoy this view."
+        frisk  "It’s a shame no one else lives here. They're really missing out!"
     return
 
 label call_Frisk_Black_Tree_Room(cell_convo_count = 0):
     
-    frisk  "Hey!"
-    frisk  "That’s our house. It’s cozy looking even from the outside, isn’t it? "
-    frisk  "Although, I always thought that tree was pretty weird. What kind of tree just stays black like that? "
-    frisk  "I’ve tried asking Mom about it, but she always just dismisses it. It makes you wonder, huh?"
+    if cell_convo_count == 0:
+        frisk  "Home is just up ahead!"
+    elif cell_convo_count == 1:
+        frisk  "It’s really fun to play in the leaves, but Mom doesn’t like it if you spread them around too much." 
+        frisk  "You’ll have to clean them up if you do."
+    else
+        frisk  "Our house is cozy looking even from the outside, isn’t it?"
+        frisk  "Although, I always thought that tree was pretty weird. What kind of tree stays black like that?"
+        frisk  "I’ve tried asking Mom about it, but she always just dismisses it. It makes you wonder, huh?"
+    return
+
+#label call_Frisk_Same_Room(Cell_convo_count = 0):
+    if cell_convo_count == 0:
+        #normal
+        frisk  "Hello...?"
+        frisk  "Oh!"
+        frisk  "..."
+        #distant
+        frisk  "Really?"
+    else
+        #soulless
+        frisk  "..."
+    
     return
 
 
