@@ -105,8 +105,6 @@ label call_Frisk_Snail_Hunter(cell_convo_count = 0):
         frisk  "Did you need something? "
         frisk  "The Snail Hunting Room, huh? Mom and I come here a lot. She really likes snails. "
         frisk  "I’m not too big on them myself, but I like seeing Mom happy, so it’s always fun to go.    "
-    else:
-        frisk  "I have yet to win one of these races. Is it possible to be too encouraging?        "
     return
 
 label call_Frisk_Tunnel_Divide(cell_convo_count = 0):
