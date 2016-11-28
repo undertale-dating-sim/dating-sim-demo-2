@@ -9,6 +9,7 @@
 
 init -1 python hide:
 
+    config.log = 'wilson.txt'
     config.developer = True
     ## These control the width and height of the screen.
 
@@ -275,7 +276,7 @@ init -1 python hide:
 
     ## The default text speed in characters per second. 0 is infinite.
 
-    config.default_text_cps = 30
+    config.default_text_cps = 120
 
     ## The default auto-forward time setting.
 
