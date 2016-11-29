@@ -2,19 +2,24 @@ label testing_area:
     call initialize
     stop music
 
-    menu:
-        "Testing Area"
+    while True:
+        menu:
+            "Testing Area"
 
-        "Phone Calls":
-            jump testing_phone_calls
+            "Phone Calls":
+                call testing_phone_calls
 
-        "Characters":
-            jump testing_characters
+            "Characters":
+                call testing_characters
 
-        "Item Reactions":
-            jump testing_item_reactions
+            "Item Reactions":
+                call testing_item_reactions
 
-    jump testing_area
+            "Test Images":
+                call testing_images
+
+            "Test Minigames":
+                call testing_minigames
 
 
 label testing_phone_calls:
@@ -110,3 +115,17 @@ label testing_item_reactions:
     "Items go here."
 
     jump testing_area
+
+
+label testing_minigames:
+    menu:
+        "Choose your poison."
+        "Undersnail":
+            call demo_undersnail
+
+    return
+
+
+
+
+    
