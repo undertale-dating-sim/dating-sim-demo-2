@@ -128,7 +128,7 @@ label call_Frisk_Black_Tree_Room(cell_convo_count = 0):
     elif cell_convo_count == 1:
         frisk  "It’s really fun to play in the leaves, but Mom doesn’t like it if you spread them around too much." 
         frisk  "You’ll have to clean them up if you do."
-    else
+    else:
         frisk  "Our house is cozy looking even from the outside, isn’t it?"
         frisk  "Although, I always thought that tree was pretty weird. What kind of tree stays black like that?"
         frisk  "I’ve tried asking Mom about it, but she always just dismisses it. It makes you wonder, huh?"
@@ -142,7 +142,7 @@ label call_Frisk_Black_Tree_Room(cell_convo_count = 0):
         frisk  "..."
         #distant
         frisk  "Really?"
-    else
+    else:
         #soulless
         frisk  "..."
     

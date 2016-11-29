@@ -116,7 +116,7 @@ label giveSpiDonut:
         t "Thank you, dear… I… I hope Frisk will eat some of these… I have too many for me to eat by myself... I will be running my own bakery soon at this rate…"
     jump gaveItem
     
-jump giveSpiCider:
+label giveSpiCider:
     $ spiCider += 1
     $ itemsGivenToday += 1
     
@@ -139,7 +139,7 @@ jump giveSpiCider:
         t "... You really are giving me a lot of this... Maybe I could find a dessert to make out of these? I will have too much than I know what to do with if I can not use it all..."
     jump gaveItem
     
-jump giveMilkChoc:
+label giveMilkChoc:
     $ milkChoc += 1
     $ itemsGivenToday += 1
     
@@ -166,7 +166,7 @@ jump giveMilkChoc:
         t "... Are you {i}trying{/i} to get me to eat this?!"
     jump gaveItem
 
-jump giveWhiteChoc:
+label giveWhiteChoc:
     $ whiteChoc += 1
     $ itemsGivenToday += 1
     
@@ -192,7 +192,7 @@ jump giveWhiteChoc:
 
 label gaveItem:
     if itemsGivenToday == 1:
-        #nothing happens
+        pass
     elif itemsGivenToday == 2:
         #blush
         t "I am very flattered at your generosity from giving me so many gifts! Thank you, my dear."

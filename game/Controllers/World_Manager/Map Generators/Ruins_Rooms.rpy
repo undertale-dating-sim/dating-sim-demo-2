@@ -48,7 +48,7 @@ init -1 python:
             self.desc = "You shouldn't be here."
             self.visited = True
             self.bg = "background deadroom"
-            self.events["dead_room"] = Event("dead_room",True)
+            #self.events["dead_room"] = Event("dead_room",True)
             self.mappable = False
 
     class ruins_caveroom(Room):
@@ -194,8 +194,8 @@ label port_to_toriel_house:
 label dead_room:
     stop music
     play music "audio/music/scary.ogg"
-    show wilson scary
-    "{size=+5}{font=font/Pixelated_Wingdings.ttf}You   SHOULDN'T    BE     HERE{/font}"
+    #show wilson scary
+    #"{size=+5}{font=font/Pixelated_Wingdings.ttf}You   SHOULDN'T    BE     HERE{/font}"
     return
 
 

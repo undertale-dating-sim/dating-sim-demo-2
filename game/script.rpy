@@ -51,7 +51,8 @@ label start:
 label after_load:
     $ talking = False
     hide screen multiple_monster_click_screen
-    jump start
+    #jump start
+    jump testing_area
     return
 
 ###################
@@ -63,6 +64,7 @@ label show_buttons:
     show screen show_nav_button
     show screen show_map_button
     show screen show_information_overlay
+    show screen show_testing_button
     return
 
 ###################
@@ -74,6 +76,7 @@ label hide_buttons:
     hide screen show_map_button
     hide screen show_information_overlay
     hide screen multiple_monster_click_screen
+    hide screen show_testing_button
     return
 
 ###################

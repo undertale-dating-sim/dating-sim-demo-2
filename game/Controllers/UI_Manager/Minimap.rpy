@@ -53,7 +53,8 @@ init python:
 
             return
 
-
+screen show_testing_button:
+    textbutton "Go to Test" action [Play ("sound", "audio/sfx/click.wav"),ui.callsinnewcontext("testing_area")] align(.95,.20) background Frame("UI/text-box3.png",50, 21)    
 
 screen show_map_button:
     textbutton "Show Map" action [Play ("sound", "audio/sfx/click.wav"),Show("show_map"),Hide("show_map_button")] align(.95,.15) background Frame("UI/text-box3.png",50, 21)

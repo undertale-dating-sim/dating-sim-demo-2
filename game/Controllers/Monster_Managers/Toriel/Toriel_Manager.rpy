@@ -81,6 +81,12 @@ label initialize_toriel:
     image toriel laughing = "characters/Toriel/Toriel_Laughing_colors.png"
     image toriel normal = "characters/Toriel/Toriel_Neutral_colors.png"
     image toriel reallysad = "characters/Toriel/Toriel_ReallySad_colors.png"
+
+    define toriel = ('Toriel')
+    define torielChar = Character('Toriel', color="#FFFFFF")
+    python:
+        def toriel(text, *args, **kwargs):
+               torielChar(text, *args, **kwargs)
     return
 
 #this is Toriels default scene

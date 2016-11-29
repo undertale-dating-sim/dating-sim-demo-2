@@ -21,7 +21,7 @@ init:
     $ whiteChoc = 0
     
 
-label start:
+label toriel_start:
     
     t "Hello, dear. Can I help you?"
     menu:
