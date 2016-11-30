@@ -1,6 +1,8 @@
 label testing_area:
     call initialize
     stop music
+    play music "audio/music/scary.ogg"
+    scene background deadroom
 
     while True:
         menu:
@@ -109,8 +111,11 @@ label testing_characters:
 
         "Dummy":
             jump testing_dummy
+
+        "Back":
+            return
         
-    jump testing_area
+    return
 
 
 label testing_item_reactions:
@@ -135,13 +140,15 @@ label testing_events:
                 call whimsun_re_start
             "Vegetoid Event":
                 call vegetoid_ruins_re_start
-            "Dummy Event NYI":
-                "Not Coded Yet"
+            "Dummy Event":
+                call dummy_ruins_event_start
             "Frisk":
                 call test_frisk_events
             "Napstablook":
                 call test_napstablook_events
-        return
+            "Back":
+                return
+    return
 
 
 label test_frisk_events:

@@ -67,6 +67,8 @@ label initialize:
 
     image migosp normal = "characters/Migosp/migosp_normal.png"
     image migosp angry = "characters/Migosp/migosp_angry.png"
+
+    image dummy normal = "characters/Dummy/Dummy_Normal.png"
     
 
     #initialize the monsters
@@ -91,6 +93,7 @@ label initialize:
     define moldsmol = Character('Moldsmol', color="#FFFFFF")
     define vegetoid = Character('Vegetoid', color="#FFFFFF")
     define migosp = Character('Migosp', color="#FFFFFF")
+    define dummy = Character('Dummy' , color="#FFFFFF")
 
     #sprite positions
     init:
