@@ -35,7 +35,7 @@ init:
 
 label scrolling_credits:
     
-    play music "megalovania.mp3"
+    play music "audio/music/megalovania.mp3"
     scene black
     
 

@@ -26,6 +26,9 @@ label testing_area:
             "Test Minigames":
                 call testing_minigames
 
+            "Test Credits":
+                call scrolling_credits
+
 
 label testing_phone_calls:
     while True:
@@ -140,8 +143,9 @@ label testing_events:
                 call whimsun_re_start
             "Vegetoid Event":
                 call vegetoid_ruins_re_start
-            "Dummy Event":
+            "Dummy Event NYI":
                 call dummy_ruins_event_start
+                
             "Frisk":
                 call test_frisk_events
             "Napstablook":

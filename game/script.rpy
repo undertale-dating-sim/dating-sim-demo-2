@@ -32,10 +32,10 @@ define test = Character("Sans", callback=beepy_voice)
 label start:
     stop music
 
-    $ renpy.say(test,telemetry("this is a test of the papyrus system"))
-    #test "This is also a test."
+    # $ renpy.say(test,telemetry("this is a test of the papyrus system"))
+    # #test "This is also a test."
 
-    call start
+    # call start
     #play music "audio/music/music-home.mp3"
     #jump choosemenu
     call show_buttons
