@@ -9,6 +9,9 @@ label testing_area:
             "Phone Calls":
                 call testing_phone_calls
 
+            "Events":
+                call testing_events
+
             "Characters":
                 call testing_characters
 
@@ -125,7 +128,51 @@ label testing_minigames:
 
     return
 
+label testing_events:
+    while True:
+        menu:
+            "Poor Whimsun":
+                call whimsun_re_start
+            "Vegetoid Event":
+                call vegetoid_ruins_re_start
+            "Dummy Event NYI":
+                "Not Coded Yet"
+            "Frisk":
+                call test_frisk_events
+            "Napstablook":
+                call test_napstablook_events
+        return
 
+
+label test_frisk_events:
+    while True:
+        menu:
+            "Meeting Frisk":
+                pass
+            "Friendship Hangout 1":
+                pass
+            "Friendship Event 1":
+                pass
+            "Friendship Event 2":
+                pass
+            "Back":
+                return
+    return
+    
+label test_napstablook_events:
+    while True:
+        menu:
+            "True Love Date 1":
+                pass
+            "Friendship Hangout 1":
+                pass
+            "Friendship Hangout 2":
+                pass
+            "Heartbreak Date 1":
+                pass
+            "Back":
+                return
+    return
 
 
     

@@ -1,10 +1,4 @@
-init:
-    define vegetoid = ('Vegetoid')
-
-
-
-
-label vegetoid_start:
+label vegetoid_ruins_re_start:
     "A vegetoid has appeared!"
     "....."
     "They seem to be asking for assistance in the pursuit of higher education."
