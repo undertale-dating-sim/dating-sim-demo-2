@@ -13,6 +13,15 @@ init -9 python:
             self.default_sprite = "toriel normal"
 
         def give_gift(self,item):
+
+
+            if item.name in self.given_items:
+                self.given_items[item.name] += 1
+            else:
+                self.given_items[item.name] = 1
+
+            renpy.say(self.name,'%s' % self.given_items[item.name])
+
             renpy.say(self.name,"Oh? What do you have there?")
 
             if isinstance(item,Spider_Cider):

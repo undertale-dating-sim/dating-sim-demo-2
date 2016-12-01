@@ -19,6 +19,18 @@ init -10 python:
             self.dialogue_toggle = False
             self.hover_sprite = None
 
+            #An array to store the items they have been given
+            self.given_items = {}
+
+        #iterates through the given items array and adds up the totals
+        def get_total_given_items(self):
+            total = 0
+            
+            for item_name,count in items.iteritems():
+                total = total + count
+
+            return total
+
         def reset_schedule(self):
             self.schedule = {"Sunday":{},"Monday":{},"Tuesday":{},"Wednesday":{},"Thursday":{},"Friday":{},"Saturday":{}}
         
