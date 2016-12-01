@@ -36,7 +36,7 @@ label start:
     # #test "This is also a test."
 
     # call start
-    #play music "audio/music/music-home.mp3"
+    play music "audio/music/music-home.mp3"
     #jump choosemenu
     call show_buttons
     jump start_the_game
