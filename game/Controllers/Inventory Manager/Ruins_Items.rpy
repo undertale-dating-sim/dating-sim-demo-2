@@ -99,8 +99,50 @@ init -4 python:
             self.sprite = "items/item_spiderdonut.png"
             self.menu_desc = "It is a donut. \nRestore 10 Stamina"
 
+    class Butts_Pie(Item):
+        def __init__(self):
+            Item.__init__(self)
+            self.name = "Butterscotch Pie"
+            self.use_text = "You eat the pie. It tastes like placeholder?"
+            self.pickup_text = "It's a pie."
+            self.sprite = "items/item_buttspie.png"
+            self.menu_desc = "Placeholder. \nRestore xx Stamina"
 
+    class Snail_Pie(Item):
+        def __init__(self):
+            Item.__init__(self)
+            self.name = "Snail Pie"
+            self.use_text = "You eat the pie. It tastes like placeholder?"
+            self.pickup_text = "It's a pie."
+            self.sprite = "items/item_snailpie.png"
+            self.menu_desc = "Placeholder. \nRestore xx Stamina"
+
+    class White_Chocolate(Item):
+        def __init__(self):
+            Item.__init__(self)
+            self.name = "Snail Pie"
+            self.use_text = "You eat the chocolate. It tastes like placeholder?"
+            self.pickup_text = "It's a chocolate."
+            self.sprite = "items/item_whitechocolate.png"
+            self.menu_desc = "Placeholder. \nRestore xx Stamina"
+
+    class Milk_Chocolate(Item):
+        def __init__(self):
+            Item.__init__(self)
+            self.name = "Snail Pie"
+            self.use_text = "You eat the chocolate. It tastes like placeholder?"
+            self.pickup_text = "It's a chocolate."
+            self.sprite = "items/item_milkchocolate.png"
+            self.menu_desc = "Placeholder. \nRestore xx Stamina"
             
+    class Monster_Candy(Item):
+        def __init__(self):
+            Item.__init__(self)
+            self.name = "Monster Candy"
+            self.use_text = "You eat the candy. It tastes like placeholder?"
+            self.pickup_text = "It's a candy."
+            self.sprite = "items/item_monstercandy.png"
+            self.menu_desc = "Placeholder. \nRestore xx Stamina"
 
     class Spider_Cider(Item):
         def __init__(self):

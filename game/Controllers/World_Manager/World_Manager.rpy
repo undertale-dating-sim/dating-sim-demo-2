@@ -31,7 +31,15 @@ init -10 python:
         #this function should be called at the beginning of every day.
         #it will update all of the areas for whatever we need.
         def update_day(self):
+            #seed the random monsters
             self.seed_random_monsters()
+            
+            #reset the gift counts
+            for an,a in self.areas.iteritems():
+                for rn,r in a.rooms.iteritems():
+                    for m in r.monsters:
+                        m.given_today_count = 0
+
             return
 
         def get_current_day(self):

@@ -22,6 +22,9 @@ init -5 python:
             inventory.drop(self)
             return
 
+        def get_class_name(self):
+            return self.__class__.__name__
+
 init -1 python:
     class Inventory():
         def __init__(self):

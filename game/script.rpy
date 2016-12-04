@@ -36,11 +36,15 @@ label start:
     # #test "This is also a test."
 
     # call start
-    play music "audio/music/music-home.mp3"
+    #play music "audio/music/music-home.mp3"
     #jump choosemenu
-    call show_buttons
-    jump start_the_game
+    #call show_buttons
+    #jump start_the_game
 
+    # $ world.get_monster("Toriel").give_item(Spider_Donut())
+    # $ world.get_monster("Toriel").give_item(Spider_Donut())
+    # $ world.get_monster("Toriel").give_item(Spider_Donut())
+    # $ world.get_monster("Toriel").give_item(Spider_Donut())
     return
 
 ###################
@@ -52,7 +56,7 @@ label after_load:
     $ talking = False
     hide screen multiple_monster_click_screen
     #jump start
-    jump testing_area
+    jump testing_item_reactions
     return
 
 ###################

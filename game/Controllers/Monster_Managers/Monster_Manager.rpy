@@ -21,15 +21,9 @@ init -10 python:
 
             #An array to store the items they have been given
             self.given_items = {}
+            self.given_today_count = 0
 
-        #iterates through the given items array and adds up the totals
-        def get_total_given_items(self):
-            total = 0
-            
-            for item_name,count in items.iteritems():
-                total = total + count
 
-            return total
 
         def reset_schedule(self):
             self.schedule = {"Sunday":{},"Monday":{},"Tuesday":{},"Wednesday":{},"Thursday":{},"Friday":{},"Saturday":{}}
@@ -87,15 +81,47 @@ init -10 python:
                         return t
             return self.default_event
 
-        def give_gift(self,item = False):
-            renpy.say(self.name,"You shouldn't see this.")
+
+        #iterates through the given items array and adds up the totals
+        def get_total_given_items(self):
+            total = 0
+            
+            for item_name,count in items.iteritems():
+                total = total + count
+
+            return total
+
+        def get_total_specific_item(self,item):
+
+            if item.get_class_name() in self.given_items:
+                return self.given_items[item.get_class_name()]
+            else:
+                return 0
+
+        def give_item(self,item = False):
+
+            # give_Gift_name_itemclassname
+            # builds the label and calls it with current count + 1
+            label_name = "give_Gift_%s_%s" % (self.name,item.get_class_name())
+
+            if renpy.has_label(label_name):
+                response = renpy.call_in_new_context(label_name,self.get_total_specific_item(item) + 1,self)
+                
+                if response:
+                    self.given_items[item.get_class_name()] = self.get_total_specific_item(item) + 1
+                    self.given_today_count += 1
+
+                renpy.call_in_new_context("%s_Gift_Count_Reaction" % self.name,self)
+            else:
+                renpy.call_in_new_context("give_Gift_%s_Unknown" % self.name)
+            return
 
         def update_schedule(self,day,timezone,location,event):
 
             self.schedule[day][timezone] = {location:event}
 
             return
-    
+
 
 screen remember(owner):
     

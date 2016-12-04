@@ -123,9 +123,41 @@ label testing_characters:
 
 label testing_item_reactions:
     
-    "Items go here."
+    menu:
+        "Toriel":
+            call test_items(world.get_monster("Toriel"))
+
+        "Back":
+            return
 
     jump testing_area
+
+label test_items(monster):
+    $  renpy.show(monster.default_sprite)
+    while True:
+        menu:
+            "Current item total [monster.given_today_count].  Current FP [monster.FP]."
+            "Spider_Donut":
+                $ monster.give_item(Spider_Donut())
+            "Butts_Pie":
+                $ monster.give_item(Butts_Pie())
+            "Snail_Pie":
+                $ monster.give_item(Snail_Pie())
+            "White_Chocolate":
+                $ monster.give_item(White_Chocolate())
+            "Milk_Chocolate":
+                $ monster.give_item(Milk_Chocolate())
+            "Monster_Candy":
+                $ monster.give_item(Monster_Candy())
+            "Spider_Cider":
+                $ monster.give_item(Spider_Cider())
+                
+            "Reset Items for day":
+                $ monster.given_today_count = 0
+            "Back":
+                return
+    return
+
 
 
 label testing_minigames:

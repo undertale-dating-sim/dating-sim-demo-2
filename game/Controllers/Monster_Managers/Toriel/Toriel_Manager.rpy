@@ -15,11 +15,6 @@ init -9 python:
         def give_gift(self,item):
 
 
-            if item.name in self.given_items:
-                self.given_items[item.name] += 1
-            else:
-                self.given_items[item.name] = 1
-
             renpy.say(self.name,'%s' % self.given_items[item.name])
 
             renpy.say(self.name,"Oh? What do you have there?")
@@ -83,13 +78,18 @@ init -9 python:
 label initialize_toriel:
         
     image toriel placeholder = "characters/Toriel/toriel_ph.png"
-    image toriel angry = "characters/Toriel/Toriel_Angry_colored.png"
-    image toriel annoyed = "characters/Toriel/Toriel_Annoyed_colors.png"
-    image toriel awkward = "characters/Toriel/Toriel_Awkward_colors.png"
-    image toriel blushing = "characters/Toriel/Toriel_Blushing_colors.png"
-    image toriel laughing = "characters/Toriel/Toriel_Laughing_colors.png"
-    image toriel normal = "characters/Toriel/Toriel_Neutral_colors.png"
-    image toriel reallysad = "characters/Toriel/Toriel_ReallySad_colors.png"
+    image toriel angry = "characters/Toriel/Toriel_Angry.png"
+    image toriel annoyed = "characters/Toriel/Toriel_Annoyed.png"
+    image toriel awkward = "characters/Toriel/Toriel_Awkward.png"
+    image toriel blushing = "characters/Toriel/Toriel_Blushing.png"
+    image toriel laughing = "characters/Toriel/Toriel_Laughing.png"
+    image toriel normal = "characters/Toriel/Toriel_Neutral.png"
+    image toriel reallysad = "characters/Toriel/Toriel_ReallySad.png"
+    image toriel sad = "characters/Toriel/Toriel_Sad.png"
+    image toriel small_smile = "characters/Toriel/Toriel_Small_Smile.png"
+    image toriel smile = "characters/Toriel/Toriel_Smile.png"
+    image toriel surprised = "characters/Toriel/Toriel_Surprised.png"
+
 
     define toriel = ('Toriel')
     define torielChar = Character('Toriel', color="#FFFFFF")
