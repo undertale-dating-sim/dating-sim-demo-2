@@ -1,9 +1,16 @@
 
 
 label give_Gift_Toriel_Unknown:
+    show toriel awkward
     toriel "Err... I am not sure what you are trying to give me, dear."
     toriel "Perhaps you should take a moment to compose yourself and try again?"
     return False
+
+label give_Gift_Toriel_Rejection(owner):
+    show toriel angry
+    $ owner.FP -= 10
+    toriel "I would like to ask you to stop."
+    return
 
 
 label give_Gift_Toriel_Spider_Donut(count,owner):
@@ -56,7 +63,7 @@ label give_Gift_Toriel_Snail_Pie(count,owner):
         toriel "Thank you very much, my dear! I do love Snail Pie. It has such a unique and artful taste to it. It has been one of my favorite foods for as long as I can remember."
     elif count == 2:
         $ owner.FP +=10
-        show toriel laugh
+        show toriel laughing
         toriel "You know, I used to beg my parents to have this for dinner when I was a child almost every day! Hehehehe!"
         show toriel awkward
         toriel "..."
@@ -137,7 +144,7 @@ label give_Gift_Toriel_Milk_Chocolate(count,owner):
         $ owner.FP -=5
         show toriel angry
         toriel "... Are you {i}trying{/i} to get me to eat this?!"
-    return True
+    return False
 
 label give_Gift_Toriel_White_Chocolate(count,owner):
     
@@ -159,7 +166,7 @@ label give_Gift_Toriel_White_Chocolate(count,owner):
         $ owner.FP -=5
         show toriel angry
         toriel "... I ask you to please stop giving me this. I do not want this."
-    return True
+    return False
 
 label Toriel_Gift_Count_Reaction(owner):
     

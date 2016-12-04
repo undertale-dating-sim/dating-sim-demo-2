@@ -105,13 +105,16 @@ init -10 python:
             label_name = "give_Gift_%s_%s" % (self.name,item.get_class_name())
 
             if renpy.has_label(label_name):
-                response = renpy.call_in_new_context(label_name,self.get_total_specific_item(item) + 1,self)
-                
-                if response:
+
+                if self.given_today_count >= 5:
+                    renpy.call_in_new_context("give_Gift_%s_Rejection" % self.name,self)
+                else:
+                    response = renpy.call_in_new_context(label_name,self.get_total_specific_item(item) + 1,self)
                     self.given_items[item.get_class_name()] = self.get_total_specific_item(item) + 1
-                    self.given_today_count += 1
-                    renpy.call_in_new_context("%s_Gift_Count_Reaction" % self.name,self)
-                    
+                    if response:
+                        self.given_today_count += 1
+                        renpy.call_in_new_context("%s_Gift_Count_Reaction" % self.name,self)
+
             else:
                 renpy.call_in_new_context("give_Gift_%s_Unknown" % self.name)
             return
