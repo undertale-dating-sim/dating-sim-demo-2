@@ -3,7 +3,7 @@
 label give_Gift_Toriel_Unknown:
     toriel "Err... I am not sure what you are trying to give me, dear."
     toriel "Perhaps you should take a moment to compose yourself and try again?"
-    return
+    return False
 
 
 label give_Gift_Toriel_Spider_Donut(count,owner):
@@ -44,7 +44,7 @@ label give_Gift_Toriel_Butts_Pie(count,owner):
         show toriel sad
         toriel "I… I understand if you do not like it. I shall not give it to you anymore."
 
-    return
+    return True
         
 label give_Gift_Toriel_Snail_Pie(count,owner):
 
@@ -69,7 +69,7 @@ label give_Gift_Toriel_Snail_Pie(count,owner):
         show toriel awkward
         toriel "Ah… Thank you, dear… I will… I will put it with the others."
     
-    return
+    return True
     
 label give_Gift_Toriel_Monster_Candy(count,owner):
 
@@ -91,7 +91,7 @@ label give_Gift_Toriel_Monster_Candy(count,owner):
         $ owner.FP +=0
         show toriel normal
         toriel "Please, do not give yourself more work than you need. I am telling the truth when I say that I can get these things myself!"
-    return
+    return True
     
 label give_Gift_Toriel_Spider_Cider(count,owner):
 
@@ -112,7 +112,7 @@ label give_Gift_Toriel_Spider_Cider(count,owner):
         $ owner.FP +=0
         show toriel awkward
         toriel "... You really are giving me a lot of this... Maybe I could find a dessert to make out of these? I will have too much than I know what to do with if I can not use it all..."
-    return
+    return True
     
 label give_Gift_Toriel_Milk_Chocolate(count,owner):
 
@@ -137,7 +137,7 @@ label give_Gift_Toriel_Milk_Chocolate(count,owner):
         $ owner.FP -=5
         show toriel angry
         toriel "... Are you {i}trying{/i} to get me to eat this?!"
-    return
+    return True
 
 label give_Gift_Toriel_White_Chocolate(count,owner):
     
@@ -159,7 +159,7 @@ label give_Gift_Toriel_White_Chocolate(count,owner):
         $ owner.FP -=5
         show toriel angry
         toriel "... I ask you to please stop giving me this. I do not want this."
-    return
+    return True
 
 label Toriel_Gift_Count_Reaction(owner):
     

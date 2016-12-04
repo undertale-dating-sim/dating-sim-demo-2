@@ -110,8 +110,8 @@ init -10 python:
                 if response:
                     self.given_items[item.get_class_name()] = self.get_total_specific_item(item) + 1
                     self.given_today_count += 1
-
-                renpy.call_in_new_context("%s_Gift_Count_Reaction" % self.name,self)
+                    renpy.call_in_new_context("%s_Gift_Count_Reaction" % self.name,self)
+                    
             else:
                 renpy.call_in_new_context("give_Gift_%s_Unknown" % self.name)
             return

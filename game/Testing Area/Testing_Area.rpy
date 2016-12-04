@@ -151,7 +151,8 @@ label test_items(monster):
                 $ monster.give_item(Monster_Candy())
             "Spider_Cider":
                 $ monster.give_item(Spider_Cider())
-                
+            "Unknown / Ungiftable":
+                $ monster.give_item(Stick())
             "Reset Items for day":
                 $ monster.given_today_count = 0
             "Back":
