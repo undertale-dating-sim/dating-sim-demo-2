@@ -6,21 +6,49 @@ init -9 python:
         def __init__(self):
             Monster.__init__(self)
             self.default_event = Event("Frisk_manager_default",True,self)
+            self.default_sprite = "frisk normal"
             self.name = "Frisk"
             self.FP = 20
+            self.consumables_given = 0
 
-        def give_gift(self,item):
-            renpy.say(self.name,"Oh? What do you have there?")
+        def give_item(self,item = False):
 
-            if isinstance(item,Spider_Cider):
-                renpy.say(self.name,"Thank you! I love this!")
-                self.FP += 20
-                return True
+            # give_Gift_name_itemclassname
+            # builds the label and calls it with current count + 1
+            label_name = "give_Gift_%s_%s" % (self.name,item.get_class_name())
 
-            if isinstance(item,Spider_Donut):
-                renpy.say(self.name,"I don't like donuts.")
-                self.FP -= 20
-                return False
+            if renpy.has_label(label_name):
+
+                if self.given_today_count >= 5:
+                    if not item.equip:
+                        renpy.call_in_new_context("Frisk_Consumable_Reject",self)
+                    else:
+                        renpy.call_in_new_context("Frisk_Equip_Reject",self)
+
+                else:
+                    
+                    response = renpy.call_in_new_context(label_name,self.get_total_specific_item(item) + 1,self)
+                    
+                    if response:
+                        self.given_items[item.get_class_name()] = self.get_total_specific_item(item) + 1
+                        #dirty check, but its easier than hiding it somewhere
+                        if self.given_today_count == 0:
+                            self.consumables_given = 0
+
+                        self.given_today_count += 1
+
+                        if not item.equip:
+                            self.consumables_given += 1
+
+                        if self.consumables_given == 3:
+                            renpy.call_in_new_context("Frisk_Consumable_Warning")
+                        elif self.given_today_count == 4:
+                            renpy.call_in_new_context("Frisk_Equip_Warning")
+
+                        
+
+            else:
+                renpy.call_in_new_context("give_Gift_%s_Unknown" % self.name)
             return
 
         def handle_schedule(self):
@@ -71,6 +99,18 @@ init -9 python:
 label initialize_frisk:
     #here is where the sprites go
 
+    image frisk angry  = "characters/Frisk/Frisk_Angry.png"
+    image frisk annoyed = "characters/Frisk/Frisk_Annoyed.png"
+    image frisk bigsmile = "characters/Frisk/Frisk_BigSmile.png"
+    image frisk disappointed = "characters/Frisk/Frisk_Disappointed.png"
+    image frisk distant = "characters/Frisk/Frisk_Distant.png"
+    image frisk normal = im.Scale("characters/Frisk/Frisk_Neutral.png",265,590)
+    image frisk smallsmile = "characters/Frisk/Frisk_SmallSmile.png"
+    image frisk soulless = "characters/Frisk/Frisk_Soulless.png"
+    image frisk surprised = "characters/Frisk/Frisk_Surprised.png"
+    image frisk tearyeyes = "characters/Frisk/Frisk_TearyEyes.png"
+    image frisk upset = "characters/Frisk/Frisk_Upset.png"
+    image frisk whatno = "Capture.PNG"
     define frisk = ('Frisk')
     define friskChar = Character('Frisk', color="#FFFFFF")
     python:

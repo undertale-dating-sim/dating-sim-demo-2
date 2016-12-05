@@ -1030,61 +1030,7 @@ label frisk_drawer_secret:
             frisk "Is there anything else you want to talk about?"
             
             jump continue_looking
-    
-        #label give_frisk_item:
-            ################################################IMPLEMENT AS NEEDED################################################
-            #menu:
-                #"Key Items":
-                    #menu:
-                        ################################################CAN ONLY SHOW FRISK KEY ITEMS THAT THE MC HAS################################################
-                        ################################################UNCOMMENT AS NEEDED################################################
-                        #"Heart Locket":
-                            ##Frisk Sprite Change: deadpan with Chara alteration
-                            #frisk "I can't accept this..."
-                            #jump give_frisk_item
-                        #"Pocket Mirror":
-                            ##Frisk Sprite Change: contemplative
-                            #frisk "What's this?"
-                            ##Frisk Sprite Change: neutral
-                            #frisk "Hey look, It’s me!"
-                            #frisk "You should hang on to this, you’ll never know when you may need something like this."
-                            #jump give_frisk_item
-                        #"Stick":
-                            ##Frisk Sprite Change: contemplative
-                            #frisk "A stick?"
-                            ##Frisk Sprite Change: slightly happy
-                            #frisk "I picked up one of those when I first came to the underground."
-                            #frisk "I thought I may have to defend myself."
-                            #frisk "Luckily I didn’t need to fight anyone."
-                            #jump give_frisk_item
-                        #"Flower":
-                            ##Frisk Sprite Change: slightly happy
-                            #frisk "Um..."
-                            ##Frisk Sprite Change: neutral
-                            #frisk "No thanks."
-                            #jump give_frisk_item
-                        #"Snail Pie":
-                            ##Frisk Sprite Change: contemplative
-                            #frisk "Did Mom give you that?"
-                            ##Frisk Sprite Change: slightly happy
-                            #frisk "It would probably hurt her feelings if you didn’t eat it yourself…"
-                            #frisk "...But I guess I could take a piece of it off your hands if you’d really want me to."
-                            #menu:
-                                #"Yes, I want you to take it.":
-                                    ##Frisk Sprite Change: neutral
-                                    #frisk "Well, okay..."
-                                    #"You give Frisk a piece of the pie and decide to keep the rest, just in case."
-                                    #jump give_frisk_item
-                                #"No, I think I'll hold onto it.":
-                                    ##Frisk Sprite Change: neutral
-                                    #frisk "Good idea."
-                                    #jump give_frisk_item
-                        #"Go back":
-                            #jump give_frisk_item
-                #"Normal Items":
-                    ################################################SEE FRISK/CHARA SCRIPT AND ONLY CODE ITEMS AVAILABLE IN DEMO################################################
-                #"Go back":
-                    #jump continue_looking
+
         
         label continue_looking:
             "Would you like to continue looking?"

@@ -126,6 +126,8 @@ label testing_item_reactions:
     menu:
         "Toriel":
             call test_items(world.get_monster("Toriel"))
+        "Frisk":
+            call test_items(world.get_monster("Frisk"))
 
         "Back":
             return
