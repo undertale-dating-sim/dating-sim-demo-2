@@ -54,8 +54,8 @@ label initialize:
     image vegetoid happy = "characters/Vegetoid/vegetoid_happy.png"
 
     image loox normal = "characters/Loox/loox_normal.png"
-    image loox normal = "characters/Loox/loox_happy.png"
-    image loox normal = "characters/Loox/loox_surprised.png"
+    image loox happy = "characters/Loox/loox_happy.png"
+    image loox surprised = "characters/Loox/loox_surprised.png"
 
     image moldsmol normal = "characters/Moldsmol/moldsmol_normal.png"
     image moldsmol happy = "characters/Moldsmol/moldsmol_happy.png"
