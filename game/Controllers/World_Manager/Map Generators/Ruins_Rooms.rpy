@@ -71,6 +71,8 @@ init -1 python:
             self.bg = "background ruins_floweyroom"
             self.add_monster(Toriel())
             self.add_monster(Napstablook())
+            self.add_monster(Frisk())
+
 
 
     class ruins_ruinsentrance(Room):
