@@ -185,6 +185,8 @@ label testing_events:
                 call test_frisk_events
             "Napstablook":
                 call test_napstablook_events
+            "Toriel":
+                call test_toriel_events
             "Back":
                 return
     return
@@ -220,5 +222,18 @@ label test_napstablook_events:
                 return
     return
 
-
+label test_toriel_events:
+    while True:
+        menu:
+            "True Love Date 1":
+                call toriel_tl_date01_opening
+            "Friendship Hangout 1":
+                pass
+            "Friendship Hangout 2":
+                pass
+            "Heartbreak Date 1":
+                pass
+            "Back":
+                return
+    return
     
