@@ -117,6 +117,7 @@ label give_Gift_Frisk_White_Chocolate(count,owner):
     else:
         show frisk upset
         frisk "Sorry, but... I don't think I want anymore chocolate."
+        return False
     #dirty way to do this but Frisk shares white and milk choco reactions
     $ owner.given_items['Milk_Chocolate'] = owner.get_total_specific_item(Milk_Chocolate()) + 1
     return True
@@ -129,6 +130,7 @@ label give_Gift_Frisk_Milk_Chocolate(count,owner):
     else:
         show frisk upset
         frisk "Sorry, but... I don't think I want anymore chocolate."
+        return False
     $ owner.given_items['White_Chocolate'] = owner.get_total_specific_item(White_Chocolate()) + 1
     return True
 
@@ -167,8 +169,8 @@ label Frisk_Consumable_Reject(owner):
 
 label Frisk_Equip_Warning:
     show frisk normal
-    Frisk "You're giving me a lot of stuff... Maybe you should slow down."
-    Frisk "I feel kind of guilty accepting all of this!"
+    frisk "You're giving me a lot of stuff... Maybe you should slow down."
+    frisk "I feel kind of guilty accepting all of this!"
     return
 
 label Frisk_Equip_Reject(owner):
