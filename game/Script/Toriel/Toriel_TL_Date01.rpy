@@ -17,7 +17,6 @@ init:
 
 #triggered when Toriel has been high enough toriel_fp/toriel_dp
 #       and when all flirt options have been used
-label start:
     
 label toriel_tl_date01_opening:
     show toriel normal
@@ -274,7 +273,7 @@ label .date_retry:
                     menu:
                         "I did.":
                             $toriel_dp +=1
-                            show toriel smile	
+                            show toriel smile
                             toriel "It sounds like a good idea. I would be happy to go out with you."
                             jump .date_start
                         "Never mind.":
