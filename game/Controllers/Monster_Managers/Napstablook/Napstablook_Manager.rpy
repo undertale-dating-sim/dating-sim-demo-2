@@ -71,14 +71,13 @@ init -9 python:
 
 label initialize_napstablook:
         
-    image napstablook placeholder = "characters/Toriel/toriel_ph.png"
-    image napstablook angry = "characters/Toriel/Toriel_Angry_colored.png"
-    image napstablook annoyed = "characters/Toriel/Toriel_Annoyed_colors.png"
-    image napstablook awkward = "characters/Toriel/Toriel_Awkward_colors.png"
-    image napstablook blushing = "characters/Toriel/Toriel_Blushing_colors.png"
-    image napstablook laughing = "characters/Toriel/Toriel_Laughing_colors.png"
-    image napstablook normal = "characters/Toriel/Toriel_Neutral_colors.png"
-    image napstablook reallysad = "characters/Toriel/Toriel_ReallySad_colors.png"
+    image napstablook normal = "characters/Napstablook/Napstablook_Normal.png"
+    image napstablook sad = "characters/Napstablook/Napstablook_Sad.png"
+    image napstablook shyblush = "characters/Napstablook/Napstablook_ShyBlush.png"
+    image napstablook smallsmile = "characters/Napstablook/Napstablook_Smallsmile.png"
+    image napstablook smile = "characters/Napstablook/Napstablook_Smile.png"
+    image napstablook surprised = "characters/Napstablook/Napstablook_Surprised.png"
+
 
     define napstablook = ('Napstablook')
     define napstablookChar = Character('Napstablook', color="#FFFFFF")
@@ -94,8 +93,6 @@ label Napstablook_manager_default(owner = False, pause = True):
     show napstablook normal
     if pause:
         $ renpy.pause()
-
-    $ x = x / 0
     
     menu:
         "Napstablook"

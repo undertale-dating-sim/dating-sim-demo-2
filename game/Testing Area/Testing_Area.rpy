@@ -128,6 +128,8 @@ label testing_item_reactions:
             call test_items(world.get_monster("Toriel"))
         "Frisk":
             call test_items(world.get_monster("Frisk"))
+        "Napstablook":
+            call test_items(world.get_monster("Napstablook"))
 
         "Back":
             return
