@@ -50,33 +50,35 @@ label test_call(monster = 'Toriel'):
             "[monster]"
 
             "Unknown":
-                call expression "call_"+monster+"_Unknown"
+                call expression "call_"+monster+"_Unknown" pass(world.get_monster(monster))
+            "Same Room":
+                call expression "call_"+monster+"_Same_Room" pass(world.get_monster(monster))
             "Cave_Room":
-                call expression "call_"+monster+"_Cave_Room"
+                call expression "call_"+monster+"_Cave_Room" pass(world.get_monster(monster))
             "Grass_Room":
-                call expression "call_"+monster+"_Grass_Room"
+                call expression "call_"+monster+"_Grass_Room" pass(world.get_monster(monster))
             "Ruins_Entrance":
-                call expression "call_"+monster+"_Ruins_Entrance"
+                call expression "call_"+monster+"_Ruins_Entrance" pass(world.get_monster(monster))
             "Tunnels":
-                call expression "call_"+monster+"_Tunnels"
+                call expression "call_"+monster+"_Tunnels" pass(world.get_monster(monster))
             "Dummy_Room":
-                call expression "call_"+monster+"_Dummy_Room"
+                call expression "call_"+monster+"_Dummy_Room" pass(world.get_monster(monster))
             "Froggit_Room":
-                call expression "call_"+monster+"_Froggit_Room"
+                call expression "call_"+monster+"_Froggit_Room" pass(world.get_monster(monster))
             "Sassy_Rock_Room":
-                call expression "call_"+monster+"_Sassy_Rock_Room"
+                call expression "call_"+monster+"_Sassy_Rock_Room" pass(world.get_monster(monster))
             "Blooky_Room":
-                call expression "call_"+monster+"_Blooky_Room"
+                call expression "call_"+monster+"_Blooky_Room" pass(world.get_monster(monster))
             "Spider_Bakery":
-                call expression "call_"+monster+"_Spider_Bakery"
+                call expression "call_"+monster+"_Spider_Bakery" pass(world.get_monster(monster))
             "Snail_Hunter":
-                call expression "call_"+monster+"_Snail_Hunter"
+                call expression "call_"+monster+"_Snail_Hunter" pass(world.get_monster(monster))
             "Tunnel_Divide":
-                call expression "call_"+monster+"_Tunnel_Divide"
+                call expression "call_"+monster+"_Tunnel_Divide" pass(world.get_monster(monster))
             "Overlook":
-                call expression "call_"+monster+"_Overlook"
+                call expression "call_"+monster+"_Overlook" pass(world.get_monster(monster))
             "Black_Tree_Room":
-                call expression "call_"+monster+"_Black_Tree_Room"
+                call expression "call_"+monster+"_Black_Tree_Room" pass(world.get_monster(monster))
             "Exit":
                 return
     return
