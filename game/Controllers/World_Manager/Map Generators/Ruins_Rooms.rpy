@@ -57,7 +57,7 @@ init -1 python:
             self.name = "Cave Room"
             self.x = 10
             self.y = 0
-            self.desc = "The large cavern you are in is lit by the light coming from far above, shining into the corners of the cave and illuminating the path of flowers that broke your fall. There is one exit from the cavern, a large, ornate doorway leading to another cave."
+            self.desc = "* The cavern is lit by a light from far above. It shines into the dark corners of the cave, illuminating the patch of flowers that broke your fall. A large, ornate doorway is the only exit."
             self.bg = "background ruins_caveroom"
             self.add_monster(Flowey())
 
@@ -67,7 +67,7 @@ init -1 python:
             self.name = "Grass Room"
             self.x = 9
             self.y = 0
-            self.desc = "Littering the edges of the much smaller cave are mounds of trash, a few pieces sparkling in the sparse light filtering through a crack in the ceiling. The scattered sunshine feeds a small mound of grass in the center of the cave and illuminates one exit from the cavern… though the other exit seems to be covered by a curtain of vines."
+            self.desc = "* Mounds of trash litter the edges of the small cave. The sparse light which floods through a crack in the ceiling reveals a small mound of grass in the center of the cavern. There is one exit… but it seems to be covered by a curtain of vines. "
             self.bg = "background ruins_floweyroom"
             self.add_monster(Toriel())
             self.add_monster(Napstablook())
@@ -81,7 +81,7 @@ init -1 python:
             self.name = "Ruins Entrance"
             self.x = 9
             self.y = 1
-            self.desc = "The long stone hallway’s floor is covered in red leaves, gathered in drifts in corners or scattered across the path that leads to a set of curving staircases. The stairs climb up to a landing that supports a large, ivy covered building, its entrance yawning darkly and flanked by two high windows."
+            self.desc = "* The floor of the stone hallway is covered in red leaves that gather in drifts in the corners and scatter across the path, leading to a set of curving staircases. The stairs climb up to a landing that supports a large, ivy-covered building. Its entrance yawns darkly and is flanked by two high windows."
             self.bg = "background ruins_first_entrance"
 
     class ruins_tunnels(Room):
@@ -90,7 +90,7 @@ init -1 python:
             self.name = "Tunnels"
             self.x = 9
             self.y = 2
-            self.desc = "The tunnels criss-crossing through the various rooms you pass through are riddled with what appear to be disabled traps and puzzles."
+            self.desc = "* The tunnels criss-crossing in and out of the various rooms that you pass through are riddled with what appear to be disabled traps and puzzles."
             self.bg = "background ruins_hallway"
 
 
@@ -100,7 +100,7 @@ init -1 python:
             self.name = "Dummy Room"
             self.x = 9
             self.y = 3
-            self.desc = "The small, curved room has a much lower ceiling than the caves before it, and houses a training dummy, set up beside the arched doorway leading on to further rooms, as well as a ghost that seems to be speaking to the dummy. The dummy looks friendly, a smile sewn into its burlap face, but the ghost looks almost… scared."
+            self.desc = "* The small, curved room has a much lower ceiling than the caves before it. An arched doorway leads on to further rooms."
             self.bg = "background ruins_dummy_room"
 
     class ruins_froggitleaves(Room):
@@ -109,7 +109,7 @@ init -1 python:
             self.name = "Froggit Room"
             self.x = 10
             self.y = 3
-            self.desc = "The bricked hall’s path zig-zags its way around several large piles of red leaves, passing walls hung with several flourishing ivy plants to lead out the exit at the far end of the room. There is a waist high frog reclining in one of the corners of the room, looking worried."
+            self.desc = "* The bricked hall zig-zags its way around several large piles of red leaves, passing walls hung with flourishing ivy plants and leading to the exit at the far end of the room."
             self.bg = "background ruins_froggit_room"
   
     class ruins_sassyrock(Room):
@@ -118,7 +118,7 @@ init -1 python:
             self.name = "Sassy Rock Room"
             self.x = 11
             self.y = 3
-            self.desc = "The room before you is long and filled with odd items. There is a sign hanging on the wall closest to you, three grey rocks set on top of strange square pads on the ground, and a moat crossing the opposite side of the hall, a short bridge extended across the still water. There is an exit across the bridge."
+            self.desc = "* The room before you is long and filled with odd items. There is a sign hanging on the wall closest to you. Three grey rocks sit on top of strange square pads on the ground, and a moat crosses the opposite side of the hall. A short bridge extends across the still water. There is an exit across the bridge."
             self.bg = "background ruins_sassyrock_room"
 
     class ruins_blookyroom(Room):
@@ -127,7 +127,7 @@ init -1 python:
             self.name = "Blooky Room"
             self.x = 12
             self.y = 3
-            self.desc = "The room is average sized and divided by a wall halfway through, separating the side of the room you are on from two exits on the other side. There is a narrow opening in the wall, it’s floor spread with a scattering of red leaves."
+            self.desc = "* The room is average sized and is divided by a wall halfway through that separates the side of the room you are on from two exits on the other side. There is a narrow opening in the wall, its floor covered with a scattering of red leaves."
             self.bg = "background ruins_blooky_room"
 
     class ruins_spiderbakery(Room):
@@ -136,7 +136,7 @@ init -1 python:
             self.name = "Spider Bakery"
             self.x = 13
             self.y = 3
-            self.desc = "The small room feels and smells homey, despite being covered ceiling to floor with cobwebs; there is a permeating scent of baked goods coming from somewhere within. A sign has been erected in front of two of the densest clusters of webbing. The only way out is how you came in."
+            self.desc = "* The room is small and full of cobwebs. A sign proclaims that this is the Spider Bake Sale, which is evident by the donuts and bottles of cider stuck in the webs around you."
             self.bg = "background ruins_spider_bakery"
             self.locknorth = True
             self.events["Muffet_Shop"] = Event("Muffet_Shop",True)
@@ -147,7 +147,7 @@ init -1 python:
             self.name = "Snail Hunting Room"
             self.x = 10
             self.y = 4
-            self.desc = "The small, brightly lit room sports a large bed of vegetation, fruit and vegetable bearing plants interspersed with various breeds of flower. A crack in the roof of the cave allows beams of sunlight from the surface to penetrate to the floor, encouraging the growth of the plants. You can see the spiraled shells of snails moving about the vegetation. The only way out is how you came in."
+            self.desc = "* The small and brightly lit room sports a large bed of vegetation, fruit and vegetable bearing plants interspersed with various breeds of flowers. A crack in the roof of the cave allows for beams of sunlight from the surface to penetrate to the floor, encouraging the growth of the plants. You can see the spiraled shells of snails moving about the vegetation. The only way out is how you came in."
             self.bg = "background ruins_caveroom"
 
     class ruins_tunneldivide(Room):
@@ -156,7 +156,7 @@ init -1 python:
             self.name = "Tunnel Divide"
             self.x = 12
             self.y = 4
-            self.desc = "The tunnel here splits into two, one offshoot leading north and the other east."
+            self.desc = "* A short hallway stretches before you, with paths leading off in different directions. Overgrown vines hang from the stone walls and a few, stray leaves crunch underfoot."
             self.bg = "background ruins_hallway"
 
     class ruins_overlook(Room):
@@ -165,7 +165,7 @@ init -1 python:
             self.name = "Overlook"
             self.x = 13
             self.y = 4
-            self.desc = "The balcony in this three walled room looks out over a vast, seemingly abandoned city, empty house windows staring back at you. There is a child sitting quietly in the corner, looking at the plastic knife they holding blankly. They don’t appear to have noticed you. The only way out is how you came in."
+            self.desc = "* This dead-end makes for a spectacular view. Abandoned, overgrown buildings stretch before you as far as the eye can see."
             self.bg = "background ruins_toy_knife_room"
             self.locksouth = True
 
@@ -175,7 +175,7 @@ init -1 python:
             self.name = "Black Tree Room"
             self.x = 12
             self.y = 5
-            self.desc = "The long room houses a large, majestic looking, black barked tree, it’s boughs bare but surrounded by large quantities of red leaves. The room itself is dusted with drifts of the same leaves, filling the corners and layering the front of the quaint little house at the opposite end of the room. The house looks warm and inviting."
+            self.desc = "* The long room houses a large and majestic looking, black barked tree. Its boughs are bare but surrounded by large quantities of red leaves. The room itself is dusted with drifts of the same leaves that fill the corners and layer the front of the quaint little house at the opposite end of the room. The house looks warm and inviting."
             self.bg = "background ruins_outside_house"
 
     class ruins_to_toriel_house(Room):
