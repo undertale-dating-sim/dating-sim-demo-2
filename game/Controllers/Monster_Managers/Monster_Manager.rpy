@@ -23,6 +23,9 @@ init -10 python:
             self.given_items = {}
             self.given_today_count = 0
 
+            #an array to hold various variables
+            self.variables = {}
+
 
 
         def reset_schedule(self):

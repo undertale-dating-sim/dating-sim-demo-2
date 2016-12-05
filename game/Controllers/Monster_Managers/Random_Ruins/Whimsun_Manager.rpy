@@ -21,18 +21,18 @@ label Whimsun_manager_default(owner = False,pause = True):
 
     
     if not owner.visited:
-        whimsun "O..."
+        whimsun "Oh..."
         whimsun "I..."
-        whimsun "..I am sorry, I.....I didn't see you..."
+        whimsun "I am sorry, I.....I didn't see you..."
         whimsun "I...I will try to .... not be a bother."
         
     elif not owner.dialogue_toggle:
         whimsun "Sometimes I try to hide in a corner so I don't....bother people...."
-        whimsun "But I can't find a good one....oh no.."
+        whimsun "But I can't find a good spot....oh dear.."
 
     else:
         whimsun "You .... should talk to the other monsters."
-        whimsun "I.....I am sorry."
+        whimsun "I.....I'm sorry."
 
     #swap to the other
     $ owner.dialogue_toggle = not owner.dialogue_toggle

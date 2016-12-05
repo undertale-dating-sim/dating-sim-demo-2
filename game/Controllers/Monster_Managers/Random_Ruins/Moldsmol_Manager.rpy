@@ -21,18 +21,17 @@ label moldsmol_manager_default(owner=False,pause=True):
         $ renpy.pause()
 
     if not owner.visited:
-        moldsmol "Blurp"
-        "It seems like that slime looking monster is trying to greet you."
+        moldsmol "Blurp..."
+        "* It seems like that slime-looking monster just greeted you."
 
 
     elif not owner.dialogue_toggle:
-        moldsmol "Squorch"
-        "You aren't sure, but it seems like they trid to wiggle or..."
-        "flirt with you?!"
+        moldsmol "Squorch..."
+        "* They wiggle... sexily."
 
     else:
         moldsmol "..."
-        "They seem pensive, but you aren't sure that they actually have a brain."
+        "* They seem pensive, but you aren't sure that they actually have a brain."
 
 
     #swap to the other

@@ -23,10 +23,10 @@ label migosp_manager_default(owner = False,pause = True):
     if not owner.visited:
         migosp "La la la....Hey!"
         migosp "You should dance with me, nothing like having some time alone!"
-        migosp "Well, with you, it isn't really alone but that's okay!"
+        migosp "Well, with you, it isn't really alone... but that's okay!"
 
     elif not owner.dialogue_toggle:
-        migosp "There aren't many things happening here, so people always hang out together."
+        migosp "There's not much happening around here, so people always hang out together."
         migosp "But I would rather be alone sometimes..."
     else:
         migosp "People say I change when my friends are with me, I don't really see why."
