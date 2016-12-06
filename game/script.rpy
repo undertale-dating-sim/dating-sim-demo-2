@@ -38,8 +38,8 @@ label start:
     # call start
     #play music "audio/music/music-home.mp3"
     #jump choosemenu
-    #call show_buttons
-    #jump start_the_game
+    call show_buttons
+    jump start_the_game
 
     # $ world.get_monster("Toriel").give_item(Spider_Donut())
     # $ world.get_monster("Toriel").give_item(Spider_Donut())
@@ -53,10 +53,12 @@ label start:
     # It currently just resets the multiple monster code, but it isn't perfect.  Needs more tweaking.
 ###################
 label after_load:
+
+    stop music
     $ talking = False
     hide screen multiple_monster_click_screen
     #jump start
-    jump testing_item_reactions
+    jump test_character
     return
 
 ###################

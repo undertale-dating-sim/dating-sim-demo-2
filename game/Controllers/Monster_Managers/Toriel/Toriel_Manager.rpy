@@ -120,19 +120,42 @@ label Toriel_manager_default(owner = False,pause = True):
         $renpy.pause()
     call show_buttons from _call_show_buttons
 
-    "Good morning!"
+    "Hello, dear. Can I help you?"
     
     menu:
-        "Toriel"
-        "Raise FP 10":
-            $ owner.FP += 10
-        "Lower FP 10":
-            $ owner.FP -= 10
-        "Give Gift" if len(inventory.items) > 0:
+        "Hello, dear. Can I help you?"
+        '"I brought you some snails!"':
+            call Toriel_Manager_Give_Snails
+        "Chat":
+            call Toriel_Manager_Chat
+        "Ask":
+            pass
+        "Flirt":
+            pass
+        "Gift" if len(inventory.items) > 0:
             show screen gift_item_menu(owner)
             "What should you give them?"
-        "Exit":
-            "okay."
+        "Leave":
+            toriel "Take care, dear."
 
     
     return
+
+label Toriel_Manager_Give_Snails:
+    
+
+
+
+
+label Toriel_Manager_Chat(owner):
+    menu:
+        "How are you doing?":
+            pass
+        "What's crackin'?":
+            pass
+        "'Sup?":
+            pass
+        "What have you been doing lately?":
+            pass
+
+
