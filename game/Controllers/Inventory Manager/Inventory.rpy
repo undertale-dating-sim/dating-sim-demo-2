@@ -45,6 +45,13 @@ init -1 python:
                 return True
             return False
 
+        def get_count(self,item):
+            count = 0
+            for i in items:
+                if isinstance(i,item):
+                    count += 1
+            return count
+
 
 
 
