@@ -157,7 +157,7 @@ init -4 python:
     class Sleeping_Potion(Item):
         def __init__(self):
             Item.__init__(self)
-            self.name = "Sleeping_Potion"
+            self.name = "Sleeping Potion"
             self.sale_cost = 5
             self.use_text = "You drink the thick, white goop.  It tastes disgusting."
             self.pickup_text = "You find a potion. It is warm to the touch?"
@@ -167,6 +167,16 @@ init -4 python:
         def use(self):
             player.current_stamina = 0
             player.update_player()
+
+    class Snail(Item):
+        def __init__(self):
+            Item.__init__(self)
+            self.name = "Snail"
+            self.sale_cost = 5
+            self.use_text = "It's a normal snail.  Smells like a placeholder."
+            self.pickup_text = "Oh look, a snail."
+            self.sprite = "items/item_snailpie.png"
+            self.menu_desc = "Snell" 
 
 
 
