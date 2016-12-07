@@ -156,7 +156,7 @@ label toriel_gd_askLivedRuins:
             toriel "I do hope you’re enjoying your stay here!"
         "What’s wrong?":
             #awkward
-            toriel "… It is nothing, dear. But thank you for your concern."
+            toriel "... It is nothing, dear. But thank you for your concern."
         "How long is ‘a while’?":
             #awkward
             toriel "... I do not remember. It is not important, anyway."
