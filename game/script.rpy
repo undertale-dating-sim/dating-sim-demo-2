@@ -39,7 +39,9 @@ label start:
     #play music "audio/music/music-home.mp3"
     #jump choosemenu
     call show_buttons
-    jump start_the_game
+    $ banish('Toriel')
+    $ move_to_room("Dead Room")
+    #jump start_the_game
 
     # $ world.get_monster("Toriel").give_item(Spider_Donut())
     # $ world.get_monster("Toriel").give_item(Spider_Donut())

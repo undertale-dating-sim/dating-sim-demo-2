@@ -1,9 +1,23 @@
 label default_event:
     "You shouldn't see this.  Its the default. Tell Wilson."
     return
-
 init -10 python:
     import random
+
+    def current_room():
+        return world.currentArea.current_room
+
+    def move_to_room(room):
+        world.move_to_room(room)
+
+    def summon(monster):
+        monster.move_to_room(current_room())
+
+    def banish(monster):
+        monster.move_to_room("Dead Room")
+
+    def update():
+        world.update_day()
 
     class World():
     
@@ -149,6 +163,7 @@ init -10 python:
                         renpy.jump("load_room")
                         break
             renpy.notify(name + " not found.")
+
         def get_room(self,name):
             for area_name,area in self.areas.iteritems():
                 for room_name,room in area.rooms.iteritems():

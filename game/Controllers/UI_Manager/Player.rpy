@@ -26,6 +26,7 @@ init -1 python:
 
             self.time = 0
             self.safe_room = "Your Room"
+            self.pass_out_label = "player_passes_out"
 
         def give_fuck(self):
             if self.fucks > 0:
@@ -79,7 +80,7 @@ init -1 python:
         ##################
         def update_player(self):
             if self.current_stamina <= 0:
-                renpy.call_in_new_context("player_passes_out")
+                renpy.call_in_new_context(self.pass_out_label)
 
 ##########
     # This function should be called when the player needs to wake up.
