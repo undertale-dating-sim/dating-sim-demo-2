@@ -120,7 +120,7 @@ init -4 python:
     class White_Chocolate(Item):
         def __init__(self):
             Item.__init__(self)
-            self.name = "Snail Pie"
+            self.name = "White Chocolate"
             self.use_text = "You eat the chocolate. It tastes like placeholder?"
             self.pickup_text = "It's a chocolate."
             self.sprite = "items/item_whitechocolate.png"
@@ -129,7 +129,7 @@ init -4 python:
     class Milk_Chocolate(Item):
         def __init__(self):
             Item.__init__(self)
-            self.name = "Snail Pie"
+            self.name = "Milk Chocolate"
             self.use_text = "You eat the chocolate. It tastes like placeholder?"
             self.pickup_text = "It's a chocolate."
             self.sprite = "items/item_milkchocolate.png"
@@ -157,10 +157,10 @@ init -4 python:
     class Sleeping_Potion(Item):
         def __init__(self):
             Item.__init__(self)
-            self.name = "Sleeping Potion"
+            self.name = "Game Over Potion"
             self.sale_cost = 5
             self.use_text = "You drink the thick, white goop.  It tastes disgusting."
-            self.pickup_text = "You find a potion. It is warm to the touch?"
+            self.pickup_text = "You find a potion. Smells like a reset?"
             self.sprite = "items/item_spidercider.png"
             self.menu_desc = "Puts you to sleep."
 

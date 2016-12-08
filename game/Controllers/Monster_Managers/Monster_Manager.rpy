@@ -144,7 +144,7 @@ label give_item(owner,item):
 screen gift_item_menu(owner):
     add "#0008"
     modal True
-    frame pos(0.19,0.4):
+    frame pos(0.1,0.4):
         vbox:
             for item in inventory.items:
                 textbutton "[item.name]":
@@ -160,10 +160,10 @@ screen gift_item_menu(owner):
                     background "#000000"
 
     if menu_selected_item:
-        frame pos(0.5,0.4):
+        frame pos(0.45,0.4):
             hbox:
                 vbox:
-                    image menu_selected_item.sprite
+                    image im.Scale(menu_selected_item.sprite,200,150)
                     textbutton "Give":
                         action [If(menu_selected_item,ui.callsinnewcontext("give_item",owner,menu_selected_item)),SetVariable("menu_selected_item",False),Hide("gift_item_menu"),Return()]
                         background "#000000"

@@ -61,8 +61,8 @@ init -1 python:
     inventory.add(Sleeping_Potion())
     inventory.add(Spider_Donut())
     inventory.add(Milk_Chocolate())
-    inventory.add(Mirror())
-    inventory.add(Flower())
+    #inventory.add(Mirror())
+   # inventory.add(Flower())
     
 
 screen items:

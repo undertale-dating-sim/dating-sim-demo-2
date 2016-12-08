@@ -30,7 +30,7 @@ label give_Gift_Toriel_Spider_Donut(count,owner):
         toriel "Thank you, but... Do you not want to have some? I do not want you spending so much money on me. These are very good, why not try some for yourself?"
     else:
         show toriel awkward
-        toriel "Thank you, dear… I… I hope Frisk will eat some of these… I have too many for me to eat by myself... I will be running my own bakery soon at this rate…"
+        toriel "Thank you, dear... I... I hope Frisk will eat some of these... I have too many for me to eat by myself... I will be running my own bakery soon at this rate..."
 
     return True
     
@@ -46,11 +46,11 @@ label give_Gift_Toriel_Butts_Pie(count,owner):
         toriel "... You know, I made this for you! You should enjoy it for yourself. I could always make another pie if I wanted some. But, thank you for your kind intentions."
     elif count == 3:
         show toriel sad
-        toriel "Do… Do you not like it? Is that why you are giving it back to me?"
+        toriel "Do... Do you not like it? Is that why you are giving it back to me?"
     else:
         $ owner.FP -=4
         show toriel sad
-        toriel "I… I understand if you do not like it. I shall not give it to you anymore."
+        toriel "I... I understand if you do not like it. I shall not give it to you anymore."
 
     return True
         
@@ -72,10 +72,10 @@ label give_Gift_Toriel_Snail_Pie(count,owner):
     elif count == 3:
         $ owner.FP +=5
         show toriel awkward
-        toriel "I suppose you are beginning to remember what I like! It’s very… Ah... Sweet of you. To remember what I enjoy."
+        toriel "I suppose you are beginning to remember what I like! It’s very... Ah... Sweet of you. To remember what I enjoy."
     else:
         show toriel awkward
-        toriel "Ah… Thank you, dear… I will… I will put it with the others."
+        toriel "Ah... Thank you, dear... I will... I will put it with the others."
     
     return True
     
@@ -115,7 +115,7 @@ label give_Gift_Toriel_Spider_Cider(count,owner):
     elif count == 3:
         $ owner.FP +=3
         show toriel normal
-        toriel "... How much cider is in each of these jugs? They must not be very cheap… Please don’t spend too much on my account. Even if you are trying to help others, you still need to take care of yourself as well!"
+        toriel "... How much cider is in each of these jugs? They must not be very cheap... Please don’t spend too much on my account. Even if you are trying to help others, you still need to take care of yourself as well!"
     else:
         $ owner.FP +=0
         show toriel awkward
@@ -128,7 +128,7 @@ label give_Gift_Toriel_Milk_Chocolate(count,owner):
         $ owner.FP +=2
         call word_scroll("-15")
         show toriel awkward
-        toriel "... I am not one for chocolate… It actually makes me ill to eat it."
+        toriel "... I am not one for chocolate... It actually makes me ill to eat it."
         show toriel normal
         toriel "But I know you were only trying to be kind. It is alright, dear. It’s the thought that counts."
     elif count == 2:
@@ -140,7 +140,7 @@ label give_Gift_Toriel_Milk_Chocolate(count,owner):
     elif count == 3:
         $ owner.FP -=3
         show toriel annoyed
-        toriel "... Are… Are you trying to give this to me again? Did you want me to give it to Frisk? You know, you can always give it to Frisk, yourself."
+        toriel "... Are... Are you trying to give this to me again? Did you want me to give it to Frisk? You know, you can always give it to Frisk, yourself."
         toriel "I’m sure they would not mind at all taking it from you. In fact, I think they would greatly appreciate it."
     else:
         $ owner.FP -=5
@@ -159,11 +159,11 @@ label give_Gift_Toriel_White_Chocolate(count,owner):
     elif count == 2:
         $ owner.FP += 0
         show toriel awkward
-        toriel "Ah… My dear… I was telling the truth when I said I could not eat this. I hope you understand..."
+        toriel "Ah... My dear... I was telling the truth when I said I could not eat this. I hope you understand..."
     elif count == 3:
         $ owner.FP -=3
         show toriel annoyed
-        toriel "... I’ve… I’ve already asked you to stop giving this to me… I have no use for this."
+        toriel "... I’ve... I’ve already asked you to stop giving this to me... I have no use for this."
     else:
         $ owner.FP -=5
         show toriel angry
@@ -180,7 +180,7 @@ label Toriel_Gift_Count_Reaction(owner):
         toriel "I am very flattered at your generosity from giving me so many gifts! Thank you, my dear."
     elif owner.given_today_count == 3:
         show toriel smile
-        toriel "I sincerely appreciate your gifts, but… I do hope you are not going through much trouble to get me them. I would not want you to go through so much just to please a little lady like me!"
+        toriel "I sincerely appreciate your gifts, but... I do hope you are not going through much trouble to get me them. I would not want you to go through so much just to please a little lady like me!"
     elif owner.given_today_count == 4:
         show toriel awkward
         toriel "... Dear, I know your intentions are good, but you really do not need to give me so many things. I am not sure if I even have enough space in my house for everything..."

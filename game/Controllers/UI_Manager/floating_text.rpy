@@ -30,6 +30,6 @@ label word_scroll(value_changed="1"):
         $ changed_text = " +" + "%s" % value_changed
         $ fcolor = '00ff00'
     else:
-        $ changed_text = " -" + "%s" % value_changed
+        $ changed_text = "%s" % value_changed
         $ fcolor = 'ff0000'
     $ fading_text("[changed_text]", 2, .20, .5, .20, .1 , color=fcolor, size=24, font="font/DTM-Mono.otf")
