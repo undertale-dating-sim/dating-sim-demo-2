@@ -17,6 +17,7 @@ label give_Gift_Toriel_Spider_Donut(count,owner):
 
     if count == 1:
         $ owner.FP +=15
+        call word_scroll('15')
         show toriel smile
         toriel "My, you got this from the Spider Bake Sale, didn’t you? That’s wonderfully charitable and kind of you to support their cause! Thank you very much, dear. I’ll be sure to enjoy it!"
     elif count == 2:
@@ -125,6 +126,7 @@ label give_Gift_Toriel_Milk_Chocolate(count,owner):
 
     if count == 1:
         $ owner.FP +=2
+        call word_scroll("-15")
         show toriel awkward
         toriel "... I am not one for chocolate… It actually makes me ill to eat it."
         show toriel normal

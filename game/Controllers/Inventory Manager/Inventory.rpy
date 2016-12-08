@@ -60,7 +60,7 @@ init -1 python:
     inventory = Inventory()
     inventory.add(Sleeping_Potion())
     inventory.add(Spider_Donut())
-    inventory.add(Heart_Locket())
+    inventory.add(Milk_Chocolate())
     inventory.add(Mirror())
     inventory.add(Flower())
     

@@ -136,7 +136,7 @@ screen remember(owner):
 
 label give_item(owner,item):
     python:
-        if owner.give_gift(item):
+        if owner.give_item(item):
             inventory.drop(item)
     return
 
@@ -144,7 +144,7 @@ label give_item(owner,item):
 screen gift_item_menu(owner):
     add "#0008"
     modal True
-    frame pos(0.2,0.4):
+    frame pos(0.19,0.4):
         vbox:
             for item in inventory.items:
                 textbutton "[item.name]":

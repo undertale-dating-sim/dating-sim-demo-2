@@ -152,7 +152,9 @@ screen show_information_overlay:
             text world.get_current_time()
         hbox xpos .25:
             if world.currentArea.current_room.current_monster and world.currentArea.current_room.current_monster != False:
-                text "[world.currentArea.current_room.current_monster.name]         FP:[world.currentArea.current_room.current_monster.FP]"
+                vbox:
+                    text "[world.currentArea.current_room.current_monster.name]"
+                    text "FP:[world.currentArea.current_room.current_monster.FP]"
 
 
 #if you look, I have added the multiple monster screen here.  It was causing a divide by zero error and I'm not sure how to fix it

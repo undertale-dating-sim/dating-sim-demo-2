@@ -8,7 +8,7 @@ init -9 python:
             self.default_event = Event("Toriel_manager_default",True,self)
             self.default_room = "Toriel's Room"
             self.name = "Toriel"
-            self.FP = 20
+            self.FP = 40
             self.seed_default_schedule()
             self.default_sprite = "toriel normal"
 
@@ -145,7 +145,8 @@ label Toriel_Manager_Give_Snails:
     
 
 
-
+    pass
+    return
 
 label Toriel_Manager_Chat(owner):
     menu:

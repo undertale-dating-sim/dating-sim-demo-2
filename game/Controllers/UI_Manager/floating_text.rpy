@@ -25,9 +25,11 @@ label choosemenu:
             "end":
                 jump end
 
-label word_scroll(stat_changed="Default", value_changed="1"):
+label word_scroll(value_changed="1"):
     if int(value_changed) >= 0:
-        $ changed_text = stat_changed + " +" + value_changed
+        $ changed_text = " +" + "%s" % value_changed
+        $ fcolor = '00ff00'
     else:
-        $ changed_text = stat_changed + " " + value_changed
-    $ fading_text("[changed_text]", 1, .5, .33, .5, .1 , color="ffffff", size=24, font="font/DTM-Mono.otf")
+        $ changed_text = " -" + "%s" % value_changed
+        $ fcolor = 'ff0000'
+    $ fading_text("[changed_text]", 2, .20, .5, .20, .1 , color=fcolor, size=24, font="font/DTM-Mono.otf")

@@ -11,10 +11,10 @@ init -10 python:
         world.move_to_room(room)
 
     def summon(monster):
-        monster.move_to_room(current_room())
+        world.get_monster(monster).move_to_room(current_room())
 
     def banish(monster):
-        monster.move_to_room("Dead Room")
+        world.get_monster(monster).move_to_room("Dead Room")
 
     def update():
         world.update_day()
