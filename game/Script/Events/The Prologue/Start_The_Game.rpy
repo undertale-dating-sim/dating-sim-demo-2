@@ -1,15 +1,6 @@
 label start_the_game:
 
-    #$ world.get_monster("toriel").move_to_room("Dead Room")
-    #$ world.get_monster("toriel").reset_schedule()
-   # $ world.get_monster("napstablook").move_to_room("Dead Room")
-    #$ world.get_monster("napstablook").reset_schedule()
-    #$ world.get_monster("frisk").move_to_room("Overlook")
-    #$ world.get_monster("frisk").reset_schedule()
-   # $ world.get_monster("flowey").move_to_room("Dead Room")
-    #$ world.get_monster("flowey").reset_schedule()
-    #world.move_to_room("Dead Room")
-    $ world.move_to_room("Cave Room")
+#    $ world.move_to_room("Cave Room")
     return
 
 label prologue:
@@ -42,30 +33,28 @@ label the_fall:
     $ renpy.pause(delay=3,hard=True)
     
     "..."
-    "falling."
-    "....you're falling."
-    "How did this happen?"
-    "In the distance...you hear someone calling your name..."
+    "* Falling."
+    "* ....You're falling."
+    "* How did this happen?"
+    "* ..."
+    "* In the distance,you hear someone calling your name."
     
     $ temp_loop = True
     while temp_loop:
-        call Name_Select from _call_Name_Select
-        "[player.name]"
-        "...was that your name?"
+        call Name_Select
+        "* [player.name]"
+        "* ...Is that what they called you?"
         menu:
-            "yes":
-                "...right. That was it."
-                "How could you have forgotten?"
+            "Yes":
+                "* ...Right. That was it."
+                "* ..."
+                "* That's what the voice said."
                 $ temp_loop = False
-            "no":
-                "Well, what is it then?"
+            "No":
+                "* Well, what is it, then?"
 
+    # wait a couple of seconds
     $ renpy.pause(delay=3,hard=True)
-
-    #play thud
-    stop music
-    play sound "audio/sfx/Hitting_the_ground.wav"
-
 
     jump the_beginning
 

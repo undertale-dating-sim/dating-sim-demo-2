@@ -1,14 +1,16 @@
-
 label the_beginning:
-
+    #play thud
+    stop music
+    play sound "audio/sfx/Hitting_the_ground.wav"
     scene
+
     with vpunch
-    "thud"
+    "Thud"
 
     $ renpy.show(world.get_room("Cave Room").bg)
     with fade
 
-    "Ow"
+    "* Ow."
     #this looks dirty, but I need to make the variables unique to this screen
     $ tf_loop = True
     $ tf_scream_count = 0
@@ -18,11 +20,11 @@ label the_beginning:
     while tf_loop:
         menu:
             "Scream for help":
-                call tf_scream from _call_tf_scream
+                call tf_scream
             "Lie down and hope for the best":
-                call tf_lie_down from _call_tf_lie_down
+                call tf_lie_down
             "Look around" if not tf_show_exit:
-                call tf_look_around from _call_tf_look_around
+                call tf_look_around
 
 
 label tf_scream:
