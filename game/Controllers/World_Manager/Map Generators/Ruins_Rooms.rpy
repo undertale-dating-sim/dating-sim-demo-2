@@ -70,7 +70,7 @@ init -1 python:
             self.desc = "* Mounds of trash litter the edges of the small cave. The sparse light which floods through a crack in the ceiling reveals a small mound of grass in the center of the cavern. There is one exit… but it seems to be covered by a curtain of vines. "
             self.bg = "background ruins_floweyroom"
             self.add_monster(Toriel())
-            #self.add_monster(Napstablook())
+            self.add_monster(Napstablook())
             #self.add_monster(Frisk())
 
 

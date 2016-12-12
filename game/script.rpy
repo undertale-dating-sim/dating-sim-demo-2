@@ -39,7 +39,8 @@ label start:
     #play music "audio/music/music-home.mp3"
     #jump choosemenu
     call show_buttons
-    $ banish('Toriel')
+    #$ banish('Toriel')
+    $ banish("Napstablook")
     $ move_to_room("Dead Room")
     #jump start_the_game
 
@@ -60,7 +61,7 @@ label after_load:
     $ talking = False
     hide screen multiple_monster_click_screen
     #jump start
-    jump test_character
+    jump start
     return
 
 ###################

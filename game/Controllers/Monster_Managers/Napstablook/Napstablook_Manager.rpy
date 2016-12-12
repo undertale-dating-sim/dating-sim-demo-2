@@ -1,4 +1,8 @@
-
+init:
+    transform napstabob:
+        xalign 0.0
+        linear 2.0 yalign 1.0
+        repeat
 
 init -9 python:
 
@@ -90,7 +94,12 @@ label Napstablook_manager_default(owner = False, pause = True):
 
 
     call show_buttons from _call_show_buttons_7
-    show napstablook normal
+    show napstablook normal:
+        xalign 0.5
+        yalign 0.4
+        linear 2.0 yalign 0.6
+        linear 2.0 yalign 0.4
+        repeat
     if pause:
         $ renpy.pause()
     
