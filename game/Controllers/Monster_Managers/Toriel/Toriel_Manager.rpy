@@ -123,6 +123,7 @@ label Toriel_manager_default(owner = False,pause = True):
     "Hello, dear. Can I help you?"
     
     menu:
+        #These were implemented over in the Toriel.rpy file under Script\Events\The Ruins\Toriel
         "Hello, dear. Can I help you?"
         '"I brought you some snails!"':
             call Toriel_Manager_Give_Snails
@@ -142,12 +143,14 @@ label Toriel_manager_default(owner = False,pause = True):
     return
 
 label Toriel_Manager_Give_Snails:
-    
+        #These were implemented over in the Toriel.rpy file under Script\Events\The Ruins\Toriel
+
 
 
 
 
 label Toriel_Manager_Chat(owner):
+    #These were implemented over in the Toriel.rpy file under Script\Events\The Ruins\Toriel
     menu:
         "How are you doing?":
             pass
