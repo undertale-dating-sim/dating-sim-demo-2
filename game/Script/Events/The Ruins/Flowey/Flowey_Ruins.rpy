@@ -259,118 +259,231 @@ label flowey_item_dialogue:
 
 label flowey_hangout1:
     scene background floweyroomplaceholder
-    
-
     #Hangout 1 
     #{After tutorial}
     #This initial "Hangout" dialogue will occur regardless if player has or has not yet met the prerequisites for a friendship with flowey
-    #*Surprised* 
-    show flowey normal with dissolve
+    show flowey surprised with dissolve
     flowey "Wha-?! You snuck up on me."
 
     label flowey_hangout1_Q1:
-        #*Suspicious side glance* 
         show flowey suspicious
         flowey "What do you want? I’m not gonna give you any tips, and I’m not here to talk. Buzz off."
         menu:
-            flowey "What do you want? I’m not gonna give you any tips, and I’m not here to talk. Buzz off.{fast}"
-
-            "Exit":#//Neutral 0
+            "Exit":
                 jump flowey_ruins
-                #-Player exits encounter-
-            "...I’d just like to chat.": #//Neutral 0"
+            "...I’d just like to chat.": #Adds FP
                 jump flowey_hangout1_Q2
-            "I’d like to talk to you, flower.": #//Neutral 0 +HB
+            "I’d like to talk to you, flower.": 
                 jump flowey_hangout1_Q2
 
     label flowey_hangout1_Q2:
-        ##/// If >(...I’d just like to chat.)< OR ///If >(I’d like to talk to you, Flower)<
-        #*Evil* 
-        show flowey evil
+        show flowey horror
         flowey "I d i o t . You’re in the wrong place. Get out before you piss me off. I’m busy."
         menu:
-            flowey "I d i o t . You’re in the wrong place. Get out before you piss me off. I’m busy.{fast}"
-            "Alright, bye.": #//Neutral 0 
+            "Alright, bye.":
                 jump flowey_ruins
-                #"-Player exits encounter-"
-            "Busy? Busy doing what?": #//Neutral 0
+            "Busy? Busy doing what?":
+                show flowey annoyed
                 flowey "That’s none of your business." 
-                jump flowey_hangout1_Q3_choice1
-            "What does a flower have to do?": #//Neutral 0 +HB
-                #*Angry* 
+                jump flowey_hangout1_Q3
+            "What does a flower have to do?": #+HB
                 show flowey angry
-                flowey "Seriously? More than you do obviously."
-                jump flowey_hangout1_Q3_choice2
-
+                flowey "Seriously? More than you do {i}clearly{/i}."
+                jump flowey_hangout1_Q3
+    
     label flowey_hangout1_Q3:
-        label flowey_hangout1_Q3_choice1:
-            #floweyQ3: #/// If >(Busy? Busy doing what?)< 
-            flowey "Why don’t you go and find someone to play with?"
+        show flowey annoyed
+        flowey "Why don't you go and find someone else to annoy?"
+        menu:
+             "I’m just interested in what life is like down here.": #+FP
+                show flowey annoyed
+                flowey "Then go ask someone else. I have better things to do than to talk to some human, and you’re not going to find your {i}happy ending{/i} here."
+                flowey "Don't you have anything {i}better{/i} to do?"
+                show flowey smug
+                flowey "Silly me, of course you don't."
+                jump flowey_hangout1_Q4
+            "I thought we could play a game.": #+HB
+                show flowey surprised
+                flowey "A game...?"
+                show flowey angry
+                flowey "I’m not interested in playing games with you right now."
+                flowey "Or ever, actually."
+                jump flowey_hangout1_Q4
+            "Sorry, my bad.":
+                show flowey horror
+                flowey "That's right, {i}you're{/i} bad--"
+                show flowey surprised
+                flowey "...wait"
+                show flowey suspicious
+                flowey "Your bad? That's it?"
+                show flowey angry
+                flowey "You wasted not just your time, but mine, for the sake of showing up to \"chat\" and now you have nothing better to say than \"my bad\"?!"
+                flowey "This is pathetic."
+                menu:
+                    "Did... you want me to stay, FLowey?":
+                    #if player has >5 FP:
+                        show flowey surprised
+                        flowey "..."
+                        show flowey blush
+                        flowey "I..."
+                        show flowey sideglance
+                        flowey "Don't be stupid."
+                        show flowey normal
+                        flowey "I mean, this encounter was actually kind of entertaining."
+                        flowey "..."
+                        flowey "But I couldn't care less if you chose to leave."
+                        show flowey smug
+                        flowey "So go. And I'll see you around~ Heehee~!"
+                        jump flowey_ruins
+                    #if player has <5 FP:
+                        show flowey horror
+                        flowey "..."
+                        flowey "Are you kidding?"
+                        show flowey laugh
+                        flowey "Pff hahahaHAHAHA!!"
+                        show flowey normal
+                        flowey "..."
+                        show flowey angry
+                        flowey "Get out of my face, idiot."
+                        jump flowey_ruins
+                    "It sure is. So I'm leaving.":
+                        show flowey normal
+                        flowey "Of course you are."
+                        show flowey wink
+                        flowey "Get out of my face, idiot."
+                        jump flowey_ruins
+                    "What did you expect from me?":
+                    #if player has >5 FP:
+                        show flowey sideglance
+                        flowey "..."
+                        show flowey normal
+                        flowey "Nothing, apparently."
+                        show flowey surprised
+                        flowey "Nothing at all."
+                        show flowey normal
+                        flowey "Well, get going, then. Stop wasting my time."
+                        jump  flowey_ruins
+                    #if player has >5 FP:
+                        show flowey laugh
+                        flowey "Heh, my expectations for you are very low."
+                        show flowey normal
+                        flowey "But you already failed them."
+                        show flowey smug
+                        flowey "Can't say I'm disappointed, however."
+                        flowey "It's expected by now."
+                        show flowey normal
+                        flowey "..."
+                        flowey "Get out of my face, idiot."
+                        jump flowey_ruins
+        label flowey_hangout1_Q4:
+            show flowey annoyed
+            flowey "I'm not the one wasting my time annoying someone who has no interest in talking to them."
+            flowey "I have a lot more to do than you, apparently."
             menu:
-                flowey "Why don’t you go and find someone to play with?{fast}"
-                "I’m just interested in what life is like down here.": #//Increase + FP"
-                    flowey "Then go ask someone else. I have better things to do than to talk to some human, and you’re not going to find your happy ending here."
-                    flowey "Stop trolling and wasting both of our time. "
-                    jump flowey_hangout1_Q4_choice1
-                "I thought we could play a game.": # //Increase +HB
-                    #*Surprised* 
-                    show flowey surprised
-                    flowey "A game...?"
-                    #*Angry* 
+                "I'm just interested in what life is like down here.":
+                    show flowey sideglance
+                    flowey "That's... a matter of perspective."
+                    flowey "For obvious reasons."
+                    show flowey normal
+                    "........"
+                    show flowey annoyed
+                    flowey "Don't you have anything {i}better{/} to do?"
+                    show flowey smug
+                    flowey "Silly me, of course you don't."
+                    jump flowey_hangout1_Q5
+                "We're going to play a game.":
                     show flowey angry
-                    flowey "I’m not interested in playing games with you right now."
-
-                "Sorry, my bad.": #//Neutral 0
-                    #"-Player exits encounter-"
+                    flowey "I don't think so."
+                    flowey "In fact, I think we're done here."
                     jump flowey_ruins
-        label flowey_hangout1_Q3_choice2:
-            #"flowey Q3: ///If >(What does a flower have to do?)<"
-            flowey "I’m not the one wasting my time annoying someone who has no interest in talking to them." 
-            menu:
-                flowey "I’m not the one wasting my time annoying someone who has no interest in talking to them.{fast}"
-                "I’m just interested in what life is like down here.": #//Increase + FP
-                    flowey "Then go ask someone else. I have better things to do than to talk to some human, and you’re not going to find your happy ending here."
-                    flowey "Stop trolling and wasting both of our time." 
-                    jump flowey_hangout1_Q4_choice1
-                "I thought we could play a game.": #//Increase +HB
-                    #*Surprised* 
+                    #HB route is now triggered, player moves onto Flowey HB 1 instead of the usual friendship route
+                "Sorry, my bad.":
+                    show flowey horror
+                    flowey "That's right, {i}you're{/i} bad--"
                     show flowey surprised
-                    flowey "A game..?"
-                    #*Angry* 
+                    flowey "...wait"
+                    show flowey suspicious
+                    flowey "Your bad? That's it?"
                     show flowey angry
-                    flowey "I’m not interested in playing games with you right now."
-                "Sorry, my bad.": #//Neutral 0
-                    #"-Player exits encounter-"
-                    jump flowey_ruins
-                #(((Player shouldnt be forced to leave or get HB points. Add another option here)))
-    label flowey_hangout1_Q4:
-        label flowey_hangout1_Q4_choice1:
-            #F Q4: #/// If >(Busy? Busy doing what?)< #/// If >(I’m just interested in what life is like down here.)< 
-            #OR ///If >(What does a flower have to do?)< #/// If >(I’m just interested in what life is like down here.)< 
+                    flowey "You wasted not just your time, but mine, for the sake of showing up to \"chat\" and now you have nothing better to say than \"my bad\"?!"
+                    flowey "This is pathetic."
+                    menu:
+                        "Did... you want me to stay, FLowey?":
+                        #if player has >5 FP:
+                            show flowey surprised
+                            flowey "..."
+                            show flowey blush
+                            flowey "I..."
+                            show flowey sideglance
+                            flowey "Don't be stupid."
+                            show flowey normal
+                            flowey "I mean, this encounter was actually kind of entertaining."
+                            flowey "..."
+                            flowey "But I couldn't care less if you chose to leave."
+                            show flowey smug
+                            flowey "So go. And I'll see you around~ Heehee~!"
+                            jump flowey_ruins
+                        #if player has <5 FP:
+                            show flowey horror
+                            flowey "..."
+                            flowey "Are you kidding?"
+                            show flowey laugh
+                            flowey "Pff hahahaHAHAHA!!"
+                            show flowey normal
+                            flowey "..."
+                            show flowey angry
+                            flowey "Get out of my face, idiot."
+                            jump flowey_ruins
+                        "It sure is. So I'm leaving.":
+                            show flowey normal
+                            flowey "Of course you are."
+                            show flowey wink
+                            flowey "Get out of my face, idiot."
+                            jump flowey_ruins
+                        "What did you expect from me?":
+                        #if player has >5 FP:
+                            show flowey sideglance
+                            flowey "..."
+                            show flowey normal
+                            flowey "Nothing, apparently."
+                            show flowey surprised
+                            flowey "Nothing at all."
+                            show flowey normal
+                            flowey "Well, get going, then. Stop wasting my time."
+                            jump  flowey_ruins
+                        #if player has >5 FP:
+                            show flowey laugh
+                            flowey "Heh, my expectations for you are very low."
+                            show flowey normal
+                            flowey "But you already failed them."
+                            show flowey smug
+                            flowey "Can't say I'm disappointed, however."
+                            flowey "It's expected by now."
+                            show flowey normal
+                            flowey "..."
+                            flowey "Get out of my face, idiot."
+                            jump flowey_ruins
+        label flowey_hangout1_Q5:
+            show flowey annoyed
+            flowey "Stop trolling and wasting both of our time."
             menu:
-                flowey "Stop trolling and wasting both of our time.{fast}"
-                "Ya got me, I’m a big troll.":#//Decrease - FP
-                    jump flowey_hangout1_Q4_choice2
-                "I’m not interested in them right now. Maybe I could help you.":#   //Increase + FP
-                    jump flowey_hangout1_Q4_choice3
-        label flowey_hangout1_Q4_choice2:
-            ##/// If >(Ya got me, I’m a big troll.)<
-            #*Evil* 
-            show flowey evil
-            flowey "That’s pretty funny, troll. Now, go before I kill ya."
-            #-Player exits encounter-
-            jump flowey_ruins
-        label flowey_hangout1_Q4_choice3:
-            ##/// If >(I’m not interested in them right now. Maybe I could help you.)<
-            #*Surprised* 
-            show flowey surprised
-            flowey "Help me?" 
-            #*Suspicious side glance* 
-            show flowey suspicious
-            flowey "Idiot. You can’t help me. Go bother someone else."
-            #-Player exits encounter-
-            jump flowey_ruins
-
+                "You got me. I'm a big troll.":
+                    show flowey horror
+                    flowey "That's pretty funny, idiot."
+                    flowey "Now go, before I kill you."
+                    jump flowey_ruins
+                "Maybe I could help you.":
+                    show flowey surprised
+                    flowey "Help me?"
+                    show flowey sideglance
+                    flowey "Idiot. You can't help me."
+                    flowey "...Not that I need help, anyway."
+                    flowey "..."
+                    show flowey normal
+                    flowey "I'm gonna go. Stay here by your lonesome as long as you'd like."
+                    flowey "Or go bother someone else."
+                    jump flowey_ruins
+                    
 
 #label flowey_overworld:
 #    scene background floweyroomplaceholder
