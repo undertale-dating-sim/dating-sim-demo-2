@@ -60,6 +60,8 @@ init -9 python:
 label initialize_flowey:
     image flowey angry = "characters/Flowey/FloweyLineart-Angrycolor.png"
     image flowey annoyed = "characters/Flowey/FloweyLineart-Annoyedcolor.png"
+    image flowey backside = "characters/Flowey/FloweyLineart-Backsidecolor.png"
+    image flowey blush = "characters/Flowey/FloweyLineart-bashfulcolor.png"
     image flowey excited = "characters/Flowey/FloweyLineart-Excitedcolor.png"
     image flowey horror = "characters/Flowey/FloweyLineart-Horrorcolor.png"
     image flowey laugh = "characters/Flowey/FloweyLineart-LaughingColor.png"
@@ -67,6 +69,8 @@ label initialize_flowey:
     image flowey sad = "characters/Flowey/FloweyLineart-Sadcolor.png"
     image flowey sideglance = "characters/Flowey/FloweyLineart-SideGlarecolor.png"
     image flowey smug = "characters/Flowey/FloweyLineart-Smugcolor.png"
+    image flowey surprised = "characters/Flowey/FloweyLineart-Surprisedcolorcorrected.png"
+    image flowey suspicious = "characters/Flowey/FloweyLineart-Suspiciouscolor.png"
     image flowey wink = "characters/Flowey/FloweyLineart-Winkcolor.png"
 
     python:
