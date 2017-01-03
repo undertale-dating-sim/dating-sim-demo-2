@@ -34,30 +34,30 @@ label Flowey_Regular_Dialogue:
         "Gift":
             if flowey_hated:
                 show flowey sideglance
-                flowey: "You have my attention..."
-                    menu:
+                flowey "You have my attention..."
+                menu:
                     #insert gift menu mechanics
-                        "Cancel":
-                            show flowey annoyed
-                            flowey "Ha ha, very funny."
-                            jump Flowey_Interaction
+                    "Cancel":
+                        show flowey annoyed
+                        flowey "Ha ha, very funny."
+                        jump Flowey_Interaction
             elif flowey_disliked:
                 show flowey sideglance
                 flowey "Huh, what's that?"
-                    menu:
+                menu:
                     #insert gift menu
-                        "Cancel":
-                            show flowey annoyed
-                            flowey "Ha ha, very funny."
-                            jump Flowey_Interaction
+                    "Cancel":
+                        show flowey annoyed
+                        flowey "Ha ha, very funny."
+                        jump Flowey_Interaction
             else:
                 show flowey sideglance
                 flowey "You...have something for me?"
-                    menu:
+                menu:
                     #gift menu
-                        "Cancel":
-                            show flowey annoyed
-                            flowey "Ha ha, very funny."
+                    "Cancel":
+                        show flowey annoyed
+                        flowey "Ha ha, very funny."
                             
         "Leave":
             if flowey_hated:

@@ -115,10 +115,10 @@ label ruins_intro_pass_out:
         toriel "You are more than welcome to return here whenever you are tired. I promise, my child and I do not bite!"
         "Alright, I’ll stay here with you.":
             $ world.get_monster('Toriel').FP += 1
-            call .accept
+            call accept
         "No way, I’m leaving!":
             $ world.get_monster('Toriel').FP -= 2
-            call .reject
+            call reject
 
 
 # ///If >81("Alright, I’ll stay here with you.")<
@@ -140,9 +140,9 @@ label ruins_intro_pass_out:
 # #if the player has not met Frisk, jump ruins_intro_find_Frisk
 
 
-label .reject:
+label reject:
     show toriel annoyed
-    toriel "Well, if that is how you feel…"
+    toriel "Well, if that is how you feel..."
     toriel "Just do not expect me to find you the next time you pass out."
     show toriel sad
     toriel "I cannot keep chasing after someone who does not want my help."

@@ -65,6 +65,7 @@ label increment_stamina:
         player.current_stamina += 10
         if player.current_stamina > player.max_stamina:
             player.current_stamina = player.max_stamina
+        player.update_player()
     return
 
 label decrement_stamina:
@@ -72,6 +73,23 @@ label decrement_stamina:
         player.current_stamina -= 10
         if player.current_stamina < 0:
             player.current_stamina = 0
+        player.update_player()
+    return
+
+label increment_hp:
+    python:
+        player.current_health += 10
+        if player.current_health > player.total_health:
+            player.current_health = player.total_health
+        player.update_player()
+    return
+
+label decrement_hp:
+    python:
+        player.current_health -= 10
+        if player.current_health < 0:
+            player.current_health = 0
+        player.update_player()
     return
 
 screen debug_monsters:
@@ -89,6 +107,10 @@ screen debug_monsters:
             hbox:
                 textbutton "Stam Down" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("decrement_stamina")]
                 textbutton "Stam Up" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("increment_stamina")]
+                
+            hbox:
+                textbutton "HP Down" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("decrement_hp")]
+                textbutton "HP Up" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("increment_hp")]
             vpgrid:
                 draggable True
                 mousewheel True
