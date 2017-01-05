@@ -71,7 +71,7 @@ init -1 python:
             self.bg = "background ruins_floweyroom"
             self.add_monster(Toriel())
             self.add_monster(Napstablook())
-            #self.add_monster(Frisk())
+            self.add_monster(Frisk())
 
 
 
@@ -199,8 +199,3 @@ label dead_room:
     #show wilson scary
     #"{size=+5}{font=font/Pixelated_Wingdings.ttf}You   SHOULDN'T    BE     HERE{/font}"
     return
-
-
-    
-
-    

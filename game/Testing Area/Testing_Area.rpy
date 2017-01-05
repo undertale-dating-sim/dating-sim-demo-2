@@ -28,6 +28,9 @@ label testing_area:
 
             "Test Credits":
                 call scrolling_credits
+                
+            "Test Death":
+                call death_event
 
 
 label testing_phone_calls:
@@ -90,6 +93,22 @@ label test_character(monster = "Toriel"):
     $ world.move_to_room("Dead Room")
 
     return
+    
+label test_character(monster = "Napstablook"):
+    
+    $ world.currentArea.current_room.monsters = []
+    $ world.get_monster(monster).move_to_room("Dead Room")
+    $ world.move_to_room("Dead Room")
+
+    return
+    
+label test_character(monster = "Frisk"):
+    
+    $ world.currentArea.current_room.monsters = []
+    $ world.get_monster(monster).move_to_room("Dead Room")
+    $ world.move_to_room("Dead Room")
+
+    return
 
 
 label testing_characters:
@@ -106,7 +125,7 @@ label testing_characters:
             jump testing_flowey
 
         "Frisk":
-            jump testing_frisk
+            call test_character("frisk")
 
         "Whimsum":
             jump testing_whimsum
