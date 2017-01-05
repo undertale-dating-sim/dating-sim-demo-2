@@ -12,7 +12,7 @@ init -10 python:
             self.completed = False
             self.label = label
             self.owner = False
-            self.permanent = perm
+            self.permanent = False
             self.arg = arg
 
 
