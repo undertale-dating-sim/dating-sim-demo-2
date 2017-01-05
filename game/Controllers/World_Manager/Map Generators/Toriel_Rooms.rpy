@@ -63,6 +63,8 @@ init python:
             self.bg = "background toriel_house_corridor"
             self.locknorth = False
             self.events['toriel_house_corridor'] = Event("toriel_house_corridor",True)
+            self.plant_watered_times = 0
+            self.day_watered = 0
 
     class th_kitchen(Room):
         def __init__(self):
@@ -154,6 +156,8 @@ label toriel_house_corridor:
     while True:
         menu:
             "There are three doors here."
+            "Golden flower":
+                call golden_flower_event
             "Frisk's Room":
                 if world.get_current_timezone() == "Night":
                     "The door is locked."

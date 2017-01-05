@@ -191,6 +191,10 @@ label testing_events:
                 call test_napstablook_events
             "Toriel":
                 call test_toriel_events
+                
+            "Meals in the ruins":
+                call ruins_meals_events
+
             "Back":
                 return
     return
@@ -241,3 +245,27 @@ label test_toriel_events:
                 return
     return
     
+label ruins_meals_events:
+    while True:
+        menu:
+            "First meal":
+                call ruins_first_breakfast
+            "Dinners":
+                menu:
+                    "Frisk stays":
+                        $World.days = "Monday"
+                    "Frisk leaves":
+                        $World.days = "Tuesday"
+                    "Frisk is tired":
+                        $World.days = "Wednesday"                        
+                call ruins_dinner
+            "Leftovers":
+                call ruins_dinner_leftovers
+            "Breakfast":
+                call ruins_breakfast
+            "Leave the Ruins":
+                "Okay, so it's not a meal, but that's where this is for now. >_<"
+                call ruins_basement_door_first_visit
+            "Back":
+                return
+    return

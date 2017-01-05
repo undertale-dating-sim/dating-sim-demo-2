@@ -121,6 +121,7 @@ label Toriel_manager_default(owner = False,pause = True):
     "Hello, dear. Can I help you?"
     
     menu:
+        #These were implemented over in the Toriel.rpy file under Script\Events\The Ruins\Toriel
         "Hello, dear. Can I help you?"
         '"I brought you some snails!"':
             call Toriel_Manager_Give_Snails
@@ -139,28 +140,15 @@ label Toriel_manager_default(owner = False,pause = True):
     
     return
 
-label toriel_general_dialogue:
-    
-    toriel "Hello, dear. Can I help you?"
-    while True:
-        show toriel normal
-        menu:
-            "I brought you the snails!" if inventory.get_count(Snail):
-                call toriel_gd_give_snails
-            "Chat":
-                call toriel_gd_talk
-            "Ask":
-                call toriel_gd_ask
-            "Flirt":
-                call toriel_gd_flirt
-            "Give":
-                call toriel_gd_give
-            "Leave":
-                toriel "Take care, dear"
-                return
+label Toriel_Manager_Give_Snails:
+        #These were implemented over in the Toriel.rpy file under Script\Events\The Ruins\Toriel
 
-        
-label toriel_gd_talk:
+
+
+
+
+label Toriel_Manager_Chat(owner):
+    #These were implemented over in the Toriel.rpy file under Script\Events\The Ruins\Toriel
     menu:
         "How are you doing?":
             show toriel smile
