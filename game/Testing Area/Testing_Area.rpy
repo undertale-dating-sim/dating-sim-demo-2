@@ -264,6 +264,10 @@ label test_toriel_events:
                 return
     return
     
+
+label death_event:
+    jump player_dies
+
 label ruins_meals_events:
     while True:
         menu:
@@ -288,3 +292,4 @@ label ruins_meals_events:
             "Back":
                 return
     return
+
