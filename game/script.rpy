@@ -40,7 +40,8 @@ label start:
     #jump choosemenu
     call show_buttons
     #$ banish('Toriel')
-    $ banish("Napstablook")
+    #$ banish("Napstablook")
+    $ banish("Frisk")
     $ move_to_room("Dead Room")
     #jump start_the_game
 
@@ -96,6 +97,3 @@ label hide_buttons:
 label updater:
     $ updater.update(url='http://www.apartmentgaming.com/update/updates.json')
     return
-
-
-

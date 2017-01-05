@@ -1,13 +1,11 @@
-
-
 init -9 python:
 
     class Frisk(Monster):
         def __init__(self):
             Monster.__init__(self)
             self.default_event = Event("Frisk_manager_default",True,self)
-            self.default_sprite = "frisk normal"
             self.name = "Frisk"
+            self.default_sprite = "frisk normal"
             self.FP = 20
             self.consumables_given = 0
 
@@ -99,17 +97,17 @@ init -9 python:
 label initialize_frisk:
     #here is where the sprites go
 
-    image frisk angry  = "characters/Frisk/Frisk_Angry.png"
-    image frisk annoyed = "characters/Frisk/Frisk_Annoyed.png"
-    image frisk bigsmile = "characters/Frisk/Frisk_BigSmile.png"
-    image frisk disappointed = "characters/Frisk/Frisk_Disappointed.png"
-    image frisk distant = "characters/Frisk/Frisk_Distant.png"
-    image frisk normal = im.Scale("characters/Frisk/Frisk_Neutral.png",265,590)
-    image frisk smallsmile = "characters/Frisk/Frisk_SmallSmile.png"
-    image frisk soulless = "characters/Frisk/Frisk_Soulless.png"
-    image frisk surprised = "characters/Frisk/Frisk_Surprised.png"
-    image frisk tearyeyes = "characters/Frisk/Frisk_TearyEyes.png"
-    image frisk upset = "characters/Frisk/Frisk_Upset.png"
+    image frisk angry  = im.Scale("characters/Frisk/Frisk_Angry.png",265,410)
+    image frisk annoyed = im.Scale("characters/Frisk/Frisk_Annoyed.png",265,410)
+    image frisk bigsmile = im.Scale("characters/Frisk/Frisk_BigSmile.png",265,410)
+    image frisk disappointed = im.Scale("characters/Frisk/Frisk_Disappointed.png",265,410)
+    image frisk distant = im.Scale("characters/Frisk/Frisk_Distant.png",265,410)
+    image frisk normal = im.Scale("characters/Frisk/Frisk_Neutral.png",265,410)
+    image frisk smallsmile = im.Scale("characters/Frisk/Frisk_SmallSmile.png",265,410)
+    image frisk soulless = im.Scale("characters/Frisk/Frisk_Soulless.png",265,410)
+    image frisk surprised = im.Scale("characters/Frisk/Frisk_Surprised.png",265,410)
+    image frisk tearyeyes = im.Scale("characters/Frisk/Frisk_TearyEyes.png",265,410)
+    image frisk upset = im.Scale("characters/Frisk/Frisk_Upset.png",265,590)
     image frisk whatno = "Capture.PNG"
     define frisk = ('Frisk')
     define friskChar = Character('Frisk', color="#FFFFFF")
@@ -118,21 +116,296 @@ label initialize_frisk:
                friskChar(text, *args, **kwargs)
     return
 
-#this is Toriels default scene
+######    Frisk's default scene     ######
+
 label Frisk_manager_default(owner = False,pause = True):
 
 
     call show_buttons from _call_show_buttons_6
-    $ renpy.pause()
+    
+    show frisk normal:
+        xalign 0.5
+        yalign 1.0
+        
+    python:
+        renpy.pause()
+        
+        ## Chat options
+        frisk_howare = False
+        frisk_doingwell = False
+        frisk_didtoday = False
 
-    menu:
-        "Raise FP 10":
-            $ owner.FP += 10
-        "Lower FP 10":
-            $ owner.FP -= 10
-        "Give Gift" if len(inventory.items) > 0:
-            show screen gift_item_menu(owner)
-            "What should you give them?"
+        ## Ask options
+        frisk_forfun = False
+        frisk_livetoriel = False
+        frisk_blookyopinion = False
+        frisk_howfell = False
+
+        ## Flirt options
+        frisk_iscute = False
+        frisk_fellfor = False
+        frisk_smilelit = False
+        frisk_flirtaway = False
+    
+    label Frisk_interact:
+        menu:
+            "Talk":
+                call Frisk_dialogue
+            "Give Gift" if len(inventory.items) > 0:
+                show frisk smallsmile
+                frisk "Oh, do you have something?"
+                
+                "What should you give them?"
+                
+                $ result = renpy.call_screen("gift_item_menu",owner)
+                
+                if result == 'cancel':
+                    frisk "No? That’s alright."
+                
+                    jump Frisk_interact
+                
+            "Raise FP 10":
+                $ owner.FP += 10
+            "Lower FP 10":
+                $ owner.FP -= 10
+            "Exit":
+                "See ya later!"
 
     
     return
+
+######     Frisk's dialogue options     ######
+
+label Frisk_dialogue:
+    show frisk normal
+    
+    menu:
+        "Chat":
+            jump Frisk_chat
+        "Ask":
+            jump Frisk_ask
+        "Flirt" if frisk_flirtaway is False:
+            jump Frisk_flirt
+        "Never mind.":
+            "You decide not to say anything after all."
+            jump Frisk_interact
+
+
+label Frisk_chat:
+    show frisk normal
+    
+    if frisk_howare and frisk_doingwell and frisk_didtoday:
+        "You tried to say something, but couldn't think of anything to say."
+        jump Frisk_dialogue
+        
+    menu:
+        "How are you?" if frisk_howare is False:
+            $ frisk_howare = True
+            
+            frisk "I’m good! How about you?"
+            
+            menu:
+                "I’m good, too.":
+                    show frisk smallsmile
+                    frisk "Well, that’s good."
+                "Never better!":
+                    show frisk bigsmile
+                    frisk "Great!"
+                "Eh.":
+                    show frisk distant
+                    frisk "Oh... Well, maybe tomorrow will be better for you."
+                    show frisk smallsmile
+                    frisk "You gotta keep your chin up!"
+                    
+            jump Frisk_chat
+                    
+        "Is everything going well for you?" if frisk_doingwell is False:
+            $ frisk_doingwell = True
+            show frisk distant
+            
+            frisk "Oh, yeah..."
+            
+            show frisk bigsmile
+            
+            frisk "No complaints here!"
+            
+            jump Frisk_chat
+            
+        "What have you done today?" if frisk_didtoday is False:
+            $ frisk_didtoday = True
+            
+            frisk "Same old, same old... Took a walk, did some drawing, said ‘hi’ to some Froggits..."
+            frisk "There’s not much else to do around here, but you probably know that by now."
+            
+            jump Frisk_chat
+            
+        "Never mind.":
+            "You decide not to say anything after all."
+            jump Frisk_interact
+            
+    label Frisk_ask:
+        show frisk normal
+        
+        if frisk_forfun and frisk_livetoriel and frisk_blookyopinion and frisk_howfell:
+            show frisk distant
+            "Frisk looks a little uncomfortable."
+            "Maybe it's better if you don't say anything..."
+            jump Frisk_dialogue
+        
+        menu:
+            "What do you like to do for fun?" if frisk_forfun is False:
+                $ frisk_forfun = True
+                show frisk smallsmile
+                
+                frisk "I love to paint things that I see down here!"
+                
+                menu:
+                    "You paint? Me too!":                              #####     CURRENTLY NONFUNCTIONAL OPTION     #####
+                        $ owner.FP += 3
+                        
+                        if frisk_hangout.completed:
+                            show frisk bigsmile
+                            frisk "I already knew that, silly!"
+                            frisk "And you already knew that I liked to paint, so why’d you ask?"
+                            
+                            menu:
+                                "I was just wondering if you had any other hobbies.":
+                                    $ owner.FP += 3
+                                    show frisk smallsmile
+                                    
+                                    frisk "Well, not really. Maybe I should get some."
+                                    
+                                "No reason.":
+                                    
+                                    frisk "Alright, then!"
+                                        
+                        else:
+                            show frisk bigsmile
+                            frisk "That’s great! We should paint together sometime!"
+                            
+                        jump Frisk_ask
+                        
+                    "You should show me your paintings sometime.":     #####     CURRENTLY NONFUNCTIONAL OPTION     #####
+                        show frisk smallsmile
+                        
+                        frisk "Yeah?"
+                        
+                        if frisk_hangout.completed:
+                            frisk "Well, I already showed you one..."
+                            
+                        frisk "Maybe some other time."
+                        
+                        jump Frisk_ask
+                        
+                    "Painting? That’s boring.":
+                        $ owner.FP -= 3
+                        
+                        show frisk disappointed
+                        
+                        frisk "It’s really not, if you give it a chance..."
+                        
+                        jump Frisk_ask
+                        
+            "What’s living with Toriel like?" if frisk_livetoriel is False:
+                $ frisk_livetoriel = True
+                show frisk bigsmile
+                
+                frisk "She’s the best mom! I couldn’t have asked for anyone better to have taken me in..."
+                
+                show frisk normal
+                
+                frisk "When I fell down here, I was pretty... lost. But Mom found me, and everything’s been great ever since."
+                
+                show frisk smallsmile
+                
+                frisk "Well, if not great, then at least okay. And ‘okay’ is just fine by me."
+                
+                jump Frisk_ask
+                
+            "What do you think of Napstablook?" if frisk_blookyopinion is False:
+                $ frisk_blookyopinion = True
+                show frisk smallsmile
+                
+                frisk "They’re nice! They can be pretty shy... Well, make that very shy. But they’re fun to hang out with, in their own way."
+                
+                jump Frisk_ask
+                
+            "How did you fall?" if frisk_howfell is False:
+                $ frisk_howfell = True
+                show frisk distant
+                
+                frisk "...I don’t remember."
+                
+                menu:
+                    "Did I upset you? I’m sorry. I won’t ask again.":
+                        $ owner.FP += 3
+                        
+                        show frisk smallsmile
+                        
+                        frisk "It’s okay. You were only curious."
+                        
+                        jump Frisk_ask
+                        
+                    "Do you miss the surface?":
+                        show frisk disappointed
+                        
+                        frisk "I can’t really say, since I don’t remember much of my surface life, either. Do I wanna go back, though?"
+                        frisk "Hard to answer. On one hand, I really want to go back to the surface with all of the monsters. They haven’t seen the sun in so long... Some monsters have never seen it at all. I know they’d all be much happier on the surface."
+                        
+                        show frisk tearyeyes
+                        
+                        frisk "...On the other hand, I know how humans can be. I’m not sure if I really want to go back in that case, with or without the monsters."
+                        
+                        jump Frisk_ask
+                        
+                    "I’m sure you remember; you’ve gotta think harder.":
+                        $ owner.FP -= 3
+                        
+                        show frisk annoyed
+                        
+                        frisk "I already told you, I can’t remember."
+                        
+                        jump Frisk_ask
+                        
+            "Never mind.":
+                jump Frisk_dialogue
+                
+    label Frisk_flirt:
+        show frisk normal
+        
+        if frisk_iscute and frisk_fellfor and frisk_smilelit:
+            $ frisk_flirtaway = True
+            "It seems that your flirting is not having the effect you were looking for."
+            jump Frisk_dialogue
+            
+        menu:
+            "Aside from being cute, what do you do for a living?" if frisk_iscute is False:
+                $ frisk_iscute = True
+                show frisk surprised
+                    
+                frisk "Oh! Haha, thanks!"
+                
+                show frisk smallsmile
+                
+                frisk "I mostly just hunt snails, if you’re actually wondering."
+                
+                jump Frisk_flirt
+                
+            "Do you have a band-aid? Because I scraped my knees falling for you." if frisk_fellfor is False:
+                $ frisk_fellfor = True
+                show frisk smallsmile
+                
+                frisk "Must’ve been a long fall, if you ended up all the way down here!"
+                
+                jump Frisk_flirt
+                
+            "Your smile lit up the room, so I just had to come over." if frisk_smilelit is False:
+                $ frisk_smilelit = True
+                show frisk bigsmile
+                
+                frisk "That’s a good one! Gotta remember that for some other time."
+                
+                jump Frisk_flirt
+                
+            "Never mind.":
+                jump Frisk_dialogue

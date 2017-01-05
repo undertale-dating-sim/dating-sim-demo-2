@@ -295,7 +295,7 @@ label flowey_hangout1:
         show flowey annoyed
         flowey "Why don't you go and find someone else to annoy?"
         menu:
-             "I’m just interested in what life is like down here.": #+FP
+            "I’m just interested in what life is like down here.": #+FP
                 show flowey annoyed
                 flowey "Then go ask someone else. I have better things to do than to talk to some human, and you’re not going to find your {i}happy ending{/i} here."
                 flowey "Don't you have anything {i}better{/i} to do?"
