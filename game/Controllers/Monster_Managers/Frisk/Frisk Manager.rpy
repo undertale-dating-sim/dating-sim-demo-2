@@ -146,6 +146,9 @@ label Frisk_manager_default(owner = False,pause = True):
         frisk_fellfor = False
         frisk_smilelit = False
         frisk_flirtaway = False
+        
+        #####     FOR TESTING ONLY     ######
+        frisk_hangoutcompleted = True
     
     label Frisk_interact:
         menu:
@@ -260,10 +263,10 @@ label Frisk_chat:
                 frisk "I love to paint things that I see down here!"
                 
                 menu:
-                    "You paint? Me too!":                              #####     CURRENTLY NONFUNCTIONAL OPTION     #####
+                    "You paint? Me too!":
                         $ owner.FP += 3
                         
-                        if frisk_hangout.completed:
+                        if frisk_hangoutcompleted:
                             show frisk bigsmile
                             frisk "I already knew that, silly!"
                             frisk "And you already knew that I liked to paint, so why’d you ask?"
@@ -285,12 +288,12 @@ label Frisk_chat:
                             
                         jump Frisk_ask
                         
-                    "You should show me your paintings sometime.":     #####     CURRENTLY NONFUNCTIONAL OPTION     #####
+                    "You should show me your paintings sometime.":
                         show frisk smallsmile
                         
                         frisk "Yeah?"
                         
-                        if frisk_hangout.completed:
+                        if frisk_hangoutcompleted:
                             frisk "Well, I already showed you one..."
                             
                         frisk "Maybe some other time."
