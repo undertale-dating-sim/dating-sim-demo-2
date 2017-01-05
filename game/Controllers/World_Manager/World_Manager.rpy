@@ -19,6 +19,9 @@ init -10 python:
     def update():
         world.update_day()
 
+    def get_monster(monster):
+        return world.get_monster(monster)
+
     class World():
     
         def __init__(self):
