@@ -254,10 +254,12 @@ label test_toriel_events:
         menu:
             "True Love Date 1":
                 call toriel_tl_date01_opening
-            "Friendship Hangout 1":
-                pass
-            "Friendship Hangout 2":
-                pass
+            "Friendship Event 1":
+                call toriel_friendship_event01
+            "Friendship Event 2":
+                call toriel_friendship_event_2
+            "Friendship Hangout":
+                call toriel_friendship_hangout
             "Heartbreak Date 1":
                 pass
             "Back":
