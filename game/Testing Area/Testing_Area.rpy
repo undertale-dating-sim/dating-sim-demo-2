@@ -15,8 +15,8 @@ label testing_area:
                 call testing_events
 
             "Characters":
-                call testing_characters
-
+                #call testing_characters
+                pass
             "Item Reactions":
                 call testing_item_reactions
 
@@ -28,7 +28,7 @@ label testing_area:
 
             "Test Credits":
                 call scrolling_credits
-                
+
             "Test Death":
                 call death_event
 
@@ -86,64 +86,64 @@ label test_call(monster = 'Toriel'):
                 return
     return
 
-label test_character(monster = "Toriel"):
-    
-    $ world.currentArea.current_room.monsters = []
-    $ world.get_monster(monster).move_to_room("Dead Room")
-    $ world.move_to_room("Dead Room")
+# label test_character(monster = "Toriel"):
 
-    return
-    
-label test_character(monster = "Napstablook"):
-    
-    $ world.currentArea.current_room.monsters = []
-    $ world.get_monster(monster).move_to_room("Dead Room")
-    $ world.move_to_room("Dead Room")
+#     $ world.currentArea.current_room.monsters = []
+#     $ world.get_monster(monster).move_to_room("Dead Room")
+#     $ world.move_to_room("Dead Room")
 
-    return
-    
-label test_character(monster = "Frisk"):
-    
-    $ world.currentArea.current_room.monsters = []
-    $ world.get_monster(monster).move_to_room("Dead Room")
-    $ world.move_to_room("Dead Room")
+#     return
 
-    return
+# label test_character(monster = "Napstablook"):
+
+#     $ world.currentArea.current_room.monsters = []
+#     $ world.get_monster(monster).move_to_room("Dead Room")
+#     $ world.move_to_room("Dead Room")
+
+#     return
+
+# label test_character(monster = "Frisk"):
+
+#     $ world.currentArea.current_room.monsters = []
+#     $ world.get_monster(monster).move_to_room("Dead Room")
+#     $ world.move_to_room("Dead Room")
+
+#     return
 
 
-label testing_characters:
-    
+# label testing_characters:
 
-    menu:
-        "Toriel":
-            call test_character("toriel")
 
-        "Napstablook":
-            call test_character("napstablook")
+#     menu:
+#         "Toriel":
+#             call test_character("toriel")
 
-        "Flowey":
-            jump testing_flowey
+#         "Napstablook":
+#             call test_character("napstablook")
 
-        "Frisk":
-            call test_character("frisk")
+#         "Flowey":
+#             jump testing_flowey
 
-        "Whimsum":
-            jump testing_whimsum
+#         "Frisk":
+#             call test_character("frisk")
 
-        "Vegetoid":
-            jump testing_vegetoid
+#         "Whimsum":
+#             jump testing_whimsum
 
-        "Dummy":
-            jump testing_dummy
+#         "Vegetoid":
+#             jump testing_vegetoid
 
-        "Back":
-            return
-        
-    return
+#         "Dummy":
+#             jump testing_dummy
+
+#         "Back":
+#             return
+
+#     return
 
 
 label testing_item_reactions:
-    
+
     menu:
         "Toriel":
             call test_items(world.get_monster("Toriel"))
@@ -203,14 +203,14 @@ label testing_events:
                 call vegetoid_ruins_re_start
             "Dummy Event NYI":
                 call dummy_ruins_event_start
-                
+
             "Frisk":
                 call test_frisk_events
             "Napstablook":
                 call test_napstablook_events
             "Toriel":
                 call test_toriel_events
-                
+
             "Meals in the ruins":
                 call ruins_meals_events
 
@@ -225,7 +225,7 @@ label test_frisk_events:
             "Meeting Frisk":
                 pass
             "Friendship Hangout 1":
-                pass
+                call frisk_friendship_hangout1_main
             "Friendship Event 1":
                 pass
             "Friendship Event 2":
@@ -233,7 +233,7 @@ label test_frisk_events:
             "Back":
                 return
     return
-    
+
 label test_napstablook_events:
     while True:
         menu:
@@ -263,7 +263,7 @@ label test_toriel_events:
             "Back":
                 return
     return
-    
+
 
 label death_event:
     jump player_dies
@@ -280,7 +280,7 @@ label ruins_meals_events:
                     "Frisk leaves":
                         $World.days = "Tuesday"
                     "Frisk is tired":
-                        $World.days = "Wednesday"                        
+                        $World.days = "Wednesday"
                 call ruins_dinner
             "Leftovers":
                 call ruins_dinner_leftovers
@@ -292,4 +292,3 @@ label ruins_meals_events:
             "Back":
                 return
     return
-

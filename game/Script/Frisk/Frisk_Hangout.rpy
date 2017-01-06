@@ -6,7 +6,7 @@
 #("Parenthesis") = dialogue options
 ##//(+0)           = Response’s Increase/Decrease to Date Meter
 ##/// If >  <   = The order of player answers that lead up to that            dialogue
-#[n/a #]		= Dialogue option not available if previous option
+#[n/a #]        = Dialogue option not available if previous option
 #has been used (all options assigned a number)
 #+ Or -         = amount of points
 #jump ___    = tells the game to skip to a different part of the script
@@ -29,20 +29,20 @@
 
 
 #+FP in green
-python:
-    frisk_fp=0
-    red = False
-    yellow = False
-    blue = False
-    orange = False
-    green = False
-    purple = False
-    aqua = False
-    swirls = False
-    stripes = False
-    randompaintsplatter = False
 
 label frisk_friendship_hangout1_main:
+    python:
+        frisk_fp=0
+        red = False
+        yellow = False
+        blue = False
+        orange = False
+        green = False
+        purple = False
+        aqua = False
+        swirls = False
+        stripes = False
+        randompaintsplatter = False
     #scene frisk’s room
     #show frisk surprised
     frisk "Oh!"
@@ -58,10 +58,10 @@ label frisk_friendship_hangout1_main:
     jump frisk_friendship_hangout1_selection1
 label frisk_friendship_hangout1_selection1:
     menu:
-        "Sorry, I’m busy.":	##//(-2)
+        "Sorry, I’m busy.": ##//(-2)
             $ frisk_fp -=2
             jump frisk_friendship_hangout1_choice1
-        "Yeah!"	##//(+2)
+        "Yeah!":    ##//(+2)
             $frisk_fp +=2
             jump frisk_friendship_hangout1_choice2
 
@@ -75,19 +75,24 @@ label frisk_friendship_hangout1_choice1:
 label frisk_friendship_return_to_frisk:
     #if the player re-enters Frisk’s room anytime before dinner:
     #show frisk normal
-    frisk ""Oh, did you change your mind?""
+    frisk "Oh, did you change your mind?"
     jump frisk_friendship_hangout1_selection2
 label frisk_friendship_hangout1_selection2:
     menu:
-        "I hate to break it to you, but no.":	#//(+0)
+        "I hate to break it to you, but no.":    #//(+0)
             jump frisk_friendship_hangout1_choice3
-        "Yes, it actually sounds fun.":		#//(+2)
-            $frisk_fp +=2
+        "Yes, it actually sounds fun.":        #//(+2)
+            $ frisk_fp +=2
             jump frisk_friendship_hangout1_choice4
+
 label frisk_friendship_hangout1_choice3:
     #/// If >3("I hate to break it to you, but no.")<
-    frisk ""Okay… I’ll see you later.""
+    frisk "Okay… I’ll see you later."
     #scene change hallway
+    #####################
+    #Change below code to hallway code
+    jump statcheck
+
 label frisk_friendship_hangout1_choice4:
     #/// If >4("Yes, it actually sounds fun.")<
     jump frisk_friendship_hangout1_start
@@ -113,11 +118,11 @@ label frisk_friendship_hangout1_start:
     jump frisk_friendship_hangout1_selection3
 label frisk_friendship_hangout1_selection3:
     menu:
-        "Red":	      #//(+0)
+        "Red":          #//(+0)
             $ red = True
-        "Yellow":	  #//(+0)
+        "Yellow":      #//(+0)
             $ yellow = True
-        "Blue":	      #//(+2)
+        "Blue":          #//(+2)
             $frisk_fp +=2
             $ blue = True
     frisk "You know, I’m really glad you decided to do this with me."
@@ -127,17 +132,17 @@ label frisk_friendship_hangout1_selection3:
     frisk "She said it wasn’t really for her."
 
     "*What color will you use next?"
-    jump selction4
+    jump frisk_friendship_hangout1_selection4
 
 label frisk_friendship_hangout1_selection4:
     menu:
-        "Orange":								#//(+0)
+        "Orange":                                #//(+0)
             $  orange = True
-        "Green":								#//(+0)
+        "Green":                                #//(+0)
             $ green = True
-        "Purple":								#//(+0)
+        "Purple":                                #//(+0)
             $ purple = True
-        "Aqua":						#//(+0)
+        "Aqua":                        #//(+0)
             $ aqua = True
     frisk "It can sometimes get a bit…"
     frisk "...Lonely."
@@ -151,13 +156,13 @@ label frisk_friendship_hangout1_selection4:
 
 label frisk_friendship_hangout1_selection5:
     menu:
-        "No, it’s okay. I understand how you feel.":	#//(+3)
+        "No, it’s okay. I understand how you feel.":    #//(+3)
             $ frisk_fp +=3
             jump frisk_friendship_hangout1_choice12
-        "Mine, too.":							#//(+1)
+        "Mine, too.":                            #//(+1)
             $ frisk_fp +=1
             jump frisk_friendship_hangout1_choice13
-        "...":							#//(-2)
+        "...":                            #//(-2)
             $ frisk_fp -=1
             jump frisk_friendship_hangout1_choice14
 label frisk_friendship_hangout1_choice12:
@@ -176,15 +181,15 @@ label frisk_friendship_hangout1_choice13:
     jump frisk_friendship_hangout1_selection6
 label frisk_friendship_hangout1_selection6:
     menu:
-        "Nothing in particular.":			#//(+0)
+        "Nothing in particular.":            #//(+0)
             jump frisk_friendship_hangout1_choice15
-        "Stuff I have to do later.":			#//(+1)
+        "Stuff I have to do later.":            #//(+1)
             $ frisk_fp +=1
             jump frisk_friendship_hangout1_choice16
-        "People I miss on the surface.":		#//(+3)
+        "People I miss on the surface.":        #//(+3)
             $ frisk_fp +=3
             jump frisk_friendship_hangout1_choice17
-        "I’d rather not share.":				#//(+0)
+        "I’d rather not share.":                #//(+0)
             jump frisk_friendship_hangout1_choice18
 label frisk_friendship_hangout1_choice15:
 
@@ -227,11 +232,11 @@ label frisk_friendship_hangout1_finished:
     jump frisk_friendship_hangout1_selection7
 label frisk_friendship_hangout1_selection7:
     menu:
-        "Add some swirls":						#//(+0)
+        "Add some swirls":                        #//(+0)
             $ swirls = True
-        "Add some stripes":						#//(+0)
+        "Add some stripes":                        #//(+0)
             $ stripes = True
-        "Add some random paint splatter":			#//(+0)
+        "Add some random paint splatter":            #//(+0)
             $ randompaintsplatter = True
     "*..."
     "*You made a thing."
@@ -329,13 +334,13 @@ label frisk_friendship_hangout1_selection7:
     jump frisk_friendship_hangout1_selection8
 label frisk_friendship_hangout1_selection8:
     menu:
-        "I’ve seen better.":					#//(-3)
+        "I’ve seen better.":                    #//(-3)
             $ frisk_fp -=3
             jump frisk_friendship_hangout1_choice22
-        "Not bad."::						#//(+0)
+        "Not bad.":                       #//(+0)
             jump frisk_friendship_hangout1_choice23
 
-        "I love it!":							#//(+3)
+        "I love it!":                            #//(+3)
             $ frisk_fp +=3
             jump frisk_friendship_hangout1_choice24
 label frisk_friendship_hangout1_choice22:
@@ -351,6 +356,7 @@ label frisk_friendship_hangout1_choice22:
     frisk "Let me know, okay?"
     frisk "I’ll see you later."
     #End of scene, time should be dinnertime
+    jump statcheck
 label frisk_friendship_hangout1_choice23:
     #/// If >23("Not bad.")<
     #show frisk normal
@@ -361,6 +367,7 @@ label frisk_friendship_hangout1_choice23:
     #show frisk tiny smile
     frisk "Bye!"
     #End of scene, time should be dinnertime
+    jump statcheck
 label frisk_friendship_hangout1_choice24:
 
     #/// If >24("I love it!")<
@@ -373,3 +380,7 @@ label frisk_friendship_hangout1_choice24:
     frisk "I wish we could do more right now, but it’s getting late. Dinner will probably be ready soon."
     frisk "I’ll see you around!"
     #End of scene, time should be dinnertime
+    jump statcheck
+label statcheck:
+    $ renpy.say("Frisk FP: ",str(frisk_fp))
+    jump testing_area
