@@ -109,6 +109,11 @@ label initialize_frisk:
     image frisk tearyeyes = im.Scale("characters/Frisk/Frisk_TearyEyes.png",265,410)
     image frisk upset = im.Scale("characters/Frisk/Frisk_Upset.png",265,590)
     image frisk whatno = "Capture.PNG"
+    image frisk sad = "frisk.png"
+    image frisk disgusted = "frisk.png"
+    image frisk panicking = "frisk.png"
+    image frisk panicking hands = "frisk.png"
+    
     define frisk = ('Frisk')
     define friskChar = Character('Frisk', color="#FFFFFF")
     python:

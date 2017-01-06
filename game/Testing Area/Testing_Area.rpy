@@ -227,7 +227,7 @@ label test_frisk_events:
             "Friendship Hangout 1":
                 pass
             "Friendship Event 1":
-                pass
+                call frisk_friendhsip_event_1
             "Friendship Event 2":
                 pass
             "Back":
