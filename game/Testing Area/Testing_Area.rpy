@@ -229,7 +229,7 @@ label test_frisk_events:
             "Friendship Event 1":
                 pass
             "Friendship Event 2":
-                pass
+                call frisk_friendship_hangout2_menu
             "Back":
                 return
     return

@@ -31,6 +31,9 @@
 #+FP in green
 
 label frisk_friendship_hangout1_main:
+    stop music
+    play music "audio/music/music-home.mp3"
+    show background frisk_room
     python:
         frisk_fp=0
         red = False
@@ -44,12 +47,12 @@ label frisk_friendship_hangout1_main:
         stripes = False
         randompaintsplatter = False
     #scene frisk’s room
-    #show frisk surprised
+    show frisk surprised
     frisk "Oh!"
-    #show Frisk normal
+    show frisk normal
     frisk "I didn’t see you there."
     frisk "Actually, since you're here, would you like to join me?"
-    #show Frisk tiny smile
+    show frisk tinysmile
     frisk "I like painting things, but…"
     frisk "…I don’t know what to paint."
     frisk "If you make something, maybe it’ll inspire me."
@@ -66,15 +69,15 @@ label frisk_friendship_hangout1_selection1:
             jump frisk_friendship_hangout1_choice2
 
 label frisk_friendship_hangout1_choice1:
-    #show frisk sad
+    show frisk sad
     frisk "Aww…"
-    #show frisk normal
+    show frisk normal
     frisk "Okay, I understand."
     frisk "See you around."
     #scene change hallway
 label frisk_friendship_return_to_frisk:
     #if the player re-enters Frisk’s room anytime before dinner:
-    #show frisk normal
+    show frisk normal
     frisk "Oh, did you change your mind?"
     jump frisk_friendship_hangout1_selection2
 label frisk_friendship_hangout1_selection2:
@@ -102,13 +105,13 @@ label frisk_friendship_hangout1_choice2:
 
 
 label frisk_friendship_hangout1_start:
-    #show frisk tiny smile
+    show frisk tinysmile
     frisk "Great!"
-    #show frisk normal
+    show frisk normal
     frisk "Okay, here, take these."
     "*Frisk gives you paper, a brush, and various colors of paint."
     frisk "Just make whatever you feel like."
-    #show frisk tiny smile
+    show frisk tinysmile
     frisk "Don’t worry, I won’t judge."
     frisk "I don’t even consider myself that great, but it’s all in good fun."
     frisk "Oh! I just had an idea... I’ll show it to you when we’re both finished."
@@ -127,7 +130,7 @@ label frisk_friendship_hangout1_selection3:
             $ blue = True
     frisk "You know, I’m really glad you decided to do this with me."
     frisk "You can probably tell, but I don’t really have many chances to paint with other people."
-    #show frisk sad
+    show frisk sad
     frisk "I tried to get Mom to paint with me, but…"
     frisk "She said it wasn’t really for her."
 
@@ -146,10 +149,10 @@ label frisk_friendship_hangout1_selection4:
             $ aqua = True
     frisk "It can sometimes get a bit…"
     frisk "...Lonely."
-    #show frisk disappointed
+    show frisk disappointed
     frisk "Don’t get me wrong, I love Mom and the other monsters here. But…"
     frisk "A lot of them aren’t exactly…"
-    #show frisk upset
+    show frisk upset
     frisk "Oh, what am I saying?"
     frisk "I’m sorry, my mind tends to wander when I’m painting."
     jump frisk_friendship_hangout1_selection5
@@ -167,16 +170,16 @@ label frisk_friendship_hangout1_selection5:
             jump frisk_friendship_hangout1_choice14
 label frisk_friendship_hangout1_choice12:
     #/// If >12("No, it’s okay. I understand how you feel.")<
-    #show frisk normal
+    show frisk normal
     frisk "You do?"
-    #show frisk disappointed
+    show frisk disappointed
     frisk "It’s just that… I like everyone here, but I want to do more than just live in the Ruins the rest of my life."
-    #show frisk normal
+    show frisk normal
     frisk "I don’t know exactly what I want to do, but I know it’s not hunting snails!"
     jump frisk_friendship_hangout1_finished
 label frisk_friendship_hangout1_choice13:
     #/// If >13("Mine, too.")<
-    #show frisk normal
+    show frisk normal
     frisk "Yeah? What do you think about?"
     jump frisk_friendship_hangout1_selection6
 label frisk_friendship_hangout1_selection6:
@@ -194,7 +197,7 @@ label frisk_friendship_hangout1_selection6:
 label frisk_friendship_hangout1_choice15:
 
     #/// If >13("Mine, too.")< AND >15("Nothing in particular.")<
-    #show frisk tiny smile
+    show frisk tinysmile
     frisk "Zoning out can be pretty relaxing. I wish I could do that, but sometimes I can’t seem to switch off."
     jump frisk_friendship_hangout1_finished
 label frisk_friendship_hangout1_choice16:
@@ -204,11 +207,11 @@ label frisk_friendship_hangout1_choice16:
     jump frisk_friendship_hangout1_finished
 label frisk_friendship_hangout1_choice17:
     #/// If >13("Mine, too.")< AND >17("People I miss on the surface.")<
-    #show frisk sad
+    show frisk sad
     frisk "Oh…"
     frisk "Sometimes I forget that not everyone likes it down here…"
     frisk "I mean, I’d like to leave the Ruins, but I guess I’m not that gung-ho about the surface."
-    #show frisk normal
+    show frisk normal
     frisk "All of my friends are here, so I wouldn’t want to leave them behind!"
     frisk "But I can understand why you’d miss the surface."
     jump frisk_friendship_hangout1_finished
@@ -224,7 +227,7 @@ label frisk_friendship_hangout1_choice14:
 
 
 label frisk_friendship_hangout1_finished:
-    #show frisk normal
+    show frisk normal
     frisk "Just curious, how far are you on your painting?"
     frisk "No pressure... I’m just wondering, is all."
 
@@ -242,7 +245,7 @@ label frisk_friendship_hangout1_selection7:
     "*You made a thing."
 
     frisk "Done already?"
-    #show frisk tiny smile
+    show frisk tinysmile
     frisk "Let me see!"
     frisk "...Abstract. Cool."
     if (red and orange) or (yellow and orange):
@@ -320,9 +323,9 @@ label frisk_friendship_hangout1_selection7:
             #if 21(Add some random paint splatter):
             frisk "It looks like a cupcake with sprinkles on top!"
 
-    #show frisk tiny smile
+    show frisk tinysmile
     frisk "It’s great!"
-    #show frisk normal
+    show frisk normal
     frisk "I managed to come up with something, too."
     frisk "I don’t know if it’s very good, but…"
     frisk "Oh, well. I’ll just show you."
@@ -345,11 +348,12 @@ label frisk_friendship_hangout1_selection8:
             jump frisk_friendship_hangout1_choice24
 label frisk_friendship_hangout1_choice22:
     #/// If > 22("I’ve seen better.")<
-    #show frisk sad
+    show frisk sad
     frisk "Oh…"
     frisk "I thought it was alright…"
     frisk "Well, uh…"
     #show frisk somewhat happy
+    show frisk bigsmile
     frisk "I appreciate your honesty."
     frisk "I’ll try again next time...?"
     frisk "Well… if you wanna do this again another time…"
@@ -359,24 +363,24 @@ label frisk_friendship_hangout1_choice22:
     jump statcheck
 label frisk_friendship_hangout1_choice23:
     #/// If >23("Not bad.")<
-    #show frisk normal
+    show frisk normal
     frisk "Thanks."
     frisk "We both didn’t really have a lot of time, so I guess it turned out okay."
     frisk "We should do this again sometime. It was fun!"
     frisk "Dinner will probably be ready soon, so I’ll see you around."
-    #show frisk tiny smile
+    show frisk tinysmile
     frisk "Bye!"
     #End of scene, time should be dinnertime
     jump statcheck
 label frisk_friendship_hangout1_choice24:
 
     #/// If >24("I love it!")<
-    #show frisk normal
+    show frisk normal
     frisk "Really?"
-    #show frisk big smile
+    show frisk bigsmile
     frisk "Wow, thanks!"
     frisk "I had a lot of fun doing this. It sounds like you did, too."
-    #show frisk tiny smile
+    show frisk tinysmile
     frisk "I wish we could do more right now, but it’s getting late. Dinner will probably be ready soon."
     frisk "I’ll see you around!"
     #End of scene, time should be dinnertime
