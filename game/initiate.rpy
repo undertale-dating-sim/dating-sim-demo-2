@@ -1,7 +1,19 @@
 label initialize:
     #papyrus
 
-    
+
+    image frisk angry = Frame("characters/Frisk/Frisk-Angry.png")
+    image frisk annoyed = Frame("characters/Frisk/Frisk-Annoyed.png")
+    image frisk bigsmile = Frame("characters/Frisk/Frisk-BigSmile.png")
+    image frisk disappointed= Frame("characters/Frisk/Frisk-Disappointed.png")
+    image frisk distant= Frame("characters/Frisk/Frisk-Distant.png")
+    image frisk normal = Frame("characters/Frisk/Frisk-Neutral.png")
+    image frisk tinysmile= Frame("characters/Frisk/Frisk-TinySmile.png")
+    image frisk souless= Frame("characters/Frisk/Frisk-Souless.png")
+    image frisk surprised= Frame("characters/Frisk/Frisk-Surprised.png")
+    image frisk sad= Frame("characters/Frisk/Frisk-TearyEyes.png")
+    image frisk upset= Frame("characters/Frisk/Frisk-Upset.png")
+
     image papyrus normal = "characters/Character-Papyrus-Normal.png"
     image papyrus bigsmile = "characters/Character-Papyrus-BigSmile.png"
     image papyrus disgust = "characters/Character-Papyrus-disgust.png"
@@ -23,7 +35,7 @@ label initialize:
     image sans sad = "characters/sans-sad.png"
     image sans silhouette = "characters/sans-shakemyhand.png"
     image sans shakehand = "characters/sans-shakemyhand2.png"
- 
+
 
     #stupid stuff for demo
     image wilson large = im.FactorScale("avatar.png",4.0)
@@ -31,6 +43,9 @@ label initialize:
     image wilson scary = im.FactorScale("characters/Wilson/nightmare_pupper.png",2.0)
     #background-images
 
+    #toriel's house
+    image background frisk_room = Frame("backgrounds/TorielsHouse/Background-Ruins-TorielHome-FrisksRoom.jpg")
+    image background toriel_kitchen = Frame("backgrounds/TorielsHouse/background-ruins-kitchen.png")
     #snowdin
     image background snowdin = "backgrounds/snowdincropped.jpg"
     image background papyrus_room = "backgrounds/Background-PapyrusRoom.jpg"
@@ -69,7 +84,7 @@ label initialize:
     image migosp angry = "characters/Migosp/migosp_angry.png"
 
     image dummy normal = "characters/Dummy/Dummy_Normal.png"
-    
+
 
     #initialize the monsters
     call initialize_toriel from _call_initialize_toriel
@@ -119,5 +134,3 @@ label initialize:
         world = World()
         world.set_current_time(700,True)
         cell_convo_count = 0
-
-
