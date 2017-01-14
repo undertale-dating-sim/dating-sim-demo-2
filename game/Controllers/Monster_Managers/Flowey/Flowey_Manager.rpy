@@ -73,11 +73,13 @@ label initialize_flowey:
     image flowey suspicious = "characters/Flowey/FloweyLineart-Suspiciouscolor.png"
     image flowey wink = "characters/Flowey/FloweyLineart-Winkcolor.png"
 
+    define flowey = ('Flowey')
+    define floweyChar = Character('Flowey', color="#FFFFFF")
+    
     python:
         def flowey(text, *args, **kwargs):
             floweyChar(text, *args, **kwargs)
 
-    define flowey = Character('Flowey', color="#FFFFFF")
     return
 
 #this is floweys default scene
@@ -180,12 +182,3 @@ label flowey_goodbye(owner):
     else:
         flowey "GREETING NOT FOUND"
     return
-
-
-
-
-
-
-
-
-

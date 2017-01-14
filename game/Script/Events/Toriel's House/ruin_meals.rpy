@@ -498,7 +498,7 @@ label ruins_breakfast:
         "No, I’m skipping breakfast.":
             frisk "Oh, alright! Have a good day..."
             #scene change black tree room
-            jump .breakfast_time_flowey
+            jump breakfast_time_flowey
         "Yeah, I’ll eat.":
             show frisk smallsmile
             frisk "Well, what’re you doing over here, then? Food’s in the living room, silly!"
@@ -570,7 +570,7 @@ label ruins_breakfast:
     $world.move_to_room("Corridor")
     return
     
-label .breakfast_time_flowey:
+label breakfast_time_flowey:
     if world.get_monster ('Flowey').FP < 0:
         #show Flowey surprised
         flowey "...!"
