@@ -40,6 +40,8 @@ label testing_phone_calls:
                 call test_call("Toriel")
             "Frisk":
                 call test_call("Frisk")
+            "Flowey":
+                call test_call("Flowey")
             "Napstablook":
                 call test_call("Napstablook")
 
@@ -86,23 +88,31 @@ label test_call(monster = 'Toriel'):
                 return
     return
 
-label test_character(monster = "Toriel"):
+#label test_character(monster = "Toriel"):
     
-    $ world.currentArea.current_room.monsters = []
-    $ world.get_monster(monster).move_to_room("Dead Room")
-    $ world.move_to_room("Dead Room")
+#    $ world.currentArea.current_room.monsters = []
+#    $ world.get_monster(monster).move_to_room("Dead Room")
+#    $ world.move_to_room("Dead Room")
 
-    return
+#    return
     
-label test_character(monster = "Napstablook"):
+#label test_character(monster = "Napstablook"):
     
-    $ world.currentArea.current_room.monsters = []
-    $ world.get_monster(monster).move_to_room("Dead Room")
-    $ world.move_to_room("Dead Room")
+#    $ world.currentArea.current_room.monsters = []
+#    $ world.get_monster(monster).move_to_room("Dead Room")
+#    $ world.move_to_room("Dead Room")
 
-    return
+#    return
     
-label test_character(monster = "Frisk"):
+#label test_character(monster = "Frisk"):
+    
+#    $ world.currentArea.current_room.monsters = []
+#    $ world.get_monster(monster).move_to_room("Dead Room")
+#    $ world.move_to_room("Dead Room")
+
+#    return
+    
+label test_character(monster = "Flowey"):
     
     $ world.currentArea.current_room.monsters = []
     $ world.get_monster(monster).move_to_room("Dead Room")
