@@ -80,36 +80,41 @@ label initialize_flowey:
         def flowey(text, *args, **kwargs):
             floweyChar(text, *args, **kwargs)
 
+
+    define flowey = Character('Flowey', color="#FFFFFF")
+    define unknown = Character('?????', color = "#FFFFFF")
+    
     return
 
 #this is floweys default scene
 label flowey_manager_default(owner = False,pause = True):
 
-    call show_flowey_sprite(owner) from _call_show_flowey_sprite
+    call show_flowey_sprite(owner)
 
-    call show_buttons from _call_show_buttons_14
+    call show_buttons
 
-    if pause:
-        $ renpy.pause()
-        
-    call flowey_greeting(owner) from _call_flowey_greeting
-    menu:
-        "convo":
-            call flowey_default_conversation(owner) from _call_flowey_default_conversation
-        "remember test":
-            $r = renpy.call_screen("remember",owner)
-        "Raise FP 20":
-            $ owner.FP += 20
-        "Lower FP 20":
-            $ owner.FP -= 20
-        "Give Gift" if len(inventory.items) > 0:
-            call flowey_gift_menu_open(owner) from _call_flowey_gift_menu_open
-            $ result = renpy.call_screen("gift_item_menu",owner)
-            if result == 'cancel':
-                call flowey_gift_menu_cancel(owner) from _call_flowey_gift_menu_cancel
+    while True:
+        if pause:
+            $ renpy.pause()
             
-        "Leave":
-            call flowey_goodbye(owner) from _call_flowey_goodbye
+        call flowey_greeting(owner)
+        menu:
+            "convo":
+                call flowey_default_conversation(owner)
+            "remember test":
+                $r = renpy.call_screen("remember",owner)
+            "Raise FP 20":
+                $ owner.FP += 20
+            "Lower FP 20":
+                $ owner.FP -= 20
+            "Give Gift" if len(inventory.items) > 0:
+                call flowey_gift_menu_open(owner)
+                $ result = renpy.call_screen("gift_item_menu",owner)
+                if result == 'cancel':
+                    call flowey_gift_menu_cancel(owner)
+                
+            "Leave":
+                call flowey_goodbye(owner)
 
     return
 

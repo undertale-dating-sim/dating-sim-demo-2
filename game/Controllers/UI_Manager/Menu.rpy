@@ -173,10 +173,10 @@ screen show_information_overlay:
             text '              '
             text world.get_current_time()
         hbox xpos .25:
-            if world.currentArea.current_room.current_monster and world.currentArea.current_room.current_monster != False:
+            if world.current_area.current_room.current_monster and world.current_area.current_room.current_monster != False:
                 vbox:
-                    text "[world.currentArea.current_room.current_monster.name]"
-                    text "FP:[world.currentArea.current_room.current_monster.FP]"
+                    text "[world.current_area.current_room.current_monster.name]"
+                    text "FP:[world.current_area.current_room.current_monster.FP]"
 
 
 #if you look, I have added the multiple monster screen here.  It was causing a divide by zero error and I'm not sure how to fix it
@@ -191,24 +191,24 @@ screen navigation_buttons:
     #     for area_name,area in world.areas.iteritems():
     #         for r_name,r in area.rooms.iteritems():
     #             textbutton "[r.name]" action [Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Function(world.move_to_room,r.name)]
-    $dirs = world.currentArea.cr_get_neighbors()
+    $dirs = world.current_area.cr_get_neighbors()
 
     textbutton "Hide Nav (E)" action [Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Hide("multiple_monster_click_screen")] align(.95,.1) 
     key 'e' action [Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button')]
     if dirs.count('north') > 0:
-        imagebutton auto "UI/button_north_%s.gif"  align(0.5,0.0) action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.currentArea.move_dir,'north')]
-        key 'w' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.currentArea.move_dir,'north')]
+        imagebutton auto "UI/button_north_%s.gif"  align(0.5,0.0) action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.current_area.move_dir,'north')]
+        key 'w' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.current_area.move_dir,'north')]
 
     if dirs.count('south') > 0:
-        imagebutton auto "UI/button_south_%s.gif"  align(0.5,1.0) action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.currentArea.move_dir,'south')]
-        key 's' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.currentArea.move_dir,'south')]
+        imagebutton auto "UI/button_south_%s.gif"  align(0.5,1.0) action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.current_area.move_dir,'south')]
+        key 's' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.current_area.move_dir,'south')]
 
     if dirs.count('east') > 0:
-        imagebutton auto "UI/button_east_%s.gif"  align(1.0,0.5)  action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.currentArea.move_dir,'east')]
-        key 'd' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.currentArea.move_dir,'east')]
+        imagebutton auto "UI/button_east_%s.gif"  align(1.0,0.5)  action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.current_area.move_dir,'east')]
+        key 'd' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.current_area.move_dir,'east')]
 
     if dirs.count('west') > 0:
-        imagebutton auto "UI/button_west_%s.gif"  align(0.00,0.5) action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.currentArea.move_dir,'west')]
-        key 'a' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.currentArea.move_dir,'west')]
+        imagebutton auto "UI/button_west_%s.gif"  align(0.00,0.5) action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.current_area.move_dir,'west')]
+        key 'a' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.current_area.move_dir,'west')]
 
-    text '[world.currentArea.current_room.name]' align(0.5,0.5)                  
+    text '[world.current_area.current_room.name]' align(0.5,0.5)                  

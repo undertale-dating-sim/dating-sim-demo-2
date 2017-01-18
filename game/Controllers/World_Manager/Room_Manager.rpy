@@ -21,13 +21,25 @@ init -10 python:
             self.current_monster = False
 
 
-
+        #this function will add an event to the rooms queue.
         def add_event(self,event,permanent):
             if renpy.has_label(event):
                 self.events[event] = Event(event,permanent)
             else:
                 renpy.notify("Can't find label [event]")
 
+        #this function removes all events and replaces them with the given one.
+        def set_event(self,event,permanent):
+            if renpy.has_label(event):
+                self.events = {}
+                self.events[event] = Event(event,permanent)
+            else:
+                renpy.notify("Can't find label [event]")
+
+        #empty the room of events
+        def clear_events(self):
+            self.events = None
+            
         #First check to see if the room itself has an event to do
         #Then check to see if the room has a monster event to do
         def get_event(self):
@@ -56,8 +68,8 @@ init -10 python:
 screen multiple_monster_click_screen:
     $ count = 1
 
-    $ width = (1.0/(len(world.currentArea.current_room.monsters)))
-    for monster in world.currentArea.current_room.monsters:
+    $ width = (1.0/(len(world.current_area.current_room.monsters)))
+    for monster in world.current_area.current_room.monsters:
         $ x = count * width
         mousearea:
             area ((count-1)* width, .4, width, .6)
@@ -68,12 +80,12 @@ screen multiple_monster_click_screen:
         #unhovered SetVariable('talking',False)
     # mousearea:
     #     area (.33, 0, .33, 1.0)
-    #     hovered [SetVariable('talking',world.currentArea.current_room.monsters[1].name),Notify(world.currentArea.current_room.monsters[1].name)]
+    #     hovered [SetVariable('talking',world.current_area.current_room.monsters[1].name),Notify(world.current_area.current_room.monsters[1].name)]
     #     #unhovered SetVariable('talking',False)
 
     # mousearea:
     #     area (.66, 0, .33, 1.0)
-    #     hovered [SetVariable('talking',world.currentArea.current_room.monsters[2].name),Notify(world.currentArea.current_room.monsters[2].name)]
+    #     hovered [SetVariable('talking',world.current_area.current_room.monsters[2].name),Notify(world.current_area.current_room.monsters[2].name)]
     #     #unhovered SetVariable('talking',False)
 
 
@@ -88,15 +100,15 @@ label multiple_monster:
     $ talking = False
     python:
         renpy.scene()
-        if world.currentArea.current_room.bg:
-            renpy.show(world.currentArea.current_room.bg)
+        if world.current_area.current_room.bg:
+            renpy.show(world.current_area.current_room.bg)
     #for each monster, we need to figure out where to put them
     while True:
         python:
             count = 1
             
-            for monster in world.currentArea.current_room.monsters:
-                width = (1.0/(len(world.currentArea.current_room.monsters)+1))
+            for monster in world.current_area.current_room.monsters:
+                width = (1.0/(len(world.current_area.current_room.monsters)+1))
                 x = count * width
                 
                 if monster.name != talking:

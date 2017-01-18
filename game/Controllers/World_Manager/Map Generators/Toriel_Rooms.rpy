@@ -132,7 +132,7 @@ label port_to_black_tree_room:
     
 label player_sleeping_th:
     "You fall asleep in your bed."
-    $ renpy.show(world.currentArea.current_room.bg)
+    $ renpy.show(world.current_area.current_room.bg)
     call player_waking_up from _call_player_waking_up
     return
 

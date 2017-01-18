@@ -4,30 +4,69 @@ label default_event:
 init -10 python:
     import random
 
+    #CONVENIENCE FUNCTIONS
+    # returns the current room.
     def current_room():
-        return world.currentArea.current_room
+        return world.current_area.current_room
 
-    def move_to_room(room):
-        world.move_to_room(room)
+    # Accepts a string of a room name and parses the world for that room.
+    def get_room(name):
+        return world.get_room(name)
 
+    #moves the player to a room. Accepts the room name and a type of transition.
+    def move_to_room(room,loop=True,transition="fade"):
+        world.move_to_room(room,loop,transition)
+
+    #brings a monster to the current room. monster == monster.name
     def summon(monster):
-        world.get_monster(monster).move_to_room(current_room())
+        world.get_monster(monster).move_to_room(current_room().name)
 
+    #sends a monster to the dead room.   handy for getting them out of a room quickly
     def banish(monster):
         world.get_monster(monster).move_to_room("Dead Room")
 
+    #runs all of the updates for the world
     def update():
         world.update_day()
 
+    #Returns a monster by name
     def get_monster(monster):
         return world.get_monster(monster)
 
+    #Locks the room to stop the player from getting in. True or False
+    def set_lock_room(name,lock):
+        if get_room(name):
+            get_room(name).locked = lock
+            return True
+        else:
+            renpy.notify(str(name) + " not found.")
+            return False
+
+    #this will set an event for the monster. It will activate when you first talk to them.
+    def give_monster_event(monster_name,label_name):
+        world.get_monster(monster_name).set_special_event(label_name)
+        return
+
+    #takes an item class    example : pickup_item(Heart_Locket())
+    #these can be found in the various item files in the inventory folder
+    def pickup_item(item):
+        if isinstance(item,Item):
+            if inventory.has_space():
+                inventory.add(item)
+                return True
+            else:
+                renpy.notify("No space.")
+                return False
+        else:
+            renpy.notify("Not a valid item.")
+            return False
+        
     class World():
     
         def __init__(self):
             self.name = "Underground"
             self.areas = {}
-            self.currentArea = False
+            self.current_area = False
             self.maxTime = 1440
             self.currentTime = 700
             self.day = 1
@@ -157,14 +196,14 @@ init -10 python:
             self.update_world(update_day_check)
             renpy.call("load_room")
 
-        def move_to_room(self,name):
+        def move_to_room(self,name,loop=True,transition="fade"):
             for area_name,area in self.areas.iteritems():
                 for room_name,room in area.rooms.iteritems():
                     if room.name == name:
-                        self.currentArea = area
-                        self.currentArea.current_room = room
-                        renpy.jump("load_room")
-                        break
+                        self.current_area = area
+                        self.current_area.current_room = room
+                        renpy.call_in_new_context("load_room",loop,transition)
+                        return True
             renpy.notify(name + " not found.")
 
         def get_room(self,name):
@@ -200,8 +239,8 @@ init -10 python:
 
         def generate_ruins(self):
             self.add_area(TheRuins())
-            self.currentArea = self.areas["The Ruins"]
-            self.currentArea.current_room = self.currentArea.rooms["Grass Room"]
+            self.current_area = self.areas["The Ruins"]
+            self.current_area.current_room = self.current_area.rooms["Grass Room"]
 
 
 
@@ -214,32 +253,37 @@ label test_label:
 
 #This is the label that handles the loading
 #shows the current background, if the room hasn't been visited shows the description, sets visited to True, then Pauses to allow player to do things
-label load_room:
+label load_room(loop=True,transition="fade"):
     
     call hide_buttons from _call_hide_buttons
 
     python:
         cell_convo_count = 0
         renpy.scene()
-        if world.currentArea.current_room.bg:
-            renpy.show(world.currentArea.current_room.bg)
+        if world.current_area.current_room.bg:
+            renpy.show(world.current_area.current_room.bg)
 
-    with fade
+    if transition == "fade":
+        with Fade(.5,0,.5)
+    else:
+        $ renpy.notify(str(transition) + " not a valid option for transition")
+
     if ADMIN_ROOM_DESC:
-        if not world.currentArea.current_room.visited and world.currentArea.current_room.desc:
-            "[world.currentArea.current_room.desc]"
-    $ world.currentArea.current_room.visited = True
+        if not world.current_area.current_room.visited and world.current_area.current_room.desc:
+            "[world.current_area.current_room.desc]"
+    $ world.current_area.current_room.visited = True
 
 
-    $ temp_event = world.currentArea.current_room.get_event()
+    $ temp_event = world.current_area.current_room.get_event()
 
     while temp_event:
         $ temp_event.call_event()
-        $ temp_event = world.currentArea.current_room.get_event()
+        $ temp_event = world.current_area.current_room.get_event()
     
-    while True:
-        call show_buttons from _call_show_buttons_9
-        pause
+    if loop:
+        while True:
+            call show_buttons
+            pause
     return
 
 

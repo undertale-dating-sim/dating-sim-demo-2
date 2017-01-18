@@ -88,52 +88,15 @@ label test_call(monster = 'Toriel'):
                 return
     return
 
-#label test_character(monster = "Toriel"):
-    
-#    $ world.currentArea.current_room.monsters = []
-#    $ world.get_monster(monster).move_to_room("Dead Room")
-#    $ world.move_to_room("Dead Room")
+label test_character(monster = "Toriel"):
 
-#    return
-    
-#label test_character(monster = "Napstablook"):
-    
-#    $ world.currentArea.current_room.monsters = []
-#    $ world.get_monster(monster).move_to_room("Dead Room")
-#    $ world.move_to_room("Dead Room")
-
-#    return
-    
-#label test_character(monster = "Frisk"):
-    
-#    $ world.currentArea.current_room.monsters = []
-#    $ world.get_monster(monster).move_to_room("Dead Room")
-#    $ world.move_to_room("Dead Room")
-
-#    return
-    
-label test_character(monster = "Flowey"):
-    
-    $ world.currentArea.current_room.monsters = []
+    $ world.current_area.current_room.monsters = []
     $ world.get_monster(monster).move_to_room("Dead Room")
     $ world.move_to_room("Dead Room")
 
-# label test_character(monster = "Napstablook"):
 
-#     $ world.currentArea.current_room.monsters = []
-#     $ world.get_monster(monster).move_to_room("Dead Room")
-#     $ world.move_to_room("Dead Room")
-
-#     return
-
-# label test_character(monster = "Frisk"):
-
-#     $ world.currentArea.current_room.monsters = []
-#     $ world.get_monster(monster).move_to_room("Dead Room")
-#     $ world.move_to_room("Dead Room")
-
-#     return
-
+    return
+   
 
 # label testing_characters:
 

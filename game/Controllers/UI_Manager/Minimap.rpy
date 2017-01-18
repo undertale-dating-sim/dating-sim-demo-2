@@ -28,11 +28,11 @@ init python:
             ymargin = -300
             
 
-            for r_name,r in world.currentArea.rooms.iteritems():
+            for r_name,r in world.current_area.rooms.iteritems():
                 if r.mappable:
                     x = 800 - ((20 - r.x) * 50) + xmargin
                     y = 600 - (r.y * 40) + ymargin
-                    if world.currentArea.current_room == r:
+                    if world.current_area.current_room == r:
                         render.canvas().rect("#0F0", (x,y, 10, 10))
                     elif len(r.monsters) > 0:
                         render.canvas().rect("#F00", (x,y, 10, 10))

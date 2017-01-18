@@ -85,6 +85,8 @@ label initialize:
 
     image dummy normal = "characters/Dummy/Dummy_Normal.png"
 
+    image dummy blush =  "characters/Dummy/Dummy_Blush.png"
+
 
     #initialize the monsters
     call initialize_toriel from _call_initialize_toriel

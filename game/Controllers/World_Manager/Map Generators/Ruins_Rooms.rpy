@@ -50,6 +50,10 @@ init -1 python:
             self.bg = "background deadroom"
             #self.events["dead_room"] = Event("dead_room",True)
             self.mappable = False
+            self.add_monster(Toriel())
+            self.add_monster(Napstablook())
+            self.add_monster(Frisk())
+            self.add_monster(Flowey())
 
     class ruins_caveroom(Room):
         def __init__(self):
@@ -59,7 +63,7 @@ init -1 python:
             self.y = 0
             self.desc = "* The cavern is lit by a light from far above. It shines into the dark corners of the cave, illuminating the patch of flowers that broke your fall. A large, ornate doorway is the only exit."
             self.bg = "background ruins_caveroom"
-            self.add_monster(Flowey())
+            
 
     class ruins_grassroom(Room):
         def __init__(self):
@@ -69,9 +73,6 @@ init -1 python:
             self.y = 0
             self.desc = "* Mounds of trash litter the edges of the small cave. The sparse light which floods through a crack in the ceiling reveals a small mound of grass in the center of the cavern. There is one exit… but it seems to be covered by a curtain of vines. "
             self.bg = "background ruins_floweyroom"
-            self.add_monster(Toriel())
-            self.add_monster(Napstablook())
-            self.add_monster(Frisk())
 
 
 

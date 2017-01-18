@@ -69,7 +69,7 @@ init python:
     book_snail_count = 0
     house_snail_count = 0
     coffe_snail_count = 0
-    class Flower(renpy.Displayable):
+    class Flower_Patch(renpy.Displayable):
         def __init__(self,x,y):
             renpy.Displayable.__init__(self)
             self.sprite = Image("minigames/Flowers.png")

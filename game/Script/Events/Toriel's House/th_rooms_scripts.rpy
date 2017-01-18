@@ -71,7 +71,7 @@ label the_first_breakfast_wakeup:
 
     menu:
         "Get up":
-            $ renpy.show(world.currentArea.currentRoom.bg)
+            $ renpy.show(world.current_area.currentRoom.bg)
             #show frisk
             frisk "Hurry up! We don’t want breakfast to get cold!"
             #hide frisk

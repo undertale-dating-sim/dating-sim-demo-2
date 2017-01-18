@@ -6,7 +6,7 @@ init -10 python:
             self.name = name
 
             #This event will be used to override the schedule
-            self.specialEvent = None
+            self.special_event = None
 
             self.schedule = {"Sunday":{},"Monday":{},"Tuesday":{},"Wednesday":{},"Thursday":{},"Friday":{},"Saturday":{}}
             self.default_sprite = None
@@ -48,9 +48,7 @@ init -10 python:
         def move_to_room(self,room):
 
             if room == 'Random':
-                room = random.choice(world.currentArea.rooms.keys())
-
-
+                room = random.choice(world.current_area.rooms.keys())
 
             for an,a in world.areas.iteritems():
                 for rn,r in a.rooms.iteritems():
@@ -66,15 +64,15 @@ init -10 python:
 
         def set_special_event(self,event):
             if renpy.has_label(event):
-                self.specialEvent = Event(event,True,self)
+                self.special_event = Event(event,True,self)
             else:
                 renpy.notify("Couldn't find event [event]")
 
         #will need to add math about the FP
         def get_current_event(self):
         
-            if self.specialEvent:
-                return self.specialEvent
+            if self.special_event:
+                return self.special_event
             #get the normal events
             timezone = world.get_current_timezone()
             day = world.get_current_day()

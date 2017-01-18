@@ -13,7 +13,7 @@ screen cell:
             
 label call_Monster(monster = "Frisk"):
 
-    $ location = world.currentArea.current_room
+    $ location = world.current_area.current_room
     $ loc_name = "call_"+monster+"_"+location.name.replace(" ","_")
 
     if renpy.has_label(loc_name):
