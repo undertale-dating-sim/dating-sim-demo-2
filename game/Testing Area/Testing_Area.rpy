@@ -227,7 +227,8 @@ label testing_events:
                 call vegetoid_ruins_re_start
             "Dummy Event NYI":
                 call dummy_ruins_event_start
-
+            "Flowey":
+                call test_flowey_events
             "Frisk":
                 call test_frisk_events
             "Napstablook":
@@ -242,7 +243,11 @@ label testing_events:
                 return
     return
 
-
+label test_flowey_events:
+    while True:
+        menu:
+            "Flowey Hangout 1.5":
+                call Flowey_Hangout_1_5_menu
 label test_frisk_events:
     while True:
         menu:
