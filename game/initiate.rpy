@@ -1,40 +1,5 @@
 label initialize:
-    #papyrus
-
-
-    image frisk angry = Frame("characters/Frisk/Frisk-Angry.png")
-    image frisk annoyed = Frame("characters/Frisk/Frisk-Annoyed.png")
-    image frisk bigsmile = Frame("characters/Frisk/Frisk-BigSmile.png")
-    image frisk disappointed= Frame("characters/Frisk/Frisk-Disappointed.png")
-    image frisk distant= Frame("characters/Frisk/Frisk-Distant.png")
-    image frisk normal = Frame("characters/Frisk/Frisk-Neutral.png")
-    image frisk tinysmile= Frame("characters/Frisk/Frisk-TinySmile.png")
-    image frisk souless= Frame("characters/Frisk/Frisk-Souless.png")
-    image frisk surprised= Frame("characters/Frisk/Frisk-Surprised.png")
-    image frisk sad= Frame("characters/Frisk/Frisk-TearyEyes.png")
-    image frisk upset= Frame("characters/Frisk/Frisk-Upset.png")
-
-    image papyrus normal = "characters/Character-Papyrus-Normal.png"
-    image papyrus bigsmile = "characters/Character-Papyrus-BigSmile.png"
-    image papyrus disgust = "characters/Character-Papyrus-disgust.png"
-    image papyrus frown = "characters/Character-Papyrus-frown.png"
-    image papyrus nervoussmile = "characters/Character-Papyrus-nervoussmile.png"
-    image papyrus reassuringsmile = "characters/Character-Papyrus-reassuringsmile.png"
-    image papyrus Sad = "characters/Character-Papyrus-Sad.png"
-    image papyrus sheepish = "characters/Character-Papyrus-sheepish.png"
-    image papyrus shock = "characters/Character-Papyrus-Shock.png"
-    image papyrus surprised = "characters/Character-Papyrus-Surprised.png"
-    image papyrus suspicious = "characters/Character-Papyrus-suspicious.png"
-    image papyrus unsure = "characters/Character-Papyrus-unsure.png"
-
-
-
-    #sans
-    image sans normal = "characters/sans-normal.png"
-    image sans glance = "characters/sans-normal-glance.png"
-    image sans sad = "characters/sans-sad.png"
-    image sans silhouette = "characters/sans-shakemyhand.png"
-    image sans shakehand = "characters/sans-shakemyhand2.png"
+    
 
 
     #stupid stuff for demo

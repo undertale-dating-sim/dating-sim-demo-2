@@ -742,7 +742,7 @@ label ruins_intro_blooky:
 #the option to navigate is now available to the player. They can now go back to any previous room or choose to go forward. 
 #if the player goes east, they encounter the spider bakery
 #if the player goes north, they reach the tunnel divide. The tunnel divide should have its own room description, but no story elements take place here. The player can finally go east to encounter Frisk, in which case jump frisk_meeting_start. Or, the player could go north past the black tree room to encounter Toriel, in which case jump ruins_intro_toriel_house
-label ruins_intro_toriel_house
+label ruins_intro_toriel_house:
     #If the player accepted toriel’s offer (option 56 of selection 22) AND goes to toriel’s house before meeting Frisk:
     show toriel small smile
     toriel "Oh, hello, dear! I am glad to see you made it. You did not have any trouble finding the house, did you?"

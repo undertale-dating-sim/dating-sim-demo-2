@@ -18,8 +18,8 @@ init -10 python:
 
         def call_event(self):
             if self.arg:
-                renpy.call_in_new_context(self.label,self.arg)
+                renpy.call(self.label,self.arg)
             else:
-                renpy.call_in_new_context(self.label)
+                renpy.call(self.label)
             if self.permanent == False:
                 self.completed = True

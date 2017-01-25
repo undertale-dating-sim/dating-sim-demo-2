@@ -41,8 +41,9 @@ label start:
     call show_buttons
     #$ banish('Toriel')
     #$ banish("Napstablook")
-    $ banish("Frisk")
-    $ move_to_room("Dead Room")
+    #$ banish("Frisk")
+    $ summon("Toriel")
+    $ move_to_room("Cave Room")
     #jump start_the_game
 
     # $ world.get_monster("Toriel").give_item(Spider_Donut())

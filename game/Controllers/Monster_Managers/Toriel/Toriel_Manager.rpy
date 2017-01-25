@@ -143,7 +143,7 @@ label Toriel_manager_default(owner = False,pause = True):
 label Toriel_Manager_Give_Snails:
         #These were implemented over in the Toriel.rpy file under Script\Events\The Ruins\Toriel
 
-
+    return
 
 
 
