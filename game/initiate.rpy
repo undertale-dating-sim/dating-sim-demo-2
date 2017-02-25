@@ -1,26 +1,4 @@
 label initialize:
-    
-
-
-    #stupid stuff for demo
-    image wilson large = im.FactorScale("avatar.png",4.0)
-    image wilson ph = "characters/Wilson/avatar_hover.png"
-    image wilson scary = im.FactorScale("characters/Wilson/nightmare_pupper.png",2.0)
-    #background-images
-
-    #toriel's house
-    image background frisk_room = Frame("backgrounds/TorielsHouse/Background-Ruins-TorielHome-FrisksRoom.jpg")
-    image background toriel_kitchen = Frame("backgrounds/TorielsHouse/background-ruins-kitchen.png")
-    #snowdin
-    image background snowdin = "backgrounds/snowdincropped.jpg"
-    image background papyrus_room = "backgrounds/Background-PapyrusRoom.jpg"
-    image background snowdin_bridge = "backgrounds/Background-Snowdin-Bridge-cropped.jpg"
-    image background snowdin_forest = "backgrounds/Background-Snowdin-Gate2.jpg"
-    image background snowdin_icegolf = "backgrounds/Background-Snowdin-Icegolf.png"
-    image background snowdin_intersection = "backgrounds/Background-Snowdin-Intersection.png"
-    image background snowdin_snowman = "backgrounds/Background-Snowdin-Snowman.png"
-
-    image background papyrus_number = "characters/Papyrus-number.png"
 
     #prologue
     image background prologue1 = "backgrounds/prologue.jpg"

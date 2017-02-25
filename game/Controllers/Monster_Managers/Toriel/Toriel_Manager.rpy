@@ -103,6 +103,8 @@ label initialize_toriel:
 #this is Toriels default scene
 label Toriel_manager_default(owner = False,pause = True):
     
+    call show_buttons from _call_show_buttons
+
     if owner.FP < 20:
         show toriel reallysad
     elif owner.FP < 40:
@@ -116,21 +118,21 @@ label Toriel_manager_default(owner = False,pause = True):
 
     if pause:
         $renpy.pause()
-    call show_buttons from _call_show_buttons
+    
 
     "Hello, dear. Can I help you?"
     
     menu:
-        #These were implemented over in the Toriel.rpy file under Script\Events\The Ruins\Toriel
+        
         "Hello, dear. Can I help you?"
-        '"I brought you some snails!"':
-            call Toriel_Manager_Give_Snails
+        #'"I brought you some snails!"':
+        #    call Toriel_Manager_Give_Snails
         "Chat":
             call Toriel_Manager_Chat
         "Ask":
-            pass
+            call Toriel_Manager_Ask
         "Flirt":
-            pass
+            call Toriel_Manager_Flirt
         "Gift" if len(inventory.items) > 0:
             show screen gift_item_menu(owner)
             "What should you give them?"
@@ -140,14 +142,8 @@ label Toriel_manager_default(owner = False,pause = True):
     
     return
 
-label Toriel_Manager_Give_Snails:
-        #These were implemented over in the Toriel.rpy file under Script\Events\The Ruins\Toriel
 
-    return
-
-
-
-label Toriel_Manager_Chat(owner):
+label Toriel_Manager_Chat(owner=False):
     #These were implemented over in the Toriel.rpy file under Script\Events\The Ruins\Toriel
     menu:
         "How are you doing?":
@@ -155,28 +151,28 @@ label Toriel_Manager_Chat(owner):
             toriel "I am doing well! Thank you for asking. How are you doing, dear?"
         "What’s crackin’?":
             show toriel awkward
-            toriel "… I don’t believe anything is cracking... Did you hear something breaking? Oh dear, is it that rock again?"
+            toriel "... I don’t believe anything is cracking... Did you hear something breaking? Oh dear, is it that rock again?"
         "'Sup?":
             jump toriel_gd_sup
         "What have you been doing lately?":
-            show toriel smallsmile
+            show toriel small_smile
             toriel "Not much, just the usual. Watching over Frisk, baking, the occasional snail hunting. Although I have also been having a wonderful time with you."
     return
 
 label toriel_gd_sup:
-    toriel "... ‘Sup’? Is… Is that a surface word? I am sorry, but I am not familiar with it."
+    toriel "... ‘Sup’? Is... Is that a surface word? I am sorry, but I am not familiar with it."
     menu:       #Once you've explained it, should she give a different dialogue?
         "Oh! Sorry. It stands for ‘What is up’, which is a commonly used greeting on the surface.":
             show toriel smile
             toriel "Ah, I see! Thank you for explaining so well."
-            #cute smile
+            show toriel small_smile
             toriel "Well, I suppose I shall also ask you, ‘sup’?"
         "It means ‘what’s up’.":
             show toriel awkward
-            toriel "Oh… Ah… The ceiling, I suppose... Although I think I might see a spider up there."
+            toriel "Oh... Ah... The ceiling, I suppose... Although I think I might see a spider up there."
         "You seriously don’t know what ‘sup’ means?!":
             show toriel awkward
-            toriel "Oh… Should I know? I am… I am sorry dear, but I do not…"
+            toriel "Oh... Should I know? I am... I am sorry dear, but I do not..."
     return
 
 label toriel_gd_give_snails:
@@ -193,30 +189,30 @@ label toriel_gd_give_snails:
     $ dailySnails = 0
     return
 
-label toriel_gd_flirt:
+label Toriel_Manager_Flirt:
     menu:
         "Do you have a compass? Because I keep getting lost in your eyes.":
-            #suprised
+            show toriel surprised
             toriel "Oh!"
-            #laugh
+            show toriel laughing
             toriel "Ahahahaha!"
-            #blush
-            toriel "My, you caught me off guard with that! I honestly do not know what to say… Perhaps… I could {i}map{/i} out a way for you?"
+            show toriel blushing
+            toriel "My, you caught me off guard with that! I honestly do not know what to say... Perhaps... I could {i}map{/i} out a way for you?"
             #laugh
             toriel "Hehehehe!"
         "I love the way your fur looks in the ruins light.":
             #blush
-            toriel "Oh! Ah… Thank you! Thank you very much, dear. That was very... Very kind of you to say! ...You are looking nice yourself! Hehehe!"
+            toriel "Oh! Ah... Thank you! Thank you very much, dear. That was very... Very kind of you to say! ...You are looking nice yourself! Hehehe!"
         "Butterscotch Pie has got nothing on you in sweetness":
             #blush
-            toriel "Oh my… I am… I am at quite a loss for words… Th-thank you dear. That was very… Well… Sweet of you!"
+            toriel "Oh my... I am... I am at quite a loss for words... Th-thank you dear. That was very... Well... Sweet of you!"
         "Are you using fire magic right now? Because you’re warming my heart.":
             #blush
-            toriel "Oh dear… You’re making me so flustered… Thank… Thank you dear! I am… So glad I could make you feel happy!"
+            toriel "Oh dear... You’re making me so flustered... Thank... Thank you dear! I am... So glad I could make you feel happy!"
     return
     
 
-label toriel_gd_ask:
+label Toriel_Manager_Ask:
     #Friendship level neutral options:
     menu:
         "What do you do for fun?":
@@ -248,7 +244,7 @@ label toriel_gd_ask:
 
         "What do you think of Napstablook?":
             #neutral
-            toriel "I think that they are… Well, I can not have a real opinion of them because they never talk to me."
+            toriel "I think that they are... Well, I can not have a real opinion of them because they never talk to me."
             toriel "They are particularly shy, so I try not to bother them. But I hope one day I can join them in a real conversation. Maybe even invite them over!"
 
     return
@@ -264,11 +260,11 @@ label toriel_gd_askLivedRuins:
             toriel "I do hope you’re enjoying your stay here!"
         "What’s wrong?":
             #awkward
-            toriel "… It is nothing, dear. But thank you for your concern."
+            toriel "... It is nothing, dear. But thank you for your concern."
         "How long is ‘a while’?":
             #awkward
             toriel "... I do not remember. It is not important, anyway."
-    jump end
+    return
 
 
 #i need to look at my code to see how to do this exactly

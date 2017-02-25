@@ -1,7 +1,6 @@
 label testing_area:
     call initialize
     stop music
-    play music "audio/music/scary.ogg"
     scene background deadroom
 
     while True:

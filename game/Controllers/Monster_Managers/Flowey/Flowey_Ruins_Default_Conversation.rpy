@@ -56,7 +56,7 @@ label flowey_think_about_monster(owner,monster):
         show flowey normal
         flowey "So spare me repeating myself until you’re further acquainted with someone who cares about you."
         show flowey sideglance
-        flowey "Which so far…"
+        flowey "Which so far..."
         show flowey horror
         flowey "No one does."
     return

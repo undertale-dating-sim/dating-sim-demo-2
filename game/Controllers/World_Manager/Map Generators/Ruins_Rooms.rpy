@@ -71,7 +71,7 @@ init -1 python:
             self.name = "Grass Room"
             self.x = 9
             self.y = 0
-            self.desc = "* Mounds of trash litter the edges of the small cave. The sparse light which floods through a crack in the ceiling reveals a small mound of grass in the center of the cavern. There is one exit… but it seems to be covered by a curtain of vines. "
+            self.desc = "* Mounds of trash litter the edges of the small cave. The sparse light which floods through a crack in the ceiling reveals a small mound of grass in the center of the cavern. There is one exit... but it seems to be covered by a curtain of vines. "
             self.bg = "background ruins_floweyroom"
 
 
@@ -195,8 +195,6 @@ label port_to_toriel_house:
     $ world.move_to_room("Staircase")
 
 label dead_room:
-    stop music
-    play music "audio/music/scary.ogg"
     #show wilson scary
     #"{size=+5}{font=font/Pixelated_Wingdings.ttf}You   SHOULDN'T    BE     HERE{/font}"
     return

@@ -170,8 +170,6 @@ label frisk_friendship_hangout2_knife:
     "*Frisk picks up a knife and starts cleaning it."
     frisk "I’ll figure it out, just like I always do..."
     show frisk distant
-    stop music
-    play music "audio/music/scary.ogg"
     frisk "..."
     "*They’re staring at the knife in their hands."
     frisk "..."

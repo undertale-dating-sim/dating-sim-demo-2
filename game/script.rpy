@@ -32,24 +32,10 @@ define test = Character("Sans", callback=beepy_voice)
 label start:
     stop music
 
-    # $ renpy.say(test,telemetry("this is a test of the papyrus system"))
-    # #test "This is also a test."
-
-    # call start
-    #play music "audio/music/music-home.mp3"
-    #jump choosemenu
     call show_buttons
-    #$ banish('Toriel')
-    #$ banish("Napstablook")
-    #$ banish("Frisk")
     $ summon("Toriel")
     $ move_to_room("Cave Room")
     #jump start_the_game
-
-    # $ world.get_monster("Toriel").give_item(Spider_Donut())
-    # $ world.get_monster("Toriel").give_item(Spider_Donut())
-    # $ world.get_monster("Toriel").give_item(Spider_Donut())
-    # $ world.get_monster("Toriel").give_item(Spider_Donut())
     return
 
 ###################
