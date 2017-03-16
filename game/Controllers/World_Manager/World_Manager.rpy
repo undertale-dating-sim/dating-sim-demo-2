@@ -79,6 +79,7 @@ init -10 python:
             self.days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
             self.generate_ruins()
             self.areas["Toriel_House"] = Toriel_House()
+            self.message = ""
 
         def get_current_timezone(self):
             
@@ -110,46 +111,42 @@ init -10 python:
         def seed_random_monsters(self):
             for an,a in self.areas.iteritems():
 
-                for r in a.random_monsters:
-                    r.move_to_room("Random")
-
-
-
-
-
+                # for r in a.random_monsters:
+                #     r.move_to_room("Random")
 
 
                 # #first we get a list of all the rooms in the area
-                # room_list = list(a.rooms.iteritems())
-                # #now we remove every room that has an event, or another monster in it
-                # for rn,r in room_list:
-                #     if len(r.monsters) > 0 or len(r.events) > 0:
-                #         room_list.remove(r)
+                room_list = list(a.rooms)
 
+                # #now we remove every room that has an event, or another monster in it
+                for r in a.rooms:
+                    if len(a.rooms[r].monsters) > 0 or len(a.rooms[r].events) > 0:
+                        room_list.remove(r)
+                        
                 # #now we seed the monsters into random rooms in the list, removing each room as we do it.
                 # #we will do this until we run out of rooms
-                # random.shuffle(a.random_monsters)
-                # random.shuffle(room_list)
-                # for m in a.random_monsters:
-                #     if len(room_list) > 0:
-                #         m.move_to_room(room_list[0].name)
-                #         room_list.remove(room_list[0])
+                random.shuffle(a.random_monsters)
+                random.shuffle(room_list)
+                for m in a.random_monsters:
+                    if len(room_list) > 0:
+                        m.move_to_room(room_list[0])
+                        room_list.remove(room_list[0])
 
             
         def update_world(self,update_day = False):
 
             timezone = self.get_current_timezone()
             day = self.get_current_day()
-            for an,a in self.areas.iteritems():
-                for rn,r in a.rooms.iteritems():
-                    for m in r.monsters:
-                        if m.schedule:
+            # for an,a in self.areas.iteritems():
+            #     for rn,r in a.rooms.iteritems():
+            #         for m in r.monsters:
+            #             if m.schedule:
 
-                            if timezone in m.schedule[day]:
-                                for x,t in m.schedule[day][timezone].iteritems():
-                                    m.move_to_room(x)
-                            else:
-                                m.move_to_room(m.default_room)
+            #                 if timezone in m.schedule[day]:
+            #                     for x,t in m.schedule[day][timezone].iteritems():
+            #                         m.move_to_room(x)
+            #                 else:
+            #                     m.move_to_room(m.default_room)
 
             if update_day:
                 self.update_day()

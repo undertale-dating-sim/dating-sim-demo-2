@@ -170,11 +170,11 @@ label player_dies:
         image gameover1 = Text("{size=150}{b}GAME{/b}{/size}", slow=True, scope=None, substitute=None, slow_done=None)
         image gameover2 = Text("{size=150}{b}OVER{/b}{/size}", slow=True, scope=None, substitute=None, slow_done=None)
     
-    queue music [ "<silence .7>", "audio/sfx/heartbreak.wav"]
-    if player.dumped_on == True:
-        $ renpy.music.queue( "audio/music/dogsong.mp3", channel="music", loop=True, clear_queue=False, fadein=0, tight=True)
-    else:
-        $ renpy.music.queue( "audio/music/determination.wav", channel="music", loop=True, clear_queue=False, fadein=0, tight=True)
+    #equeue music [ "<silence .7>", "audio/sfx/heartbreak.wav"]
+    # if player.dumped_on == True:
+    #     #$ renpy.music.queue( "audio/music/dogsong.mp3", channel="music", loop=True, clear_queue=False, fadein=0, tight=True)
+    # else:
+        #$ renpy.music.queue( "audio/music/determination.wav", channel="music", loop=True, clear_queue=False, fadein=0, tight=True)
     
     scene heartbreak with fade
     

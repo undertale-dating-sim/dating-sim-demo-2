@@ -21,7 +21,7 @@ init -1 python:
         def __init__(self):
             Area.__init__(self,"The Ruins")
             self.random_areas = []
-            #self.random_monsters = [Loox(),Vegetoid(),Moldsmol(),Whimsun(),Migosp(),Froggit()]
+            self.random_monsters = [Loox(),Vegetoid(),Moldsmol(),Whimsun(),Migosp(),Froggit()]
             self.add_room(ruins_caveroom())
             self.add_room(ruins_grassroom())
             self.add_room(ruins_ruinsentrance())
@@ -50,11 +50,10 @@ init -1 python:
             self.bg = "background deadroom"
             #self.events["dead_room"] = Event("dead_room",True)
             self.mappable = False
-            self.add_monster(Toriel())
-            self.add_monster(Napstablook())
-            self.add_monster(Frisk())
-            self.add_monster(Flowey())
-
+            
+            
+            
+            
     class ruins_caveroom(Room):
         def __init__(self):
             Room.__init__(self)
@@ -63,6 +62,8 @@ init -1 python:
             self.y = 0
             self.desc = "* The cavern is lit by a light from far above. It shines into the dark corners of the cave, illuminating the patch of flowers that broke your fall. A large, ornate doorway is the only exit."
             self.bg = "background ruins_caveroom"
+            self.add_monster(Flowey())
+
             
 
     class ruins_grassroom(Room):
@@ -73,6 +74,7 @@ init -1 python:
             self.y = 0
             self.desc = "* Mounds of trash litter the edges of the small cave. The sparse light which floods through a crack in the ceiling reveals a small mound of grass in the center of the cavern. There is one exit... but it seems to be covered by a curtain of vines. "
             self.bg = "background ruins_floweyroom"
+            self.add_monster(Toriel())
 
 
 
@@ -84,6 +86,8 @@ init -1 python:
             self.y = 1
             self.desc = "* The floor of the stone hallway is covered in red leaves that gather in drifts in the corners and scatter across the path, leading to a set of curving staircases. The stairs climb up to a landing that supports a large, ivy-covered building. Its entrance yawns darkly and is flanked by two high windows."
             self.bg = "background ruins_first_entrance"
+            self.add_monster(Frisk())
+
 
     class ruins_tunnels(Room):
         def __init__(self):
@@ -93,6 +97,7 @@ init -1 python:
             self.y = 2
             self.desc = "* The tunnels criss-crossing in and out of the various rooms that you pass through are riddled with what appear to be disabled traps and puzzles."
             self.bg = "background ruins_hallway"
+            self.add_monster(Napstablook())
 
 
     class ruins_dummyroom(Room):

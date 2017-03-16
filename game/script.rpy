@@ -33,7 +33,6 @@ label start:
     stop music
 
     call show_buttons
-    $ summon("Toriel")
     $ move_to_room("Cave Room")
     #jump start_the_game
     return
