@@ -220,11 +220,11 @@ label Toriel_Manager_Ask:
             toriel "Usually, I like to read, bake, and hunt for bugs. I know it does not sound like much, but it’s just perfect for me."
 
         "Do you have a job?":
-            show toriel smallsmile
+            show toriel small_smile
             toriel "Not at the moment... Unless you count taking care of Frisk."
             show toriel surprised
             toriel "Not in a bad way, I hope you understand!"
-            show toriel smallsmile
+            show toriel small_smile
             toriel "Frisk is wonderful, but they are still a teenager. Hehehe!"
 
         "How long have you lived in the Ruins?":

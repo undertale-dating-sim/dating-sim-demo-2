@@ -17,12 +17,11 @@ label call_Monster(monster = "Frisk"):
     $ loc_name = "call_"+monster+"_"+location.name.replace(" ","_")
 
     if renpy.has_label(loc_name):
-        call expression loc_name pass (cell_convo_count) from _call_expression_1
-        $ cell_convo_count += 1
+        call expression loc_name pass (world.get_monster(monster))
     elif renpy.has_label("call_[monster]_Unknown"):
-        call expression "call_[monster]_Unknown" from _call_expression_2
+        call expression "call_[monster]_Unknown"
     else:
-        call unknown_Call from _call_unknown_Call
+        call unknown_Call
     return
 
 label unknown_Call:
