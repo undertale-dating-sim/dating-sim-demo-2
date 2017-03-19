@@ -1,5 +1,5 @@
 
-label call_Toriel_Unknown(owner,call_count):
+label call_Toriel_Unknown():
     toriel "Oh, have you turned your location off? I can not seem to find where you are.  Maybe it is just the signal."
     return
 
