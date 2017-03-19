@@ -13,11 +13,20 @@ screen cell:
             
 label call_Monster(monster = "Frisk"):
 
-    $ location = world.current_area.current_room
-    $ loc_name = "call_"+monster+"_"+location.name.replace(" ","_")
+    python:
+        location = world.current_area.current_room
+        loc_name = "call_"+monster+"_"+location.name.replace(" ","_")
+        monster = world.get_monster(monster)
+
+        call_location_variable = location.name.replace(" ","_") + "_call_count"
+
+        if call_location_variable not in monster.variables:
+            monster.variables[call_location_variable] = 1
+        else:
+            monster.variables[call_location_variable] += 1
 
     if renpy.has_label(loc_name):
-        call expression loc_name pass (world.get_monster(monster))
+        call expression loc_name pass (monster,monster.variables[call_location_variable])
     elif renpy.has_label("call_[monster]_Unknown"):
         call expression "call_[monster]_Unknown"
     else:
