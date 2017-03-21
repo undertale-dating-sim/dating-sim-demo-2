@@ -26,7 +26,7 @@ label give_Gift_Toriel_Spider_Donut(count,owner):
         toriel "I am very glad that you are continuing to donate to the spiders! They are very sweet. I buy from them whenever I can. I am happy you are too!"
     elif count == 3:
         $ owner.FP +=5
-        show toriel small_smile
+        show toriel smallsmile
         toriel "Thank you, but... Do you not want to have some? I do not want you spending so much money on me. These are very good, why not try some for yourself?"
     else:
         show toriel awkward
@@ -42,7 +42,7 @@ label give_Gift_Toriel_Butts_Pie(count,owner):
         toriel "Ah, Butterscotch Pie. Thank you, dear! This is an old recipe I have had for quite some time now. It is always so enjoyable to make. I think we should make some together sometime."
     elif count == 2:
         $ owner.FP +=3
-        show toriel small_smile
+        show toriel smallsmile
         toriel "... You know, I made this for you! You should enjoy it for yourself. I could always make another pie if I wanted some. But, thank you for your kind intentions."
     elif count == 3:
         show toriel sad
@@ -93,7 +93,7 @@ label give_Gift_Toriel_Monster_Candy(count,owner):
         toriel "Frisk needs a snack when they go out and play with the other monsters, otherwise they get too tired. So I switched to this flavor, and they seem to like it much more. I suppose you do too!"
     elif count == 3:
         $ owner.FP +=3
-        show toriel small_smile
+        show toriel smallsmile
         toriel "... You know, I could always get some myself. You don’t have to go through the trouble of getting some for me."
     else:
         $ owner.FP +=0
@@ -110,7 +110,7 @@ label give_Gift_Toriel_Spider_Cider(count,owner):
         toriel "It is wonderful that they are adding more variety to their wears. I think it will greatly increase their sales! Thank you for the cider, and thank you for helping the spiders."
     elif count == 2:
         $ owner.FP +=8
-        show toriel small_smile
+        show toriel smallsmile
         toriel "I’m not sure what flavor this is supposed to be, but it must be good! I always love the food from the bake sale. Thank you, dear."
     elif count == 3:
         $ owner.FP +=3

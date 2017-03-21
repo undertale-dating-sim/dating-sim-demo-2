@@ -867,7 +867,7 @@ label ruins_intro_pass_out:
     toriel "I found you lying on the ground outside, and thought it would be best to bring you into my home. You would not wake up, I was afraid that..."
     show toriel normal
     toriel "Well, you should be more careful. You mustn't keep running yourself into the ground... You need to allow yourself time to rest."
-    show toriel small_smile
+    show toriel smallsmile
     toriel "You are more than welcome to return here whenever you are tired. I promise, my child and I do not bite!"
 
     menu:

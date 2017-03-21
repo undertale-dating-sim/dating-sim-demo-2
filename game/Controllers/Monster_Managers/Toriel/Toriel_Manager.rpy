@@ -88,7 +88,7 @@ label initialize_toriel:
     image toriel normal = "characters/Toriel/Toriel_Neutral.png"
     image toriel reallysad = "characters/Toriel/Toriel_ReallySad.png"
     image toriel sad = "characters/Toriel/Toriel_Sad.png"
-    image toriel small_smile = "characters/Toriel/Toriel_Small_Smile.png"
+    image toriel smallsmile = "characters/Toriel/Toriel_Small_Smile.png"
     image toriel smile = "characters/Toriel/Toriel_Smile.png"
     image toriel surprised = "characters/Toriel/Toriel_Surprised.png"
 
@@ -155,7 +155,7 @@ label Toriel_Manager_Chat(owner=False):
         "'Sup?":
             jump toriel_gd_sup
         "What have you been doing lately?":
-            show toriel small_smile
+            show toriel smallsmile
             toriel "Not much, just the usual. Watching over Frisk, baking, the occasional snail hunting. Although I have also been having a wonderful time with you."
     return
 
@@ -165,7 +165,7 @@ label toriel_gd_sup:
         "Oh! Sorry. It stands for ‘What is up’, which is a commonly used greeting on the surface.":
             show toriel smile
             toriel "Ah, I see! Thank you for explaining so well."
-            show toriel small_smile
+            show toriel smallsmile
             toriel "Well, I suppose I shall also ask you, ‘sup’?"
         "It means ‘what’s up’.":
             show toriel awkward
@@ -220,11 +220,11 @@ label Toriel_Manager_Ask:
             toriel "Usually, I like to read, bake, and hunt for bugs. I know it does not sound like much, but it’s just perfect for me."
 
         "Do you have a job?":
-            show toriel small_smile
+            show toriel smallsmile
             toriel "Not at the moment... Unless you count taking care of Frisk."
             show toriel surprised
             toriel "Not in a bad way, I hope you understand!"
-            show toriel small_smile
+            show toriel smallsmile
             toriel "Frisk is wonderful, but they are still a teenager. Hehehe!"
 
         "How long have you lived in the Ruins?":

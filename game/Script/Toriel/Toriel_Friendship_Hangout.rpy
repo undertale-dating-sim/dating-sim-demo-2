@@ -7,7 +7,7 @@ init:
     $toriel_hangout_pun_hater = False
 
 label toriel_friendship_hangout:
-    show toriel small_smile 
+    show toriel smallsmile 
     toriel "Hello, my friend. I am preparing a new pie recipe for dinner. Would you like to help?"
     menu:
         "Sure!":

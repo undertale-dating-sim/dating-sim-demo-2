@@ -19,7 +19,7 @@ label ruins_first_breakfast:
     #scene change living room
     #$world.move_to_room("Living Room")
     show frisk normal at left
-    show toriel small_smile at right
+    show toriel smallsmile at right
     frisk "Morning!"
     toriel "Good morning, my dear."
     toriel "I am glad you decided to join us for breakfast. It is the most important meal of the day, after all. I would hate for you to miss it. It is nearly as important as getting enough rest!"
@@ -131,7 +131,7 @@ label ruins_first_breakfast:
             frisk "I guess we can talk later."
             toriel "Be careful... Remember to eat and drink enough, rest when you are tired, and-"
             frisk "Mom, I think they know how to take care of themselves."
-            show toriel small_smile
+            show toriel smallsmile
             toriel "I suppose so. I just like to make sure."
             toriel "Oh! And dinner is served every day at six if you would like to join us, dear. Otherwise, I will leave the leftovers in the fridge for you."
             toriel "Enjoy your walk."
@@ -251,7 +251,7 @@ label ruins_dinner:
         frisk "See you in the morning."
         toriel "Oh, alright. Goodnight, my child."
         hide frisk
-        show toriel small_smile
+        show toriel smallsmile
         toriel "Well, we can still chat, at least."
         menu:
             "How was your day, Toriel?":
@@ -393,9 +393,9 @@ label ruins_dinner_talk_toriel:
 
     elif temp_random_num == 4:
         if ruins_dinner_frisk_stays == True:
-            show toriel small_smile at right
+            show toriel smallsmile at right
         else:
-            show toriel small_smile at center
+            show toriel smallsmile at center
         toriel "It was alright, thank you." 
         toriel "On my walk, I found a Whimsun crying about something or another..."
         if ruins_dinner_frisk_stays == True:
@@ -405,9 +405,9 @@ label ruins_dinner_talk_toriel:
         toriel "I tried to console the poor thing, but I am afraid I only made matters worse."
         toriel "I do not know why I try..."
         if ruins_dinner_frisk_stays == True:
-            show toriel small_smile at right
+            show toriel smallsmile at right
         else:
-            show toriel small_smile
+            show toriel smallsmile
         toriel "But I suppose it is better to make an attempt than to not do anything at all."
         toriel "Regardless... You look like you are done eating, dear. Since I have no dessert to offer you, perhaps you should head off to bed."
         toriel "Have a good night."
@@ -457,7 +457,7 @@ label ruins_dinner_talk_frisk:
     else:
         show frisk smallsmile at left
         frisk "I used my allowance to buy something from the spider bakery. They make great donuts!"
-        show toriel small_smile at right
+        show toriel smallsmile at right
         toriel "Better than my desserts?"
         show frisk surprised at left
         frisk "Er, no! I didn’t mean-"
@@ -556,12 +556,12 @@ label ruins_breakfast:
                 toriel "Please take care of yourself, and come back whenever you would like."
                 frisk "See you later!"             
         "I’ll probably hang out around the house.":
-            show toriel small_smile
+            show toriel smallsmile
             toriel "That will be relaxing, I am sure."
             toriel "Have a good day, dear."
         "I don’t know yet.":
             frisk "If you’re bored, how about you go hunt for some snails? It saves me from having to catch as many!"
-            show toriel small_smile
+            show toriel smallsmile
             toriel "Frisk, are you trying to making our guest do your chores for you?"
             #show frisk blush <- no blush image or equivalent
             frisk "Haha, what? ‘Course not!"
