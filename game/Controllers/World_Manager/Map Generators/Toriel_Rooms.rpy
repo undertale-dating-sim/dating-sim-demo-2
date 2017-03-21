@@ -72,6 +72,7 @@ init python:
             self.name = "Kitchen"
             self.x = 4
             self.y = 1
+            self.lockeast = True
             self.desc = "* There's a freshly cooked pie on the counter, and it appears that someone has already taste-tested it.  There are no knives in any of the drawers... but then how did the taste-tester cut the pie?"
             self.bg = "background toriel_house_kitchen"
 
