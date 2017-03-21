@@ -1,13 +1,14 @@
 
 screen show_menu_button:
     
-    textbutton "Show Menu" action [Play ("sound", "audio/sfx/click.wav"),Show("show_menu"),Hide("show_menu_button"),Show("stats"),Show("debug_monsters")] align(.95,.05) 
-
+    textbutton "Show Menu(Q)" action [Play ("sound", "audio/sfx/click.wav"),Show("show_menu"),Hide("show_menu_button"),Show("stats"),Show("debug_monsters")] align(.95,.05) 
+    key 'q' action [Play ("sound", "audio/sfx/click.wav") ,Show("show_menu"),Hide("show_menu_button"),Show("stats"),Show("debug_monsters")]
 screen show_menu:
     add "#0008"
     modal True
     #hide button
-    textbutton "Hide Menu" action [Play ("sound", "audio/sfx/click.wav"),Hide("show_menu"),Show("show_menu_button"),Hide("items"),Hide("stats"),Hide("cell"),Hide("show_item_description"),Hide("debug_monsters")] align(.95,.05)  
+    textbutton "Hide Menu (Q)" action [Play ("sound", "audio/sfx/click.wav"),Hide("show_menu"),Show("show_menu_button"),Hide("items"),Hide("stats"),Hide("cell"),Hide("show_item_description"),Hide("debug_monsters")] align(.95,.05)  
+    key 'q' action [Play ("sound", "audio/sfx/click.wav"),Hide("show_menu"),Show("show_menu_button"),Hide("items"),Hide("stats"),Hide("cell"),Hide("show_item_description"),Hide("debug_monsters")]
     vbox xalign 0.05 ypos 0.05:
         frame:
             background Frame("UI/text-box3.png",21, 21)

@@ -11,7 +11,7 @@ screen cell:
             textbutton "Napstablook":
                 action [ui.callsinnewcontext("call_Monster","Napstablook")] background "#000000"
             
-label call_Monster(monster = "Frisk"):
+label call_Monster(monster):
 
     python:
         location = world.current_area.current_room
