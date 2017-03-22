@@ -570,7 +570,7 @@ label flowey_hangout2:
             flowey "What do you want?{fast}"
             "I was bored. Let’s chat.": #//Neutral 0
                 #*Evil* 
-                show flowey evil
+                show flowey horror
                 flowey "I’m not your entertainment. Scram."
             "I’d still like to talk.": #//Increase + FP
                 #*Angry* 
@@ -655,7 +655,7 @@ label flowey_hangout2:
                     jump flowey_hangout2_Q6_choice1
                 "You don’t know that yet.": #//Neutral 0
                     #*Evil* 
-                    show flowey evil
+                    show flowey horror
                     flowey "Oh, trust me, I do know. I know more than you ever could... You Idiot."
                     jump flowey_hangout2_Q6_choice2
                 "Everyone needs a friend. And since no one else is offering, it looks like I’m your only option.": #+ HB
@@ -669,7 +669,7 @@ label flowey_hangout2:
             show flowey angry
             flowey "You think you can just bribe someone into friendship? That’s not how it works. That’s not how I work. You might have the others fooled, but never forget:"
             #*Evil* 
-            show flowey evil
+            show flowey horror
             flowey "I  s e e  r i g h t  t h r o u g h  y o u ." 
             menu:
                 "I was just trying to help, jeeze...": #//Decrease - FP
@@ -683,7 +683,7 @@ label flowey_hangout2:
                     show flowey wink
                     flowey "I’ll give you some advice on trying to help me."
                     #Evil
-                    show flowey evil
+                    show flowey horror
                     flowey "D o n ’ t ." 
                     flowey "Now get out of here, i d i o t."
                     flowey "But you can at least leave whatever you were going to give me to make up for wasting my time."

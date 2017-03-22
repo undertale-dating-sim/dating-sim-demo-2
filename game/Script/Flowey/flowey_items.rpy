@@ -9,25 +9,32 @@ define menu_count = 0
 
 label flowey_item_start:
     if menu_count == 2:
+        show flowey sad
         f "Why are you being... So nice to me? What sort of... 
            weird joke is this?"
     
     if menu_count == 3:
+        show flowey sad
         f "You keep giving me stuff... But why? I don't
            understand..."
         f "Don't you get it? Being nice will only get you... 
            nowhere fast."
         
     if menu_count == 4:
+        show flowey annoyed
         f "Okay, now you're just being kinda weird."
         f "It's just getting creepy. Stop it."
         
     if menu_count >= 5:
+        show flowey annoyed
         f "You know, monsters will deduct friendship points if 
            you give them too many items in one sitting. From 
            this point on, it'll just freak them out."
+        show flowey sideglance
         f "You don't want them to hate you, right?"
+        show flowey horror
         f "You'll lose {i}all{/i} your freinds that way."
+        show flowey sideglance
         f "And I'm not an exception, either. So cool it with 
            the gift spam."
     jump choices
@@ -71,7 +78,9 @@ label butt_pie:
     if butt_pie_choice == 0:
         $ butt_pie_choice += 1
         #adds 10 FP
+        show flowey surprised
         f "What?! Where did you get this?"
+        show flowey sad
         f "I mean..."
         f "Thanks... I guess..."
         jump start
@@ -79,6 +88,7 @@ label butt_pie:
     if butt_pie_choice == 1:
         $ butt_pie_choice += 1
         #adds 0 FP
+        show flowey annoyed
         f "Okay, seriously, where did you get this?! 
          Why do you keep giving it to me?!"
         jump start
@@ -86,6 +96,7 @@ label butt_pie:
     if butt_pie_choice == 2:
         $ butt_pie_choice += 1
         #adds 0 FP
+        show flowey annoyed
         f "Are you trying to get me to say something?!"
         f "You're just wasting your time..."
         f "And {i}mine{/i}"
@@ -94,6 +105,7 @@ label butt_pie:
     if butt_pie_choice >= 3:
         $ snail_pie_choice += 1
         #subtracts 5 FP
+        show flowey angry
         f "Hey! Cut it out!"
         f "You're enjoying this, aren't you?! Freak!"
         jump start
@@ -102,14 +114,18 @@ label snail_pie:
     if snail_pie_choice == 0:
         $ snail_pie_choice += 1
         #adds 10 FP
+        show flowey excited
         f "Woah! Seriously?!"
+        show flowey surprised
         f "....."
+        show flowey normal
         f "uh... I mean... Whatever..."
         jump start
         
     if snail_pie_choice == 1:
         $ snail_pie_choice += 1
         #adds 5 FP
+        show flowey normal
         f "Pffft. You honestly think I'd want another one
            of these?"
         f "......"
@@ -120,12 +136,14 @@ label snail_pie:
     if snail_pie_choice == 2:
         $ snail_pie_choice += 1
         #adds 0 FP
+        show flowey annoyed
         f "...Are you trying to win me over? It won't work."
         jump start
         
     if snail_pie_choice >= 3:
         $ snail_pie_choice +=1
         #subtracts 3 FP
+        show flowey angry
         f "You are trying to win me over, aren't you!? Stop it! 
            And get away from me, you sicko!"
         jump start
@@ -134,6 +152,7 @@ label monster_candy:
     if monster_candy_choice == 0:
         $ monster_candy_choice += 1
         #subtracts 3 FP
+        show flowey annoyed
         f "Bleh! These things are beyond gross!"
         f "What'd you expect me to do with this?! Eat it?!"
         f "Yeah, as if."
@@ -144,6 +163,7 @@ label monster_candy:
     if monster_candy_choice == 1:
         $ monster_candy_choice += 1
         #subtracts 5 FP
+        show flowey annoyed
         f "I told you these are gross! Stop giving them to me, 
            you idiot!"
         jump start
@@ -151,12 +171,14 @@ label monster_candy:
     if monster_candy_choice == 2:
         $ monster_candy_choice += 1
         #subtracts 8 FP
+        show flowey angry
         f "Are you trying to gross me out?! Knock it off!"
         jump start
         
     if monster_candy_choice >= 3:
         $ monster_candy_choice += 1
         #subtracts 10 FP
+        show flowey angry
         f "You're irritating me on purpose! Get lost, ya loser!"
         jump start
         
@@ -164,10 +186,12 @@ label spider_donut:
     if spider_donut_choice == 0:
         $ spider_donut_choice += 1
         #subtracts 3 FP
+        show flowey annoyed
         f "Ugh. Those spiders probably made you buy this, didn't 
            they?"
         f "Jeez. They're so obnoxious. The way they rant about 
            their missing spider clan or whatever."
+        show flowey suspicious
         f "Why would you put spiders in your donuts? It's 
            disgusting."
         jump start
@@ -175,6 +199,7 @@ label spider_donut:
     if spider_donut_choice == 1:
         $ spider_donut_choice += 1
         #subtracts 5 FP
+        show flowey annoyed
         f "I don't care about those stupid spiders! They can 
            go die in the cold for all I care."
         f "So you can stop giving me these disgusting things!"
@@ -183,6 +208,7 @@ label spider_donut:
     if spider_donut_choice == 2:
         $ spider_donut_choice += 1
         #subtracts 8 FP
+        show flowey annoyed
         f "I don't want anymore of these dumb sponges they 
            dare to call {i}donuts{/i}. Stop it."
         jump start
@@ -190,8 +216,10 @@ label spider_donut:
     if spider_donut_choice >=3:
         $ spider_donut_choice += 1
         #subtracts 10 FP
+        show flowey angry
         f "You're {i}really{/i} starting to get on my nerves 
            with this. You {i}might{/i} wanna stop."
+        show flowey horror
         f "...Before I get {i}really{/i} mad."
         jump start
         
@@ -199,17 +227,22 @@ label spider_cider:
     if spider_cider_choice == 0:
         $ spider_cider_choice += 1
         #subtracts 3 FP
+        show flowey annoyed
         f "This is the only thing worse than spider donuts! 
            It tastes like dirt!"
+        show flowey sideglance
         f "And that's really saying something... Get it? Because 
            I'm a flower!"
+        show flowey laugh
         f "Hahahahahah!"
+        show flowey normal
         f "But seriously, this is disgusting."
         jump start
         
     if spider_cider_choice == 1:
         $ spider_cider_choice += 1
         #subtracts 5 FP
+        show flowey annoyed
         f "Okay, but seriously, I really do think it's gross. 
            Don't give me anymore, got it?"
         jump start
@@ -217,12 +250,14 @@ label spider_cider:
     if spider_cider_choice == 2:
         $ spider_cider_choice += 1
         #subtracts 8 FP
+        show flowey annoyed
         f "You're {i}really{/i} starting to tick me off, buddy."
         jump start
         
     if spider_cider_choice >= 3:
         $ spider_cider_choice += 1
         #subtracts 10 FP
+        show flowey angry
         f "And here I thought the only dirt was this cider."
         f "But you're starting to remind me of dirt youreself, 
            {i}bucko{/i}."
@@ -232,7 +267,9 @@ label milk_choco:
     if milk_choco_choice == 0:
         $ milk_choco_choice += 1
         #adds 5 FP
+        show flowey normal
         f "Huh. The last time I saw this brand was..."
+        show flowey sad
         f "....."
         f "Nevermind. Thanks...or whatever."
         jump start
@@ -240,6 +277,7 @@ label milk_choco:
     if milk_choco_choice == 1:
         $ milk_choco_choice += 1
         #adds 3 FP
+        show flowey sideglance
         f "Uh, you already gave me one of these. But okay."
         f "Thanks"
         jump start
@@ -247,6 +285,7 @@ label milk_choco:
     if milk_choco_choice == 2:
         $ milk_choco_choice += 1
         #adds 0 FP
+        show flowey annoyed
         f "You know, I can only eat so much of this. Have you 
            even noticed how small I am?"
         f "I don't need any more."
@@ -255,6 +294,7 @@ label milk_choco:
     if milk_choco_choice >= 3:
         $ milk_choco_choice += 1
         #subtracts 3 FP
+        show flowey annoyed
         f "Okay, {i}stop it{/i}. I know you're probably 
            trying to kill me at this point from some suger 
            overdose."
@@ -265,8 +305,10 @@ label white_choco:
     if white_choco_choice == 0:
         $ white_choco_choice += 1
         #subtracts 5 FP
+        show flowey annoyed
         f "What's this garbage!?"
         f "It has the nerve to call itself \"Chocolate\"?"
+        show flowey suspicious
         f "Tch! There's not even chocolate in it! Disgusting."
         f "I'll take it off your hands, but only so I can throw 
            it in the trash for you."
@@ -276,6 +318,7 @@ label white_choco:
     if white_choco_choice == 1:
         $ white_choco_choice += 1
         #subtracts 8 FP
+        show flowey annoyed
         f "Why are you giving me this imposter of a candy 
            again?! Get this \"Humanstrocity\" out of my face."
         jump start
@@ -283,6 +326,7 @@ label white_choco:
     if white_choco_choice == 2:
         $ white_choco_choice += 1
         #subtracts 10 FP
+        show flowey angry
         f "You know, you're {i}really{/i} starting to remind 
            me of this bar of junk."
         f "You know."
@@ -293,11 +337,14 @@ label white_choco:
     if white_choco_choice >= 3:
         $ white_choco_choice += 1
         #subtracts 12 FP
+        show flowey smug
         f "Well, I guess you're turning into quite a sadist, 
            aren't you? I can't blame you, though."
+        show flowey wink
         f "I mean, look who you're talking to!"
         f "I'll admit I'm a little sadistic myself."
         f "But perhaps there's a difference between sadistic 
            and just plain stupid."
+        show flowey laugh
         f "Hahahahah!"
         jump start
