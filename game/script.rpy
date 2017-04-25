@@ -27,11 +27,11 @@ define test = Character("Sans", callback=beepy_voice)
 
 
 ###################
-#    Our basic start label.  Will usually go to start the game.
+#    Our basic start label.  Will usually g to start the game.
 ###################
 label start:
     stop music
-    "test test test hello test test"
+
     call show_buttons
     $ move_to_room("Cave Room")
     #jump start_the_game
