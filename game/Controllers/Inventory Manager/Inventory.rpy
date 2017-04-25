@@ -8,10 +8,10 @@ init -5 python:
             self.heartbreak_text = "default"
             self.neutral_text = "default"
             self.friendship_text = "default"
+            self.menu_desc = "default"
             self.sale_cost = 1
             self.use_text = ""
             self.sprite = ""
-            self.menu_desc = ""
             self.usable = True
             self.equip = False
 

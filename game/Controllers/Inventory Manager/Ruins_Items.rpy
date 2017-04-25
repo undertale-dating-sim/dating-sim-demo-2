@@ -92,65 +92,64 @@ init -4 python:
         def __init__(self):
             Item.__init__(self)
             self.name = "Spider Donut"
-            self.use_text = "You bite down, but something stops you. It had a coin in it?  What was the point of buying this?"
-            self.pickup_text = "It is a donut. Made of spiders. Crunchy!"
+            self.use_text = "You eat the Donut.  Crunchy!"
             self.sprite = "items/item_spiderdonut.png"
-            self.menu_desc = "It is a donut. \nRestore 10 Stamina"
+            self.menu_desc = "A classic treat with an added twist. \nRestore 10 Stamina"
+            self.neutral_text = "If you look closely, you can see tiny bits of spiders in the pastry. It's baked with spider cider in the mix, guaranteeing flavor."
 
     class Butts_Pie(Item):
         def __init__(self):
             Item.__init__(self)
             self.name = "Butterscotch Pie"
-            self.use_text = "You eat the pie. It tastes like placeholder?"
-            self.pickup_text = "It's a pie."
+            self.use_text = "You eat the pie."
             self.sprite = "items/item_buttspie.png"
             self.menu_desc = "Placeholder. \nRestore xx Stamina"
+            self.neutral_text = "Filled with Butterscotch; its flavour fills anyone's day with happiness."
 
     class Snail_Pie(Item):
         def __init__(self):
             Item.__init__(self)
             self.name = "Snail Pie"
-            self.use_text = "You eat the pie. It tastes like placeholder?"
-            self.pickup_text = "It's a pie."
+            self.use_text = "You eat the pie. You gain XX stamina."
             self.sprite = "items/item_snailpie.png"
-            self.menu_desc = "Placeholder. \nRestore xx Stamina"
+            self.menu_desc = "A nice Snail Pie. \nRestores XX Stamina"
+            self.neutral_text = "Now with additional love, care and extra snails, it’s somewhat edible in small quantities."
 
     class White_Chocolate(Item):
         def __init__(self):
             Item.__init__(self)
             self.name = "White Chocolate"
-            self.use_text = "You eat the chocolate. It tastes like placeholder?"
-            self.pickup_text = "It's a chocolate."
+            self.use_text = "You eat the chocolate."
             self.sprite = "items/item_whitechocolate.png"
-            self.menu_desc = "Placeholder. \nRestore xx Stamina"
+            self.menu_desc = "A white bar of chocolate. Restores XX stamina."
+            self.neutral_text = "Containing cocoa butter, sugar and milk, it is still categorised as chocolate due to its popularity, being sweeter than its milky version. Do not give it to the dogs. \nRestore xx Stamina"
 
     class Milk_Chocolate(Item):
         def __init__(self):
             Item.__init__(self)
-            self.name = "Milk Chocolate"
-            self.use_text = "You eat the chocolate. It tastes like placeholder?"
-            self.pickup_text = "It's a chocolate."
+            self.name = "Milky Chocolate"
+            self.use_text = "You eat the chocolate."
             self.sprite = "items/item_milkchocolate.png"
-            self.menu_desc = "Placeholder. \nRestore xx Stamina"
+            self.menu_desc = "A delicacy in whichever state it’s consumed, this particular type can be easily added into cakes, muffins and other culinary wonders. Do not give it to the dogs. \nRestore xx Stamina"
             
     class Monster_Candy(Item):
         def __init__(self):
             Item.__init__(self)
             self.name = "Monster Candy"
-            self.use_text = "You eat the candy. It tastes like placeholder?"
-            self.pickup_text = "It's a candy."
+            self.use_text = "You eat the candy."
             self.sprite = "items/item_monstercandy.png"
-            self.menu_desc = "Placeholder. \nRestore xx Stamina"
+            self.menu_desc = "A very nice candy. \nRestore 20 Stamina"
+            self.neutral_text = "Although its colors vary, it tastes like an unsweetened mix between fresh grapes and blackberries. The wrapper comes in various patterns."
 
     class Spider_Cider(Item):
         def __init__(self):
             Item.__init__(self)
             self.name = "Spider Cider"
             self.sale_cost = 5
-            self.use_text = "Spiders pour over your face. It had "+str(self.sale_cost)+" coin(s) in it.  What was the point of buying this?"
-            self.pickup_text = "A bottle full of spiders. You can hear coins jiggle if you shake it."
+            self.use_text = "You drink the Spider Cider.  You gain 50 Stamina!"
             self.sprite = "items/item_spidercider.png"
             self.menu_desc = "This bubbly drink is sure to hit the spot! \nRestore 50 Stamina"
+            self.neutral_text = "The peach colored, smooth substance could pass as apple cider... if it didn’t have spider bits floating in it."
 
     class Sleeping_Potion(Item):
         def __init__(self):
