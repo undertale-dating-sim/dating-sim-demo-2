@@ -31,7 +31,7 @@ define test = Character("Sans", callback=beepy_voice)
 ###################
 label start:
     stop music
-
+    "test test test hello test test"
     call show_buttons
     $ move_to_room("Cave Room")
     #jump start_the_game

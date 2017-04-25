@@ -4,10 +4,11 @@ init -5 python:
             self.name =         "default"
             self.pickup_text =  "default"
             self.drop_text =    "default"
-            self.negative_text = "default"
-            self.positive_text = "default"
+            self.truelove_text = "default"
+            self.heartbreak_text = "default"
+            self.neutral_text = "default"
+            self.friendship_text = "default"
             self.sale_cost = 1
-            self.shop_text = "default"
             self.use_text = ""
             self.sprite = ""
             self.menu_desc = ""
@@ -61,8 +62,8 @@ init -1 python:
     inventory.add(Sleeping_Potion())
     inventory.add(Spider_Donut())
     inventory.add(Milk_Chocolate())
-    inventory.add(Mirror())
-    inventory.add(Flower())
+    inventory.add(Broken_Mirror())
+    inventory.add(Rose())
     
 
 screen items:

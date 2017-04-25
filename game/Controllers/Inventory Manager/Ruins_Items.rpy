@@ -25,12 +25,13 @@ init -4 python:
             # self.perseverance_surrender   = 0
             # self.kindness_cruelty       = 0
             # self.justice_apathy        = 0
+
+##EQUIPPABLES
     class Heart_Locket(Item):
         def __init__(self):
             Item.__init__(self)
             self.name = "Heart Locket"
-            self.use_text = "The Item does nothing."
-            self.pickup_text = "It doesn't seem to open, but it is pretty nonetheless, golden and strung on a pretty chain."
+            self.neutral_text = "It looks just like new, but it has an antique style to it. Someone must have cherished this locket."
             self.sprite = "items/item_heartlocket.png"
             self.menu_desc = "A Heart Locket."
             self.equip = True
@@ -41,14 +42,12 @@ init -4 python:
         def unequip_self(self):
             player.patience_impulsiveness -= 10
        
-    class Mirror(Item):
+    class Broken_Mirror(Item):
         def __init__(self):
             Item.__init__(self)
-            self.name = "Mirror"
-            self.use_text = "It doesn't seem to open, but it is pretty nonetheless: golden and strung on a pretty chain."
-            self.pickup_text = "It is a donut. Made of spiders. Crunchy!"
+            self.name = "Broken Mirror"
+            self.neutral_text = "It’s cracked down the middle, but you can still see your reflection in it."
             self.sprite = "items/item_brokenmirror.png"
-            self.menu_desc = "It is a donut. \nRestore 10 Stamina"
             self.equip = True
 
         def equip_self(self):
@@ -61,10 +60,9 @@ init -4 python:
         def __init__(self):
             Item.__init__(self)
             self.name = "Stick"
-            self.use_text = "It doesn't seem to open, but it is pretty nonetheless: golden and strung on a pretty chain."
-            self.pickup_text = "It is a donut. Made of spiders. Crunchy!"
+            self.pickup_text = "It's a stick."
             self.sprite = "items/item_stick.png"
-            self.menu_desc = "It is a donut. \nRestore 10 Stamina"
+            self.menu_desc = "It's a stick."
             self.equip = True
 
         def equip_self(self):
@@ -73,14 +71,13 @@ init -4 python:
         def unequip_self(self):
             player.bravery_cowardice -= 10
 
-    class Flower(Item):
+    class Rose(Item):
         def __init__(self):
             Item.__init__(self)
-            self.name = "Flower"
-            self.use_text = "It doesn't seem to open, but it is pretty nonetheless: golden and strung on a pretty chain."
-            self.pickup_text = "It is a donut. Made of spiders. Crunchy!"
+            self.name = "Rose"
+            self.neutral_text = "You ripped it from its place when you fell, but it still seems to be doing well."
             self.sprite = "items/item_rose.png"
-            self.menu_desc = "It is a donut. \nRestore 10 Stamina"
+            self.menu_desc = "You ripped it from its place when you fell, but it still seems to be doing well."
             self.equip = True
 
         def equip_self(self):
@@ -90,6 +87,7 @@ init -4 python:
             player.kindness_cruelty -= 10
 
 
+##USABLE
     class Spider_Donut(Item):
         def __init__(self):
             Item.__init__(self)
@@ -152,7 +150,7 @@ init -4 python:
             self.use_text = "Spiders pour over your face. It had "+str(self.sale_cost)+" coin(s) in it.  What was the point of buying this?"
             self.pickup_text = "A bottle full of spiders. You can hear coins jiggle if you shake it."
             self.sprite = "items/item_spidercider.png"
-            self.menu_desc = "A bottle full of spiders. \nRestore 50 Stamina"
+            self.menu_desc = "This bubbly drink is sure to hit the spot! \nRestore 50 Stamina"
 
     class Sleeping_Potion(Item):
         def __init__(self):
