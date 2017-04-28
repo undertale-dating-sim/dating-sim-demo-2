@@ -13,6 +13,8 @@ init:
     image background ruins_blooky_room = im.Scale("backgrounds/Ruins/background-ruins-blookyroom.jpg",800,600)
     image background ruins_dummy_room = im.Scale("backgrounds/Ruins/background-ruins-dummyroom.jpg",800,600)
     image background ruins_hallway = im.Scale("backgrounds/Ruins/background-ruins-hallway.jpg",800,600)
+    image background ruins_monstercandy_room = im.Scale("backgrounds/Ruins/Monster-Candy-Room-Sketch.jpg",800,600)
+    image background ruins_snailhunting_room = im.Scale("backgrounds/Ruins/Secret-Garden-Final.jpg",800,600)
     image background deadroom = im.Scale("backgrounds/gaster.png",800,600)
 
 init -1 python:
@@ -33,6 +35,7 @@ init -1 python:
             self.add_room(ruins_blookyroom())
             self.add_room(ruins_spiderbakery())
             self.add_room(ruins_snailhuntingroom())
+            self.add_room(ruins_monstercandyroom())
             self.add_room(ruins_tunneldivide())
             self.add_room(ruins_overlook())
             self.add_room(ruins_blacktreeroom())
@@ -147,14 +150,24 @@ init -1 python:
             self.locknorth = True
             self.events["Muffet_Shop"] = Event("Muffet_Shop",True)
 
+    class ruins_monstercandyroom(Room):
+        def __init__(self):
+            Room.__init__(self)
+            self.name = "Monster Candy Room"
+            self.x = 10
+            self.y = 4
+            self.desc = "*A nice looking bowl of candy sits on a pillar in the center of the room.  A small note says 'Take only one.' There is a small passage in the back."
+            self.bg = "background ruins_monstercandy_room"
+
     class ruins_snailhuntingroom(Room):
         def __init__(self):
             Room.__init__(self)
             self.name = "Snail Hunting Room"
             self.x = 10
-            self.y = 4
+            self.y = 5
             self.desc = "* The small and brightly lit room sports a large bed of vegetation, fruit and vegetable bearing plants interspersed with various breeds of flowers. A crack in the roof of the cave allows for beams of sunlight from the surface to penetrate to the floor, encouraging the growth of the plants. You can see the spiraled shells of snails moving about the vegetation. The only way out is how you came in."
-            self.bg = "background ruins_caveroom"
+            self.bg = "background ruins_snailhunting_room"
+            self.events["Random Snails"] = Event("Snail_Hunter_Random_Event",True)
 
     class ruins_tunneldivide(Room):
         def __init__(self):
