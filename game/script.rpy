@@ -33,10 +33,43 @@ label start:
     stop music
 
     call show_buttons
-    $ move_to_room("Cave Room")
+
+    $ move_to_room("Snail Hunting Room")
+
+
     #jump start_the_game
     return
 
+
+
+label Snail_Hunter_Random_Event:
+    
+    call show_buttons
+    $ renpy.pause()
+
+    if player.last_snail_day == False or player.last_snail_day != world.day:
+        "* You notice the flowers are moving a little."
+        menu:
+            "What do you do?"
+            "Check under the flowers":
+                $snail_count = renpy.random.randint(3,10)
+                "You found some snails!"
+                if player.current_snails >= player.max_snails:
+                    "Your pockets are full though. Bummer."
+                elif player.current_snails + snail_count <= player.max_snails:
+                    "[snail_count] added to inventory."
+                else:
+                    $ snail_count = (player.current_snails + snail_count) - player.max_snails
+                    "[snail_count] added to inventory."
+                $ player.current_snails += snail_count
+                $ player.last_snail_day = world.day
+
+            "Ignore it. Too scary.":
+                return
+    else:
+        "* A very quiet, peaceful room.  It looks new.  The flowers are still."
+    
+    return
 ###################
     # This label is mainly for dev purposes.  It goes off after we hit Shift + R.
 

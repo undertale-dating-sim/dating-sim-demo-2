@@ -30,6 +30,10 @@ init -1 python:
             self.pass_out_label = "player_passes_out"
             self.die_label = "player_dies"
 
+            self.current_snails = 0
+            self.max_snails = 10
+            self.last_snail_day = False
+
         def give_fuck(self):
             if self.fucks > 0:
                 renpy.say(self.name,'Fuck')

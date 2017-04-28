@@ -19,7 +19,7 @@ screen show_menu:
                     text "Time: "
                     text world.get_current_timezone()
                     text "HP:"
-                    text "STAM:"
+                    text "SNAILS:"
                     text "G:"
                     if player.equipped_item:
                         text "Equip: "
@@ -29,7 +29,7 @@ screen show_menu:
                     text world.get_current_time()
                     text ""
                     text "[player.current_health]/[player.total_health]"
-                    text "[player.current_stamina]/[player.max_stamina]"
+                    text "[player.current_snails]/[player.max_snails]"
                     text "[player.gold]"
                     if player.equipped_item:
                         text player.equipped_item.name
