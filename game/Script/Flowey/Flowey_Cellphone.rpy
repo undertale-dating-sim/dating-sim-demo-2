@@ -1,6 +1,7 @@
-label call_Flowey_Unknown:
+label call_Flowey_Unknown(attempted_room):
     
     call FloweyCall_FreqCheck
+    return
 
 
 label call_Flowey_Cave_Room(owner,call_count):
@@ -282,31 +283,34 @@ label call_Flowey_Same_Room(owner,call_count):
         return 
     
     if call_count == 1:
-        show flowey normal with fade
+        show flowey normal
         flowey "What do you want?"
         flowey "...Wait."
         show flowey suspicious with dissolve
         flowey "Stop wasting my time."
 
     elif call_count == 2:
-        show flowey horror with fade
+        show flowey horror
         flowey "You really are an idiot."
     else:
-        show flowey annoyed with fade
+        show flowey annoyed
         "*No one's answering.*"
     return
     
     
 label Flowey_Cell_Count_Check(owner):
-    
+
     python:
-        for var in owner.variables:
-            "[var]"
-    $ CallCount = 0
+        CallCount = 0
+        SameRoom = get_monster("Flowey").current_room == current_room()
+        for key,var in owner.variables.iteritems():
+            if "_call_count" in key:
+                CallCount += var
+    
     if CallCount == 1:
         
         if SameRoom == True:
-            show flowey normal with fade
+            show flowey normal
             
         flowey "Hello?"
         
@@ -322,24 +326,20 @@ label Flowey_Cell_Count_Check(owner):
         flowey "How the hell am I even using this thing?!"
         flowey "This game gets dumber by the minute."
         
-        if SameRoom == True:
-            hide flowey with fade
         return
     elif CallCount == 10:
         
         if SameRoom == True:
-            show flowey angry with fade
+            show flowey angry
         
         flowey "Why are you so needy?!"
         flowey "HOW IS THERE EVEN RECEPTION DOWN HERE?!"
         
-        if SameRoom == True:
-            hide flowey with fade
         return
     elif CallCount == 16:
         
         if SameRoom == True:
-            show flowey annoyed with fade
+            show flowey annoyed 
             
         flowey "Are you just bored? Is that why you keep calling me?"
         
@@ -355,26 +355,22 @@ label Flowey_Cell_Count_Check(owner):
         flowey "Do you feel better? Knowing you’re wasting someone elses ‘anytime minutes’?"
         flowey "They could be charged for ROAMING!"
         
-        if SameRoom == True:
-            hide flowey with fade
         return
     elif CallCount == 20:
         
         if SameRoom == True:
-            show flowey suspicious with fade
+            show flowey suspicious 
         
         flowey "Ugh."
         flowey "You’re so annoying."
         flowey "Locate the trashcan closest to you and toss your phone in."
         flowey "Oh, and feel free to toss yourself in there, too."
         
-        if SameRoom == True:
-            hide flowey with fade
         return
     elif CallCount == 25:
         
         if SameRoom == True:
-            show flowey excited with fade
+            show flowey excited 
         
         flowey "There’s texting!"
         
@@ -388,12 +384,10 @@ label Flowey_Cell_Count_Check(owner):
             
         flowey "Well here, check this out."
         
-        if SameRoom == True:
-            hide flowey with fade
         return
     elif CallCount == 26:
         if SameRoom == True:
-            show flowey smug with fade
+            show flowey smug 
             
         "*Right before you call Flowey again, you feel your phone vibrate."
         "*It’s a text message."
@@ -405,13 +399,11 @@ label Flowey_Cell_Count_Check(owner):
             
         "*..."
         
-        if SameRoom == True:
-            hide flowey with fade
         return
     elif CallCount == 30:
         
         if SameRoom == True:
-            show flowey normal with fade
+            show flowey normal 
             
         flowey "You know what? I won’t indulge you anymore."
         
@@ -427,8 +419,6 @@ label Flowey_Cell_Count_Check(owner):
         
         flowey "Sucks to suck."
         
-        if SameRoom == True:
-            hide flowey with fade
         return True
     else:
         return False

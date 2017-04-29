@@ -24,11 +24,10 @@ label call_Monster(monster):
             monster.variables[call_location_variable] = 1
         else:
             monster.variables[call_location_variable] += 1
-
     if renpy.has_label(loc_name):
         call expression loc_name pass (monster,monster.variables[call_location_variable])
     elif renpy.has_label("call_[monster]_Unknown"):
-        call expression "call_[monster]_Unknown"
+        call expression "call_[monster]_Unknown" pass (loc_name)
     else:
         call unknown_Call
     return
