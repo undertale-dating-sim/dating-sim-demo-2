@@ -125,8 +125,8 @@ label Toriel_manager_default(owner = False,pause = True):
     menu:
         
         "Hello, dear. Can I help you?"
-        #'"I brought you some snails!"':
-        #    call Toriel_Manager_Give_Snails
+        '"I brought you some snails!"' if player.current_snails > 0:
+            call Toriel_Manager_Give_Snails
         "Chat":
             call Toriel_Manager_Chat
         "Ask":
@@ -141,6 +141,7 @@ label Toriel_manager_default(owner = False,pause = True):
 
     
     return
+
 
 
 label Toriel_Manager_Chat(owner=False):
@@ -175,18 +176,17 @@ label toriel_gd_sup:
             toriel "Oh... Should I know? I am... I am sorry dear, but I do not..."
     return
 
-label toriel_gd_give_snails:
-    $ goldEarned = normalSnails + dailySnails*3
+label Toriel_Manager_Give_Snails:
     toriel "Thank you so much dear."
+    "* Toriel takes the [player.current_snails] snails from your inventory."
     show toriel smile
-    if dailySnails > 0:
-        toriel "Oh!"
-        toriel "I see you brought [dailySnails] [snailType]"
+    # if dailySnails > 0:
+    #     toriel "Oh!"
+    #     toriel "I see you brought [dailySnails] [snailType]"
     toriel "Here, please take this as a thank you."
-    "Toriel hands you [goldEarned] gold"
-    $ playerGold += goldEarned
-    $ normalSnails = 0
-    $ dailySnails = 0
+    "* Toriel hands you [player.current_snails] gold."
+    $ player.gold += player.current_snails
+    $ player.current_snails = 0
     return
 
 label Toriel_Manager_Flirt:

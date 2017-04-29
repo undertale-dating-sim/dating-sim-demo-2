@@ -47,8 +47,8 @@ init -10 python:
             for event_name,event in self.events.iteritems():
                 if event.completed == False or event.permanent:
                     return event
-            if len(self.monsters) > 1:
-                return Event('multiple_monster',True)
+            # if len(self.monsters) > 1:
+            #     return Event('multiple_monster',True)
             for m in self.monsters:
 
                 if m.get_current_event():
@@ -92,35 +92,35 @@ screen multiple_monster_click_screen:
     #     #hovered Show("buttons", transition=dissolve)
     #     #unhovered Hide("buttons", transition=dissolve)
 
-label multiple_monster:
+# label multiple_monster:
     
-    #show the background
-    call show_buttons from _call_show_buttons_3
-    show screen multiple_monster_click_screen
-    $ talking = False
-    python:
-        renpy.scene()
-        if world.current_area.current_room.bg:
-            renpy.show(world.current_area.current_room.bg)
-    #for each monster, we need to figure out where to put them
-    while True:
-        python:
-            count = 1
+#     #show the background
+#     call show_buttons from _call_show_buttons_3
+#     show screen multiple_monster_click_screen
+#     $ talking = False
+#     python:
+#         renpy.scene()
+#         if world.current_area.current_room.bg:
+#             renpy.show(world.current_area.current_room.bg)
+#     #for each monster, we need to figure out where to put them
+#     while True:
+#         python:
+#             count = 1
             
-            for monster in world.current_area.current_room.monsters:
-                width = (1.0/(len(world.current_area.current_room.monsters)+1))
-                x = count * width
+#             for monster in world.current_area.current_room.monsters:
+#                 width = (1.0/(len(world.current_area.current_room.monsters)+1))
+#                 x = count * width
                 
-                if monster.name != talking:
-                    renpy.show(monster.default_sprite,[Position(xpos = x, xanchor = 'center')])
+#                 if monster.name != talking:
+#                     renpy.show(monster.default_sprite,[Position(xpos = x, xanchor = 'center')])
 
 
-                count += 1  
-        if talking:
-            pause
-        else:
-            pause 1.0
-        if talking:
-            call expression world.get_monster(talking).default_event.label pass(world.get_monster(talking),False) from _call_expression
+#                 count += 1  
+#         if talking:
+#             pause
+#         else:
+#             pause 1.0
+#         if talking:
+#             call expression world.get_monster(talking).default_event.label pass(world.get_monster(talking),False) from _call_expression
  
-    return
+#     return

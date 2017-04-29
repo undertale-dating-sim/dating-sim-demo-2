@@ -34,7 +34,7 @@ label start:
 
     call show_buttons
 
-    $ move_to_room("Snail Hunting Room")
+    $ move_to_room("Cave Room")
 
 
     #jump start_the_game
