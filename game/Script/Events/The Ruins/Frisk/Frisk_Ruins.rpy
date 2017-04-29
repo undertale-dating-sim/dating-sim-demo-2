@@ -1055,7 +1055,7 @@ label day1end:
     
 label day2start:
     "You wake up feeling refreshed."
-    "Stamina and HP restored."
+    "HP restored."
     "You had your clothes on from yesterday, so you're ready to go."
     #Transition to Hallway Background
     "Smells like breakfast is being cooked."

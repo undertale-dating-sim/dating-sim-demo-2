@@ -141,12 +141,10 @@ label player_sleeping_th:
 
 label th_your_room:
     call show_buttons from _call_show_buttons_12
-    if player.current_stamina <= 0:
-        call player_waking_up from _call_player_waking_up_1
     pause
     menu:
-        "Sleep" if player.current_stamina < player.max_stamina:
-            call player_sleeping_th from _call_player_sleeping_th
+        "Sleep":
+            return
         "Not Tired":
             return
     return

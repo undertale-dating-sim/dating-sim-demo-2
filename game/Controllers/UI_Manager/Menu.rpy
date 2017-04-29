@@ -61,22 +61,6 @@ label decrement_time(arg = 'day'):
         renpy.jump("load_room")
     return
 
-label increment_stamina:
-    python:
-        player.current_stamina += 10
-        if player.current_stamina > player.max_stamina:
-            player.current_stamina = player.max_stamina
-        player.update_player()
-    return
-
-label decrement_stamina:
-    python:
-        player.current_stamina -= 10
-        if player.current_stamina < 0:
-            player.current_stamina = 0
-        player.update_player()
-    return
-
 label increment_hp:
     python:
         player.current_health += 10
@@ -105,10 +89,6 @@ screen debug_monsters:
                 textbutton "Time Back" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("decrement_time","hour")]
                 textbutton "Time Forward" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("increment_time","hour")]
 
-            hbox:
-                textbutton "Stam Down" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("decrement_stamina")]
-                textbutton "Stam Up" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("increment_stamina")]
-                
             hbox:
                 textbutton "HP Down" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("decrement_hp")]
                 textbutton "HP Up" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("increment_hp")]
@@ -163,15 +143,6 @@ screen stats:
 screen show_information_overlay:
     vbox:
         hbox pos(0.25,0.01):
-            if player.current_stamina < 25:
-                text 'Stamina : {color=#f00}[player.current_stamina]'
-            elif player.current_stamina < 50:
-                text 'Stamina : {color=#FF0}[player.current_stamina]'
-            elif player.current_stamina < 75:
-                text 'Stamina : {color=#00FF00}[player.current_stamina]'
-            else:
-                text 'Stamina : {color=#008000}[player.current_stamina]'    
-            text '              '
             text world.get_current_time()
         hbox xpos .25:
             if world.current_area.current_room.current_monster and world.current_area.current_room.current_monster != False:

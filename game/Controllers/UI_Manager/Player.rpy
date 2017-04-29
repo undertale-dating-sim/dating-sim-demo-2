@@ -20,8 +20,6 @@ init -1 python:
             self.kindness_cruelty       = 0
             self.justice_apathy        = 0
             self.current_room = "Nowhere"
-            self.current_stamina = 100
-            self.max_stamina = 100
 
             self.equipped_item = False
 
@@ -85,8 +83,6 @@ init -1 python:
         #   in this function.
         ##################
         def update_player(self):
-            if self.current_stamina <= 0:
-                renpy.call_in_new_context(self.pass_out_label)
             if self.current_health <= 0:
                 renpy.call_in_new_context(self.die_label)
 
@@ -94,30 +90,22 @@ init -1 python:
     # This function should be called when the player needs to wake up.
 
     # day_change currently does nothing
-    # stam_refill is how much stamina the player should regain when they wake up.  Default is max.
-
-    # If the players stamina goes over max, it will go down to the max.
 
     # Currently sets the time to 480, which is the first minute of Morning.
 #############
-label player_waking_up(day_change = 1, stam_refill = player.max_stamina, health_refill = player.total_health):
+label player_waking_up(day_change = 1, health_refill = player.total_health):
     $ world.set_current_time(480,True)
-    $ player.current_stamina += stam_refill
     $ player.current_health += 10
     
-    if player.current_stamina > player.max_stamina:
-        $ player.current_stamina = player.max_stamina
     if player.current_health > player.total_health:
         $ player.current_health = player.total_health
         
     "You feel refreshed!"
-    "(Stamina refilled)"
     "Now that you've slept, you feel a little bit better."
     "(+10 Health)"
     return
 
 ######################
-    # This label is called automatically in update_player when the player runs out of stamina.
     # It will move them to their safe_room.
 
     # Currently the safe_room will then call 'player_waking_up' to complete the scene.
@@ -125,7 +113,6 @@ label player_waking_up(day_change = 1, stam_refill = player.max_stamina, health_
 #####################
 
 label player_passes_out:
-    "Oh no, you ran out of stamina..."
     "The world goes dark."
     scene
     with fade
