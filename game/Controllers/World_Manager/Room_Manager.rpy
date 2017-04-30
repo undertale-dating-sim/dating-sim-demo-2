@@ -65,17 +65,21 @@ init -10 python:
         def remove_monster(self,Monster):
             self.monsters.remove(Monster)
 
-screen multiple_monster_click_screen:
-    $ count = 1
 
-    $ width = (1.0/(len(world.current_area.current_room.monsters)))
-    for monster in world.current_area.current_room.monsters:
-        $ x = count * width
-        mousearea:
-            area ((count-1)* width, .4, width, .6)
-            hovered [SetVariable('talking',monster.name),Notify(monster.name)]
+label current_room_description:
+    "[world.current_area.current_room.desc]"
 
-        $ count+= 1
+# screen multiple_monster_click_screen:
+#     $ count = 1
+
+#     $ width = (1.0/(len(world.current_area.current_room.monsters)))
+#     for monster in world.current_area.current_room.monsters:
+#         $ x = count * width
+#         mousearea:
+#             area ((count-1)* width, .4, width, .6)
+#             hovered [SetVariable('talking',monster.name),Notify(monster.name)]
+
+#         $ count+= 1
 
         #unhovered SetVariable('talking',False)
     # mousearea:
