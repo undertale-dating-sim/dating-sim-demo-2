@@ -46,11 +46,12 @@ screen buy_box():
             maximum(shop_dialog_width,shop_dialog_height)
             minimum(shop_dialog_width,shop_dialog_height)
             vbox:
-                textbutton "Spider Donut - 1G" background "#000000" action [Play ("sound", "audio/sfx/click.wav"),ui.callsinnewcontext("buy_item",Spider_Donut())]
+                textbutton "Spider Donut - 5G" background "#000000" action [Play ("sound", "audio/sfx/click.wav"),ui.callsinnewcontext("buy_item",Spider_Donut())]
                 textbutton "Spider Cider - 5G" background "#000000" action [Play ("sound", "audio/sfx/click.wav"),ui.callsinnewcontext("buy_item",Spider_Cider())]
-                textbutton "Test - 5G" background "#000000" 
-                textbutton "Test - 5G" background "#000000" 
-                textbutton "Exit" background "#000000" action [Play ("sound", "audio/sfx/click.wav"),Hide("buy_box")]
+                #textbutton "Butterscotch Pie - 5G" background "#000000" action [Play ("sound", "audio/sfx/click.wav"),ui.callsinnewcontext("buy_item",Butts_Pie())]
+               #textbutton "Snail Pie - 5G" background "#000000" action [Play ("sound", "audio/sfx/click.wav"),ui.callsinnewcontext("buy_item",Snail_Pie())] 
+                textbutton "White Chocolate - 5G" background "#000000" action [Play ("sound", "audio/sfx/click.wav"),ui.callsinnewcontext("buy_item",White_Chocolate())] 
+                textbutton "Milk Chocolate - 5G" background "#000000" action [Play ("sound", "audio/sfx/click.wav"),ui.callsinnewcontext("buy_item",Milk_Chocolate())] 
 
 screen buy_dialogue(shop):
     frame pos(int(screen_width*.73),.688):
@@ -65,6 +66,10 @@ screen buy_dialogue(shop):
 
                 vbox:
                     text "[len(inventory.items)]/[inventory.max_items]" text_align 1.0
+
+screen random_spiders():
+    add "UI/muffet_shop/spider1.png" at Move((.5,0),(.5,.5), 25, repeat=False, bounce=False, xanchor="center", yanchor="bottom", hard=True)
+
 
 init -1 python:
     class Shop():
@@ -101,19 +106,23 @@ label buy_item(item):
     elif player.gold < item.sale_cost:
         "You do not have enough Gold."
     else:
-        $ muffetShop.buy(item)
-        "You bought a [item.name]."
+        menu:
+            "Buy the [item.name] for [item.sale_cost]G?"
+            "Yes": 
+                $ muffetShop.buy(item)
+                "You bought a [item.name]."
+            "No":
+                "The spiders radiate an aura of disapproval."
     return
 
 label Shop_Intro:
     $ count = 0
-
     while count < len(muffetShop.welcome['text']):
         $ line = muffetShop.welcome['text'][count]
         "[line]"
         $ count += 1
 
-    show screen shop_box(muffetShop)
+    call screen shop_box(muffetShop)
     while True:
         pause
 
@@ -136,6 +145,7 @@ label Shop_Sell:
 
 
 label Muffet_Shop:
+    call show_buttons
     python:
         muffetShop = Shop()
         muffetShop.enter()
