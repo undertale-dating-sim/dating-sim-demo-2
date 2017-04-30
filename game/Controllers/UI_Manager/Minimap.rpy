@@ -40,7 +40,7 @@ init python:
                         render.canvas().rect("#d3d3d3", (x,y, 10, 10))
                     else:
                         render.canvas().rect("#000", (x,y, 10, 10))
-                    # render.blit(renpy.render(Text("%d"%(r.visited)),width,height,st,at),(x,y))
+                    #render.blit(renpy.render(Text("%d"%(r.visited)),width,height,st,at),(x,y))
 
             
             # Return the render.
@@ -54,7 +54,7 @@ init python:
             return
 
 screen show_testing_button:
-    textbutton "Go to Test" action [Play ("sound", "audio/sfx/click.wav"),ui.callsinnewcontext("testing_area")] align(.95,.20) background Frame("UI/text-box3.png",50, 21)    
+    textbutton "Look Around" action [Play ("sound", "audio/sfx/click.wav"),ui.callsinnewcontext("current_room_description")] align(.95,.20) background Frame("UI/text-box3.png",50, 21)    
 
 screen show_map_button:
     textbutton "Show Map (M)" action [Play ("sound", "audio/sfx/click.wav"),Show("show_map"),Hide("show_map_button")] align(.95,.15) background Frame("UI/text-box3.png",50, 21)
@@ -73,3 +73,4 @@ screen show_map:
                 add Minimap():
                     xalign 0.6
                     yalign 0.5
+            
