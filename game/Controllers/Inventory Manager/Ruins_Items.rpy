@@ -91,6 +91,7 @@ init -4 python:
     class Spider_Donut(Item):
         def __init__(self):
             Item.__init__(self)
+            self.sale_cost = 5
             self.name = "Spider Donut"
             self.use_text = "You eat the Donut.  Crunchy!"
             self.sprite = "items/item_spiderdonut.png"
@@ -100,6 +101,7 @@ init -4 python:
     class Butts_Pie(Item):
         def __init__(self):
             Item.__init__(self)
+            self.sale_cost = 5
             self.name = "Butterscotch Pie"
             self.use_text = "You eat the pie."
             self.sprite = "items/item_buttspie.png"
@@ -109,6 +111,7 @@ init -4 python:
     class Snail_Pie(Item):
         def __init__(self):
             Item.__init__(self)
+            self.sale_cost = 5
             self.name = "Snail Pie"
             self.use_text = "You eat the pie."
             self.sprite = "items/item_snailpie.png"
@@ -118,6 +121,7 @@ init -4 python:
     class White_Chocolate(Item):
         def __init__(self):
             Item.__init__(self)
+            self.sale_cost = 5
             self.name = "White Chocolate"
             self.use_text = "You eat the chocolate."
             self.sprite = "items/item_whitechocolate.png"
@@ -127,6 +131,7 @@ init -4 python:
     class Milk_Chocolate(Item):
         def __init__(self):
             Item.__init__(self)
+            self.sale_cost = 5
             self.name = "Milky Chocolate"
             self.use_text = "You eat the chocolate."
             self.sprite = "items/item_milkchocolate.png"
@@ -135,6 +140,7 @@ init -4 python:
     class Monster_Candy(Item):
         def __init__(self):
             Item.__init__(self)
+            self.sale_cost = 5
             self.name = "Monster Candy"
             self.use_text = "You eat the candy."
             self.sprite = "items/item_monstercandy.png"
