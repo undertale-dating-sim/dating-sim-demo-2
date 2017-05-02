@@ -135,7 +135,8 @@ init -4 python:
             self.name = "Milky Chocolate"
             self.use_text = "You eat the chocolate."
             self.sprite = "items/item_milkchocolate.png"
-            self.menu_desc = "A delicacy in whichever state it’s consumed, this particular type can be easily added into cakes, muffins and other culinary wonders. Do not give it to the dogs."
+            self.menu_desc = "Do not give it to the dogs."
+            self.neutral_text = "A delicacy in whichever state it’s consumed, this particular type can be easily added into cakes, muffins and other culinary wonders."
             
     class Monster_Candy(Item):
         def __init__(self):
