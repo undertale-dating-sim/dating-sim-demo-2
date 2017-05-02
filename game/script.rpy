@@ -33,8 +33,8 @@ label start:
     stop music
 
     call show_buttons
-
-    $ move_to_room("Cave Room")
+    #$ renpy.music.play("audio/home.mp3")
+    $ move_to_room("Grass Room")
 
 
     #jump start_the_game

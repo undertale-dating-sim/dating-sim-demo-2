@@ -9,7 +9,7 @@ init -1 python:
             self.current_health = 20
             self.total_health   = 20
             self.gold           = 10
-            self.fucks          = 1
+            self.fucks          = 0
             self.dumped_on      = False
 
             #the stats go positive or negative, do not know the maximum values yet.
@@ -32,12 +32,6 @@ init -1 python:
             self.max_snails = 10
             self.last_snail_day = False
 
-        def give_fuck(self):
-            if self.fucks > 0:
-                renpy.say(self.name,'Fuck')
-                self.fucks -= 1
-            else:
-                renpy.notify("OUT OF FUCKS")
         # 
         # This is a really long gross list of sets for the stats.  There is a simpler way to do this with arrays but I'm not sure
         # of the benefit now that it is done.   If we end up revamping the stats then we will redo these.

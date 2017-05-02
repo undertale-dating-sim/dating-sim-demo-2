@@ -99,6 +99,7 @@ init -1 python:
         ###Shop Access Functions###
 
         def enter(self):
+            
             renpy.jump("Shop_Intro")
 
 
@@ -159,9 +160,12 @@ label Muffet_Shop:
     python:
         muffetShop = Shop()
         muffetShop.enter()
+
     return
 
 label Shop_Exit:
     hide screen shop_box
     hide screen buy_box
+    #stop music
+    return
     

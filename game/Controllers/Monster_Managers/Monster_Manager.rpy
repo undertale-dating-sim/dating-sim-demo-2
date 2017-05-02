@@ -25,7 +25,7 @@ init -10 python:
 
             #an array to hold various variables
             self.variables = {}
-
+            self.flirt_count = 0
 
 
         def reset_schedule(self):

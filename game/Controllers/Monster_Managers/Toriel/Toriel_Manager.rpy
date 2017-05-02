@@ -106,15 +106,15 @@ label Toriel_manager_default(owner = False,pause = True):
     call show_buttons from _call_show_buttons
 
     if owner.FP < 20:
-        show toriel reallysad
+        show toriel reallysad with dissolve
     elif owner.FP < 40:
-        show toriel awkward
+        show toriel awkward with dissolve
     elif owner.FP < 60:
-        show toriel normal
+        show toriel normal with dissolve
     elif owner.FP < 80:
-        show toriel laughing
+        show toriel laughing with dissolve
     else:
-        show toriel blushing
+        show toriel blushing with dissolve
 
     if pause:
         $renpy.pause()
@@ -131,8 +131,8 @@ label Toriel_manager_default(owner = False,pause = True):
             call Toriel_Manager_Chat
         "Ask":
             call Toriel_Manager_Ask
-        "Flirt":
-            call Toriel_Manager_Flirt
+        "Flirt" if owner.flirt_count < 4:
+            call Toriel_Manager_Flirt 
         "Gift" if len(inventory.items) > 0:
             show screen gift_item_menu(owner)
             "What should you give them?"
@@ -145,18 +145,18 @@ label Toriel_manager_default(owner = False,pause = True):
 
 
 label Toriel_Manager_Chat(owner=False):
-    #These were implemented over in the Toriel.rpy file under Script\Events\The Ruins\Toriel
+
     menu:
         "How are you doing?":
-            show toriel smile
+            show toriel smile with dissolve
             toriel "I am doing well! Thank you for asking. How are you doing, dear?"
         "What’s crackin’?":
-            show toriel awkward
+            show toriel awkward with dissolve
             toriel "... I don’t believe anything is cracking... Did you hear something breaking? Oh dear, is it that rock again?"
         "'Sup?":
             jump toriel_gd_sup
         "What have you been doing lately?":
-            show toriel smallsmile
+            show toriel smallsmile with dissolve
             toriel "Not much, just the usual. Watching over Frisk, baking, the occasional snail hunting. Although I have also been having a wonderful time with you."
     return
 
@@ -164,22 +164,22 @@ label toriel_gd_sup:
     toriel "... ‘Sup’? Is... Is that a surface word? I am sorry, but I am not familiar with it."
     menu:       #Once you've explained it, should she give a different dialogue?
         "Oh! Sorry. It stands for ‘What is up’, which is a commonly used greeting on the surface.":
-            show toriel smile
+            show toriel smile with dissolve
             toriel "Ah, I see! Thank you for explaining so well."
-            show toriel smallsmile
+            show toriel smallsmile with dissolve
             toriel "Well, I suppose I shall also ask you, ‘sup’?"
         "It means ‘what’s up’.":
-            show toriel awkward
+            show toriel awkward with dissolve
             toriel "Oh... Ah... The ceiling, I suppose... Although I think I might see a spider up there."
         "You seriously don’t know what ‘sup’ means?!":
-            show toriel awkward
+            show toriel awkward with dissolve
             toriel "Oh... Should I know? I am... I am sorry dear, but I do not..."
     return
 
 label Toriel_Manager_Give_Snails:
     toriel "Thank you so much dear."
     "* Toriel takes the [player.current_snails] snails from your inventory."
-    show toriel smile
+    show toriel smile with dissolve
     # if dailySnails > 0:
     #     toriel "Oh!"
     #     toriel "I see you brought [dailySnails] [snailType]"
@@ -190,25 +190,34 @@ label Toriel_Manager_Give_Snails:
     return
 
 label Toriel_Manager_Flirt:
-    menu:
-        "Do you have a compass? Because I keep getting lost in your eyes.":
-            show toriel surprised
-            toriel "Oh!"
-            show toriel laughing
-            toriel "Ahahahaha!"
-            show toriel blushing
-            toriel "My, you caught me off guard with that! I honestly do not know what to say... Perhaps... I could {i}map{/i} out a way for you?"
-            #laugh
-            toriel "Hehehehe!"
-        "I love the way your fur looks in the ruins light.":
-            #blush
-            toriel "Oh! Ah... Thank you! Thank you very much, dear. That was very... Very kind of you to say! ...You are looking nice yourself! Hehehe!"
-        "Butterscotch Pie has got nothing on you in sweetness":
-            #blush
-            toriel "Oh my... I am... I am at quite a loss for words... Th-thank you dear. That was very... Well... Sweet of you!"
-        "Are you using fire magic right now? Because you’re warming my heart.":
-            #blush
-            toriel "Oh dear... You’re making me so flustered... Thank... Thank you dear! I am... So glad I could make you feel happy!"
+    $ Toriel = get_monster("Toriel")
+    if Toriel.flirt_count == 0:
+        '"Do you have a compass? Because I keep getting lost in your eyes."'
+        show toriel surprised with dissolve
+        toriel "Oh!"
+        show toriel laughing with dissolve
+        toriel "Ahahahaha!"
+        show toriel blushing with dissolve
+        toriel "My, you caught me off guard with that! I honestly do not know what to say... Perhaps... I could {i}map{/i} out a way for you?"
+        show toriel laughing with dissolve
+        toriel "Hehehehe!"
+
+    if Toriel.flirt_count == 1:
+        '"I love the way your fur looks in the ruins light."'
+        show toriel blushing
+        toriel "Oh! Ah... Thank you! Thank you very much, dear. That was very... Very kind of you to say! ...You are looking nice yourself! Hehehe!"
+
+    if Toriel.flirt_count == 2:
+        '"Butterscotch Pie has got nothing on you in sweetness"'
+        show toriel blushing
+        toriel "Oh my... I am... I am at quite a loss for words... Th-thank you dear. That was very... Well... Sweet of you!"
+
+    if Toriel.flirt_count == 3:
+        '"Are you using fire magic right now? Because you’re warming my heart."'
+        show toriel blushing
+        toriel "Oh dear... You’re making me so flustered... Thank... Thank you dear! I am... So glad I could make you feel happy!"
+
+    $ Toriel.flirt_count += 1
     return
     
 
@@ -216,15 +225,15 @@ label Toriel_Manager_Ask:
     #Friendship level neutral options:
     menu:
         "What do you do for fun?":
-            show toriel smile
+            show toriel smile with dissolve
             toriel "Usually, I like to read, bake, and hunt for bugs. I know it does not sound like much, but it’s just perfect for me."
 
         "Do you have a job?":
-            show toriel smallsmile
+            show toriel smallsmile with dissolve
             toriel "Not at the moment... Unless you count taking care of Frisk."
-            show toriel surprised
+            show toriel surprised with dissolve
             toriel "Not in a bad way, I hope you understand!"
-            show toriel smallsmile
+            show toriel smallsmile with dissolve
             toriel "Frisk is wonderful, but they are still a teenager. Hehehe!"
 
         "How long have you lived in the Ruins?":
