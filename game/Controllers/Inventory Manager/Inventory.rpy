@@ -40,6 +40,8 @@ init -1 python:
         def drop(self, item):
             if self.items.count(item) > 0:
                 self.items.remove(item)
+            else:
+                renpy.notify(item.name+ " not found")
 
         def has_space(self):
             if len(self.items) < self.max_items:
@@ -122,7 +124,7 @@ screen items:
                         
 
 label show_item_description(item):
-    "[item.pickup_text]"
+    "[item.neutral_text]"
     return
 
 label inventory_full:
