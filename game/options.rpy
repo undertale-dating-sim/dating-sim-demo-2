@@ -69,7 +69,7 @@ init -1 python hide:
         ## The background of the main menu. This can be a color
         ## beginning with '#', or an image filename. The latter
         ## should take up the full height and width of the screen.
-        mm_root = "backgrounds/ui/inLOVE_Title.jpg",
+        mm_root = "backgrounds/ui/title_screen.png",
 
         ## The background of the game menu. This can be a color
         ## beginning with '#', or an image filename. The latte

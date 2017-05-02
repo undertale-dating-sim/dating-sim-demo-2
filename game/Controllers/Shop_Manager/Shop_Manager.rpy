@@ -3,8 +3,12 @@ init:
     $ screen_height = config.screen_height # 600
     $ shop_dialog_width = int(screen_width*.70)
     $ shop_dialog_height = int(screen_height*.215)
-
-
+    image spider_animated:
+        "UI/muffet_shop/spider1.png"
+        pause 1.0
+        "UI/muffet_shop/spider2.png"
+        pause 1.0
+        repeat
 
 define payneShop = Character('PayneGray',
     window_left_margin = int(screen_width*.02),
@@ -68,8 +72,12 @@ screen buy_dialogue(shop):
                     text "[len(inventory.items)]/[inventory.max_items]" text_align 1.0
 
 screen random_spiders():
-    add "UI/muffet_shop/spider1.png" at Move((.5,0),(.5,.5), 25, repeat=False, bounce=False, xanchor="center", yanchor="bottom", hard=True)
+    add "spider_animated" at Move((.25,0),(.25,.4), 10, repeat=False, bounce=False, xanchor="center", yanchor="bottom", hard=True)
+    add "spider_animated" at Move((.50,0),(.50,.7), 10, repeat=False, bounce=False, xanchor="center", yanchor="bottom", hard=True)
+    add "spider_animated" at Move((.75,0),(.75,.5), 10, repeat=False, bounce=False, xanchor="center", yanchor="bottom", hard=True)
 
+screen thank_you_purchase():
+     add "UI/muffet_shop/spider3.png" at Move((.25,0),(.25,.4), 1, repeat=False, bounce=False, xanchor="center", yanchor="bottom", hard=True)
 
 init -1 python:
     class Shop():
@@ -111,6 +119,7 @@ label buy_item(item):
             "Yes": 
                 $ muffetShop.buy(item)
                 "You bought a [item.name]."
+
             "No":
                 "The spiders radiate an aura of disapproval."
     return
@@ -122,7 +131,8 @@ label Shop_Intro:
         "[line]"
         $ count += 1
 
-    call screen shop_box(muffetShop)
+    show screen shop_box(muffetShop)
+    call screen random_spiders
     while True:
         pause
 

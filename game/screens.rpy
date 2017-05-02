@@ -192,12 +192,12 @@ screen main_menu():
         has vbox
 
         textbutton _("Main Game") action Start()
-        textbutton _("Testing Area") action ui.callsinnewcontext("testing_area")
+        # textbutton _("Testing Area") action ui.callsinnewcontext("testing_area")
         textbutton _("Load Game") action ShowMenu("load")
         textbutton _("Preferences") action ShowMenu("preferences")
-        textbutton _("Feedback") action Jump("Feedback")
-        textbutton _("Admin_Controls") action ShowMenu("admin_controls")
-        textbutton _("Update") action Jump("updater")
+        # textbutton _("Feedback") action Jump("Feedback")
+        # textbutton _("Admin_Controls") action ShowMenu("admin_controls")
+        # textbutton _("Update") action Jump("updater")
         textbutton _("Quit") action Quit(confirm=False)
 
 init -2:
