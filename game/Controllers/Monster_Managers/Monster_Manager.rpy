@@ -26,6 +26,7 @@ init -10 python:
             #an array to hold various variables
             self.variables = {}
             self.flirt_count = 0
+            self.chat_count = 0
 
 
         def reset_schedule(self):
@@ -114,11 +115,13 @@ init -10 python:
                     self.given_items[item.get_class_name()] = self.get_total_specific_item(item) + 1
                     if response:
                         self.given_today_count += 1
+                        inventory.drop(item)
                         renpy.call_in_new_context("%s_Gift_Count_Reaction" % self.name,self)
+                        return True
 
             else:
                 renpy.call_in_new_context("give_Gift_%s_Unknown" % self.name)
-            return
+            return False
 
         def update_schedule(self,day,timezone,location,event):
 
@@ -126,11 +129,16 @@ init -10 python:
 
             return
 
+        def update_FP(self,amount):
+            self.FP += amount
+            renpy.call("word_scroll",amount)
+
 
 screen remember(owner):
     
     text "[owner.name] will remember that." xpos .01 ypos .2
-    timer 2.0 action [Hide("remember",transition=dissolve),Return()]
+    timer 1.0 action [Hide("remember",transition=dissolve)]
+    
 
 label give_item(owner,item):
     python:
@@ -170,6 +178,6 @@ screen gift_item_menu(owner):
                     spacing 6
                     xmaximum 200
                     text "[menu_selected_item.name]"
-                    text "[menu_selected_item.pickup_text]"
+                    text "[menu_selected_item.menu_desc]"
                     
 
