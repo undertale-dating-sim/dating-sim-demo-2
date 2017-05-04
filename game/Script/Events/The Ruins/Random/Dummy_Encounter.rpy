@@ -1,9 +1,8 @@
-label dummy_ruins_event_start:    
+label dummy_ruins_random_event_start:    
 
     show dummy normal
 
-
-    $ dummy_approached = False 
+    $ player.variables['dummy_approached'] = False 
     "*  You approach the Dummy, ready to have a light-hearted conversation."
     dummy "..."
 
@@ -11,7 +10,7 @@ label dummy_ruins_event_menu:
     menu:
         dummy "..."
         "Talk":
-            $ dummy_approached = True
+            $ player.variables['dummy_approached'] = True
             menu:
                 "Chat":
                     dummy "..."
@@ -60,7 +59,7 @@ label dummy_ruins_event_menu:
                     jump dummy_ruins_event_menu
 
         "Ask":
-            $ dummy_approached = True
+            $ player.variables['dummy_approached'] = True
             dummy "..."
             
             menu:
@@ -79,7 +78,7 @@ label dummy_ruins_event_menu:
                     jump dummy_ruins_event_menu
                     
         "Leave":
-            if(dummy_approached == False):
+            if(player.variables['dummy_approached'] == False):
                 "* You approached the dummy with good intentions..."
                 "* ...but quickly realized that standing around attempting conversation with an inanimate object was a bad idea."
                 "Time to go."

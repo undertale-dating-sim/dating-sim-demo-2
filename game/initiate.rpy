@@ -8,8 +8,8 @@ label initialize:
     image froggit normal = "characters/Froggit/Froggit_normal.png"
     image froggit happy = "characters/Froggit/Froggit_happy.png"
 
-    image vegetoid normal = "characters/Vegetoid/vegetoid_normal.png"
-    image vegetoid happy = "characters/Vegetoid/vegetoid_happy.png"
+    image vegetoid normal = im.FactorScale("characters/Vegetoid/vegetoid_normal.png",.5)
+    image vegetoid happy = im.FactorScale("characters/Vegetoid/vegetoid_happy.png",.5)
 
     image loox normal = "characters/Loox/loox_normal.png"
     image loox happy = "characters/Loox/loox_happy.png"
@@ -58,7 +58,7 @@ label initialize:
     #sprite positions
     init:
         $ left = Position(xpos = 0.0, xanchor = 'left')
-        $ center = Position(xpos = 0.5, xanchor = 'center')
+        $ center = Position(xpos = 0.5,ypos=.5, xanchor = 'center', yanchor = 'center')
         $ right = Position(xpos = .95, xanchor = 'right')
 
 

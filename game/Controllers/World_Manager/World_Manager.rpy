@@ -9,6 +9,10 @@ init -10 python:
     def current_room():
         return world.current_area.current_room
 
+    #returns the current area
+    def current_area():
+        return world.current_area
+
     # Accepts a string of a room name and parses the world for that room.
     def get_room(name):
         return world.get_room(name)
@@ -95,6 +99,7 @@ init -10 python:
         def update_day(self):
             #seed the random monsters
             self.seed_random_monsters()
+            self.seed_random_events()
             
             #reset the gift counts
             for an,a in self.areas.iteritems():
@@ -110,9 +115,6 @@ init -10 python:
         #rooms with events already in them should be ignored.
         def seed_random_monsters(self):
             for an,a in self.areas.iteritems():
-
-                # for r in a.random_monsters:
-                #     r.move_to_room("Random")
 
 
                 # #first we get a list of all the rooms in the area
@@ -132,6 +134,22 @@ init -10 python:
                         m.move_to_room(room_list[0])
                         room_list.remove(room_list[0])
 
+        def seed_random_events(self):
+            for an,a in self.areas.iteritems():
+                 # #first we get a list of all the rooms in the area
+                room_list = list(a.rooms)
+
+                # #now we remove every room that has an event, or another monster in it
+                for r in a.rooms:
+                    if len(a.rooms[r].monsters) > 0 or len(a.rooms[r].events) > 0:
+                        room_list.remove(r)
+                        
+                # #we will do this until we run out of rooms
+                re = a.get_random_event()
+                if re:
+                    rr = renpy.random.choice(room_list)
+                    a.rooms[rr].events[re.label] = re
+                   
             
         def update_world(self,update_day = False):
 

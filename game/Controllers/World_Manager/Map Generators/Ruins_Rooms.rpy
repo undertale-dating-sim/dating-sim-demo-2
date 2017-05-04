@@ -24,6 +24,7 @@ init -1 python:
             Area.__init__(self,"The Ruins")
             self.random_areas = []
             self.random_monsters = [Loox(),Vegetoid(),Moldsmol(),Whimsun(),Migosp(),Froggit()]
+            self.random_events = [Event("whimsun_re_start",False),Event("dummy_ruins_random_event_start",False),Event("vegetoid_ruins_re_start",False)]
             self.add_room(ruins_caveroom())
             self.add_room(ruins_grassroom())
             self.add_room(ruins_ruinsentrance())

@@ -7,19 +7,15 @@ init -10 python:
             self.owner = False
             self.permanent = perm
             self.arg = arg
-            
-        def __init__(self,label = "frisk_hangout",perm = False,arg = False):
-            self.completed = False
-            self.label = label
-            self.owner = False
-            self.permanent = False
-            self.arg = arg
-
 
         def call_event(self):
+            
+            if self.permanent == False:
+                self.completed = True
+            
             if self.arg:
                 renpy.call(self.label,self.arg)
             else:
                 renpy.call(self.label)
-            if self.permanent == False:
-                self.completed = True
+
+            
