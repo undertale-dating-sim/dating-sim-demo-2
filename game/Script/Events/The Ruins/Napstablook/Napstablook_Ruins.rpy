@@ -633,7 +633,7 @@ label blooky_ruins:
         blooky "really?"
         blooky "hangout........with me? that’d be nice..."
         #Normal/Happy
-        blooky "sure.....if it’s not too much of a bother..."
+        blooky "sure.....if it's not too much of a bother..."
         blooky "..... ...well i know a place nearby we can go..."
         blooky "follow me...."
         
