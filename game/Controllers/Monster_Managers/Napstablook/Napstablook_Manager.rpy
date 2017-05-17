@@ -74,7 +74,8 @@ init -9 python:
 
 
 label initialize_napstablook:
-        
+    
+    #Blooky Sprites
     image napstablook normal = "characters/Napstablook/Napstablook_Normal.png"
     image napstablook sad = "characters/Napstablook/Napstablook_Sad.png"
     image napstablook shyblush = "characters/Napstablook/Napstablook_ShyBlush.png"
@@ -83,6 +84,7 @@ label initialize_napstablook:
     image napstablook surprised = "characters/Napstablook/Napstablook_Surprised.png"
 
 
+    #Blooky Text Font and Scripted Name
     define napstablook = ('Napstablook')
     define napstablookChar = Character('Napstablook', color="#FFFFFF")
     python:
@@ -92,17 +94,22 @@ label initialize_napstablook:
 
 label Napstablook_manager_default(owner = False, pause = True):
 
-
+    #Show the GUI while you talk to him
     call show_buttons from _call_show_buttons_7
+
+    #Bobbing Animation
     show napstablook normal:
         xalign 0.5
         yalign 0.4
         linear 2.0 yalign 0.6
         linear 2.0 yalign 0.4
         repeat
+
+    #allows the game to wait so you have to click for the options to pop up
     if pause:
         $ renpy.pause()
     
+    #Default Menu
     menu:
         "Napstablook"
         "Raise FP 10":
@@ -117,5 +124,5 @@ label Napstablook_manager_default(owner = False, pause = True):
         "Exit":
             "okay."
 
-    
+    #return to the world manager event
     return
