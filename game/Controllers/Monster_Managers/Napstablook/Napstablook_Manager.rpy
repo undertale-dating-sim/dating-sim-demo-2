@@ -112,14 +112,8 @@ label Napstablook_manager_default(owner = False, pause = True):
         "Give Gift" if len(inventory.items) > 0:
             show screen gift_item_menu(owner)
             "What should you give them?"
-        "True Love Date 1":
-            call blooky_hb_date
-        "Friendship Hang 1":
-            call blooky_event1
-        "Friendship Hang 2":
-            call blooky_event2
-        "Heartbreak Date 1":
-            call blooky_hb_date
+        "Events":
+            call blooky_ruins
         "Exit":
             "okay."
 
