@@ -1,7 +1,6 @@
 label start_the_game:
 
 #    $ world.move_to_room("Cave Room")
-    return
 
 label prologue:
     
@@ -27,7 +26,7 @@ label the_fall:
     with fade
 
     #play wind sfx
-    play music "audio/sfx/Falling_down_wind.wav"
+    #play music "audio/sfx/Falling_down_wind.wav"
 
     #pause for a few seconds
     $ renpy.pause(delay=3,hard=True)

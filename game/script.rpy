@@ -32,12 +32,12 @@ define test = Character("Sans", callback=beepy_voice)
 label start:
     stop music
 
-    call show_buttons
+    #call show_buttons
     #$ renpy.music.play("audio/home.mp3")
     #$ move_to_room("Grass Room")
-    show background ruins_caveroom    
-    jump vegetoid_ruins_re_start
-    #jump start_the_game
+    #show background ruins_caveroom    
+    #jump vegetoid_ruins_re_start
+    jump start_the_game
     return
 
 
