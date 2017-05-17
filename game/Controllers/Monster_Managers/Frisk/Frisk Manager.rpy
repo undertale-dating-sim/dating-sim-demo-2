@@ -159,6 +159,14 @@ label Frisk_manager_default(owner = False,pause = True):
         menu:
             "Talk":
                 call Frisk_dialogue
+            "Meeting Frisk":
+                "test"
+            "Friendship Hangout 1":
+                "test"
+            "Friendship Event 1":
+                "test"
+            "Friendship Event 2":
+                "test"
             "Give Gift" if len(inventory.items) > 0:
                 show frisk smallsmile
                 frisk "Oh, do you have something?"
