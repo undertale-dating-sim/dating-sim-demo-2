@@ -27,18 +27,17 @@ label toriel_tl_date01_opening:
 label opening_menu:
     menu:
         "I LOVE YOU THE WAY YOU ARE! MARRY ME!" if toriel_tl_date01_marryme_joke == False:
-            $ toriel_fp -=2
+            $ world.get_monster('Toriel').update_FP(-2)
             show toriel awkward
             toriel "I think that is going a bit too far, dear."
+            $ toriel_tl_date01_marryme_joke = True
             menu:
                 "I'm just kidding.":
-                    $ toriel_tl_date01_marryme_joke = True
                     #show toriel sad
                     toriel "Well... Please do not joke like that. It is never kind to play with people’s feelings, yes?"
                     jump opening_menu
                 "YOU'RE MY ONE AND ONLY GODDESS":
-                    $ toriel_fp -=3
-                    $ toriel_tl_date01_marryme_joke = True
+                    $ world.get_monster('Toriel').update_FP(-3)
                     toriel "I see you are feeling rather… strongly on that topic. But still, I must ask that you stop this kind of behavior. I do not appreciate it."
                     toriel "That was all I wished to ask you. Have a good day."
                     jump date_retry
@@ -70,7 +69,7 @@ label opening_menu:
                             toriel "Alright, I suppose there would be no harm in going on one date."
                             jump toriel_toriel_date_start
                         "Sorry, can't":
-                            $ toriel_fp -=2
+                            $ world.get_monster('Toriel').update_FP(-2)
                             toriel "I do not appreciate being played with."
                             toriel "Perhaps we should just forget about all of this."
                             jump date_retry
@@ -83,7 +82,7 @@ label opening_menu:
             toriel "I suppose there would be no harm in going on one date."
             jump toriel_date_start
         "I’m not doing anything. What are you talking about, you crazy old goat?":
-            $ toriel_fp -= 3
+            $ world.get_monster('Toriel').update_FP(-3)
             $ toriel_tl_date01_crazyoldgoat = True
             show toriel angry
             toriel "Well, in that case, I guess there is nothing to talk about."
@@ -107,13 +106,13 @@ label date_retry:
                     toriel "It is a date, then."
                     jump toriel_date_start
                 "Yup, you were pretty rude!":
-                    $ toriel_fp -=4
+                    $ world.get_monster('Toriel').update_FP(-4)
                     show toriel angry
                     toriel "Well, I am sorry to have been an annoyance!"
                     toriel "I am going to forget any of this ever happened, and I suggest you do the same."
                     jump bad_end
         "You could say that I was just being baa-shful.":
-            $ toriel_fp +=4
+            $ world.get_monster('Toriel').update_FP(+4)
             show toriel laughing
             toriel "That is a sheep pun, dear."
             menu:
@@ -129,7 +128,7 @@ label date_retry:
                     toriel "And yes, I would like to have a date with you."
                     jump toriel_date_start
         "I didn't mean to insult you. Sorry." if toriel_tl_date01_laughitoff == False:
-            $ toriel_fp +=1
+            $ world.get_monster('Toriel').update_FP(1)
             show toriel normal
             toriel "You should be more careful with your words."
             #show toriel smallsmile
@@ -151,13 +150,13 @@ label date_retry:
                             toriel "I may even say yes."
                             jump toriel_date_start
                         "You're awful.":
-                            $toriel_fp +=2
+                            $world.get_monster('Toriel').update_FP(2)
                             show toriel laughing
                             toriel "Why, thank you, dear."
                             toriel "And to answer your question, yes. I would like to go on a date with you."
                             jump toriel_date_start
                 "I'm glad; I wouldn't want us to be on bad terms.":
-                    $toriel_fp +=2
+                    $world.get_monster('Toriel').update_FP(2)
                     toriel "Oh, do not worry about that. I know you did not intend any harm, dear."
                     toriel "Perhaps we should put all of this behind us."
                     jump bad_end
@@ -183,7 +182,7 @@ label date_retry:
                             toriel "It is a date, then."
                             jump toriel_date_start
                         "No":
-                            $toriel_fp -=4
+                            $world.get_monster('Toriel').update_FP(-4)
                             show toriel angry
                             toriel "Are you serious?"
                             toriel "I am not a toy for your amusement, to be played with as you please."
@@ -194,11 +193,11 @@ label date_retry:
                     toriel "A cave full of monsters who will not harm you. Because I had to tend to an emergency."
                     menu:
                         "You can't know that they won't harm me.":
-                            $toriel_fp -=2
+                            $world.get_monster('Toriel').update_FP(-2)
                             toriel "Monsters are peaceful creatures, and they will no longer harm anyone. Do not judge them like this."
                             menu:
                                 "They will {i}‘no longer’{/i} harm anyone? What’s that supposed to mean?":
-                                    $toriel_fp -=4
+                                    $world.get_monster('Toriel').update_FP(-4)
                                     show toriel awkward
                                     toriel "Well, in the past, monsters {i}were{/i} known to sometimes- Look, it does not matter anymore. Please do not speak of this from now on."
                                     toriel "And… I suppose a date is out of the question now. I do not think this would work."
@@ -227,7 +226,7 @@ label date_retry:
                                     toriel "In that case, it is a date."
                                     jump toriel_date_start
                                 "No.":
-                                    $toriel_fp -=4
+                                    $world.get_monster('Toriel').update_FP(-4)
                                     show toriel angry
                                     toriel "Are you serious?"
                                     toriel "I am not a toy for your amusement, to be played with as you please."
@@ -244,7 +243,7 @@ label date_retry:
                             toriel "In that case, it is a date."
                             jump toriel_date_start
                         "No.":
-                            $toriel_fp -=4
+                            $world.get_monster('Toriel').update_FP(-4)
                             show toriel angry
                             toriel "Are you serious?"
                             toriel "I am not a toy for your amusement, to be played with as you please."
@@ -255,7 +254,7 @@ label date_retry:
             toriel "Well, I do not mean to come across as someone you cannot talk to."
             menu:
                 "Either way, you do.":
-                    $toriel_fp -=4
+                    $world.get_monster('Toriel').update_FP(-4)
                     show toriel annoyed
                     toriel "I guess it is a good thing we never decided to go on a date, then."
                     toriel "Please do not ask me again."
@@ -296,7 +295,7 @@ label toriel_date_start:
             jump q_start
         "What's cooking, good looking?":
             $toriel_dp +=2
-            $toriel_fp +=3
+            $world.get_monster('Toriel').update_FP(3)
             show toriel laughing
             toriel "Nothing much, honey bunch."
             jump q_start
@@ -330,7 +329,7 @@ label toriel_date_start:
                             toriel "What is your favorite color?"
                             jump q_favcolor
                         "Seems like you made the best of what you had.":
-                            $toriel_fp +=2
+                            $world.get_monster('Toriel').update_FP(2)
                             #show toriel smallsmile
                             toriel "Hardly. There are many things I would go back and change if I could."
                             show toriel awkward
@@ -366,7 +365,7 @@ label toriel_date_start:
                                             toriel "Tell me, what is your favorite color?"
                                             jump q_favcolor
                                         "Don't look at me. I'm just as lost as you are.":
-                                            $toriel_fp +=3
+                                            $world.get_monster('Toriel').update_FP(3)
                                             show toriel laughing
                                             toriel "Then I guess we will both have to wing it. Seems we are two birds of the same feather after all!"
                                             show toriel smile
@@ -409,7 +408,7 @@ label toriel_date_start:
                     toriel "For some reason, they really like it here."
                     menu:
                         "It's a gorgeous view.":
-                            $toriel_fp +=2
+                            $world.get_monster('Toriel').update_FP(2)
                             show toriel sad
                             toriel "It is beautiful in the same way the black tree is."
                             jump q_blacktree
@@ -419,14 +418,14 @@ label toriel_date_start:
                             menu:
                                 "Thanks, I try.":
                                     $toriel_dp +=2
-                                    $toriel_fp +=3
+                                    $world.get_monster('Toriel').update_FP(3)
                                     show toriel laughing
                                     toriel "Yes, I can tell."
                                     toriel "But enough about me. Let us talk about you. What is your favorite color?"
                                     jump q_favcolor
                                 "Tone it down a little, would you?":
                                     $toriel_dp -=2
-                                    $toriel_fp -=1
+                                    $world.get_monster('Toriel').update_FP(-1)
                                     show toriel awkward
                                     toriel "Well, if you do not appreciate this sort of humor, I suppose I will try."
                                     toriel "Let us try something else, then. What is your favorite color?"
@@ -489,7 +488,7 @@ label toriel_date_start:
                             jump q_favcolor
                         "Hey now, don’t you think it’s too early in our relationship for something like that?":
                             $toriel_dp +=2
-                            $toriel_fp +=3
+                            $world.get_monster('Toriel').update_FP(3)
                             show toriel laughing
                             toriel "Are you suggesting we save the {i}adult stuff{/i} for later?"
                             menu:
@@ -580,7 +579,7 @@ label q_blacktree:
 label q_start:         #Selection 30
     menu:
         "How are you?":
-            $toriel_fp +=2
+            $world.get_monster('Toriel').update_FP(2)
             show toriel normal
             toriel "I am doing very well, thank you."
             toriel "Although I have to admit, I have not exactly gone on a date in a while, so I am sorry if I make a mistake."
@@ -615,7 +614,7 @@ label q_start:         #Selection 30
         "If you were a fruit, you'd be a fineapple.":
             $ toriel_tl_date01_fineapple = True
             $toriel_dp +=2
-            $toriel_fp +=3
+            $world.get_monster('Toriel').update_FP(3)
             show toriel smile
             toriel "Very funny!"
             toriel "However, I think I have a joke for you as well..."
@@ -624,7 +623,7 @@ label q_start:         #Selection 30
     toriel "What do you call a belt made of watches?"
     menu:
         "What?":
-            $toriel_fp +=1
+            $world.get_monster('Toriel').update_FP(1)
             toriel "A waist of time!"
         "...":
             $toriel_dp -=1
@@ -641,7 +640,7 @@ label q_start:         #Selection 30
     #answer
     menu:
         "I see what you did there.":
-            $toriel_fp +=2
+            $world.get_monster('Toriel').update_FP(2)
             show toriel smile
             toriel "Thank you. I am glad I found another person that appreciates puns."
             menu:
@@ -693,7 +692,7 @@ label q_start:         #Selection 30
                                     toriel "What is your favorite color?"
                                     jump q_favcolor
                                 "Sorry, I was just curious.":
-                                    $toriel_fp +=2
+                                    $world.get_monster('Toriel').update_FP(2)
                                     #show toriel smallsmile
                                     toriel "Oh, that is fine. Thank you for understanding."
                                     toriel "But enough about him. This is our date, after all... We should be getting to know each other better."
@@ -703,7 +702,7 @@ label q_start:         #Selection 30
                                     toriel "What is your favorite color?"
                                     jump q_favcolor
                         "He sounds like a nice person.":
-                            $toriel_fp +=1
+                            $world.get_monster('Toriel').update_FP(1)
                             show toriel smile
                             toriel "Yes, he is! It is great that you think so."
                             toriel "But enough about him. This is our date, after all... We should be getting to know each other better."
@@ -773,7 +772,7 @@ label q_favcolor:      #Selection 37
                     show toriel sad
                     toriel "No, I actually do not know. And honestly, I am not sure if I even want to."
                 "They must really like this place, then.":
-                    $toriel_fp +=2
+                    $world.get_monster('Toriel').update_FP(2)
                     #show toriel smallsmile
                     toriel "I hope so. It can get very lonely. But Frisk is handling that problem in their own way, I believe."
                 "Don't you think it's bad keeoing them cooped up in here?":
@@ -821,40 +820,40 @@ label q_favcolor:      #Selection 37
                 "Probably not.":
                     toriel "That is good. If you left, you would be missed."
                 "Don't count on it.":
-                    $toriel_fp -=3
+                    $world.get_monster('Toriel').update_FP(-3)
                     $toriel_dp -=3
                     show toriel annoyed
                     toriel "Why did you ask me out on this date, then? Is this just a game to you?"
                     menu:
                         "You have no idea.":
-                            $toriel_fp -=2
+                            $world.get_monster('Toriel').update_FP(-2)
                             show toriel angry
                             toriel "Then enlighten me, dear."
                             menu:
                                 "You know what, never mind.":
-                                    $toriel_fp -=3
+                                    $world.get_monster('Toriel').update_FP(-3)
                                     toriel "Alright, I see how it is then. I am starting to think that perhaps we should not have gone on this date."
                                     jump date_goodbye
                                 "It doesn't matter.":
-                                    $toriel_fp -=3
+                                    $world.get_monster('Toriel').update_FP(-3)
                                     toriel "Maybe to you it does not. However, I am starting to think that perhaps we should not have gone on this date."
                                     jump date_goodbye
                                 "...":
-                                    $toriel_fp -=3
+                                    $world.get_monster('Toriel').update_FP(-3)
                                     toriel "You know what, I am starting to think that we should not have gone on this date in the first place."
                                     jump date_goodbye
                         "No, you have to understand. I just don’t like being cooped up in one place.":
-                            $toriel_fp -=1
+                            $world.get_monster('Toriel').update_FP(-1)
                             $toriel_dp -=2
                             show toriel angry
                             toriel "You know what? I do not understand."
                             menu:
                                 "Well, if you made the slightest effort, maybe you could.":
-                                    $toriel_fp -=5
+                                    $world.get_monster('Toriel').update_FP(-5)
                                     toriel "Do not {i}dare{/i} make assumptions about me. You know, maybe we should not have gone on this date."
                                     jump date_goodbye
                                 "Okay, okay, geez. Calm down.":
-                                    $toriel_fp -=3
+                                    $world.get_monster('Toriel').update_FP(-3)
                                     toriel "Oh, trust me, I {i}am{/i} calm. But perhaps we should end this date before it escalates."
                                     jump date_goodbye
                         "Hey, relax. This is just for fun, right?":
@@ -863,15 +862,15 @@ label q_favcolor:      #Selection 37
                             toriel "Maybe to {i}you{/i} it is, but we clearly went into this with different expectations."
                             menu:
                                 "You know, you don’t have to be so rude.":
-                                    $toriel_fp -=5
+                                    $world.get_monster('Toriel').update_FP(-5)
                                     toriel "Oh, {i}I{/i} am the one being rude? Look... We probably should not have gone on this date in the first place."
                                     jump date_goodbye
                                 "What, you thought this was serious?":
-                                    $toriel_fp -=5
+                                    $world.get_monster('Toriel').update_FP(-5)
                                     toriel "Yes, because- because I had faith that you were not going to try to {i}humiliate{/i} me. Let us just end the date now, alright?"
                                     jump date_goodbye
                                 "Hey, calm down.":
-                                    $toriel_fp -=3
+                                    $world.get_monster('Toriel').update_FP(-3)
                                     toriel "Oh, trust me, I {i}am{/i} calm. But perhaps we should end this date before it escalates."
                                     jump date_goodbye
                         "Sorry, I just meant that I will want to explore outside the Ruins a bit.":
@@ -891,7 +890,7 @@ label q_favcolor:      #Selection 37
                     show toriel laughing
                     toriel "Well, I am sorry to scare you, then. You are welcome in my house as long as you like."
                 "Are you sure? If you don’t want me here, just say so.":
-                    $toriel_fp -=2
+                    $world.get_monster('Toriel').update_FP(-2)
                     show toriel blushing
                     toriel "No, no, of course I want you here! Please do not think otherwise. I would never throw you out."
                     
@@ -917,16 +916,16 @@ label q_favcolor:      #Selection 37
                             toriel "Maybe you should act like it, then."
                         "Well, what do you know about kids?":
                             $toriel_dp -=4
-                            $toriel_fp -=4
+                            $world.get_monster('Toriel').update_FP(-4)
                             show toriel angry
                             toriel "Certainly more than {i}you{/i}."
                             menu:
                                 "You know, you don’t have to be so rude.":
-                                    $toriel_fp -=4
+                                    $world.get_monster('Toriel').update_FP(-4)
                                     toriel "Oh, {i}I{/i} am the one being rude? Look... We probably should not have gone on this date in the first place."
                                     jump date_goodbye
                                 "Hey, calm down.":
-                                    $toriel_fp -=5
+                                    $world.get_monster('Toriel').update_FP(-5)
                                     toriel "Oh, trust me, I {i}am{/i} calm. But perhaps we should end this date before it escalates."
                                     jump date_goodbye
                                 "...":
@@ -938,16 +937,16 @@ label q_favcolor:      #Selection 37
                     toriel "What, nothing to say for yourself? Luckily for you, I will take this to mean that you see your mistake."
                 "They’re happy, right? Why does it matter?":
                     $toriel_dp -=3
-                    $toriel_fp -=2
+                    $world.get_monster('Toriel').update_FP(-2)
                     show toriel angry
                     toriel "It {i}matters{/i} because you do not have the right to treat people like objects to manipulate."
                     menu:
                         "Look, you’re taking this way too seriously.":
-                            $toriel_fp -=4
+                            $world.get_monster('Toriel').update_FP(-4)
                             toriel "Or perhaps you are not taking this seriously {i}enough{/i}. If you are going to be like this, then I think we might have to forget about dating, alright?"
                             jump date_goodbye
                         "Hey, calm down.":
-                            $toriel_fp -=5
+                            $world.get_monster('Toriel').update_FP(-5)
                             toriel "Oh, trust me, I {i}am{/i} calm. But perhaps we should end this date before it escalates."
                             jump date_goodbye
                         "...":
@@ -988,7 +987,7 @@ label favcolor_1:
                     "No, that’s what the color is actually called.":
                         toriel "Well... That is still a rude name to call something."
                     "You’re right. I guess we should just call it Amber.":
-                        $toriel_fp +=2
+                        $world.get_monster('Toriel').update_FP(2)
                         toriel "That is not right. It is special; it should not be lumped with regular amber. That would hurt its feelings."
             "Blue.":
                 #show toriel smallsmile
@@ -1046,7 +1045,7 @@ label favcolor_3:
                 show toriel normal
                 toriel "Yellow is fine, although not the best for interior decorating."
             "Well, I don’t know about 'favorite' color, but I’m starting to hate purple.":
-                $toriel_fp +=2
+                $world.get_monster('Toriel').update_FP(2)
                 show toriel laughing
                 toriel "What a coincidence. I also hate purple. It is practically the only color I have seen for too many years. I should have packed more clothes."
             "More options <-":
@@ -1095,5 +1094,5 @@ label date_goodbye:
     toriel "So, perhaps we should start over with a clean slate?"
     toriel "I doubt I will ever agree to date you again, but perhaps, in time, we can go back to being friends."
     toriel "So, with that, I will take my leave. Enjoy the rest of your day."
-    $toriel_fp =0
+    $world.get_monster('Toriel').FP =0
     jump bad_end
