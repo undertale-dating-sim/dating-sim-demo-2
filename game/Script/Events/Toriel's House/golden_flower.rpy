@@ -47,7 +47,7 @@ label golden_flower_event:
                     "The flower quite enjoys your care"
                     "You must have a green thumb"
                 "Don't water it":
-                    "It seems healthy enough as is, I guess"
+                    "It seems healthy enough as is, you suppose"
     return
 
 label toriel_friendship_event_2:
@@ -58,17 +58,18 @@ label toriel_friendship_event_2:
     toriel "Still, it is quite strange is it not? It flowered only a little after you came. Perhaps you are some sort of good omen?"
     menu:
         "Or perhaps I’ve actually been watering it.":
-            $world.get_monster ('Toriel').FP -=5
+            $world.get_monster ('Toriel').update_FP(-5)
             show toriel blushing
             toriel "Err, yes. I suppose that is also a possibility."
             toriel "Although, even if only through common sense – it appears you have a way with plants."
         "It’s the power of friendship.":
-            $world.get_monster ('Toriel').FP +=8
+            $world.get_monster ('Toriel').update_FP(8)
             show toriel smile
             toriel "Oh, that is a nice way to put it!"
             toriel "Although, friendship or no - it appears you have a way with plants."
         "It’s the power of love.":
             #$world.get_monster ('Toriel').DP +=8
+            $world.get_monster ('Toriel').update_FP(8)
             show toriel surprised
             toriel "Ah yes. I suppose love is said to be the most powerful source... Still – you must have had a lot of love for that flower for it to bloom so fast..."
             toriel "Although, love or no – it appears you have a way with plants."
@@ -79,10 +80,10 @@ label toriel_friendship_event_2:
     toriel "It really is quite a shame. However, I am sure that with your help, we could bring it back around."
     menu:
         "I’d love to.":
-            $world.get_monster ('Toriel').FP +=5
+            $world.get_monster ('Toriel').update_FP(5)
             toriel "Fantastic! Please approach me about it when you would like to start."
         "That dead black thing? It’ll be tough.":
-            $world.get_monster ('Toriel').FP -=5
+            $world.get_monster ('Toriel').update_FP(-5)
             toriel "Oh yes, I fully realize. You do not have to of course – just if you have a boring day and nothing to do."
             toriel "Either way, there is no need to worry about it for now. Just approach me if you would like to start."
     

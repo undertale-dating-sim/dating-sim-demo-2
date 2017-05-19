@@ -26,7 +26,7 @@ label ruins_first_breakfast:
     toriel "Speaking of which, how did you sleep?"
     menu:
         "Great!":
-            #$world.get_monster ('Frisk').FP +=2
+            $world.get_monster ('Frisk').update_FP(2)
             $world.get_monster ('Toriel').FP +=2
             toriel "I am glad."
         "I slept alright.":

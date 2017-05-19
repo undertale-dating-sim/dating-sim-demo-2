@@ -141,6 +141,25 @@ label Toriel_manager_default(owner = False,pause = True):
         "Gift" if len(inventory.items) > 0:
             show screen gift_item_menu(owner)
             "What should you give them?"
+            
+        "Testing":
+            menu:
+                "Increase Friendship Points":
+                    $world.get_monster('Toriel').update_FP(10)
+                "Decrease Friendship Points":
+                    $world.get_monster('Toriel').update_FP(-10)
+                "True Love Date 1":
+                    call toriel_tl_date01_opening
+                "Friendship Event 1":
+                    call toriel_friendship_event01
+                "Friendship Event 2":
+                    call toriel_friendship_event_2
+                "Friendship Hangout":
+                    call toriel_friendship_hangout
+                "Heartbreak Date 1":
+                    pass
+                "Back":
+                    return
 
         "Leave":
             toriel "Take care, dear."

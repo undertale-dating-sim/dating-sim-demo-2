@@ -6,15 +6,15 @@ label toriel_friendship_event01:
         toriel "Actually, I have been meaning to talk to you. I wanted to know how you were getting along. Are you having fun in the ruins?"
         menu:
             "Yes, I love it here.":
-                $ world.get_monster('Toriel').FP -=20
+                $ world.get_monster('Toriel').update_FP(-20)
                 show toriel surprised
                 toriel "Oh, really? Somehow that comes across as a surprise – considering your recent behaviour."
             "Yes, I'm enjoying myself so far.":
-                $ world.get_monster('Toriel').FP -=20
+                $ world.get_monster('Toriel').update_FP(-20)
                 show toriel surprised
                 toriel "Oh, really? Somehow that comes across as a surprise – considering your recent behaviour."
             "I can't wait to get out of here.":
-                $ world.get_monster('Toriel').FP -=20
+                $ world.get_monster('Toriel').update_FP(-20)
                 show toriel annoyed
                 toriel "Hm. Perhaps that would be for the best. Especially considering your recent behaviour."
         show toriel annoyed
@@ -26,10 +26,10 @@ label toriel_friendship_event01:
             "Yes.":
                 toriel "Good."
             "No.":
-                $ world.get_monster('Toriel').FP -=15
+                $ world.get_monster('Toriel').update_FP(-15)
                 toriel "I expected nothing more. Nevertheless, my terms still stand. So, if only for your own wellbeing, I implore you to think very carefully about your future actions."
             "Yes, sorry.":
-                $ world.get_monster('Toriel').FP +=5
+                $ world.get_monster('Toriel').update_FP(5)
                 toriel "I accept your apology. As long as your behaviour changes, I am willing to leave this in the past."
         show toriel smile
         toriel "Well, that is that. I am glad we had this conversation."
@@ -44,17 +44,17 @@ label toriel_friendship_event01:
         toriel "Actually, I have been meaning to talk to you. It is nothing serious, do not be concerned! I just wanted to know how you were getting along. Have you had time to adjust to the ruins yet?"
         menu:
             "Yes, I love it here.":
-                $ world.get_monster('Toriel').FP +=5
+                $ world.get_monster('Toriel').update_FP(5)
                 toriel "That is wonderful. I was worried that the Ruins would get boring quickly for someone like you. Of course, it is a charming place to be, but every day is more or less the same."
             "I'm enjoying myself so far.":
-                $ world.get_monster('Toriel').FP +=3
+                $ world.get_monster('Toriel').update_FP(3)
                 toriel "That is wonderful. I was worried that the ruins would get boring quickly for someone like you. Of course, it is a charming place to be, but every day is more or less the same."
             "I can't wait to get out of here.":
-                $ world.get_monster('Toriel').FP -=4
+                $ world.get_monster('Toriel').update_FP(-4)
                 show toriel sad
                 toriel "I must say, that is a little upsetting to hear. Ah well, I will not press the issue further."
         if world.get_monster('Frisk').FP < 15:
-            $ world.get_monster('Toriel').FP +=6
+            $ world.get_monster('Toriel').update_FP(6)
             show toriel normal
             toriel "Although, if you do eventually decide to stay here for good, I would like to ask a favour of you. It concerns... Frisk."
             toriel "I am sure you have noticed now that they appear to be happy, and they have never once complained about life down here with me, but... There is not much for them to do around these parts."
@@ -72,7 +72,7 @@ label toriel_friendship_event01:
             
         else:
             #$ Kindess +=1
-            $ world.get_monster('Toriel').FP +=10
+            $ world.get_monster('Toriel').update_FP(10)
             show toriel normal
             toriel "Although, even if you do eventually decide to leave, I wanted to take this opportunity to... show my gratitude for spending time with Frisk."
             toriel "I am sure you have noticed now, that they appear to be happy, and they have never once complained about life down here with me, but..."
