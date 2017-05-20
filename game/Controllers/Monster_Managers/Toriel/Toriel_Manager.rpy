@@ -157,6 +157,7 @@ label Toriel_manager_default(owner = False,pause = True):
                 "Friendship Hangout":
                     call toriel_friendship_hangout
                 "Heartbreak Date 1":
+                    "nyi"
                     pass
                 "Back":
                     return
@@ -212,7 +213,10 @@ label toriel_gd_sup:
 label Toriel_Manager_Give_Snails:
     show toriel smile with Dissolve(.25)
     toriel "Thank you so much dear."
-    "* Toriel takes the [player.current_snails] snails from your inventory."
+    if player.current_snails == 1:
+        "* Toriel takes the lone snail from your inventory."
+    else:
+        "* Toriel takes the [player.current_snails] snails from your inventory."
 
     toriel "Here, please take this as a thank you."
     "* Toriel hands you [player.current_snails] gold."
@@ -233,21 +237,19 @@ label Toriel_Manager_Flirt:
         show toriel laughing with Dissolve(.25)
         toriel "Hehehehe!"
 
-    if Toriel.flirt_count == 1:
+    elif Toriel.flirt_count == 1:
         '"I love the way your fur looks in the ruins light."'
         show toriel blushing
         toriel "Oh! Ah... Thank you! Thank you very much, dear. That was very... Very kind of you to say! ...You are looking nice yourself! Hehehe!"
-
-    if Toriel.flirt_count == 2:
+    elif Toriel.flirt_count == 2:
         '"Butterscotch Pie has got nothing on you in sweetness"'
         show toriel blushing
         toriel "Oh my... I am... I am at quite a loss for words... Th-thank you dear. That was very... Well... Sweet of you!"
-
-    if Toriel.flirt_count == 3:
+    elif Toriel.flirt_count == 3:
         '"Are you using fire magic right now? Because you’re warming my heart."'
         show toriel blushing
         toriel "Oh dear... You’re making me so flustered... Thank... Thank you dear! I am... So glad I could make you feel happy!"
-
+    #else have a default flirt that keeps repeating?
     $ Toriel.flirt_count += 1
     return
     
@@ -276,7 +278,6 @@ label Toriel_Manager_Ask:
             toriel "Frisk seems to like Butterscotch more than Snail, however. So I try not to make Snail Pie too often."
             toriel "I have also been known to make the occasional cake."
 
-        #For some reason, these 2 options were seperated in the writing?
         "How’s Frisk treating you?":
             toriel "Ah, Frisk's arrival has been a true blessing. They are a very conscientious child."
             toriel "They help me with cooking, do chores without complaining, and they are kind to the other residents of the ruins."

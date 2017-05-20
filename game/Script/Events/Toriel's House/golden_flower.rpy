@@ -53,37 +53,37 @@ label golden_flower_event:
 label toriel_friendship_event_2:
     #if wateredTimes >3
     #if world.current_area.current_room.plant_watered_times == 3
-    show toriel smile
+    show toriel smile with Dissolve(.25)
     toriel "Oh! I have great news. I do not know if you have noticed, but the stunted golden flower in our corridor has finally bloomed. I had been fretting over that poor thing so long, too. Ah well, no worries now I suppose. Maybe it was just shy."
     toriel "Still, it is quite strange is it not? It flowered only a little after you came. Perhaps you are some sort of good omen?"
     menu:
         "Or perhaps I’ve actually been watering it.":
             $world.get_monster ('Toriel').update_FP(-5)
-            show toriel blushing
+            show toriel blushing with Dissolve(.25)
             toriel "Err, yes. I suppose that is also a possibility."
             toriel "Although, even if only through common sense – it appears you have a way with plants."
         "It’s the power of friendship.":
-            $world.get_monster ('Toriel').update_FP(8)
-            show toriel smile
+            $world.get_monster('Toriel').update_FP(8)
+            show toriel smile with Dissolve(.25)
             toriel "Oh, that is a nice way to put it!"
             toriel "Although, friendship or no - it appears you have a way with plants."
         "It’s the power of love.":
             #$world.get_monster ('Toriel').DP +=8
-            $world.get_monster ('Toriel').update_FP(8)
-            show toriel surprised
+            $world.get_monster('Toriel').update_FP(8)
+            show toriel surprised with Dissolve(.25)
             toriel "Ah yes. I suppose love is said to be the most powerful source... Still – you must have had a lot of love for that flower for it to bloom so fast..."
             toriel "Although, love or no – it appears you have a way with plants."
-    show toriel normal
+    show toriel normal with Dissolve(.25)
     toriel "That is already miles more than I can say for myself. It is not that I haven't tried. I have, and many times... but it seems I have a 'black thumb' of sorts."
     toriel "I am not terribly good at keeping anything alive for very long. Truthfully, it is impressive the flower survived as long as it did."
     toriel "If you have some spare time, perhaps sometime you would like to help me out with the tree in front of our home? Any leaves that grow on it just drop off, regardless of weather or season."
     toriel "It really is quite a shame. However, I am sure that with your help, we could bring it back around."
     menu:
         "I’d love to.":
-            $world.get_monster ('Toriel').update_FP(5)
+            $world.get_monster('Toriel').update_FP(5)
             toriel "Fantastic! Please approach me about it when you would like to start."
         "That dead black thing? It’ll be tough.":
-            $world.get_monster ('Toriel').update_FP(-5)
+            $world.get_monster('Toriel').update_FP(-5)
             toriel "Oh yes, I fully realize. You do not have to of course – just if you have a boring day and nothing to do."
             toriel "Either way, there is no need to worry about it for now. Just approach me if you would like to start."
     
