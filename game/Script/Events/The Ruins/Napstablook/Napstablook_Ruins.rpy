@@ -2480,7 +2480,7 @@ label blooky_ruins:
                 blooky "hey... i've been wondering...."
                 blooky "back up there...."
                 blooky "did you have... many friends...?"
-                blooky "i always thought humand were friendly... despite the fact that they locked us here...."
+                blooky "i always thought humans were friendly... despite the fact that they locked us here...."
                 
                 menu:
                     "I can't say I had many friends. I used to spend my days alone.": #(+1 DP)

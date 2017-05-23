@@ -15,6 +15,7 @@ init -10 python:
             self.default_room = "Dead Room"
             self.FP_events = {}
             self.FP = 0
+            self.HB = 0
             self.visited = False
             self.dialogue_toggle = False
             self.hover_sprite = None
