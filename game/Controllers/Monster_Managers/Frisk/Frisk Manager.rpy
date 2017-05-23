@@ -100,6 +100,7 @@ label initialize_frisk:
     image frisk angry  = im.Scale("characters/Frisk/Frisk_Angry.png",265,410)
     image frisk annoyed = im.Scale("characters/Frisk/Frisk_Annoyed.png",265,410)
     image frisk bigsmile = im.Scale("characters/Frisk/Frisk_BigSmile.png",265,410)
+    image frisk blushing = im.Scale("characters/Frisk/Frisk_Blush.png",265,410)
     image frisk disappointed = im.Scale("characters/Frisk/Frisk_Disappointed.png",265,410)
     image frisk distant = im.Scale("characters/Frisk/Frisk_Distant.png",265,410)
     image frisk normal = im.Scale("characters/Frisk/Frisk_Neutral.png",265,410)
@@ -107,12 +108,15 @@ label initialize_frisk:
     image frisk soulless = im.Scale("characters/Frisk/Frisk_Soulless.png",265,410)
     image frisk surprised = im.Scale("characters/Frisk/Frisk_Surprised.png",265,410)
     image frisk tearyeyes = im.Scale("characters/Frisk/Frisk_TearyEyes.png",265,410)
-    image frisk upset = im.Scale("characters/Frisk/Frisk_Upset.png",265,590)
+    image frisk upset = im.Scale("characters/Frisk/Frisk_Upset.png",265,410)
     image frisk whatno = "Capture.PNG"
     image frisk sad = "frisk.png"
     image frisk disgusted = "frisk.png"
     image frisk panicking = "frisk.png"
     image frisk panicking hands = "frisk.png"
+
+
+
     
     define frisk = ('Frisk')
     define friskChar = Character('Frisk', color="#FFFFFF")

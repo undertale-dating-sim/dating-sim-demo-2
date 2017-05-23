@@ -34,7 +34,7 @@ label start:
 
     #call show_buttons
     #$ renpy.music.play("audio/home.mp3")
-    $ move_to_room("Tunnels")
+    $ move_to_room("Grass Room")
     #show background ruins_caveroom    
     #jump vegetoid_ruins_re_start
     #jump start_the_game
