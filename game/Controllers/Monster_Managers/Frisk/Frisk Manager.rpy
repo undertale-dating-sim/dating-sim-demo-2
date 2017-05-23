@@ -99,23 +99,25 @@ label initialize_frisk:
 
     image frisk angry  = im.Scale("characters/Frisk/Frisk_Angry.png",265,410)
     image frisk annoyed = im.Scale("characters/Frisk/Frisk_Annoyed.png",265,410)
-    image frisk bigsmile = im.Scale("characters/Frisk/Frisk_BigSmile.png",265,410)
+    image frisk bigsmile = im.Scale("characters/Frisk/Frisk_Big_Smile.png",265,410)
     image frisk blushing = im.Scale("characters/Frisk/Frisk_Blush.png",265,410)
+    image frisk coveredface = im.Scale("characters/Frisk/Frisk_CoveredFace.png",265,410)
+    image frisk coveredfacewitheyes = im.Scale("characters/Frisk/Frisk_CoveredFaceandeyered.png",265,410)
     image frisk disappointed = im.Scale("characters/Frisk/Frisk_Disappointed.png",265,410)
+    image frisk disgusted = im.Scale("characters/Frisk/Frisk_Disgusted.png",265,410)
     image frisk distant = im.Scale("characters/Frisk/Frisk_Distant.png",265,410)
-    image frisk normal = im.Scale("characters/Frisk/Frisk_Neutral.png",265,410)
-    image frisk smallsmile = im.Scale("characters/Frisk/Frisk_SmallSmile.png",265,410)
+    image frisk giggly = im.Scale("characters/Frisk/Frisk_Giggly.png",265,410)
+    image frisk hurtsurprised = im.Scale("characters/Frisk/Frisk_Hurtful_Surprised.png",265,410)
+    image frisk normal = im.Scale("characters/Frisk/Frisk_Normal.png",265,410)
+    image frisk panickinghands = im.Scale("characters/Frisk/Frisk_Panic_Hands.png",265,410)
+    image frisk panicking = im.Scale("characters/Frisk/Frisk_Panicking.png",265,410)
+    image frisk sad = im.Scale("characters/Frisk/Frisk_Sad.png",265,410)
+    image frisk somehappy = im.Scale("characters/Frisk/Frisk_Somewhat_Happy.png",265,410)
+    image frisk smallsmile = im.Scale("characters/Frisk/Frisk_Tiny_Smile.png",265,410)
     image frisk soulless = im.Scale("characters/Frisk/Frisk_Soulless.png",265,410)
     image frisk surprised = im.Scale("characters/Frisk/Frisk_Surprised.png",265,410)
-    image frisk tearyeyes = im.Scale("characters/Frisk/Frisk_TearyEyes.png",265,410)
+    image frisk tearyeyes = im.Scale("characters/Frisk/Frisk_Teary_Eyes.png",265,410)
     image frisk upset = im.Scale("characters/Frisk/Frisk_Upset.png",265,410)
-    image frisk whatno = "Capture.PNG"
-    image frisk sad = "frisk.png"
-    image frisk disgusted = "frisk.png"
-    image frisk panicking = "frisk.png"
-    image frisk panicking hands = "frisk.png"
-
-
 
     
     define frisk = ('Frisk')
