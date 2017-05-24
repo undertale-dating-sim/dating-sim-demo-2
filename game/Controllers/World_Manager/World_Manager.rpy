@@ -29,7 +29,7 @@ init -10 python:
     #sends a monster to the dead room.   handy for getting them out of a room quickly
     def banish(monster):
         world.get_monster(monster).move_to_room("Dead Room")
-        reload_room()
+        #reload_room()
 
     #runs all of the updates for the world
     def update():

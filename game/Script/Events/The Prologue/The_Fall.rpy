@@ -125,7 +125,7 @@ label .item_menu:
             call .pick_up(Stick())
         "Pick up the rose":
             "* A pristine, red rose. What's it doing among all of this trash?"
-            call .pick_up(Flower())
+            call .pick_up(Rose())
 
     return
 
@@ -198,14 +198,14 @@ label tf_grass_room_options:
 
 label summon_flowey:
 
-    $ give_monster_event("flowey","flowey_introduction")
-    $ summon("flowey")
+    $ give_monster_event("Flowey","flowey_introduction")
+    $ summon("Flowey")
     return
 
 label flowey_introduction(monster):
 
     "* The small cave suddenly smells strongly like flowers." 
-    show flowey backside
+    show flowey backside with Dissolve(.25)
     "* A large, golden flower has sprouted right where you first fell, appearing to bask in the light coming from the ceiling."
     "* It definitely hadn't been there earlier."
     unknown "Psst... down here!"
@@ -213,11 +213,11 @@ label flowey_introduction(monster):
     menu:
         "Look around":
             "* Nothing else is different, aside from the flower."
-            show flowey annoyed
+            show flowey annoyed with Dissolve(.25)
             unknown "Hey, buddy, I'm over here!"
         "Approach the flower":
             #ADD BRAVERY +1
-            show flowey normal
+            show flowey normal with Dissolve(.25)
             unknown "Howdy!"
             unknown "Hehe, did I startle you?"
         "Run away":
@@ -232,7 +232,7 @@ label flowey_introduction(monster):
     return
 label flowey_intro_annoyed(monster):
     "* You return to the small cavern. The odd flower is still there."
-    show flowey annoyed
+    show flowey annoyed with Dissolve(.25)
     unknown "Were you really just gonna ignore me? Gee, you're a rude one."
     unknown "Since you obviously have no manners, allow me to introduce myself first."
     call ruins_intro_flowey
@@ -260,72 +260,72 @@ label grass_room_revisited:
 
 label ruins_intro_flowey:
         
-    show flowey normal
+    show flowey normal with Dissolve(.25)
     unknown "Howdy! I'm Flowey, Flowey the flower! You're new here, aren'tcha?"
     flowey "You look a little nervous... are you scared of little ol' me?"
 
     menu:
         flowey "You look a little nervous... are you scared of little ol' me?"
         "Take a step back":
-            show flowey sideglance
+            show flowey sideglance with Dissolve(.25)
             flowey "Hey. What's that for?" 
-            show flowey smug
+            show flowey smug with Dissolve(.25)
             flowey "Haven't you ever seen a talking flower before?"
             menu:
                 flowey "Haven't you ever seen a talking flower before?"
                 "Of course I have!":
-                    show flowey sideglance
+                    show flowey sideglance with Dissolve(.25)
                     flowey "Hehe, are you sure about that?"
                 "Why would I have?":
                     flowey "Oh, a wise guy, huh?"
-                    show flowey sideglance
+                    show flowey sideglance with Dissolve(.25)
                     flowey "No reason, really..."
         '"No!"':
             flowey "Oh really?"
-            show flowey smug
+            show flowey smug with Dissolve(.25)
             flowey "Don't you know that talking to strangers is dangerous?"
         "Stare":
             flowey "..."
-            show flowey sideglance
+            show flowey sideglance with Dissolve(.25)
             flowey "..."
-            show flowey smug
+            show flowey smug with Dissolve(.25)
             flowey "Wow, do you need some water?"
             flowey "...Because you look mighty thirsty."
 
-    show flowey sideglance
+    show flowey sideglance with Dissolve(.25)
     flowey "Well, at any rate..."
 
-    show flowey normal
+    show flowey normal with Dissolve(.25)
     flowey "Things have changed around here..."
     flowey "The normal rules don't apply anymore, if you know what I mean."
     flowey "So don't worry..."
 
-    show flowey horror
+    show flowey horror with Dissolve(.25)
     flowey "I'm not going to kill you."
 
-    show flowey surprised
+    show flowey surprised with Dissolve(.25)
     flowey "...I can't."
 
-    show flowey normal
+    show flowey normal with Dissolve(.25)
     flowey "Instead, I have a new game I'd like to play."
     flowey "It's a game about true love..."
 
-    show flowey horror
+    show flowey horror with Dissolve(.25)
     flowey "...or tragic h e a r t b r e a k..."
 
-    show flowey wink
+    show flowey wink with Dissolve(.25)
     flowey "It'll be fun, don'tcha think?"
 
-    show flowey sideglance
+    show flowey sideglance with Dissolve(.25)
     flowey "Although, I hope you can come up with a better story than the last human who fell down here. They didn't make it too far..."
 
-    show flowey normal
+    show flowey normal with Dissolve(.25)
     flowey "Guess that means it's up to you to mix things up a bit!"
     
-    show flowey annoyed
+    show flowey annoyed with Dissolve(.25)
     flowey "Try not to disappoint me..."
     
-    show flowey wink
+    show flowey wink with Dissolve(.25)
     flowey "Good luck!"
     
     hide flowey
@@ -848,7 +848,7 @@ label unlock_movement_engine:
     #activates the movement engine, adds the item room event to the grass room, shows the unlock text, and locks ruins entrance
     $ get_room("Grass Room").add_event("tf_item_room",True)
     $ set_lock_room("Ruins Entrance",True)
-    $ move_to_room("Cave Room",False,None)
+    $ move_to_room("Cave Room",False)
     call show_buttons
     "Movement unlocked!"
     "Press E or Click the Nav Menu to navigate the Ruins!"
