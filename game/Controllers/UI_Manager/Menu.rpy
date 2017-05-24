@@ -149,6 +149,7 @@ screen show_information_overlay:
                 vbox:
                     text "[world.current_area.current_room.current_monster.name]"
                     text "FP:[world.current_area.current_room.current_monster.FP]"
+                    text "HB:[world.current_area.current_room.current_monster.HB]"
 
 
 #if you look, I have added the multiple monster screen here.  It was causing a divide by zero error and I'm not sure how to fix it
