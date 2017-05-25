@@ -15,6 +15,8 @@ init -10 python:
             self.default_room = "Dead Room"
             self.FP_events = {}
             self.FP = 0
+            self.DP_events = {}
+            self.DP = 0
             self.HB_events = {}
             self.HB = 0
             self.visited = False
@@ -134,7 +136,9 @@ init -10 python:
         def update_FP(self,amount):
             self.FP += amount
             renpy.call("word_scroll",amount)
-            
+        def update_DP(self,amount):
+            self.DP += amount
+            renpy.call("word_scroll",amount)
         def update_HB(self,amount):
             self.HB += amount
             renpy.call("word_scroll",amount)

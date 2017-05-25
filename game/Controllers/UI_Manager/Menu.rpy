@@ -149,6 +149,7 @@ screen show_information_overlay:
                 vbox:
                     text "[world.current_area.current_room.current_monster.name]"
                     text "FP:[world.current_area.current_room.current_monster.FP]"
+                    text "DP:[world.current_area.current_room.current_monster.DP]"
                     text "HB:[world.current_area.current_room.current_monster.HB]"
 
 
