@@ -22,6 +22,9 @@ label initialize:
     image napstablook normal = "characters/Napstablook/napstablook_normal.png"
 
     image whimsun normal = "characters/Whimsun/whimsun_normal.png"
+    image whimsun fetal1 = "characters/Whimsun/whimsun_fetal1.png"
+    image whimsun fetal2 = "characters/Whimsun/whimsun_fetal2.png"
+    image whimsun happy = "characters/Whimsun/whimsun_happy.png"
 
     image migosp normal = "characters/Migosp/migosp_normal.png"
     image migosp angry = "characters/Migosp/migosp_angry.png"
