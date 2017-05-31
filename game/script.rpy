@@ -31,8 +31,8 @@ define test = Character("Sans", callback=beepy_voice)
 ###################
 label start:
 
-    $ get_room ("Froggit Room").add_event('whimsun_re_start', False)
-    $ move_to_room ("Froggit Room")
+    #$ get_room ("Froggit Room").add_event('whimsun_re_start', False)
+    $ move_to_room ("Grass Room")
     stop music
 
     #call show_buttons

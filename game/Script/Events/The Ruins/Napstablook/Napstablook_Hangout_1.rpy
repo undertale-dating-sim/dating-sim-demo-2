@@ -89,7 +89,8 @@ label napstablook_hangout_1:
                         $world.get_monster('Napstablook').update_FP(1)
                         napstablook "i'll wait here.... good luck....."
                         
-                        ##### NYI - RANDOMIZED SNAIL GETTING CODE
+                        call demo_undersnail
+                        scene background ruins_snailhunting_room
                         $ snail_score = 0
                         
                         show napstablook normal at napstabob with dissolve
