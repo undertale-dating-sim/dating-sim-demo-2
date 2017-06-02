@@ -202,7 +202,7 @@ label summon_flowey:
     $ summon("Flowey")
     return
 
-label flowey_introduction(monster):
+label flowey_introduction():
 
     "* The small cave suddenly smells strongly like flowers." 
     show flowey backside with Dissolve(.25)
@@ -230,7 +230,7 @@ label flowey_introduction(monster):
             $ move_to_room("Grass Room")
     jump ruins_intro_flowey
     return
-label flowey_intro_annoyed(monster):
+label flowey_intro_annoyed():
     "* You return to the small cavern. The odd flower is still there."
     show flowey annoyed with Dissolve(.25)
     unknown "Were you really just gonna ignore me? Gee, you're a rude one."

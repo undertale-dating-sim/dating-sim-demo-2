@@ -222,7 +222,7 @@ init -10 python:
                     if room.name == name:
                         self.current_area = area
                         self.current_area.current_room = room
-                        renpy.call_in_new_context("load_room",loop,transition)
+                        renpy.call("load_room",loop,transition)
                         return True
             renpy.notify(name + " not found.")
 

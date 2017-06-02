@@ -197,9 +197,9 @@ label Toriel_Manager_Chat(owner=False):
     return
 
 label toriel_gd_howdoing:
-     show toriel smile with Dissolve(.25)
-     toriel "I am doing well! Thank you for asking. How are you doing, dear?"
-     menu:
+    show toriel smile with Dissolve(.25)
+    toriel "I am doing well! Thank you for asking. How are you doing, dear?"
+    menu:
          "I'm good, thanks.":
              show toriel smile with Dissolve(.25)
              toriel "That is good to hear."

@@ -127,6 +127,7 @@ label buy_item(item):
 
 label Shop_Intro:
     $ count = 0
+    call hide_buttons
     while count < len(muffetShop.welcome['text']):
         $ line = muffetShop.welcome['text'][count]
         "[line]"
@@ -166,6 +167,7 @@ label Muffet_Shop:
 label Shop_Exit:
     hide screen shop_box
     hide screen buy_box
+    call show_buttons
     #stop music
     return
     
