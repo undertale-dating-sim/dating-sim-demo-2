@@ -34,20 +34,21 @@ define test = Character("Sans", callback=beepy_voice)
 ###################
 
 label start:
-    #$ get_room ("Froggit Room").add_event('whimsun_re_start', False)
-    jump ruins_basement_door_first_visit
+   # $ get_room ("Ruins Entrance").add_event(, False)
+    $ move_to_room ("Ruins Entrance")
+#    jump ruins_basement_door_first_visit
     
-    $ move_to_room ("Grass Room")
-    stop music
+#   $ move_to_room ("Grass Room")
+#    stop music
     #call show_buttons
     #$ renpy.music.play("audio/home.mp3")
-    $ banish("Flowey")
-    $ banish("Toriel")
-    $ banish("Frisk")
-    $ banish("Napstablook")
+#    $ banish("Flowey")
+#    $ banish("Toriel")
+#    $ banish("Frisk")
+#    $ banish("Napstablook")
     #jump the_beginning
-    $ get_room("Cave Room").add_event('flowey_introduction',False)
-    $ move_to_room("Cave Room")
+#    $ get_room("Cave Room").add_event('flowey_introduction',False)
+#    $ move_to_room("Cave Room")
     #show background ruins_caveroom    
     #jump vegetoid_ruins_re_start
     #jump start_the_game

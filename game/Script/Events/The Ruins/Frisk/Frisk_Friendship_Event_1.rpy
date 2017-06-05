@@ -131,7 +131,7 @@ label frisk_friendhsip_event_1:
             frisk "No! Don’t!"
             frisk "She can’t help!"
             frisk "I-I can’t let her see me like this again!"
-        "I thought you could handle things by yourself."
+        "I thought you could handle things by yourself.":
             $world.get_monster ('Frisk').FP -=3
             frisk "I..."
             frisk "..."

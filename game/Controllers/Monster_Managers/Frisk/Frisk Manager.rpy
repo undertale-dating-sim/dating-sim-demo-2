@@ -145,12 +145,14 @@ label Frisk_manager_default(owner = False,pause = True):
         frisk_howare = False
         frisk_doingwell = False
         frisk_didtoday = False
+        frisk_chataway = False
 
         ## Ask options
         frisk_forfun = False
         frisk_livetoriel = False
         frisk_blookyopinion = False
         frisk_howfell = False
+        frisk_askaway = False
 
         ## Flirt options
         frisk_iscute = False
@@ -199,12 +201,12 @@ label Frisk_manager_default(owner = False,pause = True):
 ######     Frisk's dialogue options     ######
 
 label Frisk_dialogue:
-    show frisk normal
+    show frisk normal with Dissolve(.25)
     
     menu:
-        "Chat":
+        "Chat" if frisk_chataway is False:
             jump Frisk_chat
-        "Ask":
+        "Ask" if frisk_askaway is False:
             jump Frisk_ask
         "Flirt" if frisk_flirtaway is False:
             jump Frisk_flirt
@@ -214,9 +216,10 @@ label Frisk_dialogue:
 
 
 label Frisk_chat:
-    show frisk normal
+    show frisk normal with Dissolve(.25)
     
     if frisk_howare and frisk_doingwell and frisk_didtoday:
+        $frisk_chataway = True 
         "You tried to say something, but couldn't think of anything to say."
         jump Frisk_dialogue
         
@@ -228,26 +231,26 @@ label Frisk_chat:
             
             menu:
                 "I’m good, too.":
-                    show frisk smallsmile
+                    show frisk smallsmile with Dissolve(.25)
                     frisk "Well, that’s good."
                 "Never better!":
-                    show frisk bigsmile
+                    show frisk bigsmile with Dissolve(.25)
                     frisk "Great!"
                 "Eh.":
-                    show frisk distant
+                    show frisk somehappy with Dissolve(.25)
                     frisk "Oh... Well, maybe tomorrow will be better for you."
-                    show frisk smallsmile
+                    show frisk smallsmile with Dissolve(.25)
                     frisk "You gotta keep your chin up!"
                     
             jump Frisk_chat
                     
         "Is everything going well for you?" if frisk_doingwell is False:
             $ frisk_doingwell = True
-            show frisk distant
+            show frisk somehappy with Dissolve(.25)
             
             frisk "Oh, yeah..."
             
-            show frisk bigsmile
+            show frisk bigsmile with Dissolve(.25)
             
             frisk "No complaints here!"
             
@@ -266,10 +269,11 @@ label Frisk_chat:
             jump Frisk_interact
             
     label Frisk_ask:
-        show frisk normal
+        show frisk normal with Dissolve(.25)
         
         if frisk_forfun and frisk_livetoriel and frisk_blookyopinion and frisk_howfell:
-            show frisk distant
+            $frisk_askaway = True 
+            show frisk distant with Dissolve(.25)
             "Frisk looks a little uncomfortable."
             "Maybe it's better if you don't say anything..."
             jump Frisk_dialogue
@@ -277,7 +281,7 @@ label Frisk_chat:
         menu:
             "What do you like to do for fun?" if frisk_forfun is False:
                 $ frisk_forfun = True
-                show frisk smallsmile
+                show frisk smallsmile with Dissolve(.25)
                 
                 frisk "I love to paint things that I see down here!"
                 
@@ -286,14 +290,14 @@ label Frisk_chat:
                         $ owner.FP += 3
                         
                         if frisk_hangoutcompleted:
-                            show frisk bigsmile
+                            show frisk giggly with Dissolve(.25)
                             frisk "I already knew that, silly!"
                             frisk "And you already knew that I liked to paint, so why’d you ask?"
                             
                             menu:
                                 "I was just wondering if you had any other hobbies.":
                                     $ owner.FP += 3
-                                    show frisk smallsmile
+                                    show frisk smallsmile with Dissolve(.25)
                                     
                                     frisk "Well, not really. Maybe I should get some."
                                     
@@ -302,13 +306,13 @@ label Frisk_chat:
                                     frisk "Alright, then!"
                                         
                         else:
-                            show frisk bigsmile
+                            show frisk bigsmile with Dissolve(.25)
                             frisk "That’s great! We should paint together sometime!"
                             
                         jump Frisk_ask
                         
                     "You should show me your paintings sometime.":
-                        show frisk smallsmile
+                        show frisk smallsmile with Dissolve(.25)
                         
                         frisk "Yeah?"
                         
@@ -322,7 +326,7 @@ label Frisk_chat:
                     "Painting? That’s boring.":
                         $ owner.FP -= 3
                         
-                        show frisk disappointed
+                        show frisk disappointed with Dissolve(.25)
                         
                         frisk "It’s really not, if you give it a chance..."
                         
@@ -330,15 +334,15 @@ label Frisk_chat:
                         
             "What’s living with Toriel like?" if frisk_livetoriel is False:
                 $ frisk_livetoriel = True
-                show frisk bigsmile
+                show frisk bigsmile with Dissolve(.25)
                 
                 frisk "She’s the best mom! I couldn’t have asked for anyone better to have taken me in..."
                 
-                show frisk normal
+                show frisk normal with Dissolve(.25)
                 
                 frisk "When I fell down here, I was pretty... lost. But Mom found me, and everything’s been great ever since."
                 
-                show frisk smallsmile
+                show frisk somehappy with Dissolve(.25)
                 
                 frisk "Well, if not great, then at least okay. And ‘okay’ is just fine by me."
                 
@@ -346,7 +350,7 @@ label Frisk_chat:
                 
             "What do you think of Napstablook?" if frisk_blookyopinion is False:
                 $ frisk_blookyopinion = True
-                show frisk smallsmile
+                show frisk smallsmile with Dissolve(.25)
                 
                 frisk "They’re nice! They can be pretty shy... Well, make that very shy. But they’re fun to hang out with, in their own way."
                 
@@ -354,7 +358,7 @@ label Frisk_chat:
                 
             "How did you fall?" if frisk_howfell is False:
                 $ frisk_howfell = True
-                show frisk distant
+                show frisk distant with Dissolve(.25)
                 
                 frisk "...I don’t remember."
                 
@@ -362,19 +366,19 @@ label Frisk_chat:
                     "Did I upset you? I’m sorry. I won’t ask again.":
                         $ owner.FP += 3
                         
-                        show frisk smallsmile
+                        show frisk somehappy with Dissolve(.25)
                         
                         frisk "It’s okay. You were only curious."
                         
                         jump Frisk_ask
                         
                     "Do you miss the surface?":
-                        show frisk disappointed
+                        show frisk disappointed with Dissolve(.25)
                         
                         frisk "I can’t really say, since I don’t remember much of my surface life, either. Do I wanna go back, though?"
                         frisk "Hard to answer. On one hand, I really want to go back to the surface with all of the monsters. They haven’t seen the sun in so long... Some monsters have never seen it at all. I know they’d all be much happier on the surface."
                         
-                        show frisk tearyeyes
+                        show frisk sad with Dissolve(.25)
                         
                         frisk "...On the other hand, I know how humans can be. I’m not sure if I really want to go back in that case, with or without the monsters."
                         
@@ -383,7 +387,7 @@ label Frisk_chat:
                     "I’m sure you remember; you’ve gotta think harder.":
                         $ owner.FP -= 3
                         
-                        show frisk annoyed
+                        show frisk annoyed with Dissolve(.25)
                         
                         frisk "I already told you, I can’t remember."
                         
@@ -393,7 +397,7 @@ label Frisk_chat:
                 jump Frisk_dialogue
                 
     label Frisk_flirt:
-        show frisk normal
+        show frisk normal with Dissolve(.25)
         
         if frisk_iscute and frisk_fellfor and frisk_smilelit:
             $ frisk_flirtaway = True
@@ -403,11 +407,11 @@ label Frisk_chat:
         menu:
             "Aside from being cute, what do you do for a living?" if frisk_iscute is False:
                 $ frisk_iscute = True
-                show frisk surprised
+                show frisk surprised with Dissolve(.25)
                     
                 frisk "Oh! Haha, thanks!"
                 
-                show frisk smallsmile
+                show frisk smallsmile with Dissolve(.25)
                 
                 frisk "I mostly just hunt snails, if you’re actually wondering."
                 
@@ -415,7 +419,7 @@ label Frisk_chat:
                 
             "Do you have a band-aid? Because I scraped my knees falling for you." if frisk_fellfor is False:
                 $ frisk_fellfor = True
-                show frisk smallsmile
+                show frisk giggly with Dissolve(.25)
                 
                 frisk "Must’ve been a long fall, if you ended up all the way down here!"
                 
@@ -423,7 +427,7 @@ label Frisk_chat:
                 
             "Your smile lit up the room, so I just had to come over." if frisk_smilelit is False:
                 $ frisk_smilelit = True
-                show frisk bigsmile
+                show frisk giggly with Dissolve(.25)
                 
                 frisk "That’s a good one! Gotta remember that for some other time."
                 
