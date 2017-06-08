@@ -35,7 +35,6 @@ define test = Character("Sans", callback=beepy_voice)
 
 label start:
    # $ get_room ("Ruins Entrance").add_event(, False)
-    $ move_to_room ("Ruins Entrance")
 #    jump ruins_basement_door_first_visit
     
 #   $ move_to_room ("Grass Room")
@@ -51,7 +50,7 @@ label start:
 #    $ move_to_room("Cave Room")
     #show background ruins_caveroom    
     #jump vegetoid_ruins_re_start
-    #jump start_the_game
+    jump start_the_game
     return
 
 
@@ -116,7 +115,7 @@ label after_load:
 ###################
 
 label show_buttons:
-
+    
     show screen show_menu_button
     show screen show_nav_button
     show screen show_map_button
