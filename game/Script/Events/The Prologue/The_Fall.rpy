@@ -1,4 +1,8 @@
 label the_beginning:
+    $ player.current_health = 1
+    $ player.gold = 0
+    $ player.current_snails = 0
+
     #play thud
     call hide_buttons
     stop music
