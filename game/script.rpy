@@ -34,8 +34,10 @@ define test = Character("Sans", callback=beepy_voice)
 ###################
 
 label start:
-   
-    jump the_beginning
+    
+    $ world.update_world(True)
+    $ move_to_room("Cave Room")
+    #jump the_beginning
     return
 
 

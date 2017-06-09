@@ -127,6 +127,9 @@ init -10 python:
                 renpy.call_in_new_context("give_Gift_%s_Unknown" % self.name)
             return False
 
+        def handle_special_events(self):
+            return False
+
         def update_schedule(self,day,timezone,location,event):
 
             self.schedule[day][timezone] = {location:event}

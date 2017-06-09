@@ -78,7 +78,7 @@ init -10 python:
             self.current_area = False
             self.maxTime = 1440
             self.currentTime = 700
-            self.day = 0
+            self.day = 1
             self.timeZones = {"Night":0,"Morning":480,"Day":720,"Afternoon":960,"Evening":1200}
             self.days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
             self.generate_ruins()
@@ -100,9 +100,9 @@ init -10 python:
             #seed the random monsters
             # day 0 is the tutorial
 
-            if self.day > 0:
-                self.seed_random_monsters()
-                self.seed_random_events()
+            #if self.day > 0:
+                #self.seed_random_monsters()
+                #self.seed_random_events()
             
             #reset the gift counts
             for an,a in self.areas.iteritems():
@@ -154,7 +154,10 @@ init -10 python:
                     rr = renpy.random.choice(room_list)
                     a.rooms[rr].events[re.label] = re
                    
-            
+        #gets the current timezone and the day of the week
+        #if set to update the day, cycles through each area,room, monster
+        #each monster will move to their given room for their schedule.
+        #if there is a special event, that will be done as well
         def update_world(self,update_day = False):
 
             timezone = self.get_current_timezone()
@@ -171,6 +174,9 @@ init -10 python:
                                         m.move_to_room(x)
                                 else:
                                     m.move_to_room(m.default_room)
+
+                            m.handle_special_events()
+
                 self.update_day()
 
             return

@@ -1,5 +1,4 @@
 label flowey_hangout1:
-    scene background floweyroomplaceholder
     #Hangout 1 
     #{After tutorial}
     #This initial "Hangout" dialogue will occur regardless if player has or has not yet met the prerequisites for a friendship with flowey
