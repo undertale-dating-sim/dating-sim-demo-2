@@ -32,6 +32,13 @@ init -9 python:
                 renpy.call_in_new_context("give_Gift_%s_Unknown" % self.name)
             return
 
+        def handle_special_events(self):
+
+            #hangout 1, done when the tutorial is over
+            if "flowey_hangout_1" not in player.variables and world.day > 0:
+                self.special_event = Event('flowey_hangout1',False,self)
+
+
     #update_schedule(self,day,timezone,location,event):
 
         def handle_schedule(self):
