@@ -1,5 +1,4 @@
 label initialize:
-
     #prologue
     image background prologue1 = "backgrounds/prologue.jpg"
     image background intro = "backgrounds/background-intro.png"
@@ -80,5 +79,5 @@ label initialize:
         player = Player()
         menu_state = "stats"
         world = World()
-        world.set_current_time(700,True)
+        world.set_current_time(700,False)
         cell_convo_count = 0
