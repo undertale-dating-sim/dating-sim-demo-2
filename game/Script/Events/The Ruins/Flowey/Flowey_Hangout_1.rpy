@@ -3,11 +3,11 @@ label flowey_hangout1:
     #Hangout 1 
     #{After tutorial}
     #This initial "Hangout" dialogue will occur regardless if player has or has not yet met the prerequisites for a friendship with flowey
-    show flowey surprised with dissolve
+    show flowey surprised with Dissolve(.25)
     flowey "Wha-?! You snuck up on me."
 
     label flowey_hangout1_Q1:
-        show flowey suspicious
+        show flowey suspicious with Dissolve(.25)
         flowey "What do you want? I'm not here to talk, and I'm not gonna give you any tips, either. Buzz off."
         
         menu:
@@ -18,23 +18,23 @@ label flowey_hangout1:
             "I'd like to talk to you, flower.": 
                 $world.get_monster('Flowey').update_HB(2)
                 
-        show flowey horror
+        show flowey horror with Dissolve(.25)
         flowey "I d i o t . You're in the wrong place. Get out before you piss me off. I'm busy."
         
         menu:
             "Alright, bye.":
                 return
             "Busy? Busy doing what?":
-                show flowey annoyed
+                show flowey annoyed with Dissolve(.25)
                 flowey "That's none of your business." 
             "What does a flower have to do?":
                 $world.get_monster('Flowey').update_HB(2)
-                show flowey angry
+                show flowey angry with Dissolve(.25)
                 flowey "Seriously? More than you do {i}clearly{/i}."
                 flowey "I'm not the one wasting my time annoying someone who has no interest in talking to them."
                 flowey "I have a lot more to do than you, apparently."
 
-                show flowey annoyed
+                show flowey annoyed with Dissolve(.25)
             
                 menu:
                     "I'm just interested in what life is like down here.":
