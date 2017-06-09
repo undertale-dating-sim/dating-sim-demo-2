@@ -16,6 +16,7 @@ screen show_menu:
                 vbox:
                     text "[player.name]"
                     text "Day: "
+                    text ""
                     text "Time: "
                     text world.get_current_timezone()
                     text "HP:"
@@ -25,6 +26,7 @@ screen show_menu:
                         text "Equip: "
                 vbox:
                     text ""
+                    text "[world.day]"
                     text world.get_current_day()
                     text world.get_current_time()
                     text ""
@@ -78,38 +80,39 @@ label decrement_hp:
     return
 
 screen debug_monsters:
-    frame pos(.3,.5):
-        background Frame("UI/text-box3.png",21,21)
-        ymaximum 300
-        vbox:
-            hbox:
-                textbutton "Day Back" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("decrement_time","day")]
-                textbutton "Day Forward" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("increment_time","day")]
-            hbox:
-                textbutton "Time Back" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("decrement_time","hour")]
-                textbutton "Time Forward" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("increment_time","hour")]
-
-            hbox:
-                textbutton "HP Down" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("decrement_hp")]
-                textbutton "HP Up" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("increment_hp")]
-            vpgrid:
-                draggable True
-                mousewheel True
-                scrollbars "vertical,horizontal"
-                side_xalign 0.5
-                cols 1
-                spacing 30
+    if 1 == 2:
+        frame pos(.3,.5):
+            background Frame("UI/text-box3.png",21,21)
+            ymaximum 300
+            vbox:
                 hbox:
-                    text "Name"
-                    text "      "
-                    text "Location"
-                for a_name,a in world.areas.iteritems():
-                    for r_name,r in a.rooms.iteritems():
-                        for m in r.monsters:
-                            hbox:
-                                text "[m.name]"
-                                text "      "
-                                text "[r.name]"
+                    textbutton "Day Back" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("decrement_time","day")]
+                    textbutton "Day Forward" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("increment_time","day")]
+                hbox:
+                    textbutton "Time Back" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("decrement_time","hour")]
+                    textbutton "Time Forward" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("increment_time","hour")]
+
+                hbox:
+                    textbutton "HP Down" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("decrement_hp")]
+                    textbutton "HP Up" action [Play ("sound", "audio/sfx/click.wav"), ui.callsinnewcontext("increment_hp")]
+                vpgrid:
+                    draggable True
+                    mousewheel True
+                    scrollbars "vertical,horizontal"
+                    side_xalign 0.5
+                    cols 1
+                    spacing 30
+                    hbox:
+                        text "Name"
+                        text "      "
+                        text "Location"
+                    for a_name,a in world.areas.iteritems():
+                        for r_name,r in a.rooms.iteritems():
+                            for m in r.monsters:
+                                hbox:
+                                    text "[m.name]"
+                                    text "      "
+                                    text "[r.name]"
                             # text "Schedule"
                             # for s,t in m.schedule.iteritems():
                             #     for x in t:
