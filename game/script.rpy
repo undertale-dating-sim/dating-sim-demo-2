@@ -1,9 +1,10 @@
 init python:
 
+
+
     
+
     def beepy_voice(event, interact=True, **kwargs):
-        
-        
         if not interact:
             return
         if event == "show":
@@ -11,8 +12,9 @@ init python:
         #if event == "slow_done":
             #renpy.sound.stop()
 
-    def telemetry(string):
 
+
+    def telemetry(string):
         dummy = list(string)
         dummy2 = "{cps=100}"
         for d in dummy:
@@ -25,31 +27,33 @@ init python:
 
 define test = Character("Sans", callback=beepy_voice)
 
-
 ###################
+
 #    Our basic start label.  Will usually g to start the game.
-###################
-label start:
-    stop music
 
-    #call show_buttons
-    #$ renpy.music.play("audio/home.mp3")
-    $ move_to_room("Tunnels")
-    #show background ruins_caveroom    
-    #jump vegetoid_ruins_re_start
-    #jump start_the_game
+###################
+
+label start:
+   
+    jump the_beginning
     return
 
 
 
+
+
+
+
 label Snail_Hunter_Random_Event:
-    
+
     call show_buttons
     $ renpy.pause()
 
     if player.last_snail_day == False or player.last_snail_day != world.day:
+
         "* You notice the flowers are moving a little."
         menu:
+
             "What do you do?"
             "Check under the flowers":
                 $snail_count = renpy.random.randint(3,10)
@@ -61,20 +65,24 @@ label Snail_Hunter_Random_Event:
                 else:
                     $ snail_count = (player.current_snails + snail_count) - player.max_snails
                     "[snail_count] added to inventory."
+
                 $ player.current_snails += snail_count
                 $ player.last_snail_day = world.day
 
             "Ignore it. Too scary.":
                 return
+
     else:
         "* A very quiet, peaceful room.  It looks new.  The flowers are still."
-    
     return
-###################
-    # This label is mainly for dev purposes.  It goes off after we hit Shift + R.
 
-    # It currently just resets the multiple monster code, but it isn't perfect.  Needs more tweaking.
 ###################
+
+    # This label is mainly for dev purposes.  It goes off after we hit Shift + R.
+    # It currently just resets the multiple monster code, but it isn't perfect.  Needs more tweaking.
+
+###################
+
 label after_load:
 
     stop music
@@ -84,11 +92,15 @@ label after_load:
     jump start
     return
 
+
+
 ###################
     # This label shows all of the UI Buttons.  Needs to be called at the start of each room for the player to be able to see the UI since
     # we are creating new contexts in each room.
 ###################
+
 label show_buttons:
+    
     show screen show_menu_button
     show screen show_nav_button
     show screen show_map_button
@@ -96,10 +108,14 @@ label show_buttons:
     show screen show_testing_button
     return
 
+
+
 ###################
     # Same as the above function, except that it hides the buttons.
 ###################
+
 label hide_buttons:
+
     hide screen show_menu_button
     hide screen show_nav_button
     hide screen show_map_button
@@ -107,6 +123,8 @@ label hide_buttons:
     hide screen multiple_monster_click_screen
     hide screen show_testing_button
     return
+
+
 
 ###################
     # Label to call the updater.  Aims at my own personal site, which means I have to FTP the update files there for it to work.

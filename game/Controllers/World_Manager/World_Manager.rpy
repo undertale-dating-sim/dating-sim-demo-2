@@ -29,7 +29,7 @@ init -10 python:
     #sends a monster to the dead room.   handy for getting them out of a room quickly
     def banish(monster):
         world.get_monster(monster).move_to_room("Dead Room")
-        reload_room()
+        #reload_room()
 
     #runs all of the updates for the world
     def update():
@@ -78,7 +78,7 @@ init -10 python:
             self.current_area = False
             self.maxTime = 1440
             self.currentTime = 700
-            self.day = 1
+            self.day = 0
             self.timeZones = {"Night":0,"Morning":480,"Day":720,"Afternoon":960,"Evening":1200}
             self.days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
             self.generate_ruins()
@@ -98,8 +98,11 @@ init -10 python:
         #it will update all of the areas for whatever we need.
         def update_day(self):
             #seed the random monsters
-            self.seed_random_monsters()
-            self.seed_random_events()
+            # day 0 is the tutorial
+
+            if self.day > 0:
+                self.seed_random_monsters()
+                self.seed_random_events()
             
             #reset the gift counts
             for an,a in self.areas.iteritems():
@@ -111,6 +114,7 @@ init -10 python:
 
         def get_current_day(self):
             return self.days[self.day % 7]
+
         #this function will seed all of the random monsters to the various rooms they can be in.
         #rooms with events already in them should be ignored.
         def seed_random_monsters(self):
@@ -154,19 +158,19 @@ init -10 python:
         def update_world(self,update_day = False):
 
             timezone = self.get_current_timezone()
-            day = self.get_current_day()
-            # for an,a in self.areas.iteritems():
-            #     for rn,r in a.rooms.iteritems():
-            #         for m in r.monsters:
-            #             if m.schedule:
-
-            #                 if timezone in m.schedule[day]:
-            #                     for x,t in m.schedule[day][timezone].iteritems():
-            #                         m.move_to_room(x)
-            #                 else:
-            #                     m.move_to_room(m.default_room)
+            day_of_week = self.get_current_day()
 
             if update_day:
+                for an,a in self.areas.iteritems():
+                    for rn,r in a.rooms.iteritems():
+                        for m in r.monsters:
+                            if m.schedule:
+
+                                if timezone in m.schedule[day_of_week]:
+                                    for x,t in m.schedule[day_of_week][timezone].iteritems():
+                                        m.move_to_room(x)
+                                else:
+                                    m.move_to_room(m.default_room)
                 self.update_day()
 
             return
@@ -222,7 +226,7 @@ init -10 python:
                     if room.name == name:
                         self.current_area = area
                         self.current_area.current_room = room
-                        renpy.call_in_new_context("load_room",loop,transition)
+                        renpy.call("load_room",loop,transition)
                         return True
             renpy.notify(name + " not found.")
 
@@ -288,9 +292,9 @@ label load_room(loop=True,transition="fade"):
     else:
         $ renpy.notify(str(transition) + " not a valid option for transition")
 
-    if ADMIN_ROOM_DESC:
-        if not world.current_area.current_room.visited and world.current_area.current_room.desc:
-            "[world.current_area.current_room.desc]"
+    #if ADMIN_ROOM_DESC:
+    if not world.current_area.current_room.visited and world.current_area.current_room.desc and 'tutorial_over' in player.variables:
+        "[world.current_area.current_room.desc]"
     $ world.current_area.current_room.visited = True
 
 

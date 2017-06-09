@@ -113,8 +113,8 @@ label test_character(monster = "Toriel"):
 #         "Frisk":
 #             call test_character("frisk")
 
-#         "Whimsum":
-#             jump testing_whimsum
+#         "Whimsun":
+#             jump testing_whimsun
 
 #         "Vegetoid":
 #             jump testing_vegetoid

@@ -642,5 +642,13 @@ label ruins_basement_door_first_visit:
     
     #wait a second before having the screen fade to black, play the sound of a heavy door opening
     #end of demo
-    
+    jump end_of_demo
     return
+
+
+
+label end_of_demo:
+
+    "Will try to remember to put something here."
+
+    jump main_menu

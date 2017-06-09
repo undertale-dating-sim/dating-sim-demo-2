@@ -159,6 +159,9 @@ label Toriel_manager_default(owner = False,pause = True):
                 "Heartbreak Date 1":
                     "nyi"
                     pass
+                "Undersnail":
+                    call UnderSnail
+                    scene background ruins_floweyroom
                 "Back":
                     return
 
@@ -174,8 +177,7 @@ label Toriel_Manager_Chat(owner=False):
 
     if owner.chat_count == 0:
         '"How are you doing?"'
-        show toriel smile with Dissolve(.25)
-        toriel "I am doing well! Thank you for asking. How are you doing, dear?"
+        call toriel_gd_howdoing
 
     if owner.chat_count == 1:
         '"What’s crackin’?"'
@@ -194,7 +196,20 @@ label Toriel_Manager_Chat(owner=False):
     $ owner.chat_count += 1
     return
 
+label toriel_gd_howdoing:
+    show toriel smile with Dissolve(.25)
+    toriel "I am doing well! Thank you for asking. How are you doing, dear?"
+    menu:
+         "I'm good, thanks.":
+             show toriel smile with Dissolve(.25)
+             toriel "That is good to hear."
+         "Better now that I'm talking to you.":
+             show toiel blushing with Dissolve(.25)
+             toriel "Oh! Well, I am glad I could brighten your day!"
+    return
+
 label toriel_gd_sup:
+    show toriel awkward with Dissolve(.25)
     toriel "... ‘Sup’? Is... Is that a surface word? I am sorry, but I am not familiar with it."
     menu:       #Once you've explained it, should she give a different dialogue?
         "Oh! Sorry. It stands for ‘What is up’, which is a commonly used greeting on the surface.":
@@ -279,6 +294,7 @@ label Toriel_Manager_Ask:
             toriel "I have also been known to make the occasional cake."
 
         "How’s Frisk treating you?":
+            show toriel smiling with Dissolve(.25)
             toriel "Ah, Frisk's arrival has been a true blessing. They are a very conscientious child."
             toriel "They help me with cooking, do chores without complaining, and they are kind to the other residents of the ruins."
             toriel "Really, I have nothing to complain about. They are the most wonderful child I could ever ask for."
@@ -287,6 +303,17 @@ label Toriel_Manager_Ask:
             show toriel normal with Dissolve(.25)
             toriel "I think that they are... Well, I can not have a real opinion of them because they never talk to me."
             toriel "They are particularly shy, so I try not to bother them. But I hope one day I can join them in a real conversation. Maybe even invite them over!"
+
+        #"What kind of snails to you want today?":
+            #Mondays and  Tuesdays
+            #toriel “If you could, I would really like the green snails that carry around a house on their back.”
+            #Wednesdays and Thursdays
+            #toriel “If it is no trouble, could you please gather as many rocket snails as you can?”
+            #Fridays
+            #toriel “If it is possible, I would really like for you to catch the blue snails with glasses, or perhaps the red ones that like coffee too much?”
+            #Saturday and Sunday
+            #toriel “I am afraid I do not need any specific kind of snail today, dear. Any will do just fine.”
+
 
     return
     
@@ -310,6 +337,7 @@ label toriel_gd_askLivedRuins:
 
 #i need to look at my code to see how to do this exactly
 label toriel_gd_give:
+    show toriel smiling with Dissolve(.25)
     toriel "Oh! Have you brought me something?"
     menu:
         "Give gift":

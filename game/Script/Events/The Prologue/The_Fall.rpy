@@ -1,4 +1,8 @@
 label the_beginning:
+    $ player.current_health = 1
+    $ player.gold = 0
+    $ player.current_snails = 0
+
     #play thud
     call hide_buttons
     stop music
@@ -6,7 +10,7 @@ label the_beginning:
     scene
 
     with vpunch
-    "Thud"
+    "* Thud"
 
     $ renpy.show(world.get_room("Cave Room").bg)
     with fade
@@ -14,7 +18,7 @@ label the_beginning:
     "* Ow."
     #this looks dirty, but I need to make the variables unique to this screen
     $ tf_loop = True
-    $ tf_scream_count = 1
+    $ player.variables['tf_scream_count'] = 1
     $ tf_look_around_count = 1
     $ tf_lie_down_count = 1
     $ tf_show_exit = 0
@@ -33,18 +37,18 @@ label the_beginning:
 
 label tf_scream:
 
-    if tf_scream_count == 1:
+    if player.variables['tf_scream_count'] == 1:
         "* You scream."
         "* ..."
         "* But nobody came."
         $ scream_button_text = "Scream again"
-    elif tf_scream_count == 2:
+    elif player.variables['tf_scream_count'] == 2:
         "* You scream with all your might."
         "* Your ears start ringing."
         "* ..."
         "* But nobody came."
         $ scream_button_text = "Scream as loud as you can"
-    elif tf_scream_count == 3:
+    elif player.variables['tf_scream_count'] == 3:
         "* You scream until your throat hurts."
         "* ..."
         "* Great, now you are deaf {i}and{/i} mute."
@@ -55,7 +59,7 @@ label tf_scream:
         "* ..."
         "* It may be better to keep your voice down for a while."
         $ tf_scream_enabled = False
-    $ tf_scream_count += 1
+    $ player.variables['tf_scream_count'] += 1
     return
 
 label tf_lie_down:
@@ -125,7 +129,7 @@ label .item_menu:
             call .pick_up(Stick())
         "Pick up the rose":
             "* A pristine, red rose. What's it doing among all of this trash?"
-            call .pick_up(Flower())
+            call .pick_up(Rose())
 
     return
 
@@ -166,26 +170,28 @@ label tf_grass_room_options:
     while True:
         if not alt_way and not show_vines:
             call show_buttons
-        menu:
-            "Take another item" if take_another:
-                "* You don't have enough hands to carry all of this stuff."
-                $ take_another = False
+            $ renpy.pause()
+        else:
+            menu:
+                "Take another item" if take_another:
+                    "* You don't have enough hands to carry all of this stuff."
+                    $ take_another = False
 
-            #change button twice then go away
-            "Look around" if tf_look_around_count == 1:
-                call .look_around(tf_look_around_count)
-            "Look again" if tf_look_around_count == 2:
-                call .look_around(tf_look_around_count)
+                #change button twice then go away
+                "Look around" if tf_look_around_count == 1:
+                    call .look_around(tf_look_around_count)
+                "Look again" if tf_look_around_count == 2:
+                    call .look_around(tf_look_around_count)
 
-            "Search for an alternate way" if alt_way:
-                "* You walk along the stone walls for a while, looking into corners and shifting through the piles of trash, but you find nothing that can help you."
-                #patience + 1
-                $ alt_way = False
+                "Search for an alternate way" if alt_way:
+                    "* You walk along the stone walls for a while, looking into corners and shifting through the piles of trash, but you find nothing that can help you."
+                    #patience + 1
+                    $ alt_way = False
 
-            "Try to remove the vines covering the exit" if show_vines:
-                "* You try to wrestle the vines free from their purchase on the walls, but they cling stubbornly, resisting your attempts."
-                $ show_vines = False
-                #BRAVERY + 1
+                "Try to remove the vines covering the exit" if show_vines:
+                    "* You try to wrestle the vines free from their purchase on the walls, but they cling stubbornly, resisting your attempts."
+                    $ show_vines = False
+                    #BRAVERY + 1
 
     label .look_around(count):
         if count == 1:
@@ -198,14 +204,14 @@ label tf_grass_room_options:
 
 label summon_flowey:
 
-    $ give_monster_event("flowey","flowey_introduction")
-    $ summon("flowey")
+    $ give_monster_event("Flowey","flowey_introduction")
+    $ summon("Flowey")
     return
 
-label flowey_introduction(monster):
+label flowey_introduction():
 
     "* The small cave suddenly smells strongly like flowers." 
-    show flowey backside
+    show flowey backside with Dissolve(.25)
     "* A large, golden flower has sprouted right where you first fell, appearing to bask in the light coming from the ceiling."
     "* It definitely hadn't been there earlier."
     unknown "Psst... down here!"
@@ -213,11 +219,11 @@ label flowey_introduction(monster):
     menu:
         "Look around":
             "* Nothing else is different, aside from the flower."
-            show flowey annoyed
+            show flowey annoyed with Dissolve(.25)
             unknown "Hey, buddy, I'm over here!"
         "Approach the flower":
             #ADD BRAVERY +1
-            show flowey normal
+            show flowey normal with Dissolve(.25)
             unknown "Howdy!"
             unknown "Hehe, did I startle you?"
         "Run away":
@@ -225,20 +231,21 @@ label flowey_introduction(monster):
             "* You've seen enough horror movies to know better than to poke around eerie stuff that wasn't there before."
             "* Especially if said eerie stuff talks to you."
             $ get_room("Grass Room").events = {}
-            $ get_room("Grass Room").add_event("grass_room_revisited",True)
-            $ give_monster_event("flowey","flowey_intro_annoyed")
+            $ get_room("Grass Room").add_event("grass_room_revisited",False)
+            $ get_room("Cave Room").add_event("flowey_intro_annoyed",False)
             $ move_to_room("Grass Room")
     jump ruins_intro_flowey
     return
-label flowey_intro_annoyed(monster):
+label flowey_intro_annoyed():
+    show flowey annoyed with Dissolve(.25)
     "* You return to the small cavern. The odd flower is still there."
-    show flowey annoyed
     unknown "Were you really just gonna ignore me? Gee, you're a rude one."
     unknown "Since you obviously have no manners, allow me to introduce myself first."
     call ruins_intro_flowey
     return
 
 label grass_room_revisited:
+    call show_buttons
     $ search_room = True
     $ vines = True
 
@@ -260,78 +267,85 @@ label grass_room_revisited:
 
 label ruins_intro_flowey:
         
-    show flowey normal
+    show flowey normal with Dissolve(.25)
     unknown "Howdy! I'm Flowey, Flowey the flower! You're new here, aren'tcha?"
     flowey "You look a little nervous... are you scared of little ol' me?"
 
     menu:
         flowey "You look a little nervous... are you scared of little ol' me?"
         "Take a step back":
-            show flowey sideglance
+            show flowey sideglance with Dissolve(.25)
             flowey "Hey. What's that for?" 
-            show flowey smug
+            show flowey smug with Dissolve(.25)
             flowey "Haven't you ever seen a talking flower before?"
             menu:
                 flowey "Haven't you ever seen a talking flower before?"
                 "Of course I have!":
-                    show flowey sideglance
+                    show flowey sideglance with Dissolve(.25)
                     flowey "Hehe, are you sure about that?"
                 "Why would I have?":
                     flowey "Oh, a wise guy, huh?"
-                    show flowey sideglance
+                    show flowey sideglance with Dissolve(.25)
                     flowey "No reason, really..."
         '"No!"':
             flowey "Oh really?"
-            show flowey smug
+            show flowey smug with Dissolve(.25)
             flowey "Don't you know that talking to strangers is dangerous?"
         "Stare":
             flowey "..."
-            show flowey sideglance
+            show flowey sideglance with Dissolve(.25)
             flowey "..."
-            show flowey smug
+            show flowey smug with Dissolve(.25)
             flowey "Wow, do you need some water?"
             flowey "...Because you look mighty thirsty."
 
-    show flowey sideglance
+    show flowey sideglance with Dissolve(.25)
     flowey "Well, at any rate..."
 
-    show flowey normal
+    show flowey normal with Dissolve(.25)
     flowey "Things have changed around here..."
     flowey "The normal rules don't apply anymore, if you know what I mean."
     flowey "So don't worry..."
 
-    show flowey horror
+    show flowey horror with Dissolve(.25)
     flowey "I'm not going to kill you."
 
-    show flowey surprised
+    show flowey surprised with Dissolve(.25)
     flowey "...I can't."
 
-    show flowey normal
+    show flowey normal with Dissolve(.25)
     flowey "Instead, I have a new game I'd like to play."
     flowey "It's a game about true love..."
 
-    show flowey horror
+    show flowey horror with Dissolve(.25)
     flowey "...or tragic h e a r t b r e a k..."
 
-    show flowey wink
+    show flowey wink with Dissolve(.25)
     flowey "It'll be fun, don'tcha think?"
 
-    show flowey sideglance
+    show flowey sideglance with Dissolve(.25)
     flowey "Although, I hope you can come up with a better story than the last human who fell down here. They didn't make it too far..."
 
-    show flowey normal
+    show flowey normal with Dissolve(.25)
     flowey "Guess that means it's up to you to mix things up a bit!"
     
-    show flowey annoyed
+    show flowey annoyed with Dissolve(.25)
     flowey "Try not to disappoint me..."
     
-    show flowey wink
+    show flowey wink with Dissolve(.25)
     flowey "Good luck!"
     
-    hide flowey
+    hide flowey with moveoutbottom
     $ banish("Flowey")
     $ get_room("Grass Room").set_event("intro_vines_gone",False)
     $ get_room("Ruins Entrance").set_event("ruins_entrance_intro",False)
+    $ set_lock_room("Ruins Entrance",False)
+    $ get_room("Tunnels").set_event("tunnels_intro",False)
+    $ get_room("Dummy Room").set_event("dummy_intro",False)
+    $ get_room("Froggit Room").set_event("ruins_intro_leaves",False)
+    $ get_room("Sassy Rock Room").set_event("ruins_intro_rock_toriel",False)
+    $ get_room("Blooky Room").set_event("ruins_intro_blooky",False)
+    $ get_room("Staircase").set_event("ruins_intro_toriel_house",False)
 
     call show_buttons
     while True:
@@ -380,8 +394,11 @@ label tunnels_intro:
 
 label dummy_intro:
     
+    #handle the global
+    if 'tf_scream_count' not in player.variables:
+        $ player.variables['tf_scream_count'] = 0
     show dummy normal at left
-    show napstablook normal at right
+    show napstablook normal at napstabob
     "* The small, curved room houses a training dummy, set up beside the arched doorway leading on to further rooms. A ghost seems to be speaking to the dummy."
     "* The dummy looks friendly, with a smile sewn into its burlap face, but the ghost looks almost... scared."
 
@@ -393,7 +410,7 @@ label dummy_intro:
         "Scream":
             #scream sound
             $ blook_scream = True
-            if tf_scream_count > 1:
+            if player.variables['tf_scream_count'] > 1:
                 "* Wow, you sure do have a thing for screaming, don't you?"
             unknown "....oh no... i didn't mean to scare you..."
             unknown "let me... just....."
@@ -404,21 +421,21 @@ label dummy_intro:
             "* ..."
             hide napstablook with Dissolve(2.0)
 
-    show dummy normal at center
+    show dummy normal at center with Dissolve(.25)
 
-    $ satchel_found = False
-    $ satchel_refused = False
+    $ player.variables['satchel_found'] = False
+    $ player.variables['satchel_refused'] = False
     $ closer_look = True
     $ kungfu_count = 1
     $ flirt_count = 1
 label .dummy_options:
     menu:
         "Look around":
-            if not satchel_found:
+            if not player.variables['satchel_found']:
                 "* Oh!"
                 "* There's a small leather satchel here. It looks large enough to fit several items inside."
                 jump .intro_find_satchel
-            elif satchel_refused:
+            elif player.variables['satchel_refused']:
                 "* There's that satchel you didn't want."
                 "* It looks lonely... Too bad you can't pick it up now."
                 "* The satchel doesn't want you. You couldn't see its value before, so you don't deserve it now."
@@ -478,8 +495,7 @@ label .dummy_options:
                             "Are you a parking ticket? Because you've got fine written all over you.":
                                 pass
                         $ flirt_count = 3
-                        show dummy blush
-                        "* ..."
+                        show dummy blush with Dissolve(.25)
                         "* Is it just you, or are the dummy's cheeks redder than before?"
                         "* ...That concussion you probably have must be worse than you thought."
 
@@ -490,7 +506,7 @@ label .dummy_options:
                             "Are you from Tennessee? Because you're the only ten I see.":
                                 pass
                         $ flirt_count = 4
-                        show dummy blush
+                        show dummy blush with Dissolve(.25)
                         "* The dummy seems to be winking at you. "
                         "* ...Oh." 
 
@@ -502,7 +518,7 @@ label .dummy_options:
                         jump .dummy_options
 
         "Continue onward":
-            if not satchel_found:
+            if not player.variables['satchel_found']:
                 # #keening sound plays
                 "* Hmm...?"
                 # #keening sound plays again, but louder and more desperate
@@ -510,13 +526,17 @@ label .dummy_options:
                 "* ...Is that a satchel?"
                 "* How did you almost miss this?"
                 "* You should really look around more."
+                jump .intro_find_satchel
+            else:
+                call show_buttons
+    return
 
 label .intro_find_satchel:
     $ loop = True
     $ count = 1
     $ button1_text = "Take it"
     $ button2_text = "Leave it be"
-    $ satchel_found = True
+    $ player.variables['satchel_found'] = True
     while True:
         menu:
             "[button1_text]":
@@ -557,7 +577,8 @@ label .intro_find_satchel:
                     "* Just leave it there!"
                     "* Have fun carrying around everything in your arms."
                     $ loop = False
-                    $ satchel_refused = True
+                    $ player.variables['satchel_refused'] = True
+                    jump .dummy_options
 
         $ count += 1
     
@@ -567,7 +588,7 @@ label ruins_intro_leaves:
 
     "* The bricked hall zig-zags its way around several large piles of red leaves, passing walls hung with flourishing ivy plants and leading to the exit at the far end of the room."
     "* There’s someone here..."
-    show toriel normal
+    show toriel normal with Dissolve(.25)
     "* She doesn’t seem to notice you."
 
     menu:
@@ -577,48 +598,51 @@ label ruins_intro_leaves:
         "Hold your ground":
             #+1 Bravery
             "* Eventually, the monster notices you."
-
+    show toriel surprised with Dissolve(.25)        
     unknown "Oh, goodness! I am sorry, dear... I did not notice you there. Are you alright?"
 
     menu:
         "Yeah, I’m okay. Thank you.":
-            show toriel smile
+            show toriel smile with Dissolve(.25)
             unknown "That is good to hear."
-            show toriel surprised
+            show toriel surprised with Dissolve(.25)
             unknown "Oh, where are my manners?"
-            show toriel smile
+            show toriel smile with Dissolve(.25)
             unknown "My name is Toriel, and I am the caretaker of the Ruins. I come down to the cavern every day to see if anyone has fallen down. And here you are!"
         "Stay back!":
-            show toriel sad
+            show toriel sad with Dissolve(.25)
             unknown "Do not worry... I mean you no harm."
             unknown "It must have been quite the shock to find yourself here, no longer among your own people. You have nothing to fear from me, though."
             unknown "I am Toriel, the caretaker of the Ruins, and I can assure you that you are safe here."
         "What is this place?":
             unknown "These are the Ruins, and I am Toriel, their caretaker. I pass through here every day to see if anyone has fallen down. And here you are!"
         "You’re a goat.":
-            show toriel laughing
+            show toriel laughing with Dissolve(.25)
             unknown "Indeed I am, although I prefer to go by the name of Toriel."
     
     
-    show toriel normal
+    show toriel normal with Dissolve(.25)
     toriel "Your fall was not kind to you; you are injured. Please, take this... If you eat it, you are sure to gain some strength back."
-    #player receives food item (granola bar?)
+    "* You receive a Spider Donut!"
+    $ inventory.add(Spider_Donut())
     toriel "And, if you would like, you can accompany me to my house at the far end of the Ruins, to rest and heal the remainder of your injuries."
     toriel "Only my child and I live there, so it will be a peaceful place for you to stay."
 
     menu:
         "Sure, I’ll come with you.":
-            show toriel small smile
+            show toriel smallsmile with Dissolve(.25)
             toriel "I am glad... Our home is humble, but I hope you will stay for a while."
             toriel "And I am sure you and Frisk will get along just fine."
             toriel "Follow me then, dear... It is not far."
-            jump ruins_intro_rock_toriel
+            $ player.variables['rejected_toriel'] = False
+            $ move_to_room("Sassy Rock Room")
             #need some logic here
         "Thanks for the offer, but I’d rather continue on my own.":
-            show toriel sad
+            show toriel sad with Dissolve(.5)
+            $ player.variables['rejected_toriel'] = True
             toriel "I understand... it can be hard to trust new people when you meet them, but you do not need to be afraid of us."
             toriel "If you change your mind, our door will be open. Be safe."
-            hide toriel with dissolve
+            hide toriel with Dissolve(.25)
             menu:
                 "Look around":
                     "* Now that Toriel’s gone, the room feels pretty empty."
@@ -629,20 +653,21 @@ label ruins_intro_leaves:
 
 label ruins_intro_rock_toriel:
 
-    show toriel normal
+    show toriel normal with Dissolve(.25)
     #phone ringing sound
     toriel "Excuse me, I must answer this."
     #ringing stops
     toriel "Hello, m-"
-    show toriel sad
+    show toriel sad with Dissolve(.25)
     toriel "Oh... oh, dear."
     toriel "Just hold on. Stay right there, okay?"
     toriel "Everything will be alright. Just remain calm. I will be right there."
     #click of phone hanging up
-    show toriel awkward
+    show toriel awkward with Dissolve(.25)
     toriel "I am afraid something has come up… I am very sorry, but I will have to leave you."
     toriel "You should be fine... Just make your way over to my house. It is straight down this path; you cannot miss it. I will meet you there shortly."
     #toriel sprite fades away
+    hide toriel with moveoutright
     jump ruins_intro_rock_alone
 
 
@@ -658,13 +683,14 @@ label ruins_intro_rock_alone:
             "* There are suspicious-looking holes in the bridge, but it seems safe enough."
         "Continue onward":
             call show_buttons
+    return
 
 label ruins_intro_blooky:
 
     "* The room is average sized and is divided by a wall halfway through that separates the side of the room you are on from two exits on the other side. "
     "* There is a narrow opening in the wall, its floor covered with a scattering of red leaves."
     "* There’s that ghost from earlier..."
-    show napstablook normal
+    show napstablook normal at napstabob with Dissolve(.25)
 
     if not blook_scream:
         unknown "....sorry about just disappearing earlier... i didn’t mean to ignore you... or be awkward... i just made this awkward... didn’t i...?"
@@ -687,16 +713,16 @@ label ruins_intro_blooky:
             napstablook "....."
             napstablook "it's been..... .. a while since someone new showed up..."
             napstablook "but the last time a human fell down.... .. it wasn’t so bad..."
-            show napstablook smallsmile
+            show napstablook smallsmile with Dissolve(.25)
             napstablook "they were pretty nice, actually..."
             menu:
                 "There are others?":                    #(+0)
-                    show napstablook normal
+                    show napstablook normal with Dissolve(.25)
                     napstablook "oh... yeah... just one, though..."
                     napstablook "i’m sure you’ll meet them soon enough... the ruins aren’t that big..."
 
                 "What happened to them?":                    #(+1)
-                    show napstablook normal
+                    show napstablook normal with Dissolve(.25)
                     napstablook "they’re fine... they’re still here... in the ruins..."
                     napstablook ".... ......."
                     napstablook "i see them every now and again..."
@@ -710,7 +736,7 @@ label ruins_intro_blooky:
                 "People are probably scared of you, right?":        #(+2)
                     napstablook "um... i guess... i never thought about it like that..."
                     napstablook "......"
-                    show napstablook sad
+                    show napstablook sad with Dissolve(.25)
                     napstablook "...you’re probably right..."
                 "That’s okay, I’ll get used to it.":             #(+1)
                     napstablook "oh... that’s good... sorry..."
@@ -722,13 +748,13 @@ label ruins_intro_blooky:
                     menu:
                         "No, not at all!":                           #(+3)
                             napstablook "...really?"
-                            show napstablook smallsmile
+                            show napstablook smallsmile with Dissolve(.25)
                             napstablook "okay... that’s good... thank you..."
                         "I forgive you.":                           #(+2)
                             napstablook "oh, i’m glad..."
-                            show napstablook sad
+                            show napstablook sad with Dissolve(.25)
                             napstablook "i... uh... mess up a lot... it’s one of the few things i’m good at..."
-                            show napstablook smallsmile
+                            show napstablook smallsmile with Dissolve(.25)
                             nastablook "so... thanks for giving me another chance..."
 
 
@@ -739,105 +765,128 @@ label ruins_intro_blooky:
     napstablook "but... there’s a branching path here... so you might want to press 'E'..."
     napstablook "anyway..."
     napstablook "see you later.....?"
+    hide napstablook with Dissolve(2.0)
+    return
 #the option to navigate is now available to the player. They can now go back to any previous room or choose to go forward. 
 #if the player goes east, they encounter the spider bakery
 #if the player goes north, they reach the tunnel divide. The tunnel divide should have its own room description, but no story elements take place here. The player can finally go east to encounter Frisk, in which case jump frisk_meeting_start. Or, the player could go north past the black tree room to encounter Toriel, in which case jump ruins_intro_toriel_house
 label ruins_intro_toriel_house:
-    #If the player accepted toriel’s offer (option 56 of selection 22) AND goes to toriel’s house before meeting Frisk:
-    show toriel small smile
-    toriel "Oh, hello, dear! I am glad to see you made it. You did not have any trouble finding the house, did you?"
+    if 'rejected_toriel' not in player.variables:
+        $ player.variables['rejected_toriel'] = False
+    if 'met_frisk' not in player.variables:
+        $ player.variables['met_frisk'] = False
+    if 'rejected_frisk' not in player.variables:
+        $ player.variables['rejected_frisk'] = False
+    if player.variables['rejected_toriel'] == False and player.variables['met_frisk'] == False:
+        show toriel smallsmile with Dissolve(.25)
+        toriel "Oh, hello, dear! I am glad to see you made it. You did not have any trouble finding the house, did you?"
 
-    menu:# 29
-        "Yes.":                              #(+0
-            show toriel awkward
-            toriel "I am sorry about that. I would not have left you behind, but there was an emergency that I had to see to personally."
-        "No.":                              #(+0
-            toriel "That is wonderful to hear... I knew you would be capable on your own. However, I must apologize for leaving you so suddenly. There was a dire situation that I could not ignore."
+        menu:# 29
+            "Yes.":                              #(+0
+                show toriel awkward with Dissolve(.25)
+                toriel "I am sorry about that. I would not have left you behind, but there was an emergency that I had to see to personally."
+            "No.":                              #(+0
+                toriel "That is wonderful to hear... I knew you would be capable on your own. However, I must apologize for leaving you so suddenly. There was a dire situation that I could not ignore."
 
-    menu:# 30
-        "Are you okay?":                        #(+3
-            show toriel smile
-            toriel "Oh, I am fine! Your concern is sweet."
-            toriel "It was my child, Frisk."
-            toriel "But it is nothing for you to worry about. All is well now."
-            jump ruins_intro_find_Frisk
-        "What happened?":                            #(+0
-            show toriel normal
-            toriel "My child, Frisk, called and needed my assistance with... something."
-            toriel "However, all is well now. There is no need for you to worry."
-            jump ruins_intro_find_Frisk
-        "You still abandoned me…":                       #(+2
-            show toriel sad
-            toriel "I really cannot apologize enough, dear... I honestly did not want to leave you."
-            toriel "But, you see, my child, Frisk, needed my assistance, and I had to reach them right away."
-            toriel "It turned out fine, in the end."
-            jump ruins_intro_find_Frisk
+        menu:# 30
+            "Are you okay?":                        #(+3
+                show toriel smile with Dissolve(.25)
+                toriel "Oh, I am fine! Your concern is sweet."
+                toriel "It was my child, Frisk."
+                toriel "But it is nothing for you to worry about. All is well now."
+        
+            "What happened?":                            #(+0
+                show toriel normal with Dissolve(.25)
+                toriel "My child, Frisk, called and needed my assistance with... something."
+                toriel "However, all is well now. There is no need for you to worry."
+                
+            "You still abandoned me…":                       #(+2
+                show toriel sad with Dissolve(.25)
+                toriel "I really cannot apologize enough, dear... I honestly did not want to leave you."
+                toriel "But, you see, my child, Frisk, needed my assistance, and I had to reach them right away."
+                toriel "It turned out fine, in the end."
+        jump ruins_intro_find_Frisk
+                
     
+    if player.variables['rejected_toriel'] == True and player.variables['met_frisk'] == False:           
+        show toriel smallsmile with Dissolve(.25)
+        toriel "Oh, hello, dear! I see you have made it to my home…"
+        toriel "Have you changed your mind? You are always welcome to stay here and rest awhile."
 
-    #If the player did not accept toriel’s offer (option 57 of selection 22) AND goes to toriel’s house before meeting Frisk:
-    show toriel small smile
-    toriel "Oh, hello, dear! I see you have made it to my home…"
-    toriel "Have you changed your mind? You are always welcome to stay here and rest awhile."
-
-    menu:# 31
-        "Yes, I would like to stay here.":               #(+2
-            show toriel smile
-            toriel "Great! I am glad to hear that."
-            toriel "You will not regret it… my child and I will be happy to have you here, I assure you."
-            jump ruins_intro_find_Frisk
-        "No, I don’t want to stay with you.":               #(+0
-            show toriel normal
-            toriel "Alright… I do wish you would reconsider, but if you insist on striking out on your own…"
-            toriel "Well, just know that you will always have a place here, should you ever need it."
-            toriel "Feel free to come back anytime!"
-            #scene change to black tree bg
+        menu:# 31
+            "Yes, I would like to stay here.":               #(+2
+                show toriel smile with Dissolve(.25)
+                toriel "Great! I am glad to hear that."
+                toriel "You will not regret it… my child and I will be happy to have you here, I assure you."
+                $ player.variables['rejected_toriel'] = False
+                jump ruins_intro_find_Frisk
+            "No, I don’t want to stay with you.":               #(+0
+                show toriel normal with Dissolve(.25)
+                toriel "Alright… I do wish you would reconsider, but if you insist on striking out on your own…"
+                toriel "Well, just know that you will always have a place here, should you ever need it."
+                toriel "Feel free to come back anytime!"
+                $ move_to_room("Black Tree Room")
             #player can go find Frisk, who also offers to let them stay at their house. If the player refuses all offers, maybe toriel finds them after they’ve passed out from low stamina and brings them to her house.
 
     #If the player did not accept toriel’s offer (option 57 of selection 22) AND finds Frisk, AND declines Frisk’s offer (option 62 of selection 11 in the Meeting Frisk script) AND returns to toriel’s house:
-    show toriel small smile
-    toriel "Oh, hello again!"
-    toriel "My child told me that you helped them collect snails… we are very grateful for your assistance."
-    toriel "Are you sure that you would not like to stay for dinner?"
+    if player.variables['rejected_toriel'] == False and player.variables['met_frisk'] == True and player.variables['reject_frisk'] == True: 
+        show toriel smallsmile with Dissolve(.25)
+        toriel "Oh, hello again!"
+        toriel "My child told me that you helped them collect snails… we are very grateful for your assistance."
+        toriel "Are you sure that you would not like to stay for dinner?"
 
-    menu:# 32
-        "Sure, I’ll stay.":                          #(+2
-            show toriel smile
-            toriel "Excellent! I am glad you have come around."
-            toriel "Frisk! We have a guest."
-            show frisk tiny smile
-            frisk "Oh, hey! You changed your mind?"
-            frisk "That’s great! I was worried that you wouldn’t find a place to stay before nightfall."
-            jump frisk_meeting_eat
-        "For the last time, no. I’m not staying with you.":      #(-3
-            #+2 Determination
-            show toriel annoyed
-            toriel "Well, fine. If you will not accept our hospitality, then there is little I can do."
-            toriel "You are always welcome here, once you have learned to accept help when it is offered."
-            #scene change to black tree bg
-            #if the MC does not return and accept toriel’s offer before running out of stamina, then jump ruins_intro_pass_out
-
-    
-
+        menu:# 32
+            "Sure, I’ll stay.":                          #(+2
+                show toriel smile with Dissolve(.25)
+                toriel "Excellent! I am glad you have come around."
+                toriel "Frisk! We have a guest."
+                show toriel smile at right with Dissolve(.25)
+                show frisk tinysmile at left with Dissolve(.25)
+                frisk "Oh, hey! You changed your mind?"
+                frisk "That’s great! I was worried that you wouldn’t find a place to stay before nightfall."
+                $ player.variables['reject_toriel'] = False
+                jump frisk_meeting_eat
+            "For the last time, no. I’m not staying with you.":      #(-3
+                #+2 Determination
+                show toriel annoyed with Dissolve(.25)
+                toriel "Well, fine. If you will not accept our hospitality, then there is little I can do."
+                toriel "You are always welcome here, once you have learned to accept help when it is offered."
+                $ move_to_room("Black Tree Room")
+    return
 
 label ruins_intro_find_Frisk:
+    
+    if 'clicked_toriel' not in player.variables:
+        $ player.variables['clicked_toriel'] = 0
 
-    show toriel smallsmile
-    toriel "In any case, I was just about to prepare dinner. Please, follow me…"
-    show toriel awkward
-    toriel "Oh... of course..."
-    toriel "It seems that I have run out of snails..."
-    toriel "Would you mind finding Frisk, and helping them catch some? They will take you to the best hunting patches."
-    toriel "Simply go back through the tunnels, take the path to the east, and they should be there."
-
+    if player.variables['clicked_toriel'] == 0:
+        show toriel smallsmile with Dissolve(.25)
+        toriel "In any case, I was just about to prepare dinner. Please, follow me…"
+        show toriel awkward with Dissolve(.25)
+        toriel "Oh... of course..."
+        toriel "It seems that I have run out of snails..."
+        show toriel normal with Dissolve(.25)
+        toriel "Would you mind finding Frisk, and helping them catch some? They will take you to the best hunting patches."
+        toriel "Simply go back through the tunnels, take the path to the east, and they should be there."
+        show toriel normal with Dissolve(.25)
+        call show_buttons
+    else:
+        $ renpy.pause()
     #if the player keeps trying to click on toriel
-    #click 1:
-    toriel "Hello, dear. Do you need to hear the directions again? Just go back to the tunnels and take the path to the east. Frisk should still be there."
-    #click 2:
-    toriel "I really need that final ingredient..."
-    #click 3:
-    toriel "I am sorry, dear. I am busy making dinner right now. Could you please go find Frisk for me?"
-    #click 4+:
-    toriel "Just go back to the tunnels and take the path to the east. Frisk should still be there."
+    if player.variables['clicked_toriel'] == 1:
+        toriel "Hello, dear. Do you need to hear the directions again? Just go back to the tunnels and take the path to the east. Frisk should still be there."
+    elif player.variables['clicked_toriel'] == 2:
+        toriel "I really need that final ingredient..."
+    elif player.variables['clicked_toriel'] == 3:
+        toriel "I am sorry, dear. I am busy making dinner right now. Could you please go find Frisk for me?"
+    elif player.variables['clicked_toriel'] == 4:
+        toriel "Just go back to the tunnels and take the path to the east. Frisk should still be there."
+    if player.variables['clicked_toriel'] > 4:
+        show toriel annoyed with Dissolve(.25)
+
+
+    $ player.variables['clicked_toriel'] += 1
+    jump ruins_intro_find_Frisk
 
 label movement_unlocked:
     "Movement unlocked!"
@@ -846,9 +895,9 @@ label movement_unlocked:
 
 label unlock_movement_engine:
     #activates the movement engine, adds the item room event to the grass room, shows the unlock text, and locks ruins entrance
-    $ get_room("Grass Room").add_event("tf_item_room",True)
+    $ get_room("Grass Room").add_event("tf_item_room",False)
     $ set_lock_room("Ruins Entrance",True)
-    $ move_to_room("Cave Room",False,None)
+    $ move_to_room("Cave Room",False)
     call show_buttons
     "Movement unlocked!"
     "Press E or Click the Nav Menu to navigate the Ruins!"
@@ -860,54 +909,46 @@ label unlock_movement_engine:
 label ruins_intro_pass_out:
     #can we have some kind of transition showing the MC's eyes slowly opening?
     $ world.move_to_room('Your Room')
-    show toriel normal
+    show toriel normal with Dissolve(.25)
     toriel "Oh, thank goodness you are awake..."
     toriel "I apologize, this must be very disorienting for you."
-    show toriel awkward
+    show toriel awkward with Dissolve(.25)
     toriel "I found you lying on the ground outside, and thought it would be best to bring you into my home. You would not wake up, I was afraid that..."
-    show toriel normal
+    show toriel normal with Dissolve(.25)
     toriel "Well, you should be more careful. You mustn't keep running yourself into the ground... You need to allow yourself time to rest."
-    show toriel smallsmile
+    show toriel smallsmile with Dissolve(.25)
     toriel "You are more than welcome to return here whenever you are tired. I promise, my child and I do not bite!"
 
     menu:
         toriel "You are more than welcome to return here whenever you are tired. I promise, my child and I do not bite!"
         "Alright, I'll stay here with you.":
             $ world.get_monster('Toriel').FP += 1
-            call accept
+            show toriel smile with Dissolve(.25)
+            toriel "I am glad to hear it."
+
+            if player.variables['met_frisk'] == True:
+                toriel "While you were gone, I made a meal with the snails you and Frisk caught. I am sure there is enough to go around, if you would like to join us for dinner."
+                frisk "Mom? Are they awake yet?"
+                show frisk bigsmile at left with moveinleft
+                show toriel normal at right
+                frisk "Oh, hey! I'm glad you're okay... Mom and I were really worried about you!"
+                frisk "If you're staying for dinner, you should hurry up! The food's getting cold!"
+                show frisk normal with Dissolve(.25)
+                frisk "C'mon, I'll show you to the living room..."
+                jump frisk_meeting_eat
+            else:
+                jump ruins_intro_find_Frisk
+
         "No way, I'm leaving!":
             $ world.get_monster('Toriel').FP -= 2
-            call reject
-
-
-# ///If >81("Alright, I'll stay here with you.")<
-# show toriel smile
-# toriel "I am glad to hear it."
-
-
-# #if the player has already met Frisk:
-# toriel "While you were gone, I made a meal with the snails you and Frisk caught. I am sure there is enough to go around, if you would like to join us for dinner."
-# Frisk "Mom? Are they awake yet?"
-# show Frisk big smile
-# Frisk "Oh, hey! I'm glad you're okay... Mom and I were really worried about you!"
-# Frisk "If you're staying for dinner, you should hurry up! The food's getting cold!"
-# show Frisk normal
-# Frisk "C'mon, I'll show you to the living room..."
-# jump frisk_meeting_eat
-
-
-# #if the player has not met Frisk, jump ruins_intro_find_Frisk
-
-
-label reject:
-    show toriel annoyed
-    toriel "Well, if that is how you feel..."
-    toriel "Just do not expect me to find you the next time you pass out."
-    show toriel sad
-    toriel "I cannot keep chasing after someone who does not want my help."
-    toriel "You are always welcome to return if you change your mind. Just remember that."
-    $ move_to_room("Black Tree Room")
-    $ player.safe_room = 'Black Tree Room'
+            show toriel annoyed with Dissolve(.25)
+            toriel "Well, if that is how you feel..."
+            toriel "Just do not expect me to find you the next time you pass out."
+            show toriel sad with Dissolve(.25)
+            toriel "I cannot keep chasing after someone who does not want my help."
+            toriel "You are always welcome to return if you change your mind. Just remember that."
+            $ move_to_room("Black Tree Room")
+            $ player.safe_room = 'Black Tree Room'
 
 
     #player is now free to wander the Ruins. If they pass out again, they'll just wake up in the same spot with the following narration:

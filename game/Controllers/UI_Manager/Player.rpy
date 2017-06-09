@@ -31,7 +31,7 @@ init -1 python:
             self.current_snails = 5
             self.max_snails = 10
             self.last_snail_day = False
-            self.variables = []
+            self.variables = {}
 
         # 
         # This is a really long gross list of sets for the stats.  There is a simpler way to do this with arrays but I'm not sure
