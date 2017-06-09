@@ -35,7 +35,7 @@ label loox_manager_default(owner = False,pause = True):
         loox "Sometimes, the human even joins us, but I feel like their mother doesn't like that too much." 
 
     else:
-        loox "Some of my friends seem to pick on Whimsum..."
+        loox "Some of my friends seem to pick on Whimsun..."
         loox "The human told them to stop but I don't think it did any good."
 
 
