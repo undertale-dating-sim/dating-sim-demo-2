@@ -10,7 +10,7 @@
 
 label froggit_loox_ss_start:
     
-    show froggit normal with dissolve
+    show froggit normal with Dissolve(.25)
     
     $sure_here_you_go_loox = False
     $yeah_sure_loox = False
@@ -31,7 +31,7 @@ label froggit_loox_ss_start:
             menu:
                 "Take it back to the Froggit":
                     "*You pick up the item and turn around to take it back to the Froggit."
-                    show loox normal with dissolve
+                    show loox normal with Dissolve(.25)
                     "*A Loox intercepts your path." #enter Loox
                     loox "... Hey... That thing you're carrying... Can I have it?"
                     menu:
@@ -50,14 +50,15 @@ label froggit_loox_ss_start:
                                     $yeah_sure_loox = True
                                     show loox happy
                                     loox "Great, here's the money."
-                                    hide loox with dissolve
+                                    hide loox with Dissolve(.25)
                                     "*You count the money."
                                     "*They only gave you 5G..." #are we keeping count of gold somewhere?
+                                    $ player.gold += 5
                                     jump What_A_Loser
                                 "I don't know... I mean, if it was {i}40{/i} gold...": #make 40 italics
                                     #-1 Justice
                                     loox "Oh... I don't have that much. It's okay. I guess it's not that important."
-                                    hide loox with dissolve
+                                    hide loox with Dissolve(.25)
                                     "*Loox has left. Somehow, you managed to lose the item during your conversation..."
                                     jump What_A_Loser
                         "Sure, here you go.":
@@ -77,7 +78,7 @@ label froggit_loox_ss_start:
      
             froggit "Ribbit, ribbit."
             "*They tell you that all they wanted was to find their child's birthday present..."
-            hide froggit with dissolve
+            hide froggit with Dissolve(.25)
             #probably queue the Froggit leaving, maybe a bit faster than usual
             "*They leave in tears."
  
@@ -90,7 +91,7 @@ label froggit_loox_ss_start:
             # -1 Patience
             froggit "Creak."
             "*They tell you that's your problem, and that you should think before you talk to frogs that way."
-            hide froggit with dissolve
+            hide froggit with Dissolve(.25)
             "*The Froggit indignantly hops away."
             #probably queue the Froggit leaving the screen
             "*You have no answers."
@@ -107,11 +108,11 @@ label You_Win:
     "*You reach the Froggit and give back the item."
     show froggit happy
     "*They seem happy."
-    hide froggit with dissolve
+    hide froggit with Dissolve(.25)
     return
     
 label What_A_Loser: #in the next room, or two rooms or whatever
-    show froggit normal with dissolve
+    show froggit normal with Dissolve(.25)
     froggit "Ribbit, ribbit."
     "*They greet you and ask if you ever found that thing they were looking for."
     menu:
@@ -119,14 +120,14 @@ label What_A_Loser: #in the next room, or two rooms or whatever
             #-1 integrity
             froggit "Ribbit, ribbit."
             "*They say that's too bad, but thank you for the help either way..."
-            hide froggit with dissolve
+            hide froggit with Dissolve(.25)
             return
         "Well I {i}did{/i} find it, but then I lost it again.": #add italics on 'did'
             #-1 integrity
             froggit "Ribbit, ribbit."
             "*They tell you that's fine, it's not your fault. Their child might not get a birthday present this year, but it's not that big of a deal..."
             "*They thank you for your help, either way."
-            hide froggit with dissolve
+            hide froggit with Dissolve(.25)
             return
         "Yes, I have it right here.":
             froggit "Ribbit, ribbit."
@@ -136,7 +137,7 @@ label What_A_Loser: #in the next room, or two rooms or whatever
                     #-1 integrity
                     froggit "... Meow."
                     "*...... Oh."
-                    hide froggit with dissolve
+                    hide froggit with Dissolve(.25)
                     "*Froggit leaves in tears."
                     return
                 "Yes, here you go.":
@@ -148,7 +149,7 @@ label What_A_Loser: #in the next room, or two rooms or whatever
                             froggit "... Ribbit......"
                             "*They think that you're a liar."
                             "*This Froggit doesn't associate with liars, so they decide that they don't want your help and leave."
-                            hide froggit with dissolve
+                            hide froggit with Dissolve(.25)
                             return
                             #queue leaving?
                         "You're just not looking hard enough.":
@@ -156,7 +157,7 @@ label What_A_Loser: #in the next room, or two rooms or whatever
                             froggit "Ribbit, ribbit."
                             "*The Froggit disagrees. They see all that they need to see."
                             "*You disgust them."
-                            hide froggit with dissolve
+                            hide froggit with Dissolve(.25)
                             "*Froggit leaves."
                             #queue leaving?
                             return
@@ -164,7 +165,7 @@ label What_A_Loser: #in the next room, or two rooms or whatever
                             #-2 integrity
                             froggit "... Meow."
                             "*......Oh."
-                            hide froggit with dissolve
+                            hide froggit with Dissolve(.25)
                             "*Froggit leaves in tears."
                             #queue leaving
                             return
@@ -184,7 +185,7 @@ label What_A_Loser: #in the next room, or two rooms or whatever
             #-2 justice
             froggit "Croak..."
             "*They say that they thought they could trust you..."
-            hide Froggit with dissolve
+            hide Froggit with Dissolve(.25)
             "*Froggit leaves in tears."
             return #queue leaving 
         
