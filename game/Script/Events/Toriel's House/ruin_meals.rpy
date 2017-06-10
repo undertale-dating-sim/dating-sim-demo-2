@@ -1,5 +1,9 @@
 #Mealtimes in the Ruins
 
+#temp manager for backgrounds because I can't find them in the managers
+#Never mind, found it, but the temp black background needs declaring >_<
+image background black_room = ("backgrounds/UI/blackScreen.png")
+
 label ruins_first_breakfast:
     $frisk_first_breakfast_conv_count = 0
     $frisk_first_breakfast_conv_future = False  
@@ -9,15 +13,31 @@ label ruins_first_breakfast:
     $ruins_want_to_leave = False
     
     #black screen, then knocking noise
+    show bg black_room with dissolve
     frisk "Hey, wake up! Breakfast should be ready soon."
-    #black screen fades out to reveal MC room
+    #black screen fades out to reveal MC room-
+    show bg toriel_house_your_room with dissolve
     #$world.move_to_room("Your Room")
     frisk "Hurry up! We don’t want the food to get cold!"
     #the player can check the room, but the normal room description just plays. The only thing they can do is exit to the hallway
+    label examineYourRoomUponWakeup:
+        menu:
+            "Look around":
+                "It's a nice room."
+                jump examineYourRoomUponWakeup
+            "Examine item [x]":
+                "...placeholder text."
+                jump examineYourRoomUponWakeup
+            "Leave your room":
+                pass
+    show bg toriel_house_corridor with dissolve
     show frisk normal at left with Dissolve(.25)
     frisk "Oh good, you’re up. Let’s go eat!"
+    
+    
     #scene change living room
     #$world.move_to_room("Living Room")
+    show bg toriel_house_livingroom with dissolve
     show frisk normal at left with Dissolve(.25)
     show toriel smallsmile at right with Dissolve(.25)
     frisk "Morning!"
@@ -489,22 +509,27 @@ label ruins_breakfast:
     #Waking up scene???
     
     #black screen, knocking sound
+    show bg black_room with dissolve
     frisk "Come on, sleepy head! Breakfast is almost ready!"
     #scene change MC room
+    show bg toriel_house_your_room with dissolve
     #if they go to the living room, continue to breakfast
     #else, if they try to leave the house...
-
+    call examineYourRoomUponWakeup
+    show bg toriel_house_corridor with dissolve
     show frisk normal with Dissolve(.25)
     frisk "Hey, are you leaving? Aren’t you going to eat first?"
     menu:
         "No, I’m skipping breakfast.":
             frisk "Oh, alright! Have a good day..."
             #scene change black tree room
+            show bg ruins_outside_house with dissolve
             jump breakfast_time_flowey
         "Yeah, I’ll eat.":
             show frisk smallsmile with Dissolve(.25)
             frisk "Well, what’re you doing over here, then? Food’s in the living room, silly!"
             #scene change living room
+            show bg toriel_house_livingroom with dissolve
     show toriel normal at right with Dissolve(.25)
     show frisk normal at left with Dissolve(.25)
     "*You share a delicious breakfast with Frisk and Toriel."
