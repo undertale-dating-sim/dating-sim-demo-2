@@ -73,10 +73,9 @@ init -10 python:
             else:
                 renpy.notify("Couldn't find event [event]")
 
-        #will need to add math about the FP
         def get_current_event(self):
         
-            if self.special_event:
+            if self.special_event and self.special_event.completed == False:
                 return self.special_event
             #get the normal events
             timezone = world.get_current_timezone()
