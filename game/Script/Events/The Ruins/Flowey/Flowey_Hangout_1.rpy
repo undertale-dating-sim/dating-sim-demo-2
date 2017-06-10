@@ -74,7 +74,6 @@ label flowey_hangout1(owner = get_monster("Flowey")):
 
             "Sorry, my bad.":
                 jump flowey_hangout1_path2
-       return
                                 
     label flowey_hangout1_path1:
         show flowey annoyed with Dissolve(.25)
@@ -85,6 +84,7 @@ label flowey_hangout1(owner = get_monster("Flowey")):
                 show flowey horror with Dissolve(.25)
                 flowey "That's pretty funny, idiot."
                 flowey "Now go, before I kill you."
+                #exit
             "Maybe I could help you.":
                 $world.get_monster('Flowey').update_FP(2)
                 show flowey surprised with Dissolve(.25)
@@ -96,6 +96,7 @@ label flowey_hangout1(owner = get_monster("Flowey")):
                 show flowey normal with Dissolve(.25)
                 flowey "I'm gonna go. Stay here by your lonesome as long as you'd like."
                 flowey "Or go bother someone else."
+                #exit
         return
 
     label flowey_hangout1_path2:
@@ -124,6 +125,7 @@ label flowey_hangout1(owner = get_monster("Flowey")):
                     flowey "But I couldn't care less if you chose to leave."
                     show flowey smug with Dissolve(.25)
                     flowey "So go. And I'll see you around~ Heehee~!"
+                    #exit
 
                 if (world.get_monster('Flowey').FP < 5):
                     show flowey horror with Dissolve(.25)
@@ -135,12 +137,14 @@ label flowey_hangout1(owner = get_monster("Flowey")):
                     flowey "..."
                     show flowey angry with Dissolve(.25)
                     flowey "Get out of my face, idiot."
+                    #exit
 
             "It sure is. So I'm leaving.":
                 show flowey normal with Dissolve(.25)
                 flowey "Of course you are."
                 show flowey wink with Dissolve(.25)
                 flowey "Get out of my face, idiot."
+                #exit
 
             "What did you expect from me?":
                 if (world.get_monster('Flowey').FP >= 5):
@@ -152,6 +156,7 @@ label flowey_hangout1(owner = get_monster("Flowey")):
                     flowey "Nothing at all."
                     show flowey normal with Dissolve(.25)
                     flowey "Well, get going, then. Stop wasting my time."
+                    #exit
 
                 if (world.get_monster('Flowey').FP < 5):
                     show flowey laugh with Dissolve(.25)
@@ -164,5 +169,6 @@ label flowey_hangout1(owner = get_monster("Flowey")):
                     show flowey normal with Dissolve(.25)
                     flowey "..."
                     flowey "Get out of my face, idiot."
+                    #exit
         return
         
