@@ -35,8 +35,16 @@ init -9 python:
         def handle_special_events(self):
 
             #hangout 1, done when the tutorial is over
-            if "flowey_hangout_1" not in player.variables and world.day > 0:
+            if "Flowey_Hangout_1_Complete" not in player.variables and world.day > 0:
                 self.special_event = Event('flowey_hangout1',False,self)
+
+            elif "Flowey_Hangout_2_Complete" not in player.variables and world.day > 0:
+                if "flowey_heartbreak_activated" in player.variables:
+                    self.special_event = Event('flowey_HB_hangout_1',False,self)
+                else:
+                    self.special_event = Event('Flowey_Hangout_1_5',False,self)
+
+
 
 
     #update_schedule(self,day,timezone,location,event):
@@ -133,16 +141,10 @@ label flowey_manager_default(owner = False,pause = True):
                 menu:
                     "Hangout 1":
                         call flowey_hangout1
-                        scene background ruins_caveroom
-                        call show_flowey_sprite(owner)
                     "Hangout 1.5":
                         call Flowey_Hangout_1_5
-                        scene background ruins_caveroom
-                        call show_flowey_sprite(owner)
                     "HB Hangout 1":
                         call flowey_HB_hangout_1
-                        scene background ruins_caveroom
-                        call show_flowey_sprite(owner)
             "Testing":
                 menu:
                     "remember test":
@@ -168,38 +170,38 @@ label flowey_manager_default(owner = False,pause = True):
 
 label flowey_gift_menu_open(owner):
     if owner.get_relationship() == "Hated":
-        show flowey sideglance
+        show flowey sideglance with Dissolve(.25)
         flowey "You have my attention..."
     elif owner.get_relationship() == "Disliked":
-        show flowey suspicious
+        show flowey suspicious with Dissolve(.25)
         flowey "Huh, what's that?"
     elif owner.get_relationship() == "Neutral":
-        show flowey sideglance
+        show flowey sideglance with Dissolve(.25)
         flowey "You... have something for me?"
     return
 
 label flowey_gift_menu_cancel(owner):
     if owner.get_relationship() == "Hated":
-        show flowey annoyed
+        show flowey annoyed with Dissolve(.25)
         flowey "Ha ha, very funny."
     elif owner.get_relationship() == "Disliked":
-        show flowey suspicious
+        show flowey suspicious with Dissolve(.25)
         flowey "Ha ha, very funny."
     elif owner.get_relationship() == "Neutral":
-        show flowey annoyed
+        show flowey annoyed with Dissolve(.25)
         flowey "Ha ha, very funny."
     return
 
 label show_flowey_sprite(owner):
 
     if owner.get_relationship() == "Hated":
-        show flowey angry with dissolve
+        show flowey angry with Dissolve(.25)
     elif owner.get_relationship() == "Disliked":
-        show flowey annoyed with dissolve
+        show flowey annoyed with Dissolve(.25)
     elif owner.get_relationship() == "Neutral":
-        show flowey normal with dissolve
+        show flowey normal with Dissolve(.25)
     else:
-        show flowey normal with dissolve
+        show flowey normal with Dissolve(.25)
         "relationship sprite not found"
     return
 
@@ -208,19 +210,19 @@ label flowey_greeting(owner):
         $ flowey_hated = True
         $ flowey_disliked = False
         $ flowey_neutral = False
-        show flowey angry
+        show flowey angry with Dissolve(.25)
         flowey "Go away. I'm busy right now."
     elif owner.get_relationship() == "Disliked":
         $ flowey_hated = False
         $ flowey_disliked = True
         $ flowey_neutral = False
-        show flowey annoyed
+        show flowey annoyed with Dissolve(.25)
         flowey "What do you want?"
     elif owner.get_relationship() == "Neutral":
         $ flowey_hated = False
         $ flowey_disliked = False
         $ flowey_neutral = True
-        show flowey normal
+        show flowey normal with Dissolve(.25)
         flowey "What?"
     else:
         flowey "GREETING NOT FOUND"
@@ -228,13 +230,13 @@ label flowey_greeting(owner):
 
 label flowey_goodbye(owner):
     if owner.get_relationship() == "Hated":
-        show flowey annoyed
+        show flowey annoyed with Dissolve(.25)
         flowey "Good riddance."
     elif owner.get_relationship() == "Disliked":
-        show flowey annoyed
+        show flowey annoyed with Dissolve(.25)
         flowey "Finally."
     elif owner.get_relationship() == "Neutral":
-        show flowey normal
+        show flowey normal with Dissolve(.25)
         flowey "Bye."
     else:
         flowey "GREETING NOT FOUND"
