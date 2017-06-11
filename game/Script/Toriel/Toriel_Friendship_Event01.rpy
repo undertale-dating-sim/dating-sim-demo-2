@@ -1,6 +1,6 @@
 
 #trigger: spending 3 consecutive nights at the ruins
-label toriel_friendship_event01:
+label toriel_friendship_event_1(owner=get_toriel()):
     if world.get_monster('Frisk').FP < 5:
         show toriel normal with Dissolve(.25)
         toriel "Actually, I have been meaning to talk to you. I wanted to know how you were getting along. Are you having fun in the ruins?"
@@ -35,7 +35,8 @@ label toriel_friendship_event01:
         toriel "Well, that is that. I am glad we had this conversation."
         if world.get_monster('Toriel').FP > 10:
             toriel "As a sign that I am willing to put this behind us, I had a spare piece of snail pie that I was going to save for later, but, instead, I will give it to you. After all, it would be a waste to let it get cold, would it not?"
-            #inventory.add(Snail_Pie())
+            inventory.add(Snail_Pie())
+            "* You get a piece of Snail Pie! ... yay?"
             toriel "Make sure to eat the shells. They are a bit crunchy."
         toriel "Now, please, do get back to whatever it is you were doing."
         
@@ -67,7 +68,8 @@ label toriel_friendship_event01:
             if world.get_monster('Toriel').FP > 5:
                 toriel "Oh, hold on just one moment! I nearly forgot. I actually baked a snail pie to show you my gratitude. "
                 toriel "If you are not in the mood to eat it now, feel free to take a slice and save it for later. "
-                # inventory.add(Snail_Pie())
+                inventory.add(Snail_Pie())
+                "* You get a piece of Snail Pie! ... yay?"
                 toriel "Make sure to take the shells out before you dig in!"
             
         else:
@@ -86,10 +88,12 @@ label toriel_friendship_event01:
                 show toriel surprised with Dissolve(.25)
                 toriel "Oh! I nearly forgot. I had some spare ingredients lying about, so I baked a small snail pie to show you my gratitude."
                 toriel "If you are not in the mood to eat it now, feel free to take a slice and save it for later. Just... make sure to take the shells out before digging in."
-                # inventory.add(Snail_Pie())
+                inventory.add(Snail_Pie())
+                "* You get a piece of Snail Pie! ... yay?"
+
             show toriel normal with Dissolve(.25)
             toriel "..."
             toriel "Again, thank you. That was all I had to say."
-            
+    $ player.variables['Toriel_Friendship_1_Complete'] = True
     return 
     
