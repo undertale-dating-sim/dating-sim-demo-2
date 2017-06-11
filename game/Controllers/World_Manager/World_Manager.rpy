@@ -29,7 +29,7 @@ init -10 python:
     #sends a monster to the dead room.   handy for getting them out of a room quickly
     def banish(monster):
         world.get_monster(monster).move_to_room("Dead Room")
-        #reload_room()
+        reload_room()
 
     #runs all of the updates for the world
     def update():
@@ -69,6 +69,16 @@ init -10 python:
     
     def reload_room():
         renpy.call("load_room")
+
+    ##Getting tired of the convoluted way to call the monsters
+    def get_flowey():
+        return get_monster("Flowey")
+    def get_toriel():
+        return get_monster("Toriel")
+    def get_frisk():
+        return get_monster("Frisk")
+    def get_napstablook():
+        return get_monster("Napstablook")
 
     class World():
     
@@ -299,7 +309,7 @@ label load_room(loop=True,transition="fade"):
         $ renpy.notify(str(transition) + " not a valid option for transition")
 
     #if ADMIN_ROOM_DESC:
-    if not world.current_area.current_room.visited and world.current_area.current_room.desc and 'tutorial_over' in player.variables:
+    if not world.current_area.current_room.visited and world.current_area.current_room.desc and world.day > 0:
         "[world.current_area.current_room.desc]"
     $ world.current_area.current_room.visited = True
 
