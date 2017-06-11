@@ -1,0 +1,30 @@
+Flowey
+	Flowey_Hangout_1_Complete
+	flowey_heartbreak_activated
+
+Toriel
+	Toriel_Friendship_1_Complete
+	toriel_plant_watered_count
+	toriel_plant_watered_day
+	Toriel_Friendship_2_Complete
+
+Random Events Ruins
+	dummy_approached
+	
+Tutorial
+	tf_scream_count
+	satchel_found
+	satchel_refused
+	accepted_toriel
+	met_frisk
+	accepted_frisk
+	clicked_toriel
+	tutorial_over
+
+
+Cell Phone Calls
+
+	has_flowey_cell
+	has_frisk_cell
+	has_toriel_cell
+	has_napstablook_cell
