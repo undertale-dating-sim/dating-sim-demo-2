@@ -18,7 +18,7 @@ init:
 #triggered when Toriel has been high enough toriel_fp/toriel_dp
 #       and when all flirt options have been used
     
-label toriel_tl_date01_opening:
+label toriel_tl_date_1(owner=get_toriel()):
     show toriel normal with Dissolve(.25)
     toriel "Dear, do you have a moment to talk?"
     toriel "I have noticed that you have been acting quite... straightforward with me. Now, I will not tell you whom you should be interested in, but you are aware that I am no spring chicken, correct?"
