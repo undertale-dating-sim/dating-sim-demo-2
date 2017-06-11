@@ -30,7 +30,42 @@ init -9 python:
             else:
                 renpy.call_in_new_context("give_Gift_%s_Unknown" % self.name)
             return
+        
+        def handle_special_events(self):
+
+            #Friendship Event 1
+                # Staying with Toriel
+                # 3 nights have passed
+            if 'Toriel_Friendship_1_Complete' not in player.variables:
+                if player.variables['accepted_toriel'] and world.day > 3:
+                    self.special_event = Event('toriel_friendship_event_1',False,self)
+            #FP Hangout 1,
+                #Friendship 1 done,
+                #20 FP
+                #Staying with Toriel
+            elif 'Toriel_Friendship_1_Complete' in player.variables:
+                if get_toriel().FP > 20 and player.variables['toriel_accepted']:
+                    self.special_event = Event('toriel_friendship_hangout_1',False,self)
+
+        
+
+            #Friendship Event 2
+                #flower has bloomed
+                #staying with Toriel
+            elif 'Toriel_Friendship_2_Complete' not in player.variables and 'Toriel_Friendship_1_Complete' in player.variables:
+                if 'toriel_plant_watered_count' in player.variables:
+                    if player.variables['toriel_plant_watered_count'] >= 3 and world.day > player.variables['toriel_plant_watered_day']:
+                        self.special_event = Event('toriel_friendship_event_2',False,self)
+
+            #Date 1
+                #Friendship 1 done
+                #used up all flirts 
+            elif 'Toriel_Friendship_1_Complete' in player.variables and 'Toriel_TL_Date_1_Complete' not in player.variables:
+                if 'Toriel_Flirts_Complete' in player.variables:
+                    self.special_event = Event('toriel_tl_date_1',False,self)
+            return
             
+
         def seed_default_schedule(self):
             self.reset_schedule() 
             #night
