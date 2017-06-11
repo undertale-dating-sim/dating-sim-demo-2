@@ -6,7 +6,7 @@ init:
     $toriel_hangout_pun_count = 0
     $toriel_hangout_pun_hater = False
 
-label toriel_friendship_hangout:
+label toriel_friendship_hangout_1(owner=get_toriel()):
     show toriel smallsmile with Dissolve(.25)
     toriel "Hello, my friend. I am preparing a new pie recipe for dinner. Would you like to help?"
     menu:
