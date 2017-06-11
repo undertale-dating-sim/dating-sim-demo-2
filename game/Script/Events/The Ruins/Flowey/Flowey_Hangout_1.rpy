@@ -1,4 +1,4 @@
-label flowey_hangout1(owner = get_monster("Flowey")):
+label flowey_hangout1(owner = get_flowey()):
     #Hangout 1 
     #{After tutorial}
     #This initial "Hangout" dialogue will occur regardless if player has or has not yet met the prerequisites for a friendship with flowey
@@ -15,6 +15,7 @@ label flowey_hangout1(owner = get_monster("Flowey")):
             "I'd like to talk to you, flower.": 
                 $world.get_monster('Flowey').update_HB(2)
             "Exit":
+                $ player.variables['Flowey_Hangout_1_Complete'] = True
                 return
                 
         show flowey horror with Dissolve(.25)
@@ -34,6 +35,7 @@ label flowey_hangout1(owner = get_monster("Flowey")):
                 flowey "I have a lot more to do than you, apparently."
 
             "Alright, bye.":
+                $ player.variables['Flowey_Hangout_1_Complete'] = True
                 return
 
         show flowey annoyed with Dissolve(.25)
@@ -97,6 +99,7 @@ label flowey_hangout1(owner = get_monster("Flowey")):
                 flowey "I'm gonna go. Stay here by your lonesome as long as you'd like."
                 flowey "Or go bother someone else."
                 #exit
+        $ player.variables['Flowey_Hangout_1_Complete'] = True
         return
 
     label flowey_hangout1_path2:
@@ -170,5 +173,6 @@ label flowey_hangout1(owner = get_monster("Flowey")):
                     flowey "..."
                     flowey "Get out of my face, idiot."
                     #exit
+        $ player.variables['Flowey_Hangout_1_Complete'] = True
         return
         

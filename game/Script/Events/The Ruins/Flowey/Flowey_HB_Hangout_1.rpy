@@ -1,5 +1,5 @@
-label flowey_HB_hangout_1:
-    scene background floweyroomplaceholder
+label flowey_HB_hangout_1(owner = get_flowey()):
+
     # HB Hangout 1
     # End the first Flowey friendship hangout by choosing the option "We're going to play a game"
     
@@ -148,8 +148,10 @@ label flowey_HB_hangout_1:
                             $world.get_monster('Flowey').update_HB(-1)
                             show flowey suspicious with Dissolve(.25)
                             flowey "Go away."
-                            hide flowey
+                            hide flowey with Dissolve(.25)
                             "Flowey left."
+                            $ player.variables['Flowey_Hangout_2_Complete'] = True
+                            $ banish("Flowey")
                             return
                         "Since when were you in control?":
                             $world.get_monster('Flowey').update_HB(3)
@@ -165,8 +167,10 @@ label flowey_HB_hangout_1:
         show flowey suspicious with Dissolve(.25)
         flowey "Whatever."
         flowey "Go waste someone else's time."
-        hide flowey
+        hide flowey with Dissolve(.25)
         "Flowey left."
+        $ player.variables['Flowey_Hangout_2_Complete'] = True
+        $ banish("Flowey")
         return
         
     label Flowey_HB_Hangout_Bothered:
@@ -176,14 +180,16 @@ label flowey_HB_hangout_1:
             flowey "What? Stop looking at me like that."
             flowey "You... you don't scare me!"
             flowey "Go away!"
-            hide flowey
+            hide flowey with Dissolve(.25)
             "Flowey ran away."
+            $ player.variables['Flowey_Hangout_2_Complete'] = True
+            $ banish("Flowey")
         elif (owner.HB < 5):
             flowey "..."
             show flowey smug with Dissolve(.25)
             flowey "I see what you're trying to do here, and it's not going to work on me."
             flowey "Have fun with that, you freak."
-        else:
-            return
+
+        $ player.variables['Flowey_Hangout_2_Complete'] = True
         return
         

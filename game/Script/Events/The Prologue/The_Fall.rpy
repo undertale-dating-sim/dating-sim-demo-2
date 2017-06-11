@@ -634,12 +634,12 @@ label ruins_intro_leaves:
             toriel "I am glad... Our home is humble, but I hope you will stay for a while."
             toriel "And I am sure you and Frisk will get along just fine."
             toriel "Follow me then, dear... It is not far."
-            $ player.variables['rejected_toriel'] = False
+            $ player.variables['accepted_toriel'] = True
             $ move_to_room("Sassy Rock Room")
             #need some logic here
         "Thanks for the offer, but I’d rather continue on my own.":
             show toriel sad with Dissolve(.5)
-            $ player.variables['rejected_toriel'] = True
+            $ player.variables['accepted_toriel'] = False
             toriel "I understand... it can be hard to trust new people when you meet them, but you do not need to be afraid of us."
             toriel "If you change your mind, our door will be open. Be safe."
             hide toriel with Dissolve(.25)
@@ -771,13 +771,13 @@ label ruins_intro_blooky:
 #if the player goes east, they encounter the spider bakery
 #if the player goes north, they reach the tunnel divide. The tunnel divide should have its own room description, but no story elements take place here. The player can finally go east to encounter Frisk, in which case jump frisk_meeting_start. Or, the player could go north past the black tree room to encounter Toriel, in which case jump ruins_intro_toriel_house
 label ruins_intro_toriel_house:
-    if 'rejected_toriel' not in player.variables:
-        $ player.variables['rejected_toriel'] = False
+    if 'accepted_toriel' not in player.variables:
+        $ player.variables['accepted_toriel'] = True
     if 'met_frisk' not in player.variables:
         $ player.variables['met_frisk'] = False
-    if 'rejected_frisk' not in player.variables:
-        $ player.variables['rejected_frisk'] = False
-    if player.variables['rejected_toriel'] == False and player.variables['met_frisk'] == False:
+    if 'accepted_frisk' not in player.variables:
+        $ player.variables['accepted_frisk'] = True
+    if player.variables['accepted_toriel'] == True and player.variables['met_frisk'] == False:
         show toriel smallsmile with Dissolve(.25)
         toriel "Oh, hello, dear! I am glad to see you made it. You did not have any trouble finding the house, did you?"
 
@@ -808,7 +808,7 @@ label ruins_intro_toriel_house:
         jump ruins_intro_find_Frisk
                 
     
-    if player.variables['rejected_toriel'] == True and player.variables['met_frisk'] == False:           
+    if player.variables['accepted_toriel'] == False and player.variables['met_frisk'] == False:           
         show toriel smallsmile with Dissolve(.25)
         toriel "Oh, hello, dear! I see you have made it to my home…"
         toriel "Have you changed your mind? You are always welcome to stay here and rest awhile."
@@ -818,7 +818,7 @@ label ruins_intro_toriel_house:
                 show toriel smile with Dissolve(.25)
                 toriel "Great! I am glad to hear that."
                 toriel "You will not regret it… my child and I will be happy to have you here, I assure you."
-                $ player.variables['rejected_toriel'] = False
+                $ player.variables['accepted_toriel'] = True
                 jump ruins_intro_find_Frisk
             "No, I don’t want to stay with you.":               #(+0
                 show toriel normal with Dissolve(.25)
@@ -829,7 +829,7 @@ label ruins_intro_toriel_house:
             #player can go find Frisk, who also offers to let them stay at their house. If the player refuses all offers, maybe toriel finds them after they’ve passed out from low stamina and brings them to her house.
 
     #If the player did not accept toriel’s offer (option 57 of selection 22) AND finds Frisk, AND declines Frisk’s offer (option 62 of selection 11 in the Meeting Frisk script) AND returns to toriel’s house:
-    if player.variables['rejected_toriel'] == False and player.variables['met_frisk'] == True and player.variables['reject_frisk'] == True: 
+    if player.variables['accepted_toriel'] == True and player.variables['met_frisk'] == True and player.variables['accepted_frisk'] == False: 
         show toriel smallsmile with Dissolve(.25)
         toriel "Oh, hello again!"
         toriel "My child told me that you helped them collect snails… we are very grateful for your assistance."

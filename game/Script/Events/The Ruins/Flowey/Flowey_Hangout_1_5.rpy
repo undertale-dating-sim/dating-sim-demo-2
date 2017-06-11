@@ -1,4 +1,4 @@
-label Flowey_Hangout_1_5:
+label Flowey_Hangout_1_5(owner = get_flowey()):
     # The hangout occurs the second time the player encounters Flowey after Day 1.
     # If possible, this hangout would not occur in subsequent playthroughs after the first time it occurs.
     
@@ -26,6 +26,8 @@ label Flowey_Hangout_1_5:
         "Why be mean to the one person trying to talk to you?":
             $world.get_monster('Flowey').update_HB(3)
             call Flowey_Hangout_Path2
+
+    $ player.variables['Flowey_Hangout_2_Complete'] = True
     return
     
     
