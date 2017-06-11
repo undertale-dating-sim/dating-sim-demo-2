@@ -44,6 +44,7 @@ init -10 python:
         #Then check to see if the room has a monster event to do
         def get_event(self):
 
+            self.current_monster = False
             for event_name,event in self.events.iteritems():
                 if event.completed == False or event.permanent:
                     return event
