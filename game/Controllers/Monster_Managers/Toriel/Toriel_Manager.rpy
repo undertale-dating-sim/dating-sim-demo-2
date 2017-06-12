@@ -184,19 +184,13 @@ label Toriel_manager_default(owner = False,pause = True):
                 "Decrease Friendship Points":
                     $world.get_monster('Toriel').update_FP(-10)
                 "True Love Date 1":
-                    call toriel_tl_date01_opening
+                    call toriel_tl_date_1
                 "Friendship Event 1":
-                    call toriel_friendship_event01
+                    call toriel_friendship_event_1
                 "Friendship Event 2":
                     call toriel_friendship_event_2
                 "Friendship Hangout":
-                    call toriel_friendship_hangout
-                "Heartbreak Date 1":
-                    "nyi"
-                    pass
-                "Undersnail":
-                    call UnderSnail
-                    scene background ruins_floweyroom
+                    call toriel_friendship_hangout_1
                 "Back":
                     return
 
@@ -299,6 +293,7 @@ label Toriel_Manager_Flirt:
         '"Are you using fire magic right now? Because you’re warming my heart."'
         show toriel blushing
         toriel "Oh dear... You’re making me so flustered... Thank... Thank you dear! I am... So glad I could make you feel happy!"
+        $ player.variables['Toriel_Flirts_Complete'] = True
     #else have a default flirt that keeps repeating?
     $ Toriel.flirt_count += 1
     return
@@ -323,13 +318,13 @@ label Toriel_Manager_Ask:
             jump toriel_gd_askLivedRuins
 
         "What's your favorite thing to bake?":
-            show toriel smiling with Dissolve(.25)
+            show toriel smallsmile with Dissolve(.25)
             toriel "Well, I do very much enjoy making Butterscotch Pie. However, if I manage to find enough snails, Snail Pie is something I love to make as well." 
             toriel "Frisk seems to like Butterscotch more than Snail, however. So I try not to make Snail Pie too often."
             toriel "I have also been known to make the occasional cake."
 
         "How’s Frisk treating you?":
-            show toriel smiling with Dissolve(.25)
+            show toriel smallsmile with Dissolve(.25)
             toriel "Ah, Frisk's arrival has been a true blessing. They are a very conscientious child."
             toriel "They help me with cooking, do chores without complaining, and they are kind to the other residents of the ruins."
             toriel "Really, I have nothing to complain about. They are the most wonderful child I could ever ask for."
