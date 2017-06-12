@@ -16,7 +16,6 @@ screen cell:
                     action [ui.callsinnewcontext("call_Monster","Napstablook")] background "#000000"
             
 label call_Monster(monster):
-
     python:
         location = world.current_area.current_room
         loc_name = "call_"+monster+"_"+location.name.replace(" ","_")
@@ -28,12 +27,31 @@ label call_Monster(monster):
             monster.variables[call_location_variable] = 1
         else:
             monster.variables[call_location_variable] += 1
-    if renpy.has_label(loc_name):
-        call expression loc_name pass (monster,monster.variables[call_location_variable])
-    elif renpy.has_label("call_[monster]_Unknown"):
-        call expression "call_[monster]_Unknown" pass (loc_name)
-    else:
-        call unknown_Call
+
+        if monster.name+"_Cellphone_"+location.name.replace(" ","_")+"_Complete" not in player.variables:
+            text_color = "#00ff00"
+        else:
+            text_color = "#ffffff"
+
+    menu:
+       "Hello?"
+                
+        "{color=[text_color]}Chat about [world.current_area.current_room.name]{/color}":
+
+            
+            if renpy.has_label(loc_name):
+                call expression loc_name pass (monster,monster.variables[call_location_variable])
+            elif renpy.has_label("call_[monster]_Unknown"):
+                call expression "call_[monster]_Unknown" pass (loc_name)
+            else:
+                call unknown_Call
+
+        "Where are you?":
+            if renpy.has_label("call_[monster]_Unknown"):
+                call expression "call_[monster]_Unknown" pass (loc_name)
+            else:
+                $ monster = world.get_monster(monster)
+                "I'm at [monster.current_room.name]."
     return
 
 label unknown_Call:
