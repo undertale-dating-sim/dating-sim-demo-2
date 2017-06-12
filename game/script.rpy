@@ -35,7 +35,12 @@ define test = Character("Sans", callback=beepy_voice)
 
 label start:
     
-    $ world.update_world(True)
+    # $ world.update_world(True)
+    $ get_monster("Flowey").move_to_room("Cave Room")
+    $ get_monster("Toriel").move_to_room("Grass Room")
+    $ get_monster("Napstablook").move_to_room("Tunnels")
+    $ get_monster("Napstablook").move_to_room("Tunnels")
+    $ get_monster("Frisk").move_to_room("Ruins Entrance")
     $ move_to_room("Cave Room")
     #jump the_beginning
     return
