@@ -34,7 +34,7 @@ label call_Monster(monster):
             text_color = "#ffffff"
 
     menu:
-       "Hello?"
+        "Hello?"
                 
         "{color=[text_color]}Chat about [world.current_area.current_room.name]{/color}":
 
