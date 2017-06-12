@@ -10,7 +10,9 @@
 init -1 python hide:
 
     config.keymap['screenshot'] = []
-    config.log = 'wilson.txt'
+    config.keymap['rollback'] = []
+    config.keymap['rollforward'] = []
+    # config.log = 'wilson.txt'
     config.developer = True
     ## These control the width and height of the screen.
 
