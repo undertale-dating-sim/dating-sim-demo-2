@@ -208,10 +208,10 @@ label Napstablook_manager_default(owner = False, pause = True):
                     $ owner.DP += 10
                 "Lower DP 10":
                     $ owner.DP -= 10
-                "Raise HB 10":
-                    $ owner.HB += 10
-                "Lower HB 10":
-                    $ owner.HB -= 10
+                "Raise HP 10":
+                    $ owner.HP += 10
+                "Lower HP 10":
+                    $ owner.HP -= 10
             return
         "Events":
             $ issinger = False
@@ -231,7 +231,7 @@ label Napstablook_manager_default(owner = False, pause = True):
                 "One Man's Trash...":
                     call napstablook_hangout_3
                 "Blooky's HB Date":
-                    if (owner.HB > 12):
+                    if (owner.HP > 12):
                         call napstablook_hb_date
                     else:
                         napstablook "oh... that's a nice idea..."

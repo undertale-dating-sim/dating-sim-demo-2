@@ -17,8 +17,8 @@ init -10 python:
             self.FP = 0
             self.DP_events = {}
             self.DP = 0
-            self.HB_events = {}
-            self.HB = 0
+            self.HP_events = {}
+            self.HP = 0
             self.visited = False
             self.dialogue_toggle = False
             self.hover_sprite = None
@@ -141,8 +141,8 @@ init -10 python:
         def update_DP(self,amount):
             self.DP += amount
             renpy.call("word_scroll",amount)
-        def update_HB(self,amount):
-            self.HB += amount
+        def update_HP(self,amount):
+            self.HP += amount
             renpy.call("word_scroll",amount)
 
 

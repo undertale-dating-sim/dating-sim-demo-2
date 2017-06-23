@@ -153,10 +153,10 @@ label flowey_manager_default(owner = False,pause = True):
                         $ owner.FP += 20
                     "Lower FP 20":
                         $ owner.FP -= 20
-                    "Raise HB 20":
-                        $ owner.HB += 20
-                    "Lower HB 20":
-                        $ owner.HB -= 20
+                    "Raise HP 20":
+                        $ owner.HP += 20
+                    "Lower HP 20":
+                        $ owner.HP -= 20
             "Give Gift" if len(inventory.items) > 0:
                 call flowey_gift_menu_open(owner)
                 $ result = renpy.call_screen("gift_item_menu",owner)

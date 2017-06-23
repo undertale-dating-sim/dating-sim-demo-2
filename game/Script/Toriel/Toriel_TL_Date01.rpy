@@ -9,19 +9,15 @@ init:
     $ toriel_tl_date01_favcolor_picked = False
     $ toriel_tl_date01_favcolor_green = False
 
-    #temp variables for testing
-    $ toriel_fp = 50
-    $ toriel_dp = 50
-    $ toriel_hp = 50
+    #$ toriel_hp = 50
 
 
-#triggered when Toriel has been high enough toriel_fp/toriel_dp
-#       and when all flirt options have been used
     
 label toriel_tl_date_1(owner=get_toriel()):
     show toriel normal with Dissolve(.25)
     toriel "Dear, do you have a moment to talk?"
-    toriel "I have noticed that you have been acting quite... straightforward with me. Now, I will not tell you whom you should be interested in, but you are aware that I am no spring chicken, correct?"
+    toriel "I have noticed that you have been acting quite... straightforward with me."
+    toriel "Now, I will not tell you whom you should be interested in, but you are aware that I am no spring chicken, correct?"
     toriel "I think you would be better off chasing a younger skirt."
 
 label opening_menu:
@@ -42,12 +38,12 @@ label opening_menu:
                     toriel "That was all I wished to ask you. Have a good day."
                     jump date_retry
         "No, actually, I would really like to go on a date with you.":
-            $ toriel_dp += 2
+            $ get_monster("Toriel").DP += 2
             show toriel laughing with Dissolve(.25)
             toriel "Haha, you are adorable. Why on earth would you want to date {i}me{/i}?"
             menu:
                 "No, I'm serious.":
-                    $ toriel_dp +=2
+                    $ get_monster("Toriel").DP +=2
                     show toriel smallsmile with Dissolve(.25)
                     toriel "Oh."
                     toriel "Well, I suppose there would be no harm in going on one date."
@@ -58,12 +54,12 @@ label opening_menu:
                     toriel "I'm glad we had this talk."
                     jump date_retry
                 "Gosh, I don’t know. Why would someone ever want to date such a kind and experienced lady?":
-                    $ toriel_dp +=4
+                    $ get_monster("Toriel").DP +=4
                     show toriel blushing with Dissolve(.25)
                     toriel "I do not know. Will you tell me?"
                     menu:
                         "Only if you agree to go on a date with me.":
-                            $ toriel_dp +=2
+                            $ get_monster("Toriel").DP +=2
                             show toriel laughing with Dissolve(.25)
                             toriel "If I have no other choice..."
                             toriel "Alright, I suppose there would be no harm in going on one date."
@@ -74,7 +70,7 @@ label opening_menu:
                             toriel "Perhaps we should just forget about all of this."
                             jump date_retry
         "Maybe some people would agree, but I don't think that.":
-            $ toriel_hp += 1
+            #$ toriel_hp += 1
             show toriel normal with Dissolve(.25)
             toriel "Well..."
             toriel "Only if you are really sure about this."
@@ -96,12 +92,12 @@ label date_retry:
     toriel "You could have just said so, dear."
     menu:
         "I... uh... panicked?":
-            $ toriel_dp -=1
+            $ get_monster("Toriel").DP -=1
             toriel "I admit, I was being rather confrontational."
             toriel "Though, I must say, a date does sound nice."
             menu:
                 "Yeah, I think so, too.":
-                    $ toriel_dp +=2
+                    $ get_monster("Toriel").DP +=2
                     show toriel blushing with Dissolve(.25)
                     toriel "It is a date, then."
                     jump toriel_date_start
@@ -117,12 +113,12 @@ label date_retry:
             toriel "That is a sheep pun, dear."
             menu:
                 "Then wool ewe go on a date with me?":
-                    $ toriel_dp +=2
+                    $ get_monster("Toriel").DP +=2
                     show toriel laughing with Dissolve(.25)
                     toriel "Yes, I believe I wool! You have won me over through shear determination."
                     jump toriel_date_start
                 "Should I have used a goat pun?":
-                    $ toriel_dp -=1
+                    $ get_monster("Toriel").DP -=1
                     show toriel smallsmile with Dissolve(.25)
                     toriel "No, no. It is quite alright, dear."
                     toriel "And yes, I would like to have a date with you."
@@ -135,7 +131,7 @@ label date_retry:
             toriel "But... Apology accepted."
             menu:
                 "Thank you. Then… can I dare to ask you on a date again?":
-                    $toriel_dp +=1
+                    $get_monster("Toriel").DP +=1
                     show toriel blushing with Dissolve(.25)
                     toriel "I do not know, {i}can{/i} you?"
                     menu:
@@ -144,7 +140,7 @@ label date_retry:
                             toriel "Let us have a date then."
                             jump toriel_date_start
                         "{i}May{/i} I dare to ask you on a date again?":
-                            $toriel_dp +=2
+                            $get_monster("Toriel").DP +=2
                             show toriel smallsmile with Dissolve(.25)
                             toriel "Why, of course you may, my dear!"
                             toriel "I may even say yes."
@@ -165,19 +161,19 @@ label date_retry:
             toriel "I... um..."
             menu:
                 "I'm serious.":
-                    $toriel_dp +=3
+                    $get_monster("Toriel").DP +=3
                     show toriel smallsmile with Dissolve(.25)
                     toriel "...Oh."
                     toriel "Well, I suppose there would be no harm in going on a date."
                     jump toriel_date_start
                 "And you're the craziest of all the goat ladies I know.":
-                    $toriel_dp +=2
+                    $get_monster("Toriel").DP +=2
                     show toriel laughing with Dissolve(.25)
                     toriel "I am the only 'goat lady' you know!"
                     toriel "Well then, are you sure you want to accompany this ‘crazy goat lady’?"
                     menu:
                         "Yes":
-                            $toriel_dp +=1
+                            $get_monster("Toriel").DP +=1
                             show toriel smile with Dissolve(.25)
                             toriel "It is a date, then."
                             jump toriel_date_start
@@ -215,13 +211,13 @@ label date_retry:
                             toriel "Please do not ask again."
                             jump bad_end
                         "Alright then, if you say so. I trust you.":
-                            $toriel_dp +=1
+                            $get_monster("Toriel").DP +=1
                             show toriel normal with Dissolve(.25)
                             toriel "Oh. Well... Thank you."
                             toriel "Anyway... Did you say that you wanted to go on a date?"
                             menu:
                                 "Yes.":
-                                    $toriel_dp +=1
+                                    $get_monster("Toriel").DP +=1
                                     show toriel smallsmile with Dissolve(.25)
                                     toriel "In that case, it is a date."
                                     jump toriel_date_start
@@ -238,7 +234,7 @@ label date_retry:
                     toriel "I believe I remember you saying you want to go on a date?"
                     menu:
                         "Yes.":
-                            $toriel_dp +=1
+                            $get_monster("Toriel").DP +=1
                             show toriel smallsmile with Dissolve(.25)
                             toriel "In that case, it is a date."
                             jump toriel_date_start
@@ -260,18 +256,18 @@ label date_retry:
                     toriel "Please do not ask me again."
                     jump bad_end
                 "Maybe next time, try being a bit less… forceful.":
-                    $toriel_dp -=2
+                    $get_monster("Toriel").DP -=2
                     show toriel annoyed with Dissolve(.25)
                     toriel "I will take that into consideration."
                     toriel "I am glad we had this talk."
                     jump bad_end
                 "It’s not your fault. I just didn’t want to offend you.":
-                    $toriel_dp +=2
+                    $get_monster("Toriel").DP +=2
                     show toriel laughing with Dissolve(.25)
                     toriel "Oh, in that case, I guess I am not sorry. So, you mentioned a date?"
                     menu:
                         "I did.":
-                            $toriel_dp +=1
+                            $get_monster("Toriel").DP +=1
                             show toriel smile with Dissolve(.25)
                             toriel "It sounds like a good idea. I would be happy to go out with you."
                             jump toriel_date_start
@@ -289,18 +285,18 @@ label toriel_date_start:
     menu:
         "You look stunning.":
             $toriel_tl_date01_stunning = True
-            $toriel_dp +=5
+            $get_monster("Toriel").DP +=5
             show toriel blushing with Dissolve(.25)
             toriel "Oh! Well... Thank you, dear."
             jump q_start
         "What's cooking, good looking?":
-            $toriel_dp +=2
+            $get_monster("Toriel").DP +=2
             $world.get_monster('Toriel').update_FP(3)
             show toriel laughing with Dissolve(.25)
             toriel "Nothing much, honey bunch."
             jump q_start
         "All of this, just for me?":
-            $toriel_hp +=2
+            #$toriel_hp +=2
             show toriel smile with Dissolve(.25)
             toriel "Well, you are the first to ask me out like this in quite a while, my dear."
             jump q_start
@@ -342,14 +338,14 @@ label toriel_date_start:
                                     toriel "Advice I have given many times over the years, yet I still have no idea how to follow it, myself."
                                     menu:
                                         "Trust your git feeling.":
-                                            $toriel_dp +=3
+                                            $get_monster("Toriel").DP +=3
                                             show toriel smallsmile with Dissolve(.25)
                                             toriel "In the end it is all we can do."
                                             toriel "Oh! I rambled for so long that you have had no chance to talk!"
                                             toriel "Tell me about yourself. What is your favorite color?"
                                             jump q_favcolor
                                         "You should listen to others' advice.":
-                                            $toriel_hp +=2
+                                            #$toriel_hp +=2
                                             show toriel sad with Dissolve(.25)
                                             toriel "You are right. Others’ experiences can be useful where I am lacking."
                                             show toriel smallsmile with Dissolve(.25)
@@ -357,7 +353,7 @@ label toriel_date_start:
                                             toriel "Tell me something... What is your favorite color?"
                                             jump q_favcolor
                                         "Just... trust yourself to learn from the whole experience.":
-                                            $toriel_dp +=1
+                                            $get_monster("Toriel").DP +=1
                                             show toriel sad with Dissolve(.25)
                                             toriel "I think that if I could have done so, I already would have."
                                             show toriel smallsmile with Dissolve(.25)
@@ -372,7 +368,7 @@ label toriel_date_start:
                                             toriel "Oh dear, I kept rambling about myself. Now it is your turn to talk. So tell me… What is your favorite color?"
                                             jump q_favcolor
                                 "Not at all.":
-                                    $toriel_dp -=2
+                                    $get_monster("Toriel").DP -=2
                                     show toriel sad with Dissolve(.25)
                                     toriel "I assumed so."
                                     toriel "So I suppose on these date things people ask each other questions."
@@ -381,7 +377,7 @@ label toriel_date_start:
                                     toriel "What is your favorite color?"
                                     jump q_favcolor
                                 "I think I get that.":
-                                    $toriel_dp +=2
+                                    $get_monster("Toriel").DP +=2
                                     show toriel smallsmile with Dissolve(.25)
                                     toriel "I think everyone has to come to that realization sooner or later, or else they will be forever at war with their past."
                                     show toriel sad with Dissolve(.25)
@@ -393,7 +389,7 @@ label toriel_date_start:
                                     toriel "Umm... What is your favorite color?"
                                     jump q_favcolor
                                 "Sometimes bad things need to happen.":
-                                    $toriel_hp +=2
+                                    #$toriel_hp +=2
                                     show toriel awkward with Dissolve(.25)
                                     toriel "Well... I suppose you are right. A perfect life is not possible, after all."
                                     show toriel normal with Dissolve(.25)
@@ -417,21 +413,21 @@ label toriel_date_start:
                             toriel "My, you are observant."
                             menu:
                                 "Thanks, I try.":
-                                    $toriel_dp +=2
+                                    $get_monster("Toriel").DP +=2
                                     $world.get_monster('Toriel').update_FP(3)
                                     show toriel laughing with Dissolve(.25)
                                     toriel "Yes, I can tell."
                                     toriel "But enough about me. Let us talk about you. What is your favorite color?"
                                     jump q_favcolor
                                 "Tone it down a little, would you?":
-                                    $toriel_dp -=2
+                                    $get_monster("Toriel").DP -=2
                                     $world.get_monster('Toriel').update_FP(-1)
                                     show toriel awkward with Dissolve(.25)
                                     toriel "Well, if you do not appreciate this sort of humor, I suppose I will try."
                                     toriel "Let us try something else, then. What is your favorite color?"
                                     jump q_favcolor
                                 "Um... yeah. Thanks.":
-                                    $toriel_dp -=2
+                                    $get_monster("Toriel").DP -=2
                                     show toriel awkward with Dissolve(.25)
                                     toriel "..."
                                     toriel "Um."
@@ -453,7 +449,7 @@ label toriel_date_start:
                             toriel "Yes, they seem... oddly attached to this area. I do not quite understand their fascination with it."
                             menu:
                                 "Maybe they think it's beautiful... just like you.":
-                                    $toriel_dp +=3
+                                    $get_monster("Toriel").DP +=3
                                     show toriel laughing with Dissolve(.25)
                                     toriel "I doubt they think that, but I appreciate the sentiment."
                                     show toriel normal with Dissolve(.25)
@@ -473,7 +469,7 @@ label toriel_date_start:
                                     toriel "Say, uh... What is your favorite color?"
                                     jump q_favcolor
                 "Did you want to come here so we could get away from Frisk and have a more... adult conversation?":
-                    $toriel_dp +=2
+                    $get_monster("Toriel").DP +=2
                     show toriel blushing with Dissolve(.25)
                     toriel "You are practically reading my mind."
                     toriel "Would you like it if we went back to my place..."
@@ -481,19 +477,19 @@ label toriel_date_start:
                     toriel "...And did the taxes?"
                     menu:
                         "What? Oh, no, I meant... uh... Never mind.":
-                            $toriel_dp -=2
+                            $get_monster("Toriel").DP -=2
                             toriel "I know what you meant, dear; I am just teasing."
                             toriel "Well, let us forget about the 'adult talk' for now and get back to our date."
                             toriel "Um... What is your favorite color?"
                             jump q_favcolor
                         "Hey now, don’t you think it’s too early in our relationship for something like that?":
-                            $toriel_dp +=2
+                            $get_monster("Toriel").DP +=2
                             $world.get_monster('Toriel').update_FP(3)
                             show toriel laughing with Dissolve(.25)
                             toriel "Are you suggesting we save the {i}adult stuff{/i} for later?"
                             menu:
                                 "Yeah. Don’t want to rush into things, you know?":
-                                    $toriel_dp +=1
+                                    $get_monster("Toriel").DP +=1
                                     show toriel smile with Dissolve(.25)
                                     toriel "Maybe you are right. Let us leave the taxes for later in our relationship."
                                     toriel "So, tell me about yourself. What is your favorite color?"
@@ -511,27 +507,27 @@ label toriel_date_start:
                                     toriel "So... um... Tell me about yourself. What is your favorite color?"
                                     jump q_favcolor
                         "How about we take it a step further and balance the checkbooks?":
-                            $toriel_dp +=4
+                            $get_monster("Toriel").DP +=4
                             toriel "Oh dear, are you sure you want to go to that level already?"
                             menu:
                                 "Only if you want to.":
-                                    $toriel_dp +=1
+                                    $get_monster("Toriel").DP +=1
                                     show toriel smile with Dissolve(.25)
                                     toriel "Hm... Let us save something like this for a later point in our relationship. We do not want to rush into things, after all."
                                     toriel "So, tell me about yourself. What is your favorite color?"
                                     jump q_favcolor
                                 "There's nothing I like more than crunching numbers.":
-                                    $toriel_dp +=3
+                                    $get_monster("Toriel").DP +=3
                                     toriel "I hate to break this to you, but you seem like a very boring person."
                                     menu:
                                         "Says the one who wants to do taxes.":
-                                            $toriel_dp +=1
+                                            $get_monster("Toriel").DP +=1
                                             show toriel smile with Dissolve(.25)
                                             toriel "I guess you have a point. We seem to be equally boring, then, do we not?"
                                             toriel "So, on that note, tell me about yourself. What is your favorite color?"
                                             jump q_favcolor
                                         "What can I say? I just love adult talk.":
-                                            $toriel_dp +=3
+                                            $get_monster("Toriel").DP +=3
                                             toriel "I can tell."
                                             show toriel smile with Dissolve(.25)
                                             toriel "Well, I regret to inform you that I have had enough of this ‘adult talk’."
@@ -544,7 +540,7 @@ label toriel_date_start:
                                     toriel "Tell me something about yourself... What is your favorite color?"
                                     jump q_favcolor
                 "Good thinking.":
-                    $toriel_dp -=1
+                    $get_monster("Toriel").DP -=1
                     show toriel awkward with Dissolve(.25)
                     toriel "Yes, it is."
                     toriel "..."
@@ -563,7 +559,7 @@ label q_blacktree:
             toriel "..."
             jump q_blacktree
         "There is a certain beauty to preserving what would otherwise be long gone.":
-            $toriel_dp -=3
+            $get_monster("Toriel").DP -=3
             show toriel annoyed with Dissolve(.25)
             toriel "I think you will find that some things are not worth preserving, whether they be items or... other things."
             show toriel normal with Dissolve(.25)
@@ -585,7 +581,7 @@ label q_start:         #Selection 30
             toriel "Although I have to admit, I have not exactly gone on a date in a while, so I am sorry if I make a mistake."
             menu:
                 "You can't exactly date a person the wrong way.":
-                    $toriel_dp +=3
+                    $get_monster("Toriel").DP +=3
                     show toriel smile with Dissolve(.25)
                     toriel "Thank you for your vote of confidence."
                     show toriel normal with Dissolve(.25)
@@ -597,7 +593,7 @@ label q_start:         #Selection 30
                     toriel "I truly am glad to have someone to talk to."
                     toriel "So... Would you like to hear a joke?"
                 "Don't worry, I'll show you how it's done.":
-                    $toriel_hp +=1
+                    #$toriel_hp +=1
                     show toriel awkward with Dissolve(.25)
                     toriel "Oh..."
                     show toriel laughing with Dissolve(.25)
@@ -613,7 +609,7 @@ label q_start:         #Selection 30
             toriel "Oh, I think I have one..."
         "If you were a fruit, you'd be a fineapple.":
             $ toriel_tl_date01_fineapple = True
-            $toriel_dp +=2
+            $get_monster("Toriel").DP +=2
             $world.get_monster('Toriel').update_FP(3)
             show toriel smile with Dissolve(.25)
             toriel "Very funny!"
@@ -626,14 +622,14 @@ label q_start:         #Selection 30
             $world.get_monster('Toriel').update_FP(1)
             toriel "A waist of time!"
         "...":
-            $toriel_dp -=1
-            $toriel_hp +=2
+            $get_monster("Toriel").DP -=1
+            #$toriel_hp +=2
             toriel "A waist of time!"
             show toriel awkward with Dissolve(.25)
             toriel "..."
             toriel "...A waist of time."
         "A monstrosity?":
-            $toriel_dp +=1
+            $get_monster("Toriel").DP +=1
             show toriel laughing with Dissolve(.25)
             toriel "Not quite!"
             toriel "...It’s a waist of time!"
@@ -650,7 +646,7 @@ label q_start:         #Selection 30
                     toriel "He is very nice. He enjoys puns as much as I do, it seems."
                     menu:
                         "Gasp... Toriel... Are you cheating on me?!":
-                            $toriel_dp +=1
+                            $get_monster("Toriel").DP +=1
                             show toriel blushing with Dissolve(.25)
                             toriel "What? We are not..."
                             show toriel surprised with Dissolve(.25)
@@ -670,7 +666,7 @@ label q_start:         #Selection 30
                             toriel "We are just friends."
                             menu:
                                 "If you don’t mind me saying... I hope it stays that way.":
-                                    $toriel_dp +=3
+                                    $get_monster("Toriel").DP +=3
                                     show toriel smile with Dissolve(.25)
                                     toriel "Oh, stop it, you."
                                     toriel "But enough about him. This is our date, after all... We should be getting to know each other better."
@@ -680,7 +676,7 @@ label q_start:         #Selection 30
                                     toriel "What is your favorite color?"
                                     jump q_favcolor
                                 "Maybe you should consider not talking to strangers. Someone might want to take advantage of you.":
-                                    $toriel_hp +=4
+                                    #$toriel_hp +=4
                                     show toriel sad with Dissolve(.25)
                                     toriel "Do you really think so?"
                                     toriel "..."
@@ -693,7 +689,7 @@ label q_start:         #Selection 30
                                     jump q_favcolor
                                 "Sorry, I was just curious.":
                                     $world.get_monster('Toriel').update_FP(2)
-                                    #show toriel smallsmile
+                                    show toriel smallsmile
                                     toriel "Oh, that is fine. Thank you for understanding."
                                     toriel "But enough about him. This is our date, after all... We should be getting to know each other better."
                                     toriel "So…"
@@ -720,7 +716,7 @@ label q_start:         #Selection 30
                     toriel "What is your favorite color?"
                     jump q_favcolor
         "I don't get it.":
-            $toriel_dp -=1
+            $get_monster("Toriel").DP -=1
             show toriel normal
             toriel "Well, because a belt is worn around the waist, and..."
             show toriel smallsmile with Dissolve(.25)
@@ -733,7 +729,7 @@ label q_start:         #Selection 30
             jump q_favcolor
             
         "Ha, I know you have better ones than that, Tori.":
-            $toriel_hp +=1
+            #$toriel_hp +=1
             show toriel awkward with Dissolve(.25)
             toriel "Oh... Perhaps you are right."
             toriel "Do not worry. I will come up with something better."
@@ -750,7 +746,7 @@ label q_favcolor:      #Selection 37
         call favcolor_1
     menu:
         "What's {i}your{/i} favorite color?":
-            $toriel_dp +=1
+            $get_monster("Toriel").DP +=1
             show toriel smile with Dissolve(.25)
             toriel "I am particularly fond of green, believe it or not. Grass is not something commonly found in the Ruins."
             menu:
@@ -761,7 +757,7 @@ label q_favcolor:      #Selection 37
                 "That's... actually pretty sad.":
                     toriel "Oh, I have learned to live with it. You will find that most monsters here do not even remember grass. So, in a way, I am lucky."
                 "Hey, we have the same favorite color!" if toriel_tl_date01_favcolor_green == True:
-                    $toriel_dp +=3
+                    $get_monster("Toriel").DP +=3
                     show toriel laughing with Dissolve(.25)
                     toriel "Indeed, we do! It is a good color."
         "I’ve been wondering... How long have you been taking care of Frisk?":
@@ -781,19 +777,19 @@ label q_favcolor:      #Selection 37
                     toriel "Well... Maybe. I have been smothering them a bit, have I not? Perhaps I should be a bit more lenient. I just do not want them to be harmed."
                     menu:
                         "I understand. You should do what you think is right.":
-                            $toriel_dp +=2
+                            $get_monster("Toriel").DP +=2
                             show toriel smallsmile with Dissolve(.25)
                             toriel "Thank you. You are very kind."
                         "If you ever want advice, feel free to come to me.":
-                            $toriel_hp +=1
-                            $toriel_dp +=1
+                            #$toriel_hp +=1
+                            $get_monster("Toriel").DP +=1
                             show toriel smallsmile with Dissolve(.25)
                             toriel "That is very kind of you. I am certain I will."
                         "You should really get this figured out.":
                             $dp -=2
                             toriel "I am aware..."
         "Hey, is it hot in here, or is it just you?":
-            $toriel_dp +=3
+            $get_monster("Toriel").DP +=3
             show toriel laughing with Dissolve(.25)
             toriel "I confess, it must be me. Do not worry, this happens quite often in my presence."
     
@@ -801,27 +797,27 @@ label q_favcolor:      #Selection 37
     toriel "Anyway, I have been meaning to ask... How long do you plan to stay in the Ruins?"
     menu:
         "As long as you plan to stay here.":
-            $toriel_dp +=5
+            $get_monster("Toriel").DP +=5
             show toriel blushing with Dissolve(.25)
             toriel "Ah, well... You might be staying a while, then."
             menu:
                 "That's fine with me.":
-                    $toriel_dp +=3
+                    $get_monster("Toriel").DP +=3
                     show toriel smile with Dissolve(.25)
                     toriel "That is very reassuring to hear, thank you."
                 "Don't worry, , I’m sure I’ll be able to get you out of your shell at some point.":
-                    $toriel_dp -=2
+                    $get_monster("Toriel").DP -=2
                     show toriel awkward with Dissolve(.25)
                     toriel "Ha, yes. Right."
         "As long as I feel like it.":
-            $toriel_dp -=2
+            $get_monster("Toriel").DP -=2
             toriel "Oh... Well, hopefully you will not leave soon, then."
             menu:
                 "Probably not.":
                     toriel "That is good. If you left, you would be missed."
                 "Don't count on it.":
                     $world.get_monster('Toriel').update_FP(-3)
-                    $toriel_dp -=3
+                    $get_monster("Toriel").DP -=3
                     show toriel annoyed with Dissolve(.25)
                     toriel "Why did you ask me out on this date, then? Is this just a game to you?"
                     menu:
@@ -844,7 +840,7 @@ label q_favcolor:      #Selection 37
                                     jump date_goodbye
                         "No, you have to understand. I just don’t like being cooped up in one place.":
                             $world.get_monster('Toriel').update_FP(-1)
-                            $toriel_dp -=2
+                            $get_monster("Toriel").DP -=2
                             show toriel angry with Dissolve(.25)
                             toriel "You know what? I do not understand."
                             menu:
@@ -857,7 +853,7 @@ label q_favcolor:      #Selection 37
                                     toriel "Oh, trust me, I {i}am{/i} calm. But perhaps we should end this date before it escalates."
                                     jump date_goodbye
                         "Hey, relax. This is just for fun, right?":
-                            $toriel_dp -=4
+                            $get_monster("Toriel").DP -=4
                             show toriel angry with Dissolve(.25)
                             toriel "Maybe to {i}you{/i} it is, but we clearly went into this with different expectations."
                             menu:
@@ -877,16 +873,16 @@ label q_favcolor:      #Selection 37
                             show toriel awkward with Dissolve(.25)
                             toriel "Is that all? I am sorry for overreacting, then. It is my mistake."
         "What, you don't want me around?":
-            $toriel_hp +=2
+            #$toriel_hp +=2
             show toriel surprised with Dissolve(.25)
             toriel "No, it is not that! You are very welcome here. I am just... curious."
             menu:
                 "Ha, good. I’m not about to let you go anytime soon.":
-                    $toriel_hp +=1
+                    #$toriel_hp +=1
                     show toriel awkward with Dissolve(.25)
                     toriel "That, uh, might go two ways, I suppose."
                 "Alright, I was scared for a minute.":
-                    $toriel_dp +=1
+                    $get_monster("Toriel").DP +=1
                     show toriel laughing with Dissolve(.25)
                     toriel "Well, I am sorry to scare you, then. You are welcome in my house as long as you like."
                 "Are you sure? If you don’t want me here, just say so.":
@@ -900,22 +896,22 @@ label q_favcolor:      #Selection 37
     toriel "Oh, right, I was wondering... You and Frisk have still been getting along well, yes?"
     menu:
         "Yeah, we’re good friends.":
-            $toriel_dp +=2
+            $get_monster("Toriel").DP +=2
             show toriel smile with Dissolve(.25)
             toriel "Yes, that is what they have been telling me! I am glad about that, I am glad to hear that. It is good that you keep each other from being lonely."
         "I just let them think we're close.":
-            $toriel_dp -=3
+            $get_monster("Toriel").DP -=3
             show toriel annoyed with Dissolve(.25)
             toriel "...Well. That is a bit rude, do you not think?"
             menu:
                 "Why? They're just a kid.":
-                    $toriel_dp -=3
+                    $get_monster("Toriel").DP -=3
                     toriel "Listen, {i}dear{/i}, they are not some... some inanimate doll for you to play around with."
                     menu:
                         "I didn't think they were.":
                             toriel "Maybe you should act like it, then."
                         "Well, what do you know about kids?":
-                            $toriel_dp -=4
+                            $get_monster("Toriel").DP -=4
                             $world.get_monster('Toriel').update_FP(-4)
                             show toriel angry with Dissolve(.25)
                             toriel "Certainly more than {i}you{/i}."
@@ -936,7 +932,7 @@ label q_favcolor:      #Selection 37
                 "...":
                     toriel "What, nothing to say for yourself? Luckily for you, I will take this to mean that you see your mistake."
                 "They’re happy, right? Why does it matter?":
-                    $toriel_dp -=3
+                    $get_monster("Toriel").DP -=3
                     $world.get_monster('Toriel').update_FP(-2)
                     show toriel angry with Dissolve(.25)
                     toriel "It {i}matters{/i} because you do not have the right to treat people like objects to manipulate."
@@ -973,7 +969,7 @@ label favcolor_1:
     if toriel_tl_date01_favcolor_picked == False:
         menu:
             "The color of your eyes.":
-                $toriel_dp +=4
+                $get_monster("Toriel").DP +=4
                 if (toriel_tl_date01_stunning == True and toriel_tl_date01_fineapple == True):
                     show toriel awkward with Dissolve(.25)
                     toriel "Um. Thank you, again? You seem to be very fond of these compliments."
@@ -1059,14 +1055,14 @@ label bad_end:
     return
     
 label date_end:
-    if toriel_dp > 75:
+    if get_monster("Toriel").DP > 75:
         show toriel smile with Dissolve(.25)
         toriel "I believe this has gone quite well!"
         toriel "I- I am- well, I do not want to say surprised, but..."
         toriel "If you want, we could do this again sometime, alright?"
         toriel "And, remember, whatever happens, my home is always open to you."
         toriel "Until next time, dear."
-    elif toriel_dp > 50:
+    elif get_monster("Toriel").DP > 50:
         show toriel normal with Dissolve(.25)
         toriel "So, this date has..."
         toriel "Hm."

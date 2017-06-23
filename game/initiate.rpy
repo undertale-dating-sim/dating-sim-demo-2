@@ -38,6 +38,7 @@ label initialize:
     call initialize_napstablook from _call_initialize_napstablook
     call initialize_frisk from _call_initialize_frisk
     call initialize_flowey from _call_initialize_flowey
+    call initialize_grillby
 
     #character-settings
     #character settings

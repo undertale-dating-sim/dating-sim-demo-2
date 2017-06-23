@@ -153,7 +153,7 @@ screen show_information_overlay:
                     text "[world.current_area.current_room.current_monster.name]"
                     text "FP:[world.current_area.current_room.current_monster.FP]"
                     text "DP:[world.current_area.current_room.current_monster.DP]"
-                    text "HB:[world.current_area.current_room.current_monster.HB]"
+                    text "HP:[world.current_area.current_room.current_monster.HP]"
 
 
 #if you look, I have added the multiple monster screen here.  It was causing a divide by zero error and I'm not sure how to fix it
