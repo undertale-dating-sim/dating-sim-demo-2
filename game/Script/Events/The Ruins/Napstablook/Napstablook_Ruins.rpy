@@ -20,53 +20,53 @@ label blooky_event3:
     $ headphones_found = False
     $ headphones_given = False
     
-    blooky "..........."
+    napstablook "..........."
     
     menu:
         "Hey… Napstablook?":
             $world.get_monster('Napstablook').update_FP(1)
-            blooky "huh? oh, hi........."
+            napstablook "huh? oh, hi........."
             jump somethings_wrong
             
         "Sneak up on Napstablook and frighten them.":
             $world.get_monster('Napstablook').update_FP(-3)
-            blooky "..........."
+            napstablook "..........."
             show napstablook surprised
-            blooky "oh! oh....... it’s just you...."
+            napstablook "oh! oh....... it’s just you...."
             jump somethings_wrong
             
         "Leave before they notice you.": #(+0 FP)
-            blooky "..........."
+            napstablook "..........."
             "You ditched Napstablook."
             jump blooky_ruins
                 
     label somethings_wrong:
-        blooky "..........."
+        napstablook "..........."
         
         menu:
             "What are you doing?":
                 $world.get_monster('Napstablook').update_FP(1)
-                blooky "oh.... nothing... it doesn’t matter..."
+                napstablook "oh.... nothing... it doesn’t matter..."
             "You seem distracted.": #(+0 FP)
-                blooky "..........."
-                blooky "what? oh, sorry....."
+                napstablook "..........."
+                napstablook "what? oh, sorry....."
                 
         menu:
             "Tell me what’s wrong.":
                 $world.get_monster('Napstablook').update_FP(-1)
-                blooky "oh, um... i guess... if you say so......."
+                napstablook "oh, um... i guess... if you say so......."
             "If something happened, you can tell me.":
                 $world.get_monster('Napstablook').update_FP(2)
-                blooky "well....... it’s not that big of a deal, really... but i guess, if you want to know...."
+                napstablook "well....... it’s not that big of a deal, really... but i guess, if you want to know...."
                 
-        blooky "my headphones.... they broke yesterday. they’re pretty old, so it’s not that surprising, but....... i really liked them......"
-        blooky "so i’m looking for new ones. none of the shops sell them.... or not good ones, anyway. i have to find them in the garbage......"
+        napstablook "my headphones.... they broke yesterday. they’re pretty old, so it’s not that surprising, but....... i really liked them......"
+        napstablook "so i’m looking for new ones. none of the shops sell them.... or not good ones, anyway. i have to find them in the garbage......"
         
         menu:
             "I’ll help you look!":
                 $world.get_monster('Napstablook').update_FP(3)
-                blooky "wow, really? that’d be nice.... thanks........"
-                blooky "um, you can just start wherever, if you want... i’ll keep looking in this pile....."
+                napstablook "wow, really? that’d be nice.... thanks........"
+                napstablook "um, you can just start wherever, if you want... i’ll keep looking in this pile....."
                 "Where will you look?"
                 
                 $ bigtrash_searched = 1
@@ -75,7 +75,7 @@ label blooky_event3:
                 
                 jump search_trash
             "Good luck with that!": #(+0 FP)
-                blooky "oh, thanks.... i should probably get back to looking... bye, i guess......."
+                napstablook "oh, thanks.... i should probably get back to looking... bye, i guess......."
                 jump end_blook_hangout3
 
     label search_trash:
@@ -127,7 +127,7 @@ label blooky_event3:
         menu:
             "Give it to Napstablook.":
                 $world.get_monster('Napstablook').update_FP(1)
-                blooky "oh, thanks, but..... i don’t really need this... i don’t even know what show this is from......"
+                napstablook "oh, thanks, but..... i don’t really need this... i don’t even know what show this is from......"
             "Keep it for yourself.": #(+0 FP)
                 "Napstablook probably wouldn’t like it much, anyway."
                 ###### ITEM GET ACTION FIGURE ######
@@ -141,8 +141,8 @@ label blooky_event3:
         menu:
             "Give it to Napstablook.":
                 $world.get_monster('Napstablook').update_FP(1)
-                blooky "i actually can’t wear shoes.... awkward......."
-                blooky "but... thanks anyway."
+                napstablook "i actually can’t wear shoes.... awkward......."
+                napstablook "but... thanks anyway."
             "Keep it for yourself.": #(+0 FP)
                 "Who knows when you might need to run from something…"
                 ###### ITEM GET RUNNING SHOES ######
@@ -156,7 +156,7 @@ label blooky_event3:
         menu:
             "Give it to Napstablook.":
                 $world.get_monster('Napstablook').update_FP(2)
-                blooky "oh, wow.... that’s pretty. thanks......"
+                napstablook "oh, wow.... that’s pretty. thanks......"
             "Keep it for yourself.": #(+0 FP)
                 "It’s too pretty to just leave it in the trash. You give it a little shake before putting it in your pocket."
                 ###### ITEM GET SNOW GLOBE ######
@@ -165,7 +165,7 @@ label blooky_event3:
             "Break it.":
                 $world.get_monster('Napstablook').update_FP(-2)
                 "The glass makes a satisfying sound as it shatters."
-                blooky "did... something break?"
+                napstablook "did... something break?"
                 
                 $ broke_snowglobe = True
                 jump snowglobe_q
@@ -177,14 +177,14 @@ label blooky_event3:
         menu:
             "No.":
                 $world.get_monster('Napstablook').update_FP(-2)
-                blooky "oh.... because it sounded like....."
-                blooky "nevermind......."
+                napstablook "oh.... because it sounded like....."
+                napstablook "nevermind......."
             "Yeah. Don’t worry about it.":
                 $world.get_monster('Napstablook').update_FP(-1)
-                blooky "um.... why......"
-                blooky "okay........."
+                napstablook "um.... why......"
+                napstablook "okay........."
             "It was an accident.": #(+0 FP)
-                blooky "oh, that’s sad......."
+                napstablook "oh, that’s sad......."
         $ smltrash_searched += 1
         jump search_trash
     
@@ -193,8 +193,8 @@ label blooky_event3:
             "Give it to Napstablook.":
                 $world.get_monster('Napstablook').update_FP(5)
                 show napstablook smile
-                blooky "oh! you found some headphones.... and they look pretty new....."
-                blooky "thank you for helping... this is really nice....."
+                napstablook "oh! you found some headphones.... and they look pretty new....."
+                napstablook "thank you for helping... this is really nice....."
                 $ headphones_given = True
                 jump whats_next
             "Keep it for yourself.": #(+0 FP)
@@ -208,12 +208,12 @@ label blooky_event3:
                 $world.get_monster('Napstablook').update_FP(-5)
                 "They make a loud, snapping sound."
                 "You vandal, you."
-                blooky "what was that?"
+                napstablook "what was that?"
                 $ broke_headphones = True
                 jump headphones_q
             "Break them discretely." if broke_snowglobe is True: #(+0 FP)
                 "You check to make sure Napstablook isn’t looking, then carefully nudge the headphones until they fall off the pile. They splash in the water."
-                blooky "..what was that?"
+                napstablook "..what was that?"
                 $ sneak_broke_headphones = True
                 jump sneak_headphones_q
                 
@@ -221,51 +221,51 @@ label blooky_event3:
         menu:
             "Nothing…":
                 $world.get_monster('Napstablook').update_FP(-4)
-                blooky "are those... headphones?"
+                napstablook "are those... headphones?"
             "Show them the broken headphones.":
                 $world.get_monster('Napstablook').update_FP(-4)
-                blooky "oh....... you broke them......"
+                napstablook "oh....... you broke them......"
             "I didn’t mean to…":
                 $world.get_monster('Napstablook').update_FP(-2)
-                blooky "oh....... um, sure... that’s okay, i guess......."
+                napstablook "oh....... um, sure... that’s okay, i guess......."
         jump sad_ending
                 
     label sneak_headphones_q:
         menu:
             "Oh no… I think that was a pair of headphones, sorry!": #(+0 FP)
-                blooky "oh...... that’s bad luck.... i guess i should’ve expected something like this to happen…"
+                napstablook "oh...... that’s bad luck.... i guess i should’ve expected something like this to happen…"
             "Gosh… I’m so clumsy, I’m sorry.": #(+0 FP)
                 show napstablook sad
-                blooky "those were headphones, weren’t they? And they probably won’t work now that they’re all wet...."
+                napstablook "those were headphones, weren’t they? And they probably won’t work now that they’re all wet...."
         
-        blooky "that’s okay........ we can keep looking, i guess...."
+        napstablook "that’s okay........ we can keep looking, i guess...."
         jump search_trash
                 
                 
     label whats_next:
         menu:
             "No problem! I’m happy to help.": #(+3 DP)
-                blooky "i’m going to go try them out right away. thanks again....."
+                napstablook "i’m going to go try them out right away. thanks again....."
                 jump end_blook_hangout3
             "I’d like to keep looking around, if that’s okay.":
                 $world.get_monster('Napstablook').update_FP(1)
-                blooky "oh, sure.... i’ll just be here if you need me......"
+                napstablook "oh, sure.... i’ll just be here if you need me......"
                 jump search_trash
             
     label end_blook_hangout3:
         if headphones_given is False:
-            blooky "oh, is that all you could find?"
+            napstablook "oh, is that all you could find?"
         
         if headphones_found is True:
-            blooky "thanks again for your help... i’m really glad you found me here. see you around......."
+            napstablook "thanks again for your help... i’m really glad you found me here. see you around......."
         if sneak_broke_headphones is True:
             show napstablook sad
-            blooky "don’t worry about it... it was an accident. i can just look for headphones...... somewhere else....... i’ll go do that... bye........"
+            napstablook "don’t worry about it... it was an accident. i can just look for headphones...... somewhere else....... i’ll go do that... bye........"
         if headphones_given is False:
-            blooky "we didn’t find the headphones, but that’s okay... i can just look somewhere else...... i’ll see you later... "
-        jump blooky_ruins
+            napstablook "we didn’t find the headphones, but that’s okay... i can just look somewhere else...... i’ll see you later... "
+        return
     
     label sad_ending:
         show napstablook sad
-        blooky "you know... um....... i think i’ll just... go look somewhere else......."
-        jump blooky_ruins
+        napstablook "you know... um....... i think i’ll just... go look somewhere else......."
+        return

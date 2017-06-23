@@ -114,7 +114,7 @@ label flowey_hangout1(owner = get_flowey()):
         flowey "This is pathetic."
         
         menu:
-            "Did... you want me to stay, FLowey?":
+            "Did... you want me to stay, Flowey?":
                 if (world.get_monster('Flowey').FP >= 5):
                     show flowey surprised with Dissolve(.25)
                     flowey "..."

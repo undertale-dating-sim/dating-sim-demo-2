@@ -229,7 +229,7 @@ label Napstablook_manager_default(owner = False, pause = True):
                 "Snail Hunting is an Art" if (owner.FP >= 10): # Good end to friendship event 1, caught snails 3+ times, in snail room.
                     call napstablook_hangout_1
                 "One Man's Trash...":
-                    call napstablook_hangout_3
+                    call blooky_event3
                 "Blooky's HB Date":
                     if (owner.HP > 12):
                         call napstablook_hb_date

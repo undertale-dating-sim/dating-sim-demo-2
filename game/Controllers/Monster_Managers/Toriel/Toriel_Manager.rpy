@@ -233,7 +233,7 @@ label toriel_gd_howdoing:
              show toriel smile with Dissolve(.25)
              toriel "That is good to hear."
          "Better now that I'm talking to you.":
-             show toiel blushing with Dissolve(.25)
+             show toriel blushing with Dissolve(.25)
              toriel "Oh! Well, I am glad I could brighten your day!"
     return
 

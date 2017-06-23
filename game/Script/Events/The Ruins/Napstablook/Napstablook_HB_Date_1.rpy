@@ -726,7 +726,7 @@ label date_start:
         napstablook ".....i hope you're enjoying yourself"
         napstablook "........"
         show napstablook sad with dissolve
-        napstablook "“i hope i'm not boring you too much either........ i'm sorry........"
+        napstablook "i hope i'm not boring you too much either........ i'm sorry........"
         
         menu:
             "\"This could be worse, but at least you're trying.\"":
