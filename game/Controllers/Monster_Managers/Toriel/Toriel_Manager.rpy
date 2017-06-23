@@ -179,6 +179,10 @@ label Toriel_manager_default(owner = False,pause = True):
             
         "Testing":
             menu:
+                "Hurt her heart":
+                    $world.get_monster('Toriel').update_HP(-10)
+                    show toriel angry with hpunch
+                    show toriel normal
                 "Increase Friendship Points":
                     $world.get_monster('Toriel').update_FP(10)
                 "Decrease Friendship Points":
