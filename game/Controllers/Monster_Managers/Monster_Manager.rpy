@@ -143,7 +143,7 @@ init -10 python:
             renpy.call("word_scroll",amount)
         def update_HP(self,amount):
             self.HP += amount
-            renpy.play('audio/attack_hit.wav')
+            #renpy.play('audio/attack_hit.wav')
             renpy.call("word_scroll",amount)
 
 

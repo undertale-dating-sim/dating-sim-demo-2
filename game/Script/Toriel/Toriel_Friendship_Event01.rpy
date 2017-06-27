@@ -1,9 +1,9 @@
-
-#trigger: spending 3 consecutive nights at the ruins
 label toriel_friendship_event_1(owner=get_toriel()):
     if world.get_monster('Frisk').FP < 5:
         show toriel normal with Dissolve(.25)
-        toriel "Actually, I have been meaning to talk to you. I wanted to know how you were getting along. Are you having fun in the ruins?"
+        toriel "Actually, I have been meaning to talk to you."
+        toriel "I wanted to know how you were getting along."
+        toriel "Are you having fun in the ruins?"
         menu:
             "Yes, I love it here.":
                 $ world.get_monster('Toriel').update_FP(-20)
@@ -19,10 +19,14 @@ label toriel_friendship_event_1(owner=get_toriel()):
                 toriel "Hm. Perhaps that would be for the best. Especially considering your recent behaviour."
         show toriel annoyed with Dissolve(.25)
         toriel "Truthfully I do not care much for your wellbeing at the moment {b}dear{/b}, but I called you over because there is a subject that the two of us urgently need to discuss."
-        toriel "Firstly, I thought you should know that I do not stand to lose any hairs over your opinions towards me. You can throw insults in my direction like you cannot tell wrong from right. I can guarantee that I am, and always will be - much too old to care."
+        toriel "Firstly, I thought you should know that I do not stand to lose any hairs over your opinions towards me."
+        toriel "You can throw insults in my direction like you cannot tell wrong from right."
+        toriel "I can guarantee that I am, and always will be - much too old to care."
         toriel "That being said, There is one thing that I absolutely will not tolerate in my house, and that is {b}any{/b} mistreatment of Frisk."
-        toriel "If I hear one more comment regarding them that so much as rub them the wrong way – you will be promptly kicked out of the Ruins, and you {i}will not be welcome{/i} here again. Do you understand?"
+        toriel "If I hear one more comment regarding them that so much as rub them the wrong way – you will be promptly kicked out of the Ruins, and you {i}will not be welcome{/i} here again."
+        toriel "Do you understand?"
         menu:
+            toriel "Do you understand?"
             "Yes.":
                 toriel "Good."
             "No.":
@@ -42,8 +46,15 @@ label toriel_friendship_event_1(owner=get_toriel()):
         
     else:
         show toriel smile with Dissolve(.25)
-        toriel "Actually, I have been meaning to talk to you. It is nothing serious, do not be concerned! I just wanted to know how you were getting along. Have you had time to adjust to the ruins yet?"
+        toriel "Actually, I have been meaning to talk to you."
+        show toriel smallsmile with Dissolve(.25)
+        toriel "It is nothing serious, do not be concerned!"
+        show toriel normal with Dissolve(.25)
+        toriel "I just wanted to know how you were getting along."
+        show toriel smallsmile with Dissolve(.25)
+        toriel "Have you had time to adjust to the ruins yet?"
         menu:
+            toriel "Have you had time to adjust to the ruins yet?"
             "Yes, I love it here.":
                 $ world.get_monster('Toriel').update_FP(5)
                 toriel "That is wonderful. I was worried that the Ruins would get boring quickly for someone like you. Of course, it is a charming place to be, but every day is more or less the same."
@@ -61,12 +72,16 @@ label toriel_friendship_event_1(owner=get_toriel()):
             toriel "I am sure you have noticed now that they appear to be happy, and they have never once complained about life down here with me, but... There is not much for them to do around these parts."
             toriel "I do what I can to keep them entertained, but there are only so many times you can read a book before you know all of the words by heart, and there are only so many days you can spend with the same toys before growing bored of them."
             show toriel smallsmile with Dissolve(.25)
-            toriel "Please, I hope I do not seem like I am coming on too strong, but they were just so happy to meet another human. I did not think I would ever see such a big smile on their face."
+            toriel "Please, I hope I do not seem like I am coming on too strong, but they were just so happy to meet another human."
+            toriel "I did not think I would ever see such a big smile on their face."
             toriel "I think that given the chance, the both of you could really hit it off."
-            toriel "Well, it is just something to consider. Thank you for taking the time to hear this old goat talk. Please, do feel free to return to whatever you were doing before I stopped you."
+            toriel "Well, it is just something to consider."
+            toriel "Thank you for taking the time to hear this old goat talk."
+            toriel "Please, do feel free to return to whatever you were doing before I stopped you."
             
             if world.get_monster('Toriel').FP > 5:
-                toriel "Oh, hold on just one moment! I nearly forgot. I actually baked a snail pie to show you my gratitude. "
+                toriel "Oh, hold on just one moment! I nearly forgot. "
+                toriel "I actually baked a snail pie to show you my gratitude."
                 toriel "If you are not in the mood to eat it now, feel free to take a slice and save it for later. "
                 $ inventory.add(Snail_Pie())
                 "* You get a piece of Snail Pie! ... yay?"
@@ -81,13 +96,16 @@ label toriel_friendship_event_1(owner=get_toriel()):
             show toriel awkward with Dissolve(.25)
             toriel "There is not much for them to do around these parts."
             toriel "I do what I can to keep them entertained, but there are only so many times you can read a book before you know all of the words by heart, and there are only so many days you can spend with the same toys before growing bored of them."            
-            toriel "It is your choice, and I do not want to push you into making a decision, but I thought that you should know Frisk was... very happy to meet another human after so long. I did not think I would ever see such a big smile on their face."
+            toriel "It is your choice, and I do not want to push you into making a decision, but I thought that you should know Frisk was... very happy to meet another human after so long. "
+            toriel "I did not think I would ever see such a big smile on their face."
             toriel "So please, if you ever decide to step out – even if you do not plan on coming back at first - I want you to know that the doors to the Ruins are always open."
             if world.get_monster('Toriel').FP > 0:
                 toriel "..."
                 show toriel surprised with Dissolve(.25)
-                toriel "Oh! I nearly forgot. I had some spare ingredients lying about, so I baked a small snail pie to show you my gratitude."
-                toriel "If you are not in the mood to eat it now, feel free to take a slice and save it for later. Just... make sure to take the shells out before digging in."
+                toriel "Oh! I nearly forgot."
+                toriel "I had some spare ingredients lying about, so I baked a small snail pie to show you my gratitude."
+                toriel "If you are not in the mood to eat it now, feel free to take a slice and save it for later."
+                toriel "Just... make sure to take the shells out before digging in."
                 $ inventory.add(Snail_Pie())
                 "* You get a piece of Snail Pie! ... yay?"
 
