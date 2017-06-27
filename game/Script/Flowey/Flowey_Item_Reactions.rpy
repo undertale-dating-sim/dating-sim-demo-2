@@ -8,7 +8,7 @@ label give_Gift_Flowey_Rejection(owner):
     show flowey angry
     $ owner.FP -= 10
     flowey "I would like to ask you to stop."
-    return
+    return False
 
 
 label give_Gift_Flowey_Spider_Donut(count,owner):
@@ -44,7 +44,7 @@ label give_Gift_Flowey_Spider_Donut(count,owner):
         flowey "You're {i}really{/i} starting to get on my nerves with this. You {i}might{/i} wanna stop."
         show flowey horror
         flowey "...Before I get {i}really{/i} mad."
-    return
+    return True
     
 label give_Gift_Flowey_Butts_Pie(count,owner):
 
@@ -78,7 +78,7 @@ label give_Gift_Flowey_Butts_Pie(count,owner):
         show flowey angry
         flowey "Hey! Cut it out!"
         flowey "You're enjoying this, aren't you?! Freak!"
-    return
+    return True
         
 label give_Gift_Flowey_Snail_Pie(count,owner):
 
@@ -110,7 +110,7 @@ label give_Gift_Flowey_Snail_Pie(count,owner):
         $ owner.update_FP(-3)
         show flowey angry
         flowey "You are trying to win me over, aren't you!? Stop it! And get away from me, you sicko!"
-    return
+    return True
     
 label give_Gift_Flowey_Monster_Candy(count,owner):
 
@@ -143,7 +143,7 @@ label give_Gift_Flowey_Monster_Candy(count,owner):
         $ owner.update_FP(-10)
         show flowey angry
         flowey "You're irritating me on purpose! Get lost, ya loser!"
-    return
+    return True
     
 label give_Gift_Flowey_Spider_Cider(count,owner):
 
@@ -180,7 +180,7 @@ label give_Gift_Flowey_Spider_Cider(count,owner):
         show flowey angry
         flowey "And here I thought the only dirt was this cider."
         flowey "But you're starting to remind me of dirt youreself, {i}bucko{/i}."
-    return
+    return True
     
 label give_Gift_Flowey_Milk_Chocolate(count,owner):
 
@@ -215,7 +215,7 @@ label give_Gift_Flowey_Milk_Chocolate(count,owner):
         show flowey annoyed
         flowey "Okay, {i}stop it{/i}. I know you're probably trying to kill me at this point from some suger overdose."
         flowey "It won't work. Give up, I don't want any more."
-    return
+    return True
         
 label give_Gift_Flowey_White_Chocolate(count,owner):
     
@@ -258,7 +258,7 @@ label give_Gift_Flowey_White_Chocolate(count,owner):
         flowey "But perhaps there's a difference between sadistic and just plain stupid."
         show flowey laugh
         flowey "Hahahahah!"
-    return
+    return True
 
 label Flowey_Gift_Count_Reaction(owner):    
 

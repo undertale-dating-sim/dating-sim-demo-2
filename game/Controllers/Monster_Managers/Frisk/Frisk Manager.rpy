@@ -29,6 +29,7 @@ init -9 python:
                     
                     if response:
                         self.given_items[item.get_class_name()] = self.get_total_specific_item(item) + 1
+                        inventory.drop(item)
                         #dirty check, but its easier than hiding it somewhere
                         if self.given_today_count == 0:
                             self.consumables_given = 0

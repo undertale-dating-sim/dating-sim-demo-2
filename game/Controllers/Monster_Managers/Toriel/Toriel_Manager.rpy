@@ -9,28 +9,6 @@ init -9 python:
             self.FP = 40
             self.seed_default_schedule()
             self.default_sprite = "toriel normal"
-
-        def give_item(self,item = False):
-
-            # give_Gift_name_itemclassname
-            # builds the label and calls it with current count + 1
-            label_name = "give_Gift_%s_%s" % (self.name,item.get_class_name())
-
-            if renpy.has_label(label_name):
-
-                if self.given_today_count >= 5:
-                    renpy.call_in_new_context("give_Gift_%s_Rejection" % self.name,self)
-                else:
-                    response = renpy.call_in_new_context(label_name,self.get_total_specific_item(item) + 1,self)
-                    self.given_items[item.get_class_name()] = self.get_total_specific_item(item) + 1
-                    if response:
-                        inventory.drop(item)
-                        self.given_today_count += 1
-                        renpy.call_in_new_context("%s_Gift_Count_Reaction" % self.name,self)
-
-            else:
-                renpy.call_in_new_context("give_Gift_%s_Unknown" % self.name)
-            return
         
         def handle_special_events(self):
 
