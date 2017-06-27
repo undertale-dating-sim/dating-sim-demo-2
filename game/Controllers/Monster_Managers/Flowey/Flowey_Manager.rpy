@@ -25,6 +25,7 @@ init -9 python:
                     response = renpy.call_in_new_context(label_name,self.get_total_specific_item(item) + 1,self)
                     self.given_items[item.get_class_name()] = self.get_total_specific_item(item) + 1
                     if response:
+                        inventory.drop(item)
                         self.given_today_count += 1
                         renpy.call_in_new_context("%s_Gift_Count_Reaction" % self.name,self)
 
