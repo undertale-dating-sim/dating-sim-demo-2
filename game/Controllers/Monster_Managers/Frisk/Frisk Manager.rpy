@@ -98,27 +98,27 @@ init -9 python:
 label initialize_frisk:
     #here is where the sprites go
 
-    image frisk angry  = im.Scale("characters/Frisk/Frisk_Angry.png",265,410)
-    image frisk annoyed = im.Scale("characters/Frisk/Frisk_Annoyed.png",265,410)
-    image frisk bigsmile = im.Scale("characters/Frisk/Frisk_Big_Smile.png",265,410)
-    image frisk blushing = im.Scale("characters/Frisk/Frisk_Blush.png",265,410)
-    image frisk coveredface = im.Scale("characters/Frisk/Frisk_CoveredFace.png",265,410)
-    image frisk coveredfacewitheyes = im.Scale("characters/Frisk/Frisk_CoveredFaceandeyered.png",265,410)
-    image frisk disappointed = im.Scale("characters/Frisk/Frisk_Disappointed.png",265,410)
-    image frisk disgusted = im.Scale("characters/Frisk/Frisk_Disgusted.png",265,410)
-    image frisk distant = im.Scale("characters/Frisk/Frisk_Distant.png",265,410)
-    image frisk giggly = im.Scale("characters/Frisk/Frisk_Giggly.png",265,410)
-    image frisk hurtsurprised = im.Scale("characters/Frisk/Frisk_Hurtful_Surprised.png",265,410)
-    image frisk normal = im.Scale("characters/Frisk/Frisk_Normal.png",265,410)
-    image frisk panickinghands = im.Scale("characters/Frisk/Frisk_Panic_Hands.png",265,410)
-    image frisk panicking = im.Scale("characters/Frisk/Frisk_Panicking.png",265,410)
-    image frisk sad = im.Scale("characters/Frisk/Frisk_Sad.png",265,410)
-    image frisk somehappy = im.Scale("characters/Frisk/Frisk_Somewhat_Happy.png",265,410)
-    image frisk smallsmile = im.Scale("characters/Frisk/Frisk_Tiny_Smile.png",265,410)
-    image frisk soulless = im.Scale("characters/Frisk/Frisk_Soulless.png",265,410)
-    image frisk surprised = im.Scale("characters/Frisk/Frisk_Surprised.png",265,410)
-    image frisk tearyeyes = im.Scale("characters/Frisk/Frisk_Teary_Eyes.png",265,410)
-    image frisk upset = im.Scale("characters/Frisk/Frisk_Upset.png",265,410)
+    image frisk angry  = "characters/Frisk/Frisk_Angry.png"
+    image frisk annoyed = "characters/Frisk/Frisk_Annoyed.png"
+    image frisk bigsmile = "characters/Frisk/Frisk_Big_Smile.png"
+    image frisk blushing = "characters/Frisk/Frisk_Blush.png"
+    image frisk coveredface = "characters/Frisk/Frisk_CoveredFace.png"
+    image frisk coveredfacewitheyes = "characters/Frisk/Frisk_CoveredFaceandeyered.png"
+    image frisk disappointed = "characters/Frisk/Frisk_Disappointed.png"
+    image frisk disgusted = "characters/Frisk/Frisk_Disgusted.png"
+    image frisk distant = "characters/Frisk/Frisk_Distant.png"
+    image frisk giggly = "characters/Frisk/Frisk_Giggly.png"
+    image frisk hurtsurprised = "characters/Frisk/Frisk_Hurtful_Surprised.png"
+    image frisk normal = "characters/Frisk/Frisk_Normal.png"
+    image frisk panickinghands = "characters/Frisk/Frisk_Panic_Hands.png"
+    image frisk panicking = "characters/Frisk/Frisk_Panicking.png"
+    image frisk sad = "characters/Frisk/Frisk_Sad.png"
+    image frisk somehappy = "characters/Frisk/Frisk_Somewhat_Happy.png"
+    image frisk smallsmile = "characters/Frisk/Frisk_Tiny_Smile.png"
+    image frisk soulless = "characters/Frisk/Frisk_Soulless.png"
+    image frisk surprised = "characters/Frisk/Frisk_Surprised.png"
+    image frisk tearyeyes = "characters/Frisk/Frisk_Teary_Eyes.png"
+    image frisk upset = "characters/Frisk/Frisk_Upset.png"
 
     
     define frisk = ('Frisk')
