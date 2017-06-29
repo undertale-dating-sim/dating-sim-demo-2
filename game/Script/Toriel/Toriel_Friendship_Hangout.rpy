@@ -43,8 +43,10 @@ label toriel_friendship_hangout_1(owner=get_toriel()):
                     show toriel annoyed  with Dissolve(.25)
                     toriel "Well, you do not need to be so rude about it."
                     toriel "I will need you to leave the kitchen, then, so you will not be in the way."
+                    return
                 "No, thank you.":
                     toriel "Well, then, I will need you to leave the kitchen if you will not be helping. Dinner will be ready shortly." 
+                    return
 
     show toriel smile with Dissolve(.25)
     toriel "The first step is to make the crust. Would you please get the butter from the fridge?"
@@ -175,8 +177,8 @@ label toriel_friendship_hangout_1(owner=get_toriel()):
         toriel "Well, now that the quiche is done, would you please get Frisk for dinner?"
     else:
         show toriel smallsmile with Dissolve(.25) 
-    toriel "Thank you for your help."
-    toriel "Now that dinner is ready, would you please go get Frisk so we can eat together?"
+        toriel "Thank you for your help."
+        toriel "Now that dinner is ready, would you please go get Frisk so we can eat together?"
     
     $loop_count =0
     return
