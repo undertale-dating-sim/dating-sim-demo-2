@@ -24,7 +24,7 @@ label Flowey_Hangout_1_5(owner = get_flowey()):
             $world.get_monster('Flowey').update_FP(2)
             call Flowey_Hangout_Path1
         "Why be mean to the one person trying to talk to you?":
-            $world.get_monster('Flowey').update_HB(3)
+            $world.get_monster('Flowey').update_HP(3)
             call Flowey_Hangout_Path2
 
     $ player.variables['Flowey_Hangout_2_Complete'] = True
@@ -132,8 +132,8 @@ label Flowey_Hangout_1_5(owner = get_flowey()):
                 flowey "I'm gonna go. I feel a little..."
                 show flowey normal with Dissolve(.25)
                 flowey "...uncomfortable."
-            "We'll see.": #+2 HB
-                $world.get_monster('Flowey').update_HB(2)
+            "We'll see.": #+2 HP
+                $world.get_monster('Flowey').update_HP(2)
                 show flowey surprised with Dissolve(.25)
                 flowey "..."
                 show flowey annoyed with Dissolve(.25)
@@ -172,7 +172,7 @@ label Flowey_Hangout_1_5(owner = get_flowey()):
                 show flowey laughing with Dissolve(.25)
                 flowey "Idiot."
             "You'll be alone forever if you keep acting like that.":
-                $world.get_monster('Flowey').update_HB(3)
+                $world.get_monster('Flowey').update_HP(3)
                 flowey "..."
                 show flowey sad with Dissolve(.25)
                 flowey ".........."

@@ -123,7 +123,7 @@ label flowey_manager_default(owner = False,pause = True):
                     "Hangout 1.5":
                         call Flowey_Hangout_1_5
                     "HB Hangout 1":
-                        call flowey_HB_hangout_1
+                        call flowey_HP_hangout_1
             "Testing":
                 menu:
                     "remember test":

@@ -1,6 +1,6 @@
-label flowey_HB_hangout_1(owner = get_flowey()):
+label flowey_HP_hangout_1(owner = get_flowey()):
 
-    # HB Hangout 1
+    # HP Hangout 1
     # End the first Flowey friendship hangout by choosing the option "We're going to play a game"
     
     show flowey sideglance with Dissolve(.25)
@@ -8,14 +8,14 @@ label flowey_HB_hangout_1(owner = get_flowey()):
     
     menu:
         "You're interesting.":
-            $world.get_monster('Flowey').update_HB(2)
+            $world.get_monster('Flowey').update_HP(2)
             show flowey annoyed with Dissolve(.25)
             flowey "Well, duh."
             show flowey smug with Dissolve(.25)
             flowey "In a world filled with this many idiots, anyone with sense has to seem pretty interesting, huh?"
-            jump Flowey_HB_Hangout_1_Interesting
+            jump Flowey_HP_Hangout_1_Interesting
         "What, can't I chat with my favorite flower?":
-            $world.get_monster('Flowey').update_HB(2)
+            $world.get_monster('Flowey').update_HP(2)
             show flowey normal with Dissolve(.25)
             flowey "Not really, no."
             show flowey smug with Dissolve(.25)
@@ -29,27 +29,27 @@ label flowey_HB_hangout_1(owner = get_flowey()):
             flowey "Why the hell would I be your {i}favorite{/i}?"
             show flowey annoyed with Dissolve(.25)
             flowey "The last thing I want is to be put on any list of yours."
-            jump Flowey_HB_Hangout_1_Flower
+            jump Flowey_HP_Hangout_1_Flower
         "Nothing, I'm just bored.":
-            jump Flowey_HB_Hangout_1_WastedTime
+            jump Flowey_HP_Hangout_1_WastedTime
             
-    label Flowey_HB_Hangout_1_Interesting:
+    label Flowey_HP_Hangout_1_Interesting:
         menu:
             "Well, are you ready to play that game now?":
-                $world.get_monster('Flowey').update_HB(3)
+                $world.get_monster('Flowey').update_HP(3)
                 show flowey angry with Dissolve(.25)
                 flowey "What is it with you?!?"
                 flowey "I get it. This is all some game. Very funny."
                 
                 menu:
-                    "Does it bother you?": #+3 HB
+                    "Does it bother you?": #+3 HP
                         flowey "No!"
                         flowey "Nothing bothers me. I can't {i}be{/i} bothered."
-                    "Now you're getting it.": #+2 HB
+                    "Now you're getting it.": #+2 HP
                         show flowey annoyed with Dissolve(.25)
                         flowey "Glad we're on the same page... Idiot."
                         
-                jump Flowey_HB_Hangout_Bothered
+                jump Flowey_HP_Hangout_Bothered
             "This is why you don't have any friends.": #-1 FP
                 $world.get_monster('Flowey').update_FP(-1)
                 show flowey suspicious with Dissolve(.25)
@@ -58,19 +58,19 @@ label flowey_HB_hangout_1(owner = get_flowey()):
                 flowey "If you think you're getting to me... You're not."
                 
                 menu:
-                    "Don't you want friends?": #+2 HB
-                        $world.get_monster('Flowey').update_HB(2)
+                    "Don't you want friends?": #+2 HP
+                        $world.get_monster('Flowey').update_HP(2)
                         show flowey suspicious with Dissolve(.25)
                         flowey "I don't need anybody, and nobody needs me. In short, things are just peachy the way they are."
-                        jump Flowey_HB_Hangout_Bothered
-                    "I didn't mean anything by it, sorry.": #-2 HB
-                        $world.get_monster('Flowey').update_HB(-2)
-                        jump Flowey_HB_Hangout_1_WastedTime
+                        jump Flowey_HP_Hangout_Bothered
+                    "I didn't mean anything by it, sorry.": #-2 HP
+                        $world.get_monster('Flowey').update_HP(-2)
+                        jump Flowey_HP_Hangout_1_WastedTime
                     
             "You know what? Nevermind.":
-                jump Flowey_HB_Hangout_1_WastedTime
+                jump Flowey_HP_Hangout_1_WastedTime
     
-    label Flowey_HB_Hangout_1_Flower:
+    label Flowey_HP_Hangout_1_Flower:
         menu:
             "You may want to reconsider that...":
                 show flowey smug with Dissolve(.25)
@@ -85,7 +85,7 @@ label flowey_HB_hangout_1(owner = get_flowey()):
                 flowey "And I {i}wish{/i} I could say I was exaggerating."
                 show flowey angry with Dissolve(.25)
                 flowey "And for goodness' sake, don't {i}ever{/i} tell me I'm your {i}favorite{/i} anything {i}ever again{/i}."
-                jump Flowey_HB_Hangout_1_Interesting
+                jump Flowey_HP_Hangout_1_Interesting
                 
             "Come on, it wouldn't hurt to make friends.":
                 show flowey annoyed with Dissolve(.25)
@@ -97,14 +97,14 @@ label flowey_HB_hangout_1(owner = get_flowey()):
                 
                 menu:
                     "You know what? Nevermind.":
-                        jump Flowey_HB_Hangout_1_WastedTime
+                        jump Flowey_HP_Hangout_1_WastedTime
                     "My game, my rules.":
-                        $world.get_monster('Flowey').update_HB(3)
-                        jump Flowey_HB_Hangout_1_MyGame
+                        $world.get_monster('Flowey').update_HP(3)
+                        jump Flowey_HP_Hangout_1_MyGame
             "I didn't mean anything by it, sorry.":
-                jump Flowey_HB_Hangout_1_WastedTime
+                jump Flowey_HP_Hangout_1_WastedTime
                 
-        label Flowey_HB_Hangout_1_MyGame:
+        label Flowey_HP_Hangout_1_MyGame:
             show flowey surprised with Dissolve(.25)
             flowey "..."
             show flowey suspicious with Dissolve(.25)
@@ -113,7 +113,7 @@ label flowey_HB_hangout_1(owner = get_flowey()):
             
             menu:
                 "You're powerless, and you know that.":
-                    $world.get_monster('Flowey').update_HB(3)
+                    $world.get_monster('Flowey').update_HP(3)
                     show flowey sad with Dissolve(.25)
                     flowey "..."
                     flowey "See... you're failing to realize..."
@@ -122,17 +122,17 @@ label flowey_HB_hangout_1(owner = get_flowey()):
                     show flowey normal with Dissolve(.25)
                     flowey "Heheh..."
                     show flowey sad with Dissolve(.25)
-                    jump Flowey_HB_Hangout_Bothered
+                    jump Flowey_HP_Hangout_Bothered
                 "It's better to have me as a friend than an enemy, Flowey.":
-                    $world.get_monster('Flowey').update_HB(-1)
+                    $world.get_monster('Flowey').update_HP(-1)
                     show flowey suspicious with Dissolve(.25)
                     flowey "..."
                     flowey "I choose neither."
                     show flowey surprised with Dissolve(.25)
                     flowey "So go away. Your little hangout is over."
-                    jump Flowey_HB_Hangout_Bothered
+                    jump Flowey_HP_Hangout_Bothered
                 "Just remember this is all a game. You're nothing more than an option.":
-                    $world.get_monster('Flowey').update_HB(3)
+                    $world.get_monster('Flowey').update_HP(3)
                     show flowey angry with Dissolve(.25)
                     flowey "Don't you think I know that?"
                     flowey "The point of all this is for me to be left out of your stupid game."
@@ -145,7 +145,7 @@ label flowey_HB_hangout_1(owner = get_flowey()):
                     
                     menu:
                         "Fine.": 
-                            $world.get_monster('Flowey').update_HB(-1)
+                            $world.get_monster('Flowey').update_HP(-1)
                             show flowey suspicious with Dissolve(.25)
                             flowey "Go away."
                             hide flowey with Dissolve(.25)
@@ -154,16 +154,16 @@ label flowey_HB_hangout_1(owner = get_flowey()):
                             $ banish("Flowey")
                             return
                         "Since when were you in control?":
-                            $world.get_monster('Flowey').update_HB(3)
+                            $world.get_monster('Flowey').update_HP(3)
                             show flowey surprised with Dissolve(.25)
                             flowey "..."
                             show flowey sad with Dissolve(.25)
                             flowey "...Screw this."
                             show flowey angry with Dissolve(.25)
                             flowey "And {i}screw you too!{i}"
-                            jump Flowey_HB_Hangout_Bothered
+                            jump Flowey_HP_Hangout_Bothered
                             
-    label Flowey_HB_Hangout_1_WastedTime:
+    label Flowey_HP_Hangout_1_WastedTime:
         show flowey suspicious with Dissolve(.25)
         flowey "Whatever."
         flowey "Go waste someone else's time."
@@ -173,8 +173,8 @@ label flowey_HB_hangout_1(owner = get_flowey()):
         $ banish("Flowey")
         return
         
-    label Flowey_HB_Hangout_Bothered:
-        if (owner.HB >= 5):
+    label Flowey_HP_Hangout_Bothered:
+        if (owner.HP >= 5):
             flowey "..."
             show flowey angry with Dissolve(.25)
             flowey "What? Stop looking at me like that."
@@ -184,7 +184,7 @@ label flowey_HB_hangout_1(owner = get_flowey()):
             "Flowey ran away."
             $ player.variables['Flowey_Hangout_2_Complete'] = True
             $ banish("Flowey")
-        elif (owner.HB < 5):
+        elif (owner.HP < 5):
             flowey "..."
             show flowey smug with Dissolve(.25)
             flowey "I see what you're trying to do here, and it's not going to work on me."

@@ -13,7 +13,7 @@ label flowey_hangout1(owner = get_flowey()):
             "...I'd just like to chat.":
                 $world.get_monster('Flowey').update_FP(2)
             "I'd like to talk to you, flower.": 
-                $world.get_monster('Flowey').update_HB(2)
+                $world.get_monster('Flowey').update_HP(2)
             "Exit":
                 $ player.variables['Flowey_Hangout_1_Complete'] = True
                 return
@@ -28,7 +28,7 @@ label flowey_hangout1(owner = get_flowey()):
                 flowey "That's none of your business."
                 flowey "Why don't you go and find someone else to annoy?"
             "What does a flower have to do?":
-                $world.get_monster('Flowey').update_HB(2)
+                $world.get_monster('Flowey').update_HP(2)
                 show flowey angry with Dissolve(.25)
                 flowey "Seriously? More than you do {i}clearly{/i}."
                 flowey "I'm not the one wasting my time annoying someone who has no interest in talking to them."
@@ -42,7 +42,7 @@ label flowey_hangout1(owner = get_flowey()):
             
         menu:
             "I'm just interested in what life is like down here.":
-                if (world.get_monster('Flowey').HB >= 2):
+                if (world.get_monster('Flowey').HP >= 2):
                     show flowey sideglance with Dissolve(.25)
                     flowey "That's... a matter of perspective."
                     flowey "For obvious reasons."
@@ -53,21 +53,21 @@ label flowey_hangout1(owner = get_flowey()):
                     show flowey smug with Dissolve(.25)
                     flowey "Silly me, of course you don't."
 
-                if (world.get_monster('Flowey').HB < 2):
+                if (world.get_monster('Flowey').HP < 2):
                     flowey "Then go ask someone else. I have better things to do than talk to some human, and you're not going to find your {i}happy ending{/i} here."
                     flowey "Don't you have anything {i}better{/i} to do?"
                     show flowey smug with Dissolve(.25)
                     flowey "Silly me, of course you don't."
 
             "We're going to play a game.":
-                if (world.get_monster('Flowey').HB >= 5):
+                if (world.get_monster('Flowey').HP >= 5):
                     show flowey angry with Dissolve(.25)
                     flowey "I don't think so."
                     flowey "In fact, I think we're done here."
-                    #NYI- HB route is now triggered, player moves onto Flowey HB 1 instead of the usual friendship route
+                    #NYI- HP route is now triggered, player moves onto Flowey HP 1 instead of the usual friendship route
                     $ player.variables['flowey_heartbreak_activated'] = True
 
-                if (world.get_monster('Flowey').HB < 5):
+                if (world.get_monster('Flowey').HP < 5):
                     show flowey surprised with Dissolve(.25)
                     flowey "........"
                     show flowey angry with Dissolve(.25)
