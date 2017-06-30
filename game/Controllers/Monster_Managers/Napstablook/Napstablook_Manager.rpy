@@ -212,7 +212,7 @@ label Napstablook_manager_default(owner = False, pause = True):
                     call blooky_event3
                 "Blooky's HB Date":
                     if (owner.HP > 12):
-                        call napstablook_hb_date
+                        call napstablook_HP_date
                     else:
                         napstablook "oh... that's a nice idea..."
                         napstablook "but... i don't know... i don't think i can today..."

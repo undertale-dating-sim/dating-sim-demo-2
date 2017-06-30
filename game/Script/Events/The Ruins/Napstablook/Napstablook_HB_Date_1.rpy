@@ -1,8 +1,8 @@
-# Note: End of date HB, FP, and DP values still need to be added. Currently ending is chosen via player-select menu.
+# Note: End of date HP, FP, and DP values still need to be added. Currently ending is chosen via player-select menu.
 
-label napstablook_hb_date:
+label napstablook_HP_date:
     #Event Name: "Blooky's Date"
-    #Event Trigger: Reaching waterfall. Must have enough HB points to trigger.
+    #Event Trigger: Reaching waterfall. Must have enough HP points to trigger.
     
     ####### TEMP TESTING!!!! #######
     $ isdancer = True
@@ -79,7 +79,7 @@ label napstablook_hb_date:
             napstablook "i don't mind it at all..."
         
         "\"Are people avoiding you?\"":
-            $world.get_monster('Napstablook').update_HB(2)
+            $world.get_monster('Napstablook').update_HP(2)
             show napstablook sad with dissolve
             napstablook "i don't know......"
             napstablook "i really wouldn't be surprised if they did....."
@@ -88,7 +88,7 @@ label napstablook_hb_date:
             
             menu:
                 "Well I don't think you're a downer.": #+1 Patience
-                    $world.get_monster('Napstablook').update_HB(1)
+                    $world.get_monster('Napstablook').update_HP(1)
                     show napstablook smile with dissolve
                     napstablook "oh.... good..."
                     napstablook "im glad.... ... at least there's still you"
@@ -111,7 +111,7 @@ label date_start:
     
     menu:
         "\"The cliche approach. How original.\"":
-            $world.get_monster('Napstablook').update_HB(2)
+            $world.get_monster('Napstablook').update_HP(2)
             napstablook "oh...thanks... it's no big deal...."
         "\"I guess, if that's what you want to do...\"":
             $world.get_monster('Napstablook').update_FP(1)
@@ -123,7 +123,7 @@ label date_start:
     label napstablook_date_questions:
         show napstablook normal with dissolve
         if question_num >= 5:
-            jump end_napstablook_hb_date_1
+            jump end_napstablook_HP_date_1
             
         python:
             napstablook_asking = True
@@ -143,38 +143,38 @@ label date_start:
         
         if (randnum is 1) and (asked_1 is False):
             $ asked_1 = True
-            call hb1_blook_q1
+            call HP1_blook_q1
         if (randnum is 2) and (asked_2 is False):
             $ asked_2 = True
-            call hb1_blook_q2                    
+            call HP1_blook_q2                    
         if (randnum is 3) and (asked_3 is False):
             $ asked_3 = True
-            call hb1_blook_q3
+            call HP1_blook_q3
         if (randnum is 4) and (asked_4 is False):
             $ asked_4 = True
-            call hb1_blook_q4            
+            call HP1_blook_q4            
         if (randnum is 5) and (asked_5 is False):
             $ asked_5 = True
-            call hb1_blook_q5
+            call HP1_blook_q5
         if (randnum is 6) and (asked_6 is False):
             $ asked_6 = False
-            call hb1_blook_q6
+            call HP1_blook_q6
         if (randnum is 7) and (asked_7 is False):
             $ asked_7 = True
-            call hb1_blook_q7
+            call HP1_blook_q7
         if (randnum is 8) and (asked_8 is False):
             $ asked_8 = True
-            call hb1_blook_q8
+            call HP1_blook_q8
         if (randnum is 9) and (asked_9 is False):
             $ asked_9 = True
-            call hb1_blook_q9
+            call HP1_blook_q9
         if (randnum is 10) and (asked_10 is False):
             $ asked_10 = True
-            call hb1_blook_q10
+            call HP1_blook_q10
 
 ###############################     NAPSTABLOOK FILLER      ################################
 
-    label hb_ask_napstablook:
+    label HP_ask_napstablook:
         show napstablook normal with dissolve
         if question_num is 1:
             napstablook "okay.... um..... i think it's your turn to.... ask a question. if you want to, i mean..."
@@ -188,15 +188,15 @@ label date_start:
                     show napstablook smile with dissolve
                     "really? okay, it's your turn then..."
                 "\"Not the best idea, but let's keep going anyway.\"":
-                    $world.get_monster('Napstablook').update_HB(2)
+                    $world.get_monster('Napstablook').update_HP(2)
                     napstablook "oh... sorry..... i'm not the best at coming up with ideas......"
                     napstablook "let's keep going, then, if you're having fun...... it's your turn, then....."
                 "\"Yeah, I'm bored. Let's stop.\"":
                     $ world.get_monster('Napstablook').update_FP(-1)
-                    $ world.get_monster('Napstablook').update_HB(-1)
+                    $ world.get_monster('Napstablook').update_HP(-1)
                     show napstablook sad with dissolve
                     napstablook "oh, okay..... if you really want............"
-                    jump end_napstablook_hb_date_1
+                    jump end_napstablook_HP_date_1
         if question_num is 4:
             napstablook "okay, you go... i think i like it better when it's your turn to ask the questions..... it's less pressure......"
         if question_num is 5:
@@ -208,64 +208,64 @@ label date_start:
                     napstablook "okay.... whatever you want is fine... ask away..."
                 "\"No, I'm done, too.\"":
                     napstablook "okay..... well......"
-                    jump end_napstablook_hb_date_1
+                    jump end_napstablook_HP_date_1
             
 ###############################     PLAYER QUESTIONS      ################################
 
         menu:
             "\"Aren't you tired of being down here?\"" if asked_tiredunder == False:
                 $ asked_tiredunder = True
-                $world.get_monster('Napstablook').update_HB(1)
+                $world.get_monster('Napstablook').update_HP(1)
                 napstablook "well......"
                 napstablook "not really...? i guess that it can be boring after awhile...... ...seeing the same thing every day......"
                 napstablook "but its more bearable with people you care about"
-                call napstablook_hb_date_tiredofunder
+                call napstablook_HP_date_tiredofunder
             "\"Can you eat normal food? Does it phase through you?\"" if asked_ghostfood == False:
                 $ asked_ghostfood = True
                 $world.get_monster('Napstablook').update_FP(1)
                 napstablook "human food passes through me, yeah"
                 napstablook "but ghost food... and monster food...."
                 napstablook "that i can actually digest"
-                call napstablook_hb_date_ghostsandwich                
+                call napstablook_HP_date_ghostsandwich                
             "\"What's up with the waterworks?\"" if asked_waterworks == False:
                 $ asked_waterworks = True
                 show napstablook sad with dissolve
-                call napstablook_hb_date_waterworks                            
+                call napstablook_HP_date_waterworks                            
             "\"What are your hobbies?\"" if asked_hobbies == False:
                 $ asked_hobbies = True
                 napstablook "i like to make music"
-                call napstablook_hb_date_hobbies
+                call napstablook_HP_date_hobbies
             "\"Were you ever even alive?\"" if asked_alive == False:
                 $ asked_alive = True
-                $world.get_monster('Napstablook').update_HB(2)
+                $world.get_monster('Napstablook').update_HP(2)
                 napstablook "but... i am alive......"
                 napstablook "..."
-                call napstablook_hb_date_alive   
+                call napstablook_HP_date_alive   
             "\"Why is everyone down here so creepy looking?\"" if asked_creepy == False:
                 $ asked_creepy = True
-                $ world.get_monster('Napstablook').update_HB(1)
+                $ world.get_monster('Napstablook').update_HP(1)
                 $ world.get_monster('Napstablook').update_FP(-2)
                 napstablook "o-oh..... i mean..... i don't know"
                 napstablook "i wouldn't think everyone was creepy looking"
-                call napstablook_hb_date_creepy                
+                call napstablook_HP_date_creepy                
             "\"Did you choose to be a loner?\"" if asked_loner == False:
                 $ asked_loner = True
-                $ world.get_monster('Napstablook').update_HB(2)
+                $ world.get_monster('Napstablook').update_HP(2)
                 napstablook "n-no..... not really..."
                 napstablook "that's all i can say..... i just have trouble getting..... comfortable around people"
-                call napstablook_hb_date_loner
+                call napstablook_HP_date_loner
             "\"Weren't monsters just a myth or some legend?\"" if asked_legend == False:
                 $ asked_legend = True
                 $world.get_monster('Napstablook').update_FP(2)
-                call napstablook_hb_date_monsterlegend
+                call napstablook_HP_date_monsterlegend
             "\"Are you self conscious about being a shut-in?\"" if asked_shutin == False:
                 $ asked_shutin = True
-                $world.get_monster('Napstablook').update_HB(2)
-                call napstablook_hb_date_shutin
+                $world.get_monster('Napstablook').update_HP(2)
+                call napstablook_HP_date_shutin
                 
         jump napstablook_date_questions 
         
-        label napstablook_hb_date_tiredofunder:
+        label napstablook_HP_date_tiredofunder:
             menu:
                 "\"I'd like to think so!\"":
                     $world.get_monster('Napstablook').update_FP(3)
@@ -274,7 +274,7 @@ label date_start:
                     napstablook "me too"
                     return
                 "\"Not all people are nice.\"":
-                    $world.get_monster('Napstablook').update_HB(1)
+                    $world.get_monster('Napstablook').update_HP(1)
                 "\"Definitely not.\"":
                     $world.get_monster('Napstablook').update_FP(-2)
                     
@@ -291,7 +291,7 @@ label date_start:
                     napstablook "...oh..."
                     napstablook "it's ok..."
                 "\"I'm worried that I'm the only one that can be trusted.\"":
-                    $world.get_monster('Napstablook').update_HB(2)
+                    $world.get_monster('Napstablook').update_HP(2)
                     napstablook "that's... that's not true..."
                     napstablook ".....frisk is another human like you and..."
                     napstablook "and they would never hurt anyone...... they said so themselves..."
@@ -301,7 +301,7 @@ label date_start:
                     napstablook "you can always trust me...... know that"
             return
             
-        label napstablook_hb_date_ghostsandwich:
+        label napstablook_HP_date_ghostsandwich:
             napstablook "....."
             napstablook "........."
             napstablook "have you ever had a ghost sandwich?"
@@ -328,14 +328,14 @@ label date_start:
                     napstablook ".........heh........."
                     napstablook "..........my bad."
                 "\"I'm probably the only person who likes your rambling.\"":
-                    $world.get_monster('Napstablook').update_HB(2)
+                    $world.get_monster('Napstablook').update_HP(2)
                     napstablook "yeah......probably.........."
                     napstablook ".....but....... that's good...... right?"
                     napstablook "so long as i'm not.... boring you or anything......."
                     napstablook "then i guess it's ok..."
             return
         
-        label napstablook_hb_date_waterworks:
+        label napstablook_HP_date_waterworks:
             napstablook "i-i. ......"
             napstablook "i get emotional sometimes it just.... ....i don't...."
             napstablook "i don't know......"
@@ -347,7 +347,7 @@ label date_start:
             
             menu:
                 "\"Must be adorable trash, then.\"":
-                    $world.get_monster('Napstablook').update_HB(2)
+                    $world.get_monster('Napstablook').update_HP(2)
                     show napstablook shyblush with dissolve
                     napstablook "huh?"
                     napstablook "im........i wouldn't say that....."
@@ -366,7 +366,7 @@ label date_start:
                     napstablook ".....it's the only thing that makes sense"
             return
         
-        label napstablook_hb_date_hobbies:
+        label napstablook_HP_date_hobbies:
             napstablook ".....i like to think i'm good at it... i've been told it's pretty good, but..."
             napstablook "i'm afraid to show it to too many people........"
             napstablook "i don't want to bother everyone with myself....."
@@ -397,7 +397,7 @@ label date_start:
                     napstablook "letting me cry it out........ it always feels good to cry"
             return
         
-        label napstablook_hb_date_alive:
+        label napstablook_HP_date_alive:
             napstablook "i've always been like this..."
             napstablook "for as long as i can remember......"
             napstablook "which isn't that far back, really...... i have a bad memory"
@@ -409,7 +409,7 @@ label date_start:
             
             menu:
                 "\"Most would say you're dead, but I like ghosts.\"":
-                    $world.get_monster('Napstablook').update_HB(2)
+                    $world.get_monster('Napstablook').update_HP(2)
                     napstablook "oh... well....."
                     napstablook ".......i'm glad you like ghosts..."
                     napstablook "i've always been this way...... there's no changing me......"
@@ -431,7 +431,7 @@ label date_start:
                     napstablook "i'm glad you're interested, though"
             return
             
-        label napstablook_hb_date_creepy:
+        label napstablook_HP_date_creepy:
             napstablook "......."
             napstablook "everyone just looks different...... that's all."
             napstablook "i can understand that not a lot of humans are..... used to seeing people like..... us....."
@@ -450,20 +450,20 @@ label date_start:
                     napstablook "maybe you want to try going home........"
                     napstablook "but maybe... also like frisk... you'll consider staying..... after you meet everyone?"
                 "\"I wasn't worried!\"":
-                    $world.get_monster('Napstablook').update_HB(1)
+                    $world.get_monster('Napstablook').update_HP(1)
                     napstablook "really?"
                     napstablook "that's good..."
                     napstablook "it means........ maybe you'll have fun while you're down here, right?"
                     napstablook "i hope so, at least...... .i think you'll like it here"
                 "\"Not you, though.\"":
-                    $world.get_monster('Napstablook').update_HB(3)
+                    $world.get_monster('Napstablook').update_HP(3)
                     napstablook "...huh?"
                     napstablook "oh...... um....... i'm glad you think so--"
                     napstablook ".....or don't think so i guess.....?"
                     
                     menu:
                         "\"That was me flirting, Blooky.\"":
-                            $ world.get_monster('Napstablook').update_HB(1)
+                            $ world.get_monster('Napstablook').update_HP(1)
                             show napstablook surprised with dissolve
                             napstablook "f-flirting?"
                             show napstablook shyblush with dissolve
@@ -476,7 +476,7 @@ label date_start:
                             napstablook "let's keep talking then"
             return
         
-        label napstablook_hb_date_loner:
+        label napstablook_HP_date_loner:
             napstablook "i can't help it..... i find myself just..... drifting away from people..."
             napstablook "there's a few i'm close to, and some that i'm not"
             napstablook "i'm..... difficult to be around, so i can understand why not many want to be around me......."
@@ -487,7 +487,7 @@ label date_start:
             
             menu:
                 "\"I was just curious, it's alright.\"":
-                    $ world.get_monster('Napstablook').update_HB(2)
+                    $ world.get_monster('Napstablook').update_HP(2)
                     napstablook "......."
                     napstablook "if you're sure......."
                     napstablook ".......i wish i could explain myself more..... but i can't."
@@ -501,7 +501,7 @@ label date_start:
                     napstablook "maybe i won't be such a loner with you around....."
             return
         
-        label napstablook_hb_date_monsterlegend:
+        label napstablook_HP_date_monsterlegend:
             napstablook "i thought humans were a myth, too"
             napstablook "......then i saw frisk..."
             napstablook "though, i never bumped into humans as much as i did other monsters"
@@ -520,7 +520,7 @@ label date_start:
                     napstablook "if it's just like in the books, then maybe you'll already..... know a bit about everyone..."
                 "\"I feel like I fit in already.\"":
                     $ world.get_monster('Napstablook').update_FP(1)
-                    $ world.get_monster('Napstablook').update_HB(1)
+                    $ world.get_monster('Napstablook').update_HP(1)
                     show napstablook smile with dissolve
                     napstablook "that's..... that's good"
                     napstablook "i'm glad..."
@@ -531,7 +531,7 @@ label date_start:
                     napstablook "i think"
                 "\"I don't think I could ever get used to this...\"":
                     $ world.get_monster('Napstablook').update_FP(-1)
-                    $ world.get_monster('Napstablook').update_HB(-1)
+                    $ world.get_monster('Napstablook').update_HP(-1)
                     napstablook ".......i'm ........sorry"
                     napstablook "i wish i could help...... but......."
                     show napstablook sad with dissolve
@@ -542,14 +542,14 @@ label date_start:
                     napstablook "and with {color=#00ffff}{b}patience{/b}{/color} and {color=#228b22}{b}kindness{/b}{/color}.....i think you'll do ok."
             return
             
-        label napstablook_hb_date_shutin:
+        label napstablook_HP_date_shutin:
             napstablook "w-well....... a little bit..."
             napstablook "i know i can be awkward sometimes......."
             napstablook "i know i bother people just by being around them......."
             napstablook "is it that noticeable?"
             menu:
                 "\"I'm sure everyone knows, but don't worry about what they think.\"":
-                    $ world.get_monster('Napstablook').update_HB(2)
+                    $ world.get_monster('Napstablook').update_HP(2)
                     napstablook "i... i'll try not to..."
                     napstablook "it's hard...... though..."
                     napstablook "i usually don't worry about what others think because..... i already know..."
@@ -559,7 +559,7 @@ label date_start:
                     napstablook "thank you for dealing with me......"
                     napstablook "really....i appreciate it"
                 "\"Not at all, you blend in well.\"":
-                    $ world.get_monster('Napstablook').update_HB(2)
+                    $ world.get_monster('Napstablook').update_HP(2)
                     napstablook "oh......."
                     show napstablook smile with dissolve
                     napstablook "thank you........"
@@ -569,7 +569,7 @@ label date_start:
                     napstablook "even if that means being invisible"
                 "\"Yes, you should fix that.\"":
                     $ world.get_monster('Napstablook').update_FP(-2)
-                    $ world.get_monster('Napstablook').update_HB(-2)
+                    $ world.get_monster('Napstablook').update_HP(-2)
                     napstablook "......i will......"
                     napstablook "eventually..."
                     napstablook "i....... know i will, someday..."
@@ -589,7 +589,7 @@ label date_start:
 
 #####################################     NAPSTABLOOK QUESTIONS     ######################################
 
-    label hb1_blook_q1:
+    label HP1_blook_q1:
         napstablook "um......."
         napstablook "if you don't...... mind me asking......."
         napstablook "how did.... you end up down here...?"
@@ -598,7 +598,7 @@ label date_start:
         
         menu:
             "\"I mean, it was a {i}really big hole.{/i}\"":
-                $ world.get_monster('Napstablook').update_HB(2)
+                $ world.get_monster('Napstablook').update_HP(2)
                 napstablook "well....... i can understand that......."
                 napstablook "i didn't mean to sound...... offensive or......."
                 napstablook "to come off in such a way...... sorry...."
@@ -637,7 +637,7 @@ label date_start:
                 napstablook "i'm.....glad you're here"
         return
 
-    label hb1_blook_q2:
+    label HP1_blook_q2:
         napstablook "i really find this place.... well......"
         show napstablook smallsmile with dissolve
         napstablook "peaceful"
@@ -645,7 +645,7 @@ label date_start:
         
         menu:
             "\"It's not the best place for a first date...\"":
-                $ world.get_monster('Napstablook').update_HB(2)
+                $ world.get_monster('Napstablook').update_HP(2)
                 show napstablook surprised with dissolve
                 napstablook "oh..... date.......?"
                 show napstablook normal with dissolve
@@ -655,7 +655,7 @@ label date_start:
                 
                 menu:
                     "\"Maybe next time I'll tell you where to go, it'll be fine.\"":
-                        $ world.get_monster('Napstablook').update_HB(3)
+                        $ world.get_monster('Napstablook').update_HP(3)
                         show napstablook surprised with dissolve
                         napstablook "n-next time.....?"
                         napstablook "......."
@@ -663,7 +663,7 @@ label date_start:
                         napstablook "i....... okay..... i'd like that......."
                     "\"Yeah you should've.\"":
                         $ world.get_monster('Napstablook').update_FP(-1)
-                        $ world.get_monster('Napstablook').update_HB(-1)
+                        $ world.get_monster('Napstablook').update_HP(-1)
                         show napstablook sad with dissolve
                         napstablook "i-i'm sorry......"
                         napstablook "....... really.... really sorry........."
@@ -684,21 +684,21 @@ label date_start:
                 napstablook "don't be worried… we're here together, so....."
                 napstablook "maybe it won't be as scary as you think....."
             "\"I don't really like it here.\"":
-                $ world.get_monster('Napstablook').update_HB(-1)
+                $ world.get_monster('Napstablook').update_HP(-1)
                 show napstablook sad with dissolve
                 napstablook "o-oh.........."
                 napstablook "...sorry, i guess i should've picked more carefully..."
                 napstablook "........"
                 napstablook "sorry..."
             "\"I couldn't really care less about this place.\"":
-                $ world.get_monster('Napstablook').update_HB(3)
+                $ world.get_monster('Napstablook').update_HP(3)
                 show napstablook sad with dissolve
                 napstablook "oh"
                 napstablook "........you don't like it?"
                 
                 menu:
                     "\"I like you, but not this place.\"":
-                        $ world.get_monster('Napstablook').update_HB(1)
+                        $ world.get_monster('Napstablook').update_HP(1)
                         show napstablook shyblush with dissolve
                         napstablook "o-oh..... really?"
                         napstablook "well........"
@@ -721,7 +721,7 @@ label date_start:
                         napstablook ".....i'm sorry....."
         return
         
-    label hb1_blook_q3:
+    label HP1_blook_q3:
         napstablook "i know you haven't been underground that long, but..."
         napstablook ".....i hope you're enjoying yourself"
         napstablook "........"
@@ -730,7 +730,7 @@ label date_start:
         
         menu:
             "\"This could be worse, but at least you're trying.\"":
-                $ world.get_monster('Napstablook').update_HB(2)
+                $ world.get_monster('Napstablook').update_HP(2)
                 napstablook "yeah...sorry... i wanted to pick something you'd like..."
                 napstablook "sorry...if i'm getting on your nerves..."
                 napstablook "..."
@@ -761,7 +761,7 @@ label date_start:
                 napstablook "i'm sorry......."
         return
         
-    label hb1_blook_q4:
+    label HP1_blook_q4:
         napstablook "actually......"
         napstablook "i think you'd get along with my cousin......"
         napstablook "for some reason..... you two seem alike......"
@@ -774,7 +774,7 @@ label date_start:
                 $temp = 0
                 jump .robot_q
             "\"They're pretty neat, I guess.\"":
-                $ world.get_monster('Napstablook').update_HB(2)
+                $ world.get_monster('Napstablook').update_HP(2)
                 label .robot_q:
                     show napstablook smile with dissolve
                     napstablook "yeah?"
@@ -797,7 +797,7 @@ label date_start:
                         napstablook "and if you like robots....... then you two will get along really well....."
                         napstablook "that...... makes me happy."
                     "\"They're alright, I guess.\"":
-                        $ world.get_monster('Napstablook').update_HB(1)
+                        $ world.get_monster('Napstablook').update_HP(1)
                         napstablook "......."
                         napstablook "i'm sorry if the conversation is boring......."
                         napstablook "we can talk about something else......."
@@ -812,7 +812,7 @@ label date_start:
                                 napstablook "i just..... wish you'd give robots a chance....."
                                 napstablook "......but oh well..."
                             "\"But I do like ghosts.\"":
-                                $ world.get_monster('Napstablook').update_HB(1)
+                                $ world.get_monster('Napstablook').update_HP(1)
                                 napstablook "a-ah....."
                                 show napstablook shyblush with dissolve
                                 napstablook "well........"
@@ -821,7 +821,7 @@ label date_start:
                                 napstablook "........."
         return
         
-    label hb1_blook_q5:
+    label HP1_blook_q5:
         napstablook "well....... i only really ever come here to relax..."
         napstablook "sometimes, i'm just not in the mood to talk or do anything"
         napstablook "........not all the time..."
@@ -831,7 +831,7 @@ label date_start:
         
         menu:
             "\"Yeah, for the most part.\"":
-                $ world.get_monster('Napstablook').update_HB(1)
+                $ world.get_monster('Napstablook').update_HP(1)
                 napstablook "really? i can relate....."
                 napstablook "that...... makes me relieved."
                 napstablook "i always thought i was the only one"
@@ -859,7 +859,7 @@ label date_start:
                         napstablook "i was just worried that..... i was annoying you....."
                         napstablook "i wouldn't be surprised..... but it's fine......"
                     "\"It's okay, I'll be around to cheer you up.\"":
-                        $ world.get_monster('Napstablook').update_HB(2)
+                        $ world.get_monster('Napstablook').update_HP(2)
                         napstablook "...really?"
                         napstablook "oh..... good."
                         show napstablook shyblush
@@ -870,7 +870,7 @@ label date_start:
                         napstablook "alright....... i won't..."
         return
 
-    label hb1_blook_q6:
+    label HP1_blook_q6:
         napstablook "i wouldn't call myself a hermit but"
         napstablook "i like to be alone a lot..."
         napstablook "....."
@@ -883,7 +883,7 @@ label date_start:
         
         menu:
             "\"Yes, I guess.\"":
-                $ world.get_monster('Napstablook').update_HB(1)
+                $ world.get_monster('Napstablook').update_HP(1)
                 napstablook "you..... don't sound very happy about that..."
                 napstablook "but i guess any chance you could get was a good one..... right?"
                 napstablook "that must feel nice though..... to meet new people..."
@@ -897,14 +897,14 @@ label date_start:
                 
                 menu:
                     "\"I'd rather just talk to you.\"":
-                        $ world.get_monster('Napstablook').update_HB(2)
+                        $ world.get_monster('Napstablook').update_HP(2)
                         show napstablook shyblush with dissolve
                         napstablook "that's........."
                         napstablook "......."
                         show napstablook smile with dissolve
                         napstablook "you're really nice....."
                     "\"That's why we get along so well.\"":
-                        $ world.get_monster('Napstablook').update_HB(2)
+                        $ world.get_monster('Napstablook').update_HP(2)
                         napstablook "yeah?"
                         napstablook "we do..... don't we....."
                         napstablook "hehe....."
@@ -916,7 +916,7 @@ label date_start:
                         napstablook ".....well for me at least"
         return
         
-    label hb1_blook_q7:
+    label HP1_blook_q7:
         napstablook "i actually come here to cry sometimes..."
         napstablook ".....not a lot, but enough i guess to not want others to see what i'm doing"
         napstablook ".....and i like to lay down in my house and feel like trash..."
@@ -941,7 +941,7 @@ label date_start:
                             $ feelliketrash = True
                             jump .trash_q
                         "\"I am NOT trash!\"":
-                            $ world.get_monster('Napstablook').update_HB(2)
+                            $ world.get_monster('Napstablook').update_HP(2)
                             napstablook "i-i didn't mean for it to sound like....."
                             napstablook "that's not......."
                             show napstablook sad with dissolve
@@ -950,7 +950,7 @@ label date_start:
                                 
                             menu:
                                 "\"It's okay, I'll forgive you this time.\"":
-                                    $ world.get_monster('Napstablook').update_HB(2)
+                                    $ world.get_monster('Napstablook').update_HP(2)
                                     show napstablook smile with dissolve
                                     napstablook "oh... thank you..."
                                 "\"Oh, no, it's okay. Sorry I overreacted.\"":
@@ -970,13 +970,13 @@ label date_start:
                     napstablook "well..... maybe you should try it sometime..."
                     napstablook "it's not so bad..... it's kinda relaxing....."
                 "\"Only trash should feel like trash.\"":
-                    $ world.get_monster('Napstablook').update_HB(2)
+                    $ world.get_monster('Napstablook').update_HP(2)
                     napstablook "i... well......"
                     napstablook "i am trash..."
                     
                     menu:
                         "\"Then I guess you're cute and classy trash.\"":
-                            $ world.get_monster('Napstablook').update_HB(3)
+                            $ world.get_monster('Napstablook').update_HP(3)
                             napstablook "heheheh........."
                             show napstablook shyblush with dissolve
                             napstablook ".....do you really think i'm classy?"
@@ -991,7 +991,7 @@ label date_start:
                             napstablook "i'm sorry..."
         return
 
-    label hb1_blook_q8:
+    label HP1_blook_q8:
         napstablook "......."
         napstablook "did i mention that i own a snail farm?"
         napstablook "probably but my memory isn't great....."
@@ -1017,7 +1017,7 @@ label date_start:
                 napstablook "we can always go somewhere else...... so..... i'm not worried about that..."
         return
         
-    label hb1_blook_q9:
+    label HP1_blook_q9:
         napstablook "what type of music do you like listening to?"
         napstablook "if it's okay to ask....... you probably haven't heard anything in awhile since you fell..."
         napstablook "but....... did you like anything when you used to be on the surface?"
@@ -1090,7 +1090,7 @@ label date_start:
                             napstablook "..................."
                             napstablook "i guess....."
                         "\"You.\"":
-                            $ world.get_monster('Napstablook').update_HB(2)
+                            $ world.get_monster('Napstablook').update_HP(2)
                             show napstablook shyblush with dissolve
                             napstablook ".....o-oh.....?"
                             napstablook "well..... well....."
@@ -1100,7 +1100,7 @@ label date_start:
                             napstablook "...but i also like music."
         return
         
-    label hb1_blook_q10:
+    label HP1_blook_q10:
         napstablook "um....."
         show napstablook sad with dissolve
         napstablook "sorry..... i'm not very talkative"
@@ -1116,7 +1116,7 @@ label date_start:
                 napstablook ".....i get tired easily and i start to feel..... small....."
                 napstablook "it's easier to just avoid it altogether"
             "\"Don't worry, you never have to feel that way with me.\"":
-                $ world.get_monster('Napstablook').update_HB(1)
+                $ world.get_monster('Napstablook').update_HP(1)
                 napstablook "oh........ well, that's nice........"
                 napstablook "i'm glad......"
                 napstablook ".....you make me feel very..... relaxed"
@@ -1131,36 +1131,36 @@ label date_start:
 
 ###############################     DATE ENDINGS      ################################
 
-label end_napstablook_hb_date_1:
+label end_napstablook_HP_date_1:
     python:
-        HB_threshold = 22
+        HP_threshold = 22
         FP_threshold = 10
         date_success = False
         friendzoned = False
-        HB = owner.HB
+        HP = owner.HP
         FP = owner.FP
     
-    if HB > HB_threshold:
-        call napstablook_hb_date1_HB_ending
-    elif ((HB < HB_threshold) and (FP > FP_threshold)):
-        call napstablook_hb_date1_FP_ending
+    if HP > HP_threshold:
+        call napstablook_HP_date1_HP_ending
+    elif ((HP < HP_threshold) and (FP > FP_threshold)):
+        call napstablook_HP_date1_FP_ending
     else:
-        call napstablook_hb_date1_Failed_ending
+        call napstablook_HP_date1_Failed_ending
     return
     
 #    ###TEMPORARY- FOR TESTING PURPOSES ONLY ###
 #    "Jump to..."
 #    menu:
-#        "HB":
-#            jump napstablook_hb_date1_HB_ending
+#        "HP":
+#            jump napstablook_HP_date1_HP_ending
 #        "FP":
-#            jump napstablook_hb_date1_FP_ending
+#            jump napstablook_HP_date1_FP_ending
 #       "Failed Date":
-#            jump napstablook_hb_date1_Failed_ending
+#            jump napstablook_HP_date1_Failed_ending
 #   
 #    return
        
-    label napstablook_hb_date1_HB_ending:
+    label napstablook_HP_date1_HP_ending:
         napstablook "this was nice... i enjoyed hanging out with you"
         napstablook "i'm glad we got to know eachother better"
         napstablook "............"
@@ -1175,7 +1175,7 @@ label end_napstablook_hb_date_1:
         # $ date_success = True
         return
     
-    label napstablook_hb_date1_FP_ending:
+    label napstablook_HP_date1_FP_ending:
         napstablook "this was fun... it really was..."
         napstablook "it's been...... so long since i last got to just relax and talk to someone..."
         napstablook "i almost forgot what it was like...... hehe......."
@@ -1188,7 +1188,7 @@ label end_napstablook_hb_date_1:
         # $ friendzoned = True
         return
         
-    label napstablook_hb_date1_Failed_ending:
+    label napstablook_HP_date1_Failed_ending:
         napstablook "um.....i hope i wasn't too boring....."
         napstablook "i'm sorry if i was..."
         napstablook "......."
