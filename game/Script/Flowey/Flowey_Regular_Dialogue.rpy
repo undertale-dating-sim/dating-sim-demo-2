@@ -412,7 +412,7 @@ label Flowey_Interaction:
             "Leave":
                 return
         
-        call show_flowey_sprite(owner)
+        #call show_flowey_sprite(owner)
         jump Flowey_Casual_Chats
         
     label Flowey_Other_Characters:

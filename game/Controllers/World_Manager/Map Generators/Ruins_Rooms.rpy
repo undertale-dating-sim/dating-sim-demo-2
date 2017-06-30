@@ -16,6 +16,7 @@ init:
     image background ruins_monstercandy_room = im.Scale("backgrounds/Ruins/Monster-Candy-Room-Sketch.jpg",800,600)
     image background ruins_snailhunting_room = im.Scale("backgrounds/Ruins/Secret-Garden-Final.jpg",800,600)
     image background deadroom = im.Scale("backgrounds/gaster.png",800,600)
+    image background toriel_transition_screen = im.Scale("backgrounds/Ruins/transition_screen_toriel_house.png", 800,600)
 
 init -1 python:
     
@@ -209,12 +210,12 @@ init -1 python:
             self.x = 12
             self.y = 6
             self.desc = ""
-            self.bg = ""
+            self.bg = "background toriel_transition_screen"
             self.mappable = False
             self.events["port_to_toriel_house"] = Event("port_to_toriel_house",True)
     
 label port_to_toriel_house:
-    "Toriels House"
+    pause 1
     $ world.move_to_room("Staircase")
 
 label dead_room:

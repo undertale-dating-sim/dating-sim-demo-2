@@ -8,7 +8,7 @@ init:
     image background toriel_house_toriel_room = im.Scale("backgrounds/TorielsHouse/background-ruins-torielroom.png",800,600)
     image background toriel_house_your_room = im.Scale("backgrounds/TorielsHouse/background-ruins-yourroom.png",800,600)
     image background toriel_house_corridor = im.Scale("backgrounds/TorielsHouse/background-ruins-corridor.png",800,600)
-
+    image background ruins_transition_screen = im.Scale ("backgrounds/TorielsHouse/transition_screen_the_ruins.png",800,600)
 
 init python:
     
@@ -123,12 +123,14 @@ init python:
             self.x = 5
             self.y = -1
             self.desc = ""
-            self.bg = ""
+            self.bg = "background ruins_transition_screen"
             self.mappable = False
             self.events["port_to_black_tree_room"] = Event("port_to_black_tree_room",True)
+            
+
     
 label port_to_black_tree_room:
-    "The Ruins"
+    pause 1
     $ world.move_to_room("Black Tree Room")
     
 label player_sleeping_th:
