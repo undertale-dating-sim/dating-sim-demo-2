@@ -135,7 +135,7 @@ label Toriel_manager_default(owner = False,pause = True):
         $renpy.pause()
     
 
-    "Hello, dear. Can I help you?"
+    #"Hello, dear. Can I help you?"
     
     menu:
         
