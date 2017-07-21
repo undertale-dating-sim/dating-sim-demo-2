@@ -152,11 +152,10 @@ label .item_menu:
         #*It's wilting... but you expected that, didn't you?
 label .pick_up(item):
 
-    "* Take it?"
     menu:
         "* Take it?"
         "Yes":
-            "* You got the [item.name]"
+            "* You got the [item.name]!"
             $ pickup_item(item)
         "No":
             "* Then why did you even pick it up?"
@@ -343,7 +342,6 @@ label ruins_intro_flowey:
     $ get_room("Tunnels").set_event("tunnels_intro",False)
     $ get_room("Dummy Room").set_event("dummy_intro",False)
     $ get_room("Froggit Room").set_event("ruins_intro_leaves",False)
-    $ get_room("Sassy Rock Room").set_event("ruins_intro_rock_toriel",False)
     $ get_room("Blooky Room").set_event("ruins_intro_blooky",False)
     $ get_room("Staircase").set_event("ruins_intro_toriel_house",False)
 
@@ -550,8 +548,11 @@ label .intro_find_satchel:
                     "* ...Was it afraid you wouldn't take it?"
                 else:
                     "* The satchel... wiggles in glee?"
+
+                "Inventory increased to 5!"
                 jump .dummy_options
                 $ loop = false
+                $ inventory.max_items = 5
             "[button2_text]":
                 if count == 1:
                     "* You decide not to pick it up, despite it being a great tool to hold all of your items."
@@ -635,6 +636,7 @@ label ruins_intro_leaves:
             toriel "And I am sure you and Frisk will get along just fine."
             toriel "Follow me then, dear... It is not far."
             $ player.variables['accepted_toriel'] = True
+            $ get_room("Sassy Rock Room").set_event("ruins_intro_rock_toriel",False)
             $ move_to_room("Sassy Rock Room")
             #need some logic here
         "Thanks for the offer, but I’d rather continue on my own.":
@@ -643,6 +645,7 @@ label ruins_intro_leaves:
             toriel "I understand... it can be hard to trust new people when you meet them, but you do not need to be afraid of us."
             toriel "If you change your mind, our door will be open. Be safe."
             hide toriel with Dissolve(.25)
+            $ get_room("Sassy Rock Room").set_event("ruins_intro_rock_alone",False)
             menu:
                 "Look around":
                     "* Now that Toriel’s gone, the room feels pretty empty."
@@ -673,9 +676,9 @@ label ruins_intro_rock_toriel:
 
 label ruins_intro_rock_alone:
 
-    "* The room before you is long and filled with odd items. There is a sign hanging on the wall closest to you."
-    "* Three grey rocks sit on top of strange square pads on the ground, and a moat crosses the opposite side of the hall."
-    "* A short bridge extends across the still water. There is an exit across the bridge."
+    # "* The room before you is long and filled with odd items. There is a sign hanging on the wall closest to you."
+    # "* Three grey rocks sit on top of strange square pads on the ground, and a moat crosses the opposite side of the hall."
+    # "* A short bridge extends across the still water. There is an exit across the bridge."
 
     menu:
         "Look around":
@@ -759,11 +762,11 @@ label ruins_intro_blooky:
 
 
     napstablook "um... i better get back to work now..."
-    napstablook "oh... but... before i go..."
-    napstablook "i’ve noticed you... uh... haven’t been using the navigation options..."
-    napstablook "you’ve just been going in a straight line..."
-    napstablook "but... there’s a branching path here... so you might want to press 'E'..."
-    napstablook "anyway..."
+    # napstablook "oh... but... before i go..."
+    # napstablook "i’ve noticed you... uh... haven’t been using the navigation options..."
+    # napstablook "you’ve just been going in a straight line..."
+    # napstablook "but... there’s a branching path here... so you might want to press 'E'..."
+    # napstablook "anyway..."
     napstablook "see you later.....?"
     hide napstablook with Dissolve(2.0)
     return

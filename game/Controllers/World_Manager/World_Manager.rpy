@@ -24,12 +24,12 @@ init -10 python:
     #brings a monster to the current room. monster == monster.name
     def summon(monster):
         world.get_monster(monster).move_to_room(current_room().name)
-        reload_room()
+        #reload_room()
 
     #sends a monster to the dead room.   handy for getting them out of a room quickly
     def banish(monster):
         world.get_monster(monster).move_to_room("Dead Room")
-        reload_room()
+        #reload_room()
 
     #runs all of the updates for the world
     def update():

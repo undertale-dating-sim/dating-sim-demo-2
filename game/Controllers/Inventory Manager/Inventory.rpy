@@ -30,7 +30,7 @@ init -1 python:
     class Inventory():
         def __init__(self):
             self.items = []
-            self.max_items = 5
+            self.max_items = 1
             
         def add(self, item): # a simple method that adds an item;
             if self.has_space():
