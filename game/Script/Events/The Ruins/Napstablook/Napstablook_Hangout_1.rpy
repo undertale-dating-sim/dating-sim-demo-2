@@ -130,4 +130,5 @@ label napstablook_hangout_1:
         #neutral
         napstablook "well, that's all i have to say...."
         napstablook "if you have any more questions about snails, you can always find me..... i'll be around...."
+        $ Napstablook_Hangout_1_Complete = True
         return

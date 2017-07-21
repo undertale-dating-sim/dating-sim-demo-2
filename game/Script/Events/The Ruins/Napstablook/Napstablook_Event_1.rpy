@@ -192,6 +192,6 @@ label napstablook_event_1:
         napstablook "well.... that's all i have...."
         napstablook "i should go now.... thanks for listening........"
         hide napstablook with dissolve
-        $ napstablook_friendship_hangout1_complete = True
+        $ Napstablook_Friendship_1_Complete = True
         return
         

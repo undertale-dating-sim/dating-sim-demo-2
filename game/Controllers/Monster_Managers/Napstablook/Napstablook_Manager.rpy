@@ -16,6 +16,52 @@ init -9 python:
             self.default_sprite = "napstablook normal"
             self.FP = 20
 
+
+        def give_item(self,item = False):
+            # give_Gift_name_itemclassname
+            # builds the label and calls it with current count + 1
+            label_name = "give_Gift_%s_%s" % (self.name,item.get_class_name())
+
+            if renpy.has_label(label_name):
+
+                if self.given_today_count >= 5:
+                    renpy.call_in_new_context("give_Gift_%s_Rejection" % self.name,self)
+                else:
+                    response = renpy.call_in_new_context(label_name,self.get_total_specific_item(item) + 1,self)
+                    self.given_items[item.get_class_name()] = self.get_total_specific_item(item) + 1
+                    if response:
+                        self.given_today_count += 1
+                        renpy.call_in_new_context("%s_Gift_Count_Reaction" % self.name,self)
+
+            else:
+                renpy.call_in_new_context("give_Gift_%s_Unknown" % self.name)
+            return
+
+        def handle_special_events(self):
+
+            #Friendship Event 1
+                # Returning to Napstablook's room after all rooms in the Ruins have been explored
+            if 'Napstablook_Friendship_1_Complete' not in player.variables:
+                if player.variables['ruins_explored']:
+                    self.special_event = Event('napstablook_event_1',False,self)
+            #FP Hangout 1,
+                #Having at least +10 FP with Napstablook
+                #Having played the snail minigame at least 3 times
+                #Finding Napstablook in Toriel's garden
+            elif 'Napstablook_Hangout_1_Complete' not in player.variables:
+                if get_napstablook().FP > 10 and (player.current_room is ruins_snailhunting_room) and (world.get_monster('Napstablook').current_room is ruins_snailhunting_room):
+                    self.special_event = Event('napstablook_hangout_1',False,self)      
+            #TL Date 1
+                #Player enters the section of the ruins that blooky normally hangs out in.
+            elif 'Napstablook_TL_Date_1_Complete' not in player.variables:
+                if (player.current_room is ruins_blooky_room) and (owner.DP >= 12):
+                    self.special_event = Event('napstablook_tl_date',False,self)
+            #elif player in waterfall???
+            elif 'Napstablook_HB_Date_1_Complete' not in player.variables:
+                if (player.current_room is ruins_blooky_room) and (owner.HB >= 12):
+                    self.special_event = Event('napstablook_hb_date',False,self)
+            return
+
         def handle_schedule(self):
             #night
             # self.update_schedule("Sunday","Night","Toriel"s Room",self.default_event)

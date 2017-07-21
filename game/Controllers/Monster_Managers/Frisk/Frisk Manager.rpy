@@ -169,9 +169,9 @@ label Frisk_manager_default(owner = False,pause = True):
             "Talk":
                 call Frisk_dialogue
             "Meeting Frisk":
-                "test"
+                call frisk_meeting_start
             "Friendship Hangout 1":
-                "test"
+                call frisk_friendship_hangout1_main
             "Friendship Event 1":
                 "test"
             "Friendship Event 2":
