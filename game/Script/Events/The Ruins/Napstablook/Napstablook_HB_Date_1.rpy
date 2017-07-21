@@ -1,6 +1,8 @@
 # Note: End of date HP, FP, and DP values still need to be added. Currently ending is chosen via player-select menu.
 
-label napstablook_HP_date:
+
+label napstablook_hb_date(owner=get_napstablook()):
+
     #Event Name: "Blooky's Date"
     #Event Trigger: Reaching waterfall. Must have enough HP points to trigger.
     
@@ -1173,6 +1175,7 @@ label end_napstablook_HP_date_1:
         napstablook "bye..."
         napstablook "..."
         # $ date_success = True
+        $ Napstablook_HB_Date_1_Complete = True
         return
     
     label napstablook_HP_date1_FP_ending:
@@ -1186,6 +1189,7 @@ label end_napstablook_HP_date_1:
         napstablook "bye..."
         napstablook "..."
         # $ friendzoned = True
+        $ Napstablook_HB_Date_1_Complete = True
         return
         
     label napstablook_HP_date1_Failed_ending:
@@ -1199,5 +1203,6 @@ label end_napstablook_HP_date_1:
         #Fades away
         napstablook "bye..."
         napstablook "..."
+        $ Napstablook_HB_Date_1_Complete = True
         return
         

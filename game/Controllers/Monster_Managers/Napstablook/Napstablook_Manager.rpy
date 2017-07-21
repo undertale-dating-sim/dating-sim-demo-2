@@ -15,6 +15,7 @@ init -9 python:
             self.name = "Napstablook"
             self.default_sprite = "napstablook normal"
             self.FP = 20
+            self.seed_default_schedule()
 
 
         def give_item(self,item = False):
@@ -42,38 +43,48 @@ init -9 python:
             #Friendship Event 1
                 # Returning to Napstablook's room after all rooms in the Ruins have been explored
             if 'Napstablook_Friendship_1_Complete' not in player.variables:
-                if player.variables['ruins_explored']:
+                if (world.current_area.explored) and (player.current_room.encode('utf-8') == "Blooky Room"):
                     self.special_event = Event('napstablook_event_1',False,self)
+            
+
             #FP Hangout 1,
                 #Having at least +10 FP with Napstablook
                 #Having played the snail minigame at least 3 times
                 #Finding Napstablook in Toriel's garden
-            elif 'Napstablook_Hangout_1_Complete' not in player.variables:
-                if get_napstablook().FP > 10 and (player.current_room is ruins_snailhunting_room) and (world.get_monster('Napstablook').current_room is ruins_snailhunting_room):
-                    self.special_event = Event('napstablook_hangout_1',False,self)      
+
+            if 'Napstablook_Hangout_1_Complete' not in player.variables:
+                #if get_napstablook().FP >= 10 and (player.current_room.encode('utf-8') == "Snail Hunting Room"):
+                #if get_napstablook().FP > 10 and (player.current_room.encode('utf-8') == "Snail Hunting Room") and (world.get_monster('Napstablook').current_room.name.encode('utf-8') == "Snail Hunting Room"):
+                self.special_event = Event('napstablook_hangout_1',False,self)
+            
             #TL Date 1
                 #Player enters the section of the ruins that blooky normally hangs out in.
-            elif 'Napstablook_TL_Date_1_Complete' not in player.variables:
-                if (player.current_room is ruins_blooky_room) and (owner.DP >= 12):
+            if 'Napstablook_TL_Date_1_Complete' not in player.variables:
+                if (player.current_room is "Blooky Room") and (owner.DP >= 12):
                     self.special_event = Event('napstablook_tl_date',False,self)
+                    world.update_world(True)
+            #HB Date 1
             #elif player in waterfall???
-            elif 'Napstablook_HB_Date_1_Complete' not in player.variables:
+            if 'Napstablook_HB_Date_1_Complete' not in player.variables:
                 if (player.current_room is ruins_blooky_room) and (owner.HB >= 12):
                     self.special_event = Event('napstablook_hb_date',False,self)
+                    world.update_world(True)
             return
 
-        def handle_schedule(self):
+        def seed_default_schedule(self):
+
             #night
-            # self.update_schedule("Sunday","Night","Toriel"s Room",self.default_event)
-            # self.update_schedule("Monday","Night","Toriel"s Room",self.default_event)
-            # self.update_schedule("Tuesday","Night","Toriel"s Room",self.default_event)
-            # self.update_schedule("Wednesday","Night","Toriel"s Room",self.default_event)
-            # self.update_schedule("Thursday","Night","Toriel"s Room",self.default_event)
-            # self.update_schedule("Friday","Night","Toriel"s Room",self.default_event)
-            # self.update_schedule("Saturday","Night","Toriel"s Room",self.default_event)
+            # FFFFFFF Blooky Room = Toriel's Room
+            self.update_schedule("Sunday","Night","Blooky Room",self.default_event)
+            self.update_schedule("Monday","Night","Blooky Room",self.default_event)
+            self.update_schedule("Tuesday","Night","Blooky Room",self.default_event)
+            self.update_schedule("Wednesday","Night","Blooky Room",self.default_event)
+            self.update_schedule("Thursday","Night","Blooky Room",self.default_event)
+            self.update_schedule("Friday","Night","Blooky Room",self.default_event)
+            self.update_schedule("Saturday","Night","Blooky Room",self.default_event)
             #morning
             self.update_schedule("Sunday","Morning","Snail Hunting Room",self.default_event)
-            self.update_schedule("Monday","Morning","Snail Hunting Room",self.default_event)
+            self.update_schedule("Monday","Morning","Snail Hunting Room",self.default_event) #####
             self.update_schedule("Tuesday","Morning","Snail Hunting Room",self.default_event)
             self.update_schedule("Wednesday","Morning","Snail Hunting Room",self.default_event)
             self.update_schedule("Thursday","Morning","Snail Hunting Room",self.default_event)
@@ -96,13 +107,13 @@ init -9 python:
             self.update_schedule("Friday","Afternoon","Snail Hunting Room",self.default_event)
             self.update_schedule("Saturday","Afternoon","Snail Hunting Room",self.default_event)
             #evening
-            # self.update_schedule("Sunday","Evening","Toriel"s Room",self.default_event)
-            # self.update_schedule("Monday","Evening","Living Room",self.default_event)
-            # self.update_schedule("Tuesday","Evening","Living Room",self.default_event)
-            # self.update_schedule("Wednesday","Evening","Toriel"s Room",self.default_event)
-            # self.update_schedule("Thursday","Evening","Living Room",self.default_event)
-            # self.update_schedule("Friday","Evening","Toriel"s Room",self.default_event)
-            # self.update_schedule("Saturday","Evening","Living Room",self.default_event)
+            self.update_schedule("Sunday","Evening","Blooky Room",self.default_event)
+            self.update_schedule("Monday","Evening","Living Room",self.default_event)
+            self.update_schedule("Tuesday","Evening","Living Room",self.default_event)
+            self.update_schedule("Wednesday","Evening","Blooky Room",self.default_event)
+            self.update_schedule("Thursday","Evening","Living Room",self.default_event)
+            self.update_schedule("Friday","Evening","Blooky Room",self.default_event)
+            self.update_schedule("Saturday","Evening","Living Room",self.default_event)
 
             
 
@@ -238,7 +249,16 @@ label Napstablook_manager_default(owner = False, pause = True):
                     $ owner.HP += 10
                 "Lower HP 10":
                     $ owner.HP -= 10
-            return
+                "Update world":
+                    $ world.update_world(True)
+                    $ player.current_room = world.current_area.current_room.name
+                    "You are in [player.current_room]"
+                    $ blooky_current_room = world.get_monster("Napstablook").current_room.name
+                    $ tori_current_room = world.get_monster("Toriel").current_room.name
+                    $ flowey_current_room = world.get_monster("Toriel").current_room.name
+                    "Blooky is in [blooky_current_room]"
+                    "Toriel is in [tori_current_room]"
+                    "Flowey is in [flowey_current_room]"
         "Events":
             $ issinger = False
             $ isdancer = False

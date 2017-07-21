@@ -74,7 +74,7 @@ init -10 python:
                 renpy.notify("Couldn't find event [event]")
 
         def get_current_event(self):
-        
+            
             if self.special_event and self.special_event.completed == False:
                 return self.special_event
             #get the normal events

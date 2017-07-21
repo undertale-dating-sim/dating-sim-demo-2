@@ -52,6 +52,7 @@ init -1 python:
             self.y = -666
             self.desc = "You shouldn't be here."
             self.visited = True
+            self.ignore = True
             self.bg = "background deadroom"
             #self.events["dead_room"] = Event("dead_room",True)
             self.mappable = False
@@ -212,6 +213,7 @@ init -1 python:
             self.desc = ""
             self.bg = "background toriel_transition_screen"
             self.mappable = False
+            self.ignore = True
             self.events["port_to_toriel_house"] = Event("port_to_toriel_house",True)
     
 label port_to_toriel_house:

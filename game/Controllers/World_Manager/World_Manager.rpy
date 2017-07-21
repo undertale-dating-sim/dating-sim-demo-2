@@ -281,6 +281,7 @@ init -10 python:
             self.add_area(TheRuins())
             self.current_area = self.areas["The Ruins"]
             self.current_area.current_room = self.current_area.rooms["Grass Room"]
+            rooms_explored = 1
 
 
 
@@ -288,7 +289,6 @@ init -10 python:
 label test_label:
     "Awesome, it worked."
     return
-
 
 
 #This is the label that handles the loading
@@ -311,9 +311,41 @@ label load_room(loop=True,transition="fade"):
     #if ADMIN_ROOM_DESC:
     if not world.current_area.current_room.visited and world.current_area.current_room.desc and world.day > 0:
         "[world.current_area.current_room.desc]"
-    $ world.current_area.current_room.visited = True
+    $ player.current_room = world.current_area.current_room.name
+    $ blook_room = world.get_monster('Napstablook').current_room.name
+    "[blook_room]"
 
 
+    python:
+        
+        unexplored_rooms = False
+        ruinscounter = 0
+        curr_area = current_area()
+        for room_name,room in curr_area.rooms.iteritems():              # For a room in the current area,
+            if not world.current_area.rooms[room.name].visited:         # Check if it has not been visited.
+                world.current_area.current_room.visited = True          # If so, mark as visited.
+                if world.current_area.rooms[room.name].ignore:          # Check if it counts for exploration/game completion
+                    pass
+                else:
+                    unexplored_rooms = True                             # If there's still more rooms to be explored, flag area as not fully explored.
+                    #ruinscounter += 1 ##### FOR TESTING #####
+            else:
+                pass
+                    
+        if unexplored_rooms is True:                                    # If all rooms have been explored, nothing will have triggered the unexplored_rooms flag.
+        #if ruinscounter < 14:
+            pass
+        else:
+            world.current_area.explored = True                          # This means that the player has 100% completed exploration.
+    
+    ##### FOR TESTING #####
+    #if world.current_area.explored:
+    #    "Explored the Ruins"
+    #else:
+    #    "[ruinscounter]"
+        
+    $ world.update_world(True)
+        
     $ temp_event = world.current_area.current_room.get_event()
 
     while temp_event:

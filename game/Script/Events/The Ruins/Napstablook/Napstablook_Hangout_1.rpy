@@ -1,4 +1,4 @@
-label napstablook_hangout_1:
+label napstablook_hangout_1(owner=get_napstablook()):
     #Event Name: "Snail Hunting is an Art"
     #Event Trigger:  Having at least +10 FP with Napstablook
     #                Having played the snail minigame at least 3 times
@@ -49,7 +49,7 @@ label napstablook_hangout_1:
                 $ ruinsnails_asked = True
                 $ torielsnails_asked = False
                 $ napstablookfavsnail_asked = False                
-            "My net is too slow and big… is there anywhere I can get a better one?" if net_asked is False:
+            "My net is too slow and big... is there anywhere I can get a better one?" if net_asked is False:
                 $world.get_monster('Napstablook').update_FP(2)
                 napstablook "um.... Toriel probably has better nets.... but they can get kind of expensive, so she might not trust you with them right away...."
                 napstablook "but, uh.... i just prefer the slower nets, anyway. i like to take my time."

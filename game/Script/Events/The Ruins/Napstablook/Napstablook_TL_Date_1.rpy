@@ -1,4 +1,4 @@
-label napstablook_tl_date:
+label napstablook_tl_date(owner=get_napstablook()):
     #Event Name: "napstablook's TL Date"
     #Event Trigger: Entering the section of the Ruins where blooky is initially found in Undertale.
     

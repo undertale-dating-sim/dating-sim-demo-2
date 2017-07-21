@@ -6,6 +6,7 @@ init -10 python:
             self.y = y
             self.desc = desc
             self.visited = False
+            self.ignore = False # Ignore room for the purposes of 100% exploration
             #place holder to stop people from moving into the room.
             self.locked = locked
             self.bg = bg

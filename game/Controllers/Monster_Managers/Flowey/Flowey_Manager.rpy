@@ -16,7 +16,8 @@ init -9 python:
             #hangout 1, done when the tutorial is over
             if "Flowey_Hangout_1_Complete" not in player.variables and world.day > 0:
                 self.special_event = Event('flowey_hangout1',False,self)
-
+                player.variables['Flowey_Hangout_1_Complete'] = True
+                world.update_world(True)
             elif "Flowey_Hangout_2_Complete" not in player.variables and world.day > 0:
                 if "flowey_heartbreak_activated" in player.variables:
                     self.special_event = Event('flowey_HB_hangout_1',False,self)
@@ -39,7 +40,7 @@ init -9 python:
             self.update_schedule("Saturday","Night","Cave Room",self.default_event)
             #morning
             self.update_schedule("Sunday","Morning","Overlook",self.default_event)
-            #self.update_schedule("Monday","Morning","Cave Room",self.default_event)
+            self.update_schedule("Monday","Morning","Cave Room",self.default_event)
             self.update_schedule("Monday","Morning","Basement Door",self.default_event)
             self.update_schedule("Tuesday","Morning","Cave Room",self.default_event)
             self.update_schedule("Wednesday","Morning","Grass Room",self.default_event)
@@ -136,6 +137,8 @@ label flowey_manager_default(owner = False,pause = True):
                         $ owner.HP += 20
                     "Lower HP 20":
                         $ owner.HP -= 20
+                    "Update World":
+                        $ world.update_world(True)
             "Give Gift" if len(inventory.items) > 0:
                 call flowey_gift_menu_open(owner)
                 $ result = renpy.call_screen("gift_item_menu",owner)

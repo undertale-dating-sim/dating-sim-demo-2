@@ -1,4 +1,13 @@
-label napstablook_event_1:
+label napstablook_event_1(owner=get_napstablook()):
+    
+    $ issinger = False
+    $ isdancer = False
+    $ likedmusic = False
+    $ dislikedmusic = False
+    $ listened_music = False
+    $ hobbies_asked = False
+    $ napstablook_friendship_hangout1_complete = False
+    $ apathy = False
     #Event Name: Like Karaoke, but Without the Lyrics on the Screen
     #Event Trigger: Returning to Napstablook's room after all rooms in the Ruins have been explored
     #Synopsis: Napstablook offers to let you listen to a new song he made. How will you respond?
@@ -192,6 +201,9 @@ label napstablook_event_1:
         napstablook "well.... that's all i have...."
         napstablook "i should go now.... thanks for listening........"
         hide napstablook with dissolve
-        $ Napstablook_Friendship_1_Complete = True
+
+        $ player.variables['Napstablook_Friendship_1_Complete'] = True
+        $ world.update_world(True)
+
         return
         

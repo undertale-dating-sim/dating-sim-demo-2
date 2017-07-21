@@ -16,7 +16,7 @@ init -9 python:
                 # Staying with Toriel
                 # 3 nights have passed
             if 'Toriel_Friendship_1_Complete' not in player.variables:
-                if player.variables['accepted_toriel'] and world.day > 3:
+                if player.variables['toriel_accepted'] and world.day > 3:
                     self.special_event = Event('toriel_friendship_event_1',False,self)
             #FP Hangout 1,
                 #Friendship 1 done,

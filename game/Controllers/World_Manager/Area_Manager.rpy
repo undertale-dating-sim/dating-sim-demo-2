@@ -8,6 +8,9 @@ init -10 python:
             self.random_areas = {}
             self.random_monsters = []
             self.random_events = []
+            #self.explore_counter = 0
+            self.explored = False
+            #self.roomcount = 0
     
         #Adds a room to the area. Needs to be an instance of Room()        
         def add_room(self,room):

@@ -38,6 +38,8 @@ label demo_values:
     $player.variables['has_frisk_cell'] = True
     $player.variables['has_napstablook_cell'] = True
     $player.variables['has_flowey_cell'] = True
+    $player.variables['toriel_accepted'] = True
+    
     return
 
 label start:
@@ -89,6 +91,7 @@ label Snail_Hunter_Random_Event:
 
     else:
         "* A very quiet, peaceful room.  It looks new.  The flowers are still."
+        $ world.update_world(True)
     return
 
 ###################
