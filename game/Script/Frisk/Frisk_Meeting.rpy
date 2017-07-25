@@ -27,290 +27,155 @@ label frisk_meeting_start:
         accepted_toriel_invitation = True
         met_frisk_before_toriel = True
         toriel_fp = 0 #temp var
-    #looked_around_before_toriel = True
-    #red numbers indicates HB points
+
     show frisk surprised with Dissolve(.25)
     
     unknown "Oh! Um, hi. I wasn’t expecting to see another human. How... how did you get here?" 
-    jump frisk_meeting_menu
-label frisk_meeting_menu:
-    menu:
-        "Meeting":
-            jump frisk_meeting_selection1
-        "Questions":
-            jump frisk_meeting_questions
-        "Snail Catching":
-            jump frisk_meeting_snail_catching
-        "Frisk Meeting Late":
-            jump frisk_meeting_late
 
-        "Look Around Before Meeting Toriel":
-            jump looked_around_before_toriel
-        "Ruins Intro Pass Out":
-            jump ruins_intro_pass_out
-
-        "Exit":
-            jump statcheck
-        "Change Past Events":
-            jump frisk_meeting_change_vars
-
-label frisk_meeting_change_vars:
-    menu:
-        "Accepted Toriel Invitation":
-            $ accepted_toriel_invitation = True
-            jump frisk_meeting_menu
-        "Rejected Toriel Invitation/Haven't Met Toriel":
-            $ accepted_toriel_invitation = False
-            jump frisk_meeting_menu
-        "Met Frisk Before Toriel":
-            $ met_frisk_before_toriel = True
-            jump frisk_meeting_menu
-        "Met Toriel Before Frisk":
-            $ met_frisk_before_toriel = False
-            jump frisk_meeting_menu
-
-#########################
-#  FRISK MEETING START  #
-#########################
-
-label frisk_meeting_selection1:
     menu:
         "I could ask you the same thing.":  
-            jump frisk_meeting_choice1
+            show frisk smallsmile with Dissolve(.25)
+            unknown "Oh, well, you know... I guess I was hiking, and I just... sort of..."
+            show frisk surprised with Dissolve(.25)
+            unknown "Oh! I’m sorry, I forgot my manners."
+            show frisk somehappy with Dissolve(.25)
+            unknown "I’m Frisk. It’s nice to meet you!"
+            frisk "I’m a human, too!"
+            frisk "But, um, I guess you could probably see that."
+
+            menu:
+                "Are there more humans down here?":  
+                    $world.get_monster('Frisk').update_FP(1)
+                    show frisk normal with Dissolve(.25)
+                    frisk "Oh, no... not that I know of."
+                    frisk "You’re actually the first human I’ve seen since I fell down here."
+                    frisk "I’ve been living here with Mom- I mean, you probably know her as Toriel."
+                    show frisk somehappy with Dissolve(.25)
+                    frisk "She’s taken care of me since I was a kid!"
+
+                "And you live with a monster?":    
+                    show frisk normal with Dissolve(.25)
+                    frisk "Yeah. When I came to the Underground, Mom... I mean, Toriel... found me and has been taking care of me ever since."
+
         "I tripped.":
             $world.get_monster('Frisk').update_FP(3)
-            jump frisk_meeting_choice2
+            show frisk giggly with Dissolve(.25)
+            unknown "Ha ha! You're funny.  No one just 'trips' and ends up down here."
+            show frisk smallsmile with Dissolve(.25)
+            unknown "..."
+            unknown "At least, no one that I know."
+            show frisk somehappy with Dissolve(.25)
+            unknown "Oh, where are my manners... my name is Frisk!"
+
         "You’re not Toriel’s kid, are you?" if met_frisk_before_toriel==False:
-            $world.get_monster('Frisk').update_HB(2)
-            jump frisk_meeting_choice3
+            $world.get_monster('Frisk').update_HP(2)
+            show frisk annoyed with Dissolve(.25)
+            unknown "Yes I am!"
+            show frisk disappointed with Dissolve(.25)
+            unknown "Oh, right. You were probably expecting me to be a monster, huh?"
+            show frisk normal with Dissolve(.25)
+            unknown "My name is Frisk."
+            frisk "I’m a human. Mom- well, you know her as Toriel..."
+            frisk "She’s really nice, and she takes care of me."
+
         "Hi, nice to meet you!":
             $world.get_monster('Frisk').update_FP(4)
-            jump frisk_meeting_choice4
-
-label frisk_meeting_choice1:         
-    show frisk smallsmile with Dissolve(.25)
-    unknown "Oh, well, you know... I guess I was hiking, and I just... sort of..."
-    show frisk surprised with Dissolve(.25)
-    unknown "Oh! I’m sorry, I forgot my manners."
-    show frisk somehappy with Dissolve(.25)
-    unknown "I’m Frisk. It’s nice to meet you!"
-    frisk "I’m a human, too!"
-    frisk "But, um, I guess you could probably see that."
-    jump frisk_meeting_selection2
-
-label frisk_meeting_selection2:
-    menu:
-        "Are there more humans down here?":  
-            $world.get_monster('Frisk').update_FP(1)
-            jump frisk_meeting_choice5
-        "And you live with a monster?":    
-            jump frisk_meeting_choice6
-
-label frisk_meeting_choice5:               
-    show frisk normal with Dissolve(.25)
-    frisk "Oh, no... not that I know of."
-    frisk "You’re actually the first human I’ve seen since I fell down here."
-    frisk "I’ve been living here with Mom- I mean, you probably know her as Toriel."
-    show frisk somehappy with Dissolve(.25)
-    frisk "She’s taken care of me since I was a kid!"
-    jump frisk_meeting_questions
-
-label frisk_meeting_choice6:     
-    show frisk normal with Dissolve(.25)
-    frisk "Yeah. When I came to the Underground, Mom... I mean, Toriel... found me and has been taking care of me ever since."
-    jump frisk_meeting_questions
-
-label frisk_meeting_choice2:     
-    show frisk giggly with Dissolve(.25)
-    unknown "Ha ha! You're funny.  No one just 'trips' and ends up down here."
-    
-    ######DOUBLE CHECK THIS
-    "show frisk slightly happy << sprite check, currently using smallsmile -P"
-    show frisk smallsmile with Dissolve(.25)
-    unknown "..."
-    unknown "At least, no one that I know."
-    show frisk somehappy with Dissolve(.25)
-    unknown "Oh, where are my manners... my name is Frisk!"
-    jump frisk_meeting_questions
-
-label frisk_meeting_choice3:
-    show frisk annoyed with Dissolve(.25)
-    unknown "Yes I am!"
-    show frisk disappointed with Dissolve(.25)
-    unknown "Oh, right. You were probably expecting me to be a monster, huh?"
-    show frisk normal with Dissolve(.25)
-    unknown "My name is Frisk."
-    frisk "I’m a human. Mom- well, you know her as Toriel..."
-    frisk "She’s really nice, and she takes care of me."
-    jump frisk_meeting_questions
-
-label frisk_meeting_choice4:
-    show frisk surprised with Dissolve(.25)
-    unknown "Oh! Right, where are my manners... my name is Frisk!"
-    show frisk smallsmile with Dissolve(.25)
-    frisk "It’s nice to meet you, too. I, uh... hope you grow to like the Underground."
-    frisk "It's pretty great once you get used to it."
-    jump frisk_meeting_questions
-    
-
-#############################
-#  FRISK MEETING QUESTIONS  #
-#############################
+            show frisk surprised with Dissolve(.25)
+            unknown "Oh! Right, where are my manners... my name is Frisk!"
+            show frisk smallsmile with Dissolve(.25)
+            frisk "It’s nice to meet you, too. I, uh... hope you grow to like the Underground."
+            frisk "It's pretty great once you get used to it."
 
 label frisk_meeting_questions:
     menu:
-        "Continue":
-            jump frisk_meeting_selection3
-        "Beginning":
-            jump frisk_meeting_start
-        "Exit":
-            jump statcheck
-
-label frisk_meeting_selection3:
-    menu:
         "You’re actually a human? Not some monster?" if chose_frisk_meeting_option6 == False:
-            jump frisk_meeting_choice6_5
+            show frisk somehappy
+            frisk "Yeah! I live with my mom- I mean, Toriel, the caretaker of the Ruins. She’s really kind. Have you met her?"
+            $ chose_frisk_meeting_option6 = True
+            jump frisk_meeting_questions
         
         "I’ve recently met Toriel. She seems nice." if met_frisk_before_toriel==False:
             $world.get_monster('Frisk').update_FP(3)
-            jump frisk_meeting_choice7
+            show frisk bigsmile
+            frisk "Yeah! Out of all the people that could’ve found me, I’m glad it was her."
+
+            menu:
+                "Are you saying the other monsters are bad?":
+                    $world.get_monster('Frisk').update_HP(1)            
+                    show frisk surprised
+                    frisk "What? No!"
+                    show frisk upset
+                    frisk "I mean, other monsters are great, too. I shouldn't have said that... it was mean. But she’s the only one who’s really taken care of me, y’know?"
+                    jump frisk_meeting_snail_catching
+
+                "I can relate. She helped me, too." if met_frisk_before_toriel==False:
+                    $world.get_monster('Frisk').update_FP(2)
+                    show frisk smallsmile
+                    frisk "That’s great! She can handle anything!"
+                    show frisk upset
+                    frisk "..."
+                    show frisk somehappy
+                    frisk "Well, most things."
+                    jump frisk_meeting_snail_catching
+
         "How’s life here in the Ruins?":
-            $world.get_monster('Frisk').update_FP(3)
-            jump frisk_meeting_choice8       
+            $world.get_monster('Frisk').update_FP(3)  
+            show frisk somehappy
+            frisk "Well, we don’t have much, but it’s nice. It’s just that sometimes Mom makes food with snails in it, and it’s..."
+            show frisk upset
+            frisk "...not amazing... but don’t worry about it."
+            show frisk somehappy
+            frisk "Other than that, things are pretty great."
+            menu:
+                "Are you feeling okay? You look a little under the weather.":
+                    $world.get_monster('Frisk').update_FP(3)
+                    frisk "Oh, um. I’m... I’m fine."
+                    frisk "Tiring day, ya know?"
+                    frisk "But... I appreciate your concern."
+                    menu:
+                        "Are you sure you’re okay? Do you want to talk about something?":
+                            $world.get_monster('Frisk').update_FP(1)
+                            frisk "No, really... it’s fine. I appreciate the help... I really do. But, honestly, it’s nothing."
+                            menu:
+                                "Oh, come on, tell me!":
+                                    $world.get_monster('Frisk').update_HP(2)
+                                    show frisk annoyed
+                                    frisk "Please, you're making this more than what it is."
+                                    menu:
+                                        "You have to tell me!":
+                                            $world.get_monster('Frisk').update_FP(-3)
+                                            #+1 Determination
+                                            show frisk angry
+                                            frisk "No, I don’t have to tell you anything! I’m not talking about this anymore!"
+                                            show frisk neutral
+                                            frisk "Sorry, I don’t like people getting on my back about things."
+                                            jump frisk_meeting_snail_catching
 
-label frisk_meeting_choice6_5:         
-    show frisk somehappy
-    frisk "Yeah! I live with my mom- I mean, Toriel, the caretaker of the Ruins. She’s really kind. Have you met her?"
-    #remove option 6 from selection 3
-    $ chose_frisk_meeting_option6 = True
-    jump frisk_meeting_questions
+                                        "Alright, I’m sorry.":
+                                            show frisk annoyed
+                                            frisk "..."
+                                            frisk "...Thank you."
+                                            jump frisk_meeting_snail_catching
 
-label frisk_meeting_choice7:     
-    show frisk bigsmile
-    frisk "Yeah! Out of all the people that could’ve found me, I’m glad it was her."
-    jump frisk_meeting_selection4 
+                                "Just making sure.":
+                                    $world.get_monster('Frisk').update_FP(2)
+                                    frisk "Thanks. You remind me a lot of Mom, actually." 
+                                    show frisk bigsmile
+                                    frisk "But... don’t go thinking you can outdo her in the mothering department! She’s the master!"
+                                    jump frisk_meeting_snail_catching
+                        "...":
+                            jump frisk_meeting_snail_catching 
 
-label frisk_meeting_selection4:
-    menu:
-        "Are you saying the other monsters are bad?":
-            $world.get_monster('Frisk').update_HB(1)            
-            jump frisk_meeting_choice10
-        "I can relate. She helped me, too." if met_frisk_before_toriel==False:
-            $world.get_monster('Frisk').update_FP(2)
-            jump frisk_meeting_choice11
-
-label frisk_meeting_choice10:         
-    show frisk surprised
-    frisk "What? No!"
-    show frisk upset
-    frisk "I mean, other monsters are great, too. I shouldn't have said that... it was mean. But she’s the only one who’s really taken care of me, y’know?"
-    jump frisk_meeting_snail_catching
-
-label frisk_meeting_choice11:      
-    show frisk smallsmile
-    frisk "That’s great! She can handle anything!"
-    show frisk upset
-    frisk "..."
-    show frisk somehappy
-    frisk "Well, most things."
-    jump frisk_meeting_snail_catching
-
-label frisk_meeting_choice8:     
-    show frisk somehappy
-    frisk "Well, we don’t have much, but it’s nice. It’s just that sometimes Mom makes food with snails in it, and it’s..."
-    show frisk upset
-    frisk "...not amazing... but don’t worry about it."
-    show frisk somehappy
-    frisk "Other than that, things are pretty great."
-    jump frisk_meeting_selection5 
-
-label frisk_meeting_selection5:
-    menu:
-        "Are you feeling okay? You look a little under the weather.":
-            $world.get_monster('Frisk').update_FP(3)
-            jump frisk_meeting_choice12
-        "I’m sure everything must be great for you then!":
-            jump frisk_meeting_choice13
-
-label frisk_meeting_choice12:         
-    frisk "Oh, um. I’m... I’m fine."
-    frisk "Tiring day, ya know?"
-    frisk "But... I appreciate your concern."
-    jump frisk_meeting_selection6 
-
-label frisk_meeting_selection6:
-    menu:
-        "Are you sure you’re okay? Do you want to talk about something?":
-            $world.get_monster('Frisk').update_FP(1)
-            jump frisk_meeting_choice14
-        "...":
-            jump frisk_meeting_choice15
-
-label frisk_meeting_choice14:         
-    frisk "No, really... it’s fine. I appreciate the help... I really do. But, honestly, it’s nothing."
-    jump frisk_meeting_selection7
-     
-label frisk_meeting_selection7:
-    menu:
-        "Oh, come on, tell me!":
-            $world.get_monster('Frisk').update_HB(2)
-            jump frisk_meeting_choice16
-        "Just making sure.":
-            $world.get_monster('Frisk').update_FP(2)
-            jump frisk_meeting_choice17
-
-label frisk_meeting_choice16:
-    show frisk annoyed
-    frisk "Please, you're making this more than what it is."
-    jump frisk_meeting_selection8
-
-label frisk_meeting_selection8:
-    menu:
-        "You have to tell me!":
-            $world.get_monster('Frisk').update_FP(-3)
-            jump frisk_meeting_choice18
-        "Alright, I’m sorry.":
-            jump frisk_meeting_choice19
-
-label frisk_meeting_choice18:
-    #+1 Determination
-    show frisk angry
-    frisk "No, I don’t have to tell you anything! I’m not talking about this anymore!"
-    show frisk neutral
-    frisk "Sorry, I don’t like people getting on my back about things."
-    jump frisk_meeting_snail_catching
-
-label frisk_meeting_choice19:
-    show frisk annoyed
-    frisk "..."
-    frisk "...Thank you."
-    jump frisk_meeting_snail_catching
-
-label frisk_meeting_choice17:
-    frisk "Thanks. You remind me a lot of Mom, actually." 
-    show frisk bigsmile
-    frisk "But... don’t go thinking you can outdo her in the mothering department! She’s the master!"
-    jump frisk_meeting_snail_catching
-
-label frisk_meeting_choice15:     
-    jump frisk_meeting_snail_catching
-
-label frisk_meeting_choice13:     
-    frisk "Yup... pretty much."
-    jump frisk_meeting_snail_catching
+                "I’m sure everything must be great for you then!":
+                    frisk "Yup... pretty much."
+                    jump frisk_meeting_snail_catching
 
 ##################################
 #  FRISK MEETING SNAIL CATCHING  #
 ##################################
 
 label frisk_meeting_snail_catching:
-    menu:
-        "Continue":
-            pass
-        "Beginning":
-            jump frisk_meeting_start
-        "Exit":
-            jump statcheck
+
     show frisk normal
     frisk "Oh, hey... is that a crack on your phone? It looks pretty banged up."
     show frisk smallsmile
@@ -335,12 +200,10 @@ label frisk_meeting_snail_catching:
     frisk "Okay, here we are."
     frisk "I know this is going to sound a bit weird, but I need to catch snails."
     frisk "Mom makes food with them, and she needs a lot!"
-    jump frisk_meeting_selection9
 
-label frisk_meeting_selection9:
     menu:
         "You’re right, that is weird.":
-            $world.get_monster('Frisk').update_HB(1)
+            $world.get_monster('Frisk').update_HP(1)
             jump frisk_meeting_choice20
         "That sounds completely reasonable.":
             $world.get_monster('Frisk').update_FP(3)
@@ -484,16 +347,6 @@ label frisk_meeting_late:
 ########################
 
 label frisk_meeting_home:
-    menu:
-        "Continue":
-            pass
-        "Beginning":
-            jump frisk_meeting_start
-        "Exit":
-            jump statcheck
-###################################
-#### Doublecheck this part!!!!!!!
-###################################
     show frisk normal at left
     show toriel normal at right
     frisk "This is the person I told you about."
@@ -518,7 +371,7 @@ label looked_around_before_toriel:
         toriel "Frisk has told me a lot about you while you were gone." 
 
         show toriel normal
-        if toriel_fp<20:
+        if world.get_monster('Toriel').FP < 20:
             toriel "There is not much to do here, but we are always looking for a helping hand--especially if you do not mind getting your hands dirty."
             show frisk bigsmile
             frisk "Anyway, let’s eat!"
@@ -541,8 +394,8 @@ label looked_around_before_toriel:
 
 label frisk_meeting_eat:
     #scene change living room
-    show frisk normal with Dissolve(.25) at right
-    show toriel normal with Dissolve(.25) at left
+    show frisk normal at right with Dissolve(.25) 
+    show toriel normal at left with Dissolve(.25)
     frisk "I’m sure you’ll love it. We’re eating..."
     frisk "Mom, what’re we having again?"
     toriel "We are having snail casserole."
@@ -781,15 +634,16 @@ label frisk_meeting_choice36:
     #scene change to hallway
     "*What will you do now?"
     jump frisk_meeting_after_dinner
-     
+ 
+
+
+
 ################################
 #  FRISK MEETING AFTER DINNER  #
 ################################
 
 label frisk_meeting_after_dinner:
 
-    jump frisk_meeting_selection16
-label frisk_meeting_selection16:
     menu:
         "Go back and talk to Toriel a bit longer" if chose_frisk_meeting_option37==False:
             jump frisk_meeting_choice37 
@@ -831,8 +685,8 @@ label frisk_meeting_choice41:
     show toriel awkward with Dissolve(.25)
     toriel "I cannot think of anything to talk about quite yet, either. I suppose sitting in silence can be nice, too--if you would like to do that."    
     show toriel normal with Dissolve(.25)
-    "*You and toriel sit in silence for a little while."
-    "*It is nice."
+    "* You and Toriel sit in silence for a little while."
+    "* It is nice."
     toriel "As much as I enjoy your company, I think it would be wise if you went to bed. We can always talk in the morning, if you wish."
     toriel "Sleep well!"
     #remove option 37 from selection 16
@@ -842,22 +696,16 @@ label frisk_meeting_choice41:
 
 label frisk_meeting_choice37_5:     
     #/// If >37.5(Check Toriel’s room)< 
-    "*Toriel’s room strikes you as the type to be clean, orderly, and cozy."
-    "*Going inside would be a huge invasion of privacy. You should know better."
-    jump frisk_meeting_selection8
-
-label frisk_meeting_selection18:
+    "* Toriel’s room strikes you as the type to be clean, orderly, and cozy."
+    "* Going inside would be a huge invasion of privacy. You should know better."
     menu:
         "Go inside anyway":
-            jump frisk_meeting_choice63
+            #-1 Justice
+            "*There are a plethora of items to snoop through."
+            #see questions at top of doc
+            jump frisk_meeting_choice21  
         "Do not":
             jump frisk_meeting_choice64_5
-
-label frisk_meeting_choice63:
-    #-1 Justice
-    "*There are a plethora of items to snoop through."
-    #see questions at top of doc
-    jump frisk_meeting_choice21     
 
 label frisk_meeting_selection21:
 
@@ -1022,34 +870,23 @@ label frisk_meeting_choice41_5:
     jump frisk_meeting_after_dinner
 
 label frisk_meeting_choice42:      
-    #/// If > 42(What’s all that stuff you have on your shelves?)
     show frisk normal with Dissolve(.25)
     frisk "Oh, just a couple of things from the Underground."
-    jump frisk_meeting_selection20
-
-label frisk_meeting_selection20:
     menu:
         "Just wondering. I think I’ll be heading off to bed now.":
-            jump frisk_meeting_choice43
-        "But how did you actually get all of this?":  
-            jump frisk_meeting_choice44
-label frisk_meeting_choice43:          
-    show frisk normal with Dissolve(.25)
-    frisk "Oh, okay. It was nice seeing you."
-    frisk "Goodnight!"
-    $ chose_frisk_meeting_option39=True
-    #scene change hallway
-    jump frisk_meeting_after_dinner
-label frisk_meeting_choice44:      
-    #/// If > 44("But how did you actually get all of this?":
-    show frisk blush with Dissolve(.25)
-    frisk "Oh, you know..." 
-    frisk "I just found it laying around..."
-    show frisk normal with Dissolve(.25)
-    frisk "Actually, I’m pretty tired. I think I’m gonna go to bed, sorry."
-    frisk "Goodnight!"
-    #scene change hallway
-    jump frisk_meeting_after_dinner
+            show frisk normal with Dissolve(.25)
+            frisk "Oh, okay. It was nice seeing you."
+            frisk "Goodnight!"
+            $ chose_frisk_meeting_option39=True
+            #scene change hallway
+            jump frisk_meeting_after_dinner
 
-label frisk_meeting_after_dinner:
-    jump frisk_meeting_start
+        "But how did you actually get all of this?":       
+            show frisk blush with Dissolve(.25)
+            frisk "Oh, you know..." 
+            frisk "I just found it laying around..."
+            show frisk normal with Dissolve(.25)
+            frisk "Actually, I’m pretty tired. I think I’m gonna go to bed, sorry."
+            frisk "Goodnight!"
+            #scene change hallway
+            jump frisk_meeting_after_dinner
