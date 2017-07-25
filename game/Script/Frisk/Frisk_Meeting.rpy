@@ -705,7 +705,9 @@ label frisk_meeting_choice37_5:
             #see questions at top of doc
             jump frisk_meeting_choice21  
         "Do not":
-            jump frisk_meeting_choice64_5
+            #+1 Justice
+            "* You are above that."
+            jump frisk_meeting_after_dinner
 
 label frisk_meeting_selection21:
 
@@ -713,112 +715,58 @@ label frisk_meeting_selection21:
         "Look in the diary" if chose_frisk_meeting_option65==False:
             $ chose_frisk_meeting_option65_count+=1
             if chose_frisk_meeting_option65_count ==1:
-                jump frisk_meeting_choice65
+                "* There are several entries about humans, but most of the diary is filled with random, bad puns."
+
             elif chose_frisk_meeting_option65_count ==2:
-                jump frisk_meeting_choice65_2
+                "* The man who invented knock-knock jokes must have won the No-Bell prize."
+
             elif chose_frisk_meeting_option65_count ==3:
-                jump frisk_meeting_choice65_3
+                "* Toucan do jokes as good as mine only if you dove in. No need to swallow your pride to make one."
             else:
                 $chose_frisk_meeting_option65 = True
-                jump frisk_meeting_choice65_4
+                "* In the midst of bad puns, you find a rather serious entry. It seems personal..."
+                menu:
+                    "Read it":
+                        "* Frisk has been acting strange recently."
+                        "* Some days, they seem exhausted despite going to bed at a decent hour."
+                        "* I am uncertain as to why this is, but I have my ideas."
+                        "* I am not sure if I should confront them about it, though."
+                        "* They might not be as energetic as they were when they first came here, but they seem happier now more than ever."
+                        "* I must think on this."
+                    "Do not":
+                        "* You shouldn’t peek..."
+
         "Examine the chair" if chose_frisk_meeting_option66==False:
             $ chose_frisk_meeting_option66 = True
-            jump frisk_meeting_choice66
+            "* The chair seems really cozy. Anyone could spend hours writing while sitting in this beauty."
         "Examine the cactus" if chose_frisk_meeting_option67==False:
             $ chose_frisk_meeting_option67_count+=1
             if chose_frisk_meeting_option67_count ==1:
-                jump frisk_meeting_choice67
+                "* Ah, truly stunning, a plant that can survive in such extreme heat."
+                "* It looks like it’s rooting for you."
             else:
-                
                 $chose_frisk_meeting_option67 = True
-                jump frisk_meeting_choice67_5
+                "* Truly the most tsundere of plants."
         "Examine the shelf" if chose_frisk_meeting_option68==False:
             $chose_frisk_meeting_option68 = True
-            jump frisk_meeting_choice68
+            "* There are several books about cooking, gardening, and bug hunting."
+            "* There is even one called \"101 Snail Facts.\" It looks well-thumbed."
         "Look in the drawer" if chose_frisk_meeting_option69==False:
             $chose_frisk_meeting_option69 = True
-            jump frisk_meeting_choice69
+            "* There are a lot of socks for someone who doesn’t need them... s-scandalous."
         "Examine the bed" if chose_frisk_meeting_option70==False:
             $chose_frisk_meeting_option70 = True
-            jump frisk_meeting_choice70
+            "* It’s way more comfortable than it looks."
         "Examine the bucket" if chose_frisk_meeting_option71==False:
             $chose_frisk_meeting_option71 = True
-            jump frisk_meeting_choice71
+            "* This bucket is filled entirely with a slimy mass of live snails."
+            "* Looks delicious."
         "Leave Toriel’s room" if chose_frisk_meeting_option72==False:
             $ chose_frisk_meeting_option72= True
-            jump frisk_meeting_choice72
-
-label frisk_meeting_choice65:
-    "*There are several entries about humans, but most of the diary is filled with random, bad puns."
+            "* Finally, you’re done snooping."
+            "* Don’t you feel even a little guilty about what you’ve done?"
+            jump frisk_meeting_after_dinner
     jump frisk_meeting_selection21
-
-label frisk_meeting_choice65_2:      
-    "*The man who invented knock-knock jokes must have won the No-Bell prize."
-    jump frisk_meeting_selection21
-label frisk_meeting_choice65_3:      
-    "*Toucan do jokes as good as mine only if you dove in. No need to swallow your pride to make one."
-    jump frisk_meeting_selection21
-label frisk_meeting_choice65_4:      
-    "*In the midst of bad puns, you find a rather serious entry. It seems personal..."
-    jump frisk_meeting_selection22
-     
-label frisk_meeting_selection22:
-    menu:
-        "Read it":
-            jump frisk_meeting_choice73
-        "Do not":
-            jump frisk_meeting_choice74
-label frisk_meeting_choice73:          
-    "*Frisk has been acting strange recently. Some days, they seem exhausted despite going to bed at a decent hour. I am uncertain as to why this is, but I have my ideas. I am not sure if I should confront them about it, though. They might not be as energetic as they were when they first came here, but they seem happier now more than ever. I must think on this."
-    jump frisk_meeting_selection21
-
-
-label frisk_meeting_choice74:      
-    "*You shouldn’t peek..."
-    jump frisk_meeting_selection21
-
-
-label frisk_meeting_choice66:      
-    "*The chair seems really cozy. Anyone could spend hours writing while sitting in this beauty."
-    jump frisk_meeting_selection21
-
-label frisk_meeting_choice67:      
-    "*Ah, truly stunning, a plant that can survive in such extreme heat."
-    "*It looks like it’s rooting for you."
-    jump frisk_meeting_selection21
-
-label frisk_meeting_choice67_5:      
-    "*Truly the most tsundere of plants."
-    jump frisk_meeting_selection21
-
-label frisk_meeting_choice68:      
-    "*There are several books about cooking, gardening, and bug hunting. There is even one called \"101 Snail Facts.\" It looks well-thumbed."
-    jump frisk_meeting_selection21
-
-label frisk_meeting_choice69:      
-    "*There are a lot of socks for someone who doesn’t need them... s-scandalous."
-    jump frisk_meeting_selection21
-
-label frisk_meeting_choice70:      
-    "*It’s way more comfortable than it looks."
-    jump frisk_meeting_selection21
-
-label frisk_meeting_choice71:      
-    "*This bucket is filled entirely with a slimy mass of live snails."
-    "*Looks delicious."
-    jump frisk_meeting_selection21
-
-label frisk_meeting_choice72:      
-    "*Finally, you’re done snooping."
-    "*Don’t you feel even a little guilty about what you’ve done?"
-    jump frisk_meeting_after_dinner
-
-label frisk_meeting_choice64_5:      
-    #+1 Justice
-    "*You are above that."
-    jump frisk_meeting_after_dinner
-     
-
 
 
 label frisk_meeting_choice38:      
