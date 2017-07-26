@@ -84,42 +84,43 @@ label frisk_meeting_start:
 label frisk_meeting_questions:
     menu:
         "You’re actually a human? Not some monster?" if chose_frisk_meeting_option6 == False:
-            show frisk somehappy
-            frisk "Yeah! I live with my mom- I mean, Toriel, the caretaker of the Ruins. She’s really kind. Have you met her?"
+            show frisk somehappy with Dissolve(.25)
+            frisk "Yeah! I live with my mom- I mean, Toriel, the caretaker of the Ruins."
+            frisk "She’s really kind. Have you met her?"
             $ chose_frisk_meeting_option6 = True
             jump frisk_meeting_questions
         
         "I’ve recently met Toriel. She seems nice.":
             $world.get_monster('Frisk').update_FP(3)
-            show frisk bigsmile
+            show frisk bigsmile with Dissolve(.25)
             frisk "Yeah! Out of all the people that could’ve found me, I’m glad it was her."
 
             menu:
                 "Are you saying the other monsters are bad?":
                     $world.get_monster('Frisk').update_HP(1)            
-                    show frisk surprised
+                    show frisk surprised with Dissolve(.25)
                     frisk "What? No!"
-                    show frisk upset
-                    frisk "I mean, other monsters are great, too. I shouldn't have said that... it was mean. But she’s the only one who’s really taken care of me, y’know?"
-                    jump frisk_meeting_snail_catching
+                    show frisk upset with Dissolve(.25)
+                    frisk "I mean, other monsters are great, too."
+                    frisk "I shouldn't have said that... it was mean."
+                    frisk "But she’s the only one who’s really taken care of me, y’know?"
 
                 "I can relate. She helped me, too.":
                     $world.get_monster('Frisk').update_FP(2)
-                    show frisk smallsmile
+                    show frisk smallsmile with Dissolve(.25)
                     frisk "That’s great! She can handle anything!"
-                    show frisk upset
+                    show frisk upset with Dissolve(.25)
                     frisk "..."
-                    show frisk somehappy
+                    show frisk somehappy with Dissolve(.25)
                     frisk "Well, most things."
-                    jump frisk_meeting_snail_catching
 
         "How’s life here in the Ruins?":
             $world.get_monster('Frisk').update_FP(3)  
-            show frisk somehappy
+            show frisk somehappy with Dissolve(.25)
             frisk "Well, we don’t have much, but it’s nice. It’s just that sometimes Mom makes food with snails in it, and it’s..."
-            show frisk upset
+            show frisk upset with Dissolve(.25)
             frisk "...not amazing... but don’t worry about it."
-            show frisk somehappy
+            show frisk somehappy with Dissolve(.25)
             frisk "Other than that, things are pretty great."
             menu:
                 "Are you feeling okay? You look a little under the weather.":
@@ -134,36 +135,35 @@ label frisk_meeting_questions:
                             menu:
                                 "Oh, come on, tell me!":
                                     $world.get_monster('Frisk').update_HP(2)
-                                    show frisk annoyed
+                                    show frisk annoyed with Dissolve(.25)
                                     frisk "Please, you're making this more than what it is."
                                     menu:
                                         "You have to tell me!":
                                             $world.get_monster('Frisk').update_FP(-3)
                                             #+1 Determination
-                                            show frisk angry
+                                            show frisk angry with Dissolve(.25)
                                             frisk "No, I don’t have to tell you anything! I’m not talking about this anymore!"
-                                            show frisk neutral
+                                            show frisk neutral with Dissolve(.25)
                                             frisk "Sorry, I don’t like people getting on my back about things."
-                                            jump frisk_meeting_snail_catching
+
 
                                         "Alright, I’m sorry.":
-                                            show frisk annoyed
+                                            show frisk annoyed with Dissolve(.25)
                                             frisk "..."
                                             frisk "...Thank you."
-                                            jump frisk_meeting_snail_catching
+
 
                                 "Just making sure.":
                                     $world.get_monster('Frisk').update_FP(2)
                                     frisk "Thanks. You remind me a lot of Mom, actually." 
-                                    show frisk bigsmile
+                                    show frisk bigsmile with Dissolve(.25)
                                     frisk "But... don’t go thinking you can outdo her in the mothering department! She’s the master!"
-                                    jump frisk_meeting_snail_catching
+
                         "...":
-                            jump frisk_meeting_snail_catching 
+                            pass
 
                 "I’m sure everything must be great for you then!":
                     frisk "Yup... pretty much."
-                    jump frisk_meeting_snail_catching
 
 ##################################
 #  FRISK MEETING SNAIL CATCHING  #
@@ -171,9 +171,9 @@ label frisk_meeting_questions:
 
 label frisk_meeting_snail_catching:
 
-    show frisk normal
+    show frisk normal with Dissolve(.25)
     frisk "Oh, hey... is that a crack on your phone? It looks pretty banged up."
-    show frisk smallsmile
+    show frisk smallsmile with Dissolve(.25)
     frisk "Here, you can take my old phone! My friend made me a new one, so I don’t mind."
     frisk "And I’ve already transferred all of my old junk off of it, so it’s just like new."
     frisk "Oh, and I’ll add my number into it! That way, if you ever need to get in touch with me, I’ll just be a phone call away!"
@@ -184,17 +184,18 @@ label frisk_meeting_snail_catching:
     ###############################
 
     frisk "So..."
-    show frisk surprised
+    show frisk surprised with Dissolve(.25)
     frisk "Oh wait, I almost forgot!"
-    show frisk somehappy
+    show frisk somehappy with Dissolve(.25)
     frisk "I’m actually supposed to be doing something important..."
     frisk "I need your help. It won’t take long, I promise."
     frisk "Just follow me!"
      
     #-Transition to Snail Catching Room-
     #-Transition: Snail Catching Mini-game-
+    $ renpy.show(world.get_room("Snail Hunting Room").bg)
      
-    show frisk normal
+    show frisk normal with Dissolve(.25)
     frisk "Okay, here we are."
     frisk "I know this is going to sound a bit weird, but I need to catch snails."
     frisk "Mom makes food with them, and she needs a lot!"
@@ -210,73 +211,68 @@ label frisk_meeting_snail_catching:
         "That sounds completely reasonable.":
             $world.get_monster('Frisk').update_FP(3)
             frisk "Really, you think so?"
+            menu:
+                "Yeah, I do it all the time!":  
+                    $world.get_monster('Frisk').update_FP(3)
+                    show frisk bigsmile with Dissolve(.25)
+                    frisk "That’s great! This’ll be easy!"
+
+                "I lied. That makes no sense whatsoever.":
+                    $world.get_monster('Frisk').update_FP(-5)
+                    #-1 Integrity
+                    show frisk upset with Dissolve(.25)
+                    frisk "Oh... okay."
+                    frisk "Well- please, I really do need your help. Even if it doesn’t make sense to you."
 
         "Oh yeah, Toriel already told me." if player.variables['accepted_toriel']:
             $world.get_monster('Frisk').update_FP(4)
-            show frisk bigsmile
+            show frisk bigsmile with Dissolve(.25)
             frisk "Nice!"
             frisk "Mom has a lot of different snail dishes. You wouldn’t believe what she can do with them!"
             frisk "Anyway..."
-            jump frisk_snail_minigame
-        #option 61 only available if the player went to Toriel’s house before meeting frisk AND at some point accepted her invitation to stay at her house
 
-    menu:
-        "Yeah, I do it all the time!":  
-            $world.get_monster('Frisk').update_FP(3)
-            show frisk bigsmile
-            frisk "That’s great! This’ll be easy!"
-            jump frisk_snail_minigame
-
-        "I lied. That makes no sense whatsoever.":
-            $world.get_monster('Frisk').update_FP(-5)
-            #-1 Integrity
-            show frisk upset
-            frisk "Oh... okay."
-            frisk "Well- please, I really do need your help. Even if it doesn’t make sense to you."
-            jump frisk_snail_minigame
-
-label frisk_snail_minigame:
-    show frisk normal
+    show frisk normal with Dissolve(.25)
     frisk "Here’s what I need you to do..."
     frisk "First, here, take this net."
-    #player acquires net, which cannot be removed or dropped yet
-     
-    #/// if Check Butterfly Net
-    #"*It’s a big butterfly net, good for catching snails. << if Check Butterfly Net"
+    
+    "* You get the Butterfly Net!"
+    "* It’s a big butterfly net, good for catching snails."
      
     frisk "Basically, just try to catch as many snails as you can!"
     frisk "It’s tricky, though, because you can only try to catch them for a certain amount of time per day. After that, they’ll start to get suspicious and won’t come out of their hiding places."
     frisk "Ready? Here we go!"
      
     #Snail Minigame happens
+    "NEED TO REMEMBER TO PUT THE MINIGAME HERE"
      
-    show frisk smallsmile
+    show frisk smallsmile with Dissolve(.25)
     frisk "Ya know, I’m actually feeling a bit better right now."
     frisk "Mom will be happy, too... She really likes snails!"
     frisk "If you give her some, she’ll appreciate it. Maybe even pay you back somehow."
     frisk "She might want different kinds of snails on different days, so you might want to check with her to find out."
     
-    show frisk surprised
+    show frisk surprised with Dissolve(.25)
     frisk "Oh!"
     
-    show frisk bigsmile
+    show frisk bigsmile with Dissolve(.25)
     frisk "And if you want to do this again sometime, just tell me. This was fun!"
     frisk "...Or you could do it on your own, whatever works! Help in any form is appreciated!"
     
-    show frisk normal
+    show frisk normal with Dissolve(.25)
     frisk "I, uh, I should get going now. Mom is probably wondering why I’m out so late..."
     frisk "Our house isn’t too far from here. Do you want to come with me?"
     frisk "Mom and I would love it if you stayed for awhile..."
     
     menu:
         "Yeah, I’m in!":
+            $player.variables['accepted_frisk'] = True
             $world.get_monster('Frisk').update_FP(3)
-            show frisk bigsmile
+            show frisk bigsmile with Dissolve(.25)
             frisk "Alright, let’s go!"
-            #scene change to frisk and Toriel’s house
-            show frisk smallsmile
+            $ renpy.show(world.get_room("Living Room").bg)
+            show frisk smallsmile with Dissolve(.25)
             frisk "Here we are!"
-            show frisk normal
+            show frisk normal with Dissolve(.25)
             frisk "Hold on... let me tell Mom we’re back."
             hide frisk
             jump frisk_meeting_home
@@ -285,23 +281,21 @@ label frisk_snail_minigame:
             $world.get_monster('Frisk').update_FP(3)
             frisk "Alright, that’s fine. I’ll see ya there!"
             frisk "Just be sure not to stay out too late. If you don’t get enough sleep, you could get sick."
-            show frisk bigsmile
+            show frisk bigsmile with Dissolve(.25)
             frisk "I’m starting to sound like Mom now. Oh well... see ya!"
-            #frisk leaves. Player is free to roam. 
-            #If the player returns to Toriel’s house before running out of stamina, jump frisk_meeting_late
-            #If the player does not return to Toriel’s house before running out of stamina, jump ruins_intro_pass_out
+            hide frisk with Dissolve(.25)
+            $ move_to_room('Snail Hunting Room')
+            $ get_room("Staircase").set_event("frisk_meeting_late",False)
 
         "I don’t want to stay with you guys." if 'accepted_toriel' in player.variables and player.variables['accepted_toriel']==False:
             $world.get_monster('Frisk').update_FP(-4)
-            show frisk disappointed
+            show frisk disappointed with Dissolve(.25)
             frisk "Oh... okay. I just thought..."
-            show frisk somehappy
+            show frisk somehappy with Dissolve(.25)
             frisk "Well, if you ever change your mind, just stop on by our house! Mom and I love having guests."
             frisk "See ya later!"
+            $ move_to_room('Snail Hunting Room')
             hide frisk with moveoutright
-            #frisk leaves. Player is free to roam.
-            #If the player returns to Toriel’s house before running out of stamina, jump ruins_intro_toriel_house (located in the ruins outline)
-            #If the player does not return to Toriel’s house and accept her offer before running out of stamina, jump ruins_intro_pass_out (located in the ruins outline)
     return
 
 
@@ -309,7 +303,7 @@ label frisk_meeting_late:
     #frisk off-screen
     hide frisk
     frisk "Oh, I think they’re here. I’ll be right back!"
-    show frisk normal
+    show frisk normal with Dissolve(.25)
     frisk "Hi! You’re a bit late... the food is a little cold. But I’m sure it’s fine. Hold on, let me tell Mom you’re here."
     #frisk off-screen again
     hide frisk
@@ -320,20 +314,20 @@ label frisk_meeting_late:
 ########################
 
 label frisk_meeting_home:
-    show frisk normal at left
-    show toriel normal at right
+    show frisk normal at left with Dissolve(.25)
+    show toriel normal at right with Dissolve(.25)
     frisk "This is the person I told you about."
     if 'met_toriel' in player.variables == True:
         toriel "Ah, hello! It is very nice to have you over for dinner." 
         toriel "I do apologize for having to rush off so quickly before."
         toriel "Truthfully, I was a little worried about having to leave you on your own in the Ruins, but it is good to see that you are well."
-        show frisk bigsmile
+        show frisk bigsmile with Dissolve(.25)
         frisk "Anyway, let’s eat!"
         toriel "Yes, please join us."
         jump frisk_meeting_eat
     else:
         toriel "Welcome back! I am glad you and Frisk managed to find each other."
-        show frisk bigsmile
+        show frisk bigsmile with Dissolve(.25)
         frisk "Anyway, let’s eat!"
         toriel "Yes, please join us."
         jump frisk_meeting_eat
@@ -342,19 +336,19 @@ label looked_around_before_toriel:
         #If the player chose option 25 of selection 11 (look around the Ruins for a little while longer) (if not, just skip this part)
         toriel "Frisk has told me a lot about you while you were gone." 
 
-        show toriel normal
+        show toriel normal with Dissolve(.25)
         if world.get_monster('Toriel').FP < 20:
             toriel "There is not much to do here, but we are always looking for a helping hand--especially if you do not mind getting your hands dirty."
-            show frisk bigsmile
+            show frisk bigsmile with Dissolve(.25)
             frisk "Anyway, let’s eat!"
             toriel "Yes, please join us."
             jump frisk_meeting_eat
         else:
             $world.get_monster('Toriel').update_FP(3)
-            show toriel smile
+            show toriel smile with Dissolve(.25)
             toriel "It makes me happy to see you and frisk have become such fast friends. It gets a little lonely here in the Ruins sometimes, and we do appreciate any well-meaning company." 
             toriel "I am sure you know this by now, but I would like you to know that any friend of frisk is welcome here."
-            show frisk bigsmile
+            show frisk bigsmile with Dissolve(.25)
             frisk "Anyway, let’s eat!"
             toriel "Yes, please join us."
             jump frisk_meeting_eat
@@ -370,7 +364,7 @@ label frisk_meeting_eat:
     frisk "I’m sure you’ll love it. We’re eating..."
     frisk "Mom, what’re we having again?"
     toriel "We are having snail casserole."
-    show frisk somehappy
+    show frisk somehappy with Dissolve(.25)
     frisk "Oh, good..."
     toriel "Is there something wrong?"
     frisk "Of course not. Hey, snail-catching friend, why don’t you try some?"
@@ -387,16 +381,16 @@ label frisk_meeting_eat:
             $world.get_monster('Toriel').update_FP(2)
             $world.get_monster('Frisk').update_FP(2)
             #+1 Kindness
-            show frisk surprised
+            show frisk surprised with Dissolve(.25)
             frisk "Really?"
-            show frisk somehappy
+            show frisk somehappy with Dissolve(.25)
             frisk "I mean, of course! I knew you would."
             toriel "Frisk, is there a problem with my cooking?"
             frisk "Never. Snails are great!"
             toriel "Oh, naturally. Either way, I am glad our guest seems to be enjoying them."
 
         "It’s not bad.":                       #//(+0)
-            show frisk normal
+            show frisk normal with Dissolve(.25)
             frisk "See, I knew you would like it."
             toriel "Well, I try."
 
@@ -406,17 +400,17 @@ label frisk_meeting_eat:
             $world.get_monster('Toriel').update_FP(-2)
             $world.get_monster('Frisk').update_FP(-2)
             #-1 Kindness
-            show frisk disappointed
+            show frisk disappointed with Dissolve(.25)
             frisk "Shhh, don’t say that."
-            show toriel annoyed
+            show toriel annoyed with Dissolve(.25)
             toriel "Ah, well I suppose snails are not everyone's cup of tea. Still, they are the only thing around here that will fill you up. So, if you decide to stay, you will just have to get used to them."     
-            show frisk somehappy
+            show frisk somehappy with Dissolve(.25)
             frisk "...So, um... how have you been liking the Ruins so far?"
 
     menu:
         "I think I like it better here than the surface!":
-            show frisk surprised
-            show toriel surprised
+            show frisk surprised with Dissolve(.25)
+            show toriel surprised with Dissolve(.25)
             frisk "D-do you really mean that?"
             if chose_frisk_meeting_option27==True:
                 toriel "Even though you did not like the cooking?"
@@ -425,8 +419,8 @@ label frisk_meeting_eat:
                     $world.get_monster('Toriel').update_FP(4)
                     $world.get_monster('Frisk').update_FP(4)
                     #+1 Integrity
-                    show frisk bigsmile
-                    show toriel smile
+                    show frisk bigsmile with Dissolve(.25)
+                    show toriel smile with Dissolve(.25)
                     frisk "That’s great!"
                     toriel "Oh, well I’m glad you are enjoying your stay!"
 
@@ -434,62 +428,62 @@ label frisk_meeting_eat:
                     $world.get_monster('Toriel').update_FP(-2)
                     $world.get_monster('Frisk').update_FP(-3)
                     #-1 Integrity   
-                    show toriel sad
-                    show frisk sad
+                    show toriel sad with Dissolve(.25)
+                    show frisk sad with Dissolve(.25)
                     frisk "Oh... what?"
                     toriel "I guess I should not be too surprised."
-                    show Toriel smallsmile
+                    show Toriel smallsmile with Dissolve(.25)
                     toriel "Well... erm... thank you for your consideration."
-                    show frisk somehappy
+                    show frisk somehappy with Dissolve(.25)
                     frisk "Oh come on. It isn’t that bad, right?"      
 
 
         "I don’t think I like this place.":           #//(+0)
-            show toriel normal
+            show toriel normal with Dissolve(.25)
             toriel "Oh, I know things may be difficult for you at first. This must be very different from what you were used to on the surface, after all. Still, I do encourage you to give it a chance."
-            show frisk bigsmile
+            show frisk bigsmile with Dissolve(.25)
             frisk "Yeah! It’s actually pretty great once you get used to everything!"
         "I hate this place.":           
             $ chose_frisk_meeting_option30=True
             $world.get_monster('Toriel').update_FP(-2)
             $world.get_monster('Frisk').update_FP(-4)
-            show frisk sad
+            show frisk sad with Dissolve(.25)
             frisk "Aw, but... it’s not that bad, really."
-            show toriel awkward
+            show toriel awkward with Dissolve(.25)
             toriel "I understand that this place may not be to your liking." 
-            show toriel smallsmile
+            show toriel smallsmile with Dissolve(.25)
             toriel "But I think that, with a bit of time, you will learn to tolerate it."
-            show frisk smallsmile
+            show frisk smallsmile with Dissolve(.25)
             frisk "R-right! It’s not so bad!"
         "It scares me...":                   #Toriel#//(+2)
                                         #frisk#//(+2)
             $world.get_monster('Toriel').update_FP(2)
             $world.get_monster('Frisk').update_FP(2)                                        
-            show toriel smallsmile
+            show toriel smallsmile with Dissolve(.25)
             toriel "Aww, poor thing. I had not realized until now that this must all seem very jarring."
-            show frisk sad
+            show frisk sad with Dissolve(.25)
             frisk "Oh, yeah."
             frisk "To be honest, when I first fell down here, I didn’t take it very well."
-            show frisk sad
+            show frisk sad with Dissolve(.25)
             frisk "When people tried to help, I shoved them away and ran..."
-            show frisk tearyeyes
+            show frisk tearyeyes with Dissolve(.25)
             frisk "I even tried to run away from Mom. I thought she wanted to hurt me..."
-            show toriel normal
+            show toriel normal with Dissolve(.25)
             toriel "frisk, please. Remember, I do not blame you for any of that. You were afraid, and I understand maybe I was being a bit... erm..."
-            show toriel awkward
+            show toriel awkward with Dissolve(.25)
             toriel "...clingy, which you could have easily found threatening."
-            show toriel smallsmile
+            show toriel smallsmile with Dissolve(.25)
             toriel "Besides, you are here now, and everything turned out alright."
-            show frisk somehappy
+            show frisk somehappy with Dissolve(.25)
             frisk "Yeah..."
-            show frisk friendly smile
+            show frisk friendly smile with Dissolve(.25)
             frisk "So, the point is... I know this might be scary for now. But, if you give it a chance, I think you’ll find this place is actually pretty great."
             frisk "I mean it!"
             toriel "And we will be here to help you if you need anything."
 
-    show frisk normal
+    show frisk normal with Dissolve(.25)
     frisk "Well, whatever you think, you're always welcome here."
-    show toriel smallsmile
+    show toriel smallsmile with Dissolve(.25)
     toriel "Of course. It would be impolite to kick a guest out, especially if they have nowhere else to go. However, I must ask that you contribute to gathering food--specifically, snails--everyday."
     if chose_frisk_meeting_option27==True or chose_frisk_meeting_option30==True:
         toriel "And as long as you work on your manners..."
