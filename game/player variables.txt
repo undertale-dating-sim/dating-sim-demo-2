@@ -27,6 +27,7 @@ Tutorial
 	accepted_frisk
 	clicked_toriel
 	tutorial_over
+	met_toriel
 
 
 Cell Phone Calls
