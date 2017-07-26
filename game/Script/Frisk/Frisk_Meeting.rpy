@@ -2,10 +2,8 @@ label frisk_meeting_start:
     python:
         chose_frisk_meeting_option40_5 = False
         chose_frisk_meeting_option39=False
-
         chose_frisk_meeting_option27=False
         chose_frisk_meeting_option30=False
-
         chose_frisk_meeting_option65_count = 0
         chose_frisk_meeting_option66_count = 0
         chose_frisk_meeting_option67_count = 0
@@ -13,7 +11,6 @@ label frisk_meeting_start:
         chose_frisk_meeting_option69_count = 0
         chose_frisk_meeting_option70_count = 0
         chose_frisk_meeting_option71_count = 0
-
         chose_frisk_meeting_option65 = False
         chose_frisk_meeting_option66 = False
         chose_frisk_meeting_option67 = False
@@ -22,11 +19,9 @@ label frisk_meeting_start:
         chose_frisk_meeting_option70 = False
         chose_frisk_meeting_option71 = False
         chose_frisk_meeting_option72 = False
-    python:
         chose_frisk_meeting_option6 = False
+
         accepted_toriel_invitation = True
-        met_frisk_before_toriel = True
-        toriel_fp = 0 #temp var
 
     show frisk surprised with Dissolve(.25)
     
@@ -67,7 +62,7 @@ label frisk_meeting_start:
             show frisk somehappy with Dissolve(.25)
             unknown "Oh, where are my manners... my name is Frisk!"
 
-        "You’re not Toriel’s kid, are you?" if met_frisk_before_toriel==False:
+        "You’re not Toriel’s kid, are you?":
             $world.get_monster('Frisk').update_HP(2)
             show frisk annoyed with Dissolve(.25)
             unknown "Yes I am!"
@@ -94,7 +89,7 @@ label frisk_meeting_questions:
             $ chose_frisk_meeting_option6 = True
             jump frisk_meeting_questions
         
-        "I’ve recently met Toriel. She seems nice." if met_frisk_before_toriel==False:
+        "I’ve recently met Toriel. She seems nice.":
             $world.get_monster('Frisk').update_FP(3)
             show frisk bigsmile
             frisk "Yeah! Out of all the people that could’ve found me, I’m glad it was her."
@@ -108,7 +103,7 @@ label frisk_meeting_questions:
                     frisk "I mean, other monsters are great, too. I shouldn't have said that... it was mean. But she’s the only one who’s really taken care of me, y’know?"
                     jump frisk_meeting_snail_catching
 
-                "I can relate. She helped me, too." if met_frisk_before_toriel==False:
+                "I can relate. She helped me, too.":
                     $world.get_monster('Frisk').update_FP(2)
                     show frisk smallsmile
                     frisk "That’s great! She can handle anything!"
@@ -216,7 +211,7 @@ label frisk_meeting_snail_catching:
             $world.get_monster('Frisk').update_FP(3)
             frisk "Really, you think so?"
 
-        "Oh yeah, Toriel already told me." if accepted_toriel_invitation == True:
+        "Oh yeah, Toriel already told me." if player.variables['accepted_toriel']:
             $world.get_monster('Frisk').update_FP(4)
             show frisk bigsmile
             frisk "Nice!"
@@ -296,7 +291,7 @@ label frisk_snail_minigame:
             #If the player returns to Toriel’s house before running out of stamina, jump frisk_meeting_late
             #If the player does not return to Toriel’s house before running out of stamina, jump ruins_intro_pass_out
 
-        "I don’t want to stay with you guys." if accepted_toriel_invitation==False:
+        "I don’t want to stay with you guys." if 'accepted_toriel' in player.variables and player.variables['accepted_toriel']==False:
             $world.get_monster('Frisk').update_FP(-4)
             show frisk disappointed
             frisk "Oh... okay. I just thought..."
@@ -328,16 +323,15 @@ label frisk_meeting_home:
     show frisk normal at left
     show toriel normal at right
     frisk "This is the person I told you about."
-    if met_frisk_before_toriel == True:
-        #If the player found frisk BEFORE going to Toriel’s house:
+    if 'met_toriel' in player.variables == True:
         toriel "Ah, hello! It is very nice to have you over for dinner." 
-        toriel "I do apologize for having to rush off so quickly before. Truthfully, I was a little worried about having to leave you on your own in the Ruins, but it is good to see that you are well."
+        toriel "I do apologize for having to rush off so quickly before."
+        toriel "Truthfully, I was a little worried about having to leave you on your own in the Ruins, but it is good to see that you are well."
         show frisk bigsmile
         frisk "Anyway, let’s eat!"
         toriel "Yes, please join us."
         jump frisk_meeting_eat
-    elif met_frisk_before_toriel == False:
-        #If the player went to Toriel’s house BEFORE finding frisk:
+    else:
         toriel "Welcome back! I am glad you and Frisk managed to find each other."
         show frisk bigsmile
         frisk "Anyway, let’s eat!"
@@ -356,7 +350,6 @@ label looked_around_before_toriel:
             toriel "Yes, please join us."
             jump frisk_meeting_eat
         else:
-            #/// If >(FP >20) - good rating            Toriel#//(+3)
             $world.get_monster('Toriel').update_FP(3)
             show toriel smile
             toriel "It makes me happy to see you and frisk have become such fast friends. It gets a little lonely here in the Ruins sometimes, and we do appreciate any well-meaning company." 
