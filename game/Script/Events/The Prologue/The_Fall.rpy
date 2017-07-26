@@ -344,6 +344,7 @@ label ruins_intro_flowey:
     $ get_room("Froggit Room").set_event("ruins_intro_leaves",False)
     $ get_room("Blooky Room").set_event("ruins_intro_blooky",False)
     $ get_room("Staircase").set_event("ruins_intro_toriel_house",False)
+    $ get_room("Overlook").set_event("frisk_meeting_start",False)
 
     call show_buttons
     while True:
@@ -780,6 +781,7 @@ label ruins_intro_toriel_house:
         $ player.variables['met_frisk'] = False
     if 'accepted_frisk' not in player.variables:
         $ player.variables['accepted_frisk'] = True
+    $ player.variables['met_toriel'] = True
     if player.variables['accepted_toriel'] == True and player.variables['met_frisk'] == False:
         show toriel smallsmile with Dissolve(.25)
         toriel "Oh, hello, dear! I am glad to see you made it. You did not have any trouble finding the house, did you?"
