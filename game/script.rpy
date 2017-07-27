@@ -34,6 +34,7 @@ define test = Character("Sans", callback=beepy_voice)
 ###################
 
 label demo_values:
+    $player.variables['has_cellphone'] = True
     $player.variables['has_toriel_cell'] = True
     $player.variables['has_frisk_cell'] = True
     $player.variables['has_napstablook_cell'] = True
