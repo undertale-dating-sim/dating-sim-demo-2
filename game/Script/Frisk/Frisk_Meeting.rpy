@@ -20,9 +20,11 @@ label frisk_meeting_start:
         chose_frisk_meeting_option71 = False
         chose_frisk_meeting_option72 = False
         chose_frisk_meeting_option6 = False
+        chose_frisk_meeting_option37 = False
 
-        accepted_toriel_invitation = True
-
+    $ Show(world.get_room("Overlook").bg,transition=Fade(.5,0,.5))
+    show frisk normal
+    $renpy.pause()
     show frisk surprised with Dissolve(.25)
     
     unknown "Oh! Um, hi. I wasn’t expecting to see another human. How... how did you get here?" 
@@ -183,7 +185,7 @@ label frisk_meeting_snail_catching:
     ################################
     "* Frisk’s number obtained."
     $player.variables['has_frisk_cell'] = True
-    $player.variables['has_cellphone']
+    $player.variables['has_cellphone'] = True
     ###############################
 
     frisk "So..."
@@ -227,7 +229,7 @@ label frisk_meeting_snail_catching:
                     frisk "Oh... okay."
                     frisk "Well- please, I really do need your help. Even if it doesn’t make sense to you."
 
-        "Oh yeah, Toriel already told me." if player.variables['accepted_toriel']:
+        "Oh yeah, Toriel already told me." if 'accepted_toriel' in player.variables and player.variables['accepted_toriel']:
             $world.get_monster('Frisk').update_FP(4)
             show frisk bigsmile with Dissolve(.25)
             frisk "Nice!"
@@ -564,6 +566,7 @@ label frisk_meeting_after_dinner:
 
     menu:
         "Go back and talk to Toriel a bit longer" if chose_frisk_meeting_option37==False:
+            $ chose_frisk_meeting_option37 = True
             jump frisk_meeting_choice37 
         "Check Toriel’s room" if chose_frisk_meeting_option72==True:
             "* Toriel’s room strikes you as the type to be clean, orderly, and cozy."
@@ -585,7 +588,7 @@ label frisk_meeting_after_dinner:
             $ renpy.show(world.get_room("Your Room").bg)
             "*You enter the room, plop down on the bed, and fall asleep..."
             "*..."
-            #END DAY 1
+            call day_transition
 
         "Go talk to Frisk" if chose_frisk_meeting_option39 == False:
             jump frisk_meeting_choice39 
