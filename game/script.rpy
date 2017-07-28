@@ -39,20 +39,22 @@ label demo_values:
     $player.variables['has_frisk_cell'] = True
     $player.variables['has_napstablook_cell'] = True
     $player.variables['has_flowey_cell'] = True
-    $player.variables['toriel_accepted'] = True
+    $player.variables['accepted_toriel'] = True
     
     return
 
 label start:
     
     # call demo_values
+    #jump frisk_meeting_start
+
     # $ world.update_world(True)
     # $ get_monster("Flowey").move_to_room("Cave Room")
     # $ get_monster("Toriel").move_to_room("Grass Room")
     # $ get_monster("Napstablook").move_to_room("Tunnels")
     # $ get_monster("Napstablook").move_to_room("Tunnels")
     # # get_monster("Frisk").move_to_room("Ruins Entrance")
-    #$ move_to_room("Cave Room")
+    $ move_to_room("Cave Room")
     jump the_beginning
     return
 
@@ -94,6 +96,15 @@ label Snail_Hunter_Random_Event:
         "* A very quiet, peaceful room.  It looks new.  The flowers are still."
         $ world.update_world(True)
     return
+
+label day_transition:
+    scene black
+    play sound "audio/new_day.wav"
+    show image Text("{size=80}Day %s" % world.day, text_align = 0.5) at center with Fade(0.5, 0, 0.5)
+    $ renpy.pause()
+    $world.day += 1
+    jump day_transition
+
 
 ###################
 
