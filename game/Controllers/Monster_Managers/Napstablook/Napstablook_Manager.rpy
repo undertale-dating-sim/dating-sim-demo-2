@@ -66,7 +66,7 @@ init -9 python:
             #HB Date 1
             #elif player in waterfall???
             if 'Napstablook_HB_Date_1_Complete' not in player.variables:
-                if (player.current_room is ruins_blooky_room) and (owner.HB >= 12):
+                if (player.current_room is 'Blooky Room') and (owner.HB >= 12):
                     self.special_event = Event('napstablook_hb_date',False,self)
                     world.update_world(True)
             return
