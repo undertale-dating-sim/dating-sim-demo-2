@@ -28,6 +28,8 @@ Tutorial
 	clicked_toriel
 	tutorial_over
 	met_toriel
+	ruins_want_to_leave
+
 
 
 Cell Phone Calls
