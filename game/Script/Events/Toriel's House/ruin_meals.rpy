@@ -5,19 +5,20 @@
 image background black_room = ("backgrounds/UI/blackScreen.png")
 
 label ruins_first_breakfast:
+
+    $ get_room("Basement Door").add_event('ruins_basement_door_first_visit',False)
+    $ get_room("Your Room").set_event('th_your_room',True)
     $frisk_first_breakfast_conv_count = 0
     $frisk_first_breakfast_conv_future = False  
     $frisk_first_breakfast_conv_fun = False  
     $frisk_first_breakfast_conv_surface = False  
     
-    $ruins_want_to_leave = False
-    
     #black screen, then knocking noise
-    show bg black_room with dissolve
+    scene black with dissolve
     frisk "Hey, wake up! Breakfast should be ready soon."
     #black screen fades out to reveal MC room-
-    show bg toriel_house_your_room with dissolve
-    #$world.move_to_room("Your Room")
+    $ renpy.transition(fade)
+    $ renpy.show(world.get_room("Your Room").bg)
     frisk "Hurry up! We don’t want the food to get cold!"
     #the player can check the room, but the normal room description just plays. The only thing they can do is exit to the hallway
     label examineYourRoomUponWakeup:
@@ -98,7 +99,7 @@ label ruins_first_breakfast:
         "I want to leave the Ruins as soon as possible":
             $world.get_monster('Frisk').update_FP(-3)
             $world.get_monster('Toriel').update_FP(-4)
-            $ruins_want_to_leave = True
+            $player.variables['ruins_want_to_leave'] = True
             show frisk sad at left with Dissolve(.25)
             show toriel normal at right with Dissolve(.25)
             frisk "Oh..."
@@ -213,7 +214,7 @@ label ruins_first_breakfast:
     frisk "Have fun!"
     $world.move_to_room("Corridor")
     #"Breakfast is over, you're free to explore the Ruins or leave through the basement"
-return
+    return
 
 
 
@@ -509,10 +510,10 @@ label ruins_breakfast:
     #Waking up scene???
     
     #black screen, knocking sound
-    show bg black_room with dissolve
+    scene black with dissolve
     frisk "Come on, sleepy head! Breakfast is almost ready!"
     #scene change MC room
-    show bg toriel_house_your_room with dissolve
+    $ renpy.show(world.get_room("Your Room").bg)
     #if they go to the living room, continue to breakfast
     #else, if they try to leave the house...
     call examineYourRoomUponWakeup
@@ -559,7 +560,7 @@ label ruins_breakfast:
             toriel "That sounds exciting... Have a good time, and stay safe."
             frisk "I’d go with you, but I think I’ve seen everything there is to see in the Ruins. You have fun, though!"
         "I’m leaving the Ruins today.":
-            $ruins_want_to_leave = True
+            $player.variables['ruins_want_to_leave'] = True
             #if the player has never left the Ruins before:
             if True:
                 show toriel awkward with Dissolve(.25)
@@ -624,7 +625,7 @@ label breakfast_time_flowey:
 label ruins_basement_door_first_visit:
     frisk "Hey."
     show frisk distant with Dissolve(.25)
-    if ruins_want_to_leave == True:
+    if 'ruins_want_to_leave' in player.variables and player.variables['ruins_want_to_leave'] == True:
         frisk "So, you’re really leaving, huh?"
     else:
         frisk "Behind that door lies the end of the Ruins..."
@@ -651,14 +652,14 @@ label ruins_basement_door_first_visit:
     
     menu:
         "I will.":
-            $world.get_monster ('Frisk').update_FP(4)
+            $world.get_monster('Frisk').update_FP(4)
             show frisk smallsmile with Dissolve(.25)
             frisk "Thanks."
             frisk "Have fun out there, and tell Sans and Papyrus I said ‘hi’." 
             frisk "See you later."
             hide frisk
         "Not likely.":
-            $world.get_monster ('Frisk').update_FP(-5)
+            $world.get_monster('Frisk').update_FP(-5)
             frisk "...I guess I get it. This place can be a little..."
             frisk "...Stifling."
             frisk "Maybe I’ll see you on the other side sometime."
@@ -676,4 +677,4 @@ label end_of_demo:
 
     "Will try to remember to put something here."
 
-    jump main_menu
+    retur
