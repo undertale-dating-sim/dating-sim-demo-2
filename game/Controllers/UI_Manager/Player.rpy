@@ -88,16 +88,10 @@ init -1 python:
 
     # Currently sets the time to 480, which is the first minute of Morning.
 #############
-label player_waking_up(day_change = 1, health_refill = player.total_health):
+label player_waking_up:
+    scene black
     $ world.set_current_time(480,True)
-    $ player.current_health += 10
-    
-    if player.current_health > player.total_health:
-        $ player.current_health = player.total_health
-        
-    "You feel refreshed!"
-    "Now that you've slept, you feel a little bit better."
-    "(+10 Health)"
+    "* You feel refreshed!"
     return
 
 ######################
