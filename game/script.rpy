@@ -46,16 +46,16 @@ label demo_values:
 label start:
     
     # call demo_values
-    #jump frisk_meeting_start
-
+    jump frisk_meeting_start
+    
     # $ world.update_world(True)
     # $ get_monster("Flowey").move_to_room("Cave Room")
     # $ get_monster("Toriel").move_to_room("Grass Room")
     # $ get_monster("Napstablook").move_to_room("Tunnels")
     # $ get_monster("Napstablook").move_to_room("Tunnels")
     # # get_monster("Frisk").move_to_room("Ruins Entrance")
-    $ move_to_room("Cave Room")
-    jump the_beginning
+    #$ move_to_room("Cave Room")
+    #jump the_beginning
     return
 
 
@@ -99,11 +99,14 @@ label Snail_Hunter_Random_Event:
 
 label day_transition:
     scene black
+    $ renpy.pause(2)
+    
+    show image Text("{size=80}Day %s" % world.day, text_align = 0.5) at center with Fade(1, 0, 1)
     play sound "audio/new_day.wav"
-    show image Text("{size=80}Day %s" % world.day, text_align = 0.5) at center with Fade(0.5, 0, 0.5)
-    $ renpy.pause()
+    $ renpy.pause(2)
     $world.day += 1
-    jump day_transition
+    call player_waking_up
+    return
 
 
 ###################
