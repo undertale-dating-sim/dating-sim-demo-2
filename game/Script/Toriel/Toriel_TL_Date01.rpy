@@ -37,7 +37,7 @@ label toriel_tl_date_1_opening_menu:
                     jump toriel_tl_date_1_opening_menu
                 "YOU'RE MY ONE AND ONLY GODDESS":
                     $ world.get_monster('Toriel').update_FP(-3)
-                    toriel "I see you are feeling rather… strongly on that topic. But still, I must ask that you stop this kind of behavior. I do not appreciate it."
+                    toriel "I see you are feeling rather... strongly on that topic. But still, I must ask that you stop this kind of behavior. I do not appreciate it."
                     toriel "That was all I wished to ask you. Have a good day."
                     $ get_monster('Toriel').set_special_event('toriel_tl_date1_retry')
         "No, actually, I would really like to go on a date with you.":
@@ -142,7 +142,7 @@ label toriel_tl_date1_retry(owner = 'Toriel'):
             show toriel smallsmile with Dissolve(.25)
             toriel "But... Apology accepted."
             menu:
-                "Thank you. Then… can I dare to ask you on a date again?":
+                "Thank you. Then... can I dare to ask you on a date again?":
                     $get_monster("Toriel").DP +=1
                     show toriel blushing with Dissolve(.25)
                     toriel "I do not know, {i}can{/i} you?"
@@ -208,7 +208,7 @@ label toriel_tl_date1_retry(owner = 'Toriel'):
                                     $world.get_monster('Toriel').update_FP(-4)
                                     show toriel awkward with Dissolve(.25)
                                     toriel "Well, in the past, monsters {i}were{/i} known to sometimes- Look, it does not matter anymore. Please do not speak of this from now on."
-                                    toriel "And… I suppose a date is out of the question now. I do not think this would work."
+                                    toriel "And... I suppose a date is out of the question now. I do not think this would work."
                                     toriel "Please do not ask again."
                                     jump bad_end
                                 "Okay, I guess.":
@@ -267,7 +267,7 @@ label toriel_tl_date1_retry(owner = 'Toriel'):
                     toriel "I guess it is a good thing we never decided to go on a date, then."
                     toriel "Please do not ask me again."
                     jump bad_end
-                "Maybe next time, try being a bit less… forceful.":
+                "Maybe next time, try being a bit less... forceful.":
                     $get_monster("Toriel").DP -=2
                     show toriel annoyed with Dissolve(.25)
                     toriel "I will take that into consideration."
@@ -317,7 +317,7 @@ label toriel_tl_date_1_start:
             jump q_start
         "...":
             show toriel smile with Dissolve(.25)
-            toriel "Speechless? I would not blame you… It is a beautiful view."
+            toriel "Speechless? I would not blame you... It is a beautiful view."
             toriel "This place is rather out of the way, and not many people come here."
             toriel "I thought a quiet place could be nice."
             menu:
@@ -380,7 +380,7 @@ label toriel_tl_date_1_start:
                                             show toriel laughing with Dissolve(.25)
                                             toriel "Then I guess we will both have to wing it. Seems we are two birds of the same feather after all!"
                                             show toriel smile with Dissolve(.25)
-                                            toriel "Oh dear, I kept rambling about myself. Now it is your turn to talk. So tell me… What is your favorite color?"
+                                            toriel "Oh dear, I kept rambling about myself. Now it is your turn to talk. So tell me... What is your favorite color?"
                                             jump q_favcolor
                                 "Not at all.":
                                     $get_monster("Toriel").DP -=2
@@ -670,7 +670,7 @@ label q_start:         #Selection 30
                             toriel "I see you, too, are adept at the art of telling jokes."
                             toriel "I may have to step up my game."
                             toriel "Instead of telling jokes, perhaps we should move on. After all, I believe we are supposed to be getting to know each other better."
-                            toriel "So…"
+                            toriel "So..."
                             show toriel awkward with Dissolve(.25)
                             toriel "..."
                             toriel "What is your favorite color?"
@@ -685,7 +685,7 @@ label q_start:         #Selection 30
                                     show toriel smile with Dissolve(.25)
                                     toriel "Oh, stop it, you."
                                     toriel "But enough about him. This is our date, after all... We should be getting to know each other better."
-                                    toriel "So…"
+                                    toriel "So..."
                                     show toriel awkward with Dissolve(.25)
                                     toriel "..."
                                     toriel "What is your favorite color?"
@@ -697,7 +697,7 @@ label q_start:         #Selection 30
                                     toriel "..."
                                     toriel "Thank you for the advice. We shall see..."
                                     show toriel smallsmile with Dissolve(.25)
-                                    toriel "So…"
+                                    toriel "So..."
                                     show toriel awkward with Dissolve(.25)
                                     toriel "..."
                                     toriel "What is your favorite color?"
@@ -707,7 +707,7 @@ label q_start:         #Selection 30
                                     show toriel smallsmile
                                     toriel "Oh, that is fine. Thank you for understanding."
                                     toriel "But enough about him. This is our date, after all... We should be getting to know each other better."
-                                    toriel "So…"
+                                    toriel "So..."
                                     show toriel awkward
                                     toriel "..."
                                     toriel "What is your favorite color?"
@@ -717,7 +717,7 @@ label q_start:         #Selection 30
                             show toriel smile with Dissolve(.25)
                             toriel "Yes, he is! It is great that you think so."
                             toriel "But enough about him. This is our date, after all... We should be getting to know each other better."
-                            toriel "So…"
+                            toriel "So..."
                             show toriel awkward with Dissolve(.25)
                             toriel "..."
                             toriel "What is your favorite color?"

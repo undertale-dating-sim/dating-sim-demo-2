@@ -5,7 +5,7 @@ label call_Frisk_Unknown:
 label call_Frisk_Cave_Room(monster,call_count):
  
     if call_count == 1:
-        frisk  "This is where I first fell into the ruins. Good thing that bed of flowers was there, it really cushioned my fall…"
+        frisk  "This is where I first fell into the ruins. Good thing that bed of flowers was there, it really cushioned my fall..."
         frisk  "Oh, you’re probably glad for that too, huh? I forget I’m not the only one who’s fallen down through there."
     elif call_count == 2:
         frisk  "...Do you ever want to go back?"
@@ -71,7 +71,7 @@ label call_Frisk_Froggit_Room(monster,call_count):
 
 label call_Frisk_Monster_Candy_Room(monster,call_count):
     if call_count == 1:
-        frisk   "You shouldn’t take more than one… Leave some for everyone else!"
+        frisk   "You shouldn’t take more than one... Leave some for everyone else!"
         $ player.variables['Frisk_Cellphone_Monster_Candy_Room_Complete'] = True
     return
 

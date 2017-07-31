@@ -164,8 +164,8 @@ label Napstablook_manager_default(owner = False, pause = True):
                 "Are you a magician? Because whenever I look at you everyone else disappears."
                 napstablook "um...... i have no idea why that would happen? i think you should see a doctor"
             elif owner.flirt_count == 5:
-                "Sorry, I can't hold on… I've already fallen for you."
-                napstablook "huh? hold on to what? oh, and, uh… sorry for hurting you, i guess?"
+                "Sorry, I can't hold on... I've already fallen for you."
+                napstablook "huh? hold on to what? oh, and, uh... sorry for hurting you, i guess?"
             
             $owner.flirt_count +=1
         "Chat":

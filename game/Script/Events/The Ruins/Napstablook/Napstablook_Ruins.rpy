@@ -23,7 +23,7 @@ label blooky_event3:
     napstablook "..........."
     
     menu:
-        "Hey… Napstablook?":
+        "Hey... Napstablook?":
             $world.get_monster('Napstablook').update_FP(1)
             napstablook "huh? oh, hi........."
             jump somethings_wrong
@@ -117,7 +117,7 @@ label blooky_event3:
                 if smltrash_searched is 3:
                     "seems there’s nothing but trash left in this trash pile."
                 if smltrash_searched >= 4:
-                    "*there’s nothing else here… really."
+                    "*there’s nothing else here... really."
             "Stop searching.":
                 jump end_blook_hangout3
                 
@@ -144,7 +144,7 @@ label blooky_event3:
                 napstablook "i actually can’t wear shoes.... awkward......."
                 napstablook "but... thanks anyway."
             "Keep it for yourself.": #(+0 FP)
-                "Who knows when you might need to run from something…"
+                "Who knows when you might need to run from something..."
                 ###### ITEM GET RUNNING SHOES ######
             "Put it back.": #(+0 FP)
                 "you already have shoes, and you don’t think Napstablook can wear them, anyway. You put them back in the pile."
@@ -219,22 +219,22 @@ label blooky_event3:
                 
     label headphones_q:
         menu:
-            "Nothing…":
+            "Nothing...":
                 $world.get_monster('Napstablook').update_FP(-4)
                 napstablook "are those... headphones?"
             "Show them the broken headphones.":
                 $world.get_monster('Napstablook').update_FP(-4)
                 napstablook "oh....... you broke them......"
-            "I didn’t mean to…":
+            "I didn’t mean to...":
                 $world.get_monster('Napstablook').update_FP(-2)
                 napstablook "oh....... um, sure... that’s okay, i guess......."
         jump sad_ending
                 
     label sneak_headphones_q:
         menu:
-            "Oh no… I think that was a pair of headphones, sorry!": #(+0 FP)
-                napstablook "oh...... that’s bad luck.... i guess i should’ve expected something like this to happen…"
-            "Gosh… I’m so clumsy, I’m sorry.": #(+0 FP)
+            "Oh no... I think that was a pair of headphones, sorry!": #(+0 FP)
+                napstablook "oh...... that’s bad luck.... i guess i should’ve expected something like this to happen..."
+            "Gosh... I’m so clumsy, I’m sorry.": #(+0 FP)
                 show napstablook sad
                 napstablook "those were headphones, weren’t they? And they probably won’t work now that they’re all wet...."
         

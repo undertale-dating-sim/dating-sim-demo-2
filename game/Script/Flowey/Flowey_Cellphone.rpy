@@ -391,7 +391,7 @@ label Flowey_Cell_Count_Check(owner):
             
         "*Right before you call Flowey again, you feel your phone vibrate."
         "*It’s a text message."
-        "*It reads…"
+        "*It reads..."
         "* :-) I hope the goat makes you into a pie."
         
         if SameRoom == True:
