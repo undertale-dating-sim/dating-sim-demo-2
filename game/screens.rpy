@@ -195,6 +195,7 @@ screen main_menu():
         # textbutton _("Testing Area") action ui.callsinnewcontext("testing_area")
         textbutton _("Load Game") action ShowMenu("load")
         textbutton _("Preferences") action ShowMenu("preferences")
+        textbutton _("Gallery") action ShowMenu("gallery")
         # textbutton _("Feedback") action Jump("Feedback")
         # textbutton _("Admin_Controls") action ShowMenu("admin_controls")
         # textbutton _("Update") action Jump("updater")
@@ -514,6 +515,62 @@ init -2:
     style soundtest_button:
         xalign 1.0
 
+##############################################################################
+
+# Gallery of in-game artwork
+
+##############################################################################
+
+screen gallery():
+
+    tag menu
+
+    # Include the navigation.
+    use navigation
+
+    # Put the navigation columns in a three-wide grid.
+
+    style_group "bkgnds"
+    background
+    xfill True
+
+    # The left column.
+    vbox:
+        frame:
+            style_group "bkgnd"
+            has vbox
+
+            label _("Display")
+            textbutton _("Window") action Preference("display", "window")
+            textbutton _("Fullscreen") action Preference("display", "fullscreen")
+
+        frame:
+            style_group "bkgnd"
+            has vbox
+
+            label _("Transitions")
+            textbutton _("All") action Preference("transitions", "all")
+            textbutton _("None") action Preference("transitions", "none")
+
+        frame:
+            style_group "bkgnd"
+            has vbox
+
+            textbutton _("Joystick...") action Preference("joystick")
+
+
+init -2:
+    style bkgnd_frame:
+        xfill True
+        xmargin 5
+        top_margin 5
+
+    style bkgnd_vbox:
+        xfill True
+
+    style bkgnd_button:
+        size_group "pref"
+        xalign 1.0
 
 ##############################################################################
 # Yes/No Prompt
