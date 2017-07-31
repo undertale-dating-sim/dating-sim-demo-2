@@ -590,8 +590,7 @@ label ruins_breakfast:
             frisk "If you’re bored, how about you go hunt for some snails? It saves me from having to catch as many!"
             show toriel smallsmile with Dissolve(.25)
             toriel "Frisk, are you trying to making our guest do your chores for you?"
-            #show frisk blush <- no blush image or equivalent
-            show frisk bigsmile  with Dissolve(.25)
+            show frisk blushing with Dissolve(.25)
             frisk "Haha, what? ‘Course not!"
             show toriel laughing with Dissolve(.25)
             toriel "Well, whatever you decide to do, I hope you have a good day."
@@ -677,4 +676,4 @@ label end_of_demo:
 
     "Will try to remember to put something here."
 
-    retur
+    return
