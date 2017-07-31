@@ -167,8 +167,10 @@ label toriel_house_corridor:
             "Golden flower":
                 call golden_flower_event
             "Frisk's Room":
-                if world.get_current_timezone() == "Night":
+                if world.get_current_timezone() == "Night" or (player.variables['frisk_f2_visit_day'] == world.day and player.variables['frisk_f2_visit_count'] > 6):
                     "The door is locked."
+                elif player.variables['frisk_f2_visit_day'] == world.day:
+                    call frisk_friendship_hangout2_visit_frisk_same_day
                 else:
                     $ world.move_to_room("Frisk's Room")
             "Toriel's Room":
