@@ -63,13 +63,13 @@ init -10 python:
                             self.current_room.monsters.remove(self)
                         self.current_room = r
                         self.current_room.monsters.append(self)
-                        return
+                        return "Success"
 
             renpy.notify("Can't find room "+room)
 
         def set_special_event(self,event):
             if renpy.has_label(event):
-                self.special_event = Event(event,True,self)
+                self.special_event = Event(event,False,self)
             else:
                 renpy.notify("Couldn't find event [event]")
 
