@@ -209,7 +209,18 @@ label Frisk_manager_default(owner = False,pause = True):
 label Frisk_dialogue:
     show frisk normal with Dissolve(.25)
     
+    if 'Hunted_Snails_With_Frisk' in player.variables and 'Hunted_Snails_With_Frisk_Response' not in player.variables:
+        frisk "Hey, about last time we talked..."
+        frisk "Sorry I was acting so weird!"
+        frisk "It’s just a really complicated situation, and I’d rather not think about it."
+        frisk "So, let’s just pretend that never happened!"
+        frisk "Anyway, did you need something?"
+        $ player.variables['Hunted_Snails_With_Frisk_Response'] = True
+
+
     menu:
+        "Do you want to go snail hunting with me?" if 'Hunted_Snails_With_Frisk' not in player.variables:
+            call frisk_friendship_event_1
         "Chat" if frisk_chataway is False:
             jump Frisk_chat
         "Ask" if frisk_askaway is False:
@@ -219,6 +230,7 @@ label Frisk_dialogue:
         "Never mind.":
             "You decide not to say anything after all."
             jump Frisk_interact
+    return
 
 
 label Frisk_chat:
