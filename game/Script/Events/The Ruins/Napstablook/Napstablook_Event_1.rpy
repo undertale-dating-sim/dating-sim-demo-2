@@ -6,15 +6,14 @@ label napstablook_event_1(owner=get_napstablook()):
     $ dislikedmusic = False
     $ listened_music = False
     $ hobbies_asked = False
-    $ napstablook_friendship_hangout1_complete = False
     $ apathy = False
     #Event Name: Like Karaoke, but Without the Lyrics on the Screen
     #Event Trigger: Returning to Napstablook's room after all rooms in the Ruins have been explored
     #Synopsis: Napstablook offers to let you listen to a new song he made. How will you respond?
     
     stop music
-    scene background ruins_blooky_room
-    show napstablook normal at napstabob with dissolve
+
+    show napstablook normal with dissolve
     
     napstablook "oh...... hi. i didn't think you'd come back here...."
     napstablook "i'm glad you did, though....... i mean, i've been working on a new song and i was wondering if..... maybe....... you'd want to listen to it?"

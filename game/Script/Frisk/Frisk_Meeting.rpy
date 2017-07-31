@@ -559,9 +559,9 @@ label frisk_meeting_eat:
             toriel "Thank you. You may be excused."
     
     #Add Talking to toriel to the living room
-    $ get_room("Living Room").add_event('frisk_meeting_toriel_after_dinner',False)
+    $ get_room("Living Room").set_event('frisk_meeting_toriel_after_dinner',False)
     $ get_monster("Toriel").move_to_room("Living Room")
-    $ get_room("Corridor").add_event('frisk_meeting_corridor_after_dinner',True)
+    $ get_room("Corridor").set_event('frisk_meeting_corridor_after_dinner',True)
     $ move_to_room('Staircase')
  
 ################################
@@ -598,7 +598,7 @@ label frisk_meeting_corridor_after_dinner:
             scene black with dissolve
             "* ..."
             call day_transition
-            $ get_room("Your Room").set_event('ruins_first_breakfast',False)
+            $ get_room("Your Room").set_event('ruins_first_breakfast_your_room',False)
             $ move_to_room('Your Room')
 
         "Check Frisk's Room":
@@ -624,7 +624,7 @@ label frisk_meeting_toriel_after_dinner:
             toriel "I will see you again in the morning... sleep well!"
             #remove option 37 from selection 16
             $ chose_frisk_meeting_option37 = True
-            $ move_to_room('Staircase')
+
         "Nothing in particular.":
             #+1 Patience
             toriel "Hm, that is alright. Although..."
@@ -637,7 +637,8 @@ label frisk_meeting_toriel_after_dinner:
             toriel "Sleep well!"
             #remove option 37 from selection 16
             $ chose_frisk_meeting_option37 = True
-            $ move_to_room('Staircase')
+    $ get_room("Living Room").set_event('ruins_dinner',True)
+    $ move_to_room('Staircase')
 
 label frisk_meeting_choice21:
 

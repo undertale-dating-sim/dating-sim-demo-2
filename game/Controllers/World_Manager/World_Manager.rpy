@@ -346,7 +346,7 @@ label load_room(loop=True,transition="fade"):
     #else:
     #    "[ruinscounter]"
         
-    $ world.update_world(True)
+    #$ world.update_world(True)
         
     $ temp_event = world.current_area.current_room.get_event()
 

@@ -4,10 +4,11 @@
 #Never mind, found it, but the temp black background needs declaring >_<
 image background black_room = ("backgrounds/UI/blackScreen.png")
 
-label ruins_first_breakfast:
+label ruins_first_breakfast_your_room:
 
-    $ get_room("Basement Door").add_event('ruins_basement_door_first_visit',False)
     $ get_room("Your Room").set_event('th_your_room',True)
+    $ get_room("Corridor").set_event('ruins_first_breakfast_corridor',True)
+
     $frisk_first_breakfast_conv_count = 0
     $frisk_first_breakfast_conv_future = False  
     $frisk_first_breakfast_conv_fun = False  
@@ -20,30 +21,24 @@ label ruins_first_breakfast:
     $ renpy.transition(fade)
     $ renpy.show(world.get_room("Your Room").bg)
     frisk "Hurry up! We don’t want the food to get cold!"
-    #the player can check the room, but the normal room description just plays. The only thing they can do is exit to the hallway
-    label examineYourRoomUponWakeup:
-        menu:
-            "Look around":
-                "It's a nice room."
-                jump examineYourRoomUponWakeup
-            "Examine item [x]":
-                "...placeholder text."
-                jump examineYourRoomUponWakeup
-            "Leave your room":
-                pass
-    show bg toriel_house_corridor with dissolve
+    return
+
+label ruins_first_breakfast_corridor:
+    #clean up after self
+    $ get_room("Corridor").set_event('toriel_house_corridor',True)
     show frisk normal at left with Dissolve(.25)
     frisk "Oh good, you’re up. Let’s go eat!"
-    
-    
-    #scene change living room
-    #$world.move_to_room("Living Room")
-    show bg toriel_house_livingroom with dissolve
+
+    $ renpy.transition(fade)
+    $ renpy.show(world.get_room("Living Room").bg)
+
     show frisk normal at left with Dissolve(.25)
     show toriel smallsmile at right with Dissolve(.25)
     frisk "Morning!"
     toriel "Good morning, my dear."
-    toriel "I am glad you decided to join us for breakfast. It is the most important meal of the day, after all. I would hate for you to miss it. It is nearly as important as getting enough rest!"
+    toriel "I am glad you decided to join us for breakfast."
+    toriel "It is the most important meal of the day, after all. I would hate for you to miss it."
+    toriel "It is nearly as important as getting enough rest!"
     toriel "Speaking of which, how did you sleep?"
     menu:
         "Great!":
@@ -58,7 +53,7 @@ label ruins_first_breakfast:
                 "No, it’s nothing that you’re doing wrong. It’s just different here.":
                     toriel "I understand... it can be strange sleeping somewhere new for the first time."
                 "Really? That’s very kind of you to ask.":
-                    #toriel.DP +=3
+                    $world.get_monster('Toriel').update_DP(3)
                     show frisk bigsmile at left with Dissolve(.25)
                     frisk "Mom’s the best!"
                     show toriel blushing at right with Dissolve(.25)
@@ -106,9 +101,9 @@ label ruins_first_breakfast:
             toriel "I thought you might say that."
             toriel "You are an adult, and if you would like to leave, I will not try to stop you."
             toriel "However, please know that the rest of the Underground may not be as friendly as we are in the Ruins. If you wish to leave, then it will be at your own risk."
-            #if toriel.FP >= ???:
-                #show toriel sad at right with Dissolve(.25)
-                #toriel "I did hope that you might stay for a little while longer, but..."
+            if $world.get_monster('Toriel').FP >= 5:
+                show toriel sad at right with Dissolve(.25)
+                toriel "I did hope that you might stay for a little while longer, but..."
             show toriel normal at right with Dissolve(.25)
             toriel "Should you choose to leave, the gateway to the rest of the Underground can be found in the basement."
             toriel "Please be careful, and come back to visit when you can. You are welcome here whenever you need a safe place to rest."
@@ -157,13 +152,16 @@ label ruins_first_breakfast:
             show toriel smallsmile with Dissolve(.25)
             toriel "I suppose so. I just like to make sure."
             toriel "Oh! And dinner is served every day at six if you would like to join us, dear. Otherwise, I will leave the leftovers in the fridge for you."
+            $ get_monster("Toriel").move_to_room("Kitchen")
+            $ get_monster("Frisk").move_to_room("Living Room")
             toriel "Enjoy your walk."
-            #player is free to explore the Ruins or go down to the basement door and exit the Ruins
+            $ move_to_room("Living Room")
         "Let's talk for a little while longer.":
             $world.get_monster ('Frisk').update_FP(3)
             toriel "You two have fun. I am going to get a head start on the dishes."
             hide toriel with Dissolve(.25)
-            show frisk smallsmile at center with Dissolve(.25)
+            hide frisk
+            show frisk smallsmile with Dissolve(.25)
             frisk "Okay, so what should we talk about?"
             while True:
                 menu:
@@ -190,7 +188,7 @@ label ruins_first_breakfast:
                         show frisk smallsmile with Dissolve(.25)
                         frisk "Just walking around the Ruins is fun, too. I like hanging out with all the Froggits and Whimsuns!"
                     "What was life like on the surface?" if frisk_first_breakfast_conv_surface == False:
-                        $world.get_monster ('Frisk').updatee_FP(1)
+                        $world.get_monster ('Frisk').update_FP(1)
                         $frisk_first_breakfast_conv_surface = True
                         $frisk_first_breakfast_conv_count +=1
                         show frisk upset with Dissolve(.25)
@@ -207,30 +205,28 @@ label ruins_first_breakfast:
                         else:
                             show frisk normal with Dissolve(.25)
                             frisk "Alright!"
+                            $ get_monster("Frisk").move_to_room("Living Room")
+                            $world.move_to_room("Living Room")
                         return
                     
     show frisk normal with Dissolve(.25)
     frisk "I’ll see you later, then."
     frisk "Have fun!"
-    $world.move_to_room("Corridor")
-    #"Breakfast is over, you're free to explore the Ruins or leave through the basement"
+    $world.move_to_room("Staircase")
     return
 
+label ruins_dinner: #done
+    if world.get_current_timezone() != 'Afternoon' or ('had_dinner_day' in player.variables and player.variables['had_dinner_day'] == world.day):
+        return
 
+    $ player.variables['had_dinner_day'] = world.day
 
-#if World.currentTime >= 1080 and World.currentTime <=1140:
-    #call ruins_dinner
-#elif World.currentTime >1140: 
-    #call ruins_dinner_leftovers
-label ruins_dinner:
-    #There are three sets of days... with Friday missing in the script, so I determined it's most likely placement
-    
-    if World.days == "Monday" or World.days == "Thursday" or World.days == "Friday":
+    if world.get_current_day() == "Monday" or world.get_current_day() == "Thursday" or world.get_current_day() == "Friday":
         $ruins_dinner_frisk_stays = True
         show toriel smile at right with Dissolve(.25)
         show frisk smallsmile at left with Dissolve(.25)
-        "*You find Toriel and Frisk already at the table."
-        "*They must’ve been waiting for you."
+        "* You find Toriel and Frisk already at the table."
+        "* They must’ve been waiting for you."
         toriel "Welcome home."
         frisk "Hey!"
         toriel "You are just in time. Take a seat and eat up."
@@ -244,26 +240,23 @@ label ruins_dinner:
                 toriel "Not hungry?"
                 toriel "Alright... have a good night."
                 frisk "See you later!"
-                $world.move_to_room("Corridor")
             "Well, I’m done. Thanks for dinner.":
                 frisk "Wow, you ate quick!" 
                 toriel "Have a good night, dear."
-                $world.move_to_room("Corridor")
-        return
         
-    elif World.days == "Tuesday" or World.days == "Saturday":
+    elif world.get_current_day() == "Tuesday" or world.get_current_day() == "Saturday":
         $ruins_dinner_frisk_stays = False
         show toriel smile at right with Dissolve(.25)
         show frisk normal at left with Dissolve(.25)
-        "*You find Toriel and Frisk already at the table."
-        "*They must have been waiting for you."
+        "* You find Toriel and Frisk already at the table."
+        "* They must have been waiting for you."
         toriel "Welcome home."
         frisk "Now, mom?"
         show toriel laughing at right with Dissolve(.25)
         toriel "Go ahead, Frisk."
-        "*Frisk digs in ravenously."
-        "*They sure have an appetite."
-        "*It only takes them a few minutes to-"
+        "* Frisk digs in ravenously."
+        "* They sure have an appetite."
+        "* It only takes them a few minutes to-"
         show frisk bigsmile at left with Dissolve(.25)
         frisk "Done!"
         show toriel awkward at right with Dissolve(.25)
@@ -282,20 +275,18 @@ label ruins_dinner:
             "Excuse me.":
                 toriel "You are excused, dear."
                 toriel "Rest well."
-                $world.move_to_room("Corridor")
             "Well, I'm done. Thanks for dinner.":
                 show toriel smile with Dissolve(.25)
                 toriel "Oh, I am glad you liked it."
                 toriel "Please let me know if you need anything else."
                 toriel "Goodnight, dear."
-                $world.move_to_room("Corridor")
-        return
+                
     else:
         $ruins_dinner_frisk_stays = False
         show toriel normal at right with Dissolve(.25)
         show frisk disappointed at left with Dissolve(.25)
-        "*You find Toriel and Frisk already at the table."
-        "*They must have been waiting for you."
+        "* You find Toriel and Frisk already at the table."
+        "* They must have been waiting for you."
         toriel "Welcome home."
         frisk "Hey."
         toriel "You are just in time. Take a seat and eat up."
@@ -347,18 +338,20 @@ label ruins_dinner:
                 toriel "Are you sure? You have barely touched your dinner..."
                 frisk "I’m fine, mom. Just need to catch some z’s, you know?"
                 toriel "Well, alright. Rest well, both of you."                
-        $world.move_to_room("Corridor")
-        return
+
+    $world.move_to_room("Staircase")
     return
     
-label ruins_dinner_talk_toriel:
+label ruins_dinner_talk_toriel: #need sprite changes
+
     $temp_random_num = renpy.random.randint(1, 5)
 
+    if ruins_dinner_frisk_stays == True:
+        show toriel smile at right with Dissolve(.25)
+    else:
+        show toriel smile at center with Dissolve(.25)
+
     if temp_random_num == 1:
-        if ruins_dinner_frisk_stays == True:
-            show toriel smile at right with Dissolve(.25)
-        else:
-            show toriel smile at center with Dissolve(.25)
         toriel "Oh, it was just fine. Thank you for asking."
         toriel "I took a nice walk through the Ruins..."
         toriel "I passed by the place where both you and Frisk fell, but, as usual, there was not a soul in sight."
@@ -368,10 +361,6 @@ label ruins_dinner_talk_toriel:
         toriel "Have a good night."
 
     elif temp_random_num == 2:
-        if ruins_dinner_frisk_stays == True:
-            show toriel smile at right
-        else:
-            show toriel smile at center
         toriel "It was rather uneventful, but thank you for asking."
         toriel "I baked a batch of cookies for us all to enjoy, but I suspect Frisk may have scarfed them down already."
         if ruins_dinner_frisk_stays == True:
@@ -388,10 +377,6 @@ label ruins_dinner_talk_toriel:
         toriel "Have a good night."
 
     elif temp_random_num == 3:
-        if ruins_dinner_frisk_stays == True:
-            show toriel smile at right with Dissolve(.25)
-        else:
-            show toriel smile at center with Dissolve(.25)
         toriel "My day was nice. Thank you for asking."
         toriel "I took a walk through the Ruins and saw a group of Froggit children playing in the leaves."
         if ruins_dinner_frisk_stays == True:
@@ -415,10 +400,8 @@ label ruins_dinner_talk_toriel:
         toriel "Have a good night."
 
     elif temp_random_num == 4:
-        if ruins_dinner_frisk_stays == True:
-            show toriel smallsmile at right with Dissolve(.25)
-        else:
-            show toriel smallsmile at center with Dissolve(.25)
+
+        show toriel smallsmile with Dissolve(.25)
         toriel "It was alright, thank you." 
         toriel "On my walk, I found a Whimsun crying about something or another..."
         if ruins_dinner_frisk_stays == True:
@@ -436,10 +419,6 @@ label ruins_dinner_talk_toriel:
         toriel "Have a good night."
         
     else:
-        if ruins_dinner_frisk_stays == True:
-            show toriel smile at right with Dissolve(.25)
-        else:
-             show toriel smile at center with Dissolve(.25)
         toriel "It was good. Thank you for asking."
         toriel "I purchased a fresh bucket of snails from the ghost, Napstablook, today."
         if ruins_dinner_frisk_stays == True:
@@ -450,11 +429,10 @@ label ruins_dinner_talk_toriel:
         toriel "But, regardless... You look like you are done eating, dear. Since I have no dessert to offer you, perhaps you should head off to bed."
         toriel "Have a good night."
 
-    $temp_random_num = 0
-    $world.move_to_room("Corridor")
+    $world.move_to_room("Staircase")
     return
     
-label ruins_dinner_talk_frisk:
+label ruins_dinner_talk_frisk: #need sprite changes
     $temp_random_num = renpy.random.randint(1, 3)
     if temp_random_num == 1:
         show frisk smallsmile at left with Dissolve(.25)
@@ -470,9 +448,9 @@ label ruins_dinner_talk_frisk:
         frisk "I ran into Napstablook today! They spend a lot of time at their snail farm, so I don’t get to see them much..."
         #!!!#if the player has gone on a date with Blooky (HB or TL), play the following:
         #if napstablook_tl_date == True or napstablook_hpdate == True???
-        show frisk normal at left with Dissolve(.25)
-        frisk "They asked about you... I didn’t know you guys were so close."
-        "*Frisk waggles their eyebrows suggestively."
+        # show frisk normal at left with Dissolve(.25)
+        # frisk "They asked about you... I didn’t know you guys were so close."
+        # "*Frisk waggles their eyebrows suggestively."
         show frisk smallsmile at left with Dissolve(.25)
         frisk "Anyway, Blooky showed me the latest song they’re working on. It was a lot of fun!"
         frisk "Oh, hey, are you done eating? So am I... I think I’m gonna head off to bed."
@@ -491,51 +469,57 @@ label ruins_dinner_talk_frisk:
         frisk "Oh, hey, are you done eating? So am I... I think I’m gonna head off to bed."
         show toriel smile at right with Dissolve(.25)
         toriel "Goodnight, both of you."
-    $temp_random_num = 0
-    $world.move_to_room("Corridor")
+    $world.move_to_room("Staircase")
     return
     
-label ruins_dinner_leftovers:
-    "*You find some leftovers in the fridge, just as Toriel had promised."
-    menu:
-        "(Eat them)":
-            "*It would have been better fresh..."
-            "*But it still fills you up."
-        "(Leave them)":
-            "*You can always eat them later..."
+label ruins_dinner_leftovers: #done
+    
+    if (world.get_current_timezone() == 'Evening' or world.get_current_timezone() == 'Night') and eaten_leftover_day != world.day:
+        "* You find some leftovers in the fridge, just as Toriel had promised."
+        menu:
+            "Eat them":
+                $ eaten_leftover_day = world.day
+                "* It would have been better fresh..."
+                "* But it still fills you up."
+            "Leave them":
+                "* You can always eat them later..."
     return
 
-label ruins_breakfast:
-    $World.currentTime = 480
-    #Waking up scene???
+label ruins_breakfast_your_room:
     
     #black screen, knocking sound
     scene black with dissolve
     frisk "Come on, sleepy head! Breakfast is almost ready!"
-    #scene change MC room
     $ renpy.show(world.get_room("Your Room").bg)
-    #if they go to the living room, continue to breakfast
-    #else, if they try to leave the house...
-    call examineYourRoomUponWakeup
-    show bg toriel_house_corridor with dissolve
+    $ get_room("Living Room").set_event('ruins_breakfast',False)
+    $ move_to_room("Your Room")
+
+label ruins_breakfast_leaving:
+    $ renpy.transition(fade)
+    $ renpy.show(world.get_room("Staircase").bg)
     show frisk normal with Dissolve(.25)
     frisk "Hey, are you leaving? Aren’t you going to eat first?"
     menu:
         "No, I’m skipping breakfast.":
             frisk "Oh, alright! Have a good day..."
-            #scene change black tree room
-            show bg ruins_outside_house with dissolve
-            jump breakfast_time_flowey
+            hide frisk
+            $ player.variables['ruins_breakfast_check'] = world.day
+            $ renpy.transition(fade)
+            $ renpy.show(world.get_room("Black Tree Room").bg)
+            call breakfast_time_flowey
+            $ move_to_room("Black Tree Room",transition=None)
         "Yeah, I’ll eat.":
             show frisk smallsmile with Dissolve(.25)
             frisk "Well, what’re you doing over here, then? Food’s in the living room, silly!"
-            #scene change living room
-            show bg toriel_house_livingroom with dissolve
+            $ move_to_room('Living Room')
+
+label ruins_breakfast:
+    $ get_room("Living Room").set_event('ruins_dinner',True)
     show toriel normal at right with Dissolve(.25)
     show frisk normal at left with Dissolve(.25)
-    "*You share a delicious breakfast with Frisk and Toriel."
-    if World.days == "Friday" or World.days == "Sunday":
-        "*Frisk looks exhausted."
+    "* You share a delicious breakfast with Frisk and Toriel."
+    if world.get_current_day() == "Friday" or world.get_current_day() == "Sunday":
+        "* Frisk looks exhausted."
     toriel "So, what are your plans for the day?"
     menu:
         "I’m going to catch some snails.":
@@ -543,17 +527,15 @@ label ruins_breakfast:
             toriel "That sounds like a good plan. I wish you luck!"
             frisk "Save some for me to catch!"
         "I’m going to see if I can find Napstablook.":
-            #NYI Fix this!!!
-            #if the MC is not friends with Blooky and is not dating them:
+            
             toriel "Oh? Do you have business with them?"
-            #if the MC has more than 7 FP with Blooky, but has not gone on a date with them:
-            show toriel smile with Dissolve(.25)
-            toriel "I am glad you have been able to make friends down here... It can get rather lonely otherwise."
-            #if the MC has gone on a date with Blooky:
-            show toriel smile with Dissolve(.25)
-            show frisk smallsmile with Dissolve(.25)
-            toriel "That is good... I am sure they will appreciate the company."
-            "*Frisk winks at you when Toriel isn’t looking."
+            if get_monster("Napstablook").FP > 7:
+                show toriel smile with Dissolve(.25)
+                toriel "I am glad you have been able to make friends down here... It can get rather lonely otherwise."
+                show toriel smile with Dissolve(.25)
+                show frisk smallsmile with Dissolve(.25)
+                toriel "That is good... I am sure they will appreciate the company."
+                "* Frisk winks at you when Toriel isn’t looking."
             toriel "Have a good day, dear."
         "I’m going to explore the Ruins.":
             show toriel smile with Dissolve(.25)
@@ -561,27 +543,22 @@ label ruins_breakfast:
             frisk "I’d go with you, but I think I’ve seen everything there is to see in the Ruins. You have fun, though!"
         "I’m leaving the Ruins today.":
             $player.variables['ruins_want_to_leave'] = True
-            #if the player has never left the Ruins before:
-            if True:
-                show toriel awkward with Dissolve(.25)
-                show frisk distant with Dissolve(.25)
-                toriel "Oh, I see..."
-                toriel "Well, I will not try to stop you, but please stay safe."
-                #if the player has 5 or more FP with Frisk:
-                if True:
-                    show frisk normal with Dissolve(.25)
-                    frisk "And come back to visit soon!"
-                    toriel "Yes, don’t be a stranger."
-                #if the player has less than 5 FP with Frisk:
-                else:
-                    frisk "..."
-                toriel "The gateway to the rest of the Underground is in the basement, if you really want to leave."
-                toriel "I wish you all the best."
-            #if the player has left the ruins before
+
+            show toriel awkward with Dissolve(.25)
+            show frisk distant with Dissolve(.25)
+            toriel "Oh, I see..."
+            toriel "Well, I will not try to stop you, but please stay safe."
+
+            if get_monster("Frisk").FP >= 5:
+                show frisk normal with Dissolve(.25)
+                frisk "And come back to visit soon!"
+                toriel "Yes, don’t be a stranger."
             else:
-                toriel "Ah, I see."
-                toriel "Please take care of yourself, and come back whenever you would like."
-                frisk "See you later!"             
+                frisk "..."
+
+            toriel "The gateway to the rest of the Underground is in the basement, if you really want to leave."
+            toriel "I wish you all the best."
+           
         "I’ll probably hang out around the house.":
             show toriel smallsmile with Dissolve(.25)
             toriel "That will be relaxing, I am sure."
@@ -595,34 +572,43 @@ label ruins_breakfast:
             frisk "Haha, what? ‘Course not!"
             show toriel laughing with Dissolve(.25)
             toriel "Well, whatever you decide to do, I hope you have a good day."
-    $world.move_to_room("Corridor")
+    $world.move_to_room("Staircase")
     return
+
+label breakfast_time_flowey: #done
+
     
-label breakfast_time_flowey:
-    if world.get_monster ('Flowey').FP < 0:
-        show Flowey surprised with Dissolve(.25)
+    if get_monster('Flowey').FP < 0:
+        show flowey backside with Dissolve(.25)
+        $ renpy.pause()
+        show flowey surprised with Dissolve(.25)
         flowey "...!"
-        show Flowey angry with Dissolve(.25)
+        show flowey angry with Dissolve(.25)
         flowey "What’re you looking at?"
-        hide Flowey sprite
-    elif world.get_monster ('Flowey').FP <= 5:
-        show Flowey annoyed with Dissolve(.25)
+        hide flowey with moveoutbottom
+    elif get_monster('Flowey').FP <= 5:
+        show flowey backside with Dissolve(.25)
+        $ renpy.pause()
+        show flowey annoyed with Dissolve(.25)
         flowey "...What?"
-        hide Flowey sprite with Dissolve(.25)
-    elif world.get_monster ('Flowey').FP <=10:
-        show Flowey surprised with Dissolve(.25)
+        hide flowey with moveoutbottom
+    elif get_monster('Flowey').FP <=10:
+        show flowey backside with Dissolve(.25)
+        $ renpy.pause()
+        show flowey surprised with Dissolve(.25)
         flowey "I..."
-        show Flowey annoyed with Dissolve(.25)
+        show flowey annoyed with Dissolve(.25)
         flowey "I wasn’t doing anything!"
-        hide Flowey sprite
+        hide flowey with moveoutbottom
     else:
-        show Flowey backside with Dissolve(.25)
+        show flowey backside with Dissolve(.25)
+        $ renpy.pause()
         flowey "..."
-        hide Flowey sprite
+        hide flowey with moveoutbottom
     
     return
     
-label ruins_basement_door_first_visit:
+label ruins_basement_door_first_visit: #needs sound effect
     frisk "Hey."
     show frisk distant with Dissolve(.25)
     if 'ruins_want_to_leave' in player.variables and player.variables['ruins_want_to_leave'] == True:
@@ -668,7 +654,7 @@ label ruins_basement_door_first_visit:
     
     #wait a second before having the screen fade to black, play the sound of a heavy door opening
     #end of demo
-    jump end_of_demo
+    call end_of_demo
     return
 
 
@@ -677,4 +663,4 @@ label end_of_demo:
 
     "Will try to remember to put something here."
 
-    retur
+    return

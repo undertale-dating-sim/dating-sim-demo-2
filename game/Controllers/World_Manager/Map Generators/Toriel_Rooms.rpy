@@ -50,6 +50,7 @@ init python:
             self.lockeast = True
             self.lockwest = True
             self.desc = "* A large, ornate door stands before you.  ","* It feels cold and impersonal."
+            self.events['ruins_basement_door_first_visit'] = Event("ruins_basement_door_first_visit",True)
             
 
 
@@ -59,10 +60,10 @@ init python:
             self.name = "Corridor"
             self.x = 6
             self.y = 0
-            self.desc = "* The otherwise boring hallway is spruced up with potted plant life everywhere you look.  ","* There's a mirror at the end of the hall. ","* It lookslike it could use a cleaning, as there are fingerprints smudging the reflective surface."
+            self.desc = "* The otherwise boring hallway is spruced up with potted plant life everywhere you look.  ","* There's a mirror at the end of the hall. ","* It looks like it could use a cleaning, as there are fingerprints smudging the reflective surface."
             self.bg = "background toriel_house_corridor"
             self.locknorth = False
-            # self.events['toriel_house_corridor'] = Event("toriel_house_corridor",True)
+            self.events['toriel_house_corridor'] = Event("toriel_house_corridor",True)
             self.plant_watered_times = 0
             self.day_watered = 0
 
@@ -82,6 +83,7 @@ init python:
             self.name = "Living Room"
             self.x = 4
             self.y = 0
+            self.events['ruins_dinner'] = Event("ruins_dinner",True)
             self.desc = "* The living room is always cozy and warm, probably because the fire in the fireplace never seems to dim.  ","* There are old-looking pictures on the walls of people you don't recognize."
             self.bg = "background toriel_house_livingroom"
 
@@ -131,8 +133,12 @@ init python:
 
     
 label port_to_black_tree_room:
-    pause 1
-    $ world.move_to_room("Black Tree Room")
+    if 'ruins_breakfast_check' not in player.variables or player.variables['ruins_breakfast_check'] != world.day:
+        call ruins_breakfast_leaving
+    else:
+        pause 1
+        $ world.move_to_room("Black Tree Room")
+    return
     
 label player_sleeping_th:
     "You fall asleep in your bed."

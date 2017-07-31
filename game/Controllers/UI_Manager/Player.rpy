@@ -92,6 +92,11 @@ label player_waking_up:
     scene black
     $ world.set_current_time(480,True)
     "* You feel refreshed!"
+
+    if world.day == 1:
+        call ruins_first_breakfast_your_room
+    else:
+        call ruins_breakfast_your_room
     return
 
 ######################
