@@ -1,20 +1,3 @@
-#---- In Order To Keep From Confusing Coders, All Dialogue Templates Should Attempt to Follow This Pattern  ----
-
-#KEY:
-#sans "__"      = character dialog
-#*Asterisks*     = Sprite changes
-#("Parenthesis") = dialogue options
-##//(+0)           = Response’s Increase/Decrease to Date Meter
-##/// If >  <   = The order of player answers that lead up to that            dialogue
-#[n/a #]        = Dialogue option not available if previous option
-#has been used (all options assigned a number)
-#+ Or -         = amount of points
-#jump ___    = tells the game to skip to a different part of the script
-#label ___:    = marks a part of the script so it can be jumped to
-#blah blah     = message for all coders and editors. used for all other communication that cannot be indicated otherwise
-#Edited Dialogue After coders have already put it into the game
-#Striked out means text has been deleted
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #Event Name: Arts n’ Crafts with Frisk
 #Event Trigger: 1. Enter Frisk’s room in the afternoon
 
@@ -30,10 +13,8 @@
 
 #+FP in green
 
-label frisk_friendship_hangout1_main:
-    stop music
-    play music "audio/music/music-home.mp3"
-    show background frisk_room
+label frisk_friendship_hangout1_main(owner = get_frisk()):
+
     python:
         red = False
         yellow = False
@@ -45,7 +26,7 @@ label frisk_friendship_hangout1_main:
         swirls = False
         stripes = False
         randompaintsplatter = False
-    #scene frisk’s room
+
     show frisk surprised
     frisk "Oh!"
     show frisk normal
@@ -57,51 +38,33 @@ label frisk_friendship_hangout1_main:
     frisk "If you make something, maybe it’ll inspire me."
     frisk "It could be fun!"
     frisk "So, what do you say?"
-    jump frisk_friendship_hangout1_selection1
-label frisk_friendship_hangout1_selection1:
+
     menu:
         "Sorry, I’m busy.": ##//(-2)
             $ world.get_monster('Frisk').update_FP(-2)
+            show frisk sad
+            frisk "Aww..."
+            show frisk normal
+            frisk "Okay, I understand."
+            frisk "See you around."
+            $ get_monster("Frisk").set_special_event("frisk_friendship_return_to_frisk")
+            $ move_to_room("Corridor")
 
-            jump frisk_friendship_hangout1_choice1
         "Yeah!":    ##//(+2)
             $world.get_monster('Frisk').update_FP(2)
-            jump frisk_friendship_hangout1_choice2
+            jump frisk_friendship_hangout1_start
 
-label frisk_friendship_hangout1_choice1:
-    show frisk sad
-    frisk "Aww..."
-    show frisk normal
-    frisk "Okay, I understand."
-    frisk "See you around."
-    #scene change hallway
-label frisk_friendship_return_to_frisk:
+label frisk_friendship_return_to_frisk(owner=get_frisk()):
     #if the player re-enters Frisk’s room anytime before dinner:
     show frisk normal
     frisk "Oh, did you change your mind?"
-    jump frisk_friendship_hangout1_selection2
-label frisk_friendship_hangout1_selection2:
     menu:
         "I hate to break it to you, but no.":    #//(+0)
-            jump frisk_friendship_hangout1_choice3
+            frisk "Okay... I’ll see you later."
+            $ move_to_room("Corridor")
         "Yes, it actually sounds fun.":        #//(+2)
             $ world.get_monster('Frisk').update_FP(2)
-            jump frisk_friendship_hangout1_choice4
-
-label frisk_friendship_hangout1_choice3:
-    #/// If >3("I hate to break it to you, but no.")<
-    frisk "Okay... I’ll see you later."
-    #scene change hallway
-    #####################
-    #Change below code to hallway code
-    jump statcheck
-
-label frisk_friendship_hangout1_choice4:
-    #/// If >4("Yes, it actually sounds fun.")<
-    jump frisk_friendship_hangout1_start
-label frisk_friendship_hangout1_choice2:
-    #/// If >2("Yeah!")<
-    jump frisk_friendship_hangout1_start
+            jump frisk_friendship_hangout1_start
 
 
 label frisk_friendship_hangout1_start:
@@ -359,8 +322,8 @@ label frisk_friendship_hangout1_choice22:
     frisk "Well... if you wanna do this again another time..."
     frisk "Let me know, okay?"
     frisk "I’ll see you later."
-    #End of scene, time should be dinnertime
-    jump statcheck
+    $ player.variables['frisk_friendship_1_Complete'] = True
+    $ move_to_room("Corridor")
 label frisk_friendship_hangout1_choice23:
     #/// If >23("Not bad.")<
     show frisk normal
@@ -370,8 +333,8 @@ label frisk_friendship_hangout1_choice23:
     frisk "Dinner will probably be ready soon, so I’ll see you around."
     show frisk tinysmile
     frisk "Bye!"
-    #End of scene, time should be dinnertime
-    jump statcheck
+    $ player.variables['frisk_friendship_1_Complete'] = True
+    $ move_to_room("Corridor")
 label frisk_friendship_hangout1_choice24:
 
     #/// If >24("I love it!")<
@@ -383,8 +346,5 @@ label frisk_friendship_hangout1_choice24:
     show frisk tinysmile
     frisk "I wish we could do more right now, but it’s getting late. Dinner will probably be ready soon."
     frisk "I’ll see you around!"
-    #End of scene, time should be dinnertime
-    jump statcheck
-label statcheck:
-    #$ renpy.say("Frisk FP: ",str(frisk_fp))
-    jump testing_area
+    $ player.variables['frisk_friendship_1_Complete'] = True
+    $ move_to_room("Corridor")

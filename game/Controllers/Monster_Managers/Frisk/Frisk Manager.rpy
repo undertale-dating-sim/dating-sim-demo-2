@@ -50,6 +50,11 @@ init -9 python:
                 renpy.call_in_new_context("give_Gift_%s_Unknown" % self.name)
             return
 
+        def handle_special_events(self):
+
+            if world.get_current_timezone() == 'Afternoon' and 'frisk_friendship_1_Complete' not in player.variables:
+                self.set_special_event('frisk_friendship_hangout1_main')
+            return
         def handle_schedule(self):
             #night
             self.update_schedule("Sunday","Night","Frisk's Room",self.default_event)

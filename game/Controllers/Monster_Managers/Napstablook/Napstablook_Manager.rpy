@@ -53,9 +53,8 @@ init -9 python:
                 #Finding Napstablook in Toriel's garden
 
             if 'Napstablook_Hangout_1_Complete' not in player.variables:
-                #if get_napstablook().FP >= 10 and (player.current_room.encode('utf-8') == "Snail Hunting Room"):
-                #if get_napstablook().FP > 10 and (player.current_room.encode('utf-8') == "Snail Hunting Room") and (world.get_monster('Napstablook').current_room.name.encode('utf-8') == "Snail Hunting Room"):
-                self.special_event = Event('napstablook_hangout_1',False,self)
+                if get_napstablook().FP >= 10 and player.variables['snail_game_count'] >= 3 and get_napstablook().current_room == 'Snail Hunting Room':
+                    self.special_event = Event('napstablook_hangout_1',False,self)
             
             #TL Date 1
                 #Player enters the section of the ruins that blooky normally hangs out in.
@@ -108,12 +107,8 @@ init -9 python:
             self.update_schedule("Saturday","Afternoon","Snail Hunting Room",self.default_event)
             #evening
             self.update_schedule("Sunday","Evening","Blooky Room",self.default_event)
-            self.update_schedule("Monday","Evening","Living Room",self.default_event)
-            self.update_schedule("Tuesday","Evening","Living Room",self.default_event)
             self.update_schedule("Wednesday","Evening","Blooky Room",self.default_event)
-            self.update_schedule("Thursday","Evening","Living Room",self.default_event)
             self.update_schedule("Friday","Evening","Blooky Room",self.default_event)
-            self.update_schedule("Saturday","Evening","Living Room",self.default_event)
 
             
 
