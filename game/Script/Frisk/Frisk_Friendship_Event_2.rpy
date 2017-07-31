@@ -39,7 +39,7 @@ label frisk_friendship_hangout2(owner=get_frisk()):
     frisk "Could you help me with the dishes, please?"
     menu:
         "No way.":
-            $ frisk_fp -=1
+            $get_monster('Frisk').update_FP(-1)
             frisk "Aw, okay... I get it."
             frisk "You’re probably busy, so I guess I’ll see you later."
             hide frisk with Dissolve(.25)
@@ -51,14 +51,14 @@ label frisk_friendship_hangout2(owner=get_frisk()):
             show frisk normal with Dissolve(.25)
             "* Frisk turns and gets back to work."
             "* You grab a few plates and start scrubbing."
-            "*. .."
+            "* ..."
             frisk "So... How’ve you been doing?"
             menu:
                 "Can we talk about what happened the other day?":
-                    $ frisk_fp -=1
+                    $get_monster('Frisk').update_FP(-1)
                     jump frisk_fe2_otherday
                 "Fine. You?":##//(+1)
-                    $ frisk_fp +=1
+                    $get_monster('Frisk').update_FP(1)
                     frisk "That’s good. I’ve been fine, too."
                     frisk "But, uhm..."
                     frisk "Well, you know."
@@ -90,22 +90,22 @@ label frisk_fe2_otherday:
             frisk "I keep telling her not to be concerned..."
             frisk "I really don’t like to worry her."
         "Alright, I’ll stop asking.": 
-            $ frisk_fp +=2
+            $get_monster('Frisk').update_FP(2)
             frisk "Thanks..."
             frisk "It’s just something I have to deal with on my own."
         "(Say nothing)": 
-            $ frisk_fp +=1
+            $get_monster('Frisk').update_FP(1)
             frisk "..."
             frisk "Just don’t worry about me."
             frisk "I guess it can be a little much, and there’s something about this thing that feels really personal."
             frisk "Like I’m not supposed to talk about it."
 
     show frisk normal with Dissolve(.25)
-    "*Frisk picks up a knife and starts cleaning it."
+    "* Frisk picks up a knife and starts cleaning it."
     frisk "I’ll figure it out, just like I always do..."
     show frisk distant with Dissolve(.25)
     frisk "..."
-    "*They’re staring at the knife in their hands."
+    "* They’re staring at the knife in their hands."
     frisk "..."
     frisk "I don’t feel so good."
     menu:
@@ -129,7 +129,7 @@ label frisk_fe2_otherday:
             frisk "..."
             #sound of a metal clang as the knife falls to the floor
         "(Back away)":                    
-            $ frisk_fp -=3
+            $get_monster('Frisk').update_FP(3)
             $ frisk_frienship_hangout2_option[14] = True
             frisk "I’m so sorry..."
             show frisk panicking with Dissolve(.25)
@@ -141,19 +141,17 @@ label frisk_fe2_otherday:
         "(Try to grab the knife away from Frisk)" if bravery>=2:      
             $ frisk_frienship_hangout2_option[15] = True
             frisk "...!"
-            "*You pry the knife from their hands, and it falls to the floor."
+            "* You pry the knife from their hands, and it falls to the floor."
             #sound of a metal clang as the knife falls to the floor
             frisk "Huh?"
         "It’s okay, let’s just wait it out." if patience>=2:       
-            $ frisk_fp +=4
+            $get_monster('Frisk').update_FP(4)
             $ frisk_frienship_hangout2_option[16] = True
             frisk "Yeah... Okay..."
             frisk "..."
             frisk "I think it’s going away..."
             #sound of a metal clang as the knife falls to the floor
             
-    stop music
-    play music "audio/music/music-home.mp3"
     show frisk disgusted with Dissolve(.25)
     frisk "Oh no... I’m so sorry!"
     show frisk disappointed with Dissolve(.25)
@@ -170,7 +168,7 @@ label frisk_fe2_otherday:
 
     menu:
         "Are you sure you’re alright?":         
-            $ frisk_fp+=2
+            $get_monster('Frisk').update_FP(2)
             $ frisk_frienship_hangout2_option[17]=True
             frisk "Yeah, I’m fine... Really."
             show frisk sad with Dissolve(.25)
@@ -222,7 +220,7 @@ label frisk_friendship_hangout2_visit_frisk_same_day:
         frisk "..."
     elif visited_frisk==6:
         #7th time
-        $ frisk_fp -=4
+        $get_monster('Frisk').update_FP(-4)
         show frisk angry with Dissolve(.25)
         frisk "I said go away!"
     else:
