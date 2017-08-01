@@ -46,7 +46,12 @@ label demo_values:
 label start:
     
     # call demo_values
-    jump frisk_meeting_start
+    #$ get_room("Your Room").set_event('ruins_breakfast_your_room',False)
+    #$ move_to_room("Your Room")
+    scene black
+    $ get_monster("Frisk").set_special_event("frisk_friendship_hangout1_main")
+    $ get_monster("Frisk").move_to_room("Frisk's Room")
+    $ move_to_room("Frisk's Room")
     
     # $ world.update_world(True)
     # $ get_monster("Flowey").move_to_room("Cave Room")
@@ -78,6 +83,7 @@ label Snail_Hunter_Random_Event:
             "Check under the flowers":
                 $snail_count = renpy.random.randint(3,10)
                 "You found some snails!"
+                $ player.variables['snail_game_count']+=1
                 if player.current_snails >= player.max_snails:
                     "Your pockets are full though. Bummer."
                 elif player.current_snails + snail_count <= player.max_snails:
