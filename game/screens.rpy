@@ -531,46 +531,48 @@ screen gallery():
     # Put the navigation columns in a three-wide grid.
 
     style_group "bkgnds"
-    background
     xfill True
 
     # The left column.
-    vbox:
-        frame:
-            style_group "bkgnd"
-            has vbox
-
-            label _("Display")
-            textbutton _("Window") action Preference("display", "window")
-            textbutton _("Fullscreen") action Preference("display", "fullscreen")
-
-        frame:
-            style_group "bkgnd"
-            has vbox
-
-            label _("Transitions")
-            textbutton _("All") action Preference("transitions", "all")
-            textbutton _("None") action Preference("transitions", "none")
-
-        frame:
-            style_group "bkgnd"
-            has vbox
-
-            textbutton _("Joystick...") action Preference("joystick")
-
+    frame:
+        style_group "bkgnd"
+        hbox:
+            xalign 0.25
+            yalign 0.05
+            label _("Photo Gallery")
+        vbox:
+            xalign 0.25
+            yalign 0.2
+            imagebutton hover "backgrounds/Ruins/background-ruins-blacktree.png" idle "UI/menu_button.png" xpos 10 ypos 10 focus_mask True action NullAction() at scalepic
+            imagebutton hover "backgrounds/Ruins/background-ruins-dummyroom.jpg" idle "UI/menu_button.png" xpos 10 ypos 20 focus_mask True action NullAction() at scalepic 
+            imagebutton hover "backgrounds/Ruins/background-ruins-dummyroom.jpg" idle "UI/menu_button.png" xpos 10 ypos 30 focus_mask True action NullAction() at scalepic 
+        vbox:
+            xalign 0.8
+            yalign 0.2
+            imagebutton hover "backgrounds/Ruins/background-ruins-blookyroom.jpg" idle "UI/menu_button.png" xpos 10 ypos 10 focus_mask True action NullAction() at scalepic 
+            imagebutton hover "backgrounds/Ruins/background-ruins-firstentrance.jpg" idle "UI/menu_button.png" xpos 10 ypos 20 focus_mask True action NullAction() at scalepic 
+            imagebutton hover "backgrounds/Ruins/background-ruins-dummyroom.jpg" idle "UI/menu_button.png" xpos 10 ypos 30 focus_mask True action NullAction() at scalepic
 
 init -2:
+    #img_gal = []
+    
+    #img_gal[0] = "backgrounds/Ruins/background-ruins-blacktree.png"
+    #img_gal[1] = "backgrounds/Ruins/background-ruins-dummyroom.jpg"
+    
+    
     style bkgnd_frame:
-        xfill True
-        xmargin 5
-        top_margin 5
-
-    style bkgnd_vbox:
-        xfill True
+        background "backgrounds/ui/journal.png"
 
     style bkgnd_button:
-        size_group "pref"
+        background "backgrounds/ui/title_screen.png"
+        size_group "bkgnd"
         xalign 1.0
+        
+    transform scalepic:
+        on idle:
+            zoom 0.25
+        on hover:
+            zoom 0.75
 
 ##############################################################################
 # Yes/No Prompt
