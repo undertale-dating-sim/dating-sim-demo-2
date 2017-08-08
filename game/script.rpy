@@ -1,9 +1,31 @@
-init python:
-
-
-
+init:
+    image cg1 = "characters/Frisk/Frisk_Angry.png"
+    image cg2 = "characters/Frisk/Frisk_Annoyed.png"
+    image cg3 = "characters/Frisk/Frisk_Big_Smile.png"
+    image cg4 = "characters/Frisk/Frisk_Blush.png"
+    image cg5 = "characters/Frisk/Frisk_CoveredFace.png"
+    image cg6 = "characters/Frisk/Frisk_Disappointed.png"
+    image cg7 = "characters/Frisk/Frisk_Disgusted.png"
+    image cg8 = "characters/Frisk/Frisk_Distant.png"
+    image cg9 = "characters/Frisk/Frisk_Giggly.png"
+    image cg10 = "characters/Frisk/Frisk_Hurtful_Surprised.png"
     
+    image bg1 = "backgrounds/Ruins/background-ruins-blacktree.png"
+    image bg2 = "backgrounds/Ruins/background-ruins-blookyroom.jpg"
+    image bg3 = "backgrounds/Ruins/background-ruins-dummyroom.jpg"
+    image bg4 = "backgrounds/Ruins/background-ruins-firstentrance.jpg"
+    image bg5 = "backgrounds/Ruins/background-ruins-flowerpatch.jpg"
+    image bg6 = "backgrounds/Ruins/background-ruins-floweyroom.jpg"
+    image bg7 = "backgrounds/Ruins/background-ruins-froggitroom.jpg"
+    image bg8 = "backgrounds/Ruins/background-ruins-hallway.jpg"
+    image bg9 = "backgrounds/Ruins/background-ruins-sassyrock.jpg"
+    image bg10 = "backgrounds/Ruins/background-ruins-spiderbakery.jpg"
+    image bg11 = "backgrounds/Ruins/background-ruins-toykniferoom.jpg"
+    image bg12 = "backgrounds/Ruins/Monster-Candy-Room-Sketch.jpg"
+    image bg13 = "backgrounds/Ruins/Secret-Garden-Final.jpg"
+    image bg14 = "backgrounds/Ruins/Tunnel-Divide-Final.jpg"
 
+init python:
     def beepy_voice(event, interact=True, **kwargs):
         if not interact:
             return
@@ -45,16 +67,16 @@ label demo_values:
 
 label start:
     
-    # call demo_values
-    jump frisk_meeting_start
+    call demo_values
+    #jump frisk_meeting_start
     
-    # $ world.update_world(True)
-    # $ get_monster("Flowey").move_to_room("Cave Room")
-    # $ get_monster("Toriel").move_to_room("Grass Room")
-    # $ get_monster("Napstablook").move_to_room("Tunnels")
-    # $ get_monster("Napstablook").move_to_room("Tunnels")
-    # # get_monster("Frisk").move_to_room("Ruins Entrance")
-    #$ move_to_room("Cave Room")
+    $ world.update_world(True)
+    $ get_monster("Flowey").move_to_room("Cave Room")
+    $ get_monster("Toriel").move_to_room("Grass Room")
+    $ get_monster("Napstablook").move_to_room("Tunnels")
+    $ get_monster("Napstablook").move_to_room("Tunnels")
+    $ get_monster("Frisk").move_to_room("Ruins Entrance")
+    $ move_to_room("Cave Room")
     #jump the_beginning
     return
 

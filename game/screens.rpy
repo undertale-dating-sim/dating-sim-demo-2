@@ -195,7 +195,8 @@ screen main_menu():
         # textbutton _("Testing Area") action ui.callsinnewcontext("testing_area")
         textbutton _("Load Game") action ShowMenu("load")
         textbutton _("Preferences") action ShowMenu("preferences")
-        textbutton _("Gallery") action ShowMenu("gallery")
+        textbutton _("BG Gallery") action ShowMenu("bg_gallery")
+        textbutton _("CG Gallery") action ShowMenu("cg_gallery")
         # textbutton _("Feedback") action Jump("Feedback")
         # textbutton _("Admin_Controls") action ShowMenu("admin_controls")
         # textbutton _("Update") action Jump("updater")
@@ -521,7 +522,101 @@ init -2:
 
 ##############################################################################
 
-screen gallery():
+init python:
+    
+    #Galleries settings - start
+    #list the CG gallery images here:
+    
+    gallery_cg_items = ["cg1", "cg2", "cg3", "cg4", "cg5", "cg6", "cg7", "cg8", "cg9", "cg10"]
+    #list the BG gallery images here (if a BG includes several variations, such as night version, include only one variation here):
+    gallery_bg_items = []
+    #for temp in range(1,10):
+    #    gallery_bg_items[temp] = "bg[temp]"
+    gallery_bg_items = ["bg1", "bg2", "bg3", "bg4", "bg5", "bg6", "bg7", "bg8", "bg9", "bg10"]
+    #how many rows and columns in the gallery screens?
+    gal_rows = 2
+    gal_cols = 3
+    #thumbnail size in pixels:
+    thumbnail_x = 267
+    thumbnail_y = 150
+    #the setting above (267x150) will work well with 16:9 screen ratio. Make sure to adjust it, if your are using 4:3 or something else.
+    #Galleries settings - end
+    
+    gal_cells = gal_rows * gal_cols    
+    g_cg = Gallery()
+    for gal_item in gallery_cg_items:
+        g_cg.button(gal_item + " butt")
+        g_cg.image(gal_item)
+        #g_cg.unlock(gal_item)
+    g_cg.transition = fade
+    cg_page=0
+
+    g_bg = Gallery()
+    for gal_item in gallery_bg_items:
+        g_bg.button(gal_item + " butt")
+        g_bg.image(gal_item)
+        #g_bg.unlock(gal_item)
+        #if BGs have variations, such as night version, uncomment the lines below and include the code for each BG with variations
+#        if gal_item == "bg kitchen":
+#            g_bg.image("bg kitchen dining")
+#            g_bg.unlock("bg kitchen dining")
+    g_bg.transition = fade
+    bg_page=0
+    
+init +1 python:
+    #Here we create the thumbnails. We create a grayscale thumbnail image for BGs, but we use a special "locked" image for CGs to prevent spoilers.
+    for gal_item in gallery_cg_items:
+        renpy.image (gal_item + " butt", im.Scale(ImageReference(gal_item), thumbnail_x, thumbnail_y))
+    for gal_item in gallery_bg_items:
+        renpy.image (gal_item + " butt", im.Scale(ImageReference(gal_item), thumbnail_x, thumbnail_y))
+        renpy.image (gal_item + " butt dis", im.Grayscale(ImageReference(gal_item + " butt")))
+        
+screen cg_gallery:
+    tag menu
+    frame background "backgrounds/ui/journal.png" xpos 10:
+        use navigation
+        grid gal_rows gal_cols:
+            ypos 10
+            $ i = 0
+            $ next_cg_page = cg_page + 1            
+            if next_cg_page > int(len(gallery_cg_items)/gal_cells):
+                $ next_cg_page = 0
+            for gal_item in gallery_cg_items:
+                $ i += 1
+                if i <= (cg_page+1)*gal_cells and i>cg_page*gal_cells:
+                    add g_cg.make_button(gal_item + " butt", gal_item + " butt", im.Scale("gallocked.png", thumbnail_x, thumbnail_y), xalign=0.5, yalign=0.5, idle_border=None, background=None, bottom_margin=24)
+            for j in range(i, (cg_page+1)*gal_cells): #we need this to fully fill the grid
+                null
+        frame:
+            yalign 0.97
+            vbox:
+                if len(gallery_cg_items)>gal_cells:
+                    textbutton _("Next Page") action [SetVariable('cg_page', next_cg_page), ShowMenu("cg_gallery")]
+
+screen bg_gallery:
+#The BG gallery screen is more or less copy pasted from the CG screen above, I only changed "make_button" to include a grayscale thumbnail for locked items
+    tag menu
+    use navigation
+    frame background None xpos 10:
+        grid gal_rows gal_cols:
+            ypos 10
+            $ i = 0
+            $ next_bg_page = bg_page + 1
+            if next_bg_page > int(len(gallery_bg_items)/gal_cells):
+                $ next_bg_page = 0
+            for gal_item in gallery_bg_items:
+                $ i += 1
+                if i <= (bg_page+1)*gal_cells and i>bg_page*gal_cells:
+                    add g_bg.make_button(gal_item + " butt", gal_item + " butt", gal_item + " butt dis", xalign=0.5, yalign=0.5, idle_border=None, background=None, bottom_margin=24)
+            for j in range(i, (bg_page+1)*gal_cells):
+                null
+        frame:
+            yalign 0.97
+            vbox:
+                if len(gallery_bg_items)>gal_cells:
+                    textbutton _("Next Page") action [SetVariable('bg_page', next_bg_page), ShowMenu("bg_gallery")]
+
+screen tempgallery():
 
     tag menu
 
@@ -543,9 +638,10 @@ screen gallery():
         vbox:
             xalign 0.25
             yalign 0.2
-            imagebutton hover "backgrounds/Ruins/background-ruins-blacktree.png" idle "UI/menu_button.png" xpos 10 ypos 10 focus_mask True action NullAction() at scalepic
-            imagebutton hover "backgrounds/Ruins/background-ruins-dummyroom.jpg" idle "UI/menu_button.png" xpos 10 ypos 20 focus_mask True action NullAction() at scalepic 
-            imagebutton hover "backgrounds/Ruins/background-ruins-dummyroom.jpg" idle "UI/menu_button.png" xpos 10 ypos 30 focus_mask True action NullAction() at scalepic 
+            for temp in range(1,2):
+                imagebutton hover "img_gal[temp]" idle "UI/menu_button.png" xpos 10 ypos num focus_mask True action NullAction() at scalepic
+                $ num += 10
+
         vbox:
             xalign 0.8
             yalign 0.2
@@ -554,11 +650,13 @@ screen gallery():
             imagebutton hover "backgrounds/Ruins/background-ruins-dummyroom.jpg" idle "UI/menu_button.png" xpos 10 ypos 30 focus_mask True action NullAction() at scalepic
 
 init -2:
-    #img_gal = []
-    
-    #img_gal[0] = "backgrounds/Ruins/background-ruins-blacktree.png"
-    #img_gal[1] = "backgrounds/Ruins/background-ruins-dummyroom.jpg"
-    
+    python:
+        img_gal = [None]*4
+        
+        img_gal[1] = "backgrounds/Ruins/background-ruins-blacktree.png"
+        img_gal[2] = "backgrounds/Ruins/background-ruins-dummyroom.jpg"
+        img_gal[3] = "backgrounds/Ruins/background-ruins-blookyroom.jpg"
+        num = 10
     
     style bkgnd_frame:
         background "backgrounds/ui/journal.png"
