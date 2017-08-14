@@ -95,7 +95,7 @@ init -9 python:
             
 
 
-label initialize_frisk:
+init:
     #here is where the sprites go
 
     image frisk angry  = "characters/Frisk/Frisk_Angry.png"
@@ -126,7 +126,6 @@ label initialize_frisk:
     python:
         def frisk(text, *args, **kwargs):
                friskChar(text, *args, **kwargs)
-    return
 
 ######    Frisk's default scene     ######
 

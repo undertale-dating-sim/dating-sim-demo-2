@@ -83,7 +83,7 @@ init -9 python:
             
 
 
-label initialize_grillby:
+init:
     
     image grillby grillby1 = "characters/Grillby/Grillby1.png"
     image grillby grillby2 = "characters/Grillby/Grillby2.png"
@@ -104,6 +104,5 @@ label initialize_grillby:
     python:
         def grillby(text, *args, **kwargs):
                grillbyChar(text, *args, **kwargs)
-    return
 
 

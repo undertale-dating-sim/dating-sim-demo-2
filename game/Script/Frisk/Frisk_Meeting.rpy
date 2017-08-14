@@ -1,4 +1,5 @@
 label frisk_meeting_start:
+                    
     python:
         chose_frisk_meeting_option40_5 = False
         chose_frisk_meeting_option39=False
@@ -23,13 +24,14 @@ label frisk_meeting_start:
         chose_frisk_meeting_option37 = False
         chose_frisk_meeting_option72 = False
 
-    jump frisk_meeting_corridor_after_dinner
+    #jump frisk_meeting_corridor_after_dinner
 
     $ renpy.transition(fade)
     $ renpy.show(world.get_room("Overlook").bg)
     show frisk normal
     $renpy.pause()
     show frisk surprised with Dissolve(.25)
+
     
     unknown "Oh! Um, hi. I wasn’t expecting to see another human. How... how did you get here?" 
 

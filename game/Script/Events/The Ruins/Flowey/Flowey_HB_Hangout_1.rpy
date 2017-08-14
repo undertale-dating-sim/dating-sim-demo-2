@@ -1,7 +1,15 @@
 label flowey_HP_hangout_1(owner = get_flowey()):
-
     # HP Hangout 1
     # End the first Flowey friendship hangout by choosing the option "We're going to play a game"
+    
+    ##### Unlocked images for gallery! #####
+    
+    python:
+        for gal_item in gallery_cg_items:
+            if gallery_cg_items[gal_item] == "flowey normal":
+                gal_unlock = ["flowey horror",  "flowey suspicious", "flowey angry", "flowey sad"]
+                for thumbnail in gal_unlock:
+                    gallery_cg_items.insert(gal_item, thumbnail)
     
     show flowey sideglance with Dissolve(.25)
     flowey "What do {i}you{/i} want?"

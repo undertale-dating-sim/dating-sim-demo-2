@@ -118,8 +118,7 @@ init -9 python:
             
 
 
-label initialize_napstablook:
-    
+init:
     #Blooky Sprites
     image napstablook normal = "characters/Napstablook/Napstablook_Normal.png"
     image napstablook sad = "characters/Napstablook/Napstablook_Sad.png"
@@ -135,7 +134,6 @@ label initialize_napstablook:
     python:
         def napstablook(text, *args, **kwargs):
                napstablookChar(text, *args, **kwargs)
-    return
 
 label Napstablook_manager_default(owner = False, pause = True):
 

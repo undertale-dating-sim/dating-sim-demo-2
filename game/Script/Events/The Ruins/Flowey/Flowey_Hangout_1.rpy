@@ -2,6 +2,16 @@ label flowey_hangout1(owner = get_flowey()):
     #Hangout 1 
     #{After tutorial}
     #This initial "Hangout" dialogue will occur regardless if player has or has not yet met the prerequisites for a friendship with flowey
+    
+    ##### Unlocked images for gallery! #####
+    
+    python:
+        for gal_item in gallery_cg_items:
+            if gallery_cg_items[gal_item] == "flowey normal":
+                gal_unlock = ["flowey backside", "flowey annoyed", "flowey sideglance", "flowey surprised"]
+                for thumbnail in gal_unlock:
+                    gallery_cg_items.insert(gal_item, thumbnail)
+    
     show flowey surprised with Dissolve(.25)
     flowey "Wha-?! You snuck up on me."
 

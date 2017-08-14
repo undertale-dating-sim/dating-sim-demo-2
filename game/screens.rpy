@@ -522,32 +522,42 @@ init -2:
 
 ##############################################################################
 
-init python:
+init +1 python:
     
     #Galleries settings - start
     #list the CG gallery images here:
     
-    gallery_cg_items = ["cg1", "cg2", "cg3", "cg4", "cg5", "cg6", "cg7", "cg8", "cg9", "cg10"]
+    gallery_cg_items = ["flowey normal", "flowey backside", "flowey annoyed", "flowey sideglance", "flowey surprised", "flowey blush",  "flowey wink", "flowey excited", "flowey laugh", "flowey sad", "flowey smug", "flowey horror",  "flowey suspicious", "flowey angry", "flowey sad",
+                        "frisk angry", "frisk annoyed", "frisk bigsmile", "frisk blushing", "frisk disappointed", "frisk distant", "frisk giggly", "frisk hurtsurprised", "frisk normal", "frisk sad", "frisk somehappy", "frisk smallsmile", "frisk surprised", "frisk tearyeyes", "frisk upset",
+                        "toriel placeholder", "toriel angry", "toriel annoyed", "toriel awkward", "toriel blushing", "toriel laughing", "toriel normal", "toriel reallysad", "toriel sad", "toriel smallsmile", "toriel smile", "toriel surprised",
+                        "napstablook normal", "napstablook sad", "napstablook shyblush", "napstablook smallsmile", "napstablook smile", "napstablook surprised",
+                        "grillby grillby1", "grillby grillby2", "grillby grillby3", "grillby grillby4", "grillby grillby5", "grillby grillby6", "grillby grillby7", "grillby grillby8", "grillby grillby9", "grillby grillby10", "grillby grillby11", "grillby grillby12"]
     #list the BG gallery images here (if a BG includes several variations, such as night version, include only one variation here):
-    gallery_bg_items = []
     #for temp in range(1,10):
     #    gallery_bg_items[temp] = "bg[temp]"
-    gallery_bg_items = ["bg1", "bg2", "bg3", "bg4", "bg5", "bg6", "bg7", "bg8", "bg9", "bg10"]
+    gallery_bg_items = ["bg1", "bg2", "bg3", "bg4", "bg5", "bg6", "bg7", "bg8", "bg9", "bg10", "bg11", "bg12", "bg13", "bg14", "bg15", "bg16", "bg17", "bg18", "bg19", "bg20", "bg21", "bg22"]
     #how many rows and columns in the gallery screens?
-    gal_rows = 2
-    gal_cols = 3
+    bg_rows = 2
+    bg_cols = 3
+    cg_rows = 1
+    cg_cols = 1
     #thumbnail size in pixels:
-    thumbnail_x = 267
-    thumbnail_y = 150
+    bg_x = 267
+    bg_y = 150
+    cg_x = 250
+    cg_y = 375
     #the setting above (267x150) will work well with 16:9 screen ratio. Make sure to adjust it, if your are using 4:3 or something else.
     #Galleries settings - end
     
-    gal_cells = gal_rows * gal_cols    
+    bg_cells = bg_rows * bg_cols
+    cg_cells = cg_rows * cg_cols
+    
     g_cg = Gallery()
+    
     for gal_item in gallery_cg_items:
         g_cg.button(gal_item + " butt")
-        g_cg.image(gal_item)
-        #g_cg.unlock(gal_item)
+        g_cg.image("images/backgrounds/Ruins/background-ruins-floweyroom.jpg", gal_item)
+        g_cg.unlock(gal_item)
     g_cg.transition = fade
     cg_page=0
 
@@ -566,111 +576,74 @@ init python:
 init +1 python:
     #Here we create the thumbnails. We create a grayscale thumbnail image for BGs, but we use a special "locked" image for CGs to prevent spoilers.
     for gal_item in gallery_cg_items:
-        renpy.image (gal_item + " butt", im.Scale(ImageReference(gal_item), thumbnail_x, thumbnail_y))
+        renpy.image (gal_item + " butt", im.Scale(ImageReference(gal_item), cg_x, cg_y))
     for gal_item in gallery_bg_items:
-        renpy.image (gal_item + " butt", im.Scale(ImageReference(gal_item), thumbnail_x, thumbnail_y))
+        renpy.image (gal_item + " butt", im.Scale(ImageReference(gal_item), bg_x, bg_y))
         renpy.image (gal_item + " butt dis", im.Grayscale(ImageReference(gal_item + " butt")))
         
 screen cg_gallery:
     tag menu
-    frame background "backgrounds/ui/journal.png" xpos 10:
-        use navigation
-        grid gal_rows gal_cols:
-            ypos 10
+    frame:
+        #use navigation
+        background "backgrounds/ui/journal.png"
+        grid cg_rows cg_cols:
+            xpos 100
+            ypos 75
             $ i = 0
-            $ next_cg_page = cg_page + 1            
-            if next_cg_page > int(len(gallery_cg_items)/gal_cells):
+            $ next_cg_page = cg_page + 1 
+            $ prev_cg_page = cg_page - 1
+            if next_cg_page > int(len(gallery_cg_items)/cg_cells):
                 $ next_cg_page = 0
+            if prev_cg_page < 0:
+                $ prev_cg_page = int(len(gallery_cg_items)/cg_cells) - 1
             for gal_item in gallery_cg_items:
+                #g_cg.image("images/backgrounds/Ruins/backgrounds/Ruins/background-ruins-blookyroom.jpg", gal_item)
                 $ i += 1
-                if i <= (cg_page+1)*gal_cells and i>cg_page*gal_cells:
-                    add g_cg.make_button(gal_item + " butt", gal_item + " butt", im.Scale("gallocked.png", thumbnail_x, thumbnail_y), xalign=0.5, yalign=0.5, idle_border=None, background=None, bottom_margin=24)
-            for j in range(i, (cg_page+1)*gal_cells): #we need this to fully fill the grid
+                if i <= (cg_page+1)*cg_cells and i>cg_page*cg_cells:
+                    add g_cg.make_button(gal_item + " butt", gal_item + " butt", im.Scale("images/UI/locked.png", cg_x, cg_y), xalign=0.5, yalign=0.5, idle_border=None, background=None, bottom_margin=24)
+            for j in range(i, (cg_page+1)*cg_cells): #we need this to fully fill the grid
                 null
-        frame:
-            yalign 0.97
-            vbox:
-                if len(gallery_cg_items)>gal_cells:
-                    textbutton _("Next Page") action [SetVariable('cg_page', next_cg_page), ShowMenu("cg_gallery")]
+                
+        imagebutton idle "images/UI/right_arrow.png" xpos 300 ypos 450 focus_mask True action [SetVariable('cg_page', next_cg_page), ShowMenu("cg_gallery")] at scalearrow
+        imagebutton idle "images/UI/left_arrow.png" xpos 75 ypos 450 focus_mask True action [SetVariable('cg_page', prev_cg_page), ShowMenu("cg_gallery")] at scalearrow
 
+        vbox:
+            style_group "gm_nav"
+            xalign .98 yalign .98
+            textbutton _("Return") action Return()
+            textbutton _("Help") action Help()
+            textbutton _("Quit") action Quit(confirm=False)
+        
 screen bg_gallery:
 #The BG gallery screen is more or less copy pasted from the CG screen above, I only changed "make_button" to include a grayscale thumbnail for locked items
     tag menu
     use navigation
     frame background None xpos 10:
-        grid gal_rows gal_cols:
+        grid bg_rows bg_cols:
             ypos 10
             $ i = 0
             $ next_bg_page = bg_page + 1
-            if next_bg_page > int(len(gallery_bg_items)/gal_cells):
+            $ prev_bg_page = bg_page - 1
+            if next_bg_page > int(len(gallery_bg_items)/bg_cells):
                 $ next_bg_page = 0
+            if prev_bg_page < 0:
+                $ prev_bg_page = int(len(gallery_bg_items)/bg_cells)
             for gal_item in gallery_bg_items:
                 $ i += 1
-                if i <= (bg_page+1)*gal_cells and i>bg_page*gal_cells:
+                if i <= (bg_page+1)*bg_cells and i>bg_page*bg_cells:
                     add g_bg.make_button(gal_item + " butt", gal_item + " butt", gal_item + " butt dis", xalign=0.5, yalign=0.5, idle_border=None, background=None, bottom_margin=24)
-            for j in range(i, (bg_page+1)*gal_cells):
+            for j in range(i, (bg_page+1)*bg_cells):
                 null
-        frame:
-            yalign 0.97
-            vbox:
-                if len(gallery_bg_items)>gal_cells:
-                    textbutton _("Next Page") action [SetVariable('bg_page', next_bg_page), ShowMenu("bg_gallery")]
-
-screen tempgallery():
-
-    tag menu
-
-    # Include the navigation.
-    use navigation
-
-    # Put the navigation columns in a three-wide grid.
-
-    style_group "bkgnds"
-    xfill True
-
-    # The left column.
-    frame:
-        style_group "bkgnd"
-        hbox:
-            xalign 0.25
-            yalign 0.05
-            label _("Photo Gallery")
-        vbox:
-            xalign 0.25
-            yalign 0.2
-            for temp in range(1,2):
-                imagebutton hover "img_gal[temp]" idle "UI/menu_button.png" xpos 10 ypos num focus_mask True action NullAction() at scalepic
-                $ num += 10
-
-        vbox:
-            xalign 0.8
-            yalign 0.2
-            imagebutton hover "backgrounds/Ruins/background-ruins-blookyroom.jpg" idle "UI/menu_button.png" xpos 10 ypos 10 focus_mask True action NullAction() at scalepic 
-            imagebutton hover "backgrounds/Ruins/background-ruins-firstentrance.jpg" idle "UI/menu_button.png" xpos 10 ypos 20 focus_mask True action NullAction() at scalepic 
-            imagebutton hover "backgrounds/Ruins/background-ruins-dummyroom.jpg" idle "UI/menu_button.png" xpos 10 ypos 30 focus_mask True action NullAction() at scalepic
-
+        
+        imagebutton idle "images/UI/right_arrow.png" xpos 400 ypos 500 focus_mask True action [SetVariable('bg_page', next_bg_page), ShowMenu("bg_gallery")] at scalearrow
+        imagebutton idle "images/UI/left_arrow.png" xpos 100 ypos 500 focus_mask True action [SetVariable('bg_page', prev_bg_page), ShowMenu("bg_gallery")] at scalearrow
+        
 init -2:
-    python:
-        img_gal = [None]*4
-        
-        img_gal[1] = "backgrounds/Ruins/background-ruins-blacktree.png"
-        img_gal[2] = "backgrounds/Ruins/background-ruins-dummyroom.jpg"
-        img_gal[3] = "backgrounds/Ruins/background-ruins-blookyroom.jpg"
-        num = 10
-    
-    style bkgnd_frame:
-        background "backgrounds/ui/journal.png"
-
-    style bkgnd_button:
-        background "backgrounds/ui/title_screen.png"
-        size_group "bkgnd"
-        xalign 1.0
-        
-    transform scalepic:
+    transform scalearrow:
         on idle:
-            zoom 0.25
+            zoom 1.0
         on hover:
-            zoom 0.75
+            zoom 1.5
 
 ##############################################################################
 # Yes/No Prompt

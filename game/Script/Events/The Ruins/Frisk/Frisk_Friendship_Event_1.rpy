@@ -1,9 +1,14 @@
-
-
-label frisk_friendhsip_event_1:
+label frisk_friendship_event_1:
     #"Do you want to go snail hunting with me?" should be added to Frisk’s 
         #general dialog if the player has not yet completed this event.
     #menu: "Do you want to go snail hunting with me?":
+    
+    python:
+        for gal_item in gallery_cg_items:
+            if gallery_cg_items[gal_item] == "frisk normal":
+                gal_unlock = ["frisk disgusted", "frisk coveredface",  "frisk coveredfacewitheyes", "frisk panickinghands", "frisk panicking", "frisk soulless"]
+                for thumbnail in gal_unlock:
+                    gallery_cg_items.insert(gal_item, thumbnail)
     
     show frisk smallsmile with Dissolve(.25)
     frisk "Yeah, that sounds fun!"

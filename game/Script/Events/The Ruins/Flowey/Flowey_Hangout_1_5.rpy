@@ -2,6 +2,15 @@ label Flowey_Hangout_1_5(owner = get_flowey()):
     # The hangout occurs the second time the player encounters Flowey after Day 1.
     # If possible, this hangout would not occur in subsequent playthroughs after the first time it occurs.
     
+    ##### Unlocked images for gallery! #####
+    
+    python:
+        for gal_item in gallery_cg_items:
+            if gallery_cg_items[gal_item] == "flowey normal":
+                gal_unlock = ["flowey blush",  "flowey wink", "flowey excited", "flowey laugh", "flowey sad", "flowey smug"]
+                for thumbnail in gal_unlock:
+                    gallery_cg_items.insert(gal_item, thumbnail)
+
     show flowey annoyed with Dissolve(.25)
     flowey "Oh. It's you again."
     flowey "Great. This is lovely."

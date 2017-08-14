@@ -1,15 +1,4 @@
 init:
-    image cg1 = "characters/Frisk/Frisk_Angry.png"
-    image cg2 = "characters/Frisk/Frisk_Annoyed.png"
-    image cg3 = "characters/Frisk/Frisk_Big_Smile.png"
-    image cg4 = "characters/Frisk/Frisk_Blush.png"
-    image cg5 = "characters/Frisk/Frisk_CoveredFace.png"
-    image cg6 = "characters/Frisk/Frisk_Disappointed.png"
-    image cg7 = "characters/Frisk/Frisk_Disgusted.png"
-    image cg8 = "characters/Frisk/Frisk_Distant.png"
-    image cg9 = "characters/Frisk/Frisk_Giggly.png"
-    image cg10 = "characters/Frisk/Frisk_Hurtful_Surprised.png"
-    
     image bg1 = "backgrounds/Ruins/background-ruins-blacktree.png"
     image bg2 = "backgrounds/Ruins/background-ruins-blookyroom.jpg"
     image bg3 = "backgrounds/Ruins/background-ruins-dummyroom.jpg"
@@ -24,6 +13,15 @@ init:
     image bg12 = "backgrounds/Ruins/Monster-Candy-Room-Sketch.jpg"
     image bg13 = "backgrounds/Ruins/Secret-Garden-Final.jpg"
     image bg14 = "backgrounds/Ruins/Tunnel-Divide-Final.jpg"
+    image bg15 = "backgrounds/TorielsHouse/Background_RuinsCorridor.png"
+    image bg16 = "backgrounds/TorielsHouse/background-ruins-corridor.png"
+    image bg17 = "backgrounds/TorielsHouse/background-ruins-friskroom.png"
+    image bg18 = "backgrounds/TorielsHouse/background-ruins-gate.png"
+    image bg19 = "backgrounds/TorielsHouse/background-ruins-kitchen.png"
+    image bg20 = "backgrounds/TorielsHouse/background-ruins-livingroom.png"
+    image bg21 = "backgrounds/TorielsHouse/background-ruins-staircase.png"
+    image bg22 = "backgrounds/TorielsHouse/background-ruins-yourroom.png"
+    
 
 init python:
     def beepy_voice(event, interact=True, **kwargs):
@@ -68,12 +66,13 @@ label demo_values:
 label start:
     
     call demo_values
-    #jump frisk_meeting_start
+    
+    jump frisk_meeting_start
     
     $ world.update_world(True)
+    
     $ get_monster("Flowey").move_to_room("Cave Room")
     $ get_monster("Toriel").move_to_room("Grass Room")
-    $ get_monster("Napstablook").move_to_room("Tunnels")
     $ get_monster("Napstablook").move_to_room("Tunnels")
     $ get_monster("Frisk").move_to_room("Ruins Entrance")
     $ move_to_room("Cave Room")

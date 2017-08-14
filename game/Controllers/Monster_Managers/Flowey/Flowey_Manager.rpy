@@ -25,8 +25,6 @@ init -9 python:
                     self.special_event = Event('Flowey_Hangout_1_5',False,self)
 
 
-
-
     #update_schedule(self,day,timezone,location,event):
 
         def handle_schedule(self):
@@ -73,7 +71,7 @@ init -9 python:
             #self.update_schedule("Saturday","Evening","Cave Room",self.default_event)
 
 
-label initialize_flowey:
+init:
     image flowey angry = "characters/Flowey/FloweyLineart-Angrycolor.png"
     image flowey annoyed = "characters/Flowey/FloweyLineart-Annoyedcolor.png"
     image flowey backside = "characters/Flowey/FloweyLineart-Backsidecolor.png"
@@ -99,8 +97,6 @@ label initialize_flowey:
 
     define flowey = Character('Flowey', color="#FFFFFF")
     define unknown = Character('?????', color = "#FFFFFF")
-    
-    return
 
 #this is floweys default scene
 label flowey_manager_default(owner = False,pause = True):

@@ -91,8 +91,7 @@ init -9 python:
             
 
 
-label initialize_toriel:
-        
+init:        
     image toriel placeholder = "characters/Toriel/toriel_ph.png"
     image toriel angry = "characters/Toriel/Toriel_Angry.png"
     image toriel annoyed = "characters/Toriel/Toriel_Annoyed.png"
@@ -112,7 +111,6 @@ label initialize_toriel:
     python:
         def toriel(text, *args, **kwargs):
                torielChar(text, *args, **kwargs)
-    return
 
 #this is Toriels default scene
 label Toriel_manager_default(owner = False,pause = True):
