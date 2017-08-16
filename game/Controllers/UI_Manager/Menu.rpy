@@ -41,7 +41,8 @@ screen show_menu:
             vbox:
                 textbutton "ITEM" action [Play ("sound", "audio/sfx/click.wav"),Show("items"),Hide("stats"),Hide("cell")] background "#000000"
                 textbutton "STAT" action [Play ("sound", "audio/sfx/click.wav"),Show("stats"),Hide("items"),Hide("cell")] background "#000000"
-                textbutton "CELL" action [Play ("sound", "audio/sfx/click.wav"),Show("cell"),Hide("stats"),Hide("items")] background "#000000"
+                if 'has_cellphone' in player.variables:
+                    textbutton "CELL" action [Play ("sound", "audio/sfx/click.wav"),Show("cell"),Hide("stats"),Hide("items")] background "#000000"
 
 label increment_time(arg = 'day'):
     python:

@@ -60,11 +60,11 @@ label toriel_friendship_hangout_1(owner=get_toriel()):
     show toriel laughing with Dissolve(.25)
     toriel "...Tu-Toriel!"
     menu:
-        "*Force a chuckle":
+        "Force a chuckle":
             show toriel awkward with Dissolve(.25)
             toriel "Anyway, next we will need to roll the crust and put it into the pie tin."
             toriel "The pie tin is under the oven. Would you please go get it?"
-        "*Laugh":
+        "Laugh":
             $world.get_monster('Toriel').update_FP(2)
             show toriel blushing with Dissolve(.25)
             toriel "I am glad you are enjoying my jokes, but we do need to put this crust in the pan, now."
@@ -122,7 +122,7 @@ label toriel_friendship_hangout_1(owner=get_toriel()):
             toriel "You are very good at these!"
     
     show toriel smile with Dissolve(.25)
-    "*Toriel shells the snails while you chop the vegetables."
+    "* Toriel shells the snails while you chop the vegetables."
     toriel "That should be good." 
     toriel "Would you please bring me the vegetables? We must simply mix everything together, and then I can bake the quiche." 
     $toriel_hangout_pun = False
@@ -131,11 +131,11 @@ label toriel_friendship_hangout_1(owner=get_toriel()):
         return
 
     show toriel smile with Dissolve(.25)
-    "*Toriel mixes the ingredients and pours them into the crust in the pan."
+    "* Toriel mixes the ingredients and pours them into the crust in the pan."
     toriel "Now to bake!"
-    "*Toriel conjures a glowing flame in her hands and bakes the quiche in a few moments."
+    "* Toriel conjures a glowing flame in her hands and bakes the quiche in a few moments."
     menu:
-        "*Scream in alarm":
+        "Scream in alarm":
             $world.get_monster('Toriel').update_FP(-1)
             show toriel surprised with Dissolve(.25)
             toriel "Oh no!" 
@@ -191,10 +191,10 @@ label toriel_friendship_hangout_1(owner=get_toriel()):
 #This one is called twice. 
 label .pie_ne:
     menu:
-        "*Chuckle awkwardly":
+        "Chuckle awkwardly":
             show toriel smile
             toriel "Well, anyway. Shall we begin?" 
-        "*Laugh":
+        "Laugh":
             $world.get_monster ('Toriel').FP +=2
             show toriel blushing
             toriel "Oh, I am glad you liked my little joke." 
@@ -217,12 +217,12 @@ label .pie_ne:
 #Loops!
 label .get_butter:
     menu:
-        "*Get the butter":
-            "*Toriel mixes the butter in a bowl with some flour."
+        "Get the butter":
+            "* Toriel mixes the butter in a bowl with some flour."
             toriel "You know, there is very little that I like..."
             show toriel laughing
             toriel "...{i}butter{/i} than baking!"
-        "*Do not.":
+        "Do not.":
             $loop_count +=1
             if loop_count == 1:
                 show toriel annoyed
@@ -241,13 +241,13 @@ label .get_butter:
     
 label .get_tin:
     menu:
-        "*get the pie tin":
+        "Get the pie tin":
             toriel "Thank you."
-            "*Toriel takes the pie tin and hands you a rolling pin."
+            "* Toriel takes the pie tin and hands you a rolling pin."
             toriel "Now, I will prepare the filling while you roll the dough. Make sure it is even! We wouldn’t want the ingredients to..."
             show toriel laughing
             toriel "...{i}roll{/i} out."
-        "*do not":
+        "Do not":
             $world.get_monster('Toriel').FP-=1
             $loop_count +=1
             if loop_count ==1:
@@ -263,7 +263,7 @@ label .get_tin:
                 show toriel annoyed 
                 toriel "..."
                 toriel "If you will not be helpful, I must ask you to please leave the kitchen."
-        "*Tell another pun instead" if toriel_hangout_pun == False:
+        "Tell another pun instead" if toriel_hangout_pun == False:
             $world.get_monster('Toriel').update_FP(2)
             $toriel_hangout_pun = True
             $toriel_hangout_pun_count +=1
@@ -281,16 +281,16 @@ label .get_tin:
 
 label .roll_crust:
     menu:
-        "*Roll out the pie crust":
-            "*You begin to roll out the crust."
+        "Roll out the pie crust":
+            "* You begin to roll out the crust."
             toriel "I think this recipe will turn out..."
             show toriel laughing
             toriel "{i}Egg{/i}-cellent!"
             menu:
-                "*laugh":
+                "Laugh":
                     $world.get_monster('Toriel').update_FP(1)
                     show toriel smile
-                "*Just keep rolling":
+                "Just keep rolling":
                     $world.get_monster('Toriel').update_FP(-1)
                     if toriel_hangout_pun_hater == False:
                         show toriel awkward
@@ -309,7 +309,7 @@ label .roll_crust:
                     toriel "Oh!"
                     show toriel laughing
                     toriel "That is a good {i}yoke{/i}!"
-        "*Do not":
+        "Do not":
             $world.get_monster('Toriel').update_FP(-1)
             $loop_count +=1
             if loop_count ==1:
@@ -325,7 +325,7 @@ label .roll_crust:
                 show toriel annoyed 
                 toriel "..."
                 toriel "If you will not be helpful, I must ask you to please leave the kitchen."
-        "*Tell another pun" if toriel_hangout_pun == False:
+        "Tell another pun" if toriel_hangout_pun == False:
             $world.get_monster('Toriel').update_FP(2)
             $toriel_hangout_pun = True
             $toriel_hangout_pun_count +=1
@@ -344,11 +344,11 @@ label .roll_crust:
 
 label .get_veggies:
     menu:
-        "*Bring Toriel the vegetables":
-            "*You begin to roll out the crust."
+        "Bring Toriel the vegetables":
+            "* You begin to roll out the crust."
             show toriel smile 
             toriel "Thank you." 
-        "*Do not":
+        "Do not":
             $world.get_monster('Toriel').update_FP(-1)
             $loop_count +=1
             if loop_count ==1:
@@ -375,7 +375,7 @@ label .get_veggies:
                 toriel "I do need those vegetables, however. Root and otherwise." 
                 jump .get_veggies
             else:
-                #show toriel annoyed 
+                show toriel annoyed 
                 toriel "..."
                 toriel "...Though I have been enjoying your jokes, there is work to be done." 
                 toriel "If you will not be helpful, I must ask you to leave the kitchen."

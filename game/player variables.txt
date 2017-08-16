@@ -7,7 +7,7 @@ Toriel
 	toriel_plant_watered_count
 	toriel_plant_watered_day
 	Toriel_Friendship_2_Complete
-        toriel_accepted
+        accepted_toriel
     
 Napstablook
         ruins_explored
@@ -27,6 +27,9 @@ Tutorial
 	accepted_frisk
 	clicked_toriel
 	tutorial_over
+	met_toriel
+	ruins_want_to_leave
+
 
 
 Cell Phone Calls

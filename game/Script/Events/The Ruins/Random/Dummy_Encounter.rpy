@@ -50,7 +50,7 @@ label dummy_ruins_event_menu:
                     "* You pick on the dummy."
                     dummy "..."
                     "..."
-                    "* It doesn’t seem to react in any way…"
+                    "* It doesn’t seem to react in any way..."
                     "* But it still feels like you got your point across."
                     jump dummy_ruins_event_menu
 

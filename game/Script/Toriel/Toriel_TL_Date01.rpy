@@ -13,14 +13,17 @@ init:
 
 
     
-label toriel_tl_date_1(owner=get_toriel()):
+label toriel_tl_date_1(owner='Toriel'):
+    call show_buttons
     show toriel normal with Dissolve(.25)
+    $ renpy.pause()
+    call hide_buttons
     toriel "Dear, do you have a moment to talk?"
     toriel "I have noticed that you have been acting quite... straightforward with me."
     toriel "Now, I will not tell you whom you should be interested in, but you are aware that I am no spring chicken, correct?"
     toriel "I think you would be better off chasing a younger skirt."
 
-label opening_menu:
+label toriel_tl_date_1_opening_menu:
     menu:
         "I LOVE YOU THE WAY YOU ARE! MARRY ME!" if toriel_tl_date01_marryme_joke == False:
             $ world.get_monster('Toriel').update_FP(-2)
@@ -31,12 +34,12 @@ label opening_menu:
                 "I'm just kidding.":
                     show toriel sad with Dissolve(.25)
                     toriel "Well... Please do not joke like that. It is never kind to play with people’s feelings, yes?"
-                    jump opening_menu
+                    jump toriel_tl_date_1_opening_menu
                 "YOU'RE MY ONE AND ONLY GODDESS":
                     $ world.get_monster('Toriel').update_FP(-3)
-                    toriel "I see you are feeling rather… strongly on that topic. But still, I must ask that you stop this kind of behavior. I do not appreciate it."
+                    toriel "I see you are feeling rather... strongly on that topic. But still, I must ask that you stop this kind of behavior. I do not appreciate it."
                     toriel "That was all I wished to ask you. Have a good day."
-                    jump date_retry
+                    $ get_monster('Toriel').set_special_event('toriel_tl_date1_retry')
         "No, actually, I would really like to go on a date with you.":
             $ get_monster("Toriel").DP += 2
             show toriel laughing with Dissolve(.25)
@@ -52,7 +55,7 @@ label opening_menu:
                     $ toriel_tl_date01_laughitoff = True
                     show toriel smallsmile with Dissolve(.25)
                     toriel "I'm glad we had this talk."
-                    jump date_retry
+                    $ get_monster('Toriel').set_special_event('toriel_tl_date1_retry')
                 "Gosh, I don’t know. Why would someone ever want to date such a kind and experienced lady?":
                     $ get_monster("Toriel").DP +=4
                     show toriel blushing with Dissolve(.25)
@@ -68,7 +71,7 @@ label opening_menu:
                             $ world.get_monster('Toriel').update_FP(-2)
                             toriel "I do not appreciate being played with."
                             toriel "Perhaps we should just forget about all of this."
-                            jump date_retry
+                            $ get_monster('Toriel').set_special_event('toriel_tl_date1_retry')
         "Maybe some people would agree, but I don't think that.":
             $ get_monster("Toriel").update_HP(1)
             show toriel normal with Dissolve(.25)
@@ -82,12 +85,21 @@ label opening_menu:
             $ toriel_tl_date01_crazyoldgoat = True
             show toriel angry with Dissolve(.25)
             toriel "Well, in that case, I guess there is nothing to talk about."
-            jump date_retry
+            $ get_monster('Toriel').set_special_event('toriel_tl_date1_retry')
+
+    call show_buttons
+    return
             
 
 #activated next time Toriel is clicked on, add to menu
-label date_retry:
-    "About earlier... I actually do want to date you."
+label toriel_tl_date1_retry(owner = 'Toriel'):
+    call show_buttons
+    show toriel annoyed with Dissolve(.25)
+    $ renpy.pause()
+    call hide_buttons
+    menu:
+        "About earlier... I actually do want to date you.":
+            pass
     show toriel awkward with Dissolve(.25)
     toriel "You could have just said so, dear."
     menu:
@@ -130,7 +142,7 @@ label date_retry:
             show toriel smallsmile with Dissolve(.25)
             toriel "But... Apology accepted."
             menu:
-                "Thank you. Then… can I dare to ask you on a date again?":
+                "Thank you. Then... can I dare to ask you on a date again?":
                     $get_monster("Toriel").DP +=1
                     show toriel blushing with Dissolve(.25)
                     toriel "I do not know, {i}can{/i} you?"
@@ -196,7 +208,7 @@ label date_retry:
                                     $world.get_monster('Toriel').update_FP(-4)
                                     show toriel awkward with Dissolve(.25)
                                     toriel "Well, in the past, monsters {i}were{/i} known to sometimes- Look, it does not matter anymore. Please do not speak of this from now on."
-                                    toriel "And… I suppose a date is out of the question now. I do not think this would work."
+                                    toriel "And... I suppose a date is out of the question now. I do not think this would work."
                                     toriel "Please do not ask again."
                                     jump bad_end
                                 "Okay, I guess.":
@@ -255,7 +267,7 @@ label date_retry:
                     toriel "I guess it is a good thing we never decided to go on a date, then."
                     toriel "Please do not ask me again."
                     jump bad_end
-                "Maybe next time, try being a bit less… forceful.":
+                "Maybe next time, try being a bit less... forceful.":
                     $get_monster("Toriel").DP -=2
                     show toriel annoyed with Dissolve(.25)
                     toriel "I will take that into consideration."
@@ -280,8 +292,9 @@ label date_retry:
 # 'q' stands for question. So, q_start = questions start, etc.
 label toriel_tl_date_1_start:
     #scene change ruins overlook
+    $ renpy.transition(fade)
     $ renpy.show(world.get_room("Overlook").bg)
-    with fade
+    $ world.current_area.current_room = "Overlook"
     show toriel normal with Dissolve(.25)
     toriel "Here we are. What do you think?"
     menu:
@@ -304,7 +317,7 @@ label toriel_tl_date_1_start:
             jump q_start
         "...":
             show toriel smile with Dissolve(.25)
-            toriel "Speechless? I would not blame you… It is a beautiful view."
+            toriel "Speechless? I would not blame you... It is a beautiful view."
             toriel "This place is rather out of the way, and not many people come here."
             toriel "I thought a quiet place could be nice."
             menu:
@@ -367,7 +380,7 @@ label toriel_tl_date_1_start:
                                             show toriel laughing with Dissolve(.25)
                                             toriel "Then I guess we will both have to wing it. Seems we are two birds of the same feather after all!"
                                             show toriel smile with Dissolve(.25)
-                                            toriel "Oh dear, I kept rambling about myself. Now it is your turn to talk. So tell me… What is your favorite color?"
+                                            toriel "Oh dear, I kept rambling about myself. Now it is your turn to talk. So tell me... What is your favorite color?"
                                             jump q_favcolor
                                 "Not at all.":
                                     $get_monster("Toriel").DP -=2
@@ -657,7 +670,7 @@ label q_start:         #Selection 30
                             toriel "I see you, too, are adept at the art of telling jokes."
                             toriel "I may have to step up my game."
                             toriel "Instead of telling jokes, perhaps we should move on. After all, I believe we are supposed to be getting to know each other better."
-                            toriel "So…"
+                            toriel "So..."
                             show toriel awkward with Dissolve(.25)
                             toriel "..."
                             toriel "What is your favorite color?"
@@ -672,7 +685,7 @@ label q_start:         #Selection 30
                                     show toriel smile with Dissolve(.25)
                                     toriel "Oh, stop it, you."
                                     toriel "But enough about him. This is our date, after all... We should be getting to know each other better."
-                                    toriel "So…"
+                                    toriel "So..."
                                     show toriel awkward with Dissolve(.25)
                                     toriel "..."
                                     toriel "What is your favorite color?"
@@ -684,7 +697,7 @@ label q_start:         #Selection 30
                                     toriel "..."
                                     toriel "Thank you for the advice. We shall see..."
                                     show toriel smallsmile with Dissolve(.25)
-                                    toriel "So…"
+                                    toriel "So..."
                                     show toriel awkward with Dissolve(.25)
                                     toriel "..."
                                     toriel "What is your favorite color?"
@@ -694,7 +707,7 @@ label q_start:         #Selection 30
                                     show toriel smallsmile
                                     toriel "Oh, that is fine. Thank you for understanding."
                                     toriel "But enough about him. This is our date, after all... We should be getting to know each other better."
-                                    toriel "So…"
+                                    toriel "So..."
                                     show toriel awkward
                                     toriel "..."
                                     toriel "What is your favorite color?"
@@ -704,7 +717,7 @@ label q_start:         #Selection 30
                             show toriel smile with Dissolve(.25)
                             toriel "Yes, he is! It is great that you think so."
                             toriel "But enough about him. This is our date, after all... We should be getting to know each other better."
-                            toriel "So…"
+                            toriel "So..."
                             show toriel awkward with Dissolve(.25)
                             toriel "..."
                             toriel "What is your favorite color?"
@@ -774,7 +787,7 @@ label q_favcolor:      #Selection 37
                     show toriel smallsmile with Dissolve(.25)
                     toriel "I hope so. It can get very lonely. But Frisk is handling that problem in their own way, I believe."
                 "Don't you think it's bad keeoing them cooped up in here?":
-                    $toriel_hb +=1
+                    $ get_monster("Toriel").DP +=1
                     show toriel awkward with Dissolve(.25)
                     toriel "Well... Maybe. I have been smothering them a bit, have I not? Perhaps I should be a bit more lenient. I just do not want them to be harmed."
                     menu:
@@ -1053,7 +1066,9 @@ label favcolor_3:
 
 
 label bad_end:
-    $ toriel_tl_route_open = False
+    $ player.variables['toriel_tl_route_open'] = False
+    $ get_monster("Toriel").move_to_room("Kitchen")
+    $ reload_room()
     return
     
 label date_end:
@@ -1080,6 +1095,10 @@ label date_end:
         toriel "I guess we will not be doing this again. Nothing personal, dear. I just feel that it is best for us to remain friends."
         toriel "I will see you later."
         jump bad_end
+    $ player.variables['toriel_tl_route_open'] = True
+    $ player.variables['Toriel_TL_Date_1_Complete'] = True
+    $ get_monster("Toriel").move_to_room("Kitchen")
+    $ reload_room()
     return
     
 label date_goodbye:

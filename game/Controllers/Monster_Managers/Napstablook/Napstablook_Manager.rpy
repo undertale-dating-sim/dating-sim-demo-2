@@ -53,9 +53,8 @@ init -9 python:
                 #Finding Napstablook in Toriel's garden
 
             if 'Napstablook_Hangout_1_Complete' not in player.variables:
-                #if get_napstablook().FP >= 10 and (player.current_room.encode('utf-8') == "Snail Hunting Room"):
-                #if get_napstablook().FP > 10 and (player.current_room.encode('utf-8') == "Snail Hunting Room") and (world.get_monster('Napstablook').current_room.name.encode('utf-8') == "Snail Hunting Room"):
-                self.special_event = Event('napstablook_hangout_1',False,self)
+                if get_napstablook().FP >= 10 and player.variables['snail_game_count'] >= 3 and get_napstablook().current_room == 'Snail Hunting Room':
+                    self.special_event = Event('napstablook_hangout_1',False,self)
             
             #TL Date 1
                 #Player enters the section of the ruins that blooky normally hangs out in.
@@ -66,7 +65,7 @@ init -9 python:
             #HB Date 1
             #elif player in waterfall???
             if 'Napstablook_HB_Date_1_Complete' not in player.variables:
-                if (player.current_room is ruins_blooky_room) and (owner.HB >= 12):
+                if (player.current_room is 'Blooky Room') and (owner.HB >= 12):
                     self.special_event = Event('napstablook_hb_date',False,self)
                     world.update_world(True)
             return
@@ -108,12 +107,8 @@ init -9 python:
             self.update_schedule("Saturday","Afternoon","Snail Hunting Room",self.default_event)
             #evening
             self.update_schedule("Sunday","Evening","Blooky Room",self.default_event)
-            self.update_schedule("Monday","Evening","Living Room",self.default_event)
-            self.update_schedule("Tuesday","Evening","Living Room",self.default_event)
             self.update_schedule("Wednesday","Evening","Blooky Room",self.default_event)
-            self.update_schedule("Thursday","Evening","Living Room",self.default_event)
             self.update_schedule("Friday","Evening","Blooky Room",self.default_event)
-            self.update_schedule("Saturday","Evening","Living Room",self.default_event)
 
             
 
@@ -169,8 +164,8 @@ label Napstablook_manager_default(owner = False, pause = True):
                 "Are you a magician? Because whenever I look at you everyone else disappears."
                 napstablook "um...... i have no idea why that would happen? i think you should see a doctor"
             elif owner.flirt_count == 5:
-                "Sorry, I can't hold on… I've already fallen for you."
-                napstablook "huh? hold on to what? oh, and, uh… sorry for hurting you, i guess?"
+                "Sorry, I can't hold on... I've already fallen for you."
+                napstablook "huh? hold on to what? oh, and, uh... sorry for hurting you, i guess?"
             
             $owner.flirt_count +=1
         "Chat":

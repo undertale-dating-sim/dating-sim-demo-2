@@ -344,6 +344,7 @@ label ruins_intro_flowey:
     $ get_room("Froggit Room").set_event("ruins_intro_leaves",False)
     $ get_room("Blooky Room").set_event("ruins_intro_blooky",False)
     $ get_room("Staircase").set_event("ruins_intro_toriel_house",False)
+    $ get_room("Overlook").set_event("frisk_meeting_start",False)
 
     call show_buttons
     while True:
@@ -667,7 +668,7 @@ label ruins_intro_rock_toriel:
     toriel "Everything will be alright. Just remain calm. I will be right there."
     #click of phone hanging up
     show toriel awkward with Dissolve(.25)
-    toriel "I am afraid something has come up… I am very sorry, but I will have to leave you."
+    toriel "I am afraid something has come up... I am very sorry, but I will have to leave you."
     toriel "You should be fine... Just make your way over to my house. It is straight down this path; you cannot miss it. I will meet you there shortly."
     #toriel sprite fades away
     hide toriel with moveoutright
@@ -775,11 +776,12 @@ label ruins_intro_blooky:
 #if the player goes north, they reach the tunnel divide. The tunnel divide should have its own room description, but no story elements take place here. The player can finally go east to encounter Frisk, in which case jump frisk_meeting_start. Or, the player could go north past the black tree room to encounter Toriel, in which case jump ruins_intro_toriel_house
 label ruins_intro_toriel_house:
     if 'accepted_toriel' not in player.variables:
-        $ player.variables['accepted_toriel'] = True
+        $ player.variables['accepted_toriel'] = False
     if 'met_frisk' not in player.variables:
         $ player.variables['met_frisk'] = False
     if 'accepted_frisk' not in player.variables:
-        $ player.variables['accepted_frisk'] = True
+        $ player.variables['accepted_frisk'] = False
+    $ player.variables['met_toriel'] = True
     if player.variables['accepted_toriel'] == True and player.variables['met_frisk'] == False:
         show toriel smallsmile with Dissolve(.25)
         toriel "Oh, hello, dear! I am glad to see you made it. You did not have any trouble finding the house, did you?"
@@ -803,7 +805,7 @@ label ruins_intro_toriel_house:
                 toriel "My child, Frisk, called and needed my assistance with... something."
                 toriel "However, all is well now. There is no need for you to worry."
                 
-            "You still abandoned me…":                       #(+2
+            "You still abandoned me...":                       #(+2
                 show toriel sad with Dissolve(.25)
                 toriel "I really cannot apologize enough, dear... I honestly did not want to leave you."
                 toriel "But, you see, my child, Frisk, needed my assistance, and I had to reach them right away."
@@ -813,19 +815,19 @@ label ruins_intro_toriel_house:
     
     if player.variables['accepted_toriel'] == False and player.variables['met_frisk'] == False:           
         show toriel smallsmile with Dissolve(.25)
-        toriel "Oh, hello, dear! I see you have made it to my home…"
+        toriel "Oh, hello, dear! I see you have made it to my home..."
         toriel "Have you changed your mind? You are always welcome to stay here and rest awhile."
 
         menu:# 31
             "Yes, I would like to stay here.":               #(+2
                 show toriel smile with Dissolve(.25)
                 toriel "Great! I am glad to hear that."
-                toriel "You will not regret it… my child and I will be happy to have you here, I assure you."
+                toriel "You will not regret it... my child and I will be happy to have you here, I assure you."
                 $ player.variables['accepted_toriel'] = True
                 jump ruins_intro_find_Frisk
             "No, I don’t want to stay with you.":               #(+0
                 show toriel normal with Dissolve(.25)
-                toriel "Alright… I do wish you would reconsider, but if you insist on striking out on your own…"
+                toriel "Alright... I do wish you would reconsider, but if you insist on striking out on your own..."
                 toriel "Well, just know that you will always have a place here, should you ever need it."
                 toriel "Feel free to come back anytime!"
                 $ move_to_room("Black Tree Room")
@@ -835,7 +837,7 @@ label ruins_intro_toriel_house:
     if player.variables['accepted_toriel'] == True and player.variables['met_frisk'] == True and player.variables['accepted_frisk'] == False: 
         show toriel smallsmile with Dissolve(.25)
         toriel "Oh, hello again!"
-        toriel "My child told me that you helped them collect snails… we are very grateful for your assistance."
+        toriel "My child told me that you helped them collect snails... we are very grateful for your assistance."
         toriel "Are you sure that you would not like to stay for dinner?"
 
         menu:# 32
@@ -864,7 +866,7 @@ label ruins_intro_find_Frisk:
 
     if player.variables['clicked_toriel'] == 0:
         show toriel smallsmile with Dissolve(.25)
-        toriel "In any case, I was just about to prepare dinner. Please, follow me…"
+        toriel "In any case, I was just about to prepare dinner. Please, follow me..."
         show toriel awkward with Dissolve(.25)
         toriel "Oh... of course..."
         toriel "It seems that I have run out of snails..."

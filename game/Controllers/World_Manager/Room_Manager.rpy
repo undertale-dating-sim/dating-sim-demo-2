@@ -69,7 +69,9 @@ init -10 python:
 
 
 label current_room_description:
-    "[world.current_area.current_room.desc]"
+    python:
+        for line in world.current_area.current_room.desc:
+            renpy.say(None,line)
 
 # screen multiple_monster_click_screen:
 #     $ count = 1

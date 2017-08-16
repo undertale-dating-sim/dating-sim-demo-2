@@ -5,7 +5,6 @@ label napstablook_hangout_1(owner=get_napstablook()):
     #                Finding Napstablook in Toriel's garden
     #Synopsis: Napstablook notices you've been catching a lot of snails recently, and offers to help.
 
-    scene background ruins_snailhunting_room
     show napstablook normal at napstabob with dissolve
 
     $ ruinsnails_asked = False
@@ -17,7 +16,8 @@ label napstablook_hangout_1(owner=get_napstablook()):
     $ boughtsnails_asked = True
 
     napstablook "hi.... i see you've been catching a lot of snails lately and, um...."
-    napstablook "i was wondering if... maybe... you wanted some advice? n-not that you're not doing well on your own........."
+    napstablook "i was wondering if... maybe... you wanted some advice?"
+    napstablook "n-not that you're not doing well on your own........."
     
     menu:
         "Sure!":
@@ -48,38 +48,50 @@ label napstablook_hangout_1(owner=get_napstablook()):
                 napstablook "well, nevermind...."
                 $ ruinsnails_asked = True
                 $ torielsnails_asked = False
-                $ napstablookfavsnail_asked = False                
+                $ napstablookfavsnail_asked = False
+
             "My net is too slow and big... is there anywhere I can get a better one?" if net_asked is False:
                 $world.get_monster('Napstablook').update_FP(2)
                 napstablook "um.... Toriel probably has better nets.... but they can get kind of expensive, so she might not trust you with them right away...."
                 napstablook "but, uh.... i just prefer the slower nets, anyway. i like to take my time."
                 napstablook "i actually have a net that i'm not using... do you want it?"
                 $ net_asked = True
-                call snailnet_q
+                menu:
+                    "Yes, please!":
+                        $world.get_monster('Napstablook').update_FP(2)
+                        napstablook "okay, here you go.... i hope that's helpful..."
+                
+                        ###### NYI - GET INTERMEDIATE NET ITEM ######
+                
+                    "No, thanks!": #(+0 FP)
+                        napstablook "oh, okay.... just thought i'd offer...."
+
             "How can I get rid of my extra snails?" if extrasnails_asked is False:
                 $world.get_monster('Napstablook').update_FP(1)
                 napstablook "oh, i'll take them.... if you don't want them...."
                 napstablook "or you could sell them to Toriel.... i think she'll give you 1G per snail."
                 napstablook "but, um.... if you happened to find me in the ruins.... i'll give you a better deal...."
-                
                 $ extrasnails_asked = True
                 $ boughtsnails_asked = False
+
             "Why are there so many snails in this room?" if torielsnails_asked is False:
                 $world.get_monster('Napstablook').update_FP(1)
                 napstablook "i don't actually know.... i think Toriel does something to the grass here...."
                 napstablook "i thought i saw her spreading something on the ground once..... but i didn't ask her what it was.... i didn't want to bother her...."
-                
                 $ torielsnails_asked = True
+
             "What's your favorite kind of snail?" if napstablookfavsnail_asked is False:
                 $world.get_monster('Napstablook').update_FP(2)
                 napstablook "oh...... that's a difficult question......."
                 napstablook "i don't think i have a favorite kind. i like all snails.... especially the ones that live on my farm."
                 $ napstablookfavsnail_asked = True
+                
             "What do you do with the snails you buy?" if boughtsnails_asked is False:
                 $world.get_monster('Napstablook').update_FP(1)
                 napstablook "i just bring them back to my farm.... it's in waterfall..."
                 napstablook "people will pay more for snails there than they will in the ruins. that's how we stay in business."
                 $ boughtsnails_asked = True
+
             "That's all I wanted to know.": #(+0 FP)
                 napstablook "oh, okay... i hope that was helpful......"
                 napstablook "did you, um.... want to try catching snails again? i could watch and tell you how you did after..."
@@ -113,18 +125,6 @@ label napstablook_hangout_1(owner=get_napstablook()):
                         jump end_blook_hangout2
                         
         jump snail_advice
-
-    label snailnet_q:
-        menu:
-            "Yes, please!":
-                $world.get_monster('Napstablook').update_FP(2)
-                napstablook "okay, here you go.... i hope that's helpful..."
-                
-                ###### NYI - GET INTERMEDIATE NET ITEM ######
-                
-            "No, thanks!": #(+0 FP)
-                napstablook "oh, okay.... just thought i'd offer...."
-        return
 
     label end_blook_hangout2:
         #neutral

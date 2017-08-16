@@ -693,7 +693,7 @@ label napstablook_tl_date(owner=get_napstablook()):
 
     label tl1_blook_q1:
         show napstablook normal  with Dissolve(.25)
-        napstablook "so… what did you enjoy doing... ...in your free time?"
+        napstablook "so... what did you enjoy doing... ...in your free time?"
         napstablook "back when you were up on the surface?"
         
         menu:
@@ -782,7 +782,7 @@ label napstablook_tl_date(owner=get_napstablook()):
                 $ world.get_monster('Napstablook').update_FP(2)
                 napstablook ".....is it?"
                 napstablook "i like it quiet sometimes....."
-                napstablook "don't be worried… we're here together, so....."
+                napstablook "don't be worried... we're here together, so....."
                 napstablook "maybe it won't be as scary as you think....."
             "\"I don't care where we are, so long as I'm here with you.\"":
                 $ world.get_monster('Napstablook').update_DP(4)

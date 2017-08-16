@@ -38,7 +38,7 @@ init python:
             self.name = "Staircase"
             self.x = 5
             self.y = 0
-            self.desc = "* The entrance to Toriel's house splits off in three directions.  A wide, nondescript staircase leads down into some kind of basement."
+            self.desc = "* The entrance to Toriel's house splits off in three directions.","* A wide, nondescript staircase leads down into some kind of basement."
             self.bg = "background toriel_house_staircase"
 
     class th_basement_door(Room):
@@ -49,7 +49,8 @@ init python:
             self.y = 1
             self.lockeast = True
             self.lockwest = True
-            self.desc = "* A large, ornate door stands before you.  It feels cold and impersonal."
+            self.desc = "* A large, ornate door stands before you.  ","* It feels cold and impersonal."
+            self.events['ruins_basement_door_first_visit'] = Event("ruins_basement_door_first_visit",True)
             
 
 
@@ -59,7 +60,7 @@ init python:
             self.name = "Corridor"
             self.x = 6
             self.y = 0
-            self.desc = "* The otherwise boring hallway is spruced up with potted plant life everywhere you look.  There's a mirror at the end of the hall. It lookslike it could use a cleaning, as there are fingerprints smudging the reflective surface."
+            self.desc = "* The otherwise boring hallway is spruced up with potted plant life everywhere you look.  ","* There's a mirror at the end of the hall. ","* It looks like it could use a cleaning, as there are fingerprints smudging the reflective surface."
             self.bg = "background toriel_house_corridor"
             self.locknorth = False
             self.events['toriel_house_corridor'] = Event("toriel_house_corridor",True)
@@ -73,7 +74,7 @@ init python:
             self.x = 4
             self.y = 1
             self.lockeast = True
-            self.desc = "* There's a freshly cooked pie on the counter, and it appears that someone has already taste-tested it.  There are no knives in any of the drawers... but then how did the taste-tester cut the pie?"
+            self.desc = "* There's a freshly cooked pie on the counter, and it appears that someone has already taste-tested it.  ","* There are no knives in any of the drawers... but then how did the taste-tester cut the pie?"
             self.bg = "background toriel_house_kitchen"
 
     class th_living_room(Room):
@@ -82,7 +83,8 @@ init python:
             self.name = "Living Room"
             self.x = 4
             self.y = 0
-            self.desc = "* The living room is always cozy and warm, probably because the fire in the fireplace never seems to dim.  There are old-looking pictures on the walls of people you don't recognize."
+            self.events['ruins_dinner'] = Event("ruins_dinner",True)
+            self.desc = "* The living room is always cozy and warm, probably because the fire in the fireplace never seems to dim.  ","* There are old-looking pictures on the walls of people you don't recognize."
             self.bg = "background toriel_house_livingroom"
 
     class th_frisk_room(Room):
@@ -91,7 +93,7 @@ init python:
             self.name = "Frisk's Room"
             self.x = 6
             self.y = 1
-            self.desc = "* The bed is made, the papers on the desk are neatly stacked, and the many miscellaneous items on the shelves are straight and facing forward.  Whoever lives in the room must like to keep it tidy."
+            self.desc = "* The bed is made, the papers on the desk are neatly stacked, and the many miscellaneous items on the shelves are straight and facing forward.  ","* Whoever lives in the room must like to keep it tidy."
             self.bg = "background toriel_house_frisk_room"
             self.locked = True
 
@@ -101,7 +103,8 @@ init python:
             self.name = "Your Room"
             self.x = 6
             self.y = 1
-            self.desc = "* There's a couple of moving boxes in the corner which are covered in a fine layer of dust.  It seems like someone made an attempt to make the room look more homely, but you still get the sense that it's been left empty for a long time."
+            self.desc = ""
+            #self.desc = "* There's a couple of moving boxes in the corner which are covered in a fine layer of dust.  ","* It seems like someone made an attempt to make the room look more homely, but you still get the sense that it's been left empty for a long time."
             self.bg = "background toriel_house_your_room"
             self.locked = True
             self.events['th_your_room'] = Event("th_your_room",True)
@@ -130,8 +133,12 @@ init python:
 
     
 label port_to_black_tree_room:
-    pause 1
-    $ world.move_to_room("Black Tree Room")
+    if 'ruins_breakfast_check' not in player.variables or player.variables['ruins_breakfast_check'] != world.day:
+        call ruins_breakfast_leaving
+    else:
+        pause 1
+        $ world.move_to_room("Black Tree Room")
+    return
     
 label player_sleeping_th:
     "You fall asleep in your bed."
@@ -160,8 +167,10 @@ label toriel_house_corridor:
             "Golden flower":
                 call golden_flower_event
             "Frisk's Room":
-                if world.get_current_timezone() == "Night":
+                if world.get_current_timezone() == "Night" or (player.variables['frisk_f2_visit_day'] == world.day and player.variables['frisk_f2_visit_count'] > 6):
                     "The door is locked."
+                elif player.variables['frisk_f2_visit_day'] == world.day:
+                    call frisk_friendship_hangout2_visit_frisk_same_day
                 else:
                     $ world.move_to_room("Frisk's Room")
             "Toriel's Room":

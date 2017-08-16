@@ -615,7 +615,7 @@ label date_start:
                 $ world.get_monster('Napstablook').update_FP(2)
                 napstablook "i get it... sometimes i'm not paying too much attention either..."
                 napstablook "though...i never run into anything or fall really..."
-                napstablook "since you know….i'm a ghost..."
+                napstablook "since you know....i'm a ghost..."
                 napstablook "........"
                 show napstablook sad with dissolve
                 napstablook "i...hope you didn't hurt yourself too much..."
@@ -683,7 +683,7 @@ label date_start:
                 $ world.get_monster('Napstablook').update_FP(1)
                 napstablook ".....is it?"
                 napstablook "i like it quiet sometimes....."
-                napstablook "don't be worried… we're here together, so....."
+                napstablook "don't be worried... we're here together, so....."
                 napstablook "maybe it won't be as scary as you think....."
             "\"I don't really like it here.\"":
                 $ world.get_monster('Napstablook').update_HP(-1)

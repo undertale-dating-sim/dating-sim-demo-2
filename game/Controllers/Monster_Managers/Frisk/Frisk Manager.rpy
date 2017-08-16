@@ -50,6 +50,17 @@ init -9 python:
                 renpy.call_in_new_context("give_Gift_%s_Unknown" % self.name)
             return
 
+        def handle_special_events(self):
+
+            if world.get_current_timezone() == 'Afternoon' and 'frisk_friendship_1_Complete' not in player.variables:
+                self.set_special_event('frisk_friendship_hangout1_main')
+
+            if world.get_current_timezone() == 'Morning' or world.get_current_timezone() == 'Day' or world.get_current_timezone() == 'Afternoon':
+                if 'frisk_friendship_1_Complete' in player.variables and 'frisk_friendship_2_Complete' not in player.variables:
+                    if 'frisk_friend_hangout2_day' in player.variables and player.variables['frisk_friend_hangout2_day'] != world.day:
+                        get_room("Kitchen").set_event('frisk_friendship_hangout2')
+
+            return
         def handle_schedule(self):
             #night
             self.update_schedule("Sunday","Night","Frisk's Room",self.default_event)
@@ -204,7 +215,18 @@ label Frisk_manager_default(owner = False,pause = True):
 label Frisk_dialogue:
     show frisk normal with Dissolve(.25)
     
+    if 'Hunted_Snails_With_Frisk' in player.variables and 'Hunted_Snails_With_Frisk_Response' not in player.variables:
+        frisk "Hey, about last time we talked..."
+        frisk "Sorry I was acting so weird!"
+        frisk "It’s just a really complicated situation, and I’d rather not think about it."
+        frisk "So, let’s just pretend that never happened!"
+        frisk "Anyway, did you need something?"
+        $ player.variables['Hunted_Snails_With_Frisk_Response'] = True
+
+
     menu:
+        "Do you want to go snail hunting with me?" if 'Hunted_Snails_With_Frisk' not in player.variables:
+            call frisk_friendship_event_1
         "Chat" if frisk_chataway is False:
             jump Frisk_chat
         "Ask" if frisk_askaway is False:
@@ -214,6 +236,7 @@ label Frisk_dialogue:
         "Never mind.":
             "You decide not to say anything after all."
             jump Frisk_interact
+    return
 
 
 label Frisk_chat:

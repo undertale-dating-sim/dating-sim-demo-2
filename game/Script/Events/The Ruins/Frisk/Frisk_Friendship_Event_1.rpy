@@ -1,10 +1,6 @@
 
 
-label frisk_friendhsip_event_1:
-    #"Do you want to go snail hunting with me?" should be added to Frisk’s 
-        #general dialog if the player has not yet completed this event.
-    #menu: "Do you want to go snail hunting with me?":
-    
+label frisk_friendship_event_1(owner=get_frisk()):
     show frisk smallsmile with Dissolve(.25)
     frisk "Yeah, that sounds fun!"
     frisk "It’s always a lot more interesting with friends."
@@ -13,7 +9,10 @@ label frisk_friendhsip_event_1:
     frisk "Sorry, nevermind."
     show frisk normal with Dissolve(.25)
     frisk "Let’s just get going, okay?"
-    #scene change snail hunting room
+
+    $ renpy.transition(fade)
+    $ renpy.show(world.get_room("Snail Hunting Room").bg)
+
     frisk "Alright, we’re here!"
     frisk "Are you... uhm..."
     frisk "..."
@@ -53,11 +52,13 @@ label frisk_friendhsip_event_1:
             frisk "See you later."
             hide frisk with Dissolve(.25)
 
+    $ get_room("Tunnel Divide").set_event('frisk_friendship_event_1_tunnels',False)
+    $ move_to_room("Snail Hunting Room")
 
+label frisk_friendship_event_1_tunnels(owner=get_frisk()):
     #player is free to move around the Ruins. Once they go back to the tunnel divide...
-    #scene tunnel divide
     show frisk distant with Dissolve(.25)
-    "*Frisk is standing in the middle of the room, but they don’t appear to have noticed you."
+    "* Frisk is standing in the middle of the room, but they don’t appear to have noticed you."
     frisk "..."
     frisk "Please..."
     frisk "Please stop."
@@ -135,21 +136,21 @@ label frisk_friendhsip_event_1:
             $world.get_monster ('Frisk').FP -=3
             frisk "I..."
             frisk "..."
-    #/// If > 7(“Have you gone crazy?”) and 9.1(“Stop this childish act.”) and 12.1(“I thought you could handle things by yourself.”)<
-    #frisk “Why do you keep saying these things?”
-    #frisk “I-I’m not making this up!”
-    #frisk “There’s this thing that just- It keeps…”
-    #frisk “Why are you doing this?”
-    #menu:
-        #"...":
-            #pass
-        #"I'm just trying to help you help yourself":
-            #frisk “Wha- what?”
-            #frisk “Don’t you get it?”
-            #frisk “It’s…”
-            #frisk “No! Please! Just help me! I…”
-            #frisk “C-can I really…?”
-            #frisk “Ahg!”
+    #/// If > 7("Have you gone crazy?") and 9.1("Stop this childish act.") and 12.1("I thought you could handle things by yourself.")<
+            frisk "Why do you keep saying these things?"
+            frisk "I-I’m not making this up!"
+            frisk "There’s this thing that just- It keeps..."
+            frisk "Why are you doing this?"
+            menu:
+                "...":
+                    pass
+                "I'm just trying to help you help yourself":
+                    frisk "Wha- what?"
+                    frisk "Don’t you get it?"
+                    frisk "It’s..."
+                    frisk "No! Please! Just help me! I..."
+                    frisk "C-can I really...?"
+                    frisk "Ahg!"
 
 
     frisk "It n-never stops!"
@@ -181,13 +182,13 @@ label frisk_friendhsip_event_1:
             frisk "I don’t-"
             frisk "..."
             
-    #/// If >14(“Now tell me what this is this all about.?”) and 7(“Have you gone crazy?”) and 9.1(“Stop this childish act.”) and 12.1(“I thought you could handle things by yourself.”) <
-    #frisk “…”
-    #frisk “It’s…”
-    #frisk “I’m sorry.”
-    #frisk “I don’t-”
-    #frisk “Please don’t be mad.”
-    #frisk “…”
+    #/// If >14("Now tell me what this is this all about.?") and 7("Have you gone crazy?") and 9.1("Stop this childish act.") and 12.1("I thought you could handle things by yourself.") <
+    frisk "..."
+    frisk "It’s..."
+    frisk "I’m sorry."
+    frisk "I don’t-"
+    frisk "Please don’t be mad."
+    frisk "..."
 
             
             
@@ -199,8 +200,11 @@ label frisk_friendhsip_event_1:
     show frisk sad with Dissolve(.25)
     frisk "Please, don’t tell Mom."
     frisk "I’m sorry..."
-    #hide frisk
-    
+    hide frisk with Dissolve(.25)
+    $ get_room("Black Tree Room").set_event('frisk_friendship_event_1_blacktree',False)
+    $ move_to_room("Tunnel Divide")
+
+label frisk_friendship_event_1_blacktree(owner=get_frisk()):
     #player is free to move around the Ruins. Once they go back to the black tree room:
     show frisk surprised with Dissolve(.25)
     frisk "What?"
@@ -216,7 +220,7 @@ label frisk_friendhsip_event_1:
             frisk "There’s nothing to say."
             show frisk smallsmile with Dissolve(.25)
             frisk "I’ll see you later, okay?"
-            return
+
         "I think you owe me an explanation.":
             $world.get_monster ('Frisk').FP -=2
             show frisk annoyed with Dissolve(.25)
@@ -237,13 +241,13 @@ label frisk_friendhsip_event_1:
                             frisk "I’m not going to talk about this. In fact, I’ll just leave."
                             show frisk sad with Dissolve(.25)
                             frisk "...Goodbye."
-                            return
+
                         "Alright, fine.":
                             $world.get_monster ('Frisk').FP +=1
                             frisk "Thank you."
                             frisk "Look, I’m gonna go now."
                             frisk "I’ll talk to you later."
-                            return
+
                 "Not if you aren't feeling up to it.":
                     $world.get_monster ('Frisk').FP +=1
                     frisk "Thank you."
@@ -269,7 +273,7 @@ label frisk_friendhsip_event_1:
                                     frisk "But for now, I should go."
                                     show frisk smile with Dissolve(.25)
                                     frisk "Thanks again."
-                                    return
+
                                 "I'm not sure.":
                                     frisk "Really?"
                                     frisk "Well, whatever it was for, thanks again."
@@ -277,7 +281,7 @@ label frisk_friendhsip_event_1:
                                     frisk "But, uhm... Not now."
                                     frisk "I should get going."
                                     frisk "See you later."      
-                                    return
+ 
                                 "That's just the way I am.": #if patience >0
                                     $world.get_monster ('Frisk').FP +=2
                                     frisk "Huh, yeah, I guess that makes sense."
@@ -295,15 +299,8 @@ label frisk_friendhsip_event_1:
                             frisk "See you later."
                             return
             
-    #frisk is now back to wherever they should be at this time of day according to their schedule
-    
-    
-    #the next time the player encounters Frisk normally, play the following before the player can talk to them:
-    #frisk "Hey, about last time we talked..."
-    #frisk "Sorry I was acting so weird!"
-    #frisk "It’s just a really complicated situation, and I’d rather not think about it."
-    #frisk "So, let’s just pretend that never happened!"
-    #frisk "Anyway, did you need something?"
-    
+    hide frisk with Dissolve(.25)
+    $ player.variables['Hunted_Snails_With_Frisk'] = True
+    $ move_to_room("Black Tree Room")
     return
     

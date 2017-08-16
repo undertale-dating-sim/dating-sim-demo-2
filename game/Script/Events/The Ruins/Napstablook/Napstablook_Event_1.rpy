@@ -6,14 +6,13 @@ label napstablook_event_1(owner=get_napstablook()):
     $ dislikedmusic = False
     $ listened_music = False
     $ hobbies_asked = False
-    $ napstablook_friendship_hangout1_complete = False
     $ apathy = False
     #Event Name: Like Karaoke, but Without the Lyrics on the Screen
     #Event Trigger: Returning to Napstablook's room after all rooms in the Ruins have been explored
     #Synopsis: Napstablook offers to let you listen to a new song he made. How will you respond?
     
     stop music
-    scene background ruins_blooky_room
+
     show napstablook normal at napstabob with dissolve
     
     napstablook "oh...... hi. i didn't think you'd come back here...."
@@ -65,7 +64,7 @@ label napstablook_event_1(owner=get_napstablook()):
                 napstablook "thank you......"
                 jump blook_hangout_likedit
                 
-            "It's not really my style…":
+            "It's not really my style...":
                 $world.get_monster('Napstablook').update_FP(-2)
                 napstablook "sorry....... i'll turn it off now...."
                 $ dislikedmusic = True
@@ -82,7 +81,7 @@ label napstablook_event_1(owner=get_napstablook()):
                         napstablook "oh, um.. don't take that the wrong way... i was trying to be funny.... you're, uh.... a really good dancer..........."
                         jump blook_hangout_obviouslydancing
                 
-                    "Oh, nothing…": #(+0 FP)
+                    "Oh, nothing...": #(+0 FP)
                         "You stop dancing."
                         napstablook "oh... okay......"
                         napstablook "you, uh.... didn't have to stop.."
@@ -99,7 +98,7 @@ label napstablook_event_1(owner=get_napstablook()):
                         $world.get_monster('Napstablook').update_FP(2)
                         show napstablook smile with dissolve
                         napstablook "ha.... yeah.... definitely......."
-                    "Haha… yeah I guess you're right. I shouldn't have ruined your song with my crappy singing.": #(+0 FP)
+                    "Haha... yeah I guess you're right. I shouldn't have ruined your song with my crappy singing.": #(+0 FP)
                         show napstablook sad with dissolve
                         napstablook "oh.... no...... it's okay.... you don't have to stop.... i don't mind......."
                     "You try singing, I bet you can't do better!":
@@ -140,7 +139,7 @@ label napstablook_event_1(owner=get_napstablook()):
                 napstablook "...."
                 napstablook "can i ask, um.... why do you do it, then?"
                 menu:
-                    "Because it's fun… I don't have to be good at something to enjoy it.":
+                    "Because it's fun... I don't have to be good at something to enjoy it.":
                         $world.get_monster('Napstablook').update_FP(4)
                         napstablook "oh... i see......."
                         napstablook "that's nice.... sounds like a pretty good outlook to have on things......"
@@ -148,7 +147,7 @@ label napstablook_event_1(owner=get_napstablook()):
                         $world.get_monster('Napstablook').update_FP(2)
                         napstablook "that's nice of you.... but you didn't have to do that...."
                         napstablook "oh, no.... and i didn't even laugh.... i'm sorry......."
-                    "I don't know… because I can?":
+                    "I don't know... because I can?":
                         $world.get_monster('Napstablook').update_FP(-1)
                         napstablook "oh, um.... okay then......."
             "Damn right I am!":
@@ -176,18 +175,18 @@ label napstablook_event_1(owner=get_napstablook()):
             "So you're saying I win?":
                 $world.get_monster('Napstablook').update_FP(-1)
                 napstablook "oh.... yeah, i guess......."
-            "C'mon… just try? I promise I won't laugh, or anything.":
+            "C'mon... just try? I promise I won't laugh, or anything.":
                 $world.get_monster('Napstablook').update_FP(1)
                 napstablook "um... well.... i suppose i could try....."
                 "Napstablook starts singing so quietly that you can't even understand them."
                 menu:
-                    "Come on… belt it out!":
+                    "Come on... belt it out!":
                         $world.get_monster('Napstablook').update_FP(-2)
                         napstablook "um... i'd rather not.... sorry to disappoint you...."
                     "If it makes you uncomfortable, you don't have to.":
                         $world.get_monster('Napstablook').update_FP(2)
                         napstablook "okay.... that's a relief...... thanks........"
-                    "That's nice… you should incorporate some vocals into your next song. Maybe we could sing a duet?":
+                    "That's nice... you should incorporate some vocals into your next song. Maybe we could sing a duet?":
                         $world.get_monster('Napstablook').update_DP(4)
                         show napstablook shyblush with dissolve
                         napstablook "ha... ha... you would really do that?"

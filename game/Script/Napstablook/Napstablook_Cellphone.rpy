@@ -31,9 +31,9 @@ label call_Napstablook_Tunnels(monster,call_count):
     if call_count == 1:
         napstablook "these puzzles have been disabled for awhile.. i’m not sure but i think Frisk was the one who did it"
     elif cell_convo_count == 1:
-        napstablook "... they probably just got tired of having to go through them all the time…"
+        napstablook "... they probably just got tired of having to go through them all the time..."
     else:
-        napstablook "i know i would have gotten tired of doing puzzles.... you know..… if i couldn’t float over them"
+        napstablook "i know i would have gotten tired of doing puzzles.... you know..... if i couldn’t float over them"
     return
 
 label call_Napstablook_Dummy_Room(monster,call_count):
@@ -92,9 +92,9 @@ label call_Napstablook_Snail_Hunter(monster,call_count):
 
 label call_Napstablook_Tunnel_Divide(monster,call_count):
     if call_count == 1:
-        napstablook "isn’t there some poem…. about two roads diverged..?"
+        napstablook "isn’t there some poem.... about two roads diverged..?"
     else:
-        napstablook "… well i suppose it doesn’t really matter which you pick"
+        napstablook "... well i suppose it doesn’t really matter which you pick"
     return
 
 label call_Napstablook_Overlook(monster,call_count):

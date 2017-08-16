@@ -7,7 +7,7 @@ label give_Gift_Frisk_Stick(count,owner):
     frisk "A stick?"
     show frisk smallsmile
     frisk "I picked up one of those when I first came to the Underground."
-    frisk "I thought I might have to defend myself…"
+    frisk "I thought I might have to defend myself..."
     show frisk normal
     frisk "Luckily, I didn’t need to fight anyone."
     return False
@@ -44,7 +44,7 @@ label give_Gift_Frisk_Spider_Donut(count,owner):
         frisk "Another donut? Don’t mind if I do!"
     else:
         show frisk normal
-        frisk "Uh, well… At least you donated to the Spider Bake Sale!"
+        frisk "Uh, well... At least you donated to the Spider Bake Sale!"
     return True
 
 label give_Gift_Frisk_Butts_Pie(count,owner):
