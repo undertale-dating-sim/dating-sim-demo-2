@@ -1,25 +1,6 @@
 init:
     image background field = "minigames/field.png"
-    $ mission = ''
 
-label demo_undersnail:
-    hide screen show_menu_button
-
-    "Welcome to UnderSnail!!!"
-    menu:
-        "Need an explanation?"
-        "Yes":
-            "The game is simple."
-            "Click on a snail to capture it.  Some snails take longer than others.  Keep holding down the button!"
-            "House snails are big and slow."
-            "Book snails go all over the place."
-            "Rocket snails are too fast."
-            "Coffee snails don't know where to go."
-            "Capture three snails to end the demo."
-        "No":
-            "Cool."
-    "For the current demo, the game ends at three captures.  This is still a WIP.  Shoot me a message on skype with any bugs you find."
-    jump UnderSnail
 
 label UnderSnail:
 
@@ -29,18 +10,6 @@ label UnderSnail:
     #set the background
     scene background field
 
-    menu:
-        "Test Mission"
-        "Rocket":
-            $ mission = "rocket"
-        "House":
-            $ mission = "house"
-        "Book":
-            $ mission = "book"
-        "Coffee":
-            $ mission = "coffee"
-        "Random":
-            $ mission = "random"
 
     stop music
     python:
@@ -51,24 +20,19 @@ label UnderSnail:
     if winner == 'win':
         "Good job!"
         
-        if mission == "rocket":
-            "You caught [us.rocket_snail_count] rocket snails."
-        if mission == "house":
-            "You caught [us.house_snail_count] house snails."
-        if mission == "book":
-            "You caught [us.book_snail_count] book snails."
-        if mission == "coffee":
-            "You caught [us.coffee_snail_count] coffee snails."
-        if mission == "random":
-            "You caught [us.rocket_snail_count] rocket snails, [us.house_snail_count] house snails, [us.book_snail_count] book snails, and [us.coffee_snail_count] coffee snails."
-        "Go, you!"
-        
-    menu:
-        "Try again?"
-        "Yes":
-            jump UnderSnail
-        "No":
-            return
+        # if mission == "rocket":
+        #     "You caught [us.rocket_snail_count] rocket snails."
+        # if mission == "house":
+        #     "You caught [us.house_snail_count] house snails."
+        # if mission == "book":
+        #     "You caught [us.book_snail_count] book snails."
+        # if mission == "coffee":
+        #     "You caught [us.coffee_snail_count] coffee snails."
+        # if mission == "random":
+        #     "You caught [us.rocket_snail_count] rocket snails, [us.house_snail_count] house snails, [us.book_snail_count] book snails, and [us.coffee_snail_count] coffee snails."
+        # "Go, you!"
+    return
+
 init python:
     import math
     import pygame
@@ -113,18 +77,18 @@ init python:
     class Snail(renpy.Displayable):
         def __init__(self,xpos,ypos,speed,dx,dy):
             renpy.Displayable.__init__(self)
-            self.sprite = Image("minigames/Snail.png")
+            self.sprite = Image("minigames/snail.png")
             self.w = 42
             self.h = 27
             self.xpos = xpos
             self.ypos = ypos
             self.dx = dx
             self.dy = dy
-            self.speed = 1
+            self.speed = renpy.random.randint(1,3)
             self.remove = False
             self.width = 50
             self.height = 50
-            self.health = 50
+            self.health = 10
         
         def update(self):
             self.ypos = self.ypos + self.speed * self.dy
@@ -140,122 +104,6 @@ init python:
             if centerx < 0 or centerx > 800 or centery < 0 or centery > 800:
                 self.remove = True
 
-    class Book_Snail(Snail):
-        def __init__(self,xpos,ypos,speed,dx,dy):
-            Snail.__init__(self,xpos,ypos,speed,dx,dy)
-            self.type = "Book_Snail"
-            if self.dx <= 0:
-                self.sprite = Image("minigames/ReaderSnail.png")
-            else:
-                self.sprite = im.Flip("minigames/ReaderSnail.png", horizontal=True)
-            self.speed = .5
-            self.timer = 200
-            self.width = 50
-            self.height = 28
-            self.health = 100
-            self.port_count = 0
-            self.port_max = 5
-
-        def update(self):
-
-            self.timer -= 1
-            if self.timer <= 0:
-                self.xpos = renpy.random.randint(100,700)
-                self.ypos = renpy.random.randint(100,500)
-                self.timer = renpy.random.randint(50,200)
-                directions = [(1,0),(1,1),(0,1),(-1,0),(-1,1),(0,-1),(-1,-1),(1,-1)]
-                dir_rand = directions[renpy.random.randint(0,7)]
-                self.dx = dir_rand[0]
-                self.dy = dir_rand[1]
-                
-                if self.dx <= 0:
-                    self.sprite = Image("minigames/ReaderSnail.png")
-                else:
-                    self.sprite = im.Flip("minigames/ReaderSnail.png", horizontal=True)
-                    
-                self.port_count += 1
-                if self.port_count > self.port_max:
-                    self.remove = True
-
-            Snail.update(self)
-
-    class Rocket_Snail(Snail):
-        def __init__(self,xpos,ypos,speed,dx,dy):
-            Snail.__init__(self,xpos,ypos,speed,dx,dy)
-            self.type = "Rocket_Snail"
-            directions = [(1,0),(0,1),(-1,0),(0,-1)]
-            dir_rand = directions[renpy.random.randint(0,3)]
-            self.dx = dir_rand[0]
-            self.dy = dir_rand[1]
-            
-            if self.dx <= 0:
-                self.sprite = Image("minigames/RocketSnail.png")
-            else:
-                self.sprite = im.Flip("minigames/RocketSnail.png", horizontal=True)
-                
-            self.width = 100
-            self.height = 56
-            
-            self.speed = 4
-            self.health = 20
-
-        def update(self):
-            Snail.update(self)
-
-
-    class House_Snail(Snail):
-        def __init__(self,xpos,ypos,speed,dx,dy):
-            Snail.__init__(self,xpos,ypos,speed,dx,dy)
-            self.type = "House_Snail"
-            directions = [(1,0),(0,1),(-1,0),(0,-1)]
-            dir_rand = directions[renpy.random.randint(0,3)]
-            self.dx = dir_rand[0]
-            self.dy = dir_rand[1]
-            
-            if self.dx <= 0:
-                self.sprite = Image("minigames/HouseSnail.png")
-            else:
-                self.sprite = im.Flip("minigames/HouseSnail.png", horizontal=True)
-            
-            self.speed = .25
-
-            self.width = 98
-            self.height = 70
-
-            self.health = 150
-
-        def update(self):
-            Snail.update(self)
-
-    class Coffee_Snail(Snail):
-        def __init__(self,xpos,ypos,speed,dx,dy):
-            Snail.__init__(self,xpos,ypos,speed,dx,dy)
-            self.type = "Coffee_Snail"
-            self.sprite = Image("minigames/CoffeeSnail.png")
-            self.speed = 2
-            self.dir_timer = 0
-            self.change_now = renpy.random.randint(25,50)
-            self.width = 70
-            self.height = 44
-
-        def update(self):
-            #we need the coffee snail to change directions randomly
-            self.dir_timer += 1
-
-            if self.dir_timer == self.change_now:
-                directions = [(1,0),(1,1),(0,1),(-1,0),(-1,1),(0,-1),(-1,-1),(1,-1)]
-                dir_rand = directions[renpy.random.randint(0,7)]
-                self.dy = dir_rand[0]
-                self.dx = dir_rand[1]
-                if self.dx <= 0:
-                    self.sprite = Image("minigames/CoffeeSnail.png")
-                else:
-                    self.sprite = im.Flip("minigames/CoffeeSnail.png", horizontal=True)
-                self.dir_timer = 0
-                self.change_now = renpy.random.randint(25,50)
-
-            Snail.update(self)
-
     class UnderSnail(renpy.Displayable):
 
         def __init__(self):
@@ -268,7 +116,8 @@ init python:
             #renpy.music.play("audio/music/snail_rocket.mp3","rocket",True,None,True)
             #renpy.music.play("audio/music/snail_house.mp3","house",True,None,True)
             #self.turn_off_music()
-            
+            renpy.music.play("audio/thundersnail.mp3","music",True,None,True)
+            renpy.music.set_volume(.2,0,'music')
             #game variables
             self.title_phase = 1
             self.round_start_phase = 2
@@ -306,15 +155,17 @@ init python:
             self.flowers = []
             self.capture_texts = []
 
-            for i in range(0, self.flowercount):
-                self.flowers.append(Flower(375,275))
+            self.flowers.append(Flower(50,50))
+            self.flowers.append(Flower(50,500))
+            self.flowers.append(Flower(50,275))
+
             
         def interact(self):
             evt = ui.interact()
             rv = False
 
 
-            if score > 3:
+            if score > 10:
                 self.turn_off_music()
                 return 'win'
 
@@ -328,67 +179,32 @@ init python:
             
             self.turn_off_music()
 
-            for s in self.snails:
-                if isinstance(s,House_Snail):
-                    renpy.music.set_volume(0.1,0,'house')
-                if isinstance(s,Rocket_Snail):
-                    renpy.music.set_volume(0.1,0,'rocket')
-                if isinstance(s,Book_Snail):
-                    renpy.music.set_volume(0.1,0,'nerd')
-                if isinstance(s,Coffee_Snail):
-                    renpy.music.set_volume(0.1,0,'coffee')
+            # for s in self.snails:
+            #     if isinstance(s,House_Snail):
+            #         renpy.music.set_volume(0.1,0,'house')
+            #     if isinstance(s,Rocket_Snail):
+            #         renpy.music.set_volume(0.1,0,'rocket')
+            #     if isinstance(s,Book_Snail):
+            #         renpy.music.set_volume(0.1,0,'nerd')
+            #     if isinstance(s,Coffee_Snail):
+            #         renpy.music.set_volume(0.1,0,'coffee')
 
 
 
-        def spawn_snail(self,flower,dx=0,dy=1):
-            self.snails.append(Snail(flower.x,flower.y,1,dx,dy))
+        def spawn_snail(self,flower,dx=1,dy=0):
+            self.snails.append(Snail(flower.x+flower.w/2,flower.y+flower.h/2,1,dx,dy))
 
-        def spawn_rocket_snail(self,flower,dx=0,dy=1):
-            self.snails.append(Rocket_Snail(flower.x,flower.y,1,dx,dy))
-
-        def spawn_coffee_snail(self,flower,dx=0,dy=1):
-            self.snails.append(Coffee_Snail(flower.x,flower.y,1,dx,dy))
-
-        def spawn_book_snail(self,flower,dx=0,dy=1):
-            self.snails.append(Book_Snail(flower.x,flower.y,1,dx,dy))
-
-        def spawn_house_snail(self,flower,dx=0,dy=1):
-            self.snails.append(House_Snail(flower.x,flower.y,1,dx,dy))
-
-        def spawn_random_snail(self,flower):
-            pick = renpy.random.randint(0,3)
-
-            directions = [(1,0),(1,1),(0,1),(-1,0),(-1,1),(0,-1),(-1,-1),(1,-1)]
-
-            dir_rand = directions[renpy.random.randint(0,7)]
-
-            dirx = dir_rand[0]
-            diry = dir_rand[1]
-
-            if mission == 'house':
-                self.spawn_house_snail(flower,dx=dirx,dy=diry)
-            elif mission == "coffee":
-                self.spawn_coffee_snail(flower,dx=dirx,dy=diry)
-            elif mission == "book":
-                self.spawn_book_snail(flower,dx=dirx,dy=diry)
-            elif mission == "rocket":
-                self.spawn_rocket_snail(flower,dx=dirx,dy=diry)
-            elif mission == "random":
-                self.spawn_rocket_snail(flower,dx=dirx,dy=diry)
-                self.spawn_house_snail(flower,dx=dirx,dy=diry)
-                self.spawn_coffee_snail(flower,dx=dirx,dy=diry)
-                self.spawn_book_snail(flower,dx=dirx,dy=diry)
 
         def spawn_handler(self):
             if len(self.snails) == 0:
                 while len(self.snails) < self.snailcount:
-                    self.spawn_random_snail(self.flowers[renpy.random.randint(0,len(self.flowers)-1)])
+                    self.spawn_snail(self.flowers[renpy.random.randint(0,len(self.flowers)-1)])
 
             elif len(self.snails) < self.snailcount:
                 if self.snailtimer > self.snailrespawntime:
                     self.snailtimer = 0
                     #spawn at a random flowerbed
-                    self.spawn_random_snail(self.flowers[renpy.random.randint(0,len(self.flowers)-1)])
+                    self.spawn_snail(self.flowers[renpy.random.randint(0,len(self.flowers)-1)])
 
         #not sure what this does but you have to put all children in here
         def visit(self):            
@@ -420,7 +236,7 @@ init python:
                         if pygame.Rect(s.xpos,s.ypos,s.width,s.height).collidepoint(x,y) and not self.click_target:
                             self.click_target = s
 
-            cap = 3
+            cap = 10
 
             if self.score >= cap:
                 self.turn_off_music()
@@ -440,14 +256,6 @@ init python:
                     #stupid check because they were making text by going offscreen
                     if s.health <= 0:
                         self.capture_texts.append(Capture_Text(s.xpos,s.ypos))
-                        if s.type == "Rocket_Snail":
-                            self.rocket_snail_count += 1
-                        elif s.type == "House_Snail":
-                            self.house_snail_count += 1
-                        elif s.type == "Book_Snail":
-                            self.book_snail_count += 1
-                        elif s.type == "Coffee_Snail":
-                            self.coffee_snail_count += 1
                         self.score += 1
 
             for c in self.capture_texts:
@@ -457,13 +265,13 @@ init python:
 
             self.snailtimer += 1
             self.spawn_handler()
-            self.handle_music()
+            #self.handle_music()
 
         def interact(self):
             evt = ui.interact()
             rv = False
 
-            if self.score > 1:
+            if self.score > 5:
                 return 'win'
             return False
 
@@ -490,10 +298,6 @@ init python:
 
                 if self.start_timer < 1:
                     self.current_game_phase = self.game_phase
-                    renpy.music.play("audio/home.mp3","nerd",True,None,True)
-                    renpy.music.play("audio/home.mp3","coffee",True,None,True)
-                    renpy.music.play("audio/home.mp3","rocket",True,None,True)
-                    renpy.music.play("audio/home.mp3","house",True,None,True)
                     rocket_snail_count = 0
                     book_snail_count = 0
                     house_snail_count = 0

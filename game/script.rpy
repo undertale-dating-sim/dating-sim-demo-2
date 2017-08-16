@@ -52,7 +52,7 @@ label start:
     # $ get_monster("Napstablook").move_to_room("Tunnels")
     # # get_monster("Frisk").move_to_room("Ruins Entrance")
     #$ move_to_room("Cave Room")
-    jump the_beginning
+    jump UnderSnail
     return
 
 
