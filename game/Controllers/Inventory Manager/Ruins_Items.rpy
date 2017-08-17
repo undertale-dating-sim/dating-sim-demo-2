@@ -97,7 +97,11 @@ init -4 python:
             self.sprite = "items/item_spiderdonut.png"
             self.menu_desc = "A classic treat with an added twist."
             self.neutral_text = "If you look closely, you can see tiny bits of spiders in the pastry. It's baked with spider cider in the mix, guaranteeing flavor."
-
+        def use(self):
+            player.current_health = player.total_health
+            renpy.say(None,"* You regain all of your health! That was a very good donut!")
+            inventory.drop(self)
+            return
     class Butts_Pie(Item):
         def __init__(self):
             Item.__init__(self)

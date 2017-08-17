@@ -19,7 +19,7 @@ init -5 python:
             return
 
         def use(self):
-            player.gold += self.sale_cost
+            # player.gold += self.sale_cost
             inventory.drop(self)
             return
 

@@ -12,6 +12,7 @@ label the_beginning:
     with vpunch
     "* Thud"
 
+    $ renpy.transition(fade)
     $ renpy.show(world.get_room("Cave Room").bg)
     with fade
 
@@ -123,7 +124,7 @@ label .item_menu:
             call .pick_up(Heart_Locket())
         "Pick up the mirror":
             "* It's cracked down the middle, but you can still see your reflection in it."
-            call .pick_up(Mirror())
+            call .pick_up(Broken_Mirror())
         "Pick up the stick":
             "* It's a stick."
             call .pick_up(Stick())
@@ -365,9 +366,9 @@ label dont_be_greedy:
 
 label ruins_entrance_intro:
 
-    "* A gentle breeze brushes against your face."
-    "* The floor of the stone hallway is covered in red leaves that gather in drifts in the corners and scatter across the path, leading to a set of curving staircases. "
-    "* The stairs climb up to a landing that supports a large, ivy-covered building. Its entrance yawns darkly and is flanked by two high windows."
+    # "* A gentle breeze brushes against your face."
+    # "* The floor of the stone hallway is covered in red leaves that gather in drifts in the corners and scatter across the path, leading to a set of curving staircases. "
+    # "* The stairs climb up to a landing that supports a large, ivy-covered building. Its entrance yawns darkly and is flanked by two high windows."
     $ count = 1
     $ loop = True
     $ blook_scream = False
@@ -551,9 +552,10 @@ label .intro_find_satchel:
                     "* The satchel... wiggles in glee?"
 
                 "Inventory increased to 5!"
+                $ inventory.max_items = 5
                 jump .dummy_options
                 $ loop = false
-                $ inventory.max_items = 5
+                
             "[button2_text]":
                 if count == 1:
                     "* You decide not to pick it up, despite it being a great tool to hold all of your items."
@@ -588,7 +590,7 @@ label .intro_find_satchel:
 
 label ruins_intro_leaves:
 
-    "* The bricked hall zig-zags its way around several large piles of red leaves, passing walls hung with flourishing ivy plants and leading to the exit at the far end of the room."
+    #"* The bricked hall zig-zags its way around several large piles of red leaves, passing walls hung with flourishing ivy plants and leading to the exit at the far end of the room."
     "* There’s someone here..."
     show toriel normal with Dissolve(.25)
     "* She doesn’t seem to notice you."
@@ -659,6 +661,7 @@ label ruins_intro_rock_toriel:
 
     show toriel normal with Dissolve(.25)
     #phone ringing sound
+    "* You hear a ringing sound from Toriel's pocket."
     toriel "Excuse me, I must answer this."
     #ringing stops
     toriel "Hello, m-"
@@ -691,10 +694,11 @@ label ruins_intro_rock_alone:
 
 label ruins_intro_blooky:
 
-    "* The room is average sized and is divided by a wall halfway through that separates the side of the room you are on from two exits on the other side. "
-    "* There is a narrow opening in the wall, its floor covered with a scattering of red leaves."
-    "* There’s that ghost from earlier..."
+    # "* The room is average sized and is divided by a wall halfway through that separates the side of the room you are on from two exits on the other side. "
+    # "* There is a narrow opening in the wall, its floor covered with a scattering of red leaves."
     show napstablook normal at napstabob with Dissolve(.25)
+    "* There’s that ghost from earlier..."
+    
 
     if not blook_scream:
         unknown "....sorry about just disappearing earlier... i didn’t mean to ignore you... or be awkward... i just made this awkward... didn’t i...?"

@@ -6,6 +6,7 @@
 label Name_Select:
     
     python:
+        renpy.transition(fade)
         ui.add(Name_Select())
         name = ui.interact(suppress_overlay=True, suppress_underlay=True)
     if name != 'quit':
@@ -191,6 +192,10 @@ init python:
                 return "NOTICE ME!"
             elif name.lower() == 'wilson':
                 return "The best name of all."
+            elif name.lower() == 'sky':
+                return "None can capture the sky."
+            elif name.lower() == 'fel':
+                return "Original character, do not steal."
             else:
                 return False
 
