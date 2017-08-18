@@ -196,6 +196,10 @@ init python:
                 return "None can capture the sky."
             elif name.lower() == 'fel':
                 return "Original character, do not steal."
+            elif name.lower() == 'blue':
+                return "Da ba dee da ba die."
+            elif name.lower() == 'louie':
+                return "I dunno what to do for Louie."
             else:
                 return False
 
