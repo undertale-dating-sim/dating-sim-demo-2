@@ -7,7 +7,7 @@ label the_beginning:
     call hide_buttons
     stop music
     #play sound "audio/sfx/Hitting_the_ground.wav"
-    scene
+    scene black
 
     with vpunch
     "* Thud"
@@ -15,8 +15,9 @@ label the_beginning:
     $ renpy.transition(fade)
     $ renpy.show(world.get_room("Cave Room").bg)
     with fade
-
+    play music "audio/ruins/the_ruins.mp3" fadein 5.0
     "* Ow."
+    
     #this looks dirty, but I need to make the variables unique to this screen
     $ tf_loop = True
     $ player.variables['tf_scream_count'] = 1
@@ -113,7 +114,7 @@ label tf_item_room:
     $ get_room("Cave Room").add_event('flowey_introduction',False)
     #lock the ruins entrance so they can't get out
     $ set_lock_room("Ruins Entrance",True)
-    "* Mounds of trash litter the edges of the small cave. The sparse light which floods through a crack in the ceiling reveals a small mound of grass in the center of the cavern."
+    #"* Mounds of trash litter the edges of the small cave. The sparse light which floods through a crack in the ceiling reveals a small mound of grass in the center of the cavern."
     "* There is one exit... but it seems to be covered by a curtain of vines." 
     "* A few pieces of trash sparkle in the scattered sunshine, catching your eye."
 
@@ -135,27 +136,12 @@ label .item_menu:
     return
 
 
-        #Description of the locket if the player examines it after starting a TL run:
-        #*It shines brightly. Looking at it makes you think of that special someone.
-        #Description of the locket if the player examines it after starting an HB run:
-        #*It looks dingy and dull. A small crack runs down its center.
-        #Description of the mirror if the player examines it after starting a TL run:
-        #*You look at your reflection and smile, thinking of that special someone.
-        #Description of the mirror if the player examines it after starting an HB run:
-        #*You look at your reflection and smile. You don't even recognize yourself.
-        #Description of the stick if the player examines it after starting a TL run:
-        #*It seems a little sturdier than before... it even has a small leaf sprouting from it.
-        #Description of the stick if the player examines it after starting an HB run:
-        #*The stick is becoming more dry and brittle. It could break at any moment.
-        #Description of the rose if the player examines it after starting a TL run:
-        #*Despite not actively taking care of it, it seems to be full of life and beauty
-        #Description of the rose if the player examines it after starting an HB run:
-        #*It's wilting... but you expected that, didn't you?
 label .pick_up(item):
 
     menu:
         "* Take it?"
         "Yes":
+            play sound "audio/sfx/use_item.wav"
             "* You got the [item.name]!"
             $ pickup_item(item)
         "No":
@@ -209,12 +195,13 @@ label summon_flowey:
     return
 
 label flowey_introduction():
-
+    stop music
     "* The small cave suddenly smells strongly like flowers." 
     show flowey backside with Dissolve(.25)
     "* A large, golden flower has sprouted right where you first fell, appearing to bask in the light coming from the ceiling."
     "* It definitely hadn't been there earlier."
     unknown "Psst... down here!"
+    
 
     menu:
         "Look around":
@@ -230,6 +217,7 @@ label flowey_introduction():
             #BRAVERY - 1
             "* You've seen enough horror movies to know better than to poke around eerie stuff that wasn't there before."
             "* Especially if said eerie stuff talks to you."
+            stop music
             $ get_room("Grass Room").events = {}
             $ get_room("Grass Room").add_event("grass_room_revisited",False)
             $ get_room("Cave Room").add_event("flowey_intro_annoyed",False)
@@ -238,6 +226,7 @@ label flowey_introduction():
     return
 label flowey_intro_annoyed():
     show flowey annoyed with Dissolve(.25)
+    play music "audio/ruins/flowey.mp3"
     "* You return to the small cavern. The odd flower is still there."
     unknown "Were you really just gonna ignore me? Gee, you're a rude one."
     unknown "Since you obviously have no manners, allow me to introduce myself first."
@@ -268,6 +257,7 @@ label grass_room_revisited:
 label ruins_intro_flowey:
         
     show flowey normal with Dissolve(.25)
+    play music "audio/ruins/flowey.mp3"
     unknown "Howdy! I'm Flowey, Flowey the flower! You're new here, aren'tcha?"
     flowey "You look a little nervous... are you scared of little ol' me?"
 
@@ -334,6 +324,7 @@ label ruins_intro_flowey:
     
     show flowey wink with Dissolve(.25)
     flowey "Good luck!"
+    stop music
     
     hide flowey with moveoutbottom
     $ banish("Flowey")
@@ -348,6 +339,7 @@ label ruins_intro_flowey:
     $ get_room("Overlook").set_event("frisk_meeting_start",False)
 
     call show_buttons
+    play music "audio/ruins/the_ruins.mp3"
     while True:
         menu:
             "Look Around":
@@ -389,7 +381,7 @@ label ruins_entrance_intro:
     return
 
 label tunnels_intro:
-    "* The tunnels criss-crossing in and out of the various rooms that you pass through are riddled with what appear to be disabled traps and puzzles."
+    #"* The tunnels criss-crossing in and out of the various rooms that you pass through are riddled with what appear to be disabled traps and puzzles."
     return
 
 label dummy_intro:
@@ -551,6 +543,7 @@ label .intro_find_satchel:
                 else:
                     "* The satchel... wiggles in glee?"
 
+                play sound "audio/sfx/use_item.wav"
                 "Inventory increased to 5!"
                 $ inventory.max_items = 5
                 jump .dummy_options
@@ -589,7 +582,8 @@ label .intro_find_satchel:
     return
 
 label ruins_intro_leaves:
-
+    
+    stop music fadeout 4
     #"* The bricked hall zig-zags its way around several large piles of red leaves, passing walls hung with flourishing ivy plants and leading to the exit at the far end of the room."
     "* There’s someone here..."
     show toriel normal with Dissolve(.25)
@@ -602,7 +596,8 @@ label ruins_intro_leaves:
         "Hold your ground":
             #+1 Bravery
             "* Eventually, the monster notices you."
-    show toriel surprised with Dissolve(.25)        
+    show toriel surprised with Dissolve(.25)
+    play music "audio/ruins/toriel.mp3" fadein 5        
     unknown "Oh, goodness! I am sorry, dear... I did not notice you there. Are you alright?"
 
     menu:
@@ -612,7 +607,9 @@ label ruins_intro_leaves:
             show toriel surprised with Dissolve(.25)
             unknown "Oh, where are my manners?"
             show toriel smile with Dissolve(.25)
-            unknown "My name is Toriel, and I am the caretaker of the Ruins. I come down to the cavern every day to see if anyone has fallen down. And here you are!"
+            unknown "My name is Toriel, and I am the caretaker of the Ruins."
+            toriel "I come down to the cavern every day to see if anyone has fallen down."
+            toriel "And here you are!"
         "Stay back!":
             show toriel sad with Dissolve(.25)
             unknown "Do not worry... I mean you no harm."
@@ -626,10 +623,18 @@ label ruins_intro_leaves:
     
     
     show toriel normal with Dissolve(.25)
-    toriel "Your fall was not kind to you; you are injured. Please, take this... If you eat it, you are sure to gain some strength back."
-    "* You receive a Spider Donut!"
-    $ inventory.add(Spider_Donut())
-    toriel "And, if you would like, you can accompany me to my house at the far end of the Ruins, to rest and heal the remainder of your injuries."
+    toriel "Your fall was not kind to you."
+    toriel "You are injured! Please, take this..."
+    if inventory.max_items == 1:
+        toriel "Oh..."
+        toriel "You don't seem to have a satchel."
+        toriel "That would have been really handy."
+    else:
+        play sound "audio/sfx/use_item.wav"
+        "* You receive a Spider Donut!"
+        $ inventory.add(Spider_Donut())
+        toriel "If you eat it, you are sure to gain some strength back."
+    toriel "If you would like, you can accompany me to my house at the far end of the Ruins, to rest and heal the remainder of your injuries."
     toriel "Only my child and I live there, so it will be a peaceful place for you to stay."
 
     menu:
@@ -648,6 +653,8 @@ label ruins_intro_leaves:
             toriel "I understand... it can be hard to trust new people when you meet them, but you do not need to be afraid of us."
             toriel "If you change your mind, our door will be open. Be safe."
             hide toriel with Dissolve(.25)
+            stop music
+            play music "audio/ruins/the_ruins.mp3" fadein 5
             $ get_room("Sassy Rock Room").set_event("ruins_intro_rock_alone",False)
             menu:
                 "Look around":
@@ -661,10 +668,12 @@ label ruins_intro_rock_toriel:
 
     show toriel normal with Dissolve(.25)
     #phone ringing sound
+    play sound "audio/sfx/cellphone.wav"
     "* You hear a ringing sound from Toriel's pocket."
     toriel "Excuse me, I must answer this."
     #ringing stops
     toriel "Hello, m-"
+    stop music
     show toriel sad with Dissolve(.25)
     toriel "Oh... oh, dear."
     toriel "Just hold on. Stay right there, okay?"
@@ -672,10 +681,13 @@ label ruins_intro_rock_toriel:
     #click of phone hanging up
     show toriel awkward with Dissolve(.25)
     toriel "I am afraid something has come up... I am very sorry, but I will have to leave you."
-    toriel "You should be fine... Just make your way over to my house. It is straight down this path; you cannot miss it. I will meet you there shortly."
+    toriel "You should be fine... Just make your way over to my house." 
+    toriel "It is straight down this path.  You cannot miss it." 
+    toriel "I will meet you there shortly."
     #toriel sprite fades away
     hide toriel with moveoutright
-    jump ruins_intro_rock_alone
+    call ruins_intro_rock_alone
+    return
 
 
 label ruins_intro_rock_alone:
@@ -683,11 +695,12 @@ label ruins_intro_rock_alone:
     # "* The room before you is long and filled with odd items. There is a sign hanging on the wall closest to you."
     # "* Three grey rocks sit on top of strange square pads on the ground, and a moat crosses the opposite side of the hall."
     # "* A short bridge extends across the still water. There is an exit across the bridge."
-
+    play music "audio/ruins/the_ruins.mp3" fadein 5
     menu:
         "Look around":
             "* A gust of wind trails from the wide doorway ahead, shifting a few leaves across the floor."
             "* There are suspicious-looking holes in the bridge, but it seems safe enough."
+            call show_buttons
         "Continue onward":
             call show_buttons
     return
@@ -779,6 +792,7 @@ label ruins_intro_blooky:
 #if the player goes east, they encounter the spider bakery
 #if the player goes north, they reach the tunnel divide. The tunnel divide should have its own room description, but no story elements take place here. The player can finally go east to encounter Frisk, in which case jump frisk_meeting_start. Or, the player could go north past the black tree room to encounter Toriel, in which case jump ruins_intro_toriel_house
 label ruins_intro_toriel_house:
+    play music "audio/ruins/toriels_house.mp3" fadein 5
     if 'accepted_toriel' not in player.variables:
         $ player.variables['accepted_toriel'] = False
     if 'met_frisk' not in player.variables:

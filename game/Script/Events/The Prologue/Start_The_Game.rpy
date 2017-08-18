@@ -22,7 +22,7 @@ label prologue:
 
 label the_fall:
     
-    scene
+    scene black
     with fade
 
     #play wind sfx
