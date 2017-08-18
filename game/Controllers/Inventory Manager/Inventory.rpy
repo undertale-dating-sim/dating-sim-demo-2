@@ -132,6 +132,7 @@ label inventory_full:
     return
 
 label use_item(item):
+    play sound "audio/sfx/use_item.wav"
     "You use the [item.name]."
     if item.use_text != "":
         "[item.use_text]"
@@ -154,6 +155,7 @@ label equip_item(item):
                 $ item.equip_self()
                 if item in inventory.items:
                     $ inventory.drop(item)
+                play sound "audio/sfx/use_item.wav"
                 "You equip the [item.name]."
             else:
                 "Can't equip. No space for current item."
@@ -162,6 +164,7 @@ label equip_item(item):
             $ item.equip_self()
             if item in inventory.items:
                     $ inventory.drop(item)
+            play sound "audio/sfx/use_item.wav"
             "You equip the [item.name]."
 
     else:
@@ -175,6 +178,7 @@ label unequip_item():
 label pickup_item(item):
     if inventory.has_space():
         $ inventory.add(item)
+        play sound "audio/sfx/use_item.wav"
         "[item.pickup_text]"
     else:
         call inventory_full from _call_inventory_full
