@@ -217,7 +217,7 @@ init -1 python:
             self.events["port_to_toriel_house"] = Event("port_to_toriel_house",True)
     
 label port_to_toriel_house:
-    pause 1
+    $ renpy.pause(1.0)
     $ world.move_to_room("Staircase")
 
 label dead_room:
