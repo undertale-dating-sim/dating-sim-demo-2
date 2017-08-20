@@ -81,19 +81,7 @@ label Snail_Hunter_Random_Event:
 
             "What do you do?"
             "Check under the flowers":
-                $snail_count = renpy.random.randint(3,10)
-                "You found some snails!"
-                $ player.variables['snail_game_count']+=1
-                if player.current_snails >= player.max_snails:
-                    "Your pockets are full though. Bummer."
-                elif player.current_snails + snail_count <= player.max_snails:
-                    "[snail_count] added to inventory."
-                else:
-                    $ snail_count = (player.current_snails + snail_count) - player.max_snails
-                    "[snail_count] added to inventory."
-
-                $ player.current_snails += snail_count
-                $ player.last_snail_day = world.day
+                call Undersnail
 
             "Ignore it. Too scary.":
                 return
@@ -126,9 +114,8 @@ label after_load:
 
     stop music
     $ talking = False
-    hide screen multiple_monster_click_screen
     #jump start
-    jump start
+    jump frisk_meeting_snail_catching
     return
 
 

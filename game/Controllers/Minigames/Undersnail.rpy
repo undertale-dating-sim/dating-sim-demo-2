@@ -10,15 +10,22 @@ label UnderSnail:
     #set the background
     scene background field
 
-
+    "The Snails will come out of the flower patches on the left."
+    "Click and hold on them to capture them in your net!"
+    "Miss three snails and its Game Over."
+    "Catch ten to win!"
+    "Good luck!"
     stop music
     python:
         us = UnderSnail()
         ui.add(us)
         winner = ui.interact(suppress_overlay=True, suppress_underlay=True)
-
+    $ renpy.transition(fade)
+    $ renpy.show(world.get_room("Snail Hunting Room").bg)
     if winner == 'win':
+        play music "audio/ruins/the_ruins.mp3" fadein 5
         "Good job!"
+        $ player.give_snails()
         
         # if mission == "rocket":
         #     "You caught [us.rocket_snail_count] rocket snails."

@@ -23,10 +23,9 @@ label frisk_meeting_start:
         chose_frisk_meeting_option37 = False
         chose_frisk_meeting_option72 = False
 
-    jump frisk_meeting_corridor_after_dinner
-
     $ renpy.transition(fade)
     $ renpy.show(world.get_room("Overlook").bg)
+    $ set_lock_room("Snail Hunting Room",False)
     show frisk normal
     $renpy.pause()
     show frisk surprised with Dissolve(.25)
@@ -182,11 +181,14 @@ label frisk_meeting_snail_catching:
     show frisk smallsmile with Dissolve(.25)
     frisk "Here, you can take my old phone! My friend made me a new one, so I don’t mind."
 
+    play sound "audio/sfx/use_item.wav"
     "* You get The CELL!"
+    "The CELL has been unlocked in the MENU."
     frisk "And I’ve already transferred all of my old junk off of it, so it’s just like new."
     frisk "Oh, and I’ll add my number into it! That way, if you ever need to get in touch with me, I’ll just be a phone call away!"
 
     ################################
+    play sound "audio/sfx/use_item.wav"
     "* Frisk’s number obtained."
     $player.variables['has_frisk_cell'] = True
     $player.variables['has_cellphone'] = True
@@ -245,6 +247,7 @@ label frisk_meeting_snail_catching:
     frisk "Here’s what I need you to do..."
     frisk "First, here, take this net."
     
+    play sound "audio/sfx/use_item.wav"
     "* You get the Butterfly Net!"
     "* It’s a big butterfly net, good for catching snails."
      
@@ -253,7 +256,7 @@ label frisk_meeting_snail_catching:
     frisk "Ready? Here we go!"
      
     #Snail Minigame happens
-    "NEED TO REMEMBER TO PUT THE MINIGAME HERE"
+    call UnderSnail
      
     show frisk smallsmile with Dissolve(.25)
     frisk "Ya know, I’m actually feeling a bit better right now."
@@ -563,6 +566,7 @@ label frisk_meeting_eat:
     $ get_monster("Toriel").move_to_room("Living Room")
     $ get_room("Corridor").set_event('frisk_meeting_corridor_after_dinner',True)
     $ move_to_room('Staircase')
+    return
  
 ################################
 #  FRISK MEETING AFTER DINNER  #
@@ -639,6 +643,7 @@ label frisk_meeting_toriel_after_dinner:
             $ chose_frisk_meeting_option37 = True
     $ get_room("Living Room").set_event('ruins_dinner',True)
     $ move_to_room('Staircase')
+    return
 
 label frisk_meeting_choice21:
 

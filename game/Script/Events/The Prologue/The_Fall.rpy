@@ -221,6 +221,7 @@ label flowey_introduction():
             $ get_room("Grass Room").events = {}
             $ get_room("Grass Room").add_event("grass_room_revisited",False)
             $ get_room("Cave Room").add_event("flowey_intro_annoyed",False)
+            $ get_room("Monster Candy Room").add_event("ruins_mc_get_candy",False)
             $ move_to_room("Grass Room")
     jump ruins_intro_flowey
     return
@@ -331,6 +332,7 @@ label ruins_intro_flowey:
     $ get_room("Grass Room").set_event("intro_vines_gone",False)
     $ get_room("Ruins Entrance").set_event("ruins_entrance_intro",False)
     $ set_lock_room("Ruins Entrance",False)
+    $ set_lock_room("Snail Hunting Room",True)
     $ get_room("Tunnels").set_event("tunnels_intro",False)
     $ get_room("Dummy Room").set_event("dummy_intro",False)
     $ get_room("Froggit Room").set_event("ruins_intro_leaves",False)
@@ -695,7 +697,6 @@ label ruins_intro_rock_alone:
     # "* The room before you is long and filled with odd items. There is a sign hanging on the wall closest to you."
     # "* Three grey rocks sit on top of strange square pads on the ground, and a moat crosses the opposite side of the hall."
     # "* A short bridge extends across the still water. There is an exit across the bridge."
-    play music "audio/ruins/the_ruins.mp3" fadein 5
     menu:
         "Look around":
             "* A gust of wind trails from the wide doorway ahead, shifting a few leaves across the floor."
@@ -710,6 +711,7 @@ label ruins_intro_blooky:
     # "* The room is average sized and is divided by a wall halfway through that separates the side of the room you are on from two exits on the other side. "
     # "* There is a narrow opening in the wall, its floor covered with a scattering of red leaves."
     show napstablook normal at napstabob with Dissolve(.25)
+    play music "audio/ruins/blooky.mp3" fadein 5
     "* There’s that ghost from earlier..."
     
 
@@ -792,7 +794,6 @@ label ruins_intro_blooky:
 #if the player goes east, they encounter the spider bakery
 #if the player goes north, they reach the tunnel divide. The tunnel divide should have its own room description, but no story elements take place here. The player can finally go east to encounter Frisk, in which case jump frisk_meeting_start. Or, the player could go north past the black tree room to encounter Toriel, in which case jump ruins_intro_toriel_house
 label ruins_intro_toriel_house:
-    play music "audio/ruins/toriels_house.mp3" fadein 5
     if 'accepted_toriel' not in player.variables:
         $ player.variables['accepted_toriel'] = False
     if 'met_frisk' not in player.variables:

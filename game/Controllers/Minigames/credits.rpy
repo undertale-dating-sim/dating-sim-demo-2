@@ -33,7 +33,7 @@ init:
 
 
 
-label scrolling_credits:
+label scrolling_credits_dumb:
     
     play music "audio/music/megalovania.mp3"
     scene black

@@ -195,6 +195,7 @@ screen main_menu():
         # textbutton _("Testing Area") action ui.callsinnewcontext("testing_area")
         textbutton _("Load Game") action ShowMenu("load")
         textbutton _("Preferences") action ShowMenu("preferences")
+        textbutton _("Credits") action ui.callsinnewcontext("scrolling_credits")
         # textbutton _("Feedback") action Jump("Feedback")
         # textbutton _("Admin_Controls") action ShowMenu("admin_controls")
         # textbutton _("Update") action Jump("updater")

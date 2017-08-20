@@ -210,7 +210,7 @@ init -1 python:
             self.name = "Exit"
             self.x = 12
             self.y = 6
-            self.desc = [""]
+            self.desc = []
             self.bg = "background toriel_transition_screen"
             self.mappable = False
             self.ignore = True
@@ -220,6 +220,16 @@ label port_to_toriel_house:
     $ renpy.pause(1.0)
     $ world.move_to_room("Staircase")
 
+label ruins_mc_get_candy:
+    $ renpy.pause()
+    menu:
+        "Take a piece of candy"
+        "Yes":
+            $ inventory.pickup_item(Monster_Candy())
+            return
+        "No":
+            "Probably not a good idea to eat random bowl candy..."
+            return
 label dead_room:
     #show wilson scary
     #"{size=+5}{font=font/Pixelated_Wingdings.ttf}You   SHOULDN'T    BE     HERE{/font}"

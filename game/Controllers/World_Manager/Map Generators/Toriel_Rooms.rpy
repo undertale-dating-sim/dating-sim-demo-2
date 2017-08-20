@@ -50,7 +50,7 @@ init python:
             self.lockeast = True
             self.lockwest = True
             self.desc = "* A large, ornate door stands before you.  ","* It feels cold and impersonal."
-            self.events['ruins_basement_door_first_visit'] = Event("ruins_basement_door_first_visit",True)
+            self.events['ruins_basement_door_first_visit'] = Event("ruins_basement_door_first_visit",False)
             
 
 

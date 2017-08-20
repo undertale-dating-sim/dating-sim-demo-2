@@ -28,7 +28,7 @@ init -1 python:
             self.pass_out_label = "player_passes_out"
             self.die_label = "player_dies"
 
-            self.current_snails = 5
+            self.current_snails = 0
             self.max_snails = 10
             self.last_snail_day = False
             self.variables = {}
@@ -80,6 +80,27 @@ init -1 python:
         def update_player(self):
             if self.current_health <= 0:
                 renpy.call_in_new_context(self.die_label)
+
+        def give_snails(self):
+            snail_count = renpy.random.randint(3,10)
+            renpy.say(None,"You found some snails!")
+            
+            if 'snail_game_count' not in self.variables:
+                self.variables['snail_game_count'] = 0
+
+            self.variables['snail_game_count']+=1
+            if self.current_snails >= self.max_snails:
+                renpy.say(None,"Your pockets are full though. Bummer.")
+            elif self.current_snails + snail_count <= self.max_snails:
+                renpy.sound.play("audio/sfx/use_item.wav")
+                renpy.say(None,"%s added to inventory." % snail_count)
+            else:
+                snail_count = (self.current_snails + snail_count) - self.max_snails
+                renpy.sound.play("audio/sfx/use_item.wav")
+                renpy.say(None,"%s added to inventory." % snail_count)
+
+            self.current_snails += snail_count
+            self.last_snail_day = world.day
 
 ##########
     # This function should be called when the player needs to wake up.

@@ -188,7 +188,7 @@ init -1 python hide:
 
     ## Music that is played while the user is at the main menu.
 
-    #config.main_menu_music = "audio/music/Intro_1-2.mp3"
+    config.main_menu_music = "audio/main_menu.mp3"
 
 
     #########################################
@@ -304,7 +304,7 @@ init python:
 
     ## If True, Ren'Py will include update information into packages. This
     ## allows the updater to run.
-    build.include_update = True
+    build.include_update = False
 
     ## File patterns:
     ##
@@ -334,11 +334,17 @@ init python:
 
     ## Classify files as None to exclude them from the built distributions.
 
-    build.classify('**~', None)
-    build.classify('**.bak', None)
-    build.classify('**/.**', None)
-    build.classify('**/#**', None)
-    build.classify('**/thumbs.db', None)
+ # Declare two archives.
+    build.archive("scripts", "all")
+    build.archive("images", "all")
+
+    # Put script files into the scripts archive.
+    build.classify("game/**.rpy", "scripts")
+    build.classify("game/**.rpyc", "scripts")
+
+    # Put images into the images archive.
+    build.classify("game/**.jpg", "images")
+    build.classify("game/**.png", "images")
 
     ## To archive files, classify them as 'archive'.
 
