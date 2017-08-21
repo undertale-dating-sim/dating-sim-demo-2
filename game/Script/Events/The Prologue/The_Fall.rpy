@@ -221,8 +221,9 @@ label flowey_introduction():
             $ get_room("Grass Room").events = {}
             $ get_room("Grass Room").add_event("grass_room_revisited",False)
             $ get_room("Cave Room").add_event("flowey_intro_annoyed",False)
-            $ get_room("Monster Candy Room").add_event("ruins_mc_get_candy",False)
             $ move_to_room("Grass Room")
+            
+    play music "audio/ruins/flowey.mp3"
     jump ruins_intro_flowey
     return
 label flowey_intro_annoyed():
@@ -258,7 +259,6 @@ label grass_room_revisited:
 label ruins_intro_flowey:
         
     show flowey normal with Dissolve(.25)
-    play music "audio/ruins/flowey.mp3"
     unknown "Howdy! I'm Flowey, Flowey the flower! You're new here, aren'tcha?"
     flowey "You look a little nervous... are you scared of little ol' me?"
 
@@ -339,6 +339,7 @@ label ruins_intro_flowey:
     $ get_room("Blooky Room").set_event("ruins_intro_blooky",False)
     $ get_room("Staircase").set_event("ruins_intro_toriel_house",False)
     $ get_room("Overlook").set_event("frisk_meeting_start",False)
+    $ get_room("Monster Candy Room").add_event("ruins_mc_get_candy",False)
 
     call show_buttons
     play music "audio/ruins/the_ruins.mp3"
