@@ -148,10 +148,15 @@ init -4 python:
             self.sale_cost = 5
             self.name = "Monster Candy"
             self.use_text = "You eat the candy."
+            self.pickup_text = "It's a piece of candy!  It still has the paper on it, so you know it is still good."
             self.sprite = "items/item_monstercandy.png"
             self.menu_desc = "A very nice candy."
             self.neutral_text = "Although its colors vary, it tastes like an unsweetened mix between fresh grapes and blackberries. The wrapper comes in various patterns."
-
+        def use(self):
+            player.current_health = player.total_health
+            renpy.say(None,"* You regain 1 HP! Candy isn't very good for you, you know.")
+            inventory.drop(self)
+            return
     class Spider_Cider(Item):
         def __init__(self):
             Item.__init__(self)
