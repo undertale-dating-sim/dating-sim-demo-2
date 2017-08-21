@@ -24,7 +24,7 @@ label the_fall:
     
     scene black
     with fade
-
+    stop music
     #play wind sfx
     #play music "audio/sfx/Falling_down_wind.wav"
 
