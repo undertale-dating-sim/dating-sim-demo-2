@@ -3,12 +3,14 @@ screen show_menu_button:
     
     textbutton "Show Menu(Q)" action [Play ("sound", "audio/sfx/click.wav"),Show("show_menu"),Hide("show_menu_button"),Show("stats"),Show("debug_monsters")] align(.95,.05) 
     key 'q' action [Play ("sound", "audio/sfx/click.wav") ,Show("show_menu"),Hide("show_menu_button"),Show("stats"),Show("debug_monsters")]
+    key 'Q' action [Play ("sound", "audio/sfx/click.wav") ,Show("show_menu"),Hide("show_menu_button"),Show("stats"),Show("debug_monsters")]
 screen show_menu:
     add "#0008"
     modal True
     #hide button
     textbutton "Hide Menu (Q)" action [Play ("sound", "audio/sfx/click.wav"),Hide("show_menu"),Show("show_menu_button"),Hide("items"),Hide("stats"),Hide("cell"),Hide("show_item_description"),Hide("debug_monsters")] align(.95,.05)  
     key 'q' action [Play ("sound", "audio/sfx/click.wav"),Hide("show_menu"),Show("show_menu_button"),Hide("items"),Hide("stats"),Hide("cell"),Hide("show_item_description"),Hide("debug_monsters")]
+    key 'Q' action [Play ("sound", "audio/sfx/click.wav"),Hide("show_menu"),Show("show_menu_button"),Hide("items"),Hide("stats"),Hide("cell"),Hide("show_item_description"),Hide("debug_monsters")]
     vbox xalign 0.05 ypos 0.05:
         frame:
             background Frame("UI/text-box3.png",21, 21)
@@ -161,6 +163,7 @@ screen show_information_overlay:
 screen show_nav_button:
     textbutton "Show Nav (E)" action [Play ("sound", "audio/sfx/click.wav"), Show("navigation_buttons"), Hide("show_nav_button")] align(.95,.1) 
     key 'e' action [Play ("sound", "audio/sfx/click.wav"), Show("navigation_buttons"), Hide("show_nav_button"),Hide("multiple_monster_click_screen")]
+    key 'E' action [Play ("sound", "audio/sfx/click.wav"), Show("navigation_buttons"), Hide("show_nav_button"),Hide("multiple_monster_click_screen")]
 screen navigation_buttons:
     add "#0008"
     modal True
@@ -173,20 +176,25 @@ screen navigation_buttons:
 
     textbutton "Hide Nav (E)" action [Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Hide("multiple_monster_click_screen")] align(.95,.1) 
     key 'e' action [Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button')]
+    key 'E' action [Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button')]
     if dirs.count('north') > 0:
         imagebutton auto "UI/button_north_%s.gif"  align(0.5,0.0) action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.current_area.move_dir,'north')]
         key 'w' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.current_area.move_dir,'north')]
+        key 'W' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.current_area.move_dir,'north')]
 
     if dirs.count('south') > 0:
         imagebutton auto "UI/button_south_%s.gif"  align(0.5,1.0) action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.current_area.move_dir,'south')]
         key 's' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.current_area.move_dir,'south')]
+        key 'S' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.current_area.move_dir,'south')]
 
     if dirs.count('east') > 0:
         imagebutton auto "UI/button_east_%s.gif"  align(1.0,0.5)  action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.current_area.move_dir,'east')]
         key 'd' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.current_area.move_dir,'east')]
+        key 'D' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.current_area.move_dir,'east')]
 
     if dirs.count('west') > 0:
         imagebutton auto "UI/button_west_%s.gif"  align(0.00,0.5) action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.current_area.move_dir,'west')]
         key 'a' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.current_area.move_dir,'west')]
+        key 'A' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.current_area.move_dir,'west')]
 
     text '[world.current_area.current_room.name]' align(0.5,0.5)                  
