@@ -345,6 +345,8 @@ init python:
     # Put images into the images archive.
     build.classify("game/**.jpg", "images")
     build.classify("game/**.png", "images")
+    build.classify("game/**.mp3", "images")
+    build.classify("game/**.wav", "images")
 
     ## To archive files, classify them as 'archive'.
 
