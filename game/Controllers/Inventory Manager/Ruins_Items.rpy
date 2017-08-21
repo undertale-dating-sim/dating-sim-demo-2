@@ -152,11 +152,13 @@ init -4 python:
             self.sprite = "items/item_monstercandy.png"
             self.menu_desc = "A very nice candy."
             self.neutral_text = "Although its colors vary, it tastes like an unsweetened mix between fresh grapes and blackberries. The wrapper comes in various patterns."
+        
         def use(self):
-            player.current_health = player.total_health
+            player.heal(1)
             renpy.say(None,"* You regain 1 HP! Candy isn't very good for you, you know.")
             inventory.drop(self)
             return
+
     class Spider_Cider(Item):
         def __init__(self):
             Item.__init__(self)
@@ -166,19 +168,6 @@ init -4 python:
             self.sprite = "items/item_spidercider.png"
             self.menu_desc = "This bubbly drink is sure to hit the spot!"
             self.neutral_text = "The peach colored, smooth substance could pass as apple cider... if it didn’t have spider bits floating in it."
-
-    class Sleeping_Potion(Item):
-        def __init__(self):
-            Item.__init__(self)
-            self.name = "Game Over Potion"
-            self.sale_cost = 5
-            self.use_text = "You drink the thick, white goop.  It tastes disgusting."
-            self.pickup_text = "You find a potion. Smells like a reset?"
-            self.sprite = "items/item_spidercider.png"
-            self.menu_desc = "Puts you to sleep."
-
-        def use(self):
-            player.update_player()
 
     class Snail(Item):
         def __init__(self):
