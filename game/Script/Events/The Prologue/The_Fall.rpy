@@ -716,23 +716,40 @@ label ruins_intro_blooky:
     
 
     if not blook_scream:
-        unknown "....sorry about just disappearing earlier... i didn’t mean to ignore you... or be awkward... i just made this awkward... didn’t i...?"
+        unknown "...sorry about just disappearing earlier... i didn’t mean to ignore you."
+        unknown "... or be awkward... "
+        unknown "i just made this awkward..."
+        unknown "... didn’t i...?"
         unknown "..."
         unknown "...i wasn’t really expecting to meet anyone there..."
-        unknown "i wasn’t expecting to run into you here, either... but... i guess i’m not completely surprised..."
-        unknown "........ ...... ......."
-        unknown "so... uh... you’re new here, right? i’m napstablook..."
+        unknown "i wasn’t expecting to run into you here, either... "
+        unknown "but... "
+        unknown "i guess i’m not completely surprised..."
+        unknown "........ "
+        unknown "......"
+        unknown "......."
+        unknown "so... "
+        unknown "uh... "
+        unknown "you’re new here, right?"
+        unknown "i’m napstablook..."
     else:
-        unknown "oh...... ..."
-        unknown "uh, sorry.... i didn’t mean to scare you earlier..."
+        unknown "oh..."
+        unknown "..."
+        unknown "uh, sorry... i didn’t mean to scare you earlier..."
         unknown "you kind of scared me, too..."
-        unknown "um... that’s okay, though... it can’t be helped..."
-        unknown "...... .... ............"
-        unknown "...well... um... i’m napstablook..."
+        unknown "um... that’s okay, though..." 
+        unknown "it can’t be helped..."
+        unknown ".... "
+        unknown "...."
+        unknown "............"
+        unknown "...well"
+        unknown "... um... "
+        unknown "i’m napstablook..."
 
     menu:
         "It’s nice to meet you.":                          #(+3)
-            napstablook "oh... you too..."
+            napstablook "oh..."
+            napstablook "you too..."
             napstablook "....."
             napstablook "it's been..... .. a while since someone new showed up..."
             napstablook "but the last time a human fell down.... .. it wasn’t so bad..."
@@ -754,34 +771,51 @@ label ruins_intro_blooky:
                     napstablook "i’m sure you two will get along..."
 
         "Wow, so you’re really a ghost? That’s creepy...":       #(-3)
-            napstablook "oh... well... i’m sorry... there’s not much i can do about that..."
+            napstablook "oh..."
+            napstablook "well... "
+            napstablook "i’m sorry... "
+            napstablook "there’s not much i can do about that..."
             menu:
                 "People are probably scared of you, right?":        #(+2)
-                    napstablook "um... i guess... i never thought about it like that..."
+                    napstablook "um... "
+                    napstablook "i guess... "
+                    napstablook "i never thought about it like that..."
                     napstablook "......"
                     show napstablook sad with Dissolve(.25)
                     napstablook "...you’re probably right..."
                 "That’s okay, I’ll get used to it.":             #(+1)
-                    napstablook "oh... that’s good... sorry..."
+                    napstablook "oh... "
+                    napstablook "that’s good... "
+                    napstablook "sorry..."
                 "Sorry, that came out the wrong way.":           #(+0)
-                    napstablook "oh... okay..."
+                    napstablook "oh... "
+                    napstablook "okay..."
                 "Sorry about scaring you before...":                   #(+1)
-                    napstablook "oh no... you’re fine... i probably did something..."
+                    napstablook "oh no... "
+                    napstablook "you’re fine... "
+                    napstablook "i probably did something..."
     
                     menu:
                         "No, not at all!":                           #(+3)
                             napstablook "...really?"
                             show napstablook smallsmile with Dissolve(.25)
-                            napstablook "okay... that’s good... thank you..."
+                            napstablook "okay... "
+                            napstablook "that’s good... "
+                            napstablook "thank you..."
                         "I forgive you.":                           #(+2)
                             napstablook "oh, i’m glad..."
                             show napstablook sad with Dissolve(.25)
-                            napstablook "i... uh... mess up a lot... it’s one of the few things i’m good at..."
+                            napstablook "i... "
+                            napstablook "uh... "
+                            napstablook "mess up a lot... "
+                            napstablook "it’s one of the few things i’m good at..."
                             show napstablook smallsmile with Dissolve(.25)
-                            nastablook "so... thanks for giving me another chance..."
+                            nastablook "so... "
+                            napstablook "thanks for giving me another chance..."
 
 
-    napstablook "um... i better get back to work now..."
+    napstablook "um... "
+    napstablook "i better get back to work now..."
     # napstablook "oh... but... before i go..."
     # napstablook "i’ve noticed you... uh... haven’t been using the navigation options..."
     # napstablook "you’ve just been going in a straight line..."
@@ -789,6 +823,8 @@ label ruins_intro_blooky:
     # napstablook "anyway..."
     napstablook "see you later.....?"
     hide napstablook with Dissolve(2.0)
+    stop music fadeout 5
+    play music "audio/ruins/the_ruins.mp3" fadein 5
     return
 #the option to navigate is now available to the player. They can now go back to any previous room or choose to go forward. 
 #if the player goes east, they encounter the spider bakery
