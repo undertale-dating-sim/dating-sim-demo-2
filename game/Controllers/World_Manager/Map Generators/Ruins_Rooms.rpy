@@ -225,7 +225,7 @@ label ruins_mc_get_candy:
     menu:
         "Take a piece of candy"
         "Yes":
-            $ inventory.pickup_item(Monster_Candy())
+            call pickup_item(Monster_Candy())
             return
         "No":
             "Probably not a good idea to eat random bowl candy..."
