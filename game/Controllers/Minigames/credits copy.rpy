@@ -3,7 +3,7 @@
 
 init python:
     credit_text = ["Voice Actor\n","Writers\n","Artists\n"]
-    coders_text = ["AnnAisu","Celine\n","lzuehsow\n","PayneGray\n"]
+    coders_text = ["AnnAisu","Chloekat1things (Cece)\n","lzuehsow\n","PayneGray\n"]
     leadership_text = ["Al\n","Blue\n","Becca\n","Louie\n","Nekomayata\n","Sky\n","Wilson\n"]
     writers_text = ["CelestialSushi\n","Felix\n","Jeffrey\n","Kate\n","Nevran\n","Quinn\n","Riza\n","Ronnie\n","Rose\n","Sage\n","Sam\n","Vunde\n"]
     credit_speed = 25
