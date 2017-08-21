@@ -195,8 +195,8 @@ screen main_menu():
         # textbutton _("Testing Area") action ui.callsinnewcontext("testing_area")
         textbutton _("Load Game") action ShowMenu("load")
         textbutton _("Preferences") action ShowMenu("preferences")
-        textbutton _("BG Gallery") action ShowMenu("bg_gallery")
-        textbutton _("CG Gallery") action ShowMenu("cg_gallery")
+        textbutton _("Art Gallery") action ShowMenu("art_gallery")
+        textbutton _("Mix and Match") action ShowMenu("mix_gallery")
         # textbutton _("Feedback") action Jump("Feedback")
         # textbutton _("Admin_Controls") action ShowMenu("admin_controls")
         # textbutton _("Update") action Jump("updater")
@@ -523,127 +523,204 @@ init -2:
 ##############################################################################
 
 init +1 python:
-    
-    #Galleries settings - start
-    #list the CG gallery images here:
-    
-    gallery_cg_items = ["flowey normal", "flowey backside", "flowey annoyed", "flowey sideglance", "flowey surprised", "flowey blush",  "flowey wink", "flowey excited", "flowey laugh", "flowey sad", "flowey smug", "flowey horror",  "flowey suspicious", "flowey angry", "flowey sad",
+    #list all the sprites here:
+    gallery_spr_items = ["flowey normal", "flowey backside", "flowey annoyed", "flowey sideglance", "flowey surprised", "flowey blush",  "flowey wink", "flowey excited", "flowey laugh", "flowey sad", "flowey smug", "flowey horror",  "flowey suspicious", "flowey angry", "flowey sad",
                         "frisk angry", "frisk annoyed", "frisk bigsmile", "frisk blushing", "frisk disappointed", "frisk distant", "frisk giggly", "frisk hurtsurprised", "frisk normal", "frisk sad", "frisk somehappy", "frisk smallsmile", "frisk surprised", "frisk tearyeyes", "frisk upset",
                         "toriel placeholder", "toriel angry", "toriel annoyed", "toriel awkward", "toriel blushing", "toriel laughing", "toriel normal", "toriel reallysad", "toriel sad", "toriel smallsmile", "toriel smile", "toriel surprised",
                         "napstablook normal", "napstablook sad", "napstablook shyblush", "napstablook smallsmile", "napstablook smile", "napstablook surprised",
                         "grillby grillby1", "grillby grillby2", "grillby grillby3", "grillby grillby4", "grillby grillby5", "grillby grillby6", "grillby grillby7", "grillby grillby8", "grillby grillby9", "grillby grillby10", "grillby grillby11", "grillby grillby12"]
-    #list the BG gallery images here (if a BG includes several variations, such as night version, include only one variation here):
-    #for temp in range(1,10):
-    #    gallery_bg_items[temp] = "bg[temp]"
-    gallery_bg_items = ["bg1", "bg2", "bg3", "bg4", "bg5", "bg6", "bg7", "bg8", "bg9", "bg10", "bg11", "bg12", "bg13", "bg14", "bg15", "bg16", "bg17", "bg18", "bg19", "bg20", "bg21", "bg22"]
+    #list all background art
+    gallery_bkg_items = ["bg1", "bg2", "bg3", "bg4", "bg5", "bg6", "bg7", "bg8", "bg9", "bg10", "bg11", "bg12", "bg13", "bg14", "bg15", "bg16", "bg17", "bg18", "bg19", "bg20", "bg21", "bg22"]
+    
     #how many rows and columns in the gallery screens?
-    bg_rows = 2
-    bg_cols = 3
-    cg_rows = 1
-    cg_cols = 1
+    spr_rows = 1 # Mix n' match of sprites and scenes, selection menu
+    spr_cols = 1
+    bkg_rows = 1
+    bkg_cols = 1
+    
+    art_rows = 2 # Art gallery of all background art
+    art_cols = 3
+    
     #thumbnail size in pixels:
-    bg_x = 267
-    bg_y = 150
-    cg_x = 250
-    cg_y = 375
-    #the setting above (267x150) will work well with 16:9 screen ratio. Make sure to adjust it, if your are using 4:3 or something else.
-    #Galleries settings - end
+    spr_x = 250
+    spr_y = 375
+    bkg_x = 400
+    bkg_y = 600
     
-    bg_cells = bg_rows * bg_cols
-    cg_cells = cg_rows * cg_cols
+    art_x = 267
+    art_y = 150
     
-    g_cg = Gallery()
+    #generated for convenient use later- total number of imagebuttons per page
+    spr_cells = spr_rows * spr_cols
+    bkg_cells = bkg_rows * bkg_cols
+    art_cells = art_rows * art_cols
     
-    for gal_item in gallery_cg_items:
-        g_cg.button(gal_item + " butt")
-        g_cg.image("images/backgrounds/Ruins/background-ruins-floweyroom.jpg", gal_item)
-        g_cg.unlock(gal_item)
-    g_cg.transition = fade
-    cg_page=0
-
-    g_bg = Gallery()
-    for gal_item in gallery_bg_items:
-        g_bg.button(gal_item + " butt")
-        g_bg.image(gal_item)
-        #g_bg.unlock(gal_item)
-        #if BGs have variations, such as night version, uncomment the lines below and include the code for each BG with variations
-#        if gal_item == "bg kitchen":
-#            g_bg.image("bg kitchen dining")
-#            g_bg.unlock("bg kitchen dining")
-    g_bg.transition = fade
-    bg_page=0
+    poss_indices = ((int(len(gallery_bkg_items))/bkg_cells) - 1)
+    
+    #creating gallery object for sprite selection menu
+    g_spr = Gallery()
+    spr_page = 0
+    scene_background = "images/backgrounds/Ruins/background-ruins-blacktree.png" #Default background if none chosen
+    spr_pos = "right"
+    modifier = 0
+    
+    g_bkg = Gallery()
+    bkg_page = 0
+    
+    g_art = Gallery()
+    for gal_item in gallery_bkg_items:
+        g_art.button(gal_item + " butt")
+        g_art.image(gal_item)
+        #g_art.unlock(gal_item) #unlock once seen- doesn't work yet
+    g_art.transition = fade
+    art_page=0
     
 init +1 python:
-    #Here we create the thumbnails. We create a grayscale thumbnail image for BGs, but we use a special "locked" image for CGs to prevent spoilers.
-    for gal_item in gallery_cg_items:
-        renpy.image (gal_item + " butt", im.Scale(ImageReference(gal_item), cg_x, cg_y))
-    for gal_item in gallery_bg_items:
-        renpy.image (gal_item + " butt", im.Scale(ImageReference(gal_item), bg_x, bg_y))
+    #creating thumbnails
+    for gal_item in gallery_spr_items:
+        renpy.image (gal_item + " butt", im.Scale(ImageReference(gal_item), spr_x, spr_y))
+    for gal_item in gallery_bkg_items:
+        renpy.image (gal_item + " butt", im.Scale(ImageReference(gal_item), bkg_x, bkg_y))     # For mix n' match
+        renpy.image (gal_item + " butt", im.Scale(ImageReference(gal_item), art_x, art_y))     # For art gallery
         renpy.image (gal_item + " butt dis", im.Grayscale(ImageReference(gal_item + " butt")))
         
-screen cg_gallery:
+screen mix_gallery:
+    python:
+        for gal_item in gallery_spr_items:
+            g_spr.button(gal_item + " butt")
+            g_spr.image(scene_background,gal_item)
+            g_spr.unlock(gal_item)
+        g_spr.transition = fade
+        for gal_item in gallery_bkg_items:
+            g_bkg.button(gal_item + " butt")
+            g_bkg.image(gal_item)
+        g_bkg.transition = fade
     tag menu
     frame:
         #use navigation
         background "backgrounds/ui/journal.png"
-        grid cg_rows cg_cols:
+        
+        $ next_spr_page = spr_page + 1                               # Functions to change "pages" for mix n' match gallery
+        $ prev_spr_page = spr_page - 1
+        $ next_bkg_page = bkg_page + 1
+        $ prev_bkg_page = bkg_page - 1
+#        $ set_bkg = gallery_bkg_items[(bkg_page+modifier)*bkg_cells]
+        $ set_spr_pos = 1
+        
+        if prev_bkg_page < 0:
+            $ prev_bkg_page = int(len(gallery_bkg_items)/bkg_cells)
+        
+        imagebutton idle "images/UI/showleft.png" xpos 500 ypos 200 focus_mask None action [SetVariable('spr_pos', set_spr_pos)] at scalearrow
+        imagebutton idle "images/UI/showmid.png" xpos 500 ypos 300 focus_mask None action [SetVariable('spr_pos', set_spr_pos)] at scalearrow
+        imagebutton idle "images/UI/showright.png" xpos 500 ypos 400 focus_mask None action [SetVariable('spr_pos', set_spr_pos)] at scalearrow
+##        imagebutton idle "images/UI/generate.png" xalign .98 yalign .99 focus_mask True action [SetVariable('spr_pos', set_spr_pos)] at scalearrow
+
+##        imagebutton idle gallery_bkg_items[bkg_page] xpos 500 ypos 200 focus_mask None action [If(next_bkg_page > 21, SetVariable('bkg_page', 0), SetVariable('bkg_page', (bkg_page + 1)))] at scalearrow
+
+        imagebutton idle "images/UI/right_arrow.png" xpos 300 ypos 450 focus_mask True action [SetVariable('spr_page', next_spr_page)] at scalearrow
+        imagebutton idle "images/UI/left_arrow.png" xpos 75 ypos 450 focus_mask True action [SetVariable('spr_page', prev_spr_page)] at scalearrow
+
+
+############################ THE BUG IS HERE ##########################################
+
+        ## Currently trying to squish a bug where the background in the composite sprite + background image lags one selection behind the one displayed in the menu. This code does not crash.
+        imagebutton idle "images/UI/right_arrow.png" xpos 650 ypos 450 focus_mask True action [If(next_bkg_page > poss_indices, SetVariable('bkg_page', 0), SetVariable('bkg_page', next_bkg_page)), SetVariable('scene_background', gallery_bkg_items[bkg_page])] at scalearrow
+        imagebutton idle "images/UI/left_arrow.png" xpos 425 ypos 450 focus_mask True action [If(prev_bkg_page > poss_indices, SetVariable('bkg_page', poss_indices), SetVariable('bkg_page', prev_bkg_page)), SetVariable('scene_background', gallery_bkg_items[bkg_page])] at scalearrow
+
+        ## This code no longer has the background bug, but will crash the game once you reach image #22 (index = 21)
+#        imagebutton idle "images/UI/right_arrow.png" xpos 650 ypos 450 focus_mask True action [If(next_bkg_page > poss_indices, SetVariable('bkg_page', 0), SetVariable('bkg_page', next_bkg_page)), SetVariable('scene_background', gallery_bkg_items[bkg_page+1])] at scalearrow
+#        imagebutton idle "images/UI/left_arrow.png" xpos 425 ypos 450 focus_mask True action [If(prev_bkg_page > poss_indices, SetVariable('bkg_page', poss_indices), SetVariable('bkg_page', prev_bkg_page)), SetVariable('scene_background', gallery_bkg_items[bkg_page])] at scalearrow
+
+############################ THE BUG IS HERE ##########################################
+        
+##        SetVariable('scene_background', gallery_bkg_items[bkg_page])
+        
+        grid spr_rows spr_cols:
             xpos 100
             ypos 75
-            $ i = 0
-            $ next_cg_page = cg_page + 1 
-            $ prev_cg_page = cg_page - 1
-            if next_cg_page > int(len(gallery_cg_items)/cg_cells):
-                $ next_cg_page = 0
-            if prev_cg_page < 0:
-                $ prev_cg_page = int(len(gallery_cg_items)/cg_cells) - 1
-            for gal_item in gallery_cg_items:
-                #g_cg.image("images/backgrounds/Ruins/backgrounds/Ruins/background-ruins-blookyroom.jpg", gal_item)
-                $ i += 1
-                if i <= (cg_page+1)*cg_cells and i>cg_page*cg_cells:
-                    add g_cg.make_button(gal_item + " butt", gal_item + " butt", im.Scale("images/UI/locked.png", cg_x, cg_y), xalign=0.5, yalign=0.5, idle_border=None, background=None, bottom_margin=24)
-            for j in range(i, (cg_page+1)*cg_cells): #we need this to fully fill the grid
-                null
+            
+            if next_spr_page > int(len(gallery_spr_items)/spr_cells):    # "Overflow" functions
+                $ next_spr_page = 0
+            if prev_spr_page < 0:
+                $ prev_spr_page = int(len(gallery_spr_items)/spr_cells)
                 
-        imagebutton idle "images/UI/right_arrow.png" xpos 300 ypos 450 focus_mask True action [SetVariable('cg_page', next_cg_page), ShowMenu("cg_gallery")] at scalearrow
-        imagebutton idle "images/UI/left_arrow.png" xpos 75 ypos 450 focus_mask True action [SetVariable('cg_page', prev_cg_page), ShowMenu("cg_gallery")] at scalearrow
+            $ i = 0
+            for gal_item in gallery_spr_items:
+                $ i += 1
+                if i <= (spr_page+1)*spr_cells and i>spr_page*spr_cells:
+                    add g_spr.make_button(gal_item + " butt", gal_item + " butt", im.Scale("images/UI/locked.png", spr_x, spr_y), xalign=0.5, yalign=0.5, idle_border=None, background=None, bottom_margin=24)
+            for j in range(i, (spr_page+1)*spr_cells): #we need this to fully fill the grid
+                null
+                        
+        grid bkg_rows bkg_cols:
+            xpos 425
+            ypos 100
+            
+            $ i = 0
+            for gal_item in gallery_bkg_items:
+                if i < (bkg_page+1)*bkg_cells and i>=bkg_page*bkg_cells:
+                    add g_bkg.make_button(gal_item + " butt", gal_item + " butt", im.Scale("images/UI/locked.png", bkg_x, bkg_y), xalign=0.5, yalign=0.5, idle_border=None, background=None, bottom_margin=24)
+                $ i += 1
+            for j in range(i, (bkg_page)*bkg_cells): #we need this to fully fill the grid
+                null
+        
+#        if (next_bkg_page > poss_indices):
+#            $ set_bkg = gallery_bkg_items[0]
+#            text ("%s" % "Works"):
+#                xalign .06
+#                yalign .02
+#        else:
+#            $ set_bkg = gallery_bkg_items[(bkg_page+1)*bkg_cells]
+#            text ("%i" % next_bkg_page):
+#                xalign .06
+#                yalign .02
+
+        text ("%s" % "bkg_page: "):
+            xalign .02
+            yalign .02
+
+        text ("%i" % bkg_page):
+            xalign .2
+            yalign .02
 
         vbox:
             style_group "gm_nav"
-            xalign .98 yalign .98
+            xalign .98 yalign .02
             textbutton _("Return") action Return()
             textbutton _("Help") action Help()
             textbutton _("Quit") action Quit(confirm=False)
         
-screen bg_gallery:
-#The BG gallery screen is more or less copy pasted from the CG screen above, I only changed "make_button" to include a grayscale thumbnail for locked items
+screen art_gallery:
+#The art gallery screen is more or less copy pasted from the spr screen above, I only changed "make_button" to include a grayscale thumbnail for locked items
     tag menu
     use navigation
     frame background None xpos 10:
-        grid bg_rows bg_cols:
+        grid art_rows art_cols:
             ypos 10
             $ i = 0
-            $ next_bg_page = bg_page + 1
-            $ prev_bg_page = bg_page - 1
-            if next_bg_page > int(len(gallery_bg_items)/bg_cells):
-                $ next_bg_page = 0
-            if prev_bg_page < 0:
-                $ prev_bg_page = int(len(gallery_bg_items)/bg_cells)
-            for gal_item in gallery_bg_items:
+            $ next_art_page = art_page + 1
+            $ prev_art_page = art_page - 1
+            if next_art_page > int(len(gallery_bkg_items)/art_cells):
+                $ next_art_page = 0
+            if prev_art_page < 0:
+                $ prev_art_page = int(len(gallery_bkg_items)/art_cells)
+            for gal_item in gallery_bkg_items:
                 $ i += 1
-                if i <= (bg_page+1)*bg_cells and i>bg_page*bg_cells:
-                    add g_bg.make_button(gal_item + " butt", gal_item + " butt", gal_item + " butt dis", xalign=0.5, yalign=0.5, idle_border=None, background=None, bottom_margin=24)
-            for j in range(i, (bg_page+1)*bg_cells):
+                if i <= (art_page+1)*art_cells and i>art_page*art_cells:
+                    add g_art.make_button(gal_item + " butt", gal_item + " butt", gal_item + " butt dis", xalign=0.5, yalign=0.5, idle_border=None, background=None, bottom_margin=24)
+            for j in range(i, (art_page+1)*art_cells):
                 null
         
-        imagebutton idle "images/UI/right_arrow.png" xpos 400 ypos 500 focus_mask True action [SetVariable('bg_page', next_bg_page), ShowMenu("bg_gallery")] at scalearrow
-        imagebutton idle "images/UI/left_arrow.png" xpos 100 ypos 500 focus_mask True action [SetVariable('bg_page', prev_bg_page), ShowMenu("bg_gallery")] at scalearrow
-        
+        imagebutton idle "images/UI/right_arrow.png" xpos 400 ypos 500 focus_mask True action [SetVariable('art_page', next_art_page), ShowMenu("art_gallery")] at scalearrow
+        imagebutton idle "images/UI/left_arrow.png" xpos 100 ypos 500 focus_mask True action [SetVariable('art_page', prev_art_page), ShowMenu("art_gallery")] at scalearrow
+    
+
 init -2:
     transform scalearrow:
         on idle:
             zoom 1.0
         on hover:
-            zoom 1.5
+            zoom 1.05
 
 ##############################################################################
 # Yes/No Prompt
