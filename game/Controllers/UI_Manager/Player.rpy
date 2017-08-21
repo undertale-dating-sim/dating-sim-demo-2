@@ -37,6 +37,10 @@ init -1 python:
         # This is a really long gross list of sets for the stats.  There is a simpler way to do this with arrays but I'm not sure
         # of the benefit now that it is done.   If we end up revamping the stats then we will redo these.
         # 
+        def heal(self,amount):
+            self.current_health += amount
+            if self.current_health > self.total_health:
+                self.current_health = self.total_health
         def modify_patience(self,amount):
             self.patience_impulsiveness += amount
 
