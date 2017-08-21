@@ -381,7 +381,7 @@ label ruins_dinner_talk_toriel: #need sprite changes
         toriel "I took a walk through the Ruins and saw a group of Froggit children playing in the leaves."
         if ruins_dinner_frisk_stays == True:
             toriel "I remember when Frisk used to play in the leaves like that... What ever happened to those days, my child?"
-            show frisk blush at left with Dissolve(.25)
+            show frisk blushing at left with Dissolve(.25)
             frisk "Mom... I’m not a little kid anymore."
             show toriel laughing at right with Dissolve(.25)
             toriel "Of course not."
@@ -567,7 +567,7 @@ label ruins_breakfast:
             frisk "If you’re bored, how about you go hunt for some snails? It saves me from having to catch as many!"
             show toriel smallsmile with Dissolve(.25)
             toriel "Frisk, are you trying to making our guest do your chores for you?"
-            #show frisk blush <- no blush image or equivalent
+            #show frisk blushing
             show frisk bigsmile  with Dissolve(.25)
             frisk "Haha, what? ‘Course not!"
             show toriel laughing with Dissolve(.25)

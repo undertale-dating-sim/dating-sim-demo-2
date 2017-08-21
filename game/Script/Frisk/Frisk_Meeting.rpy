@@ -372,6 +372,7 @@ label looked_around_before_toriel:
 #######################
 
 label frisk_meeting_eat:
+    $ world.set_current_time(1200,False)
     $ renpy.show(world.get_room("Living Room").bg)
     show frisk normal at left with Dissolve(.25) 
     show toriel normal at right with Dissolve(.25)
@@ -748,7 +749,7 @@ label frisk_meeting_selection19:
                     $ move_to_room('Corridor')
 
                 "But how did you actually get all of this?":       
-                    show frisk blush with Dissolve(.25)
+                    show frisk blushing with Dissolve(.25)
                     frisk "Oh, you know..." 
                     frisk "I just found it laying around..."
                     show frisk normal with Dissolve(.25)
