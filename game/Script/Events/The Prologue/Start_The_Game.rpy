@@ -25,6 +25,7 @@ label the_fall:
     scene black
     with fade
     stop music
+    $ renpy.music.set_volume(.2)
     #play wind sfx
     #play music "audio/sfx/Falling_down_wind.wav"
 
