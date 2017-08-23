@@ -346,7 +346,7 @@ label ruins_intro_flowey:
     while True:
         menu:
             "Look Around":
-                "* The patch of flowers looks practically untouched, as if flowey had never been here."
+                "* The patch of flowers looks practically untouched, as if Flowey had never been here."
                 "* You're all alone."
     
 label intro_vines_gone:
