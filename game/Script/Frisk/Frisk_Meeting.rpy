@@ -532,22 +532,22 @@ label frisk_meeting_eat:
             #+1 Perseverance
             show toriel smile with Dissolve(.25)
             toriel "That’s the spirit."
-            "*You take another bite."
-            "*..."
-            "*And another."
-            "*You feel a bit... weird?"
+            "* You take another bite."
+            "* ..."
+            "* And another."
+            "* You feel a bit... weird?"
 
         "Fair enough.":                       #//(+0)
             show toriel normal with Dissolve(.25)
             toriel "Thank you."
-            "*You take another bite"
-            "*..."
+            "* You take another bite"
+            "* ..."
             #if the player chose option 27 earlier:
             if chose_frisk_meeting_option27:
-                "*You bite off a bit too much. You gag, but you force it down."
-                "*Uhg... "
+                "* You bite off a bit too much. You gag, but you force it down."
+                "* Uhg... "
                 toriel "See, was that so hard?"
-                "*Eh..."
+                "* Eh..."
 
 
         "But...":                           #//(+1)
