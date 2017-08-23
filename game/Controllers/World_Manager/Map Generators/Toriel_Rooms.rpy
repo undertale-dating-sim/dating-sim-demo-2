@@ -133,7 +133,7 @@ init python:
 
     
 label port_to_black_tree_room:
-    if 'ruins_breakfast_check' not in player.variables or player.variables['ruins_breakfast_check'] != world.day:
+    if ('ruins_breakfast_check' not in player.variables or player.variables['ruins_breakfast_check'] != world.day) and world.day != 0:
         call ruins_breakfast_leaving
     else:
         pause 1

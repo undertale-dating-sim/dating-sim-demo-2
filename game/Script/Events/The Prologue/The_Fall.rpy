@@ -840,7 +840,8 @@ label ruins_intro_toriel_house:
     $ player.variables['met_toriel'] = True
     if player.variables['accepted_toriel'] == True and player.variables['met_frisk'] == False:
         show toriel smallsmile with Dissolve(.25)
-        toriel "Oh, hello, dear! I am glad to see you made it. You did not have any trouble finding the house, did you?"
+        toriel "Oh, hello, dear! I am glad to see you made it."
+        toriel "You did not have any trouble finding the house, did you?"
 
         menu:# 29
             "Yes.":                              #(+0
@@ -870,23 +871,32 @@ label ruins_intro_toriel_house:
                 
     
     if player.variables['accepted_toriel'] == False and player.variables['met_frisk'] == False:           
+        show toriel surprised with moveinleft
+        toriel "Oh! Hello, dear!"
         show toriel smallsmile with Dissolve(.25)
-        toriel "Oh, hello, dear! I see you have made it to my home..."
-        toriel "Have you changed your mind? You are always welcome to stay here and rest awhile."
+        toriel "I see that you have made it..."
+        show toriel normal with Dissolve(.25)
+        toriel "Have you changed your mind?"
+        toriel "You know you are always welcome to stay here and rest awhile..."
 
         menu:# 31
             "Yes, I would like to stay here.":               #(+2
                 show toriel smile with Dissolve(.25)
                 toriel "Great! I am glad to hear that."
+                show toriel normal with Dissolve(.25)
                 toriel "You will not regret it... my child and I will be happy to have you here, I assure you."
                 $ player.variables['accepted_toriel'] = True
                 jump ruins_intro_find_Frisk
             "No, I don’t want to stay with you.":               #(+0
+                show toriel awkward with Dissolve(.25)
+                toriel "Alright..."
+                show toriel sad with Dissolve(.25)
+                toriel "I do wish you would reconsider, but if you insist on striking out on your own..."
                 show toriel normal with Dissolve(.25)
-                toriel "Alright... I do wish you would reconsider, but if you insist on striking out on your own..."
                 toriel "Well, just know that you will always have a place here, should you ever need it."
                 toriel "Feel free to come back anytime!"
-                $ move_to_room("Black Tree Room")
+                "* Toriel walks you out the front door."
+                $ move_to_room("TH Exit")
             #player can go find Frisk, who also offers to let them stay at their house. If the player refuses all offers, maybe toriel finds them after they’ve passed out from low stamina and brings them to her house.
 
     #If the player did not accept toriel’s offer (option 57 of selection 22) AND finds Frisk, AND declines Frisk’s offer (option 62 of selection 11 in the Meeting Frisk script) AND returns to toriel’s house:

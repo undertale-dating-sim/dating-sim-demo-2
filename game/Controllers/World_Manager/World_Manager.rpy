@@ -88,7 +88,7 @@ init -10 python:
             self.current_area = False
             self.maxTime = 1440
             self.currentTime = 700
-            self.day = 1
+            self.day = 0
             # 800,1200,400,800
             self.timeZones = {"Night":0,"Morning":480,"Day":720,"Afternoon":960,"Evening":1200}
             self.days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
