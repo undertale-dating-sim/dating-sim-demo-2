@@ -19,7 +19,7 @@ init -1 python hide:
     config.screen_width = 800
     config.screen_height = 600
 
-    config.allow_skipping = False
+    #config.allow_skipping = False
     ## This controls the title of the window, when Ren'Py is
     ## running in a window.
 

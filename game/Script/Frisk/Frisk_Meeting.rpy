@@ -752,8 +752,7 @@ label frisk_meeting_selection19:
             frisk "Goodnight!"
             #remove option 39 from selection 16
             $ renpy.transition(fade)
-            $ renpy.show(world.get_room("Corridor").bg)
-            jump frisk_meeting_after_dinner
+            $ move_to_room('Corridor')
         "What’s all that stuff you have on your shelves?":
             show frisk normal with Dissolve(.25)
             frisk "Oh, just a couple of things from the Underground."
