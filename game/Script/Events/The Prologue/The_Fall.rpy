@@ -399,8 +399,16 @@ label dummy_intro:
 
     menu:
         "Wave":
+
             unknown "uh...."
-            hide napstablook with Dissolve(2.0)
+            
+            hide napstablook
+            $ renpy.transition(Dissolve(2.0))
+            "* ...the ghost disappears"
+             
+            
+                 
+            
         "Scream":
             #scream sound
             $ blook_scream = True
@@ -408,11 +416,15 @@ label dummy_intro:
                 "* Wow, you sure do have a thing for screaming, don't you?"
             unknown "....oh no... i didn't mean to scare you..."
             unknown "let me... just....."
-            hide napstablook with Dissolve(2.0)
+            hide napstablook
+            $ renpy.transition(Dissolve(2.0))
+            "* ...the ghost awkwardly disappears"
         "Stand very still":
             "* Maybe if you stand still, they won't notice you."
             "* ..."
-            hide napstablook with Dissolve(2.0)
+            hide napstablook
+            $ renpy.transition(Dissolve(2.0))
+            "* ...the ghost awkwardly disappears"
 
     show dummy normal at center with Dissolve(.25)
 
@@ -446,7 +458,7 @@ label .dummy_options:
                 menu:
                     "Take a closer look" if closer_look:
                         "* There are some loose stitches near the eyes."
-                        "* ...The black, soulless, button eyes that stare right into your soul."
+                        "* ...The red, soulless, button eyes that stare right into your soul."
                         "* A shiver runs down your spine."
                         $ closer_look = False
 

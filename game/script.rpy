@@ -2,8 +2,8 @@ init python:
 
 
 
-    config.empty_window = renpy.curry(extend)("", interact=False)
-    _last_say_what = ""
+    # config.empty_window = renpy.curry(extend)("", interact=False)
+    # _last_say_what = ""
 
     def beepy_voice(event, interact=True, **kwargs):
         if not interact:
