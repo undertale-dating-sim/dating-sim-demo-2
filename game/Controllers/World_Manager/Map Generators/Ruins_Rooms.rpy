@@ -217,6 +217,7 @@ init -1 python:
             self.events["port_to_toriel_house"] = Event("port_to_toriel_house",True)
     
 label port_to_toriel_house:
+    stop music fadeout 5.0
     $ renpy.pause(1.0)
     play music "audio/ruins/toriels_house.mp3" fadein 5.0
     $ world.move_to_room("Staircase")

@@ -125,7 +125,6 @@ label give_Gift_Toriel_Milk_Chocolate(count,owner):
 
     if count == 1:
         $ owner.update_FP(2)
-        call word_scroll("-15")
         show toriel awkward
         toriel "... I am not one for chocolate... It actually makes me ill to eat it."
         show toriel normal

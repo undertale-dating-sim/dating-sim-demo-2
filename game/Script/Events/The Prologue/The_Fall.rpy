@@ -31,11 +31,10 @@ label the_beginning:
         menu:
             "[scream_button_text]" if tf_scream_enabled:
                 call tf_scream
-            "Lie down and hope for the best":
+            "Lie down and hope for the best" if tf_lie_down_count <= 7:
                 call tf_lie_down
-            "Look around" if not tf_show_exit:
+            "Look around":
                 call tf_look_around
-
 
 label tf_scream:
 
@@ -102,6 +101,7 @@ label tf_look_around:
     elif tf_look_around_count == 3:
         "* One side of the cave looks slightly brighter than the others..."
         "* Is there a door here?"
+
         call unlock_movement_engine
     else:
         "* Nothing else to see here."
@@ -400,8 +400,7 @@ label dummy_intro:
     menu:
         "Wave":
             unknown "uh...."
-            hide napstablook 
-            with dissolve
+            hide napstablook with Dissolve(2.0)
         "Scream":
             #scream sound
             $ blook_scream = True
@@ -409,8 +408,7 @@ label dummy_intro:
                 "* Wow, you sure do have a thing for screaming, don't you?"
             unknown "....oh no... i didn't mean to scare you..."
             unknown "let me... just....."
-            hide napstablook
-            with dissolve
+            hide napstablook with Dissolve(2.0)
         "Stand very still":
             "* Maybe if you stand still, they won't notice you."
             "* ..."

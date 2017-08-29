@@ -27,9 +27,10 @@ label frisk_meeting_start:
     $ renpy.show(world.get_room("Overlook").bg)
     $ set_lock_room("Snail Hunting Room",False)
     show frisk normal
+    stop music
     $renpy.pause()
     show frisk surprised with Dissolve(.25)
-    
+    play music "audio/ruins/frisk.mp3"
     unknown "Oh! Um, hi. I wasn’t expecting to see another human. How... how did you get here?" 
 
     menu:
@@ -204,10 +205,18 @@ label frisk_meeting_snail_catching:
      
     #-Transition to Snail Catching Room-
     #-Transition: Snail Catching Mini-game-
-    $ renpy.transition(fade)
-    $ renpy.show(world.get_room("Snail Hunting Room").bg)
+    show background ruins_monstercandy_room with Fade(0.5, 2, 0.5)
      
     show frisk normal with Dissolve(.25)
+    frisk "Sorry for the hike."
+    frisk "Check this out!"
+    "* Frisk moves some of the vines out of the way behind the bowl of candy."
+    "* There is a door there!"
+
+    frisk "Stuff like this is all over the place."
+    frisk "There might even be some stuff I haven't found."
+
+    show background ruins_snailhunting_room with Fade(0.5, 0, 0.5)
     frisk "Okay, here we are."
     frisk "I know this is going to sound a bit weird, but I need to catch snails."
     frisk "Mom makes food with them, and she needs a lot!"
@@ -283,6 +292,7 @@ label frisk_meeting_snail_catching:
             show frisk bigsmile with Dissolve(.25)
             frisk "Alright, let’s go!"
             $ renpy.transition(fade)
+            play music "audio/ruins/toriels_house.mp3" fadein 5.0
             $ renpy.show(world.get_room("Living Room").bg)
             show frisk smallsmile with Dissolve(.25)
             frisk "Here we are!"
@@ -372,7 +382,7 @@ label looked_around_before_toriel:
 #######################
 
 label frisk_meeting_eat:
-    $ world.set_current_time(1200,False)
+    $ world.set_current_time("Noon",False)
     $ renpy.show(world.get_room("Living Room").bg)
     show frisk normal at left with Dissolve(.25) 
     show toriel normal at right with Dissolve(.25)
@@ -577,9 +587,10 @@ label frisk_meeting_eat:
 label frisk_meeting_corridor_after_dinner:
     "* You notice that there are three doors here."
     menu:
-        "Check Toriel’s room" if not fm_checked_toriel_room:
+        "Check Toriel’s room" :
             "* Toriel’s room strikes you as the type to be clean, orderly, and cozy."
-            "* Going inside would be a huge invasion of privacy. You should know better."
+            "* Going inside would be a huge invasion of privacy."
+            "* You should know better."
             menu:
                 "Go inside anyway":
                     #-1 Justice
@@ -596,11 +607,17 @@ label frisk_meeting_corridor_after_dinner:
 
         "Check Unmarked Door":
             "* You hear Toriel calling from the kitchen."
-            toriel "I forgot to mention, there is a room you can use at the far end of the hall. Goodnight, and sleep well!"
+            toriel "I forgot to mention, there is a room you can use at the far end of the hall."
+            toriel "Goodnight, and sleep well!"
             $ renpy.transition(fade)
             $ renpy.show(world.get_room("Your Room").bg)
-            "* You enter the room, plop down on the bed, and fall asleep..."
-            scene black with dissolve
+            "* This is a very cozy room."
+            "* When did your eyes get so heavy?"
+            "* You plop down on the bed."
+            scene black with Dissolve(4)
+            "* ..."
+            "* .."
+            "* This is a weird place."
             "* ..."
             call day_transition
             $ get_room("Your Room").set_event('ruins_first_breakfast_your_room',False)
@@ -642,7 +659,7 @@ label frisk_meeting_toriel_after_dinner:
             toriel "Sleep well!"
             #remove option 37 from selection 16
             $ chose_frisk_meeting_option37 = True
-    $ get_room("Living Room").set_event('ruins_dinner',True)
+    $ get_room("Living Room").set_event('ruins_dinner',False)
     $ move_to_room('Staircase')
     return
 

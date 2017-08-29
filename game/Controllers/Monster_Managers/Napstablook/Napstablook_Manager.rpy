@@ -40,6 +40,9 @@ init -9 python:
 
         def handle_special_events(self):
 
+            if 'snail_game_count' not in player.variables:
+                player.variables['snail_game_count'] = 0
+                
             #Friendship Event 1
                 # Returning to Napstablook's room after all rooms in the Ruins have been explored
             if 'Napstablook_Friendship_1_Complete' not in player.variables:

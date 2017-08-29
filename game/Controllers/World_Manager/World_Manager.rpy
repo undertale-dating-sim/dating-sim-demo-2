@@ -86,24 +86,19 @@ init -10 python:
             self.name = "Underground"
             self.areas = {}
             self.current_area = False
-            self.maxTime = 1440
-            self.currentTime = 700
+            #self.maxTime = 1440
+            self.current_timezone = "Morning"
             self.day = 0
-            # 800,1200,400,800
-            self.timeZones = {"Night":0,"Morning":480,"Day":720,"Afternoon":960,"Evening":1200}
+            self.timezones = ["Morning","Day","Afternoon","Evening","Night"]
             self.days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
             self.generate_ruins()
             self.areas["Toriel_House"] = Toriel_House()
             self.message = ""
+            self.timezone_action_count = 0
 
         def get_current_timezone(self):
-            
-            timezone = "Night"
-            for t,z in self.timeZones.iteritems():
-                if self.currentTime >= z and self.timeZones[timezone] < z:
-                    timezone = t
 
-            return timezone
+            return self.current_timezone
 
         #this function should be called at the beginning of every day.
         #it will update all of the areas for whatever we need.
@@ -111,9 +106,12 @@ init -10 python:
             #seed the random monsters
             # day 0 is the tutorial
 
-            #if self.day > 0:
-                #self.seed_random_monsters()
-                #self.seed_random_events()
+            if self.day > 0:
+                if self.timezone_action_count >= 10:
+                    self.timezone_action_count = 0
+                    self.next_timezone();
+                self.seed_random_monsters()
+                self.seed_random_events()
             
             #reset the gift counts
             for an,a in self.areas.iteritems():
@@ -193,49 +191,39 @@ init -10 python:
             return
 
         def get_current_time(self):
-            seconds = self.currentTime * 60
-            m, s = divmod(seconds, 60)
-            h, m = divmod(m, 60)
-            return "%d:%02d" % (h, m)
+
+            if self.current_timezone == 'Morning':
+                return "8:00"
+            if self.current_timezone == 'Day':
+                return "12:00"
+            if self.current_timezone == 'Afternoon':
+                return "4:00"
+            if self.current_timezone == 'Evening':
+                return "8:00"
+            if self.current_timezone == 'Night':
+                return "0:00"
+
+        def next_timezone(self):
+            if self.current_timezone == "Night":
+                self.current_timezone = "Morning"
+            else:
+                self.current_timezone = self.timezones[self.timezones.index(self.current_timezone)+1]
 
         #sets the current time
-        def set_current_time(self,time,update_day = False):
+        def set_current_time(self,timezone,update_day = False):
 
-            if time > 1440 or time < 0:
-                renpy.notify("Time too high or negative for set_current_time.")
+            if timezone not in self.timezones:
+                renpy.notify("Timezone not found.")
                 return
 
             if update_day:
                 self.day += 1
 
 
-            self.currentTime = time
+            self.current_timezone = timezone
 
 
             self.update_world(update_day)
-
-
-        #Adds minutes to the current time
-        #Updates current day if time goes over
-        def update_current_time(self,amount):
-
-            #check to see if we added more than one day
-
-            new_time = self.currentTime + amount
-            update_day_check = False
-
-            if new_time > self.maxTime:
-                self.day += 1
-                new_time -= self.maxTime
-                update_day_check = True
-            if new_time < 0:
-                self.day -= 1
-                new_time += self.maxTime
-                update_day_check = True
-
-            self.currentTime = new_time
-            self.update_world(update_day_check)
-            renpy.call("load_room")
 
         def move_to_room(self,name,loop=True,transition="fade"):
             for area_name,area in self.areas.iteritems():

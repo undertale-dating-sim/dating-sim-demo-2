@@ -2,7 +2,8 @@ init python:
 
 
 
-    
+    config.empty_window = renpy.curry(extend)("", interact=False)
+    _last_say_what = ""
 
     def beepy_voice(event, interact=True, **kwargs):
         if not interact:
@@ -94,11 +95,11 @@ label Snail_Hunter_Random_Event:
 label day_transition:
     scene black
     $ renpy.pause(2)
-    
+    $world.day += 1
     show image Text("{size=80}Day %s" % world.day, text_align = 0.5) at center with Fade(1, 0, 1)
     play sound "audio/new_day.wav"
     $ renpy.pause(2)
-    $world.day += 1
+    
     call player_waking_up
     return
 
@@ -110,13 +111,15 @@ label day_transition:
 
 ###################
 
-label after_load:
+# label after_load:
 
-    stop music
-    $ talking = False
-    #jump start
-    jump frisk_meeting_snail_catching
-    return
+#     stop music
+#     $ talking = False
+#     #jump start
+#     $ summon("Toriel")
+#     $ reload_room()
+    
+#     return
 
 
 
