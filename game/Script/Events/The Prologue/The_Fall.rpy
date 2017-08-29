@@ -846,6 +846,9 @@ label ruins_intro_blooky:
 #if the player goes east, they encounter the spider bakery
 #if the player goes north, they reach the tunnel divide. The tunnel divide should have its own room description, but no story elements take place here. The player can finally go east to encounter Frisk, in which case jump frisk_meeting_start. Or, the player could go north past the black tree room to encounter Toriel, in which case jump ruins_intro_toriel_house
 label ruins_intro_toriel_house:
+    $ set_lock_room("Living Room",True)
+    $ set_lock_room("Corridor",True)
+    $ set_lock_room("Basement Door",True)
     if 'accepted_toriel' not in player.variables:
         $ player.variables['accepted_toriel'] = False
     if 'met_frisk' not in player.variables:

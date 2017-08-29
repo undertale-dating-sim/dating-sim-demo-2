@@ -573,6 +573,8 @@ label frisk_meeting_eat:
             toriel "Thank you. You may be excused."
     
     #Add Talking to toriel to the living room
+    $ set_lock_room("Living Room",False)
+    $ set_lock_room("Corridor",False)
     $ get_room("Living Room").set_event('frisk_meeting_toriel_after_dinner',False)
     $ get_monster("Toriel").move_to_room("Living Room")
     $ get_room("Corridor").set_event('frisk_meeting_corridor_after_dinner',True)

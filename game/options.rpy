@@ -10,7 +10,7 @@
 init -1 python hide:
 
     config.keymap['screenshot'] = []
-    config.keymap['rollback'] = []
+    #config.keymap['rollback'] = []
     config.keymap['rollforward'] = []
     # config.log = 'wilson.txt'
     config.developer = True
