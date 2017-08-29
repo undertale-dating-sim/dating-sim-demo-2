@@ -271,7 +271,7 @@ label frisk_meeting_snail_catching:
     frisk "Ya know, I’m actually feeling a bit better right now."
     frisk "Mom will be happy, too... She really likes snails!"
     frisk "If you give her some, she’ll appreciate it. Maybe even pay you back somehow."
-    frisk "She might want different kinds of snails on different days, so you might want to check with her to find out."
+    #frisk "She might want different kinds of snails on different days, so you might want to check with her to find out."
     
     show frisk surprised with Dissolve(.25)
     frisk "Oh!"

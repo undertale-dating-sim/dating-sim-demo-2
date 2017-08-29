@@ -625,14 +625,18 @@ label ruins_intro_leaves:
             toriel "And here you are!"
         "Stay back!":
             show toriel sad with Dissolve(.25)
-            unknown "Do not worry... I mean you no harm."
-            unknown "It must have been quite the shock to find yourself here, no longer among your own people. You have nothing to fear from me, though."
+            unknown "Do not worry... I mean you no harm." 
+            unknown "It must have been quite the shock to find yourself here, no longer among your own people."
+            show toriel normal with Dissolve(.25)
+            unknown "You have nothing to fear from me, though."
+            show toriel smile with Dissolve(.25)
             unknown "I am Toriel, the caretaker of the Ruins, and I can assure you that you are safe here."
         "What is this place?":
+            show toriel normal with Dissolve(.25)
             unknown "These are the Ruins, and I am Toriel, their caretaker. I pass through here every day to see if anyone has fallen down. And here you are!"
         "You’re a goat.":
             show toriel laughing with Dissolve(.25)
-            unknown "Indeed I am, although I prefer to go by the name of Toriel."
+            unknown "Indeed I am, though I prefer to go by Toriel."
     
     
     show toriel normal with Dissolve(.25)
@@ -647,7 +651,8 @@ label ruins_intro_leaves:
         "* You receive a Spider Donut!"
         $ inventory.add(Spider_Donut())
         toriel "If you eat it, you are sure to gain some strength back."
-    toriel "If you would like, you can accompany me to my house at the far end of the Ruins, to rest and heal the remainder of your injuries."
+    toriel "If you like, you may accompany me to my house at the end of the Ruins."
+    toriel "You can sleep there to rest and heal the remainder of your injuries."
     toriel "Only my child and I live there, so it will be a peaceful place for you to stay."
 
     menu:
@@ -711,7 +716,8 @@ label ruins_intro_rock_alone:
     menu:
         "Look around":
             "* A gust of wind trails from the wide doorway ahead, shifting a few leaves across the floor."
-            "* There are suspicious-looking holes in the bridge, but it seems safe enough."
+            "* There are spikes sticking out of the bridge."
+            "* You could probably jump over them."
             call show_buttons
         "Continue onward":
             call show_buttons
@@ -735,7 +741,6 @@ label ruins_intro_blooky:
         unknown "...i wasn’t really expecting to meet anyone there..."
         unknown "i wasn’t expecting to run into you here, either... "
         unknown "but... "
-        unknown "i guess i’m not completely surprised..."
         unknown "........ "
         unknown "......"
         unknown "......."
