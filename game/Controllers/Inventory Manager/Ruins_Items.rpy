@@ -37,10 +37,10 @@ init -4 python:
             self.equip = True
 
         def equip_self(self):
-            player.patience_impulsiveness += 10
+            player.patience_impulsiveness += 4
 
         def unequip_self(self):
-            player.patience_impulsiveness -= 10
+            player.patience_impulsiveness -= 4
        
     class Broken_Mirror(Item):
         def __init__(self):
@@ -51,10 +51,10 @@ init -4 python:
             self.equip = True
 
         def equip_self(self):
-            player.integrity_deceit += 10
+            player.integrity_deceit += 4
 
         def unequip_self(self):
-            player.integrity_deceit -= 10
+            player.integrity_deceit -= 4
 
     class Stick(Item):
         def __init__(self):
@@ -66,10 +66,10 @@ init -4 python:
             self.equip = True
 
         def equip_self(self):
-            player.bravery_cowardice += 10
+            player.bravery_cowardice += 4
 
         def unequip_self(self):
-            player.bravery_cowardice -= 10
+            player.bravery_cowardice -= 4
 
     class Rose(Item):
         def __init__(self):
@@ -81,10 +81,10 @@ init -4 python:
             self.equip = True
 
         def equip_self(self):
-            player.kindness_cruelty += 10
+            player.kindness_cruelty += 4
 
         def unequip_self(self):
-            player.kindness_cruelty -= 10
+            player.kindness_cruelty -= 4
 
 
 ##USABLE
