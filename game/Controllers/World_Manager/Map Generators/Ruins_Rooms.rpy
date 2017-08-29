@@ -163,7 +163,7 @@ init -1 python:
             self.name = "Monster Candy Room"
             self.x = 10
             self.y = 4
-            self.desc = ["* A nice looking bowl of candy sits on a pillar in the center of the room. ","* A small note says 'Take only one.' There is a small passage in the back."]
+            self.desc = ["* A nice looking bowl of candy sits on a pillar in the center of the room. ","* A small note says 'Take only one.'"]
             self.bg = "background ruins_monstercandy_room"
 
     class ruins_snailhuntingroom(Room):
@@ -225,7 +225,7 @@ label port_to_toriel_house:
 label ruins_mc_get_candy:
     $ renpy.pause()
     menu:
-        "Take a piece of candy"
+        "Take a piece of candy?"
         "Yes":
             call pickup_item(Monster_Candy())
             return

@@ -339,7 +339,7 @@ label ruins_intro_flowey:
     $ get_room("Blooky Room").set_event("ruins_intro_blooky",False)
     $ get_room("Staircase").set_event("ruins_intro_toriel_house",False)
     $ get_room("Overlook").set_event("frisk_meeting_start",False)
-    $ get_room("Monster Candy Room").add_event("ruins_mc_get_candy",False)
+    $ get_room("Monster Candy Room").add_event("ruins_mc_get_candy",True)
 
     call show_buttons
     play music "audio/ruins/the_ruins.mp3"
@@ -525,7 +525,7 @@ label .dummy_options:
         "Continue onward":
             if not player.variables['satchel_found']:
                 # #keening sound plays
-                "* Hmm...?"
+                "* Hmm... What's that sound?"
                 # #keening sound plays again, but louder and more desperate
                 "* Oh! It seems to be coming from near the wall."
                 "* ...Is that a satchel?"
