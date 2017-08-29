@@ -809,7 +809,7 @@ label ruins_intro_blooky:
                             napstablook "mess up a lot... "
                             napstablook "it’s one of the few things i’m good at..."
                             show napstablook smallsmile with Dissolve(.25)
-                            nastablook "so... "
+                            napstablook "so... "
                             napstablook "thanks for giving me another chance..."
 
 
