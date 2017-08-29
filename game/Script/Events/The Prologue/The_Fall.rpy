@@ -355,7 +355,7 @@ label intro_vines_gone:
 
 label dont_be_greedy:
     "* The items are no longer here. Instead, there's a note..."
-    "* Don't be greedy~"
+    '* "Don\'t be greedy~"'
     return
 
 
