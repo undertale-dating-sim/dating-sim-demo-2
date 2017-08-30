@@ -514,6 +514,7 @@ label ruins_breakfast_leaving:
             $ move_to_room('Living Room')
 
 label ruins_breakfast:
+    $ player.variables['ruins_breakfast_check'] = world.day
     $ get_room("Living Room").set_event('ruins_dinner',True)
     show toriel normal at right with Dissolve(.25)
     show frisk normal at left with Dissolve(.25)
