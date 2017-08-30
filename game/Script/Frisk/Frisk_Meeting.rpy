@@ -225,8 +225,11 @@ label frisk_meeting_snail_catching:
         "You’re right, that is weird.":
             #-1 Patience
             $world.get_monster('Frisk').update_HP(1)
+            show frisk somehappy with Dissolve(.25)
             frisk "Well, what can I say?" 
+            show frisk annoyed with Dissolve(.25)
             frisk "But seriously, this is important. I’ll need your help."
+            show frisk bigsmile with Dissolve(.25)
             frisk "Catching snails is harder than you’d think."
 
         "That sounds completely reasonable.":
@@ -347,6 +350,7 @@ label frisk_meeting_home:
         toriel "Truthfully, I was a little worried about having to leave you on your own in the Ruins, but it is good to see that you are well."
         show frisk bigsmile with Dissolve(.25)
         frisk "Anyway, let’s eat!"
+        show toriel smallsmile with Dissolve(.25)
         toriel "Yes, please join us."
         jump frisk_meeting_eat
     else:
@@ -483,9 +487,8 @@ label frisk_meeting_eat:
         "It scares me...":                 
             $world.get_monster('Toriel').update_FP(2)
             $world.get_monster('Frisk').update_FP(2)                                        
-            show toriel smallsmile with Dissolve(.25)
+            show toriel sad with Dissolve(.25)
             toriel "Aww, poor thing. I had not realized until now that this must all seem very jarring."
-            show frisk sad with Dissolve(.25)
             frisk "Oh, yeah."
             frisk "To be honest, when I first fell down here, I didn’t take it very well."
             show frisk sad with Dissolve(.25)
@@ -500,9 +503,12 @@ label frisk_meeting_eat:
             toriel "Besides, you are here now, and everything turned out alright."
             show frisk somehappy with Dissolve(.25)
             frisk "Yeah..."
-            show frisk friendly smile with Dissolve(.25)
-            frisk "So, the point is... I know this might be scary for now. But, if you give it a chance, I think you’ll find this place is actually pretty great."
+            show frisk smile with Dissolve(.25)
+            frisk "So, the point is... I know this might be scary for now."
+            frisk "But, if you give it a chance, I think you’ll find this place is actually pretty great."
+            show frisk bigsmile with Dissolve(.25)
             frisk "I mean it!"
+            show toriel smile with Dissolve(.25)
             toriel "And we will be here to help you if you need anything."
 
     show frisk normal with Dissolve(.25)
@@ -524,6 +530,7 @@ label frisk_meeting_eat:
     toriel "A mother can always tell what her child is really thinking, but I do appreciate the sentiment."
     show frisk somehappy with Dissolve(.25)
     frisk "Oh..."
+    show frisk disappointed with Dissolve(.25)
     frisk "Actually, is it okay if I turn in early? I feel a little tired."
     show toriel sad with Dissolve(.25)
     toriel "But you have hardly eaten anything."
