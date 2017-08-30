@@ -339,7 +339,7 @@ label ruins_intro_flowey:
     $ get_room("Blooky Room").set_event("ruins_intro_blooky",False)
     $ get_room("Staircase").set_event("ruins_intro_toriel_house",False)
     $ get_room("Overlook").set_event("frisk_meeting_start",False)
-    $ get_room("Monster Candy Room").add_event("ruins_mc_get_candy",True)
+    $ get_room("Monster Candy Room").set_event("ruins_mc_get_candy",True)
 
     call show_buttons
     play music "audio/ruins/the_ruins.mp3"
@@ -846,6 +846,7 @@ label ruins_intro_blooky:
 #if the player goes east, they encounter the spider bakery
 #if the player goes north, they reach the tunnel divide. The tunnel divide should have its own room description, but no story elements take place here. The player can finally go east to encounter Frisk, in which case jump frisk_meeting_start. Or, the player could go north past the black tree room to encounter Toriel, in which case jump ruins_intro_toriel_house
 label ruins_intro_toriel_house:
+    
     $ set_lock_room("Living Room",True)
     $ set_lock_room("Corridor",True)
     $ set_lock_room("Basement Door",True)
@@ -866,12 +867,15 @@ label ruins_intro_toriel_house:
                 show toriel awkward with Dissolve(.25)
                 toriel "I am sorry about that. I would not have left you behind, but there was an emergency that I had to see to personally."
             "No.":                              #(+0
-                toriel "That is wonderful to hear... I knew you would be capable on your own. However, I must apologize for leaving you so suddenly. There was a dire situation that I could not ignore."
+                toriel "That is wonderful to hear... I knew you would be capable on your own."
+                toriel "However, I must apologize for leaving you so suddenly."
+                toriel "There was a dire situation that I could not ignore."
 
         menu:# 30
             "Are you okay?":                        #(+3
-                show toriel smile with Dissolve(.25)
+                show toriel laughing with Dissolve(.25)
                 toriel "Oh, I am fine! Your concern is sweet."
+                show toriel smallsmile with Dissolve(.25)
                 toriel "It was my child, Frisk."
                 toriel "But it is nothing for you to worry about. All is well now."
         
