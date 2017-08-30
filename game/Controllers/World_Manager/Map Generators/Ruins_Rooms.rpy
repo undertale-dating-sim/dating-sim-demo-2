@@ -223,15 +223,21 @@ label port_to_toriel_house:
     $ world.move_to_room("Staircase")
 
 label ruins_mc_get_candy:
+    
+    call show_buttons
     $ renpy.pause()
-    menu:
-        "Take a piece of candy?"
-        "Yes":
-            call pickup_item(Monster_Candy())
-            return
-        "No":
-            "Probably not a good idea to eat random bowl candy..."
-            return
+    if "mc_day" not in player.variables or player.variables["mc_day"] != world.day:
+        menu:
+            "Take a piece of candy?"
+            "Yes":
+                $player.variables["mc_day"] = world.day
+                call pickup_item(Monster_Candy())
+            "No":
+                "Probably not a good idea to eat random bowl candy..."
+    else:
+        "* The bowl appears to be empty."
+    return
+
 label dead_room:
     #show wilson scary
     #"{size=+5}{font=font/Pixelated_Wingdings.ttf}You   SHOULDN'T    BE     HERE{/font}"
