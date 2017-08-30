@@ -387,7 +387,7 @@ label looked_around_before_toriel:
 #######################
 
 label frisk_meeting_eat:
-    $ world.set_current_time("Noon",False)
+    $ world.set_current_time("Evening",False)
     $ renpy.show(world.get_room("Living Room").bg)
     show frisk normal at left with Dissolve(.25) 
     show toriel normal at right with Dissolve(.25)
@@ -581,6 +581,7 @@ label frisk_meeting_eat:
             toriel "Thank you. You may be excused."
     
     #Add Talking to toriel to the living room
+    $ get_room("Staircase").clear_events()
     $ set_lock_room("Living Room",False)
     $ set_lock_room("Corridor",False)
     $ get_room("Living Room").set_event('frisk_meeting_toriel_after_dinner',False)
