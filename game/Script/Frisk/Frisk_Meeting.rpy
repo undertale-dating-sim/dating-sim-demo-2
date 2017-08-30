@@ -330,6 +330,7 @@ label frisk_meeting_snail_catching:
 
 label frisk_meeting_late:
     hide frisk
+    $ world.set_current_time("Evening",False)
     frisk "Oh, I think they’re here. I’ll be right back!"
     show frisk normal with Dissolve(.25)
     frisk "Hi! You’re a bit late... the food is a little cold. But I’m sure it’s fine. Hold on, let me tell Mom you’re here."
