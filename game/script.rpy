@@ -93,6 +93,8 @@ label Snail_Hunter_Random_Event:
     return
 
 label day_transition:
+    stop music
+    call hide_buttons
     scene black
     $ renpy.pause(2)
     $world.day += 1
