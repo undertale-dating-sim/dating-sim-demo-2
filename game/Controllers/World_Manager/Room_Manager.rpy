@@ -39,7 +39,7 @@ init -10 python:
 
         #empty the room of events
         def clear_events(self):
-            self.events = None
+            self.events = {}
             
         #First check to see if the room itself has an event to do
         #Then check to see if the room has a monster event to do
