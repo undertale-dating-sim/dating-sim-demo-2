@@ -143,8 +143,7 @@ label port_to_black_tree_room:
     
 label player_sleeping_th:
     "You fall asleep in your bed."
-    $ renpy.show(world.current_area.current_room.bg)
-    call player_waking_up from _call_player_waking_up
+    call day_transition
     return
 
 
@@ -154,6 +153,7 @@ label th_your_room:
     pause
     menu:
         "Sleep":
+            call player_sleeping_th
             return
         "Not Tired":
             return
@@ -168,9 +168,9 @@ label toriel_house_corridor:
             "Golden flower":
                 call golden_flower_event
             "Frisk's Room":
-                if world.get_current_timezone() == "Night" or (player.variables['frisk_f2_visit_day'] == world.day and player.variables['frisk_f2_visit_count'] > 6):
+                if world.get_current_timezone() == "Night" or ("frisk_f2_visit_day" in player.variables and player.variables['frisk_f2_visit_day'] == world.day and player.variables['frisk_f2_visit_count'] > 6):
                     "The door is locked."
-                elif player.variables['frisk_f2_visit_day'] == world.day:
+                elif "frisk_f2_visit_day" in player.variables and player.variables['frisk_f2_visit_day'] == world.day:
                     call frisk_friendship_hangout2_visit_frisk_same_day
                 else:
                     $ world.move_to_room("Frisk's Room")
