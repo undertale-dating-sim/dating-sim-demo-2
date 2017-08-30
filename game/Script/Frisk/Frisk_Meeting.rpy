@@ -248,7 +248,7 @@ label frisk_meeting_snail_catching:
                     frisk "Oh... okay."
                     frisk "Well- please, I really do need your help. Even if it doesn’t make sense to you."
 
-        "Oh yeah, Toriel already told me." if 'accepted_toriel' in player.variables and player.variables['accepted_toriel']:
+        "Oh yeah, Toriel already told me." if 'clicked_toriel' in player.variables:
             $world.get_monster('Frisk').update_FP(4)
             show frisk bigsmile with Dissolve(.25)
             frisk "Nice!"
