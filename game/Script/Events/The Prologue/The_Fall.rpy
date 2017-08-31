@@ -337,7 +337,7 @@ label ruins_intro_flowey:
     $ get_room("Dummy Room").set_event("dummy_intro",False)
     $ get_room("Froggit Room").set_event("ruins_intro_leaves",False)
     $ get_room("Blooky Room").set_event("ruins_intro_blooky",False)
-    $ get_room("Staircase").set_event("ruins_intro_toriel_house",False)
+    $ get_room("Staircase").set_event("ruins_intro_toriel_house",True)
     $ get_room("Overlook").set_event("frisk_meeting_start",False)
     $ get_room("Monster Candy Room").set_event("ruins_mc_get_candy",True)
 
@@ -949,6 +949,7 @@ label ruins_intro_toriel_house:
 
 label ruins_intro_find_Frisk:
     
+    $ get_room("Staircase").events = {}
     if 'clicked_toriel' not in player.variables:
         $ player.variables['clicked_toriel'] = 0
 

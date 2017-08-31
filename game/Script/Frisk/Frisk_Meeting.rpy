@@ -302,6 +302,7 @@ label frisk_meeting_snail_catching:
             show frisk normal with Dissolve(.25)
             frisk "Hold on... let me tell Mom we’re back."
             hide frisk
+            $ get_room("Staircase").events = {}
             jump frisk_meeting_home
 
         "I’ll be there soon, but I think I’m gonna look around the Ruins for a little while longer.":
