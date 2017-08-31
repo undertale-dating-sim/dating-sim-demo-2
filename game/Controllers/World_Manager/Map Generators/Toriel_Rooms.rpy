@@ -151,12 +151,14 @@ label player_sleeping_th:
 label th_your_room:
     call show_buttons from _call_show_buttons_12
     pause
-    menu:
-        "Sleep":
-            call player_sleeping_th
-            return
-        "Not Tired":
-            return
+
+    if world.get_current_timezone() == "Night":
+        menu:
+            "Sleep":
+                call player_sleeping_th
+                return
+            "Not Tired":
+                return
     return
 
 label toriel_house_corridor:

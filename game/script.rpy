@@ -65,7 +65,25 @@ label start:
     return
 
 
+label skip_to_day_1:
+    scene black
+    "Set demo values for day 0"
+    $ player.variables['tf_scream_count'] = 1
+    $ player.variables['satchel_found'] = True
+    $ player.variables['satchel_refused'] = False
+    $ player.variables['accepted_toriel'] = True
+    $ inventory.max_items = 5
+    $ player.variables['clicked_toriel'] = 1
+    $ player.variables['met_toriel'] = True
+    $ player.variables['met_frisk'] = True
+    $ player.variables['has_frisk_cell'] = True
+    $ player.variables['has_cellphone'] = True
+    $ player.variables['accepted_frisk'] = True
 
+    
+    call player_sleeping_th
+    $ move_to_room("Your Room")
+    return
 
 
 

@@ -15,7 +15,7 @@ init -9 python:
 #this is floweys default scene
 label migosp_manager_default(owner = False,pause = True):
     
-    show migosp normal
+    show migosp normal with Dissolve(.25)
     call show_buttons from _call_show_buttons_2
     if pause:
         $ renpy.pause()
