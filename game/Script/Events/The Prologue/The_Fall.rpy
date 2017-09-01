@@ -922,7 +922,7 @@ label ruins_intro_toriel_house:
             #player can go find Frisk, who also offers to let them stay at their house. If the player refuses all offers, maybe toriel finds them after they’ve passed out from low stamina and brings them to her house.
 
     #If the player did not accept toriel’s offer (option 57 of selection 22) AND finds Frisk, AND declines Frisk’s offer (option 62 of selection 11 in the Meeting Frisk script) AND returns to toriel’s house:
-    if player.variables['accepted_toriel'] == True and player.variables['met_frisk'] == True and player.variables['accepted_frisk'] == False: 
+    if player.variables['accepted_toriel'] == False and player.variables['met_frisk'] == True and player.variables['accepted_frisk'] == False: 
         show toriel smallsmile with Dissolve(.25)
         toriel "Oh, hello again!"
         toriel "My child told me that you helped them collect snails... we are very grateful for your assistance."
@@ -934,7 +934,7 @@ label ruins_intro_toriel_house:
                 toriel "Excellent! I am glad you have come around."
                 toriel "Frisk! We have a guest."
                 show toriel smile at right with Dissolve(.25)
-                show frisk tinysmile at left with Dissolve(.25)
+                show frisk smallsmile at left with Dissolve(.25)
                 frisk "Oh, hey! You changed your mind?"
                 frisk "That’s great! I was worried that you wouldn’t find a place to stay before nightfall."
                 $ player.variables['reject_toriel'] = False

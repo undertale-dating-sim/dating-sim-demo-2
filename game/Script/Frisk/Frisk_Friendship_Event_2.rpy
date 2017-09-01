@@ -19,7 +19,7 @@ label frisk_friendship_hangout2(owner=get_frisk()):
 
     $ player.variables['frisk_friend_hangout2_day'] = world.day
 
-    show frisk tinysmile with Dissolve(.25)
+    show frisk smallsmile with Dissolve(.25)
     frisk "Hey, I’m glad you’re here."
     frisk "Could you help me with the dishes, please?"
     menu:
@@ -32,7 +32,7 @@ label frisk_friendship_hangout2(owner=get_frisk()):
             return
         "Yeah, sure.":
             $ get_monster('Frisk').update_FP(2)
-            show frisk tinysmile with Dissolve(.25)
+            show frisk smallsmile with Dissolve(.25)
             frisk "Great! There’s a stack of plates over there. If you could scrub those, that’d be super helpful!"
             show frisk normal with Dissolve(.25)
             "* Frisk turns and gets back to work."

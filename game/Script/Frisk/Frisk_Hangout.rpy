@@ -32,7 +32,7 @@ label frisk_friendship_hangout1_main(owner = get_frisk()):
     show frisk normal
     frisk "I didn’t see you there."
     frisk "Actually, since you're here, would you like to join me?"
-    show frisk tinysmile
+    show frisk smallsmile
     frisk "I like painting things, but..."
     frisk "...I don’t know what to paint."
     frisk "If you make something, maybe it’ll inspire me."
@@ -68,13 +68,13 @@ label frisk_friendship_return_to_frisk(owner=get_frisk()):
 
 
 label frisk_friendship_hangout1_start:
-    show frisk tinysmile
+    show frisk smallsmile
     frisk "Great!"
     show frisk normal
     frisk "Okay, here, take these."
     "* Frisk gives you paper, a brush, and various colors of paint."
     frisk "Just make whatever you feel like."
-    show frisk tinysmile
+    show frisk smallsmile
     frisk "Don’t worry, I won’t judge."
     frisk "I don’t even consider myself that great, but it’s all in good fun."
     frisk "Oh! I just had an idea... I’ll show it to you when we’re both finished."
@@ -128,7 +128,7 @@ label frisk_friendship_hangout1_start:
             frisk "Yeah? What do you think about?"
             menu:
                 "Nothing in particular.":            #//(+0)
-                    show frisk tinysmile
+                    show frisk smallsmile
                     frisk "Zoning out can be pretty relaxing. I wish I could do that, but sometimes I can’t seem to switch off."
                 "Stuff I have to do later.":            #//(+1)
                     $ world.get_monster('Frisk').update_FP(1)
@@ -166,7 +166,7 @@ label frisk_friendship_hangout1_start:
     "* You made a thing."
 
     frisk "Done already?"
-    show frisk tinysmile
+    show frisk smallsmile
     frisk "Let me see!"
     frisk "...Abstract. Cool."
     if (red and orange) or (yellow and orange):
@@ -224,7 +224,7 @@ label frisk_friendship_hangout1_start:
         else:
             frisk "It looks like a cupcake with sprinkles on top!"
 
-    show frisk tinysmile
+    show frisk smallsmile
     frisk "It’s great!"
     show frisk normal
     frisk "I managed to come up with something, too."
@@ -257,7 +257,7 @@ label frisk_friendship_hangout1_start:
             frisk "We both didn’t really have a lot of time, so I guess it turned out okay."
             frisk "We should do this again sometime. It was fun!"
             frisk "Dinner will probably be ready soon, so I’ll see you around."
-            show frisk tinysmile
+            show frisk smallsmile
             frisk "Bye!"
             $ player.variables['frisk_friendship_1_Complete'] = True
             $ move_to_room("Corridor")
@@ -269,7 +269,7 @@ label frisk_friendship_hangout1_start:
             show frisk bigsmile
             frisk "Wow, thanks!"
             frisk "I had a lot of fun doing this. It sounds like you did, too."
-            show frisk tinysmile
+            show frisk smallsmile
             frisk "I wish we could do more right now, but it’s getting late. Dinner will probably be ready soon."
             frisk "I’ll see you around!"
             $ player.variables['frisk_friendship_1_Complete'] = True
