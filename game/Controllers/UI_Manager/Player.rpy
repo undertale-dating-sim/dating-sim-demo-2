@@ -116,10 +116,12 @@ init -1 python:
 label player_waking_up:
     scene black
     $ world.set_current_time("Morning",True)
-    "* ..."
-    "* The sound of cooking calmly wakes you."
     $ renpy.sound.play("audio/sfx/use_item.wav")
     "* You feel refreshed!"
+    "* ..."
+    "* The sound of cooking calmly wakes you."
+    
+    
 
     if world.day == 1:
         call ruins_first_breakfast_your_room
