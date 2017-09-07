@@ -656,7 +656,7 @@ label frisk_meeting_corridor_after_dinner:
 
         "Check Frisk's Room":
             if chose_frisk_meeting_option39:
-                "* You shouldn't disturb them."
+                "* The light is off and the door is locked."
             else:
                 jump frisk_meeting_choice39
         "Do nothing":
@@ -758,7 +758,10 @@ label frisk_meeting_choice21:
 
 
 label frisk_meeting_choice39:      
-    "*You see a light on in one of the rooms."
+    "* There is a light shining under the door."
+    "* You knock on the door."
+    frisk "Come in!"
+    "* You open the door and enter the room."
     $ renpy.transition(fade)
     $ renpy.show(world.get_room("Frisk's Room").bg)
     show frisk bigsmile with Dissolve(.25)
@@ -767,7 +770,7 @@ label frisk_meeting_choice39:
     frisk "Something on your mind?"
      
 label frisk_meeting_selection19:
-        
+    $ chose_frisk_meeting_option39=True
     menu:
         "How are you?" if chose_frisk_meeting_option40_5 == False:                       #//(+1)    
             $world.get_monster('Frisk').update_FP(1)
@@ -777,7 +780,6 @@ label frisk_meeting_selection19:
             
         "I was just stopping by to say 'hey'. I'm heading off to bed. Goodnight!":                       #//(+1)
             $world.get_monster('Frisk').update_FP(1)
-            $ chose_frisk_meeting_option39=True
             show frisk smallsmile with Dissolve(.25)
             frisk "Oh, alright. That was nice of you!"
             frisk "Goodnight!"
@@ -792,7 +794,6 @@ label frisk_meeting_selection19:
                     show frisk normal with Dissolve(.25)
                     frisk "Oh, okay. It was nice seeing you."
                     frisk "Goodnight!"
-                    $ chose_frisk_meeting_option39=True
                     $ move_to_room('Corridor')
 
                 "But how did you actually get all of this?":       
