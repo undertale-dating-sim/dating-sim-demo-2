@@ -64,13 +64,13 @@ init -9 python:
             if 'Napstablook_TL_Date_1_Complete' not in player.variables:
                 if (player.current_room is "Blooky Room") and (owner.DP >= 12):
                     self.special_event = Event('napstablook_tl_date',False,self)
-                    world.update_world(True)
+                    #world.update_world(False)
             #HB Date 1
             #elif player in waterfall???
             if 'Napstablook_HB_Date_1_Complete' not in player.variables:
                 if (player.current_room is 'Blooky Room') and (owner.HB >= 12):
                     self.special_event = Event('napstablook_hb_date',False,self)
-                    world.update_world(True)
+                    #world.update_world(False)
             return
 
         def seed_default_schedule(self):

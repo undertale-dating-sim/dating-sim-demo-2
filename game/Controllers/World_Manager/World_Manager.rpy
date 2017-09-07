@@ -161,7 +161,8 @@ init -10 python:
                 re = a.get_random_event()
                 if re:
                     rr = renpy.random.choice(room_list)
-                    a.rooms[rr].events[re.label] = re
+                    a.rooms[rr].set_event(re.label,False)
+                    # a.rooms[rr].events[re.label] = re
                    
         #gets the current timezone and the day of the week
         #if set to update the day, cycles through each area,room, monster
