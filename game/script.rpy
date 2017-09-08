@@ -66,6 +66,7 @@ label start:
 
 
 label skip_to_day_1:
+    jump UnderSnail
     scene black
     "Set demo values for day 0"
     $ player.variables['tf_scream_count'] = 1
@@ -100,7 +101,7 @@ label Snail_Hunter_Random_Event:
 
             "What do you do?"
             "Check under the flowers":
-                call Undersnail
+                call UnderSnail
 
             "Ignore it. Too scary.":
                 return
@@ -131,15 +132,12 @@ label day_transition:
 
 ###################
 
-# label after_load:
+label after_load:
 
-#     stop music
-#     $ talking = False
-#     #jump start
-#     $ summon("Toriel")
-#     $ reload_room()
+    stop music
     
-#     return
+    
+    return
 
 
 

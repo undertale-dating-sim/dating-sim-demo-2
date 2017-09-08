@@ -367,6 +367,7 @@ label ruins_entrance_intro:
     $ count = 1
     $ loop = True
     $ blook_scream = False
+    call show_buttons
     while loop:
 
         menu:
@@ -376,10 +377,10 @@ label ruins_entrance_intro:
             "Look again" if count == 2:
                 "While looking around, you step on a leaf.  They are crunchy."
                 $ count += 1
-            "Continue onward":
-                "* You cross the hall, stepping on a few leaves when they intersect your path, and climb the gently curving staircase on the left."
-                "* You approach the open doorway cautiously, expecting another surprise, but nothing moves or blocks your way."
-                "* ...This time."
+            # "Continue onward":
+            #     "* You cross the hall, stepping on a few leaves when they intersect your path, and climb the gently curving staircase on the left."
+            #     "* You approach the open doorway cautiously, expecting another surprise, but nothing moves or blocks your way."
+            #     "* ...This time."
                 $ loop = False
     return
 
@@ -674,11 +675,7 @@ label ruins_intro_leaves:
             stop music
             play music "audio/ruins/the_ruins.mp3" fadein 5
             $ get_room("Sassy Rock Room").set_event("ruins_intro_rock_alone",False)
-            menu:
-                "Look around":
-                    "* Now that Toriel’s gone, the room feels pretty empty."
-                "Continue onward":
-                    call show_buttons
+            call show_buttons
     return
 
 
@@ -718,8 +715,6 @@ label ruins_intro_rock_alone:
             "* A gust of wind trails from the wide doorway ahead, shifting a few leaves across the floor."
             "* There are spikes sticking out of the bridge."
             "* You could probably jump over them."
-            call show_buttons
-        "Continue onward":
             call show_buttons
     return
 
@@ -944,7 +939,8 @@ label ruins_intro_toriel_house:
                 show toriel annoyed with Dissolve(.25)
                 toriel "Well, fine. If you will not accept our hospitality, then there is little I can do."
                 toriel "You are always welcome here, once you have learned to accept help when it is offered."
-                $ move_to_room("Black Tree Room")
+                "* Toriel walks you out the door."
+                $ move_to_room("TH Exit")
     return
 
 label ruins_intro_find_Frisk:

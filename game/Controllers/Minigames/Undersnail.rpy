@@ -5,7 +5,7 @@ init:
 label UnderSnail:
 
     #hide the menu
-    hide screen show_menu_button
+    call hide_buttons
 
     #set the background
     scene background field
@@ -47,7 +47,7 @@ init python:
     renpy.music.register_channel("coffee",True,stop_on_mute=False)
     renpy.music.register_channel("rocket",True,stop_on_mute=False)
     renpy.music.register_channel("house",True,stop_on_mute=False)
-
+    missed_snails = 0
     class Flower_Patch(renpy.Displayable):
         def __init__(self,x,y):
             renpy.Displayable.__init__(self)
@@ -132,6 +132,7 @@ init python:
             self.score_phase = 4
             self.start_timer = 100
 
+
             self.click_target = False
             self.over_target = False
             
@@ -151,6 +152,11 @@ init python:
             self.scoretext = Text("Score : %d" % self.score)
             self.scoretext.xpos = 0.1
             self.scoretext.ypos = 0.1
+
+            missed_snails = 0
+            self.missed_snailstext = Text("Missed : %d" % missed_snails)
+            self.missed_snailstext.xpos = 0.8
+            self.missed_snailstext.ypos = 0.1
 
             self.rocket_snail_count = 0
             self.book_snail_count = 0
@@ -248,6 +254,9 @@ init python:
             if self.score >= cap:
                 self.turn_off_music()
                 return "win"
+            elif missed_snails >= 3:
+                self.turn_off_music()
+                return "lose"
             else:
                 raise renpy.IgnoreEvent()
 
@@ -332,7 +341,11 @@ init python:
                 #update and render score  
                 self.scoretext = Text("Score : %d" % self.score)
                 text_render = renpy.render(self.scoretext,width,height,st,at)
-                r.blit(text_render,(0.1,0.1))
+                r.blit(text_render,(25,0.1))
+
+                self.missed_snailstext = Text("Missed : %d" % missed_snails)
+                text_render2 = renpy.render(self.missed_snailstext,width,height,st,at)
+                r.blit(text_render2,(width - 200,0.1))
 
             #redraw the frames    
             renpy.redraw(self, 0)
