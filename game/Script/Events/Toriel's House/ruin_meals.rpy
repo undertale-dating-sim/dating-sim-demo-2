@@ -491,6 +491,7 @@ label ruins_breakfast_your_room:
     scene black with dissolve
     frisk "Come on, sleepy head! Breakfast is almost ready!"
     $ renpy.show(world.get_room("Your Room").bg)
+    play music "audio/ruins/toriels_house.mp3" fadein 5.0
     $ get_room("Living Room").set_event('ruins_breakfast',False)
     $ move_to_room("Your Room")
 
