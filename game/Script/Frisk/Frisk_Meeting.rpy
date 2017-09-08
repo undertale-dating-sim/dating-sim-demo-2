@@ -441,8 +441,8 @@ label frisk_meeting_eat:
             frisk "Shhh, don't say that."
             show toriel annoyed with Dissolve(.25)
             toriel "Ah, well I suppose snails are not everyone's cup of tea. Still, they are the only thing around here that will fill you up. So, if you decide to stay, you will just have to get used to them."     
-            show frisk somehappy with Dissolve(.25)
-            frisk "...So, um... how have you been liking the Ruins so far?"
+    show frisk somehappy with Dissolve(.25)
+    frisk "...So, um... how have you been liking the Ruins so far?"
 
     menu:
         "I think I like it better here than the surface!":
