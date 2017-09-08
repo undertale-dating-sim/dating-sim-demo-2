@@ -22,10 +22,13 @@ label UnderSnail:
         winner = ui.interact(suppress_overlay=True, suppress_underlay=True)
     $ renpy.transition(fade)
     $ renpy.show(world.get_room("Snail Hunting Room").bg)
+    play music "audio/ruins/the_ruins.mp3" fadein 5
     if winner == 'win':
-        play music "audio/ruins/the_ruins.mp3" fadein 5
         "Good job!"
         $ player.give_snails()
+    else:
+        "* Oh no..."
+        "* All your snails got away."
         
         # if mission == "rocket":
         #     "You caught [us.rocket_snail_count] rocket snails."
@@ -47,7 +50,7 @@ init python:
     renpy.music.register_channel("coffee",True,stop_on_mute=False)
     renpy.music.register_channel("rocket",True,stop_on_mute=False)
     renpy.music.register_channel("house",True,stop_on_mute=False)
-    missed_snails = 0
+    
     class Flower_Patch(renpy.Displayable):
         def __init__(self,x,y):
             renpy.Displayable.__init__(self)
@@ -93,6 +96,7 @@ init python:
             self.dy = dy
             self.speed = renpy.random.randint(1,3)
             self.remove = False
+            self.missed = False
             self.width = 50
             self.height = 50
             self.health = 10
@@ -109,6 +113,7 @@ init python:
             centerx = self.xpos + self.width /2
             centery = self.ypos + self.height /2
             if centerx < 0 or centerx > 800 or centery < 0 or centery > 800:
+                self.missed = True
                 self.remove = True
 
     class UnderSnail(renpy.Displayable):
@@ -153,8 +158,8 @@ init python:
             self.scoretext.xpos = 0.1
             self.scoretext.ypos = 0.1
 
-            missed_snails = 0
-            self.missed_snailstext = Text("Missed : %d" % missed_snails)
+            self.missed_snails = 0
+            self.missed_snailstext = Text("Missed : %d" % self.missed_snails)
             self.missed_snailstext.xpos = 0.8
             self.missed_snailstext.ypos = 0.1
 
@@ -254,7 +259,7 @@ init python:
             if self.score >= cap:
                 self.turn_off_music()
                 return "win"
-            elif missed_snails >= 3:
+            elif self.missed_snails >= 3:
                 self.turn_off_music()
                 return "lose"
             else:
@@ -268,6 +273,8 @@ init python:
             for s in self.snails:
                 s.update()
                 if s.remove:
+                    if s.missed:
+                        self.missed_snails += 1
                     self.snails.remove(s)
                     #stupid check because they were making text by going offscreen
                     if s.health <= 0:
@@ -343,7 +350,7 @@ init python:
                 text_render = renpy.render(self.scoretext,width,height,st,at)
                 r.blit(text_render,(25,0.1))
 
-                self.missed_snailstext = Text("Missed : %d" % missed_snails)
+                self.missed_snailstext = Text("Missed : %d" % self.missed_snails)
                 text_render2 = renpy.render(self.missed_snailstext,width,height,st,at)
                 r.blit(text_render2,(width - 200,0.1))
 

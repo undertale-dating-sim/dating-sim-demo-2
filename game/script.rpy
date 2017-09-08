@@ -66,7 +66,6 @@ label start:
 
 
 label skip_to_day_1:
-    jump UnderSnail
     scene black
     "Set demo values for day 0"
     $ player.variables['tf_scream_count'] = 1
