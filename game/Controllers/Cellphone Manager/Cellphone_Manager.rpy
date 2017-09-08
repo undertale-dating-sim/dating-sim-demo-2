@@ -45,16 +45,14 @@ label call_Monster(monster):
                 call expression "call_[monster]_Unknown" pass (loc_name)
             else:
                 call unknown_Call
+            $ player.variables[monster.name+"_Cellphone_"+location.name.replace(" ","_")+"_Complete"] = True
 
         "Where are you?":
-            if renpy.has_label("call_[monster]_Unknown"):
-                call expression "call_[monster]_Unknown" pass (loc_name)
-            else:
-                $ monster = world.get_monster(monster)
-                "I'm at [monster.current_room.name]."
+            $ renpy.say(monster.name,"I'm at the [monster.current_room.name].")
+            $ renpy.say(monster.name,"You should come say 'Hello!'.")
     return
 
 label unknown_Call:
-    "But nobody answered."
-    "Rude."
+    "I'm not sure."
+    "I don't think I'm supposed to be here."
     return
