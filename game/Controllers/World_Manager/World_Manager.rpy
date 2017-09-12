@@ -107,8 +107,10 @@ init -10 python:
             # day 0 is the tutorial
 
             if self.day > 0:
+                renpy.say(None,"checking action count")
                 if self.timezone_action_count >= 10:
                     self.timezone_action_count = 0
+                    renpy.say(None,"counts are 10 or more, settings next time zone")
                     self.next_timezone();
                 self.seed_random_monsters()
                 self.seed_random_events()
@@ -127,9 +129,9 @@ init -10 python:
         #this function will seed all of the random monsters to the various rooms they can be in.
         #rooms with events already in them should be ignored.
         def seed_random_monsters(self):
+
+            renpy.say(None,"Seeding Random Monsters")
             for an,a in self.areas.iteritems():
-
-
                 # #first we get a list of all the rooms in the area
                 room_list = list(a.rooms)
 
@@ -148,7 +150,9 @@ init -10 python:
                         room_list.remove(room_list[0])
 
         def seed_random_events(self):
+            renpy.say(None,"Seeding Random Events")
             for an,a in self.areas.iteritems():
+                renpy.say(None,"Checking %s" % a.name)
                  # #first we get a list of all the rooms in the area
                 room_list = list(a.rooms)
 
@@ -157,11 +161,14 @@ init -10 python:
                     if len(a.rooms[r].monsters) > 0 or len(a.rooms[r].events) > 0:
                         room_list.remove(r)
                         
-                # #we will do this until we run out of rooms
+                renpy.say(None,"Getting Random Event")
                 re = a.get_random_event()
+                
                 if re:
+                    renpy.say(None,"Got %s" % re.label)
                     rr = renpy.random.choice(room_list)
                     a.rooms[rr].set_event(re.label,False)
+                    renpy.say(None,"Added it to %s" % a.rooms[rr].name)
                     # a.rooms[rr].events[re.label] = re
                    
         #gets the current timezone and the day of the week
