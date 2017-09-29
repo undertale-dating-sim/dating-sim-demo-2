@@ -96,9 +96,9 @@ init -10 python:
         def update_day(self):
             #seed the random monsters
             # day 0 is the tutorial
-            renpy.say(None,"Updating the Day : Random monsters and events. Resetting Gift counts")
+            #renpy.say(None,"Updating the Day : Random monsters and events. Resetting Gift counts")
             if self.day > 0:
-                renpy.say(None,"Current action count is %s/10" % self.timezone_action_count)
+                #renpy.say(None,"Current action count is %s/10" % self.timezone_action_count)
                 if self.timezone_action_count >= 10:
                     self.timezone_action_count = 0
                     self.next_timezone()
@@ -119,7 +119,7 @@ init -10 python:
         #this function will seed all of the random monsters to the various rooms they can be in.
         #rooms with events already in them should be ignored.
         def seed_random_monsters(self):
-            renpy.say(None,"Setting up the random monsters")
+            # renpy.say(None,"Setting up the random monsters")
             for an,a in self.areas.iteritems():
 
                 # #first we get a list of all the rooms in the area
@@ -140,9 +140,9 @@ init -10 python:
                         room_list.remove(room_list[0])
 
         def seed_random_events(self):
-            renpy.say(None,"Seeding Random Events")
+            # renpy.say(None,"Seeding Random Events")
             for an,a in self.areas.iteritems():
-                renpy.say(None,"Checking %s" % a.name)
+                # renpy.say(None,"Checking %s" % a.name)
                  # #first we get a list of all the rooms in the area
                 room_list = list(a.rooms)
 
@@ -151,14 +151,14 @@ init -10 python:
                     if len(a.rooms[r].monsters) > 0 or len(a.rooms[r].events) > 0:
                         room_list.remove(r)
                         
-                renpy.say(None,"Getting Random Event")
+                # renpy.say(None,"Getting Random Event")
                 re = a.get_random_event()
                 
                 if re:
-                    renpy.say(None,"Got %s" % re.label)
+                    # renpy.say(None,"Got %s" % re.label)
                     rr = renpy.random.choice(room_list)
                     a.rooms[rr].set_event(re.label,False)
-                    renpy.say(None,"Added it to %s" % a.rooms[rr].name)
+                    # renpy.say(None,"Added it to %s" % a.rooms[rr].name)
                     # a.rooms[rr].events[re.label] = re
                    
         #gets the current timezone and the day of the week
@@ -166,7 +166,7 @@ init -10 python:
         #each monster will move to their given room for their schedule.
         #if there is a special event, that will be done as well
         def update_world(self,update_day = False):
-            renpy.say(None,"Updating the World : Main Monster Schedules/Events")
+            # renpy.say(None,"Updating the World : Main Monster Schedules/Events")
             timezone = self.get_current_timezone()
             day_of_week = self.get_current_day()
 
@@ -175,18 +175,18 @@ init -10 python:
                 room_list = list(a.rooms.items())
                 for rn,r in room_list:
                     if(len(r.monsters) > 0):
-                        renpy.say(None,"%s in %s" % (len(r.monsters),r.name))
+                        # renpy.say(None,"%s in %s" % (len(r.monsters),r.name))
                     monster_list = list(r.monsters)
                     for m in monster_list:
-                        renpy.say(None,"Found %s in %s" % (m.name,r.name))
+                        # renpy.say(None,"Found %s in %s" % (m.name,r.name))
                         if m.schedule:
                             if timezone in m.schedule[day_of_week]:
                                 for x,t in m.schedule[day_of_week][timezone].items():    
-                                    renpy.say(None,"Schedule : %s goes to %s at %s on %s" % (m.name,x,timezone,day_of_week))
+                                    # (None,"Schedule : %s goes to %s at %s on %s" % (m.name,x,timezone,day_of_week))
                                     m.move_to_room(x)
                             else:
-                                renpy.say(None,"Found %s in %s" % (m.name,r.name))
-                                renpy.say(None,"Schedule : %s has no room for %s on %s. Default is %s" % (m.name,timezone,day_of_week,m.default_room))
+                                # renpy.say(None,"Found %s in %s" % (m.name,r.name))
+                                # renpy.say(None,"Schedule : %s has no room for %s on %s. Default is %s" % (m.name,timezone,day_of_week,m.default_room))
                                 m.move_to_room(m.default_room)
                         m.handle_special_events()
             self.update_day()
@@ -207,7 +207,7 @@ init -10 python:
                 return "0:00"
 
         def next_timezone(self):
-            renpy.say(None,"Getting Next Time Zone")
+            # renpy.say(None,"Getting Next Time Zone")
             if self.current_timezone == "Night":
                 self.current_timezone = "Morning"
             else:
