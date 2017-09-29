@@ -46,7 +46,7 @@ init python:
             Room.__init__(self)
             self.name = "Basement Door"
             self.x = 5
-            self.y = 1
+            self.y = 10
             self.lockeast = True
             self.lockwest = True
             self.desc = "* A large, ornate door stands before you.  ","* It feels cold and impersonal."

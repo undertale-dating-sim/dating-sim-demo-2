@@ -34,7 +34,7 @@ init -10 python:
             if renpy.has_label(event):
                 self.events = {}
                 self.events[event] = Event(event,permanent)
-                renpy.say(None,"Setting Event %s in %s" % (event,self.name))
+#                renpy.say(None,"Setting Event %s in %s" % (event,self.name))
             else:
                 renpy.notify("Can't find label [event]")
 

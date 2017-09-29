@@ -67,7 +67,11 @@ label start:
 
 label skip_to_day_1:
     scene black
+    "Warning! This day is not complete.  There is a chance stuff won't work or the game might just blow up."
     "Set demo values for day 0"
+    "You screamed at blooky, you picked up the bag, you accepted to stay at toriels, you befriended frisk, you didn't meet someone you shouldn't."
+    "You acquired frisks number."
+    "Setting event to 'waking up'"
     $ player.variables['tf_scream_count'] = 1
     $ player.variables['satchel_found'] = True
     $ player.variables['satchel_refused'] = False

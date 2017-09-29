@@ -174,8 +174,8 @@ init -10 python:
             for an,a in self.areas.items():
                 room_list = list(a.rooms.items())
                 for rn,r in room_list:
-                    if(len(r.monsters) > 0):
-                        # renpy.say(None,"%s in %s" % (len(r.monsters),r.name))
+                    #if(len(r.monsters) > 0):
+                    # renpy.say(None,"%s in %s" % (len(r.monsters),r.name))
                     monster_list = list(r.monsters)
                     for m in monster_list:
                         # renpy.say(None,"Found %s in %s" % (m.name,r.name))
