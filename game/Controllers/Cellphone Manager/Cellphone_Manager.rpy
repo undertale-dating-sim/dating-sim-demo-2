@@ -33,23 +33,26 @@ label call_Monster(monster):
         else:
             text_color = "#ffffff"
 
-    menu:
-        "Hello?"
+    if monster.current_room.name == "Dead Room":
+        "But nobody answered..."
+    else:
+        menu:
+            "Hello?"
+                    
+            "{color=[text_color]}Chat about [world.current_area.current_room.name]{/color}":
+
                 
-        "{color=[text_color]}Chat about [world.current_area.current_room.name]{/color}":
+                if renpy.has_label(loc_name):
+                    call expression loc_name pass (monster,monster.variables[call_location_variable])
+                elif renpy.has_label("call_[monster]_Unknown"):
+                    call expression "call_[monster]_Unknown" pass (loc_name)
+                else:
+                    call unknown_Call
+                $ player.variables[monster.name+"_Cellphone_"+location.name.replace(" ","_")+"_Complete"] = True
 
-            
-            if renpy.has_label(loc_name):
-                call expression loc_name pass (monster,monster.variables[call_location_variable])
-            elif renpy.has_label("call_[monster]_Unknown"):
-                call expression "call_[monster]_Unknown" pass (loc_name)
-            else:
-                call unknown_Call
-            $ player.variables[monster.name+"_Cellphone_"+location.name.replace(" ","_")+"_Complete"] = True
-
-        "Where are you?":
-            $ renpy.say(monster.name,"I'm at the [monster.current_room.name].")
-            $ renpy.say(monster.name,"You should come say 'Hello!'.")
+            "Where are you?":
+                $ renpy.say(monster.name,"I'm at the [monster.current_room.name].")
+                $ renpy.say(monster.name,"You should come say 'Hello!'.")
     return
 
 label unknown_Call:

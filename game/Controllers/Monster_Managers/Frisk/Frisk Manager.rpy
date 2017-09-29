@@ -6,8 +6,10 @@ init -9 python:
             self.default_event = Event("Frisk_manager_default",True,self)
             self.name = "Frisk"
             self.default_sprite = "frisk normal"
+            self.default_room = "Frisk's Room"
             self.FP = 20
             self.consumables_given = 0
+            self.handle_schedule()
 
         def give_item(self,item = False):
 
@@ -176,38 +178,7 @@ label Frisk_manager_default(owner = False,pause = True):
         frisk_hangoutcompleted = True
     
     label Frisk_interact:
-        menu:
-            "Talk":
-                call Frisk_dialogue
-            "Meeting Frisk":
-                call frisk_meeting_start
-            "Friendship Hangout 1":
-                call frisk_friendship_hangout1_main
-            "Friendship Event 1":
-                "test"
-            "Friendship Event 2":
-                "test"
-            "Give Gift" if len(inventory.items) > 0:
-                show frisk smallsmile
-                frisk "Oh, do you have something?"
-                
-                "What should you give them?"
-                
-                $ result = renpy.call_screen("gift_item_menu",owner)
-                
-                if result == 'cancel':
-                    frisk "No? That’s alright."
-                
-                    jump Frisk_interact
-                
-            "Raise FP 10":
-                $ owner.FP += 10
-            "Lower FP 10":
-                $ owner.FP -= 10
-            "Exit":
-                "See ya later!"
-
-    
+        call Frisk_dialogue  
     return
 
 ######     Frisk's dialogue options     ######
@@ -233,9 +204,21 @@ label Frisk_dialogue:
             jump Frisk_ask
         "Flirt" if frisk_flirtaway is False:
             jump Frisk_flirt
+
+        "Give Gift" if len(inventory.items) > 0:
+                show frisk smallsmile
+                frisk "Oh, do you have something?"
+                
+                "What should you give them?"
+                
+                $ result = renpy.call_screen("gift_item_menu",owner)
+                
+                if result == 'cancel':
+                    frisk "No? That’s alright."
+
         "Never mind.":
             "You decide not to say anything after all."
-            jump Frisk_interact
+
     return
 
 

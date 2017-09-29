@@ -150,6 +150,8 @@ screen show_information_overlay:
     vbox:
         hbox pos(0.25,0.01):
             text world.get_current_time()
+        hbox pos(0.25,0.03):
+            text "[world.timezone_action_count]/10"
         hbox xpos .25:
             if world.current_area.current_room.current_monster and world.current_area.current_room.current_monster != False:
                 vbox:

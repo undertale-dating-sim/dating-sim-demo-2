@@ -43,7 +43,7 @@ init -10 python:
                     if room.x == dirx and room.y == diry:
 
                         self.current_room = room
-                        renpy.jump("load_room")
+                        move_to_room(room_name)
 
         #gets a random monster by name
         def get_random_monster(self,name):

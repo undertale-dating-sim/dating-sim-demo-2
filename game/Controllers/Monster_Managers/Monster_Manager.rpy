@@ -63,6 +63,7 @@ init -10 python:
                             self.current_room.monsters.remove(self)
                         self.current_room = r
                         self.current_room.monsters.append(self)
+                        renpy.say(None,"Moving %s to %s" % (self.name,r.name))
                         return "Success"
 
             renpy.notify("Can't find room "+room)

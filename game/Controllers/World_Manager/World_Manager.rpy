@@ -24,16 +24,10 @@ init -10 python:
     #brings a monster to the current room. monster == monster.name
     def summon(monster):
         world.get_monster(monster).move_to_room(current_room().name)
-        #reload_room()
 
     #sends a monster to the dead room.   handy for getting them out of a room quickly
     def banish(monster):
         world.get_monster(monster).move_to_room("Dead Room")
-        #reload_room()
-
-    #runs all of the updates for the world
-    def update():
-        world.update_day()
 
     #Returns a monster by name
     def get_monster(monster):
@@ -66,9 +60,6 @@ init -10 python:
         else:
             renpy.notify("Not a valid item.")
             return False
-    
-    def reload_room():
-        renpy.call("load_room")
 
     ##Getting tired of the convoluted way to call the monsters
     def get_flowey():
@@ -105,11 +96,12 @@ init -10 python:
         def update_day(self):
             #seed the random monsters
             # day 0 is the tutorial
-
+            renpy.say(None,"Updating the Day : Random monsters and events. Resetting Gift counts")
             if self.day > 0:
+                renpy.say(None,"Current action count is %s/10" % self.timezone_action_count)
                 if self.timezone_action_count >= 10:
                     self.timezone_action_count = 0
-                    self.next_timezone();
+                    self.next_timezone()
                 self.seed_random_monsters()
                 self.seed_random_events()
             
@@ -127,8 +119,8 @@ init -10 python:
         #this function will seed all of the random monsters to the various rooms they can be in.
         #rooms with events already in them should be ignored.
         def seed_random_monsters(self):
+            renpy.say(None,"Setting up the random monsters")
             for an,a in self.areas.iteritems():
-
 
                 # #first we get a list of all the rooms in the area
                 room_list = list(a.rooms)
@@ -169,25 +161,30 @@ init -10 python:
         #each monster will move to their given room for their schedule.
         #if there is a special event, that will be done as well
         def update_world(self,update_day = False):
-
+            renpy.say(None,"Updating the World : Main Monster Schedules/Events")
             timezone = self.get_current_timezone()
             day_of_week = self.get_current_day()
 
-            if update_day:
-                for an,a in self.areas.iteritems():
-                    for rn,r in a.rooms.iteritems():
-                        for m in r.monsters:
-                            if m.schedule:
 
-                                if timezone in m.schedule[day_of_week]:
-                                    for x,t in m.schedule[day_of_week][timezone].iteritems():
-                                        m.move_to_room(x)
-                                else:
-                                    m.move_to_room(m.default_room)
-
-                            m.handle_special_events()
-
-                self.update_day()
+            for an,a in self.areas.items():
+                room_list = list(a.rooms.items())
+                for rn,r in room_list:
+                    if(len(r.monsters) > 0):
+                        renpy.say(None,"%s in %s" % (len(r.monsters),r.name))
+                    monster_list = list(r.monsters)
+                    for m in monster_list:
+                        renpy.say(None,"Found %s in %s" % (m.name,r.name))
+                        if m.schedule:
+                            if timezone in m.schedule[day_of_week]:
+                                for x,t in m.schedule[day_of_week][timezone].items():    
+                                    renpy.say(None,"Schedule : %s goes to %s at %s on %s" % (m.name,x,timezone,day_of_week))
+                                    m.move_to_room(x)
+                            else:
+                                renpy.say(None,"Found %s in %s" % (m.name,r.name))
+                                renpy.say(None,"Schedule : %s has no room for %s on %s. Default is %s" % (m.name,timezone,day_of_week,m.default_room))
+                                m.move_to_room(m.default_room)
+                        m.handle_special_events()
+            self.update_day()
 
             return
 
@@ -205,10 +202,12 @@ init -10 python:
                 return "0:00"
 
         def next_timezone(self):
+            renpy.say(None,"Getting Next Time Zone")
             if self.current_timezone == "Night":
                 self.current_timezone = "Morning"
             else:
                 self.current_timezone = self.timezones[self.timezones.index(self.current_timezone)+1]
+            self.update_world()
 
         #sets the current time
         def set_current_time(self,timezone,update_day = False):
@@ -232,6 +231,9 @@ init -10 python:
                     if room.name == name:
                         self.current_area = area
                         self.current_area.current_room = room
+                        if self.timezone_action_count >= 10:
+                            self.timezone_action_count = 0
+                            self.next_timezone()
                         renpy.call("load_room",loop,transition)
                         return True
             renpy.notify(name + " not found.")
@@ -252,7 +254,7 @@ init -10 python:
                         if monster.name.lower() == name.lower():
                             return monster
 
-            renpy.notify("Could not find "+name);
+            renpy.notify("Could not find "+name)
             return False
 
         def add_monster(self,monster):
@@ -286,7 +288,6 @@ label test_label:
 label load_room(loop=True,transition="fade"):
     
     call hide_buttons from _call_hide_buttons
-
     python:
         cell_convo_count = 0
         renpy.scene()
@@ -296,7 +297,7 @@ label load_room(loop=True,transition="fade"):
     if transition == "fade":
         with Fade(.5,0,.5)
     else:
-        $ renpy.notify(str(transition) + " not a valid option for transition")
+        with Fade(.5,0,.5)
 
     #if ADMIN_ROOM_DESC:
     if not world.current_area.current_room.visited and world.current_area.current_room.desc and world.day > 0:
@@ -329,15 +330,7 @@ label load_room(loop=True,transition="fade"):
             pass
         else:
             world.current_area.explored = True                          # This means that the player has 100% completed exploration.
-    
-    ##### FOR TESTING #####
-    #if world.current_area.explored:
-    #    "Explored the Ruins"
-    #else:
-    #    "[ruinscounter]"
-        
-    #$ world.update_world(True)
-        
+
     $ temp_event = world.current_area.current_room.get_event()
 
     while temp_event:

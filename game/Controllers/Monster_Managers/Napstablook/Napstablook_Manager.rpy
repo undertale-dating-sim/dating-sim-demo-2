@@ -149,7 +149,6 @@ label Napstablook_manager_default(owner = False, pause = True):
     
     #Default Menu
     menu:
-        "Napstablook"
         "Flirt" if owner.flirt_count < 3 :
             if owner.flirt_count == 0:
                 "You're a very lovely shade of pale today."
@@ -233,60 +232,6 @@ label Napstablook_manager_default(owner = False, pause = True):
                 napstablook "oh...... thanks anyway."
             show napstablook normal at napstabob with dissolve
             
-        "Testing":
-            menu:
-                "Raise FP 10":
-                    $ owner.FP += 10
-                "Lower FP 10":
-                    $ owner.FP -= 10
-                "Raise DP 10":
-                    $ owner.DP += 10
-                "Lower DP 10":
-                    $ owner.DP -= 10
-                "Raise HP 10":
-                    $ owner.HP += 10
-                "Lower HP 10":
-                    $ owner.HP -= 10
-                "Update world":
-                    $ world.update_world(True)
-                    $ player.current_room = world.current_area.current_room.name
-                    "You are in [player.current_room]"
-                    $ blooky_current_room = world.get_monster("Napstablook").current_room.name
-                    $ tori_current_room = world.get_monster("Toriel").current_room.name
-                    $ flowey_current_room = world.get_monster("Toriel").current_room.name
-                    "Blooky is in [blooky_current_room]"
-                    "Toriel is in [tori_current_room]"
-                    "Flowey is in [flowey_current_room]"
-        "Events":
-            $ issinger = False
-            $ isdancer = False
-            $ likedmusic = False
-            $ dislikedmusic = False
-            $ listened_music = False
-            $ hobbies_asked = False
-            $ napstablook_friendship_hangout1_complete = False
-            $ apathy = False
-            
-            menu:
-                "Like Karaoke, but Without the Lyrics on the Screen": # If all rooms explored, in blooky room.
-                    call napstablook_event_1
-                "Snail Hunting is an Art" if (owner.FP >= 10): # Good end to friendship event 1, caught snails 3+ times, in snail room.
-                    call napstablook_hangout_1
-                "One Man's Trash...":
-                    call blooky_event3
-                "Blooky's HB Date":
-                    if (owner.HP > 12):
-                        call napstablook_HP_date
-                    else:
-                        napstablook "oh... that's a nice idea..."
-                        napstablook "but... i don't know... i don't think i can today..."
-                        napstablook "...sorry..."
-                "Blooky's TL Date":
-                    call napstablook_tl_date
-                "Exit":
-                    return
-            show napstablook normal
-            scene background ruins_hallway
         "Exit":
             "okay."
 

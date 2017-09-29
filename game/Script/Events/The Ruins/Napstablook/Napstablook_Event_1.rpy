@@ -202,7 +202,6 @@ label napstablook_event_1(owner=get_napstablook()):
         hide napstablook with dissolve
 
         $ player.variables['Napstablook_Friendship_1_Complete'] = True
-        $ world.update_world(False)
 
         return
         

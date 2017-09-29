@@ -17,7 +17,6 @@ init -9 python:
             if "Flowey_Hangout_1_Complete" not in player.variables and world.day > 0:
                 self.special_event = Event('flowey_hangout1',False,self)
                 #player.variables['Flowey_Hangout_1_Complete'] = True
-                world.update_world(False)
             elif "Flowey_Hangout_2_Complete" not in player.variables and world.day > 0:
                 if "flowey_heartbreak_activated" in player.variables:
                     self.special_event = Event('flowey_HB_hangout_1',False,self)
@@ -117,28 +116,7 @@ label flowey_manager_default(owner = False,pause = True):
         menu:
             "Chat":
                 call Flowey_Interaction
-            "Events":
-                menu:
-                    "Hangout 1":
-                        call flowey_hangout1
-                    "Hangout 1.5":
-                        call Flowey_Hangout_1_5
-                    "HB Hangout 1":
-                        call flowey_HP_hangout_1
-            "Testing":
-                menu:
-                    "remember test":
-                        $r = renpy.show_screen("remember",owner)
-                    "Raise FP 20":
-                        $ owner.FP += 20
-                    "Lower FP 20":
-                        $ owner.FP -= 20
-                    "Raise HP 20":
-                        $ owner.HP += 20
-                    "Lower HP 20":
-                        $ owner.HP -= 20
-                    "Update World":
-                        $ world.update_world(False)
+            
             "Give Gift" if len(inventory.items) > 0:
                 call flowey_gift_menu_open(owner)
                 $ result = renpy.call_screen("gift_item_menu",owner)

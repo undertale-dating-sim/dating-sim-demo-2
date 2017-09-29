@@ -194,7 +194,6 @@ screen main_menu():
         textbutton _("Main Game") action Start()
         # textbutton _("Testing Area") action ui.callsinnewcontext("testing_area")
         textbutton _("Day 1") action ui.callsinnewcontext("skip_to_day_1")
-        textbutton _("Load Game") action ShowMenu("load")
         textbutton _("Preferences") action ShowMenu("preferences")
         textbutton _("Credits") action ui.callsinnewcontext("scrolling_credits")
         # textbutton _("Feedback") action Jump("Feedback")
