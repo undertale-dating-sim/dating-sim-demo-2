@@ -140,7 +140,9 @@ init -10 python:
                         room_list.remove(room_list[0])
 
         def seed_random_events(self):
+            renpy.say(None,"Seeding Random Events")
             for an,a in self.areas.iteritems():
+                renpy.say(None,"Checking %s" % a.name)
                  # #first we get a list of all the rooms in the area
                 room_list = list(a.rooms)
 
@@ -149,11 +151,14 @@ init -10 python:
                     if len(a.rooms[r].monsters) > 0 or len(a.rooms[r].events) > 0:
                         room_list.remove(r)
                         
-                # #we will do this until we run out of rooms
+                renpy.say(None,"Getting Random Event")
                 re = a.get_random_event()
+                
                 if re:
+                    renpy.say(None,"Got %s" % re.label)
                     rr = renpy.random.choice(room_list)
                     a.rooms[rr].set_event(re.label,False)
+                    renpy.say(None,"Added it to %s" % a.rooms[rr].name)
                     # a.rooms[rr].events[re.label] = re
                    
         #gets the current timezone and the day of the week
