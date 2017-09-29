@@ -342,6 +342,7 @@ init python:
     # Put script files into the scripts archive.
     build.classify("game/**.rpy", "scripts")
     build.classify("game/**.rpyc", "scripts")
+    build.classify("game/**.bak", "scripts")
 
     # Put images into the images archive.
     build.classify("game/**.jpg", "images")
