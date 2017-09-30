@@ -339,6 +339,7 @@ label load_room(loop=True,transition="fade"):
     $ temp_event = world.current_area.current_room.get_event()
 
     while temp_event:
+        #$ renpy.say(None,temp_event.label)
         $ temp_event.call_event()
         $ temp_event = world.current_area.current_room.get_event()
     

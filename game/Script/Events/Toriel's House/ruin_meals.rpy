@@ -217,6 +217,8 @@ label ruins_first_breakfast_corridor:
 
 label ruins_dinner: #done
     if world.get_current_timezone() != 'Afternoon' or ('had_dinner_day' in player.variables and player.variables['had_dinner_day'] == world.day):
+        call show_buttons
+        pause
         return
 
     $ player.variables['had_dinner_day'] = world.day

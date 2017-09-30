@@ -130,7 +130,7 @@ label initialize_frisk:
     image frisk smallsmile = "characters/Frisk/Frisk_Tiny_Smile.png"
     image frisk soulless = "characters/Frisk/Frisk_Soulless.png"
     image frisk surprised = "characters/Frisk/Frisk_Surprised.png"
-    image frisk tearyeyes = "characters/Frisk/Frisk_Teary_Eyes.png"
+    image frisk tearyeyes = "characters/Frisk/Frisk_Teary_Eyes.png" 
     image frisk upset = "characters/Frisk/Frisk_Upset.png"
 
     

@@ -1,4 +1,8 @@
 label golden_flower_event:
+    if 'toriel_plant_watered_day' not in player.variables:
+        $ player.variables['toriel_plant_watered_day'] = 0
+    if 'toriel_plant_watered_count' not in player.variables:
+        $ player.variables['toriel_plant_watered_count'] = 0
 
     if (world.day - player.variables['toriel_plant_watered_day'] > 2):
         $ player.variables['toriel_plant_watered_count'] = 0
