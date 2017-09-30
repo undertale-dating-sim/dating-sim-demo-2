@@ -511,7 +511,7 @@ label frisk_meeting_eat:
             toriel "Besides, you are here now, and everything turned out alright."
             show frisk somehappy with Dissolve(.25)
             frisk "Yeah..."
-            show frisk smile with Dissolve(.25)
+            show frisk smallsmile with Dissolve(.25)
             frisk "So, the point is... I know this might be scary for now."
             frisk "But, if you give it a chance, I think you'll find this place is actually pretty great."
             show frisk bigsmile with Dissolve(.25)

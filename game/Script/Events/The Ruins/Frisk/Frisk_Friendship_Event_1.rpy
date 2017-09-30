@@ -271,7 +271,7 @@ label frisk_friendship_event_1_blacktree(owner=get_frisk()):
                                     frisk "..."
                                     frisk "Maybe I’ll tell you about it one day."
                                     frisk "But for now, I should go."
-                                    show frisk smile with Dissolve(.25)
+                                    show frisk smallsmile with Dissolve(.25)
                                     frisk "Thanks again."
 
                                 "I'm not sure.":

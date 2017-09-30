@@ -15,7 +15,7 @@ init -1 python hide:
     # config.log = 'wilson.txt'
     #config.developer = True
     ## These control the width and height of the screen.
-
+    config.console = False
     config.screen_width = 800
     config.screen_height = 600
 
