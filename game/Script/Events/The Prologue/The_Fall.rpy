@@ -1012,7 +1012,7 @@ label ruins_intro_pass_out:
     menu:
         toriel "You are more than welcome to return here whenever you are tired. I promise, my child and I do not bite!"
         "Alright, I'll stay here with you.":
-            $ world.get_monster('Toriel').FP += 1
+            $ world.get_monster('Toriel').update_FP(1)
             show toriel smile with Dissolve(.25)
             toriel "I am glad to hear it."
 
@@ -1030,7 +1030,7 @@ label ruins_intro_pass_out:
                 jump ruins_intro_find_Frisk
 
         "No way, I'm leaving!":
-            $ world.get_monster('Toriel').FP -= 2
+            $ world.get_monster('Toriel').update_FP(-2)
             show toriel annoyed with Dissolve(.25)
             toriel "Well, if that is how you feel..."
             toriel "Just do not expect me to find you the next time you pass out."

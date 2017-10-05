@@ -32,6 +32,7 @@ init -10 python:
             self.flirt_count = 0
             self.chat_count = 0
 
+            self.dating_requirements = {}
 
         def reset_schedule(self):
             self.schedule = {"Sunday":{},"Monday":{},"Tuesday":{},"Wednesday":{},"Thursday":{},"Friday":{},"Saturday":{}}

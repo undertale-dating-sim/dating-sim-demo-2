@@ -77,7 +77,7 @@ label ruins_first_breakfast_corridor:
             $world.get_monster('Frisk').update_FP(-3)
             show frisk surprised at left with Dissolve(.25)
             frisk "What? Oh, of course not, I just thought..." 
-            show frisk dissapointed at left with Dissolve(.25)
+            show frisk disappointed at left with Dissolve(.25)
             frisk "I just wanted to help."
             frisk "But... um..."
     

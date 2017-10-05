@@ -10,11 +10,37 @@ screen cell:
                     action [ui.callsinnewcontext("call_Monster","Frisk")] background "#000000"
             if 'has_toriel_cell' in player.variables:
                 textbutton "Toriel":
-                    action [ui.callsinnewcontext("call_Monster","Toriel")] background "#000000"
+                    action [SetVariable("selected_caller","Toriel")] background "#000000"
             if 'has_napstablook_cell' in player.variables:
                 textbutton "Napstablook":
                     action [ui.callsinnewcontext("call_Monster","Napstablook")] background "#000000"
+    if selected_caller and selected_caller == "Toriel":
+        frame pos(.4,.3):
+            background Frame("UI/text-box3.png",21, 21)
             
+            hbox:            
+                    vbox:
+                        hbox:
+                            image im.Scale(get_monster(selected_caller).cell_phone_pic,100,100)
+                            text "    "
+                            text "    "
+                        text "FP : %s " % get_monster(selected_caller).FP
+                        text "DP : %s " % get_monster(selected_caller).DP
+                        text "HP : %s " % get_monster(selected_caller).HP
+                        text "    "
+                        textbutton "Call":
+                            action [ui.callsinnewcontext("call_Monster","Toriel")] background "#000000"
+                    vbox:
+                        text "---------"
+                        for x in get_monster(selected_caller).dating_requirements:
+                            text "{size=-5}[x]{/size}"
+                            for r in get_monster(selected_caller).dating_requirements[x]:
+                                if get_monster(selected_caller).dating_requirements[x][r]:
+                                    text "  {color=#00ff00}{size=-5}[r]{/size}{/color}"
+                                else:
+                                    text "  {color=#f00}{size=-5}[r]{/size}{/color}"
+                            text "---------"
+
 label call_Monster(monster):
     python:
         location = world.current_area.current_room

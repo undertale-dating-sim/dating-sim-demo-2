@@ -67,11 +67,6 @@ label start:
 
 label skip_to_day_1:
     scene black
-    "Warning! This day is not complete.  There is a chance stuff won't work or the game might just blow up."
-    "Set demo values for day 0"
-    "You screamed at blooky, you picked up the bag, you accepted to stay at toriels, you befriended frisk, you didn't meet someone you shouldn't."
-    "You acquired frisks number."
-    "Setting event to 'waking up'"
     $ player.variables['tf_scream_count'] = 1
     $ player.variables['satchel_found'] = True
     $ player.variables['satchel_refused'] = False
@@ -83,6 +78,7 @@ label skip_to_day_1:
     $ player.variables['has_frisk_cell'] = True
     $ player.variables['has_cellphone'] = True
     $ player.variables['accepted_frisk'] = True
+    $ player.variables['has_toriel_cell'] = True
 
     
     call player_sleeping_th
@@ -153,7 +149,7 @@ label show_buttons:
     
     show screen show_menu_button
     show screen show_nav_button
-    show screen show_map_button
+    #show screen show_map_button
     show screen show_information_overlay
     show screen show_testing_button
     return
@@ -168,7 +164,7 @@ label hide_buttons:
 
     hide screen show_menu_button
     hide screen show_nav_button
-    hide screen show_map_button
+    #hide screen show_map_button
     hide screen show_information_overlay
     hide screen multiple_monster_click_screen
     hide screen show_testing_button

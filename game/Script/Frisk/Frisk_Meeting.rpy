@@ -150,7 +150,7 @@ label frisk_meeting_questions:
                                             #+1 Determination
                                             show frisk angry with Dissolve(.25)
                                             frisk "No, I don't have to tell you anything! I'm not talking about this anymore!"
-                                            show frisk neutral with Dissolve(.25)
+                                            show frisk normal with Dissolve(.25)
                                             frisk "Sorry, I don't like people getting on my back about things."
 
 
@@ -469,7 +469,7 @@ label frisk_meeting_eat:
                     show frisk sad with Dissolve(.25)
                     frisk "Oh... what?"
                     toriel "I guess I should not be too surprised."
-                    show Toriel smallsmile with Dissolve(.25)
+                    show toriel smallsmile with Dissolve(.25)
                     toriel "Well... erm... thank you for your consideration."
                     show frisk somehappy with Dissolve(.25)
                     frisk "Oh come on. It isn't that bad, right?"      

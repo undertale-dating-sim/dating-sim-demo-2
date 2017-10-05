@@ -9,7 +9,61 @@ init -9 python:
             self.FP = 40
             self.seed_default_schedule()
             self.default_sprite = "toriel normal"
+            self.d_1 = {"Decided to Stay" : False, "Day past 3": False}
+            self.d_2 = {"FP > 20": False}
+            self.d_3 = {"Plant watered 3 times" : False}
+            self.d_4 = {"Mastered Flirting" : False}
+            self.dating_requirements = {"Friendship 1" : self.d_1, "Friendship 2" : self.d_2, "Friendship 3" : self.d_3, "Date 1" : self.d_4}
+            self.cell_phone_pic = "UI/toriel_cell_face.png"
         
+
+        def handle_relationship_requirements(self):
+
+            self.d_1 = {}
+            self.d_2 = {}
+            self.d_3 = {}
+            self.d_4 = {}
+            self.dating_requirements = {}
+
+            yellow = "#ffff00"
+            red = "#f00"
+            green = "#00ff00"
+
+            self.d_1["Decided to Stay"] = 'accepted_toriel' in player.variables and player.variables['accepted_toriel']
+
+            self.d_1["Day > 3"] = world.day > 3
+
+            self.d_2 = {"FP > 20": get_toriel().FP > 20}
+
+            self.d_3 = {"Plant watered 3 times": 'toriel_plant_watered_count' in player.variables and  player.variables['toriel_plant_watered_count'] >= 3}
+            
+            self.d_4 = {"Mastered Flirting": 'Toriel_Flirts_Complete' in player.variables}
+
+
+            if 'Toriel_Friendship_1_Complete' not in player.variables:
+                self.dating_requirements["{color=%s}Friendship 1{/color}" % red] = self.d_1
+            else:
+                self.dating_requirements["{color=%s}Friendship 1{/color}" % green] = self.d_1
+
+            if 'Toriel_Friendship_Hangout1' not in player.variables:
+                self.dating_requirements["{color=%s}Friendship 2{/color}" % red] = self.d_2
+            else:
+                self.dating_requirements["{color=%s}Friendship 2{/color}" % red] = self.d_2
+
+            if 'Toriel_Friendship_2_Complete' not in player.variables:
+                self.dating_requirements["{color=%s}Flower Event{/color}" % red] = self.d_3
+            else:
+                self.dating_requirements["{color=%s}Flower Event{/color}" % green] = self.d_3
+
+            if 'Toriel_TL_Date_1_Complete' not in player.variables:
+                self.dating_requirements["{color=%s}Date 1{/color}" % red] = self.d_4
+            else:
+                self.dating_requirements["{color=%s}Date 1{/color}" % green] = self.d_4
+
+            return
+
+
+           
         def handle_special_events(self):
 
             #Friendship Event 1
@@ -23,7 +77,7 @@ init -9 python:
                 #20 FP
                 #Staying with Toriel
             elif 'Toriel_Friendship_1_Complete' in player.variables:
-                if get_toriel().FP > 20 and 'accepted_toriel' in player.variables and player.variables['accepted_toriel']:
+                if get_toriel().FP > 20 and 'accepted_toriel' in player.variables and player.variables['accepted_toriel'] and 'Toriel_Friendship_Hangout1' not in player.variables:
                     self.special_event = Event('toriel_friendship_hangout_1',False,self)
 
         
@@ -42,6 +96,7 @@ init -9 python:
             elif 'Toriel_Friendship_1_Complete' in player.variables and 'Toriel_TL_Date_1_Complete' not in player.variables:
                 if 'Toriel_Flirts_Complete' in player.variables:
                     self.special_event = Event('toriel_tl_date_1',False,self)
+            self.handle_relationship_requirements()
             return
             
 

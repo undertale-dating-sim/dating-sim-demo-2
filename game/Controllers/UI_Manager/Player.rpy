@@ -115,25 +115,19 @@ init -1 python:
 #############
 label player_waking_up:
     scene black
-    "End day 0"
-    "This is the end of the current test build.  Day 1 will be coming in a few days."
-    "Thank you so much for your help and let me know what you think!"
-    return
-# label player_waking_up:
-#     scene black
-#     $ world.set_current_time("Morning",True)
-#     $ renpy.sound.play("audio/sfx/use_item.wav")
-#     "* You feel refreshed!"
-#     "* ..."
-#     "* The sound of cooking calmly wakes you."
+    $ world.set_current_time("Morning",True)
+    $ renpy.sound.play("audio/sfx/use_item.wav")
+    "* You feel refreshed!"
+    "* ..."
+    "* The sound of cooking calmly wakes you."
     
     
 
-#     if world.day == 1:
-#         call ruins_first_breakfast_your_room
-#     else:
-#         call ruins_breakfast_your_room
-#     return
+    if world.day == 1:
+        call ruins_first_breakfast_your_room
+    else:
+        call ruins_breakfast_your_room
+    return
 
 ######################
     # It will move them to their safe_room.

@@ -55,20 +55,20 @@ init -10 python:
 
         #gets the rooms surrounding the current room
         def cr_get_neighbors(self):
-            dirs = []
+            dirs = {}
 
             for r_name,r in self.rooms.iteritems():
                 if r.x == self.current_room.x and r.y == self.current_room.y+1 and not r.locked and not r.locksouth:
-                    dirs.append('north')
+                    dirs['north'] = r_name
                     continue
                 if r.x == self.current_room.x and r.y == self.current_room.y-1 and not r.locked and not r.locknorth:
-                    dirs.append('south')
+                    dirs['south'] = r_name
                     continue
                 if r.x == self.current_room.x+1 and r.y == self.current_room.y and not r.locked and not r.lockwest:
-                    dirs.append('east')
+                    dirs['east'] = r_name
                     continue
                 if r.x == self.current_room.x-1 and r.y == self.current_room.y and not r.locked and not r.lockeast:
-                    dirs.append('west')
+                    dirs['west'] = r_name
 
             return dirs
 
