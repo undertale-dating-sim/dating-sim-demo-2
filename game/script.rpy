@@ -54,7 +54,6 @@ label start:
     # $ get_monster("Frisk").move_to_room("Frisk's Room")
     # $ move_to_room("Frisk's Room")
     
-    # $ world.update_world(True)
     # $ get_monster("Flowey").move_to_room("Cave Room")
     # $ get_monster("Toriel").move_to_room("Grass Room")
     # $ get_monster("Napstablook").move_to_room("Tunnels")
@@ -107,7 +106,7 @@ label Snail_Hunter_Random_Event:
 
     else:
         "* A very quiet, peaceful room.  It looks new.  The flowers are still."
-        $ world.update_world(True)
+        $ world.update_world()
     return
 
 label day_transition:
