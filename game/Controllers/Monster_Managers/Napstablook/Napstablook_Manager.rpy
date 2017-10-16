@@ -15,6 +15,7 @@ init -9 python:
             self.name = "Napstablook"
             self.default_sprite = "napstablook normal"
             self.FP = 20
+            self.cell_phone_pic = "UI/toriel_cell_face.png"
             self.seed_default_schedule()
 
 
@@ -37,6 +38,52 @@ init -9 python:
             else:
                 renpy.call_in_new_context("give_Gift_%s_Unknown" % self.name)
             return
+
+        def handle_relationship_requirements(self):
+
+            self.d_1 = {}
+            self.d_2 = {}
+            self.d_3 = {}
+            self.d_4 = {}
+            self.dating_requirements = {}
+
+            yellow = "#ffff00"
+            red = "#f00"
+            green = "#00ff00"
+
+            self.d_1["Decided to Stay"] = 'accepted_toriel' in player.variables and player.variables['accepted_toriel']
+
+            self.d_1["Day > 3"] = world.day > 3
+
+            self.d_2 = {"FP > 20": get_toriel().FP > 20}
+
+            self.d_3 = {"Plant watered 3 times": 'toriel_plant_watered_count' in player.variables and  player.variables['toriel_plant_watered_count'] >= 3}
+            
+            self.d_4 = {"Mastered Flirting": 'Toriel_Flirts_Complete' in player.variables}
+
+
+            if 'Toriel_Friendship_1_Complete' not in player.variables:
+                self.dating_requirements["{color=%s}Friendship 1{/color}" % red] = self.d_1
+            else:
+                self.dating_requirements["{color=%s}Friendship 1{/color}" % green] = self.d_1
+
+            if 'Toriel_Friendship_Hangout1' not in player.variables:
+                self.dating_requirements["{color=%s}Friendship 2{/color}" % red] = self.d_2
+            else:
+                self.dating_requirements["{color=%s}Friendship 2{/color}" % red] = self.d_2
+
+            if 'Toriel_Friendship_2_Complete' not in player.variables:
+                self.dating_requirements["{color=%s}Flower Event{/color}" % red] = self.d_3
+            else:
+                self.dating_requirements["{color=%s}Flower Event{/color}" % green] = self.d_3
+
+            if 'Toriel_TL_Date_1_Complete' not in player.variables:
+                self.dating_requirements["{color=%s}Date 1{/color}" % red] = self.d_4
+            else:
+                self.dating_requirements["{color=%s}Date 1{/color}" % green] = self.d_4
+
+            return
+
 
         def handle_special_events(self):
 
@@ -64,13 +111,13 @@ init -9 python:
             if 'Napstablook_TL_Date_1_Complete' not in player.variables:
                 if (player.current_room is "Blooky Room") and (owner.DP >= 12):
                     self.special_event = Event('napstablook_tl_date',False,self)
-                    #world.update_world(False)
             #HB Date 1
             #elif player in waterfall???
             if 'Napstablook_HB_Date_1_Complete' not in player.variables:
                 if (player.current_room is 'Blooky Room') and (owner.HB >= 12):
                     self.special_event = Event('napstablook_hb_date',False,self)
-                    #world.update_world(False)
+
+            self.handle_relationship_requirements()
             return
 
         def seed_default_schedule(self):

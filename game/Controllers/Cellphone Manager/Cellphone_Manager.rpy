@@ -4,17 +4,17 @@ screen cell:
         vbox:
             if 'has_flowey_cell' in player.variables:
                 textbutton "Flowey":
-                    action [ui.callsinnewcontext("call_Monster","Flowey")] background "#000000"
+                    action [SetVariable("selected_caller","Flowey")] background "#000000"
             if 'has_frisk_cell' in player.variables:
                 textbutton "Frisk":
-                    action [ui.callsinnewcontext("call_Monster","Frisk")] background "#000000"
+                    action [SetVariable("selected_caller","Frisk")] background "#000000"
             if 'has_toriel_cell' in player.variables:
                 textbutton "Toriel":
                     action [SetVariable("selected_caller","Toriel")] background "#000000"
             if 'has_napstablook_cell' in player.variables:
                 textbutton "Napstablook":
-                    action [ui.callsinnewcontext("call_Monster","Napstablook")] background "#000000"
-    if selected_caller and selected_caller == "Toriel":
+                    action [SetVariable("selected_caller","Napstablook")] background "#000000"
+    if selected_caller:
         frame pos(.4,.3):
             background Frame("UI/text-box3.png",21, 21)
             
