@@ -115,7 +115,7 @@ init -1 python:
 #############
 label player_waking_up:
     scene black
-    $ world.set_current_time("Morning",True)
+    $ world.set_current_time("Morning",False)
     $ renpy.sound.play("audio/sfx/use_item.wav")
     "* You feel refreshed!"
     "* ..."

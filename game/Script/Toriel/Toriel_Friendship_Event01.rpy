@@ -112,6 +112,7 @@ label toriel_friendship_event_1(owner=get_toriel()):
             show toriel normal with Dissolve(.25)
             toriel "..."
             toriel "Again, thank you. That was all I had to say."
+    $ world.set_current_time("Evening")
     $ player.variables['Toriel_Friendship_1_Complete'] = True
     return 
     

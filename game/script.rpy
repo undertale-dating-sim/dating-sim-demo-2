@@ -34,14 +34,10 @@ define test = Character("Sans", callback=beepy_voice)
 
 ###################
 
-label demo_values:
-    # $player.variables['has_cellphone'] = True
-    # $player.variables['has_toriel_cell'] = True
-    # $player.variables['has_frisk_cell'] = True
-    # $player.variables['has_napstablook_cell'] = True
-    # $player.variables['has_flowey_cell'] = True
-    # $player.variables['accepted_toriel'] = True
-    
+label known_bugs:
+    "Known bugs so far:"
+    "Relationship values are still missing from the first day.  Working on those."
+    "Relationship change numbers are still wonky.  Trying to figure a better way to communicate them."
     return
 
 label start:
@@ -50,6 +46,7 @@ label start:
     #$ get_room("Your Room").set_event('ruins_breakfast_your_room',False)
     #$ move_to_room("Your Room")
     scene black
+    call known_bugs
     # $ get_monster("Frisk").set_special_event("frisk_friendship_hangout1_main")
     # $ get_monster("Frisk").move_to_room("Frisk's Room")
     # $ move_to_room("Frisk's Room")
@@ -66,6 +63,7 @@ label start:
 
 label skip_to_day_1:
     scene black
+    call known_bugs
     $ player.variables['tf_scream_count'] = 1
     $ player.variables['satchel_found'] = True
     $ player.variables['satchel_refused'] = False

@@ -62,6 +62,9 @@ label call_Monster(monster):
     if monster.current_room.name == "Dead Room":
         "But nobody answered..."
     else:
+        play sound "audio/sfx/cellphone.wav"
+        "* Ring ring"
+        "Hello?"
         menu:
             "Hello?"
                     

@@ -90,6 +90,7 @@ label toriel_friendship_event_2(owner=get_toriel()):
             $world.get_monster('Toriel').update_FP(-5)
             toriel "Oh yes, I fully realize. You do not have to of course – just if you have a boring day and nothing to do."
             toriel "Either way, there is no need to worry about it for now. Just approach me if you would like to start."
+    $ world.timezone_action_count += 10
     $ player.variables['Toriel_Friendship_2_Complete'] = True
     # dateSaveTheTreeOpen = True
     return

@@ -6,6 +6,7 @@ label napstablook_hangout_1(owner=get_napstablook()):
     #Synopsis: Napstablook notices you've been catching a lot of snails recently, and offers to help.
 
     show napstablook normal at napstabob with dissolve
+    $ world.set_current_time("Evening")
 
     $ ruinsnails_asked = False
     $ net_asked = False
@@ -130,5 +131,5 @@ label napstablook_hangout_1(owner=get_napstablook()):
         #neutral
         napstablook "well, that's all i have to say...."
         napstablook "if you have any more questions about snails, you can always find me..... i'll be around...."
-        $ Napstablook_Hangout_1_Complete = True
+        $ player.variables['Napstablook_Hangout_1_Complete'] = True
         return
