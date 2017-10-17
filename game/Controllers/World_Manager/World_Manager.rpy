@@ -99,9 +99,6 @@ init -10 python:
             #renpy.say(None,"Updating the Day : Random monsters and events. Resetting Gift counts")
             if self.day > 0:
                 #renpy.say(None,"Current action count is %s/10" % self.timezone_action_count)
-                if self.timezone_action_count >= 10:
-                    self.timezone_action_count = 0
-                    self.next_timezone()
                 self.seed_random_monsters()
                 self.seed_random_events()
             
@@ -117,8 +114,13 @@ init -10 python:
         #if set to update the day, cycles through each area,room, monster
         #each monster will move to their given room for their schedule.
         #if there is a special event, that will be done as well
+
         def update_world(self):
             # renpy.say(None,"Updating the World : Main Monster Schedules/Events")
+
+            if self.timezone_action_count >= 10:
+                self.next_timezone()
+
             timezone = self.get_current_timezone()
             day_of_week = self.get_current_day()
 
@@ -208,11 +210,11 @@ init -10 python:
 
         def next_timezone(self):
             # renpy.say(None,"Getting Next Time Zone")
+            self.timezone_action_count = 0
             if self.current_timezone == "Night":
                 self.current_timezone = "Morning"
             else:
                 self.current_timezone = self.timezones[self.timezones.index(self.current_timezone)+1]
-            self.update_world()
 
         #sets the current time
         def set_current_time(self,timezone,go_to_next_day = False):
@@ -237,8 +239,8 @@ init -10 python:
                         self.current_area = area
                         self.current_area.current_room = room
                         if self.timezone_action_count >= 10:
-                            self.timezone_action_count = 0
-                            self.next_timezone()
+                            self.update_world()
+
                         renpy.call("load_room",loop,transition)
                         return True
             renpy.notify(name + " not found.")
