@@ -71,7 +71,7 @@ init -10 python:
 
         def set_special_event(self,event):
             if renpy.has_label(event):
-                self.special_event = Event(event,False,self)
+                self.special_event = Event(event,False,0,self)
             else:
                 renpy.notify("Couldn't find event [event]")
 

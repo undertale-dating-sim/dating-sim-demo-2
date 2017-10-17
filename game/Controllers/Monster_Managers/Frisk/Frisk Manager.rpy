@@ -3,7 +3,7 @@ init -9 python:
     class Frisk(Monster):
         def __init__(self):
             Monster.__init__(self)
-            self.default_event = Event("Frisk_manager_default",True,self)
+            self.default_event = Event("Frisk_manager_default",True,0,self)
             self.name = "Frisk"
             self.default_sprite = "frisk normal"
             self.default_room = "Frisk's Room"
@@ -234,21 +234,27 @@ label Frisk_dialogue:
             call frisk_friendship_event_1
         "Chat" if frisk_chataway is False:
             jump Frisk_chat
+            $ world.timezone_action_count += 2
         "Ask" if frisk_askaway is False:
             jump Frisk_ask
+            $ world.timezone_action_count += 2
         "Flirt" if frisk_flirtaway is False:
             jump Frisk_flirt
+            $ world.timezone_action_count += 2
 
         "Give Gift" if len(inventory.items) > 0:
-                show frisk smallsmile
-                frisk "Oh, do you have something?"
-                
-                "What should you give them?"
-                
-                $ result = renpy.call_screen("gift_item_menu",owner)
-                
-                if result == 'cancel':
-                    frisk "No? That’s alright."
+            show frisk smallsmile
+            frisk "Oh, do you have something?"
+            
+            "What should you give them?"
+            
+            $ result = renpy.call_screen("gift_item_menu",owner)
+            
+            if result == 'cancel':
+                frisk "No? That’s alright."
+            else:
+                $ world.timezone_action_count += 10
+
 
         "Never mind.":
             "You decide not to say anything after all."

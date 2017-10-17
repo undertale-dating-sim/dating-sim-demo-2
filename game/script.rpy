@@ -101,7 +101,12 @@ label Snail_Hunter_Random_Event:
 
             "What do you do?"
             "Check under the flowers":
-                call UnderSnail
+                if world.get_timezone() == "Night":
+                    "It looks like they all went home to sleep."
+                    "..."
+                    "Wait..."
+                else:
+                    call UnderSnail
 
             "Ignore it. Too scary.":
                 return

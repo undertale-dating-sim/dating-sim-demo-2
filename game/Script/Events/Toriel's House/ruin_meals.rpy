@@ -521,6 +521,7 @@ label ruins_breakfast:
     $ get_room("Living Room").set_event('ruins_dinner',True)
     show toriel normal at right with Dissolve(.25)
     show frisk normal at left with Dissolve(.25)
+    $ world.timezone_action_count += 10
     "* You share a delicious breakfast with Frisk and Toriel."
     if world.get_current_day() == "Friday" or world.get_current_day() == "Sunday":
         "* Frisk looks exhausted."

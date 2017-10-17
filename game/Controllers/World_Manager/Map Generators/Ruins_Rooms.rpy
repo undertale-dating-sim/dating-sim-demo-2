@@ -25,7 +25,7 @@ init -1 python:
             Area.__init__(self,"The Ruins")
             self.random_areas = []
             self.random_monsters = [Loox(),Vegetoid(),Moldsmol(),Whimsun(),Migosp(),Froggit()]
-            self.random_events = [Event("whimsun_re_start",False),Event("dummy_ruins_random_event_start",False),Event("vegetoid_ruins_re_start",False),Event("froggit_loox_ss_start",False)]
+            self.random_events = [Event("whimsun_re_start",False,10),Event("dummy_ruins_random_event_start",False,10),Event("vegetoid_ruins_re_start",False,10),Event("froggit_loox_ss_start",False,10)]
             self.add_room(ruins_caveroom())
             self.add_room(ruins_grassroom())
             self.add_room(ruins_ruinsentrance())
@@ -219,7 +219,8 @@ init -1 python:
 label port_to_toriel_house:
     stop music fadeout 5.0
     $ renpy.pause(1.0)
-    play music "audio/ruins/toriels_house.mp3" fadein 5.0
+    if world.current_timezone != "Night":
+        play music "audio/ruins/toriels_house.mp3" fadein 5.0
     $ world.move_to_room("Staircase")
 
 label ruins_mc_get_candy:

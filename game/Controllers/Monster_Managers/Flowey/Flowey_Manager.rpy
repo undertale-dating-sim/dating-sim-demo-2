@@ -5,7 +5,7 @@ init -9 python:
     class Flowey(Monster):
         def __init__(self):
             Monster.__init__(self)
-            self.default_event = Event("flowey_manager_default",True,self)
+            self.default_event = Event("flowey_manager_default",True,0,self)
             self.name = "Flowey"
             self.handle_schedule()
             self.default_sprite = 'flowey normal'
@@ -46,13 +46,13 @@ init -9 python:
 
             #hangout 1, done when the tutorial is over
             if "Flowey_Hangout_1_Complete" not in player.variables and world.day > 0:
-                self.special_event = Event('flowey_hangout1',False,self)
+                self.special_event = Event('flowey_hangout1',False,0,self)
                 #player.variables['Flowey_Hangout_1_Complete'] = True
             elif "Flowey_Hangout_2_Complete" not in player.variables and world.day > 0:
                 # if "flowey_heartbreak_activated" in player.variables:
                 #     self.special_event = Event('flowey_HB_hangout_1',False,self)
                 # else:
-                self.special_event = Event('Flowey_Hangout_1_5',False,self)
+                self.special_event = Event('Flowey_Hangout_1_5',False,0,self)
             self.handle_relationship_requirements()
 
 
@@ -148,12 +148,15 @@ label flowey_manager_default(owner = False,pause = True):
         menu:
             "Chat":
                 call Flowey_Interaction
+                $ world.timezone_action_count += 2
             
             "Give Gift" if len(inventory.items) > 0:
                 call flowey_gift_menu_open(owner)
                 $ result = renpy.call_screen("gift_item_menu",owner)
                 if result == 'cancel':
                     call flowey_gift_menu_cancel(owner)
+                else:
+                    $ world.timezone_action_count += 10
                 call show_flowey_sprite(owner)
             "Leave":
                 call flowey_goodbye(owner)

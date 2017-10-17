@@ -3,7 +3,7 @@ init -9 python:
     class Grillby(Monster):
         def __init__(self):
             Monster.__init__(self)
-            self.default_event = Event("Toriel_manager_default",True,self)
+            self.default_event = Event("Toriel_manager_default",True,0,self)
             self.default_room = "Toriel's Room"
             self.name = "Grillby"
             self.FP = 40

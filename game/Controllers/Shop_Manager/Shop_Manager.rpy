@@ -158,9 +158,13 @@ label Shop_Sell:
 
 label Muffet_Shop:
     call show_buttons
-    python:
-        muffetShop = Shop()
-        muffetShop.enter()
+    if world.get_timezone() == "Night":
+        "You see a very tiny sign on the ground."
+        "Closed for the night, Please come back in the Morning!"
+    else:
+        python:
+            muffetShop = Shop()
+            muffetShop.enter()
 
     return
 
@@ -168,6 +172,7 @@ label Shop_Exit:
     hide screen shop_box
     hide screen buy_box
     call show_buttons
+    $ world.timezone_action_count += 10
     #stop music
     return
     

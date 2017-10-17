@@ -22,14 +22,18 @@ label UnderSnail:
         winner = ui.interact(suppress_overlay=True, suppress_underlay=True)
     $ renpy.transition(fade)
     $ renpy.show(world.get_room("Snail Hunting Room").bg)
-    play music "audio/ruins/the_ruins.mp3" fadein 5
+
     if winner == 'win':
         "Good job!"
         $ player.give_snails()
     else:
         "* Oh no..."
         "* All your snails got away."
-        
+    
+    $ world.timezone_action_count += 10
+    $ world.update_world()
+    if world.current_timezone != "Night":
+        play music "audio/ruins/the_ruins.mp3" fadein 5
         # if mission == "rocket":
         #     "You caught [us.rocket_snail_count] rocket snails."
         # if mission == "house":

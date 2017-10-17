@@ -197,19 +197,24 @@ label Toriel_manager_default(owner = False,pause = True):
         "Hello, dear. Can I help you?"
         '"I brought you some snails!"' if player.current_snails > 0:
             call Toriel_Manager_Give_Snails
+            $ world.timezone_action_count += 2
 
         "Chat" if owner.chat_count < 4:
             call Toriel_Manager_Chat(owner)
+            $ world.timezone_action_count += 2
 
         "Ask":
             call Toriel_Manager_Ask
+            $ world.timezone_action_count += 2
 
         "Flirt" if owner.flirt_count < 4:
             call Toriel_Manager_Flirt
+            $ world.timezone_action_count += 2
 
         "Gift" if len(inventory.items) > 0:
             show screen gift_item_menu(owner)
             "What should you give them?"
+            $ world.timezone_action_count += 10
             
         # "Testing":
         #     menu:

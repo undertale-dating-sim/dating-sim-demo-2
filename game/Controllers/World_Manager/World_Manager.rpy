@@ -33,6 +33,9 @@ init -10 python:
     def get_monster(monster):
         return world.get_monster(monster)
 
+    def get_timezone():
+        return world.get_current_time()
+
     #Locks the room to stop the player from getting in. True or False
     def set_lock_room(name,lock):
         if get_room(name):
@@ -110,6 +113,16 @@ init -10 python:
 
             return
 
+        def handle_night(self):
+
+            #remove the monsters and events
+            for an,a in self.areas.iteritems():
+                for rn,r in a.rooms.iteritems():
+                    r.monsters = {}
+                    for en,e in r.events.iteritems():
+                        if en in a.random_events:
+                            r.events.remove(e)
+
         #gets the current timezone and the day of the week
         #if set to update the day, cycles through each area,room, monster
         #each monster will move to their given room for their schedule.
@@ -118,7 +131,7 @@ init -10 python:
         def update_world(self):
             # renpy.say(None,"Updating the World : Main Monster Schedules/Events")
 
-            if self.timezone_action_count >= 10:
+            if self.timezone_action_count >= 10 and self.current_timezone != "Night":
                 self.next_timezone()
 
             timezone = self.get_current_timezone()
@@ -143,6 +156,9 @@ init -10 python:
                                 # renpy.say(None,"Schedule : %s has no room for %s on %s. Default is %s" % (m.name,timezone,day_of_week,m.default_room))
                                 m.move_to_room(m.default_room)
                         m.handle_special_events()
+
+            if self.current_timezone == "Night":
+                self.handle_night()
 
             return
 
@@ -212,13 +228,14 @@ init -10 python:
             # renpy.say(None,"Getting Next Time Zone")
             self.timezone_action_count = 0
             if self.current_timezone == "Night":
-                self.current_timezone = "Morning"
+                return
             else:
                 self.current_timezone = self.timezones[self.timezones.index(self.current_timezone)+1]
 
         #sets the current time
         def set_current_time(self,timezone,go_to_next_day = False):
 
+            self.timezone_action_count = 0
             if timezone not in self.timezones:
                 renpy.notify("Timezone not found.")
                 return
@@ -228,7 +245,6 @@ init -10 python:
 
 
             self.current_timezone = timezone
-
 
             self.update_world()
 

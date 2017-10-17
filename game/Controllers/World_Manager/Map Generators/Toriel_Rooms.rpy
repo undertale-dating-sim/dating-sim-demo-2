@@ -137,7 +137,8 @@ label port_to_black_tree_room:
         call ruins_breakfast_leaving
     else:
         pause 1
-        play music "audio/ruins/the_ruins.mp3" fadein 5.0
+        if world.current_timezone != "Night":
+            play music "audio/ruins/the_ruins.mp3" fadein 5.0
         $ world.move_to_room("Black Tree Room")
     return
     
