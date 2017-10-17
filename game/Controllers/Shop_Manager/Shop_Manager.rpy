@@ -158,7 +158,7 @@ label Shop_Sell:
 
 label Muffet_Shop:
     call show_buttons
-    if world.get_timezone() == "Night":
+    if get_timezone() == "Night":
         "You see a very tiny sign on the ground."
         "Closed for the night, Please come back in the Morning!"
     else:

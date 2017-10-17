@@ -99,7 +99,7 @@ label Snail_Hunter_Random_Event:
 
             "What do you do?"
             "Check under the flowers":
-                if world.get_timezone() == "Night":
+                if get_timezone() == "Night":
                     "It looks like they all went home to sleep."
                     "..."
                     "Wait..."
