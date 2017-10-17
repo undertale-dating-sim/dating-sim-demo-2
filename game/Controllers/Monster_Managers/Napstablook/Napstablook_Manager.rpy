@@ -15,7 +15,7 @@ init -9 python:
             self.name = "Napstablook"
             self.default_sprite = "napstablook normal"
             self.FP = 20
-            self.cell_phone_pic = "UI/toriel_cell_face.png"
+            self.cell_phone_pic = "UI/blooky.png"
             self.seed_default_schedule()
 
 
@@ -51,36 +51,38 @@ init -9 python:
             red = "#f00"
             green = "#00ff00"
 
-            self.d_1["Decided to Stay"] = 'accepted_toriel' in player.variables and player.variables['accepted_toriel']
+            self.d_1["Explored ruins"] = world.current_area.explored
+            self.d_1["In Blooky's Room"] = player.current_room == "Blooky Room"
 
             self.d_1["Day > 3"] = world.day > 3
 
-            self.d_2 = {"FP > 20": get_toriel().FP > 20}
-
-            self.d_3 = {"Plant watered 3 times": 'toriel_plant_watered_count' in player.variables and  player.variables['toriel_plant_watered_count'] >= 3}
+            self.d_2["FP >= 10"] =  self.FP >= 10
+            self.d_2["Play Snail Game 3 Times"] = player.variables['snail_game_count'] >= 3
+            self.d_2["In Snail Room"] =  self.current_room == 'Snail Hunting Room'
             
-            self.d_4 = {"Mastered Flirting": 'Toriel_Flirts_Complete' in player.variables}
+            self.d_3["DP >= 12"] = self.DP >= 12
+            self.d_3["In Blooky's Room"] =  player.current_room == "Blooky Room"
 
 
-            if 'Toriel_Friendship_1_Complete' not in player.variables:
+            if 'Napstablook_Friendship_1_Complete' not in player.variables:
                 self.dating_requirements["{color=%s}Friendship 1{/color}" % red] = self.d_1
             else:
                 self.dating_requirements["{color=%s}Friendship 1{/color}" % green] = self.d_1
 
-            if 'Toriel_Friendship_Hangout1' not in player.variables:
-                self.dating_requirements["{color=%s}Friendship 2{/color}" % red] = self.d_2
+            if 'Napstablook_Hangout_1_Complete' not in player.variables:
+                self.dating_requirements["{color=%s}Hangout 1{/color}" % red] = self.d_2
             else:
-                self.dating_requirements["{color=%s}Friendship 2{/color}" % red] = self.d_2
+                self.dating_requirements["{color=%s}Hangout 1{/color}" % red] = self.d_2
 
-            if 'Toriel_Friendship_2_Complete' not in player.variables:
-                self.dating_requirements["{color=%s}Flower Event{/color}" % red] = self.d_3
+            if 'Napstablook_TL_Date_1_Complete' not in player.variables:
+                self.dating_requirements["{color=%s}True Love Date 1{/color}" % red] = self.d_3
             else:
-                self.dating_requirements["{color=%s}Flower Event{/color}" % green] = self.d_3
+                self.dating_requirements["{color=%s}True Love Date 1{/color}" % green] = self.d_3
 
-            if 'Toriel_TL_Date_1_Complete' not in player.variables:
-                self.dating_requirements["{color=%s}Date 1{/color}" % red] = self.d_4
-            else:
-                self.dating_requirements["{color=%s}Date 1{/color}" % green] = self.d_4
+            # if 'Napstablook_HB_Date_1_Complete' not in player.variables:
+            #     self.dating_requirements["{color=%s}HeartBreak 1{/color}" % red] = self.d_4
+            # else:
+            #     self.dating_requirements["{color=%s}HeartBreak 1{/color}" % green] = self.d_4
 
             return
 
@@ -109,13 +111,13 @@ init -9 python:
             #TL Date 1
                 #Player enters the section of the ruins that blooky normally hangs out in.
             if 'Napstablook_TL_Date_1_Complete' not in player.variables:
-                if (player.current_room is "Blooky Room") and (owner.DP >= 12):
+                if (player.current_room is "Blooky Room") and (self.DP >= 12):
                     self.special_event = Event('napstablook_tl_date',False,self)
             #HB Date 1
             #elif player in waterfall???
-            if 'Napstablook_HB_Date_1_Complete' not in player.variables:
-                if (player.current_room is 'Blooky Room') and (owner.HB >= 12):
-                    self.special_event = Event('napstablook_hb_date',False,self)
+            # if 'Napstablook_HB_Date_1_Complete' not in player.variables:
+            #     if (player.current_room is 'Blooky Room') and (owner.HB >= 12):
+            #         self.special_event = Event('napstablook_hb_date',False,self)
 
             self.handle_relationship_requirements()
             return
@@ -188,7 +190,8 @@ label Napstablook_manager_default(owner = False, pause = True):
     call show_buttons from _call_show_buttons_7
 
     #Bobbing Animation
-    show napstablook normal at napstabob with Dissolve(.25):
+    if not renpy.showing("napstablook"):
+        show napstablook normal at napstabob with Dissolve(.25)
 
     #allows the game to wait so you have to click for the options to pop up
     if pause:
@@ -277,7 +280,7 @@ label Napstablook_manager_default(owner = False, pause = True):
             $ result = renpy.call_screen("gift_item_menu",owner)
             if result == 'cancel':
                 napstablook "oh...... thanks anyway."
-            show napstablook normal at napstabob with dissolve
+            show napstablook normal with dissolve
             
         "Exit":
             "okay."

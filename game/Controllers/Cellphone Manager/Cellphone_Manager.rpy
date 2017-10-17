@@ -29,7 +29,7 @@ screen cell:
                         text "HP : %s " % get_monster(selected_caller).HP
                         text "    "
                         textbutton "Call":
-                            action [ui.callsinnewcontext("call_Monster","Toriel")] background "#000000"
+                            action [ui.callsinnewcontext("call_Monster",selected_caller)] background "#000000"
                     vbox:
                         text "---------"
                         for x in get_monster(selected_caller).dating_requirements:
@@ -83,5 +83,6 @@ label call_Monster(monster):
 
 label unknown_Call:
     "I'm not sure."
-    "I don't think I'm supposed to be here."
+    "Do you hear a cricket?"
+    "It feels like there is some kind of bug in the phone?"
     return

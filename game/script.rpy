@@ -78,6 +78,8 @@ label skip_to_day_1:
     $ player.variables['has_cellphone'] = True
     $ player.variables['accepted_frisk'] = True
     $ player.variables['has_toriel_cell'] = True
+    $ player.variables['has_napstablook_cell'] = True
+    $ player.variables['has_flowey_cell'] = True
 
     
     call player_sleeping_th

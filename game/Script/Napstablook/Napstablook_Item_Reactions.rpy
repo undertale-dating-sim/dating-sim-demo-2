@@ -6,27 +6,27 @@
 # surprised
 
 label give_Gift_Napstablook_Unknown:
-    show napstablook normal at napstabob with dissolve
+    show napstablook normal with dissolve
     napstablook "i don't know what to do with this"
     return False
 
 label give_Gift_Napstablook_Stick(count,owner):
-    show napstablook normal at napstabob with dissolve
+    show napstablook normal with dissolve
     napstablook "oh, nice stick.. but... you should probably keep that, right?"
     return False
 
 label give_Gift_Napstablook_Heart_Locket(count,owner):
-    show napstablook normal at napstabob with dissolve
+    show napstablook normal with dissolve
     napstablook "that's very pretty, but... it's not really for me"
     return False
 
 label give_Gift_Napstablook_Red_Rose_Special(count,owner):
-    show napstablook normal at napstabob with dissolve
+    show napstablook normal with dissolve
     napstablook "it's red, you don't see many flowers like that around here.... You should keep it with you"
     return False
 
 label give_Gift_Napstablook_Red_Rose(count,owner):
-    show napstablook normal at napstabob with dissolve
+    show napstablook normal with dissolve
     if count == 1:
         napstablook "oh... um... "
         napstablook "this is for me?"
@@ -38,7 +38,7 @@ label give_Gift_Napstablook_Red_Rose(count,owner):
     return False
 
 label give_Gift_Napstablook_Yellow_Rose(count,owner):
-    show napstablook normal at napstabob with dissolve
+    show napstablook normal with dissolve
     if count == 1:
         $ owner.FP += 10
         napstablook "oh, thats a pretty rose..."
@@ -51,12 +51,12 @@ label give_Gift_Napstablook_Yellow_Rose(count,owner):
 
 
 label give_Gift_Napstablook_Broken_Mirror(count,owner):
-    show napstablook normal at napstabob with dissolve
+    show napstablook normal with dissolve
     napstablook "that's a really nice mirror. you should probably take care of it"
     return False
 
 label give_Gift_Napstablook_Spider_Donut(count,owner):
-    show napstablook normal at napstabob with dissolve
+    show napstablook normal with dissolve
     if count == 1:
         napstablook "aren't these made with spiders?"
         napstablook "that's kind of weird......"
@@ -71,7 +71,7 @@ label give_Gift_Napstablook_Spider_Donut(count,owner):
     return False
 
 label give_Gift_Napstablook_Butts_Pie(count,owner):
-    show napstablook normal at napstabob with dissolve
+    show napstablook normal with dissolve
     if count == 1:
         napstablook "hey, nice pie."
         napstablook "i usually like the kind with snails better, though..."
@@ -81,7 +81,7 @@ label give_Gift_Napstablook_Butts_Pie(count,owner):
     return True
 
 label give_Gift_Napstablook_Snail_Pie(count,owner):
-    show napstablook normal at napstabob with dissolve
+    show napstablook normal with dissolve
     if count == 1:
         $ owner.FP += 10
         napstablook "is this made of snails?"
@@ -97,7 +97,7 @@ label give_Gift_Napstablook_Snail_Pie(count,owner):
     return True
 
 label give_Gift_Napstablook_Monster_Candy(count,owner):
-    show napstablook normal at napstabob with dissolve
+    show napstablook normal with dissolve
     if count == 1:
         $ owner.FP += 10
         show napstablook normal
@@ -115,7 +115,7 @@ label give_Gift_Napstablook_Monster_Candy(count,owner):
     return True
 
 label give_Gift_Napstablook_Spider_Cider(count,owner):
-    show napstablook normal at napstabob with dissolve
+    show napstablook normal with dissolve
     if count == 1:
         napstablook "oh... uh.... spider cider."
         napstablook "you know, sometimes i wonder why spiders use spiders to make their stuff."
@@ -127,7 +127,7 @@ label give_Gift_Napstablook_Spider_Cider(count,owner):
     return False
 
 label give_Gift_Napstablook_White_Chocolate(count,owner):
-    show napstablook normal at napstabob with dissolve
+    show napstablook normal with dissolve
     if count == 1:
         $ owner.FP += 10
         napstablook "hey, this is my favourite kind of chocolate..."
@@ -141,7 +141,7 @@ label give_Gift_Napstablook_White_Chocolate(count,owner):
     return True
 
 label give_Gift_Napstablook_Milk_Chocolate(count,owner):
-    show napstablook normal at napstabob with dissolve
+    show napstablook normal with dissolve
     if count == 1:
         $ owner.FP += 10
         napstablook "oh, thanks"
@@ -157,18 +157,18 @@ label give_Gift_Napstablook_Milk_Chocolate(count,owner):
     return True
 
 label give_Gift_Napstablook_Bandage(count,owner):
-    show napstablook normal at napstabob with dissolve
+    show napstablook normal with dissolve
     napstablook "ew, it looks like it's been used..."
     napstablook "i guess that's cool"
     return False
 
 label give_Gift_Napstablook_Toy_Knife(count,owner):
-    show napstablook normal at napstabob with dissolve
+    show napstablook normal with dissolve
     napstablook "well, it doesn't look very dangerous"
     return False
 
 label give_Gift_Napstablook_Rejection(owner):
-    show napstablook sad at napstabob with dissolve
+    show napstablook sad with dissolve
     $ owner.FP -= 10
     napstablook "sorry, but..."
     napstablook "why do you keep on giving me things?"

@@ -10,7 +10,7 @@ init -9 python:
             self.handle_schedule()
             self.default_sprite = 'flowey normal'
             self.hover_sprite = "flowey annoyed"
-            self.cell_phone_pic = "UI/toriel_cell_face.png"
+            self.cell_phone_pic = "UI/flowey.png"
 
 
 
@@ -26,36 +26,19 @@ init -9 python:
             red = "#f00"
             green = "#00ff00"
 
-            self.d_1["Decided to Stay"] = 'accepted_toriel' in player.variables and player.variables['accepted_toriel']
+            self.d_1["Day > 0"] = world.day > 0
 
-            self.d_1["Day > 3"] = world.day > 3
+            self.d_2 = {"Hangout 1 Complete": "Flowey_Hangout_1_Complete" in player.variables}
 
-            self.d_2 = {"FP > 20": get_toriel().FP > 20}
-
-            self.d_3 = {"Plant watered 3 times": 'toriel_plant_watered_count' in player.variables and  player.variables['toriel_plant_watered_count'] >= 3}
-            
-            self.d_4 = {"Mastered Flirting": 'Toriel_Flirts_Complete' in player.variables}
-
-
-            if 'Toriel_Friendship_1_Complete' not in player.variables:
+            if 'Flowey_Hangout_1_Complete' not in player.variables:
                 self.dating_requirements["{color=%s}Friendship 1{/color}" % red] = self.d_1
             else:
                 self.dating_requirements["{color=%s}Friendship 1{/color}" % green] = self.d_1
 
-            if 'Toriel_Friendship_Hangout1' not in player.variables:
+            if 'Flowey_Hangout_2_Complete' not in player.variables:
                 self.dating_requirements["{color=%s}Friendship 2{/color}" % red] = self.d_2
             else:
                 self.dating_requirements["{color=%s}Friendship 2{/color}" % red] = self.d_2
-
-            if 'Toriel_Friendship_2_Complete' not in player.variables:
-                self.dating_requirements["{color=%s}Flower Event{/color}" % red] = self.d_3
-            else:
-                self.dating_requirements["{color=%s}Flower Event{/color}" % green] = self.d_3
-
-            if 'Toriel_TL_Date_1_Complete' not in player.variables:
-                self.dating_requirements["{color=%s}Date 1{/color}" % red] = self.d_4
-            else:
-                self.dating_requirements["{color=%s}Date 1{/color}" % green] = self.d_4
 
             return
 
@@ -66,10 +49,10 @@ init -9 python:
                 self.special_event = Event('flowey_hangout1',False,self)
                 #player.variables['Flowey_Hangout_1_Complete'] = True
             elif "Flowey_Hangout_2_Complete" not in player.variables and world.day > 0:
-                if "flowey_heartbreak_activated" in player.variables:
-                    self.special_event = Event('flowey_HB_hangout_1',False,self)
-                else:
-                    self.special_event = Event('Flowey_Hangout_1_5',False,self)
+                # if "flowey_heartbreak_activated" in player.variables:
+                #     self.special_event = Event('flowey_HB_hangout_1',False,self)
+                # else:
+                self.special_event = Event('Flowey_Hangout_1_5',False,self)
             self.handle_relationship_requirements()
 
 
