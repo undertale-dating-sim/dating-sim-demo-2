@@ -110,7 +110,7 @@ label Flowey_Waterfall_Echo_Flower_Room:
                         flowey "Sounds like the perfect setting for a murder mystery!"
                         flowey "Games always ease the tension-- So how about this,"
                         show flowey horror with Dissolve(.25)
-                        flowey "I kill {i}you{i}, and then we find out if the others can guess who did it!"
+                        flowey "I kill {i}you{/i}, and then we find out if the others can guess who did it!"
                         flowey "Wouldn’t {i}that be F U N ?{/i}"
                     else:
                         show flowey normal with Dissolve(.25)
@@ -452,7 +452,7 @@ label Flowey_Other_Characters:
                 flowey "...."
                 show flowey sideglance with Dissolve(.25)
                 flowey "Papyrus is a rather {i}special{/i} case."
-                flowey "....He’s pretty much on a {i}need to know basis."
+                flowey "....He’s pretty much on a {i}need to know{/i} basis."
                 show flowey normal with Dissolve(.25)
                 flowey "....And you really don’t {i}need to know{/i}, so let’s move along, shall we?"
         "Undyne":

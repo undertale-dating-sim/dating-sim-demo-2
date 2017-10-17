@@ -101,7 +101,7 @@ label napstablook_hangout_1(owner=get_napstablook()):
                         $world.get_monster('Napstablook').update_FP(1)
                         napstablook "i'll wait here.... good luck....."
                         
-                        call demo_undersnail
+                        call UnderSnail
                         scene background ruins_snailhunting_room
                         $ snail_score = 0
                         

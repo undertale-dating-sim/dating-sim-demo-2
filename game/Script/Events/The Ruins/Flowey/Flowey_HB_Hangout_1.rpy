@@ -160,7 +160,7 @@ label flowey_HP_hangout_1(owner = get_flowey()):
                             show flowey sad with Dissolve(.25)
                             flowey "...Screw this."
                             show flowey angry with Dissolve(.25)
-                            flowey "And {i}screw you too!{i}"
+                            flowey "And {i}screw you too!{/i}"
                             jump Flowey_HP_Hangout_Bothered
                             
     label Flowey_HP_Hangout_1_WastedTime:

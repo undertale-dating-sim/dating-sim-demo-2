@@ -185,7 +185,7 @@ label What_A_Loser: #in the next room, or two rooms or whatever
             #-2 justice
             froggit "Croak..."
             "* They say that they thought they could trust you..."
-            hide Froggit with Dissolve(.25)
+            hide froggit with Dissolve(.25)
             "* Froggit leaves in tears."
             return #queue leaving 
         

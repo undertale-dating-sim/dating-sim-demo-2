@@ -101,7 +101,7 @@ label ruins_first_breakfast_corridor:
             toriel "I thought you might say that."
             toriel "You are an adult, and if you would like to leave, I will not try to stop you."
             toriel "However, please know that the rest of the Underground may not be as friendly as we are in the Ruins. If you wish to leave, then it will be at your own risk."
-            if $world.get_monster('Toriel').FP >= 5:
+            if world.get_monster('Toriel').FP >= 5:
                 show toriel sad at right with Dissolve(.25)
                 toriel "I did hope that you might stay for a little while longer, but..."
             show toriel normal at right with Dissolve(.25)

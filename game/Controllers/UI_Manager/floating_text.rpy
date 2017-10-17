@@ -10,14 +10,14 @@ transform fade_move_with_pars(t, x, y, move_y):
         align (x, y)
         linear t yalign move_y
         
-label choosemenu:
-    scene black
-    while True:
-        menu:
-            "friendship":
-                call word_scroll("3")
-            "end":
-                jump end
+# label choosemenu:
+#     scene black
+#     while True:
+#         menu:
+#             "friendship":
+#                 call word_scroll("3")
+#             "end":
+#                 jump end
 
 label word_scroll(value_changed="1"):
     if int(value_changed) >= 0:

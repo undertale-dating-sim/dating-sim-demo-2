@@ -1,7 +1,7 @@
 label initialize:
     #prologue
-    image background prologue1 = "backgrounds/prologue.jpg"
-    image background intro = "backgrounds/background-intro.png"
+    #image background prologue1 = "backgrounds/prologue.jpg"
+    #image background intro = "backgrounds/background-intro.png"
 
     #random monsters
     image froggit normal = "characters/Froggit/Froggit_normal.png"

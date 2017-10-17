@@ -401,16 +401,3 @@ label toriel_gd_askLivedRuins:
             show toriel awkward with Dissolve(.25)
             toriel "... I do not remember. It is not important, anyway."
     return
-
-
-#i need to look at my code to see how to do this exactly
-label toriel_gd_give:
-    show toriel smiling with Dissolve(.25)
-    toriel "Oh! Have you brought me something?"
-    menu:
-        "Give gift":
-            #???
-            jump torielItems
-        "Cancel":
-            toriel "That is alright, dear."
-    return

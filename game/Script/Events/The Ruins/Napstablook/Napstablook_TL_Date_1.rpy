@@ -417,7 +417,7 @@ label napstablook_tl_date(owner=get_napstablook()):
                         napstablook "thanks for...... being patient......"
                         napstablook "letting me cry it out........ it always feels good to cry"
                         
-            elif dislikedmusic = True: #(ONLY AVAILABLE AFTER HANGOUT ONE -> DISLIKED MUSIC)
+            elif dislikedmusic == True: #(ONLY AVAILABLE AFTER HANGOUT ONE -> DISLIKED MUSIC)
                 napstablook "you... um... didn't seem to like it that much when i showed you..."
                 
                 menu:
@@ -436,7 +436,7 @@ label napstablook_tl_date(owner=get_napstablook()):
                         napstablook "um... maybe..... i could try..."
                         napstablook "i'll try to do better next time....."
                         
-            elif likedmusic = True: #(ONLY AVAILABLE AFTER HANGOUT ONE -> LIKED MUSIC)
+            elif likedmusic == True: #(ONLY AVAILABLE AFTER HANGOUT ONE -> LIKED MUSIC)
                 show napstablook shyblush  with Dissolve(.25)
                 napstablook ".....you, um, seemed to like it, last time....."
                 
@@ -760,7 +760,7 @@ label napstablook_tl_date(owner=get_napstablook()):
                     "Well, actually, maybe there is something.":
                         napstablook "what did you like to do, then?"
                         $ apathy = True
-                        jump napstablook_tl_date1_hobbies
+                        jump napstablook_tl_date_hobbies
                     "Nope.":
                         $ world.get_monster('Napstablook').update_DP(-2)
                         napstablook "wow..."

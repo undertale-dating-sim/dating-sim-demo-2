@@ -38,7 +38,7 @@ label blooky_event3:
         "Leave before they notice you.": #(+0 FP)
             napstablook "..........."
             "You ditched Napstablook."
-            jump blooky_ruins
+            return
                 
     label somethings_wrong:
         napstablook "..........."

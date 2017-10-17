@@ -174,7 +174,7 @@ label toriel_friendship_hangout_1(owner=get_toriel()):
         toriel "We should cook together again sometime."
         toriel "For now, though, would you please go get Frisk for dinner?" 
     elif loop_count > 0:
-        show toriel neutral with Dissolve(.25) 
+        show toriel normal with Dissolve(.25) 
         toriel "Well, now that the quiche is done, would you please get Frisk for dinner?"
     else:
         show toriel smallsmile with Dissolve(.25) 

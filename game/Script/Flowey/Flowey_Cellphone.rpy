@@ -1,6 +1,6 @@
 label call_Flowey_Unknown(attempted_room):
     
-    call FloweyCall_FreqCheck
+    call Flowey_Cell_Count_Check(owner)
     return
 
 
