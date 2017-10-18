@@ -759,6 +759,7 @@ label ruins_intro_blooky:
 
     menu:
         "It’s nice to meet you.":                          #(+3)
+            $ get_napstablook().update_FP(3)
             napstablook "oh..."
             napstablook "you too..."
             napstablook "....."
@@ -773,6 +774,7 @@ label ruins_intro_blooky:
                     napstablook "i’m sure you’ll meet them soon enough... the ruins aren’t that big..."
 
                 "What happened to them?":                    #(+1)
+                    $ get_napstablook().update_FP(1)
                     show napstablook normal with Dissolve(.25)
                     napstablook "they’re fine... they’re still here... in the ruins..."
                     napstablook ".... ......."
@@ -782,12 +784,14 @@ label ruins_intro_blooky:
                     napstablook "i’m sure you two will get along..."
 
         "Wow, so you’re really a ghost? That’s creepy...":       #(-3)
+            $ get_napstablook().update_FP(-3)
             napstablook "oh..."
             napstablook "well... "
             napstablook "i’m sorry... "
             napstablook "there’s not much i can do about that..."
             menu:
                 "People are probably scared of you, right?":        #(+2)
+                    $ get_napstablook().update_FP(2)
                     napstablook "um... "
                     napstablook "i guess... "
                     napstablook "i never thought about it like that..."
@@ -795,6 +799,7 @@ label ruins_intro_blooky:
                     show napstablook sad with Dissolve(.25)
                     napstablook "...you’re probably right..."
                 "That’s okay, I’ll get used to it.":             #(+1)
+                    $ get_napstablook().update_FP(1)
                     napstablook "oh... "
                     napstablook "that’s good... "
                     napstablook "sorry..."
@@ -802,18 +807,21 @@ label ruins_intro_blooky:
                     napstablook "oh... "
                     napstablook "okay..."
                 "Sorry about scaring you before...":                   #(+1)
+                    $ get_napstablook().update_FP(1)
                     napstablook "oh no... "
                     napstablook "you’re fine... "
                     napstablook "i probably did something..."
     
                     menu:
                         "No, not at all!":                           #(+3)
+                            $ get_napstablook().update_FP(3)
                             napstablook "...really?"
                             show napstablook smallsmile with Dissolve(.25)
                             napstablook "okay... "
                             napstablook "that’s good... "
                             napstablook "thank you..."
                         "I forgive you.":                           #(+2)
+                            $ get_napstablook().update_FP(2)
                             napstablook "oh, i’m glad..."
                             show napstablook sad with Dissolve(.25)
                             napstablook "i... "
@@ -868,6 +876,7 @@ label ruins_intro_toriel_house:
 
         menu:# 30
             "Are you okay?":                        #(+3
+                $ get_toriel().update_FP(3)
                 show toriel laughing with Dissolve(.25)
                 toriel "Oh, I am fine! Your concern is sweet."
                 show toriel smallsmile with Dissolve(.25)
@@ -880,6 +889,7 @@ label ruins_intro_toriel_house:
                 toriel "However, all is well now. There is no need for you to worry."
                 
             "You still abandoned me...":                       #(+2
+                $ get_toriel().update_FP(2)
                 show toriel sad with Dissolve(.25)
                 toriel "I really cannot apologize enough, dear... I honestly did not want to leave you."
                 toriel "But, you see, my child, Frisk, needed my assistance, and I had to reach them right away."
@@ -898,6 +908,7 @@ label ruins_intro_toriel_house:
 
         menu:# 31
             "Yes, I would like to stay here.":               #(+2
+                $ get_toriel().update_FP(2)
                 show toriel smile with Dissolve(.25)
                 toriel "Great! I am glad to hear that."
                 show toriel normal with Dissolve(.25)
@@ -925,6 +936,7 @@ label ruins_intro_toriel_house:
 
         menu:# 32
             "Sure, I’ll stay.":                          #(+2
+                $ get_toriel().update_FP(2)
                 show toriel smile with Dissolve(.25)
                 toriel "Excellent! I am glad you have come around."
                 toriel "Frisk! We have a guest."
@@ -935,6 +947,7 @@ label ruins_intro_toriel_house:
                 $ player.variables['reject_toriel'] = False
                 jump frisk_meeting_eat
             "For the last time, no. I’m not staying with you.":      #(-3
+                $ get_toriel().update_FP(-3)
                 #+2 Determination
                 show toriel annoyed with Dissolve(.25)
                 toriel "Well, fine. If you will not accept our hospitality, then there is little I can do."
