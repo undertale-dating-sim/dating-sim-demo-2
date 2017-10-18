@@ -23,9 +23,9 @@ init -10 python:
 
 
         #this function will add an event to the rooms queue.
-        def add_event(self,event,permanent):
+        def add_event(self,event,permanent,time=0):
             if renpy.has_label(event):
-                self.events[event] = Event(event,permanent)
+                self.events[event] = Event(event,permanent,time)
             else:
                 renpy.notify("Can't find label [event]")
 

@@ -5,7 +5,7 @@ init -9 python:
     class Moldsmol(Monster):
         def __init__(self):
             Monster.__init__(self)
-            self.default_event = Event("moldsmol_manager_default",True,self)
+            self.default_event = Event("moldsmol_manager_default",True,0,self)
             self.name = "Moldsmol"
             self.default_sprite = 'moldsmol normal'
 

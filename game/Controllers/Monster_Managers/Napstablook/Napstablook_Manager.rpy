@@ -11,7 +11,7 @@ init -9 python:
     class Napstablook(Monster):
         def __init__(self):
             Monster.__init__(self)
-            self.default_event = Event("Napstablook_manager_default",True,self)
+            self.default_event = Event("Napstablook_manager_default",True,0,self)
             self.name = "Napstablook"
             self.default_sprite = "napstablook normal"
             self.FP = 20
@@ -96,7 +96,7 @@ init -9 python:
                 # Returning to Napstablook's room after all rooms in the Ruins have been explored
             if 'Napstablook_Friendship_1_Complete' not in player.variables:
                 if (world.current_area.explored) and (player.current_room.encode('utf-8') == "Blooky Room"):
-                    self.special_event = Event('napstablook_event_1',False,self)
+                    self.special_event = Event('napstablook_event_1',False,0,self)
             
 
             #FP Hangout 1,
@@ -106,13 +106,13 @@ init -9 python:
 
             if 'Napstablook_Hangout_1_Complete' not in player.variables:
                 if get_napstablook().FP >= 10 and player.variables['snail_game_count'] >= 3 and get_napstablook().current_room == 'Snail Hunting Room':
-                    self.special_event = Event('napstablook_hangout_1',False,self)
+                    self.special_event = Event('napstablook_hangout_1',False,0,self)
             
             #TL Date 1
                 #Player enters the section of the ruins that blooky normally hangs out in.
             if 'Napstablook_TL_Date_1_Complete' not in player.variables:
                 if (player.current_room is "Blooky Room") and (self.DP >= 12):
-                    self.special_event = Event('napstablook_tl_date',False,self)
+                    self.special_event = Event('napstablook_tl_date',False,0,self)
             #HB Date 1
             #elif player in waterfall???
             # if 'Napstablook_HB_Date_1_Complete' not in player.variables:

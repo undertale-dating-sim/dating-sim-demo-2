@@ -11,7 +11,7 @@ init -10 python:
             self.schedule = {"Sunday":{},"Monday":{},"Tuesday":{},"Wednesday":{},"Thursday":{},"Friday":{},"Saturday":{}}
             self.default_sprite = None
             self.current_room = None
-            self.default_event = Event('default_event',self)
+            self.default_event = Event('default_event',False,0,self)
             self.default_room = "Dead Room"
             self.FP_events = {}
             self.FP = 0

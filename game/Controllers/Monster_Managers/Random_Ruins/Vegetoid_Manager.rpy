@@ -5,7 +5,7 @@ init -9 python:
     class Vegetoid(Monster):
         def __init__(self):
             Monster.__init__(self)
-            self.default_event = Event("vegetoid_manager_default",True,self)
+            self.default_event = Event("vegetoid_manager_default",True,0,self)
             self.name = 'Vegetoid'
             self.default_sprite = 'vegetoid normal'
 

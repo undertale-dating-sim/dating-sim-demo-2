@@ -236,9 +236,6 @@ init -10 python:
         def set_current_time(self,timezone,go_to_next_day = False):
 
             self.timezone_action_count = 0
-            if timezone not in self.timezones:
-                renpy.notify("Timezone not found.")
-                return
 
             if go_to_next_day:
                 self.day += 1

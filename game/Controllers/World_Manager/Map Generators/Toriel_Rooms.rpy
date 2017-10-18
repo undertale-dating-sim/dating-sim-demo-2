@@ -147,6 +147,16 @@ label player_sleeping_th:
     call day_transition
     return
 
+label player_napping_th:
+    "You doze off in your bed."
+    stop music
+    call hide_buttons
+    scene black
+    $ renpy.pause(2)
+    $ world.set_current_time(world.next_timezone())
+    $ move_to_room("Your Room")
+    return
+
 
 
 label th_your_room:
@@ -161,7 +171,17 @@ label th_your_room:
                 return
     elif world.get_current_timezone() != "Morning":
         "* The bed looks like it was drawn pretty tight."
-        "* You don't feel very tired yet."
+        menu:
+            "Nap (4 hours)":
+                call player_napping_th
+                return
+            "Sleep (End Day)":
+                call player_sleeping_th
+                return
+            "Not Tired":
+                "You decide to not do anything at all."
+                return
+
     pause
     return
 

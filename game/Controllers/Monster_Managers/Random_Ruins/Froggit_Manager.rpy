@@ -6,7 +6,7 @@ init -9 python:
         def __init__(self):
             Monster.__init__(self)
             self.name = "Froggit"
-            self.default_event = Event("froggit_default_dialogue",True,self)
+            self.default_event = Event("froggit_default_dialogue",True,0,self)
             self.default_sprite = 'froggit normal'
 
 

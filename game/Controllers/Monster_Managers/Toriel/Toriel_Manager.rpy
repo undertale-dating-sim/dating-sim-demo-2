@@ -3,7 +3,7 @@ init -9 python:
     class Toriel(Monster):
         def __init__(self):
             Monster.__init__(self)
-            self.default_event = Event("Toriel_manager_default",True,self)
+            self.default_event = Event("Toriel_manager_default",True,0,self)
             self.default_room = "Toriel's Room"
             self.name = "Toriel"
             self.FP = 40
@@ -71,14 +71,14 @@ init -9 python:
                 # 3 nights have passed
             if 'Toriel_Friendship_1_Complete' not in player.variables:
                 if 'accepted_toriel' in player.variables and player.variables['accepted_toriel'] and world.day > 3:
-                    self.special_event = Event('toriel_friendship_event_1',False,self)
+                    self.special_event = Event('toriel_friendship_event_1',False,0,self)
             #FP Hangout 1,
                 #Friendship 1 done,
                 #20 FP
                 #Staying with Toriel
             elif 'Toriel_Friendship_1_Complete' in player.variables:
                 if get_toriel().FP > 20 and 'accepted_toriel' in player.variables and player.variables['accepted_toriel'] and 'Toriel_Friendship_Hangout1' not in player.variables:
-                    self.special_event = Event('toriel_friendship_hangout_1',False,self)
+                    self.special_event = Event('toriel_friendship_hangout_1',False,0,self)
 
         
 
@@ -88,14 +88,14 @@ init -9 python:
             elif 'Toriel_Friendship_2_Complete' not in player.variables and 'Toriel_Friendship_1_Complete' in player.variables:
                 if 'toriel_plant_watered_count' in player.variables:
                     if player.variables['toriel_plant_watered_count'] >= 3 and world.day > player.variables['toriel_plant_watered_day']:
-                        self.special_event = Event('toriel_friendship_event_2',False,self)
+                        self.special_event = Event('toriel_friendship_event_2',False,0,self)
 
             #Date 1
                 #Friendship 1 done
                 #used up all flirts 
             elif 'Toriel_Friendship_1_Complete' in player.variables and 'Toriel_TL_Date_1_Complete' not in player.variables:
                 if 'Toriel_Flirts_Complete' in player.variables:
-                    self.special_event = Event('toriel_tl_date_1',False,self)
+                    self.special_event = Event('toriel_tl_date_1',False,0,self)
             self.handle_relationship_requirements()
             return
             

@@ -54,7 +54,6 @@ init -1 python:
             self.visited = True
             self.ignore = True
             self.bg = "background deadroom"
-            #self.events["dead_room"] = Event("dead_room",True)
             self.mappable = False
             self.add_monster(Flowey())
             self.add_monster(Toriel())
@@ -155,7 +154,7 @@ init -1 python:
             self.desc = ["* The room is small and full of cobwebs. ","* A sign proclaims that this is the Spider Bake Sale, which is evident by the donuts and bottles of cider stuck in the webs around you."]
             self.bg = "background ruins_spider_bakery"
             self.locknorth = True
-            self.events["Muffet_Shop"] = Event("Muffet_Shop",True)
+            self.events["Muffet_Shop"] = Event("Muffet_Shop",True,0)
 
     class ruins_monstercandyroom(Room):
         def __init__(self):

@@ -23,6 +23,16 @@ label ruins_first_breakfast_your_room:
     play music "audio/ruins/toriels_house.mp3" fadein 5.0
 
     frisk "Hurry up! We don’t want the food to get cold!"
+    "* Oh, yeah. This is happening isn't it?"
+    "* ..."
+    "* You notice a little piece of paper on your end table."
+    "* It is barely legible due to being soaking wet with drool."
+    wilson "tk ths. hp it hlps. dnt tll th bss."
+    "* I guess he thought that was code?"
+    "* There is a small pile of gold under the note."
+    play sound "audio/sfx/use_item.wav"
+    "You gain 50 gold!"
+    $ player.gold += 50
     return
 
 label ruins_first_breakfast_corridor:
@@ -129,6 +139,7 @@ label ruins_first_breakfast_corridor:
     
     show frisk smallsmile at left with Dissolve(.25)
     frisk "So... what do you want to do now?"
+    $ world.timezone_action_count += 10
     menu:
         "I’m done with breakfast, so I think I’ll go for a walk.":
             $world.get_monster ('Frisk').update_FP(-1)
@@ -147,6 +158,7 @@ label ruins_first_breakfast_corridor:
             toriel "Enjoy your walk."
             $ move_to_room("Living Room")
         "Let's talk for a little while longer.":
+            $ world.timezone_action_count += 10
             $world.get_monster ('Frisk').update_FP(3)
             toriel "You two have fun. I am going to get a head start on the dishes."
             hide toriel with Dissolve(.25)

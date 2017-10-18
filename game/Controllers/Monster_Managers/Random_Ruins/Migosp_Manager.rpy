@@ -5,7 +5,7 @@ init -9 python:
     class Migosp(Monster):
         def __init__(self):
             Monster.__init__(self)
-            self.default_event = Event("migosp_manager_default",True,self)
+            self.default_event = Event("migosp_manager_default",True,0,self)
             self.name = "Migosp"
             self.default_sprite = 'migosp normal'
 

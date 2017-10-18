@@ -19,7 +19,7 @@ label golden_flower_event:
                 "Water it":
                     $ player.variables['toriel_plant_watered_count'] +=1
                     $ player.variables['toriel_plant_watered_day'] = world.day
-                    $ world.timezone_action_count += 5
+                    $ world.timezone_action_count += 10
                     "It perks up immediately"
                 "Don't water it":
                     "You must be thirstier, huh?"
@@ -32,7 +32,7 @@ label golden_flower_event:
                 "Water it":
                     $ player.variables['toriel_plant_watered_count'] +=1
                     $ player.variables['toriel_plant_watered_day'] = world.day
-                    $ world.timezone_action_count += 5
+                    $ world.timezone_action_count += 10
                     "Daily waterings seem to be doing this flower good."
                 "Don't water it":
                     if (world.day - player.variables['toriel_plant_watered_day'] == 1):
@@ -48,7 +48,7 @@ label golden_flower_event:
                 "water it":
                     $ player.variables['toriel_plant_watered_count'] +=1
                     $ player.variables['toriel_plant_watered_day'] = world.day
-                    $ world.timezone_action_count += 5
+                    $ world.timezone_action_count += 10
                     "The flower quite enjoys your care"
                     "You must have a green thumb"
                 "Don't water it":
