@@ -5,7 +5,7 @@
 image background black_room = ("backgrounds/UI/blackScreen.png")
 
 label ruins_first_breakfast_your_room:
-
+    $ set_lock_room("Basement Door",False)
     $ get_room("Your Room").set_event('th_your_room',True)
     $ get_room("Corridor").set_event('ruins_first_breakfast_corridor',True)
 
@@ -20,6 +20,8 @@ label ruins_first_breakfast_your_room:
     #black screen fades out to reveal MC room-
     $ renpy.transition(fade)
     $ renpy.show(world.get_room("Your Room").bg)
+    play music "audio/ruins/toriels_house.mp3" fadein 5.0
+
     frisk "Hurry up! We don’t want the food to get cold!"
     return
 
@@ -28,7 +30,8 @@ label ruins_first_breakfast_corridor:
     $ get_room("Corridor").set_event('toriel_house_corridor',True)
     show frisk normal at left with Dissolve(.25)
     frisk "Oh good, you’re up. Let’s go eat!"
-
+    scene black
+    "* You follow Frisk to the Living Room where Toriel has laid out a nice breakfast."
     $ renpy.transition(fade)
     $ renpy.show(world.get_room("Living Room").bg)
 
@@ -60,26 +63,10 @@ label ruins_first_breakfast_corridor:
                     toriel "Aw, you are both too sweet."
 
     show toriel smile at right with Dissolve(.25)
-    toriel "But, still... I do hope you take my advice, dear. It is important to watch your stamina. It will decrease throughout the day when you complete certain tasks."
+    toriel "But, still... I do hope you take my advice, dear. It is important to watch the time."
+    toriel "Time can really get away from you as you do things."
     show frisk normal at left with Dissolve(.25)
-    frisk "Yeah, be careful. If you run out of stamina while outside, you could pass out and..."
-    show frisk smallsmile at left with Dissolve(.25)
-    frisk "Uh..."
-    toriel "Yes. But that is easily prevented with food and rest."
-    toriel "So, just be mindful while you are out and about, dear."
-    frisk "Once you get used to an area, it becomes easier to manage your stamina. So I’m sure you won’t have that much trouble once you get to know the Ruins better!"
-    menu:
-        "Thanks for the advice.":
-            $world.get_monster('Frisk').update_FP(3)
-            show frisk bigsmile at left with Dissolve(.25)
-            frisk "You’re welcome!"
-        "Are you saying I don’t know what I’m doing?":
-            $world.get_monster('Frisk').update_FP(-3)
-            show frisk surprised at left with Dissolve(.25)
-            frisk "What? Oh, of course not, I just thought..." 
-            show frisk disappointed at left with Dissolve(.25)
-            frisk "I just wanted to help."
-            frisk "But... um..."
+    frisk "Yeah, be careful. If it gets too late, you should come back and go to bed!"
     
     show frisk smallsmile at left with Dissolve(.25)
     frisk "I’m really happy you’re staying with us! It’s been so long since I’ve met anyone new, let alone another human!"
@@ -96,7 +83,10 @@ label ruins_first_breakfast_corridor:
             $world.get_monster('Toriel').update_FP(-4)
             $player.variables['ruins_want_to_leave'] = True
             show frisk sad at left with Dissolve(.25)
-            show toriel normal at right with Dissolve(.25)
+            if world.get_monster('Toriel').FP >= 5:
+                show toriel sad at right with Dissolve(.25)
+            else:
+                show toriel normal at right with Dissolve(.25)
             frisk "Oh..."
             toriel "I thought you might say that."
             toriel "You are an adult, and if you would like to leave, I will not try to stop you."
@@ -665,7 +655,27 @@ label ruins_basement_door_first_visit: #needs sound effect
 
 
 label end_of_demo:
-
-    "Will try to remember to put something here."
-
+    
+    play music "audio/main_menu.mp3" fadein 5.0
+    
+    "Hey."
+    "I wanted to sneak a little thing in here to tell you how proud I am of all of the rest of the team."
+    "Even though not everybody could get to the end, we all put in sweat, tears, and blood to get this far."
+    "I want to say thank you to Team UDS for making this last year an experience for me."
+    "I also wanted to say thank you to all of you who have been behind us for the last year."
+    "Even when the project looked like it was going to explode, we never stopped getting nice emails and messages."
+    "This whole project was an experiment in patience.  Sometimes that experiment failed. Sometimes it was great."
+    "All of the time, it was worth it."
+    "And finally..."
+    "Each and every one of you who are reading this probably has some struggle in your life."
+    "Some of you were nice enough to let us share in your secret."
+    "You can't give up."
+    "Some of us find the strength to keep going in each other."
+    "Some of us found strength in a silly, sweet game about hearts and dogs."
+    "So once again, from Team UDS to you, thank you so much for playing this one."
+    "I will leave you with the amazing words of Toby..."
+    "Stay Determined. {w=2} ~Wilson"
+    call scrolling_credits
+    scene background ruins_caveroom
+    $ renpy.pause(120,hard=True)
     return

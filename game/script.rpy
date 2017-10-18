@@ -36,7 +36,6 @@ define test = Character("Sans", callback=beepy_voice)
 
 label known_bugs:
     "Known bugs so far:"
-    "Relationship values are still missing from the first day.  Working on those."
     "Relationship change numbers are still wonky.  Trying to figure a better way to communicate them."
     return
 

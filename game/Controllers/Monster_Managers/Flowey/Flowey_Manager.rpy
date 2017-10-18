@@ -72,7 +72,7 @@ init -9 python:
             #morning
             self.update_schedule("Sunday","Morning","Overlook",self.default_event)
             self.update_schedule("Monday","Morning","Cave Room",self.default_event)
-            self.update_schedule("Monday","Morning","Basement Door",self.default_event)
+            #self.update_schedule("Monday","Morning","Basement Door",self.default_event)
             self.update_schedule("Tuesday","Morning","Cave Room",self.default_event)
             self.update_schedule("Wednesday","Morning","Grass Room",self.default_event)
             self.update_schedule("Thursday","Morning","Cave Room",self.default_event)
