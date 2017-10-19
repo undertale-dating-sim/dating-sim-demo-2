@@ -701,6 +701,7 @@ label ruins_intro_rock_toriel:
     toriel "I will meet you there shortly."
     #toriel sprite fades away
     hide toriel with moveoutright
+    play music "audio/ruins/the_ruins.mp3" fadein 5
     call ruins_intro_rock_alone
     return
 

@@ -297,7 +297,7 @@ label frisk_meeting_snail_catching:
             frisk "Alright, let's go!"
             $ renpy.transition(fade)
             play music "audio/ruins/toriels_house.mp3" fadein 5.0
-            $ renpy.show(world.get_room("Living Room").bg)
+            $ renpy.show(world.get_room("Staircase").bg)
             show frisk smallsmile with Dissolve(.25)
             frisk "Here we are!"
             show frisk normal with Dissolve(.25)
@@ -532,7 +532,7 @@ label frisk_meeting_eat:
     frisk "W-what are you looking at me for? I love all of your cooking!"
     show toriel laughing with Dissolve(.25)
     toriel "Oh, it is alright, my child. I know snails are not your favorite dish."
-    show frisk  with Dissolve(.25)
+    show frisk surprised with Dissolve(.25)
     frisk "..."
     frisk "How long have you known?"
     toriel "A mother can always tell what her child is really thinking, but I do appreciate the sentiment."
