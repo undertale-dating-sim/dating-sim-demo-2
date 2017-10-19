@@ -196,7 +196,17 @@ label Napstablook_manager_default(owner = False, pause = True):
     #allows the game to wait so you have to click for the options to pop up
     if pause:
         $ renpy.pause()
-    
+
+    if 'has_napstablook_cell' not in player_variables:
+        $ player.variables['has_napstablook_cell'] = True
+        napstablook "...oh...um..."
+        napstablook "...you...uh...aren't supposed to...have...this...yet"
+        napstablook "but... a dog told me... you wouldn't make it far enough ... this time?"
+        napstablook "and... that ... i looked lonely..."
+        napstablook "so... here..."
+        play sound "audio/sfx/use_item.wav"
+        "You got Napstablook's number!"
+
     #Default Menu
     menu:
         "Flirt" if owner.flirt_count < 3 :

@@ -119,6 +119,7 @@ label buy_item(item):
             "Buy the [item.name] for [item.sale_cost]G?"
             "Yes": 
                 $ muffetShop.buy(item)
+                play sound "audio/sfx/use_item.wav"
                 "You bought a [item.name]."
 
             "No":

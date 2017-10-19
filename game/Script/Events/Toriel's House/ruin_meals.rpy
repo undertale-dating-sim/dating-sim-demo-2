@@ -5,6 +5,7 @@
 image background black_room = ("backgrounds/UI/blackScreen.png")
 
 label ruins_first_breakfast_your_room:
+    $ player.variables['ruins_breakfast_check'] = world.day
     $ set_lock_room("Basement Door",False)
     $ get_room("Your Room").set_event('th_your_room',True)
     $ get_room("Corridor").set_event('ruins_first_breakfast_corridor',True)
@@ -584,7 +585,7 @@ label ruins_breakfast:
 
 label breakfast_time_flowey: #done
 
-    
+    play music "audio/ruins/the_ruins.mp3" fadein 5
     if get_monster('Flowey').FP < 0:
         show flowey backside with Dissolve(.25)
         $ renpy.pause()

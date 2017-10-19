@@ -145,6 +145,16 @@ label flowey_manager_default(owner = False,pause = True):
             $ renpy.pause()
             
         call flowey_greeting(owner)
+
+        if 'has_flowey_cell' not in player_variables:
+            show flowey sideglance with Dissolve(.25)
+            flowey "Oh look, you made it this far."
+            play sound "audio/sfx/use_item.wav"
+            "* You feel your phone vibrate a little."
+            $ player.variables['has_napstablook_cell'] = True
+            flowey "I have a script here, but it isn't worth it."
+            call show_flowey_sprite(owner)
+
         menu:
             "Chat":
                 call Flowey_Interaction

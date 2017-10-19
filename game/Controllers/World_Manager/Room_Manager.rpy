@@ -41,14 +41,19 @@ init -10 python:
         #empty the room of events
         def clear_events(self):
             self.events = {}
-            
+        
+        def reset_permanent_events(self):
+            for event_name,event in self.events.iteritems():
+                if event.permanent:
+                    event.completed = False
+                    
         #First check to see if the room itself has an event to do
         #Then check to see if the room has a monster event to do
         def get_event(self):
 
             self.current_monster = False
             for event_name,event in self.events.iteritems():
-                if event.completed == False or event.permanent:
+                if event.completed == False:
                     return event
             # if len(self.monsters) > 1:
             #     return Event('multiple_monster',True)

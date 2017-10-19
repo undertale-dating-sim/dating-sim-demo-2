@@ -190,7 +190,17 @@ label Toriel_manager_default(owner = False,pause = True):
         $renpy.pause()
     
 
-    #"Hello, dear. Can I help you?"
+    toriel "Hello, dear. Can I help you?"
+
+    if 'has_toriel_cell' not in player_variables:
+        toriel "Oh! Is that a CELL?"
+        toriel "Can I see it for a second?"
+        "* Toriel fumbles around with the buttons for a little longer than is comfortable."
+        toriel "There!"
+        play sound "audio/sfx/use_item.wav"
+        "You got Toriel's Number!"
+        $ player.variables['has_toriel_cell'] = True
+        toriel "Do not hesitate to call me if you need me!"
     
     menu:
         

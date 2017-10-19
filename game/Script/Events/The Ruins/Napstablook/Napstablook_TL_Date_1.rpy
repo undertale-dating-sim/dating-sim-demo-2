@@ -1330,7 +1330,7 @@ label end_napstablook_tl_date_1:
         $ player.variables['napstablook_date_success'] = True
         $ player.variables['napstablook_date_friendzoned'] = False
         $ player.variables['Napstablook_TL_Date_1_Complete'] = True
-        $ world.set_current_time("Evening")
+        $ world.set_current_time("Afternoon")
         return
     
     label napstablook_tl_date1_FP_ending:
@@ -1349,7 +1349,7 @@ label end_napstablook_tl_date_1:
         $ player.variables['napstablook_date_success'] = True
         $ player.variables['napstablook_date_friendzoned'] = True
         $ player.variables['Napstablook_TL_Date_1_Complete'] = True
-        $ world.set_current_time("Evening")
+        $ world.set_current_time("Afternoon")
         return
         
     label napstablook_tl_date1_Failed_ending:
@@ -1366,5 +1366,5 @@ label end_napstablook_tl_date_1:
         $ player.variables['napstablook_date_success'] = False
         $ player.variables['napstablook_date_friendzoned'] = False
         $ player.variables['Napstablook_TL_Date_1_Complete'] = True
-        $ world.set_current_time("Evening")
+        $ world.set_current_time("Afternoon")
         return

@@ -14,7 +14,7 @@ label napstablook_event_1(owner=get_napstablook()):
     stop music
 
     show napstablook normal at napstabob with dissolve
-    $ world.set_current_time("Evening")
+    $ world.set_current_time("Afternoon")
     
     napstablook "oh...... hi. i didn't think you'd come back here...."
     napstablook "i'm glad you did, though....... i mean, i've been working on a new song and i was wondering if..... maybe....... you'd want to listen to it?"

@@ -16,7 +16,7 @@ label flowey_hangout1(owner = get_flowey()):
                 $world.get_monster('Flowey').update_HP(2)
             "Exit":
                 $ player.variables['Flowey_Hangout_1_Complete'] = True
-                $ world.set_current_time("Evening")
+                $ world.set_current_time("Afternoon")
                 return
                 
         show flowey horror with Dissolve(.25)
@@ -37,7 +37,7 @@ label flowey_hangout1(owner = get_flowey()):
 
             "Alright, bye.":
                 $ player.variables['Flowey_Hangout_1_Complete'] = True
-                $ world.set_current_time("Evening")
+                $ world.set_current_time("Afternoon")
                 return
 
         show flowey annoyed with Dissolve(.25)
@@ -102,7 +102,7 @@ label flowey_hangout1(owner = get_flowey()):
                 flowey "Or go bother someone else."
                 #exit
         $ player.variables['Flowey_Hangout_1_Complete'] = True
-        $ world.set_current_time("Evening")
+        $ world.set_current_time("Afternoon")
         return
 
     label flowey_hangout1_path2:
@@ -177,6 +177,6 @@ label flowey_hangout1(owner = get_flowey()):
                     flowey "Get out of my face, idiot."
                     #exit
         $ player.variables['Flowey_Hangout_1_Complete'] = True
-        $ world.set_current_time("Evening")
+        $ world.set_current_time("Afternoon")
         return
         
