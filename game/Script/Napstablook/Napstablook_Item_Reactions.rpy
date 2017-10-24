@@ -105,7 +105,7 @@ label give_Gift_Napstablook_Monster_Candy(count,owner):
         napstablook "uh...."
         napstablook "thanks, i guess?"
         napstablook "people don't usually give me candy... or anything, really....."
-    if count == 2:
+    elif count == 2:
         napstablook "not that i'm ungrateful... but didn't you already give me one of these?"
         napstablook "sorry, it's okay if you forgot......"
     else:

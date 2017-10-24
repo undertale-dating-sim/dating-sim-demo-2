@@ -109,6 +109,9 @@ label You_Win:
     show froggit happy
     "* They seem happy."
     hide froggit with Dissolve(.25)
+    "* You get 10 gold!"
+    play sound "audio/sfx/use_item.wav"
+    $ player.gold += 10
     return
     
 label What_A_Loser: #in the next room, or two rooms or whatever

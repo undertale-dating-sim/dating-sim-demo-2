@@ -78,6 +78,7 @@ label Snail_Hunter_Random_Event:
     if player.last_snail_day == False or player.last_snail_day != world.day:
 
         "* You notice the flowers are moving a little."
+
         menu:
 
             "What do you do?"
@@ -94,7 +95,6 @@ label Snail_Hunter_Random_Event:
 
     else:
         "* A very quiet, peaceful room.  It looks new.  The flowers are still."
-        $ world.update_world()
     return
 
 label day_transition:

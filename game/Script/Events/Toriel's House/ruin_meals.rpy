@@ -57,7 +57,7 @@ label ruins_first_breakfast_corridor:
     menu:
         "Great!":
             $world.get_monster('Frisk').update_FP(2)
-            $world.get_monster('Toriel').update_FP(2)
+            $world.get_monster('Toriel').update_FP(2,"right")
             toriel "I am glad."
         "I slept alright.":
             toriel "I understand... It can be strange sleeping somewhere new for the first time."
@@ -91,7 +91,7 @@ label ruins_first_breakfast_corridor:
     menu:
         "I want to leave the Ruins as soon as possible":
             $world.get_monster('Frisk').update_FP(-3)
-            $world.get_monster('Toriel').update_FP(-4)
+            $world.get_monster('Toriel').update_FP(-4,"right")
             $player.variables['ruins_want_to_leave'] = True
             show frisk sad at left with Dissolve(.25)
             if world.get_monster('Toriel').FP >= 5:
@@ -110,18 +110,18 @@ label ruins_first_breakfast_corridor:
             toriel "Please be careful, and come back to visit when you can. You are welcome here whenever you need a safe place to rest."
         "I want to stay here with you guys.":
             $world.get_monster ('Frisk').update_FP(3)
-            $world.get_monster ('Toriel').update_FP(3)
+            $world.get_monster('Toriel').update_FP(3,"right")
             show frisk bigsmile at left with Dissolve(.25)
             show toriel smile at right with Dissolve(.25)
             toriel "Oh! That is wonderful, dear. Of course, we would love for you to stay here with us."
             toriel "I only ask that you help gather snails every day for your meal here. I am not sure if Frisk could find enough for all of us."
             menu:
                 "I'd love to help.":
-                    $world.get_monster ('Toriel').update_FP(4)
+                    $world.get_monster('Toriel').update_FP(4,"right")
                     show toriel smile at right with Dissolve(.25)
                     toriel "I am glad. Frisk could really use the help."
                 "Seems like a chore...":
-                    $world.get_monster ('Toriel').update_FP(-4)
+                    $world.get_monster ('Toriel').update_FP(-4,"right")
                     show frisk smallsmile at left with Dissolve(.25)
                     show toriel awkward at right with Dissolve(.25)
                     toriel "I suppose it may seem like that at first..."

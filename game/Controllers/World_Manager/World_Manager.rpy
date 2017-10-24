@@ -142,25 +142,25 @@ init -10 python:
             timezone = self.get_current_timezone()
             day_of_week = self.get_current_day()
 
-
-            for an,a in self.areas.items():
-                room_list = list(a.rooms.items())
-                for rn,r in room_list:
-                    #if(len(r.monsters) > 0):
-                    # renpy.say(None,"%s in %s" % (len(r.monsters),r.name))
-                    monster_list = list(r.monsters)
-                    for m in monster_list:
-                        # renpy.say(None,"Found %s in %s" % (m.name,r.name))
-                        if m.schedule and self.day != 0:
-                            if timezone in m.schedule[day_of_week]:
-                                for x,t in m.schedule[day_of_week][timezone].items():    
-                                    # (None,"Schedule : %s goes to %s at %s on %s" % (m.name,x,timezone,day_of_week))
-                                    m.move_to_room(x)
-                            else:
-                                # renpy.say(None,"Found %s in %s" % (m.name,r.name))
-                                # renpy.say(None,"Schedule : %s has no room for %s on %s. Default is %s" % (m.name,timezone,day_of_week,m.default_room))
-                                m.move_to_room(m.default_room)
-                        m.handle_special_events()
+            if self.day > 0:
+                for an,a in self.areas.items():
+                    room_list = list(a.rooms.items())
+                    for rn,r in room_list:
+                        #if(len(r.monsters) > 0):
+                        # renpy.say(None,"%s in %s" % (len(r.monsters),r.name))
+                        monster_list = list(r.monsters)
+                        for m in monster_list:
+                            # renpy.say(None,"Found %s in %s" % (m.name,r.name))
+                            if m.schedule and self.day != 0:
+                                if timezone in m.schedule[day_of_week]:
+                                    for x,t in m.schedule[day_of_week][timezone].items():    
+                                        # (None,"Schedule : %s goes to %s at %s on %s" % (m.name,x,timezone,day_of_week))
+                                        m.move_to_room(x)
+                                else:
+                                    # renpy.say(None,"Found %s in %s" % (m.name,r.name))
+                                    # renpy.say(None,"Schedule : %s has no room for %s on %s. Default is %s" % (m.name,timezone,day_of_week,m.default_room))
+                                    m.move_to_room(m.default_room)
+                            m.handle_special_events()
 
             if self.current_timezone == "Night":
                 self.handle_night()

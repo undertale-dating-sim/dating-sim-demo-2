@@ -62,8 +62,6 @@ init -10 python:
             for event_name,event in self.events.iteritems():
                 if event.completed == False:
                     return event
-            # if len(self.monsters) > 1:
-            #     return Event('multiple_monster',True)
             for m in self.monsters:
 
                 if m.get_current_event():

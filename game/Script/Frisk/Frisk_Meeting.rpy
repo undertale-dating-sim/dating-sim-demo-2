@@ -375,7 +375,7 @@ label looked_around_before_toriel:
             toriel "Yes, please join us."
             jump frisk_meeting_eat
         else:
-            $world.get_monster('Toriel').update_FP(3)
+            $world.get_monster('Toriel').update_FP(3,"right")
             show toriel smile with Dissolve(.25)
             toriel "It makes me happy to see you and frisk have become such fast friends. It gets a little lonely here in the Ruins sometimes, and we do appreciate any well-meaning company." 
             toriel "I am sure you know this by now, but I would like you to know that any friend of frisk is welcome here."
@@ -416,7 +416,7 @@ label frisk_meeting_eat:
         "It's great, I love it!":           
 
             $world.get_monster('Toriel').update_FP(2)
-            $world.get_monster('Frisk').update_FP(2)
+            $world.get_monster('Frisk').update_FP(2,"right")
             #+1 Kindness
             show frisk surprised with Dissolve(.25)
             frisk "Really?"
@@ -434,7 +434,7 @@ label frisk_meeting_eat:
         "It's kinda... bad.":               
                                        
             $chose_frisk_meeting_option27=True
-            $world.get_monster('Toriel').update_FP(-2)
+            $world.get_monster('Toriel').update_FP(-2,"right")
             $world.get_monster('Frisk').update_FP(-2)
             #-1 Kindness
             show frisk disappointed with Dissolve(.25)
@@ -453,7 +453,7 @@ label frisk_meeting_eat:
                 toriel "Even though you did not like the cooking?"
             menu:
                 "Yeah!":                   
-                    $world.get_monster('Toriel').update_FP(4)
+                    $world.get_monster('Toriel').update_FP(4,"right")
                     $world.get_monster('Frisk').update_FP(4)
                     #+1 Integrity
                     show frisk bigsmile with Dissolve(.25)
@@ -462,10 +462,10 @@ label frisk_meeting_eat:
                     toriel "Oh, well I'm glad you are enjoying your stay!"
 
                 "Actually no, I just didn't want to be rude.":
-                    $world.get_monster('Toriel').update_FP(-2)
+                    $world.get_monster('Toriel').update_FP(-2,"right")
                     $world.get_monster('Frisk').update_FP(-3)
                     #-1 Integrity   
-                    show toriel sad with Dissolve(.25)
+                    show toriel sad with Dissolve(.25,"right")
                     show frisk sad with Dissolve(.25)
                     frisk "Oh... what?"
                     toriel "I guess I should not be too surprised."
@@ -482,7 +482,7 @@ label frisk_meeting_eat:
             frisk "Yeah! It's actually pretty great once you get used to everything!"
         "I hate this place.":           
             $ chose_frisk_meeting_option30=True
-            $world.get_monster('Toriel').update_FP(-2)
+            $world.get_monster('Toriel').update_FP(-2,"right")
             $world.get_monster('Frisk').update_FP(-4)
             show frisk sad with Dissolve(.25)
             frisk "Aw, but... it's not that bad, really."
@@ -493,7 +493,7 @@ label frisk_meeting_eat:
             show frisk smallsmile with Dissolve(.25)
             frisk "R-right! It's not so bad!"
         "It scares me...":                 
-            $world.get_monster('Toriel').update_FP(2)
+            $world.get_monster('Toriel').update_FP(2,"right")
             $world.get_monster('Frisk').update_FP(2)                                        
             show toriel sad with Dissolve(.25)
             toriel "Aww, poor thing. I had not realized until now that this must all seem very jarring."

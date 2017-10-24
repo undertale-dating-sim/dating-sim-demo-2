@@ -87,14 +87,19 @@ init -9 python:
 
         def handle_special_events(self):
 
+            #bad time hunting is set in dialogue
+
+            #painting
             if world.get_current_timezone() == 'Afternoon' and 'frisk_friendship_1_Complete' not in player.variables:
                 get_frisk().move_to_room("Frisk's Room")
                 self.set_special_event('frisk_friendship_hangout1_main')
 
+            #knife in kitchen
             if world.get_current_timezone() == 'Morning' or world.get_current_timezone() == 'Day' or world.get_current_timezone() == 'Afternoon':
                 if 'frisk_friendship_1_Complete' in player.variables and 'frisk_friendship_2_Complete' not in player.variables:
                     if 'frisk_friend_hangout2_day' in player.variables and player.variables['frisk_friend_hangout2_day'] != world.day:
                         get_room("Kitchen").set_event('frisk_friendship_hangout2')
+
             self.handle_relationship_requirements()
 
             return
@@ -231,7 +236,7 @@ label Frisk_dialogue:
 
 
     menu:
-        "Do you want to go snail hunting with me?" if 'Hunted_Snails_With_Frisk' not in player.variables:
+        "Do you want to go snail hunting with me?" if 'Hunted_Snails_With_Frisk' not in player.variables and world.day > 0:
             call frisk_friendship_event_1
         "Chat" if frisk_chataway is False:
             jump Frisk_chat

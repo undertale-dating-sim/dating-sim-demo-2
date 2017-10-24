@@ -137,16 +137,16 @@ init -10 python:
 
             return
 
-        def update_FP(self,amount):
+        def update_FP(self,amount,side="left"):
             self.FP += amount
-            renpy.call("word_scroll",amount)
-        def update_DP(self,amount):
+            renpy.call("word_scroll",amount,side)
+        def update_DP(self,amount,side="left"):
             self.DP += amount
-            renpy.call("word_scroll",amount)
-        def update_HP(self,amount):
+            renpy.call("word_scroll",amount,side)
+        def update_HP(self,amount,side="left"):
             self.HP += amount
             #renpy.play('audio/attack_hit.wav')
-            renpy.call("word_scroll",amount)
+            renpy.call("word_scroll",amount,side)
 
 
 

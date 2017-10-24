@@ -11,8 +11,7 @@ init -10 python:
 
         def call_event(self):
             
-            if self.permanent == False:
-                self.completed = True
+            self.completed = True
             world.timezone_action_count += self.time
             
             if self.arg:

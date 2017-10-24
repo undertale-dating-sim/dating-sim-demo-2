@@ -72,13 +72,14 @@ init -9 python:
             if 'Toriel_Friendship_1_Complete' not in player.variables:
                 if 'accepted_toriel' in player.variables and player.variables['accepted_toriel'] and world.day > 3:
                     self.special_event = Event('toriel_friendship_event_1',False,0,self)
-            #FP Hangout 1,
+            #FP Hangout 1, time for pie
                 #Friendship 1 done,
                 #20 FP
                 #Staying with Toriel
             elif 'Toriel_Friendship_1_Complete' in player.variables:
                 if get_toriel().FP > 20 and 'accepted_toriel' in player.variables and player.variables['accepted_toriel'] and 'Toriel_Friendship_Hangout1' not in player.variables:
                     self.special_event = Event('toriel_friendship_hangout_1',False,0,self)
+                    self.move_to_room("Kitchen")
 
         
 

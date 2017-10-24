@@ -164,6 +164,7 @@ init -1 python:
             self.y = 4
             self.desc = ["* A nice looking bowl of candy sits on a pillar in the center of the room. ","* A small note says 'Take only one.'"]
             self.bg = "background ruins_monstercandy_room"
+            self.events["Monster Candy"] = Event("ruins_mc_get_candy",True)
 
     class ruins_snailhuntingroom(Room):
         def __init__(self):
