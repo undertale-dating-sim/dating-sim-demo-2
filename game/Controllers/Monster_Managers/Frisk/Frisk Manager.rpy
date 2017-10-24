@@ -88,6 +88,7 @@ init -9 python:
         def handle_special_events(self):
 
             if world.get_current_timezone() == 'Afternoon' and 'frisk_friendship_1_Complete' not in player.variables:
+                get_frisk().move_to_room("Frisk's Room")
                 self.set_special_event('frisk_friendship_hangout1_main')
 
             if world.get_current_timezone() == 'Morning' or world.get_current_timezone() == 'Day' or world.get_current_timezone() == 'Afternoon':
