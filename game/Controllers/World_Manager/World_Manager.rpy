@@ -181,7 +181,7 @@ init -10 python:
 
                 # #now we remove every room that has an event, or another monster in it
                 for r in a.rooms:
-                    if len(a.rooms[r].monsters) > 0 or len(a.rooms[r].events) > 0:
+                    if len(a.rooms[r].monsters) > 0 or a.rooms[r].has_events() > 0:
                         room_list.remove(r)
                         
                 # #now we seed the monsters into random rooms in the list, removing each room as we do it.
@@ -203,13 +203,13 @@ init -10 python:
 
                 # #now we remove every room that has an event, or another monster in it
                 for r in a.rooms:
-                    if len(a.rooms[r].monsters) > 0 or len(a.rooms[r].events) > 0:
+                    if len(a.rooms[r].monsters) > 0 or a.rooms[r].has_events() > 0:
                         room_list.remove(r)
                         
                 # renpy.say(None,"Getting Random Event")
                 re = a.get_random_event()
                 
-                if re:
+                if re and len(room_list) > 0:
                     renpy.say(None,"Got %s" % re.label)
                     rr = renpy.random.choice(room_list)
                     a.rooms[rr].set_event(re.label,False)
