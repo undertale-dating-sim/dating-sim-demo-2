@@ -116,9 +116,14 @@ init -10 python:
         def handle_night(self):
 
             #remove the monsters and events
+            renpy.music.stop()
+            renpy.say(None,"Night has fallen. You should get to bed.")
             for an,a in self.areas.iteritems():
                 for rn,r in a.rooms.iteritems():
-                    r.monsters = {}
+
+                    for m in r.monsters():
+                        m.move_to_room("Dead Room")
+
                     for en,e in r.events.iteritems():
                         if en in a.random_events:
                             r.events.remove(e)
@@ -146,7 +151,7 @@ init -10 python:
                     monster_list = list(r.monsters)
                     for m in monster_list:
                         # renpy.say(None,"Found %s in %s" % (m.name,r.name))
-                        if m.schedule:
+                        if m.schedule and self.day != 0:
                             if timezone in m.schedule[day_of_week]:
                                 for x,t in m.schedule[day_of_week][timezone].items():    
                                     # (None,"Schedule : %s goes to %s at %s on %s" % (m.name,x,timezone,day_of_week))
@@ -272,8 +277,9 @@ init -10 python:
             for area_name,area in self.areas.iteritems():
                 for room_name,room in area.rooms.iteritems():
                     for monster in room.monsters:
-                        if monster.name.lower() == name.lower():
-                            return monster
+                        if monster:
+                            if monster.name.lower() == name.lower():
+                                return monster
 
             renpy.notify("Could not find "+name)
             return False

@@ -146,7 +146,7 @@ label flowey_manager_default(owner = False,pause = True):
             
         call flowey_greeting(owner)
 
-        if 'has_flowey_cell' not in player_variables:
+        if 'has_flowey_cell' not in player.variables:
             show flowey sideglance with Dissolve(.25)
             flowey "Oh look, you made it this far."
             play sound "audio/sfx/use_item.wav"

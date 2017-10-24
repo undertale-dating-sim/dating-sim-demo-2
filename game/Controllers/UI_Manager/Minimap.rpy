@@ -42,7 +42,7 @@ init python:
                     elif len(r.monsters) > 0:
                         render.canvas().rect("#F00", (x,y, 10, 10))
                         #render.blit(renpy.render(Image("UI/tori_head.png"), width, height, st, at),(x-11,y-12))
-                    elif len(r.events) > 0:
+                    elif r.has_events():
                         render.canvas().rect("#ffff00", (x,y, 10, 10))
                     elif r.visited == True:
                         render.canvas().rect("#d3d3d3", (x,y, 10, 10))

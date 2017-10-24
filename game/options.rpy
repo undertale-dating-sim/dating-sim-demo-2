@@ -13,9 +13,9 @@ init -1 python hide:
     config.keymap['rollback'] = []
     config.keymap['rollforward'] = []
     # config.log = 'wilson.txt'
-    #config.developer = True
+    config.developer = True
     ## These control the width and height of the screen.
-    config.console = False
+    #config.console = False
     config.screen_width = 800
     config.screen_height = 600
 

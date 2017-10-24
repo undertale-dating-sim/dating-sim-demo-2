@@ -960,6 +960,8 @@ label ruins_intro_toriel_house:
 label ruins_intro_find_Frisk:
     
     $ get_room("Staircase").events = {}
+    $ set_lock_room("Basement Door",True)
+
     if 'clicked_toriel' not in player.variables:
         $ player.variables['clicked_toriel'] = 0
 

@@ -41,21 +41,8 @@ label known_bugs:
 
 label start:
     
-    # call demo_values
-    #$ get_room("Your Room").set_event('ruins_breakfast_your_room',False)
-    #$ move_to_room("Your Room")
     scene black
     call known_bugs
-    # $ get_monster("Frisk").set_special_event("frisk_friendship_hangout1_main")
-    # $ get_monster("Frisk").move_to_room("Frisk's Room")
-    # $ move_to_room("Frisk's Room")
-    
-    # $ get_monster("Flowey").move_to_room("Cave Room")
-    # $ get_monster("Toriel").move_to_room("Grass Room")
-    # $ get_monster("Napstablook").move_to_room("Tunnels")
-    # $ get_monster("Napstablook").move_to_room("Tunnels")
-    # # get_monster("Frisk").move_to_room("Ruins Entrance")
-    #$ move_to_room("Cave Room")
     jump the_fall
     return
 

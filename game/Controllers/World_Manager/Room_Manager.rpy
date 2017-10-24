@@ -38,6 +38,13 @@ init -10 python:
             else:
                 renpy.notify("Can't find label [event]")
 
+        #is used for the map to see if it should show events        
+        def has_events(self):
+            for event_name,e in self.events.iteritems():
+                if e.completed == False or e.permanent:
+                    return True
+            return False
+
         #empty the room of events
         def clear_events(self):
             self.events = {}

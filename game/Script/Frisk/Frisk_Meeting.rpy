@@ -592,7 +592,7 @@ label frisk_meeting_eat:
     $ set_lock_room("Living Room",False)
     $ set_lock_room("Corridor",False)
     $ get_room("Living Room").set_event('frisk_meeting_toriel_after_dinner',False)
-    $ get_monster("Toriel").move_to_room("Living Room")
+    #$ get_monster("Toriel").move_to_room("Living Room")
     $ get_room("Corridor").set_event('frisk_meeting_corridor_after_dinner',True)
     $ move_to_room('Staircase')
     return
@@ -607,6 +607,7 @@ label frisk_meeting_corridor_after_dinner:
         $ door_text = "Check Unmarked Door"
     else:
         $ door_text = "Check Your Door"
+    call show_buttons
     "* You notice that there are three doors here."
     menu:
         "Check Toriel's room" :
@@ -614,7 +615,7 @@ label frisk_meeting_corridor_after_dinner:
             "* Going inside would be a huge invasion of privacy."
             "* You should know better."
             menu:
-                "Go inside anyway":
+                "Go inside anyway" if not chose_frisk_meeting_option72:
                     #-1 Justice
                     $ renpy.transition(fade)
                     $ renpy.show(world.get_room("Toriel's Room").bg)

@@ -192,7 +192,7 @@ label Toriel_manager_default(owner = False,pause = True):
 
     toriel "Hello, dear. Can I help you?"
 
-    if 'has_toriel_cell' not in player_variables:
+    if 'has_toriel_cell' not in player.variables:
         toriel "Oh! Is that a CELL?"
         toriel "Can I see it for a second?"
         "* Toriel fumbles around with the buttons for a little longer than is comfortable."

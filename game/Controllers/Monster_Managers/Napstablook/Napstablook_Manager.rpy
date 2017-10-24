@@ -197,7 +197,7 @@ label Napstablook_manager_default(owner = False, pause = True):
     if pause:
         $ renpy.pause()
 
-    if 'has_napstablook_cell' not in player_variables:
+    if 'has_napstablook_cell' not in player.variables:
         $ player.variables['has_napstablook_cell'] = True
         napstablook "...oh...um..."
         napstablook "...you...uh...aren't supposed to...have...this...yet"
