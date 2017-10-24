@@ -187,10 +187,16 @@ label th_your_room:
 
 label toriel_house_corridor:
     call show_buttons
+    "There are three doors here. There is also a nice little flower."
+    if get_toriel().current_room.name == "Toriel's Room":
+        "You hear shuffling from Toriel's Room."
+    if get_frisk().current_room.name == "Frisk's Room":
+        "You see a light on under Frisk's door."
     while True:
         call show_buttons
         menu:
             "There are three doors here. There is also a nice little flower."
+
             "Check the flower":
                 call golden_flower_event
             "Frisk's Room":
