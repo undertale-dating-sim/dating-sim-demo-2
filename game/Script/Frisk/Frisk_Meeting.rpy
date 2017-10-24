@@ -590,6 +590,7 @@ label frisk_meeting_eat:
     #Add Talking to toriel to the living room
     $ get_room("Staircase").clear_events()
     $ set_lock_room("Living Room",False)
+    $ set_lock_room("Basement Door",True)
     $ set_lock_room("Corridor",False)
     $ get_room("Living Room").set_event('frisk_meeting_toriel_after_dinner',False)
     #$ get_monster("Toriel").move_to_room("Living Room")
@@ -649,7 +650,6 @@ label frisk_meeting_corridor_after_dinner:
                     "* This is a weird place."
                     "* ..."
                     call day_transition
-                    $ get_room("Your Room").set_event('ruins_first_breakfast_your_room',False)
                     $ move_to_room('Your Room')
                 "No":
                     return
