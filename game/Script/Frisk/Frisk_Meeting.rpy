@@ -590,6 +590,16 @@ label frisk_meeting_eat:
             show toriel normal with Dissolve(.25)
             toriel "Thank you. You may be excused."
     
+    toriel "Oh! Is that a CELL?"
+    toriel "Can I see it for a second?"
+    "* Toriel fumbles around with the buttons for a little longer than is comfortable."
+    toriel "There!"
+    play sound "audio/sfx/use_item.wav"
+    "You got Toriel's Number!"
+    $ player.variables['has_toriel_cell'] = True
+    toriel "Do not hesitate to call me if you need me!"
+    toriel "Have a good night!"
+    
     #Add Talking to toriel to the living room
     $ get_room("Staircase").clear_events()
     $ set_lock_room("Living Room",False)
