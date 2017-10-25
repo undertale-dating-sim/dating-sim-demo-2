@@ -8,6 +8,7 @@ init python:
     audio_text = ["Mitsuko\n","Anna Mangette\n","X2H\n"]
     artist_text = ["LMaruchartista\n","Marci Nehlsen\n"]
     writers_text = ["CelestialSushi\n","Felix\n","Jeffrey\n","Kate\n","Nevran\n","Quinn\n","Riza\n","Ronnie\n","Rose\n","Sage\n","Sam\n","Vunde\n"]
+    voice_text = ["Oolay-Tiger\n","Deathykloak\n","Zen\n"]
     credit_speed = 25
     credit_gap = 10
     movecenter = Move((.5,2),(0.5,0.0), credit_speed, repeat=False, bounce=False, xanchor="center", yanchor="bottom")
