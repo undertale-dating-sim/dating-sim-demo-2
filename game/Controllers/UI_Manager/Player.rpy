@@ -95,11 +95,11 @@ init -1 python:
             self.variables['snail_game_count']+=1
             if self.current_snails >= self.max_snails:
                 renpy.say(None,"Your pockets are full though. Bummer.")
-            elif self.current_snails + snail_count <= self.max_snails:
+            elif (self.current_snails + snail_count) <= self.max_snails:
                 renpy.sound.play("audio/sfx/use_item.wav")
                 renpy.say(None,"%s added to inventory." % snail_count)
             else:
-                snail_count = (self.current_snails + snail_count) - self.max_snails
+                snail_count = self.max_snails - self.current_snails
                 renpy.sound.play("audio/sfx/use_item.wav")
                 renpy.say(None,"%s added to inventory." % snail_count)
 

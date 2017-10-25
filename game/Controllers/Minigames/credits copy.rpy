@@ -6,6 +6,7 @@ init python:
     coders_text = ["AnnAisu\n","Chloekat1things (Cece)\n","lzuehsow\n","PayneGray\n","SesuRescue\n"]
     leadership_text = ["Al\n","Blue\n","Becca\n","Louie\n","Nekomayata\n","Sky\n","Wilson\n"]
     audio_text = ["Mitsuko\n","Anna Mangette\n","X2H\n"]
+    artist_text = ["LMaruchartista\n","Marci Nehlsen\n"]
     writers_text = ["CelestialSushi\n","Felix\n","Jeffrey\n","Kate\n","Nevran\n","Quinn\n","Riza\n","Ronnie\n","Rose\n","Sage\n","Sam\n","Vunde\n"]
     credit_speed = 25
     credit_gap = 10
@@ -18,6 +19,7 @@ init:
     image coder_cred = Text(["{size=50}Coders\n{/size}{size=30}"] + coders_text, text_align=0.5)
     image writer_cred = Text(["{size=50}Writers\n{/size}{size=30}"] + writers_text, text_align=0.5)
     image audio_cred = Text(["{size=50}Audio\n{/size}{size=30}"] + audio_text, text_align=0.5)
+    image artist_cred = Text(["{size=50}Artists\n{/size}{size=30}"] + artist_text, text_align=0.5)
     image leader_cred = Text(["{size=50}Leadership\n{/size}{size=30}"] + leadership_text, text_align=0.5)
     image begin = Text("{size=80}Project UDS \n {size=40} inLove : An Undertale Dating Simulator\n", text_align =0.5)
     image end = Text("Thanks for Playing!",text_align = .5)
@@ -38,6 +40,8 @@ label scrolling_credits:
     show writer_cred at movecenter
     with Pause(credit_gap)
     show audio_cred at movecenter
+    with Pause(credit_gap)
+    show artist_cred at movecenter
     with Pause(credit_gap)
     show leader_cred at movecenter
     with Pause(credit_gap)
