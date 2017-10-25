@@ -184,8 +184,13 @@ label frisk_meeting_snail_catching:
     frisk "Here, you can take my old phone! My friend made me a new one, so I don't mind."
 
     play sound "audio/sfx/use_item.wav"
+
     "* You get The CELL!"
     "The CELL has been unlocked in the MENU."
+    "You can use The CELL to view your relationship with the various citizens of the Underground."
+    "If you call them, they can give you some info about the room you are in."
+    "They can also let you know where they are!"
+
     frisk "And I've already transferred all of my old junk off of it, so it's just like new."
     frisk "Oh, and I'll add my number into it! That way, if you ever need to get in touch with me, I'll just be a phone call away!"
 
@@ -194,6 +199,7 @@ label frisk_meeting_snail_catching:
     "* Frisk's number obtained."
     $player.variables['has_frisk_cell'] = True
     $player.variables['has_cellphone'] = True
+
     ###############################
 
     frisk "So..."
@@ -599,7 +605,7 @@ label frisk_meeting_eat:
     $ player.variables['has_toriel_cell'] = True
     toriel "Do not hesitate to call me if you need me!"
     toriel "Have a good night!"
-    
+
     #Add Talking to toriel to the living room
     $ get_room("Staircase").clear_events()
     $ set_lock_room("Living Room",False)
