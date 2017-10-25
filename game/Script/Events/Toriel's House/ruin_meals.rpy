@@ -39,6 +39,7 @@ label ruins_first_breakfast_your_room:
 label ruins_first_breakfast_corridor:
     #clean up after self
     $ get_room("Corridor").set_event('toriel_house_corridor',True)
+    $ get_room("Living Room").set_event('ruins_dinner',True)
     show frisk normal at left with Dissolve(.25)
     frisk "Oh good, you’re up. Let’s go eat!"
     scene black
@@ -159,7 +160,6 @@ label ruins_first_breakfast_corridor:
             toriel "Enjoy your walk."
             $ move_to_room("Living Room")
         "Let's talk for a little while longer.":
-            $ world.add_to_ac(10)
             $world.get_monster ('Frisk').update_FP(3)
             toriel "You two have fun. I am going to get a head start on the dishes."
             hide toriel with Dissolve(.25)
@@ -219,7 +219,7 @@ label ruins_first_breakfast_corridor:
     return
 
 label ruins_dinner: #done
-    if world.get_current_timezone() != 'Afternoon' or ('had_dinner_day' in player.variables and player.variables['had_dinner_day'] == world.day):
+    if world.day != 0 and (world.get_current_timezone() != 'Afternoon' or ('had_dinner_day' in player.variables and player.variables['had_dinner_day'] == world.day)):
         call show_buttons
         pause
         return
@@ -499,6 +499,7 @@ label ruins_breakfast_your_room:
     play music "audio/ruins/toriels_house.mp3" fadein 5.0
     $ get_room("Living Room").set_event('ruins_breakfast',False)
     $ move_to_room("Your Room")
+    return
 
 label ruins_breakfast_leaving:
     $ renpy.transition(fade)
@@ -510,6 +511,7 @@ label ruins_breakfast_leaving:
             frisk "Oh, alright! Have a good day..."
             hide frisk
             $ player.variables['ruins_breakfast_check'] = world.day
+            $ get_room("Living Room").set_event('ruins_dinner',True)
             $ renpy.transition(fade)
             $ renpy.show(world.get_room("Black Tree Room").bg)
             call breakfast_time_flowey
@@ -518,10 +520,10 @@ label ruins_breakfast_leaving:
             show frisk smallsmile with Dissolve(.25)
             frisk "Well, what’re you doing over here, then? Food’s in the living room, silly!"
             $ move_to_room('Living Room')
+    return
 
 label ruins_breakfast:
     $ player.variables['ruins_breakfast_check'] = world.day
-    $ get_room("Living Room").set_event('ruins_dinner',True)
     show toriel normal at right with Dissolve(.25)
     show frisk normal at left with Dissolve(.25)
     $ world.add_to_ac(10)
@@ -580,6 +582,7 @@ label ruins_breakfast:
             frisk "Haha, what? ‘Course not!"
             show toriel laughing with Dissolve(.25)
             toriel "Well, whatever you decide to do, I hope you have a good day."
+    $ get_room("Living Room").set_event('ruins_dinner',True)
     $world.move_to_room("Staircase")
     return
 

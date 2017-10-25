@@ -193,7 +193,7 @@ screen main_menu():
 
         textbutton _("Start") action Start()
         # textbutton _("Testing Area") action ui.callsinnewcontext("testing_area")
-        # textbutton _("Day 1") action ui.callsinnewcontext("skip_to_day_1")
+        textbutton _("Day 1") action ui.callsinnewcontext("skip_to_day_1")
         textbutton _("Preferences") action ShowMenu("preferences")
         textbutton _("Credits") action ui.callsinnewcontext("scrolling_credits")
         # textbutton _("Feedback") action Jump("Feedback")

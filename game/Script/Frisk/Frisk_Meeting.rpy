@@ -710,7 +710,6 @@ label frisk_meeting_toriel_after_dinner:
             toriel "Sleep well!"
             #remove option 37 from selection 16
             $ chose_frisk_meeting_option37 = True
-    $ get_room("Living Room").set_event('ruins_dinner',False)
     $ move_to_room('Staircase')
     return
 

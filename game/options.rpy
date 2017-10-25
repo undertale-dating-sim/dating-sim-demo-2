@@ -13,13 +13,13 @@ init -1 python hide:
     config.keymap['rollback'] = []
     config.keymap['rollforward'] = []
     # config.log = 'wilson.txt'
-    config.developer = False
+    config.developer = True
     ## These control the width and height of the screen.
-    config.console = False
+    config.console = True
     config.screen_width = 800
     config.screen_height = 600
 
-    config.allow_skipping = False
+    config.allow_skipping = True
     ## This controls the title of the window, when Ren'Py is
     ## running in a window.
 

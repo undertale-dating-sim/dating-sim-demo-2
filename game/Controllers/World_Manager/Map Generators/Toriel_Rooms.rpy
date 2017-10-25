@@ -84,7 +84,6 @@ init python:
             self.name = "Living Room"
             self.x = 4
             self.y = 0
-            self.events['ruins_dinner'] = Event("ruins_dinner",True)
             self.desc = ["* The living room is always cozy and warm, probably because the fire in the fireplace never seems to dim.  ","* There are old-looking pictures on the walls of people you don't recognize."]
             self.bg = "background toriel_house_livingroom"
 

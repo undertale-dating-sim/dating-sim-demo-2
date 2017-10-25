@@ -38,6 +38,7 @@ define test = Character("Sans", callback=beepy_voice)
 label start:
     
     scene black
+    $ move_to_room("Cave Room")
     jump the_fall
     return
 
@@ -63,23 +64,23 @@ label skip_to_day_1:
 
 
 
-label splashscreen:
+# label splashscreen:
 
-    scene black
-    "Welcome to the UDS Demo!"
-    "Be warned.  While we did test as much as possible, there are still some spots that get kind of sketchy."
-    "May it live up to your expectations."
-    "Also, let us know what you think!"
-    scene black
-    with Pause(1)
+#     scene black
+#     "Welcome to the UDS Demo!"
+#     "Be warned.  While we did test as much as possible, there are still some spots that get kind of sketchy."
+#     "May it live up to your expectations."
+#     "Also, let us know what you think!"
+#     scene black
+#     with Pause(1)
 
-    show text "Team UDS Presents..." with dissolve
-    with Pause(2)
+#     show text "Team UDS Presents..." with dissolve
+#     with Pause(2)
 
-    hide text with dissolve
-    with Pause(1)
+#     hide text with dissolve
+#     with Pause(1)
 
-    return
+#     return
 
 
 label Snail_Hunter_Random_Event:
