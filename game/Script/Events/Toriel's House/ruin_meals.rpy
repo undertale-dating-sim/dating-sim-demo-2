@@ -140,7 +140,7 @@ label ruins_first_breakfast_corridor:
     
     show frisk smallsmile at left with Dissolve(.25)
     frisk "So... what do you want to do now?"
-    $ world.timezone_action_count += 10
+    $ world.add_to_ac(10)
     menu:
         "I’m done with breakfast, so I think I’ll go for a walk.":
             $world.get_monster ('Frisk').update_FP(-1)
@@ -159,7 +159,7 @@ label ruins_first_breakfast_corridor:
             toriel "Enjoy your walk."
             $ move_to_room("Living Room")
         "Let's talk for a little while longer.":
-            $ world.timezone_action_count += 10
+            $ world.add_to_ac(10)
             $world.get_monster ('Frisk').update_FP(3)
             toriel "You two have fun. I am going to get a head start on the dishes."
             hide toriel with Dissolve(.25)
@@ -524,7 +524,7 @@ label ruins_breakfast:
     $ get_room("Living Room").set_event('ruins_dinner',True)
     show toriel normal at right with Dissolve(.25)
     show frisk normal at left with Dissolve(.25)
-    $ world.timezone_action_count += 10
+    $ world.add_to_ac(10)
     "* You share a delicious breakfast with Frisk and Toriel."
     if world.get_current_day() == "Friday" or world.get_current_day() == "Sunday":
         "* Frisk looks exhausted."
@@ -688,5 +688,6 @@ label end_of_demo:
     wilson "Stay Determined. {w=2} ~Wilson"
     call scrolling_credits
     scene background ruins_caveroom
+    show text "To Be Continued..." 
     $ renpy.pause(120,hard=True)
     return

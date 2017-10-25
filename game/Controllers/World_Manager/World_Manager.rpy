@@ -103,6 +103,12 @@ init -10 python:
 
             return self.current_timezone
 
+        def add_to_ac(self,amount=0):
+
+            self.timezone_action_count+= amount
+            if self.timezone_action_count >= 10:
+                self.timezone_action_count = 10
+                
         #this function should be called at the beginning of every day.
         #it will update all of the areas for whatever we need.
         def start_the_day(self):

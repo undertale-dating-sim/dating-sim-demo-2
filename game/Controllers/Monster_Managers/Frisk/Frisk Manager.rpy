@@ -240,13 +240,13 @@ label Frisk_dialogue:
             call frisk_friendship_event_1
         "Chat" if frisk_chataway is False:
             jump Frisk_chat
-            $ world.timezone_action_count += 2
+            $ world.add_to_ac(2)
         "Ask" if frisk_askaway is False:
             jump Frisk_ask
-            $ world.timezone_action_count += 2
+            $ world.add_to_ac(2)
         "Flirt" if frisk_flirtaway is False:
             jump Frisk_flirt
-            $ world.timezone_action_count += 2
+            $ world.add_to_ac(2)
 
         "Give Gift" if len(inventory.items) > 0:
             show frisk smallsmile
@@ -259,7 +259,7 @@ label Frisk_dialogue:
             if result == 'cancel':
                 frisk "No? That’s alright."
             else:
-                $ world.timezone_action_count += 5
+                $ world.add_to_ac(5)
 
 
         "Never mind.":

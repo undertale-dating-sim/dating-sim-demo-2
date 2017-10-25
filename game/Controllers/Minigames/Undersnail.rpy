@@ -30,7 +30,7 @@ label UnderSnail:
         "* Oh no..."
         "* All your snails got away."
     
-    $ world.timezone_action_count += 10
+    $ world.add_to_ac(10)
     $ world.update_world()
     if world.current_timezone != "Night":
         play music "audio/ruins/the_ruins.mp3" fadein 5

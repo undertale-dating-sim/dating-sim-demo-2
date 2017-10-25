@@ -173,7 +173,7 @@ label Shop_Exit:
     hide screen shop_box
     hide screen buy_box
     call show_buttons
-    $ world.timezone_action_count += 10
+    $ world.add_to_ac(10)
     #stop music
     return
     

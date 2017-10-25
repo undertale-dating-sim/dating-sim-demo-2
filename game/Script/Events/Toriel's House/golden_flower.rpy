@@ -19,7 +19,7 @@ label golden_flower_event:
                 "Water it":
                     $ player.variables['toriel_plant_watered_count'] +=1
                     $ player.variables['toriel_plant_watered_day'] = world.day
-                    $ world.timezone_action_count += 10
+                    $ world.add_to_ac(10)
                     "It perks up immediately"
                 "Don't water it":
                     "You must be thirstier, huh?"
@@ -32,7 +32,7 @@ label golden_flower_event:
                 "Water it":
                     $ player.variables['toriel_plant_watered_count'] +=1
                     $ player.variables['toriel_plant_watered_day'] = world.day
-                    $ world.timezone_action_count += 10
+                    $ world.add_to_ac(10)
                     "Daily waterings seem to be doing this flower good."
                 "Don't water it":
                     if (world.day - player.variables['toriel_plant_watered_day'] == 1):
@@ -48,7 +48,7 @@ label golden_flower_event:
                 "water it":
                     $ player.variables['toriel_plant_watered_count'] +=1
                     $ player.variables['toriel_plant_watered_day'] = world.day
-                    $ world.timezone_action_count += 10
+                    $ world.add_to_ac(10)
                     "The flower quite enjoys your care"
                     "You must have a green thumb"
                 "Don't water it":
@@ -90,7 +90,7 @@ label toriel_friendship_event_2(owner=get_toriel()):
             $world.get_monster('Toriel').update_FP(-5)
             toriel "Oh yes, I fully realize. You do not have to of course – just if you have a boring day and nothing to do."
             toriel "Either way, there is no need to worry about it for now. Just approach me if you would like to start."
-    $ world.timezone_action_count += 10
+    $ world.add_to_ac(10)
     $ player.variables['Toriel_Friendship_2_Complete'] = True
     # dateSaveTheTreeOpen = True
     return

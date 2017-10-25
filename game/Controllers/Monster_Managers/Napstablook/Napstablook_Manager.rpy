@@ -209,7 +209,7 @@ label Napstablook_manager_default(owner = False, pause = True):
                 napstablook "huh? hold on to what? oh, and, uh... sorry for hurting you, i guess?"
             
             $owner.flirt_count +=1
-            $ world.timezone_action_count += 5
+            $ world.add_to_ac(5)
         "Chat":
             menu:
                 "\"What's shakin' bacon?\"":
@@ -221,7 +221,7 @@ label Napstablook_manager_default(owner = False, pause = True):
                 "Go back":
                     pass
         "Ask":
-            $ world.timezone_action_count += 5
+            $ world.add_to_ac(5)
             menu:
                 "\"What do you do for fun?\"":
                     napstablook "i like to listen to music, and.... sometimes.... i make my own, too"
@@ -272,7 +272,7 @@ label Napstablook_manager_default(owner = False, pause = True):
             if result == 'cancel':
                 napstablook "oh...... thanks anyway."
             else:
-                $ world.timezone_action_count += 5
+                $ world.add_to_ac(5)
             show napstablook normal with dissolve
             
         "Exit":

@@ -158,7 +158,7 @@ label flowey_manager_default(owner = False,pause = True):
         menu:
             "Chat":
                 call Flowey_Interaction
-                $ world.timezone_action_count += 2
+                $ world.add_to_ac(2)
             
             "Give Gift" if len(inventory.items) > 0:
                 call flowey_gift_menu_open(owner)
@@ -166,7 +166,7 @@ label flowey_manager_default(owner = False,pause = True):
                 if result == 'cancel':
                     call flowey_gift_menu_cancel(owner)
                 else:
-                    $ world.timezone_action_count += 10
+                    $ world.add_to_ac(10)
                 call show_flowey_sprite(owner)
             "Leave":
                 call flowey_goodbye(owner)
