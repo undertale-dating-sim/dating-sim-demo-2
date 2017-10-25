@@ -50,6 +50,18 @@ init python:
                         render.canvas().rect("#000", (x,y, 10, 10))
                     #render.blit(renpy.render(Text("%d"%(r.visited)),width,height,st,at),(x,y))
             
+            render.canvas().rect("#FFF", (197,57,132,92))
+            render.canvas().rect("#000", (198,58,130,90))
+
+            render.canvas().rect("#0F0", (200,70, 10, 10))
+            render.blit(renpy.render(Text("You"),width,height,st,at),(220,60))
+
+            render.canvas().rect("#F00", (200,100, 10, 10))
+            render.blit(renpy.render(Text("Monster"),width,height,st,at),(220,90))
+
+            render.canvas().rect("#ffff00", (200,130, 10, 10))
+            render.blit(renpy.render(Text("Event"),width,height,st,at),(220,120))
+
             # Return the render.
             return render
 
