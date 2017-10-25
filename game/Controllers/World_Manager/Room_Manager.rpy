@@ -92,6 +92,7 @@ label current_room_description:
     python:
         for line in world.current_area.current_room.desc:
             renpy.say(None,line)
+    return
 
 
 label multiple_monster(event):
