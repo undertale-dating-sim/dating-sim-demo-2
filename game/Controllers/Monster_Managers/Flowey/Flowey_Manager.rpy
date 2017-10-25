@@ -45,7 +45,7 @@ init -9 python:
         def handle_special_events(self):
 
             #hangout 1, done when the tutorial is over
-            if "Flowey_Hangout_1_Complete" not in player.variables and world.day > 0:
+            if "Flowey_Hangout_1_Complete" not in player.variables and world.day > 0 and world.current_timezone != "Evening":
                 self.special_event = Event('flowey_hangout1',False,0,self)
                 #player.variables['Flowey_Hangout_1_Complete'] = True
             elif "Flowey_Hangout_2_Complete" not in player.variables and world.day > 0:
@@ -151,8 +151,8 @@ label flowey_manager_default(owner = False,pause = True):
             flowey "Oh look, you made it this far."
             play sound "audio/sfx/use_item.wav"
             "* You feel your phone vibrate a little."
-            $ player.variables['has_napstablook_cell'] = True
-            flowey "I have a script here, but it isn't worth it."
+            $ player.variables['has_flowey_cell'] = True
+            flowey "I have a script I'm supposed to read here, but you aren't worth it."
             call show_flowey_sprite(owner)
 
         menu:
@@ -170,6 +170,7 @@ label flowey_manager_default(owner = False,pause = True):
                 call show_flowey_sprite(owner)
             "Leave":
                 call flowey_goodbye(owner)
+                return
 
     return
 

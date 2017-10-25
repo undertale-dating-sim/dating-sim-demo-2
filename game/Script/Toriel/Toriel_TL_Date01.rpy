@@ -39,7 +39,7 @@ label toriel_tl_date_1_opening_menu:
                     $ world.get_monster('Toriel').update_FP(-3)
                     toriel "I see you are feeling rather... strongly on that topic. But still, I must ask that you stop this kind of behavior. I do not appreciate it."
                     toriel "That was all I wished to ask you. Have a good day."
-                    $ world.set_current_time("Afternoon")
+                    $ world.set_current_time(world.next_timezone())
                     $ get_monster('Toriel').set_special_event('toriel_tl_date1_retry')
         "No, actually, I would really like to go on a date with you.":
             $ get_monster("Toriel").DP += 2
@@ -56,7 +56,7 @@ label toriel_tl_date_1_opening_menu:
                     $ toriel_tl_date01_laughitoff = True
                     show toriel smallsmile with Dissolve(.25)
                     toriel "I'm glad we had this talk."
-                    $ world.set_current_time("Afternoon")
+                    $ world.set_current_time(world.next_timezone())
                     $ get_monster('Toriel').set_special_event('toriel_tl_date1_retry')
                 "Gosh, I don’t know. Why would someone ever want to date such a kind and experienced lady?":
                     $ get_monster("Toriel").DP +=4
@@ -73,7 +73,7 @@ label toriel_tl_date_1_opening_menu:
                             $ world.get_monster('Toriel').update_FP(-2)
                             toriel "I do not appreciate being played with."
                             toriel "Perhaps we should just forget about all of this."
-                            $ world.set_current_time("Afternoon")
+                            $ world.set_current_time(world.next_timezone())
                             $ get_monster('Toriel').set_special_event('toriel_tl_date1_retry')
         "Maybe some people would agree, but I don't think that.":
             $ get_monster("Toriel").update_HP(1)
@@ -88,7 +88,7 @@ label toriel_tl_date_1_opening_menu:
             $ toriel_tl_date01_crazyoldgoat = True
             show toriel angry with Dissolve(.25)
             toriel "Well, in that case, I guess there is nothing to talk about."
-            $ world.set_current_time("Afternoon")
+            $ world.set_current_time(world.next_timezone())
             $ get_monster('Toriel').set_special_event('toriel_tl_date1_retry')
 
     call show_buttons

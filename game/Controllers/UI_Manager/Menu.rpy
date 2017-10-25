@@ -149,9 +149,9 @@ screen stats:
 screen show_information_overlay:
     vbox:
         hbox pos(0.25,0.01):
-            text world.get_current_time()
+            text world.get_current_timezone() outlines [ (1, "000000", 0, 0 ) ]
         hbox pos(0.25,0.03):
-            text "[world.timezone_action_count]/10"
+            text "[world.timezone_action_count]/10" outlines [ (1, "000000", 0, 0 ) ]
         # hbox xpos .25:
         #     if world.current_area.current_room.current_monster and world.current_area.current_room.current_monster != False:
         #         vbox:
@@ -180,30 +180,30 @@ screen navigation_buttons:
     key 'e' action [Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button')]
     key 'E' action [Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button')]
     if "north" in dirs:
-        text '[dirs[north]]' align(0.5,0.1)
+        text '[dirs[north]]' outlines [ (1, "000000", 0, 0 ) ] align(0.5,0.1)
         imagebutton auto "UI/button_north_%s.gif"  align(0.5,0.0) action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.current_area.move_dir,'north')]
         key 'w' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.current_area.move_dir,'north')]
         key 'W' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.current_area.move_dir,'north')]
 
     if "south" in dirs:
-        text '[dirs[south]]' align(0.5,.9)
+        text '[dirs[south]]' outlines [ (1, "000000", 0, 0 ) ] align(0.5,.9)
         imagebutton auto "UI/button_south_%s.gif"  align(0.5,1.0) action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.current_area.move_dir,'south')]
         key 's' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.current_area.move_dir,'south')]
         key 'S' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.current_area.move_dir,'south')]
 
     if "east" in dirs:
-        text '[dirs[east]]' align(1.0,.6)
+        text '[dirs[east]]' outlines [ (1, "000000", 0, 0 ) ] align(1.0,.6)
         imagebutton auto "UI/button_east_%s.gif"  align(1.0,0.5)  action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.current_area.move_dir,'east')]
         key 'd' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.current_area.move_dir,'east')]
         key 'D' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.current_area.move_dir,'east')]
 
     if "west" in dirs:
-        text '[dirs[west]]' align(0.0,.6)
+        text '[dirs[west]]' outlines [ (1, "000000", 0, 0 ) ] align(0.0,.6)
         imagebutton auto "UI/button_west_%s.gif"  align(0.00,0.5) action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.current_area.move_dir,'west')]
         key 'a' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.current_area.move_dir,'west')]
         key 'A' action[Play ("sound", "audio/sfx/click.wav"),Hide("navigation_buttons"),Show('show_nav_button'),Function(world.current_area.move_dir,'west')]
 
-    text '[world.current_area.current_room.name]' pos(0.015,0.09)
+    text '[world.current_area.current_room.name]' outlines [ (1, "000000", 0, 0 ) ] pos(0.015,0.09)
     vbox xalign 0.5 ypos 0.12:
         vbox:
             add Minimap():

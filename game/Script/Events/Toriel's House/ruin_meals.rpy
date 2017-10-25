@@ -660,6 +660,10 @@ label ruins_basement_door_first_visit: #needs sound effect
             frisk "But, if I don’t... Goodbye, and good luck out there."
             hide frisk
     
+    "Frisk walks back up the stairs."
+    "You place your hands on the large stone doors."
+    "They open, and you see the rest of the adventure ahead..."
+    scene black with Dissolve(4)
     #wait a second before having the screen fade to black, play the sound of a heavy door opening
     #end of demo
     call end_of_demo
@@ -671,17 +675,17 @@ label end_of_demo:
     
     play music "audio/main_menu.mp3" fadein 5.0
     
-    "Hey."
-    "I wanted to sneak a little thing in here to tell you how proud I am of all of the rest of the team."
-    "Even though not everybody could get to the end, we all put in sweat, tears, and blood to get this far."
-    "I want to say Thank You to Team UDS for making this last year an experience for me."
-    "I also wanted to say Thank You to all of you who have been behind us for the last year."
-    "Even when the project looked like it was going to explode, we never stopped getting nice emails and messages."
-    "This whole project was an experiment in patience.  Sometimes that experiment failed. Sometimes it was great."
-    "All of the time, it was worth it."
-    "So once again, from Team UDS to all of you, Thank You so much for playing our silly game."
-    "I will leave you with the amazing words of Toby..."
-    "Stay Determined. {w=2} ~Wilson"
+    wilson "Hey."
+    wilson "I wanted to sneak a little thing in here to tell you how proud I am of all of the rest of the team."
+    wilson "Even though not everybody could get to the end, we all put in sweat, tears, and blood to get this far."
+    wilson "I want to say Thank You to Team UDS for making this last year an experience for me."
+    wilson "I also wanted to say Thank You to all of you who have been behind us for the last year."
+    wilson "Even when the project looked like it was going to explode, we never stopped getting nice emails and messages."
+    wilson "This whole project was an experiment in patience.  Sometimes that experiment failed. Sometimes it was great."
+    wilson "All of the time, it was worth it."
+    wilson "So once again, from Team UDS to all of you, Thank You so much for playing our silly game."
+    wilson "I will leave you with the amazing words of Toby..."
+    wilson "Stay Determined. {w=2} ~Wilson"
     call scrolling_credits
     scene background ruins_caveroom
     $ renpy.pause(120,hard=True)

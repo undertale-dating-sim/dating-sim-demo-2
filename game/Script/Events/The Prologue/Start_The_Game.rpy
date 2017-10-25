@@ -15,8 +15,12 @@ label prologue:
     "After a long battle, the humans were victorious."
     "They sealed the monsters underground with a magic spell."
     "Many years later...."
-    "MT. Ebott"
-    "Legends say that those who climb the mountain never return."
+    "A human fell down to the monsters."
+    "Their story, however, fell short."
+    "Not so many years after that..."
+    "Another human has fallen..."
+    "Maybe yours will go a little better..."
+    return
     
 
 
@@ -26,6 +30,7 @@ label the_fall:
     with fade
     stop music
     $ renpy.music.set_volume(.2)
+    call prologue
     #play wind sfx
     #play music "audio/sfx/Falling_down_wind.wav"
 

@@ -33,13 +33,13 @@ label give_Gift_Frisk_Broken_Mirror(count,owner):
 
 label give_Gift_Frisk_Spider_Donut(count,owner):
     if count == 1:
-        $ owner.FP += 3
+        $ owner.update_FP(3)
         show frisk bigsmile
         frisk "For me? Thanks! I love these donuts!"
         frisk "Whenever I have extra coins, I’ll buy a half dozen of these for Mom and me to share."
         frisk "I usually end up eating most of them myself, though..."
     elif count == 2:
-        $ owner.FP += 1
+        $ owner.update_FP(1)
         show frisk smallsmile
         frisk "Another donut? Don’t mind if I do!"
     else:
@@ -49,17 +49,17 @@ label give_Gift_Frisk_Spider_Donut(count,owner):
 
 label give_Gift_Frisk_Butts_Pie(count,owner):
     if count == 1:
-        $ owner.FP += 4
+        $ owner.update_FP(4)
         show frisk bigsmile
         frisk "For me? Thanks!"
         frisk "I love this kind of pie. It reminds me of Mom."
         frisk "She made it for me when I first fell down here."
     elif count == 2:
-        $ owner.FP += 2
+        $ owner.update_FP(2)
         show frisk smallsmile
         frisk "More pie? Thanks!"
     elif count == 3:
-        $ owner.FP += 1
+        $ owner.update_FP(1)
         show frisk normal
         frisk "Thanks, but where do you keep getting all of this pie?"
     else:
@@ -68,7 +68,7 @@ label give_Gift_Frisk_Butts_Pie(count,owner):
 
 label give_Gift_Frisk_Snail_Pie(count,owner):
     if count == 1:
-        $ owner.FP += 2
+        $ owner.update_FP(2)
         show frisk normal
         frisk "Did Mom give you that?"
         show frisk smallsmile
@@ -86,7 +86,7 @@ label give_Gift_Frisk_Monster_Candy(count,owner):
     if count == 1:
         show frisk smallsmile
         frisk "Monster Candy? Thanks! You only took one though, right?"
-        $ owner.FP += 2
+        $ owner.update_FP(2)
 
     else:
         #show frisk giggle
@@ -98,10 +98,10 @@ label give_Gift_Frisk_Monster_Candy(count,owner):
 label give_Gift_Frisk_Spider_Cider(count,owner):
     if count == 1:
         show frisk smallsmile
-        $ owner.FP += 2
+        $ owner.update_FP(2)
         frisk "Thanks! Spider Cider isn't my favorite, but at least it goes to a good cause!"
     elif count == 2:
-        $ owner.FP += 1
+        $ owner.update_FP(1)
         show frisk normal
         frisk "You must've donated a lot to the Spider Bake Sale."
     else:
@@ -111,7 +111,7 @@ label give_Gift_Frisk_Spider_Cider(count,owner):
 
 label give_Gift_Frisk_White_Chocolate(count,owner):
     if count == 1:
-        $ owner.FP += 3
+        $ owner.update_FP(3)
         show frisk soulless
         frisk "...Chocolate."
     else:
@@ -124,7 +124,7 @@ label give_Gift_Frisk_White_Chocolate(count,owner):
 
 label give_Gift_Frisk_Milk_Chocolate(count,owner):
     if count == 1:
-        $ owner.FP += 3
+        $ owner.update_FP(3)
         show frisk soulless
         frisk "...Chocolate."
     else:
@@ -135,14 +135,14 @@ label give_Gift_Frisk_Milk_Chocolate(count,owner):
     return True
 
 label give_Gift_Frisk_Bandage(count,owner):
-    $ owner.FP += 3
+    $ owner.update_FP(3)
     show frisk normal
     frisk "W-where did you find that?  I lost it forever ago..."
     frisk "Thank you."
     return True
 
 label give_Gift_Frisk_Toy_Knife(count,owner):
-    $ owner.FP -= 3
+    $ owner.update_FP(-3)
     show frisk soulless
     frisk "..."
     show frisk sad
@@ -163,7 +163,7 @@ label Frisk_Consumable_Warning:
 
 label Frisk_Consumable_Reject(owner):
     show frisk annoyed
-    $ owner.FP -= 3
+    $ owner.update_FP(-3)
     frisk "I'm full, seriously"
     return
 
@@ -174,7 +174,7 @@ label Frisk_Equip_Warning:
     return
 
 label Frisk_Equip_Reject(owner):
-    $ owner.FP -= 3
+    $ owner.update_FP(-3)
     show frisk disappointed
     frisk "Uh... I don't think I can take this."
     show frisk annoyed

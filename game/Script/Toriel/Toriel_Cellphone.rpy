@@ -33,7 +33,7 @@ label call_Toriel_Ruins_Entrance(owner,call_count):
             "It's nice.":
                 toriel "Hm. I do not think it is anything special, but if the both of you seem to agree then perhaps I am wrong."
             "It's dirty.":
-                $ owner.FP += 1
+                $ owner.update_FP(1)
                 toriel "That is what I would say. Still, I cannot bring myself to get rid of the leaves if Frisk likes them so much. I hope you understand."
     return
     

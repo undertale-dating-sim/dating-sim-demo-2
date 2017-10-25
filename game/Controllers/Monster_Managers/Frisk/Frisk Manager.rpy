@@ -259,7 +259,7 @@ label Frisk_dialogue:
             if result == 'cancel':
                 frisk "No? That’s alright."
             else:
-                $ world.timezone_action_count += 10
+                $ world.timezone_action_count += 5
 
 
         "Never mind.":
@@ -340,7 +340,7 @@ label Frisk_chat:
                 
                 menu:
                     "You paint? Me too!":
-                        $ owner.FP += 3
+                        $ owner.update_FP(3)
                         
                         if frisk_hangoutcompleted:
                             show frisk giggly with Dissolve(.25)
@@ -349,7 +349,7 @@ label Frisk_chat:
                             
                             menu:
                                 "I was just wondering if you had any other hobbies.":
-                                    $ owner.FP += 3
+                                    $ owner.update_FP(3)
                                     show frisk smallsmile with Dissolve(.25)
                                     
                                     frisk "Well, not really. Maybe I should get some."
@@ -377,7 +377,7 @@ label Frisk_chat:
                         jump Frisk_ask
                         
                     "Painting? That’s boring.":
-                        $ owner.FP -= 3
+                        $ owner.update_FP(-3)
                         
                         show frisk disappointed with Dissolve(.25)
                         
@@ -417,7 +417,7 @@ label Frisk_chat:
                 
                 menu:
                     "Did I upset you? I’m sorry. I won’t ask again.":
-                        $ owner.FP += 3
+                        $ owner.update_FP(3)
                         
                         show frisk somehappy with Dissolve(.25)
                         
@@ -438,7 +438,7 @@ label Frisk_chat:
                         jump Frisk_ask
                         
                     "I’m sure you remember; you’ve gotta think harder.":
-                        $ owner.FP -= 3
+                        $ owner.update_FP(3)
                         
                         show frisk annoyed with Dissolve(.25)
                         

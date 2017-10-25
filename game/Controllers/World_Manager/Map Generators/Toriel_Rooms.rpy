@@ -7,7 +7,7 @@ init:
     image background toriel_house_staircase = im.Scale("backgrounds/TorielsHouse/background-ruins-staircase.png",800,600)
     image background toriel_house_toriel_room = im.Scale("backgrounds/TorielsHouse/background-ruins-torielroom.png",800,600)
     image background toriel_house_your_room = im.Scale("backgrounds/TorielsHouse/background-ruins-yourroom.png",800,600)
-    image background toriel_house_corridor = im.Scale("backgrounds/TorielsHouse/background-ruins-corridor.png",800,600)
+    image background toriel_house_door = im.Scale("backgrounds/TorielsHouse/background-ruins-gate.png",800,600)
     image background ruins_transition_screen = im.Scale ("backgrounds/TorielsHouse/transition_screen_the_ruins.png",800,600)
 
 init python:
@@ -51,6 +51,7 @@ init python:
             self.lockwest = True
             self.desc = ["* A large, ornate door stands before you.  ","* It feels cold and impersonal."]
             self.events['ruins_basement_door_first_visit'] = Event("ruins_basement_door_first_visit",False)
+            self.bg = "background toriel_house_door"
             
 
 

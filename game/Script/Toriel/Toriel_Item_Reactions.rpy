@@ -8,7 +8,7 @@ label give_Gift_Toriel_Unknown:
 
 label give_Gift_Toriel_Rejection(owner):
     show toriel angry
-    $ owner.FP -= 10
+    $ owner.update_FP(-10)
     toriel "I would like to ask you to stop."
     return
 
@@ -155,7 +155,6 @@ label give_Gift_Toriel_White_Chocolate(count,owner):
         show toriel normal
         toriel "But I am glad that you wanted to give it to me. That was very sweet of you."
     elif count == 2:
-        $ owner.FP += 0
         show toriel awkward
         toriel "Ah... My dear... I was telling the truth when I said I could not eat this. I hope you understand..."
     elif count == 3:

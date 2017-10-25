@@ -86,6 +86,8 @@ init -10 python:
                 if timezone in self.schedule[day]:
                     for x,t in self.schedule[day][timezone].iteritems():
                         return t
+
+            self.default_event.completed = False
             return self.default_event
 
 
@@ -139,14 +141,17 @@ init -10 python:
 
         def update_FP(self,amount,side="left"):
             self.FP += amount
-            renpy.call("word_scroll",amount,side)
+            renpy.hide_screen("word_scroll_%s" % side)
+            renpy.show_screen("word_scroll_%s" % side,amount)
         def update_DP(self,amount,side="left"):
             self.DP += amount
-            renpy.call("word_scroll",amount,side)
+            renpy.hide_screen("word_scroll_%s" % side)
+            renpy.show_screen("word_scroll_%s" % side,amount)
         def update_HP(self,amount,side="left"):
             self.HP += amount
             #renpy.play('audio/attack_hit.wav')
-            renpy.call("word_scroll",amount,side)
+            renpy.hide_screen("word_scroll_%s" % side)
+            renpy.show_screen("word_scroll_%s" % side,amount)
 
 
 
@@ -187,7 +192,7 @@ screen gift_item_menu(owner):
                 vbox:
                     image im.Scale(menu_selected_item.sprite,200,150)
                     textbutton "Give":
-                        action [If(menu_selected_item,ui.callsinnewcontext("give_item",owner,menu_selected_item)),SetVariable("menu_selected_item",False),Hide("gift_item_menu"),Return()]
+                        action [If(menu_selected_item,ui.callsinnewcontext("give_item",owner,menu_selected_item)),SetVariable("menu_selected_item",False),Hide("gift_item_menu"),Return("True")]
                         background "#000000"
                 vbox:
                     box_wrap True

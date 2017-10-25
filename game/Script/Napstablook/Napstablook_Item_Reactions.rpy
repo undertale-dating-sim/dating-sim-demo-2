@@ -40,7 +40,7 @@ label give_Gift_Napstablook_Red_Rose(count,owner):
 label give_Gift_Napstablook_Yellow_Rose(count,owner):
     show napstablook normal with dissolve
     if count == 1:
-        $ owner.FP += 10
+        $ owner.update_FP(10)
         napstablook "oh, thats a pretty rose..."
         napstablook "wait, you're giving it to me?"
         napstablook "thanks"
@@ -83,11 +83,11 @@ label give_Gift_Napstablook_Butts_Pie(count,owner):
 label give_Gift_Napstablook_Snail_Pie(count,owner):
     show napstablook normal with dissolve
     if count == 1:
-        $ owner.FP += 10
+        $ owner.update_FP(10)
         napstablook "is this made of snails?"
         napstablook "wow, thank... i love snails"
     elif count == 2:
-        $ owner.FP += 10
+        $ owner.update_FP(10)
         napstablook "another one?"
         napstablook "oh... thanks"
         napstablook "you don't have to waste all this on me, though"
@@ -99,7 +99,7 @@ label give_Gift_Napstablook_Snail_Pie(count,owner):
 label give_Gift_Napstablook_Monster_Candy(count,owner):
     show napstablook normal with dissolve
     if count == 1:
-        $ owner.FP += 10
+        $ owner.update_FP(10)
         show napstablook normal
         napstablook "oh...."
         napstablook "uh...."
@@ -129,11 +129,11 @@ label give_Gift_Napstablook_Spider_Cider(count,owner):
 label give_Gift_Napstablook_White_Chocolate(count,owner):
     show napstablook normal with dissolve
     if count == 1:
-        $ owner.FP += 10
+        $ owner.update_FP(10)
         napstablook "hey, this is my favourite kind of chocolate..."
         napstablook "thanks"
     elif count == 2:
-        $ owner.FP += 5
+        $ owner.update_FP(5)
         napstablook "oh, you have more?"
         napstablook "thanks, i really like it"
     else:
@@ -143,7 +143,7 @@ label give_Gift_Napstablook_White_Chocolate(count,owner):
 label give_Gift_Napstablook_Milk_Chocolate(count,owner):
     show napstablook normal with dissolve
     if count == 1:
-        $ owner.FP += 10
+        $ owner.update_FP(10)
         napstablook "oh, thanks"
         napstablook "milk chocolate is pretty good..."
         napstablook "white chocolate is better though"
@@ -169,7 +169,7 @@ label give_Gift_Napstablook_Toy_Knife(count,owner):
 
 label give_Gift_Napstablook_Rejection(owner):
     show napstablook sad with dissolve
-    $ owner.FP -= 10
+    $ owner.update_FP(-10)
     napstablook "sorry, but..."
     napstablook "why do you keep on giving me things?"
     napstablook "that's kind of weird"

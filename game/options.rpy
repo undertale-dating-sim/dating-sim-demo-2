@@ -13,21 +13,21 @@ init -1 python hide:
     config.keymap['rollback'] = []
     config.keymap['rollforward'] = []
     # config.log = 'wilson.txt'
-    config.developer = True
+    config.developer = False
     ## These control the width and height of the screen.
-    #config.console = False
+    config.console = False
     config.screen_width = 800
     config.screen_height = 600
 
-    #config.allow_skipping = False
+    config.allow_skipping = False
     ## This controls the title of the window, when Ren'Py is
     ## running in a window.
 
-    config.window_title = u"UDS Development"
+    config.window_title = u"InLove : An Undertale Dating Demo"
 
     # These control the name and version of the game, that are reported
     # with tracebacks and other debugging logs.
-    config.name = "inLove : Undertale Dating Simulator"
+    config.name = "inLove : Undertale Dating Demo"
     config.version = "1.0"
 
     config.layers = [ 'master', 'transient', 'screens', 'overlay','ui']

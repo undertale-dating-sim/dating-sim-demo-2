@@ -59,17 +59,26 @@ init -10 python:
         def get_event(self):
 
             self.current_monster = False
+            has_event = False
+            has_monster = False
             for event_name,event in self.events.iteritems():
                 if event.completed == False:
-                    return event
+                    has_event = event
             for m in self.monsters:
 
                 if m.get_current_event():
-                    if m.get_current_event().completed == False:
+                    if m.get_current_event().completed == False or m.get_current_event() == m.default_event:
                         self.current_monster = m
-                        return m.get_current_event()
+                        has_monster = m.get_current_event()
 
-            return False
+            if has_event and has_monster:
+                return Event("multiple_monster",True,arg=has_event)
+            elif has_event:
+                return has_event
+            elif has_monster:
+                return has_monster
+            else:
+                return False
 
         def add_monster(self,Monster):
             Monster.current_room = self
@@ -84,62 +93,27 @@ label current_room_description:
         for line in world.current_area.current_room.desc:
             renpy.say(None,line)
 
-# screen multiple_monster_click_screen:
-#     $ count = 1
 
-#     $ width = (1.0/(len(world.current_area.current_room.monsters)))
-#     for monster in world.current_area.current_room.monsters:
-#         $ x = count * width
-#         mousearea:
-#             area ((count-1)* width, .4, width, .6)
-#             hovered [SetVariable('talking',monster.name),Notify(monster.name)]
-
-#         $ count+= 1
-
-        #unhovered SetVariable('talking',False)
-    # mousearea:
-    #     area (.33, 0, .33, 1.0)
-    #     hovered [SetVariable('talking',world.current_area.current_room.monsters[1].name),Notify(world.current_area.current_room.monsters[1].name)]
-    #     #unhovered SetVariable('talking',False)
-
-    # mousearea:
-    #     area (.66, 0, .33, 1.0)
-    #     hovered [SetVariable('talking',world.current_area.current_room.monsters[2].name),Notify(world.current_area.current_room.monsters[2].name)]
-    #     #unhovered SetVariable('talking',False)
-
-
-    #     #hovered Show("buttons", transition=dissolve)
-    #     #unhovered Hide("buttons", transition=dissolve)
-
-# label multiple_monster:
+label multiple_monster(event):
     
-#     #show the background
-#     call show_buttons from _call_show_buttons_3
-#     show screen multiple_monster_click_screen
-#     $ talking = False
-#     python:
-#         renpy.scene()
-#         if world.current_area.current_room.bg:
-#             renpy.show(world.current_area.current_room.bg)
-#     #for each monster, we need to figure out where to put them
-#     while True:
-#         python:
-#             count = 1
-            
-#             for monster in world.current_area.current_room.monsters:
-#                 width = (1.0/(len(world.current_area.current_room.monsters)+1))
-#                 x = count * width
-                
-#                 if monster.name != talking:
-#                     renpy.show(monster.default_sprite,[Position(xpos = x, xanchor = 'center')])
+    call show_buttons
+    menu:
+        "Check the room":
+            $ event.call_event()
+        "Talk to Frisk " if get_frisk() in world.current_area.current_room.monsters:
+            $ get_frisk().get_current_event().call_event()
+            hide frisk
+        "Talk to Napstablook " if get_napstablook() in world.current_area.current_room.monsters:
+            $ get_napstablook().get_current_event().call_event()
+            hide napstablook
+        "Talk to Toriel " if get_toriel() in world.current_area.current_room.monsters:
+            $ get_toriel().get_current_event().call_event()
+            hide toriel
+        "Talk to Flowey " if get_flowey() in world.current_area.current_room.monsters:
+            $ get_flowey().get_current_event().call_event()
+            hide flowey
+
+    $ world.current_area.current_room.reset_permanent_events()
+    return
 
 
-#                 count += 1  
-#         if talking:
-#             pause
-#         else:
-#             pause 1.0
-#         if talking:
-#             call expression world.get_monster(talking).default_event.label pass(world.get_monster(talking),False) from _call_expression
- 
-#     return

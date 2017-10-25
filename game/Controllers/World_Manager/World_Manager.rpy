@@ -6,6 +6,15 @@ init -10 python:
 
     #CONVENIENCE FUNCTIONS
     # returns the current room.
+    def test_stuff():
+        get_toriel().move_to_room("Snail Hunting Room")
+        get_flowey().move_to_room("Snail Hunting Room")
+        get_frisk().move_to_room("Snail Hunting Room")
+        inventory.add(Spider_Donut())
+        inventory.add(Spider_Donut())
+        inventory.add(Spider_Donut())
+        inventory.add(Spider_Donut())
+        move_to_room("Snail Hunting Room")
     def current_room():
         return world.current_area.current_room
 
@@ -99,7 +108,7 @@ init -10 python:
         def start_the_day(self):
             #seed the random monsters
             # day 0 is the tutorial
-            renpy.say(None,"Updating the Day : Random monsters and events. Resetting Gift counts")
+            # renpy.say(None,"Updating the Day : Random monsters and events. Resetting Gift counts")
             if self.day > 0:
                 #renpy.say(None,"Current action count is %s/10" % self.timezone_action_count)
                 self.seed_random_monsters()
@@ -138,6 +147,7 @@ init -10 python:
 
             if self.timezone_action_count >= 10 and self.current_timezone != "Night":
                 self.next_timezone()
+
 
             timezone = self.get_current_timezone()
             day_of_week = self.get_current_day()
@@ -190,7 +200,7 @@ init -10 python:
                 random.shuffle(room_list)
                 for m in a.random_monsters:
                     if len(room_list) > 0:
-                        renpy.say(None, "Putting %s in %s" % (m.name,room_list[0]))
+                        # renpy.say(None, "Putting %s in %s" % (m.name,room_list[0]))
                         m.move_to_room(room_list[0])
                         room_list.remove(room_list[0])
 
@@ -210,10 +220,10 @@ init -10 python:
                 re = a.get_random_event()
                 
                 if re and len(room_list) > 0:
-                    renpy.say(None,"Got %s" % re.label)
+                    # renpy.say(None,"Got %s" % re.label)
                     rr = renpy.random.choice(room_list)
                     a.rooms[rr].set_event(re.label,False)
-                    renpy.say(None,"Added it to %s" % a.rooms[rr].name)
+                    # renpy.say(None,"Added it to %s" % a.rooms[rr].name)
                     # a.rooms[rr].events[re.label] = re
                    
 

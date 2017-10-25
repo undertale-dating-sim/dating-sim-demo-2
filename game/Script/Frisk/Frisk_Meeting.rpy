@@ -390,7 +390,10 @@ label looked_around_before_toriel:
 
 label frisk_meeting_eat:
     call hide_buttons
-    $ world.set_current_time("Evening",False)
+    if world.current_timezone == "Afternoon":
+        $ world.set_current_time("Evening")
+    else:
+        $ world.set_current_time("Afternoon")
     hide frisk with moveoutleft
     hide toriel with moveoutleft
     "* You follow Toriel and Frisk to the Living Room."

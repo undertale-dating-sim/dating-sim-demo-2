@@ -18,27 +18,6 @@ init -9 python:
             self.cell_phone_pic = "UI/blooky.png"
             self.seed_default_schedule()
 
-
-        def give_item(self,item = False):
-            # give_Gift_name_itemclassname
-            # builds the label and calls it with current count + 1
-            label_name = "give_Gift_%s_%s" % (self.name,item.get_class_name())
-
-            if renpy.has_label(label_name):
-
-                if self.given_today_count >= 5:
-                    renpy.call_in_new_context("give_Gift_%s_Rejection" % self.name,self)
-                else:
-                    response = renpy.call_in_new_context(label_name,self.get_total_specific_item(item) + 1,self)
-                    self.given_items[item.get_class_name()] = self.get_total_specific_item(item) + 1
-                    if response:
-                        self.given_today_count += 1
-                        renpy.call_in_new_context("%s_Gift_Count_Reaction" % self.name,self)
-
-            else:
-                renpy.call_in_new_context("give_Gift_%s_Unknown" % self.name)
-            return
-
         def handle_relationship_requirements(self):
 
             self.d_1 = {}
@@ -293,7 +272,7 @@ label Napstablook_manager_default(owner = False, pause = True):
             if result == 'cancel':
                 napstablook "oh...... thanks anyway."
             else:
-                $ world.timezone_action_count += 10
+                $ world.timezone_action_count += 5
             show napstablook normal with dissolve
             
         "Exit":

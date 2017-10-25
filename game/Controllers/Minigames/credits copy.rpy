@@ -3,7 +3,7 @@
 
 init python:
     credit_text = ["Voice Actor\n","Writers\n","Artists\n"]
-    coders_text = ["AnnAisu\n","Chloekat1things (Cece)\n","lzuehsow\n","PayneGray\n"]
+    coders_text = ["AnnAisu\n","Chloekat1things (Cece)\n","lzuehsow\n","PayneGray\n","SesuRescue\n"]
     leadership_text = ["Al\n","Blue\n","Becca\n","Louie\n","Nekomayata\n","Sky\n","Wilson\n"]
     audio_text = ["Mitsuko\n","Anna Mangette\n","X2H\n"]
     writers_text = ["CelestialSushi\n","Felix\n","Jeffrey\n","Kate\n","Nevran\n","Quinn\n","Riza\n","Ronnie\n","Rose\n","Sage\n","Sam\n","Vunde\n"]

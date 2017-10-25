@@ -34,22 +34,16 @@ define test = Character("Sans", callback=beepy_voice)
 
 ###################
 
-label known_bugs:
-    "Known bugs so far:"
-    "Relationship change numbers are still wonky.  Trying to figure a better way to communicate them."
-    return
 
 label start:
     
     scene black
-    call known_bugs
     jump the_fall
     return
 
 
 label skip_to_day_1:
     scene black
-    call known_bugs
     $ player.variables['tf_scream_count'] = 1
     $ player.variables['satchel_found'] = True
     $ player.variables['satchel_refused'] = False
@@ -68,6 +62,24 @@ label skip_to_day_1:
     return
 
 
+
+label splashscreen:
+
+    scene black
+    "Welcome to the UDS Demo!"
+    "Be warned.  While we did test as much as possible, there are still some spots that get kind of sketchy."
+    "May it live up to your expectations."
+    "Also, let us know what you think!"
+    scene black
+    with Pause(1)
+
+    show text "Team UDS Presents..." with dissolve
+    with Pause(2)
+
+    hide text with dissolve
+    with Pause(1)
+
+    return
 
 
 label Snail_Hunter_Random_Event:

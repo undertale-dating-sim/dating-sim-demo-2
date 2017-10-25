@@ -6,7 +6,7 @@ label give_Gift_Flowey_Unknown:
 
 label give_Gift_Flowey_Rejection(owner):
     show flowey angry
-    $ owner.FP -= 10
+    $ owner.update_FP(-10)
     flowey "I would like to ask you to stop."
     return False
 

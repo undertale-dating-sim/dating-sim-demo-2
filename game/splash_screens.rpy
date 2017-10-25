@@ -4,7 +4,7 @@
 #################
 
 
-label splashscreen:
+# label splashscreen:
 
 
-    return
+#     return

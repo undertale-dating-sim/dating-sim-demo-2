@@ -8,7 +8,10 @@ init:
 
 label toriel_friendship_hangout_1(owner=get_toriel()):
     $ player.variables['Toriel_Friendship_Hangout1'] = True
-    $ world.set_current_time("Afternoon")
+    if world.current_timezone == "Afternoon":
+        $ world.set_current_time("Evening")
+    else:
+        $ world.set_current_time("Afternoon")
     show toriel smallsmile with Dissolve(.25)
     toriel "Hello, my friend. I am preparing a new pie recipe for dinner. Would you like to help?"
     menu:

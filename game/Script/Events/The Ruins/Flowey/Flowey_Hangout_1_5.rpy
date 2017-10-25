@@ -28,7 +28,10 @@ label Flowey_Hangout_1_5(owner = get_flowey()):
             call Flowey_Hangout_Path2
 
     $ player.variables['Flowey_Hangout_2_Complete'] = True
-    $ world.set_current_time("Afternoon")
+    if world.current_timezone == "Afternoon":
+        $ world.set_current_time("Evening")
+    else:
+        $ world.set_current_time("Afternoon")
     return
     
     
