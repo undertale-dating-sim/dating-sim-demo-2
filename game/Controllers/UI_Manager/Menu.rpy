@@ -147,11 +147,13 @@ screen stats:
 
 
 screen show_information_overlay:
-    vbox:
-        hbox pos(0.1,0.01):
-            text "%s" % world.get_current_timezone() outlines [ (1, "000000", 0, 0 ) ]
-        hbox pos(0.1,0.03):
-            text "AC : [world.timezone_action_count]/10" outlines [ (1, "000000", 0, 0 ) ]
+    
+    if world.day > 0:
+        vbox:
+            hbox pos(0.1,0.01):
+                text "%s" % world.get_current_timezone() outlines [ (1, "000000", 0, 0 ) ]
+            hbox pos(0.1,0.03):
+                text "AC : [world.timezone_action_count]/10" outlines [ (1, "000000", 0, 0 ) ]
         # hbox xpos .25:
         #     if world.current_area.current_room.current_monster and world.current_area.current_room.current_monster != False:
         #         vbox:
