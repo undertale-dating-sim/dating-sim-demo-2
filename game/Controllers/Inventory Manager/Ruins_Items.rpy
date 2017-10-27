@@ -157,7 +157,7 @@ init -4 python:
         
         def use(self):
             player.heal(1)
-            renpy.say(None,"* You regain 1 HP! Candy isn't very good for you, you know.")
+            renpy.say(None,"* You regain 1 Health! Candy isn't very good for you, you know.")
             inventory.drop(self)
             return
 
