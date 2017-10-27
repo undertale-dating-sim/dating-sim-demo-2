@@ -242,6 +242,7 @@ label ruins_first_breakfast_corridor:
 label ruins_dinner: #done
     if world.day != 0 and (world.get_current_timezone() != 'Afternoon' or ('had_dinner_day' in player.variables and player.variables['had_dinner_day'] == world.day)):
         call show_buttons
+        "* Cozy."
         pause
         return
 
