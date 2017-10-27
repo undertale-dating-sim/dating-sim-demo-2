@@ -8,7 +8,7 @@ label Flowey_Hangout_1_5(owner = get_flowey()):
     flowey "..."
     show flowey horror with Dissolve(.25)
     flowey "Turn around and walk away if you know what's good for you."
-    
+    $ player.variables['Flowey_Hangout_2_Complete'] = True
     menu:
         "No need to tell me twice.":
             show flowey smug with Dissolve(.25)
@@ -27,11 +27,8 @@ label Flowey_Hangout_1_5(owner = get_flowey()):
             $world.get_monster('Flowey').update_HP(3)
             call Flowey_Hangout_Path2
 
-    $ player.variables['Flowey_Hangout_2_Complete'] = True
-    if world.current_timezone == "Afternoon":
-        $ world.set_current_time("Evening")
-    else:
-        $ world.set_current_time("Afternoon")
+    
+    $ world.add_to_ac(10)
     return
     
     

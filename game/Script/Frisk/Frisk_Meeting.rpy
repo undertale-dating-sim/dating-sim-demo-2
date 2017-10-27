@@ -219,6 +219,10 @@ label frisk_meeting_snail_catching:
     frisk "Check this out!"
     "* Frisk moves some of the vines out of the way behind the bowl of candy."
     "* There is a door there!"
+    
+    play sound "audio/sfx/use_item.wav"
+    "You discover the Snail Hunting Room!"
+    $ world.get_room("Snail Hunting Room").mappable = True
 
     frisk "Stuff like this is all over the place."
     frisk "There might even be some stuff I haven't found."

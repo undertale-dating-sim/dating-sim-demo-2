@@ -110,7 +110,7 @@ label call_Frisk_Spider_Bakery(monster,call_count):
         
     return
 
-label call_Frisk_Snail_Hunter(monster,call_count):
+label call_Frisk_Snail_Hunting_Room(monster,call_count):
 
     if call_count == 1:
         frisk  "Did you need something? "

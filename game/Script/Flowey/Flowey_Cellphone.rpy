@@ -201,7 +201,7 @@ label call_Flowey_Spider_Bakery(owner,call_count):
         "*No one's answering.*"
     return
     
-label call_Flowey_Snail_Hunter(owner,call_count):
+label call_Flowey_Snail_Hunting_Room(owner,call_count):
     call Flowey_Cell_Count_Check(owner)
     if _return:
         return 

@@ -12,8 +12,10 @@ label flowey_hangout1(owner = get_flowey()):
         menu:
             "...I'd just like to chat.":
                 $world.get_monster('Flowey').update_FP(2)
+                $ player.variables['Flowey_Hangout_1_Complete'] = True
             "I'd like to talk to you, flower.": 
                 $world.get_monster('Flowey').update_HP(2)
+                $ player.variables['Flowey_Hangout_1_Complete'] = True
             "Exit":
                 $ owner.special_event = Event('flowey_hangout1',False,0,owner)
                 $ move_to_room(player.current_room)
@@ -37,7 +39,7 @@ label flowey_hangout1(owner = get_flowey()):
 
             "Alright, bye.":
                 $ player.variables['Flowey_Hangout_1_Complete'] = True
-                $ world.set_current_time(world.next_timezone())
+                $ world.add_to_ac(10)
                 $ move_to_room(player.current_room)
                 return
 
@@ -103,7 +105,7 @@ label flowey_hangout1(owner = get_flowey()):
                 flowey "Or go bother someone else."
                 #exit
         $ player.variables['Flowey_Hangout_1_Complete'] = True
-        $ world.set_current_time("Afternoon")
+        $ world.add_to_ac(10)
         $ move_to_room(player.current_room)
         return
 
@@ -179,7 +181,7 @@ label flowey_hangout1(owner = get_flowey()):
                     flowey "Get out of my face, idiot."
                     #exit
         $ player.variables['Flowey_Hangout_1_Complete'] = True
-        $ world.set_current_time("Afternoon")
+        $ world.add_to_ac(10)
         $ move_to_room(player.current_room)
         return
         
