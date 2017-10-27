@@ -179,6 +179,7 @@ init -1 python:
             self.name = "Snail Hunting Room"
             self.x = 10
             self.y = 5
+            self.mappable = False
             self.desc = ["* The small and brightly lit room sports a large bed of vegetation, fruit and vegetable bearing plants interspersed with various breeds of flowers. ","* A crack in the roof of the cave allows for beams of sunlight from the surface to penetrate to the floor, encouraging the growth of the plants. ","* You can see the spiraled shells of snails moving about the vegetation. ","* The only way out is how you came in."]
             self.bg = "background ruins_snailhunting_room"
             self.events["Random Snails"] = Event("Snail_Hunter_Random_Event",True)
