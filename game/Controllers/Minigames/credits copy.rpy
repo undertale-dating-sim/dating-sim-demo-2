@@ -57,6 +57,6 @@ label scrolling_credits:
 
 
     show end at Move((.5,1),(0.5,0.5), credit_speed*.7, repeat=False, bounce=False, xanchor="center", yanchor="bottom")
-    with Pause(credit_gap)
+    with Pause(credit_gap*1.5)
 
     return
