@@ -213,9 +213,7 @@ label Frisk_manager_default(owner = False,pause = True):
         frisk_fellfor = False
         frisk_smilelit = False
         frisk_flirtaway = False
-        
-        #####     FOR TESTING ONLY     ######
-        frisk_hangoutcompleted = True
+
     
     label Frisk_interact:
         call Frisk_dialogue  
@@ -340,16 +338,16 @@ label Frisk_chat:
                 
                 menu:
                     "You paint? Me too!":
-                        $ owner.update_FP(3)
+                        # $ get_frisk().update_FP(3)
                         
-                        if frisk_hangoutcompleted:
+                        if "frisk_friendship_1_Complete" in player.variables:
                             show frisk giggly with Dissolve(.25)
                             frisk "I already knew that, silly!"
                             frisk "And you already knew that I liked to paint, so why’d you ask?"
                             
                             menu:
                                 "I was just wondering if you had any other hobbies.":
-                                    $ owner.update_FP(3)
+                                    # $ get_frisk().update_FP(3)
                                     show frisk smallsmile with Dissolve(.25)
                                     
                                     frisk "Well, not really. Maybe I should get some."
@@ -369,7 +367,7 @@ label Frisk_chat:
                         
                         frisk "Yeah?"
                         
-                        if frisk_hangoutcompleted:
+                        if "frisk_friendship_1_Complete" in player.variables:
                             frisk "Well, I already showed you one..."
                             
                         frisk "Maybe some other time."
@@ -377,7 +375,7 @@ label Frisk_chat:
                         jump Frisk_ask
                         
                     "Painting? That’s boring.":
-                        $ owner.update_FP(-3)
+                        # $ get_frisk().update_FP(-3)
                         
                         show frisk disappointed with Dissolve(.25)
                         
@@ -417,7 +415,7 @@ label Frisk_chat:
                 
                 menu:
                     "Did I upset you? I’m sorry. I won’t ask again.":
-                        $ owner.update_FP(3)
+                        # $ get_frisk().update_FP(3)
                         
                         show frisk somehappy with Dissolve(.25)
                         
@@ -438,7 +436,7 @@ label Frisk_chat:
                         jump Frisk_ask
                         
                     "I’m sure you remember; you’ve gotta think harder.":
-                        $ owner.update_FP(3)
+                        # $ get_frisk().update_FP(3)
                         
                         show frisk annoyed with Dissolve(.25)
                         
