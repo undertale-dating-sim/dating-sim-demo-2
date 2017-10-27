@@ -153,7 +153,8 @@ label player_napping_th:
     call hide_buttons
     scene black
     $ renpy.pause(2)
-    $ world.set_current_time(world.next_timezone())
+    $ world.next_timezone()
+    play music "audio/ruins/toriels_house.mp3" fadein 5.0 
     $ move_to_room("Your Room")
     return
 
