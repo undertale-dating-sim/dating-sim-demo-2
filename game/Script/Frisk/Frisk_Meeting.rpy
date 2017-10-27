@@ -400,6 +400,7 @@ label looked_around_before_toriel:
 
 label frisk_meeting_eat:
     call hide_buttons
+    $ player.variables['accepted_toriel'] = True
     if world.current_timezone == "Afternoon":
         $ world.set_current_time("Evening")
     else:
@@ -633,58 +634,59 @@ label frisk_meeting_corridor_after_dinner:
         $ door_text = "Check Your Door"
     call show_buttons
     "* You notice that there are three doors here."
-    menu:
-        "Check Toriel's room" :
-            "* Toriel's room strikes you as the type to be clean, orderly, and cozy."
-            "* Going inside would be a huge invasion of privacy."
-            "* You should know better."
-            menu:
-                "Go inside anyway" if not chose_frisk_meeting_option72:
-                    #-1 Justice
-                    $ renpy.transition(fade)
-                    $ renpy.show(world.get_room("Toriel's Room").bg)
-                    "* There are a plethora of items to snoop through."
-                    #see questions at top of doc
-                    jump frisk_meeting_choice21
-                    $ fm_checked_toriel_room = True
-                "Do not":
-                    #+1 Justice
-                    "* You are above that."
+    while True:
+        menu:
+            "Check Toriel's room" :
+                "* Toriel's room strikes you as the type to be clean, orderly, and cozy."
+                "* Going inside would be a huge invasion of privacy."
+                "* You should know better."
+                menu:
+                    "Go inside anyway" if not chose_frisk_meeting_option72:
+                        #-1 Justice
+                        $ renpy.transition(fade)
+                        $ renpy.show(world.get_room("Toriel's Room").bg)
+                        "* There are a plethora of items to snoop through."
+                        #see questions at top of doc
+                        jump frisk_meeting_choice21
+                        $ fm_checked_toriel_room = True
+                    "Do not":
+                        #+1 Justice
+                        "* You are above that."
 
 
-        "[door_text]":
-            if 'checked_your_door' not in player.variables:
-                "* You hear Toriel calling from the kitchen."
-                toriel "I forgot to mention, there is a room you can use at the far end of the hall."
-                toriel "Goodnight, and sleep well!"
-                $ player.variables['checked_your_door'] = True
-            menu:
-                "Go in?"
-                "Yes (End the Day)":
-                    $ renpy.transition(fade)
-                    $ renpy.show(world.get_room("Your Room").bg)
-                    "* This is a very cozy room."
-                    "* When did your eyes get so heavy?"
-                    "* You plop down on the bed."
-                    scene black with Dissolve(4)
-                    stop music fadeout 4
-                    "* ..."
-                    "* .."
-                    "* This is a weird place."
-                    "* ..."
-                    call day_transition
-                    $ move_to_room('Your Room')
-                "No":
-                    return
-  
+            "[door_text]":
+                if 'checked_your_door' not in player.variables:
+                    "* You hear Toriel calling from the kitchen."
+                    toriel "I forgot to mention, there is a room you can use at the far end of the hall."
+                    toriel "Goodnight, and sleep well!"
+                    $ player.variables['checked_your_door'] = True
+                menu:
+                    "Go in?"
+                    "Yes (End the Day)":
+                        $ renpy.transition(fade)
+                        $ renpy.show(world.get_room("Your Room").bg)
+                        "* This is a very cozy room."
+                        "* When did your eyes get so heavy?"
+                        "* You plop down on the bed."
+                        scene black with Dissolve(4)
+                        stop music fadeout 4
+                        "* ..."
+                        "* .."
+                        "* This is a weird place."
+                        "* ..."
+                        call day_transition
+                        $ move_to_room('Your Room')
+                    "No":
+                        return
+      
 
-        "Check Frisk's Room":
-            if chose_frisk_meeting_option39:
-                "* The light is off and the door is locked."
-            else:
-                jump frisk_meeting_choice39
-        "Do nothing":
-            return
+            "Check Frisk's Room":
+                if chose_frisk_meeting_option39:
+                    "* The light is off and the door is locked."
+                else:
+                    jump frisk_meeting_choice39
+            "Do nothing":
+                return
     return
 
 label frisk_meeting_toriel_after_dinner:

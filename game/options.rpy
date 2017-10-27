@@ -147,7 +147,7 @@ init -1 python hide:
 
     ## The file containing the default font.
 
-    #style.default.font = "8bitoperator.ttf"
+    style.default.font = "font/DTM-Mono.otf"
 
     ## The default size of text.
 

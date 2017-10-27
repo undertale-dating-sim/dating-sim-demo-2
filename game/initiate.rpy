@@ -72,14 +72,4 @@ label initialize:
 
         def wilson(text, *args, **kwargs):
             wilsonChar(text, *args, **kwargs)
-
-    #default-font
-    init python:
-        import webbrowser
-        style.default.font = "font/DTM-Mono.otf"
-        player = Player()
-        menu_state = "stats"
-        world = World()
-        inventory = Inventory()
-        #world.set_current_time("Morning",False)
-        cell_convo_count = 0
+        

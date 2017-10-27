@@ -36,13 +36,26 @@ define test = Character("Sans", callback=beepy_voice)
 
 
 label start:
-    
+
+    python:
+        player = Player()
+        menu_state = "stats"
+        world = World()
+        inventory = Inventory()
+        cell_convo_count = 0
+
     scene black
     jump the_fall
     return
 
 
 label skip_to_day_1:
+    python:
+        player = Player()
+        menu_state = "stats"
+        world = World()
+        inventory = Inventory()
+        cell_convo_count = 0
     scene black
     $ player.variables['tf_scream_count'] = 1
     $ player.variables['satchel_found'] = True

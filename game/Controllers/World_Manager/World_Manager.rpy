@@ -348,8 +348,8 @@ label load_room(loop=True,transition="fade"):
 
     #if ADMIN_ROOM_DESC:
     if not world.current_area.current_room.visited and world.current_area.current_room.desc and world.day > 0:
-        world.current_area.current_room.visited = True
         python:
+            world.current_area.current_room.visited = True
             for line in world.current_area.current_room.desc:
                 renpy.say(None,line)
     $ player.current_room = world.current_area.current_room.name
