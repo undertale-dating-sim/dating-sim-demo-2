@@ -15,6 +15,7 @@ init -9 python:
             self.d_4 = {"Mastered Flirting" : False}
             self.dating_requirements = {"Friendship 1" : self.d_1, "Friendship 2" : self.d_2, "Friendship 3" : self.d_3, "Date 1" : self.d_4}
             self.cell_phone_pic = "UI/toriel_cell_face.png"
+            self.talk_day = 0
         
 
         def handle_relationship_requirements(self):
@@ -190,6 +191,10 @@ label Toriel_manager_default(owner = False,pause = True):
     if pause:
         $renpy.pause()
     
+    if owner.talk_day != world.day:
+        $ owner.chat_count = 0
+        $ owner.flirt_count = 0
+        $ owner.talk_day = world.day
 
     toriel "Hello, dear. Can I help you?"
 
