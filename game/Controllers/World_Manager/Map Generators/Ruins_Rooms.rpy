@@ -226,7 +226,6 @@ label port_to_toriel_house:
 label ruins_mc_get_candy:
     
     call show_buttons
-    $ renpy.pause()
     if "mc_day" not in player.variables or player.variables["mc_day"] != world.day:
         menu:
             "Take a piece of candy?"
@@ -237,6 +236,8 @@ label ruins_mc_get_candy:
                 "Probably not a good idea to eat random bowl candy..."
     else:
         "* The bowl appears to be empty."
+    $ renpy.pause()
+    
     return
 
 label dead_room:

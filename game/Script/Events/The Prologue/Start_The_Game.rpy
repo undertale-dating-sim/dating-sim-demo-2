@@ -8,7 +8,7 @@ label prologue:
     #Pause on commas
     #Elipses go slow
     #pictures fade out and in
-    scene
+    scene black
     "Long ago, two races ruled over Earth:"
     "HUMANS and MONSTERS."
     "One day, war broke out between the two races."

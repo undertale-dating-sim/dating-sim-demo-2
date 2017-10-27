@@ -513,7 +513,7 @@ label frisk_meeting_eat:
             show frisk tearyeyes with Dissolve(.25)
             frisk "I even tried to run away from Mom. I thought she wanted to hurt me..."
             show toriel normal with Dissolve(.25)
-            toriel "frisk, please. Remember, I do not blame you for any of that. You were afraid, and I understand maybe I was being a bit... erm..."
+            toriel "Frisk, please. Remember, I do not blame you for any of that. You were afraid, and I understand maybe I was being a bit... erm..."
             show toriel awkward with Dissolve(.25)
             toriel "...clingy, which you could have easily found threatening."
             show toriel smallsmile with Dissolve(.25)

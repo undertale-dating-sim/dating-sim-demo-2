@@ -20,6 +20,7 @@ screen cell:
             
             hbox:            
                     vbox:
+                        text selected_caller
                         hbox:
                             image im.Scale(get_monster(selected_caller).cell_phone_pic,100,100)
                             text "    "
@@ -29,9 +30,9 @@ screen cell:
                         text "HP : %s " % get_monster(selected_caller).HP
                         text "    "
                         textbutton "Call":
-                            action [ui.callsinnewcontext("call_Monster",selected_caller)] background "#000000"
+                            action [ui.callsinnewcontext("call_Monster",selected_caller)]
                     vbox:
-                        text "---------"
+                        text "Events"
                         for x in get_monster(selected_caller).dating_requirements:
                             text "{size=-5}[x]{/size}"
                             for r in get_monster(selected_caller).dating_requirements[x]:

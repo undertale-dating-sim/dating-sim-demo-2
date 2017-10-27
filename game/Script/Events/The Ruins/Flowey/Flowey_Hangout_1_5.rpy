@@ -57,11 +57,11 @@ label Flowey_Hangout_1_5(owner = get_flowey()):
 
         menu:
             "...":
-                $world.get_monster('Flowey').update_FP(0)
+                "..."
             "...":
-                $world.get_monster('Flowey').update_FP(0)
+                "..."
             "...":
-                $world.get_monster('Flowey').update_FP(0)
+                "..."
                  
         show flowey suspicious with Dissolve(.25)
         flowey "..."
@@ -78,7 +78,7 @@ label Flowey_Hangout_1_5(owner = get_flowey()):
             "Looks like you're not as special as you think.": #-3 FP
                 $world.get_monster('Flowey').update_FP(-3)
             "Well, this is our second hangout...":
-                $world.get_monster('Flowey').update_FP(0)
+                flowey "..."
                 
         show flowey angry with Dissolve(.25)
         flowey "Look, bucko. I'm gonna make this crystal clear."

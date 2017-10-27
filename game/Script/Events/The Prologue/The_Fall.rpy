@@ -993,6 +993,7 @@ label ruins_intro_find_Frisk:
 
     $ player.variables['clicked_toriel'] += 1
     jump ruins_intro_find_Frisk
+    return
 
 label movement_unlocked:
     "Movement unlocked!"

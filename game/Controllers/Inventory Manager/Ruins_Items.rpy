@@ -47,6 +47,7 @@ init -4 python:
             Item.__init__(self)
             self.name = "Broken Mirror"
             self.neutral_text = "It’s cracked down the middle, but you can still see your reflection in it."
+            self.menu_desc = "It's a Broken Mirror."
             self.sprite = "items/item_brokenmirror.png"
             self.equip = True
 
@@ -63,6 +64,7 @@ init -4 python:
             self.pickup_text = "It's a stick."
             self.sprite = "items/item_stick.png"
             self.menu_desc = "It's a stick."
+            self.neutral_text = "It's a stick."
             self.equip = True
 
         def equip_self(self):

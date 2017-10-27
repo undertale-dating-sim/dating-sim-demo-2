@@ -95,7 +95,7 @@ label give_Gift_Toriel_Monster_Candy(count,owner):
         show toriel smallsmile
         toriel "... You know, I could always get some myself. You don’t have to go through the trouble of getting some for me."
     else:
-        $ owner.update_FP(0)
+
         show toriel normal
         toriel "Please, do not give yourself more work than you need. I am telling the truth when I say that I can get these things myself!"
     return True
@@ -116,7 +116,7 @@ label give_Gift_Toriel_Spider_Cider(count,owner):
         show toriel normal
         toriel "... How much cider is in each of these jugs? They must not be very cheap... Please don’t spend too much on my account. Even if you are trying to help others, you still need to take care of yourself as well!"
     else:
-        $ owner.update_FP(0)
+
         show toriel awkward
         toriel "... You really are giving me a lot of this... Maybe I could find a dessert to make out of these? I will have too much than I know what to do with if I can not use it all..."
     return True
@@ -130,7 +130,7 @@ label give_Gift_Toriel_Milk_Chocolate(count,owner):
         show toriel normal
         toriel "But I know you were only trying to be kind. It is alright, dear. It’s the thought that counts."
     elif count == 2:
-        $ owner.update_FP(0)
+
         show toriel awkward
         toriel "... Maybe you did not understand me the first time? I am allergic to chocolate. I cannot eat it."
         show toriel normal

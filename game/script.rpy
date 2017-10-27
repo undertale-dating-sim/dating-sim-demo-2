@@ -38,7 +38,6 @@ define test = Character("Sans", callback=beepy_voice)
 label start:
     
     scene black
-    $ move_to_room("Cave Room")
     jump the_fall
     return
 
@@ -69,8 +68,7 @@ label skip_to_day_1:
 #     scene black
 #     "Welcome to the UDS Demo!"
 #     "Be warned.  While we did test as much as possible, there are still some spots that get kind of sketchy."
-#     "May it live up to your expectations."
-#     "Also, let us know what you think!"
+#     "At the moment, Saving and Loading, as well as Back and other Renpy functions are pretty much broken."
 #     scene black
 #     with Pause(1)
 
@@ -135,7 +133,19 @@ label after_load:
 
     stop music
     
-    
+    $ player.variables['tf_scream_count'] = 1
+    $ player.variables['satchel_found'] = True
+    $ player.variables['satchel_refused'] = False
+    $ player.variables['accepted_toriel'] = True
+    $ inventory.max_items = 5
+    $ player.variables['clicked_toriel'] = 1
+    $ player.variables['met_toriel'] = True
+    $ player.variables['met_frisk'] = True
+    $ player.variables['has_frisk_cell'] = True
+    $ player.variables['has_cellphone'] = True
+    $ player.variables['accepted_frisk'] = True
+
+    $ move_to_room("Your Room")
     return
 
 

@@ -132,7 +132,6 @@ init -10 python:
 
             #remove the monsters and events
             renpy.music.stop()
-            renpy.say(None,"Night has fallen. You should get to bed.")
             for an,a in self.areas.iteritems():
                 for rn,r in a.rooms.iteritems():
 
@@ -180,6 +179,7 @@ init -10 python:
 
             if self.current_timezone == "Night":
                 self.handle_night()
+
 
             return
 
@@ -250,6 +250,7 @@ init -10 python:
             # renpy.say(None,"Getting Next Time Zone")
             self.timezone_action_count = 0
             if self.current_timezone == "Night":
+                renpy.say(None,"Night has fallen. You should get to bed.")
                 return
             else:
                 self.current_timezone = self.timezones[self.timezones.index(self.current_timezone)+1]
@@ -383,6 +384,7 @@ label load_room(loop=True,transition="fade"):
     
     if loop:
         while True:
+            call hide_buttons
             call show_buttons
             pause
     return
