@@ -179,10 +179,6 @@ init -10 python:
                                     m.move_to_room(m.default_room)
                             m.handle_special_events()
 
-            if self.current_timezone == "Night":
-                self.handle_night()
-
-
             return
 
         def get_current_day(self):
