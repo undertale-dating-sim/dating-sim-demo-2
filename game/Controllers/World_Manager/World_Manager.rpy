@@ -255,6 +255,8 @@ init -10 python:
                 return
             else:
                 self.current_timezone = self.timezones[self.timezones.index(self.current_timezone)+1]
+                if self.current_timezone == "Night":
+                    self.handle_night()
 
         #sets the current time
         def set_current_time(self,timezone,go_to_next_day = False):
@@ -322,6 +324,8 @@ init -10 python:
 
 
 label night_has_fallen:
+    stop music
+    "The Ruins grow quiet."
     "Night has fallen. You should go to bed."
     return
 
