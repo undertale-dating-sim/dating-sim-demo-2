@@ -142,6 +142,8 @@ init -10 python:
                         if en in a.random_events:
                             r.events.remove(e)
 
+            renpy.call("night_has_fallen")
+
         #gets the current timezone and the day of the week
         #if set to update the day, cycles through each area,room, monster
         #each monster will move to their given room for their schedule.
@@ -250,7 +252,6 @@ init -10 python:
             # renpy.say(None,"Getting Next Time Zone")
             self.timezone_action_count = 0
             if self.current_timezone == "Night":
-                renpy.say(None,"Night has fallen. You should get to bed.")
                 return
             else:
                 self.current_timezone = self.timezones[self.timezones.index(self.current_timezone)+1]
@@ -320,7 +321,9 @@ init -10 python:
             rooms_explored = 1
 
 
-
+label night_has_fallen:
+    "Night has fallen. You should go to bed."
+    return
 
 label test_label:
     "Awesome, it worked."
