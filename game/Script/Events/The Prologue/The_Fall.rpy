@@ -726,8 +726,6 @@ label ruins_intro_rock_alone:
 
 label ruins_intro_blooky:
 
-    # "* The room is average sized and is divided by a wall halfway through that separates the side of the room you are on from two exits on the other side. "
-    # "* There is a narrow opening in the wall, its floor covered with a scattering of red leaves."
     show napstablook normal at napstabob with Dissolve(.25)
     play music "audio/ruins/blooky.mp3" fadein 5
     "* There’s that ghost from earlier..."

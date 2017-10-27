@@ -80,5 +80,6 @@ label initialize:
         player = Player()
         menu_state = "stats"
         world = World()
+        inventory = Inventory()
         #world.set_current_time("Morning",False)
         cell_convo_count = 0

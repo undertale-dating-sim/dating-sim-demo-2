@@ -61,7 +61,6 @@ init -1 python:
     menu_selected_item = False
     selected_caller = False
     #move to global portion of initiate.rpy later
-    inventory = Inventory()
     # inventory.add(Sleeping_Potion())
     # inventory.add(Spider_Donut())
     # inventory.add(Milk_Chocolate())

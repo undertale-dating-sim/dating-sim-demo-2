@@ -30,7 +30,7 @@ init -1 python:
 
             self.current_snails = 0
             self.max_snails = 10
-            self.last_snail_day = False
+            self.last_snail_day = -1
             self.variables = {}
 
         # 
@@ -104,6 +104,8 @@ init -1 python:
                 renpy.say(None,"%s added to inventory." % snail_count)
 
             self.current_snails += snail_count
+            if self.current_snails > self.max_snails:
+                self.current_snails = self.max_snails
             self.last_snail_day = world.day
 
 ##########

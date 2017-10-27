@@ -32,19 +32,9 @@ label UnderSnail:
     
     $ world.add_to_ac(10)
     $ world.update_world()
+    stop music
     if world.current_timezone != "Night":
         play music "audio/ruins/the_ruins.mp3" fadein 5
-        # if mission == "rocket":
-        #     "You caught [us.rocket_snail_count] rocket snails."
-        # if mission == "house":
-        #     "You caught [us.house_snail_count] house snails."
-        # if mission == "book":
-        #     "You caught [us.book_snail_count] book snails."
-        # if mission == "coffee":
-        #     "You caught [us.coffee_snail_count] coffee snails."
-        # if mission == "random":
-        #     "You caught [us.rocket_snail_count] rocket snails, [us.house_snail_count] house snails, [us.book_snail_count] book snails, and [us.coffee_snail_count] coffee snails."
-        # "Go, you!"
     return
 
 init python:

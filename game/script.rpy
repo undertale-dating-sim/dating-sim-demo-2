@@ -85,7 +85,7 @@ label Snail_Hunter_Random_Event:
 
     call show_buttons
 
-    if player.last_snail_day == False or player.last_snail_day != world.day:
+    if player.last_snail_day != world.day:
 
         "* You notice the flowers are moving a little."
 
