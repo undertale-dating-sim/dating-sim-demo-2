@@ -34,6 +34,22 @@ label ruins_first_breakfast_your_room:
     play sound "audio/sfx/use_item.wav"
     "You gain 50 gold!"
     $ player.gold += 50
+
+    with hpunch
+    "BZZZZ"
+    
+    show screen show_information_overlay
+    "* You notice something new on the front of your CELL."
+    "* In the top left corner, you see 'Morning' and AC 0/10."
+    "* You get a gut feeling that this is the current TIME and ACTION COUNT."
+    "* Of course, everybody knows that your AC goes up as you do things."
+    "* Everybody also knows that if it goes over 10, your TIME will move up."
+    "* Wise Seers would weave yarns of the TIMES: Morning, Day, Afternoon, Evening, and Night."
+    "* You remember old tales of AC never working at Night, and that only SLEEP would move you forward."
+    "* Ancient tomes would inform you that AC will never go over 10 while you are talking to a Monster."
+    "* ..."
+    "* You hear what sounds like a dog sweating behind the scenes."
+    "* That felt like a very cheap way to explain something."
     return
 
 label ruins_first_breakfast_corridor:
