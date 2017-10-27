@@ -246,7 +246,6 @@ label ruins_dinner: #done
         return
 
     $ player.variables['had_dinner_day'] = world.day
-
     if world.get_current_day() == "Monday" or world.get_current_day() == "Thursday" or world.get_current_day() == "Friday":
         $ruins_dinner_frisk_stays = True
         show toriel smile at right with Dissolve(.25)
@@ -363,8 +362,8 @@ label ruins_dinner: #done
                 show toriel awkward at right with Dissolve(.25)
                 toriel "Are you sure? You have barely touched your dinner..."
                 frisk "I’m fine, mom. Just need to catch some z’s, you know?"
-                toriel "Well, alright. Rest well, both of you."                
-
+                toriel "Well, alright. Rest well, both of you."
+    $world.set_current_time("Night")                       
     $world.move_to_room("Staircase")
     return
     
@@ -454,7 +453,7 @@ label ruins_dinner_talk_toriel: #need sprite changes
         toriel "Their snails are the best in the Underground, and we are lucky that they are willing to travel to the Ruins to sell them to us."
         toriel "But, regardless... You look like you are done eating, dear. Since I have no dessert to offer you, perhaps you should head off to bed."
         toriel "Have a good night."
-
+    $world.set_current_time("Night")
     $world.move_to_room("Staircase")
     return
     
@@ -495,6 +494,7 @@ label ruins_dinner_talk_frisk: #need sprite changes
         frisk "Oh, hey, are you done eating? So am I... I think I’m gonna head off to bed."
         show toriel smile at right with Dissolve(.25)
         toriel "Goodnight, both of you."
+    $world.set_current_time("Night")
     $world.move_to_room("Staircase")
     return
     
