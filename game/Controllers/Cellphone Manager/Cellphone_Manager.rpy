@@ -71,7 +71,6 @@ label call_Monster(monster):
                     
             "{color=[text_color]}Chat about [world.current_area.current_room.name]{/color}":
 
-                
                 if renpy.has_label(loc_name):
                     call expression loc_name pass (monster,monster.variables[call_location_variable])
                 elif renpy.has_label("call_[monster]_Unknown"):

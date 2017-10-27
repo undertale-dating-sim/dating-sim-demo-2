@@ -149,9 +149,9 @@ init -10 python:
             renpy.show_screen("word_scroll_%s" % side,amount)
         def update_HP(self,amount,side="left"):
             self.HP += amount
-            #renpy.play('audio/attack_hit.wav')
+            renpy.play('audio/attack_hit.wav')
             renpy.hide_screen("word_scroll_%s" % side)
-            renpy.show_screen("word_scroll_%s" % side,amount)
+            renpy.show_screen("word_scroll_%s" % side,(amount)*-1)
 
 
 
