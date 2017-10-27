@@ -471,10 +471,10 @@ label frisk_meeting_eat:
                     toriel "Oh, well I'm glad you are enjoying your stay!"
 
                 "Actually no, I just didn't want to be rude.":
-                    $world.get_monster('Toriel').update_FP(-2,"right")
-                    $world.get_monster('Frisk').update_FP(-3)
+                    $ get_toriel().update_FP(-2,"right")
+                    $ get_frisk().update_FP(-3)
                     #-1 Integrity   
-                    show toriel sad with Dissolve(.25,"right")
+                    show toriel sad with Dissolve(.25)
                     show frisk sad with Dissolve(.25)
                     frisk "Oh... what?"
                     toriel "I guess I should not be too surprised."
