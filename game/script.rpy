@@ -63,22 +63,22 @@ label skip_to_day_1:
 
 
 
-# label splashscreen:
+label splashscreen:
 
-#     scene black
-#     "Welcome to the UDS Demo!"
-#     "Be warned.  While we did test as much as possible, there are still some spots that get kind of sketchy."
-#     "At the moment, Saving and Loading, as well as Back and other Renpy functions are pretty much broken."
-#     scene black
-#     with Pause(1)
+    scene black
+    "Welcome to the UDS Demo!"
+    "Be warned.  While we did test as much as possible, there are still some spots that get kind of sketchy."
+    "At the moment, Saving and Loading, as well as Back and other Renpy functions are pretty much broken."
+    scene black
+    with Pause(1)
 
-#     show text "Team UDS Presents..." with dissolve
-#     with Pause(2)
+    show text "Team UDS Presents..." with dissolve
+    with Pause(2)
 
-#     hide text with dissolve
-#     with Pause(1)
+    hide text with dissolve
+    with Pause(1)
 
-#     return
+    return
 
 
 label Snail_Hunter_Random_Event:
