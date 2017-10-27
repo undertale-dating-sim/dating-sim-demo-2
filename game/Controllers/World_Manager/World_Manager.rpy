@@ -135,7 +135,7 @@ init -10 python:
             for an,a in self.areas.iteritems():
                 for rn,r in a.rooms.iteritems():
 
-                    for m in r.monsters():
+                    for m in r.monsters:
                         m.move_to_room("Dead Room")
 
                     for en,e in r.events.iteritems():
