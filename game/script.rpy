@@ -130,21 +130,21 @@ label day_transition:
 
 label after_load:
 
-    stop music
+    # stop music
     
-    $ player.variables['tf_scream_count'] = 1
-    $ player.variables['satchel_found'] = True
-    $ player.variables['satchel_refused'] = False
-    $ player.variables['accepted_toriel'] = True
-    $ inventory.max_items = 5
-    $ player.variables['clicked_toriel'] = 1
-    $ player.variables['met_toriel'] = True
-    $ player.variables['met_frisk'] = True
-    $ player.variables['has_frisk_cell'] = True
-    $ player.variables['has_cellphone'] = True
-    $ player.variables['accepted_frisk'] = True
+    # $ player.variables['tf_scream_count'] = 1
+    # $ player.variables['satchel_found'] = True
+    # $ player.variables['satchel_refused'] = False
+    # $ player.variables['accepted_toriel'] = True
+    # $ inventory.max_items = 5
+    # $ player.variables['clicked_toriel'] = 1
+    # $ player.variables['met_toriel'] = True
+    # $ player.variables['met_frisk'] = True
+    # $ player.variables['has_frisk_cell'] = True
+    # $ player.variables['has_cellphone'] = True
+    # $ player.variables['accepted_frisk'] = True
 
-    $ move_to_room("Your Room")
+    # $ move_to_room("Your Room")
     return
 
 

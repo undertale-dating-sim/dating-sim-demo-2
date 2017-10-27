@@ -18,6 +18,13 @@ init:
     image background deadroom = im.Scale("backgrounds/gaster.png",800,600)
     image background toriel_transition_screen = im.Scale("backgrounds/Ruins/transition_screen_toriel_house.png", 800,600)
 
+    image background prologue1 = im.Scale("backgrounds/UI/prologue1.jpg", 800,600)
+    image background prologue2 = im.Scale("backgrounds/UI/prologue2.jpg", 800,600)
+    image background prologue3 = im.Scale("backgrounds/UI/prologue3.jpg", 800,600)
+    image background prologue4 = im.Scale("backgrounds/UI/prologue4.jpg", 800,600)
+    image background prologue5 = im.Scale("backgrounds/UI/prologue5.png", 800,600)
+    image background prologue6 = im.Scale("backgrounds/UI/prologue6.png", 800,600)
+
 init -1 python:
     
     class TheRuins(Area):
