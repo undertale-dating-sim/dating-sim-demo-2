@@ -14,7 +14,7 @@ init -9 python:
             self.default_event = Event("Napstablook_manager_default",True,0,self)
             self.name = "Napstablook"
             self.default_sprite = "napstablook normal"
-            self.FP = 20
+            self.FP = 0
             self.cell_phone_pic = "UI/blooky.png"
             self.seed_default_schedule()
 

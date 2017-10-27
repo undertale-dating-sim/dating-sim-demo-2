@@ -6,7 +6,7 @@ init -9 python:
             self.default_event = Event("Toriel_manager_default",True,0,self)
             self.default_room = "Toriel's Room"
             self.name = "Toriel"
-            self.FP = 40
+            self.FP = 0
             self.seed_default_schedule()
             self.default_sprite = "toriel normal"
             self.d_1 = {"Decided to Stay" : False, "Day past 3": False}

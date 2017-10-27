@@ -7,7 +7,7 @@ init -9 python:
             self.name = "Frisk"
             self.default_sprite = "frisk normal"
             self.default_room = "Frisk's Room"
-            self.FP = 20
+            self.FP = 0
             self.consumables_given = 0
             self.cell_phone_pic = "UI/frisk.png"
             self.d_1 = {"Is Afternoon" : False}
