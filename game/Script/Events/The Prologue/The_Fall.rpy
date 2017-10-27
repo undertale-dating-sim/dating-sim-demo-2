@@ -143,6 +143,11 @@ label .pick_up(item):
         "Yes":
             play sound "audio/sfx/use_item.wav"
             "* You got the [item.name]!"
+            "* There are two different kinds of items down here."
+            "* EQUIP and USE..."
+            "* EQUIP will raise your stats, but you can only wear one at a time."
+            "* USE will do different things.  Monsters like them too!"
+            "* Be sure to check your ITEM list in the MENU (Q)!"
             $ pickup_item(item)
         "No":
             "* Then why did you even pick it up?"

@@ -167,6 +167,9 @@ label equip_item(item):
                     $ inventory.drop(item)
             play sound "audio/sfx/use_item.wav"
             "You equip the [item.name]."
+            "You feel your stats get a little better."
+            "You hear a voice on the wind..."
+            "~ The stats are for later in the game. Don't worry about them too much... ~"
 
     else:
         "EQUIPMENT FAILURE: CODE WILSON"

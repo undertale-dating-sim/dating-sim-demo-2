@@ -33,7 +33,7 @@ init -4 python:
             self.name = "Heart Locket"
             self.neutral_text = "It looks just like new, but it has an antique style to it. Someone must have cherished this locket."
             self.sprite = "items/item_heartlocket.png"
-            self.menu_desc = "A Heart Locket."
+            self.menu_desc = "A Heart Locket. +4 Patience on Equip"
             self.equip = True
 
         def equip_self(self):
@@ -47,7 +47,7 @@ init -4 python:
             Item.__init__(self)
             self.name = "Broken Mirror"
             self.neutral_text = "It’s cracked down the middle, but you can still see your reflection in it."
-            self.menu_desc = "It's a Broken Mirror."
+            self.menu_desc = "It's a Broken Mirror. +4 Integrity on Equip"
             self.sprite = "items/item_brokenmirror.png"
             self.equip = True
 
@@ -63,7 +63,7 @@ init -4 python:
             self.name = "Stick"
             self.pickup_text = "It's a stick."
             self.sprite = "items/item_stick.png"
-            self.menu_desc = "It's a stick."
+            self.menu_desc = "It's a stick. +4 Bravery on Equip"
             self.neutral_text = "It's a stick."
             self.equip = True
 
@@ -79,7 +79,7 @@ init -4 python:
             self.name = "Rose"
             self.neutral_text = "You ripped it from its place when you fell, but it still seems to be doing well."
             self.sprite = "items/item_rose.png"
-            self.menu_desc = "You ripped it from its place when you fell, but it still seems to be doing well."
+            self.menu_desc = "It's a Rose. +4 Kindness on Equip"
             self.equip = True
 
         def equip_self(self):
