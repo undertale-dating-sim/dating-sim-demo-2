@@ -218,9 +218,13 @@ label ruins_first_breakfast_corridor:
                         if frisk_first_breakfast_conv_count == 0:
                             show frisk smallsmile with Dissolve(.25)
                             frisk "Okay... We didn’t really talk about anything, though."
+                            $ get_monster("Frisk").move_to_room("Living Room")
+                            $world.move_to_room("Living Room")
                         elif frisk_first_breakfast_conv_count == 1:
                             show frisk sad with Dissolve(.25)
                             frisk "Aw, already?"
+                            $ get_monster("Frisk").move_to_room("Living Room")
+                            $world.move_to_room("Living Room")
                         else:
                             show frisk normal with Dissolve(.25)
                             frisk "Alright!"
@@ -231,6 +235,7 @@ label ruins_first_breakfast_corridor:
     show frisk normal with Dissolve(.25)
     frisk "I’ll see you later, then."
     frisk "Have fun!"
+    $ get_monster("Frisk").move_to_room("Living Room")
     $world.move_to_room("Staircase")
     return
 
