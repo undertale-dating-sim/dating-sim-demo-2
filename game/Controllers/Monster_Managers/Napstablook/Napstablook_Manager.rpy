@@ -187,96 +187,98 @@ label Napstablook_manager_default(owner = False, pause = True):
         "You got Napstablook's number!"
 
     #Default Menu
-    menu:
-        "Flirt" if owner.flirt_count < 3 :
-            if owner.flirt_count == 0:
-                "You're a very lovely shade of pale today."
-                napstablook "oh...... thanks, i guess? i didn't realize i could be different shades of anything........."
-            elif owner.flirt_count == 1:
-                "Did it hurt when you fell from heaven?"
-                napstablook "well...... uh... i don't remember falling from anywhere, actually......... sorry........."
-            elif owner.flirt_count == 2:
-                "Do you have a bandaid? I scraped my knee falling for you."
-                napstablook "sorry, i didn't mean to hurt you...... that was an accident...... and i'm sorry i don't carry around bandaids either"
-            elif owner.flirt_count == 3:
-                "You look like trash, may I take you out?"
-                napstablook "i already know i'm trash. you don't have to do anything about that........."
-            elif owner.flirt_count == 4:
-                "Are you a magician? Because whenever I look at you everyone else disappears."
-                napstablook "um...... i have no idea why that would happen? i think you should see a doctor"
-            elif owner.flirt_count == 5:
-                "Sorry, I can't hold on... I've already fallen for you."
-                napstablook "huh? hold on to what? oh, and, uh... sorry for hurting you, i guess?"
-            
-            $owner.flirt_count +=1
-            $ world.add_to_ac(5)
-        "Chat":
-            menu:
-                "\"What's shakin' bacon?\"":
-                    napstablook "um... oh...... nothing's shaking..... and i don't have any bacon.... awkward......."
-                "\"How're you doing?\"":
-                    napstablook "i'm fine..........."
-                "\"You look a little down. Are you okay?\"":
-                    napstablook "oh, i guess.... this is just how i always look. but thanks for asking...... that's nice of you to notice....."
-                "Go back":
-                    pass
-        "Ask":
-            $ world.add_to_ac(5)
-            menu:
-                "\"What do you do for fun?\"":
-                    napstablook "i like to listen to music, and.... sometimes.... i make my own, too"
-                    menu:
-                        "\"What kind of music do you make?\"":
-                            "oh...... all kinds...... i'm not a very good singer, though, so nothing with vocals........"
-                            #wait, doesn"t he say in Undertale that one of the songs makes him want to sing along?
-                        "\"I like music, too!\"":
-                            napstablook "that's nice...... i'm glad.... we have the same interests......."
-                        "\"Oh, I don't really listen to much music.\"":
-                            napstablook "oh...... oh no........ maybe you'd like it if you gave it another chance............"
-                "\"Do you have a job?\"":
-                    napstablook "um... yeah....... i'm a snail farmer...... it's pretty quiet, now that i'm the only one working there........"
-                    menu:
-                        "\"Snail farmer? What does that entail?\"":
-                            napstablook "um...... i just...... sell snails... on my farm........ it's all in the title......."
-                        "\"What happened to your coworkers?\"":
-                            napstablook "oh, nothing, they just....... all wanted to become corporeal........ but i stayed behind......."
-                            napstablook "someone needs to stay and look after the snails..."
-                "\"Do you have any pets?\"":
-                    napstablook "oh... well... i have snails. do those count?"
-                    menu:
-                        "\"Yes, of course they do.\"":
-                            $world.get_monster("Napstablook").update_FP(2)
-                            show napstablook smallsmile with Dissolve(.25)
-                            napstablook "oh, that's good..."
-                        "\"Why would you have snails?\"":
-                            napstablook "well... i sell them. people usually want them for food..."
-                        "\"Snails aren't pets. They're gross.\"":
-                            $world.get_monster("Napstablook").update_FP(-2)
-                            show napstablook sad with Dissolve(.25)
-                            napstablook "oh..............."
-                "\"Have you ever met Toriel?\"":
-                    napstablook "oh, uh, yeah. i've met toriel. but she's kind of intimidating..."
-                    menu:
-                        "\"What about Frisk? Do you know them?\"": #[only if you met frisk]
-                            napstablook "yeah, i know them too. they're very nice, and they don't intimidate me like toriel does"
-                        "\"Why is she intimidating?\"":
-                            napstablook "she's just, like...... really tall. and sometimes, when she smiles, i feel like she secretly wants to kill me.........."
-                        "\"She's not that bad.\"":
-                            napstablook "uh... okay. i guess i'll take your word for it"
-                        "\"Yeah I'm pretty sure she secretly eats children.\"":
-                            napstablook "um, okay? i don't know why you would think that, but sure"
-        "Give Gift" if len(inventory.items) > 0:
-            napstablook "oh, a gift?"
-            "What should you give them?"
-            $ result = renpy.call_screen("gift_item_menu",owner)
-            if result == 'cancel':
-                napstablook "oh...... thanks anyway."
-            else:
+    while True:
+        menu:
+            "Flirt" if owner.flirt_count < 3 :
+                if owner.flirt_count == 0:
+                    "You're a very lovely shade of pale today."
+                    napstablook "oh...... thanks, i guess? i didn't realize i could be different shades of anything........."
+                elif owner.flirt_count == 1:
+                    "Did it hurt when you fell from heaven?"
+                    napstablook "well...... uh... i don't remember falling from anywhere, actually......... sorry........."
+                elif owner.flirt_count == 2:
+                    "Do you have a bandaid? I scraped my knee falling for you."
+                    napstablook "sorry, i didn't mean to hurt you...... that was an accident...... and i'm sorry i don't carry around bandaids either"
+                elif owner.flirt_count == 3:
+                    "You look like trash, may I take you out?"
+                    napstablook "i already know i'm trash. you don't have to do anything about that........."
+                elif owner.flirt_count == 4:
+                    "Are you a magician? Because whenever I look at you everyone else disappears."
+                    napstablook "um...... i have no idea why that would happen? i think you should see a doctor"
+                elif owner.flirt_count == 5:
+                    "Sorry, I can't hold on... I've already fallen for you."
+                    napstablook "huh? hold on to what? oh, and, uh... sorry for hurting you, i guess?"
+                
+                $owner.flirt_count +=1
                 $ world.add_to_ac(5)
-            show napstablook normal with dissolve
-            
-        "Exit":
-            "okay."
+            "Chat":
+                menu:
+                    "\"What's shakin' bacon?\"":
+                        napstablook "um... oh...... nothing's shaking..... and i don't have any bacon.... awkward......."
+                    "\"How're you doing?\"":
+                        napstablook "i'm fine..........."
+                    "\"You look a little down. Are you okay?\"":
+                        napstablook "oh, i guess.... this is just how i always look. but thanks for asking...... that's nice of you to notice....."
+                    "Go back":
+                        pass
+            "Ask":
+                $ world.add_to_ac(5)
+                menu:
+                    "\"What do you do for fun?\"":
+                        napstablook "i like to listen to music, and.... sometimes.... i make my own, too"
+                        menu:
+                            "\"What kind of music do you make?\"":
+                                "oh...... all kinds...... i'm not a very good singer, though, so nothing with vocals........"
+                                #wait, doesn"t he say in Undertale that one of the songs makes him want to sing along?
+                            "\"I like music, too!\"":
+                                napstablook "that's nice...... i'm glad.... we have the same interests......."
+                            "\"Oh, I don't really listen to much music.\"":
+                                napstablook "oh...... oh no........ maybe you'd like it if you gave it another chance............"
+                    "\"Do you have a job?\"":
+                        napstablook "um... yeah....... i'm a snail farmer...... it's pretty quiet, now that i'm the only one working there........"
+                        menu:
+                            "\"Snail farmer? What does that entail?\"":
+                                napstablook "um...... i just...... sell snails... on my farm........ it's all in the title......."
+                            "\"What happened to your coworkers?\"":
+                                napstablook "oh, nothing, they just....... all wanted to become corporeal........ but i stayed behind......."
+                                napstablook "someone needs to stay and look after the snails..."
+                    "\"Do you have any pets?\"":
+                        napstablook "oh... well... i have snails. do those count?"
+                        menu:
+                            "\"Yes, of course they do.\"":
+                                $world.get_monster("Napstablook").update_FP(2)
+                                show napstablook smallsmile with Dissolve(.25)
+                                napstablook "oh, that's good..."
+                            "\"Why would you have snails?\"":
+                                napstablook "well... i sell them. people usually want them for food..."
+                            "\"Snails aren't pets. They're gross.\"":
+                                $world.get_monster("Napstablook").update_FP(-2)
+                                show napstablook sad with Dissolve(.25)
+                                napstablook "oh..............."
+                    "\"Have you ever met Toriel?\"":
+                        napstablook "oh, uh, yeah. i've met toriel. but she's kind of intimidating..."
+                        menu:
+                            "\"What about Frisk? Do you know them?\"": #[only if you met frisk]
+                                napstablook "yeah, i know them too. they're very nice, and they don't intimidate me like toriel does"
+                            "\"Why is she intimidating?\"":
+                                napstablook "she's just, like...... really tall. and sometimes, when she smiles, i feel like she secretly wants to kill me.........."
+                            "\"She's not that bad.\"":
+                                napstablook "uh... okay. i guess i'll take your word for it"
+                            "\"Yeah I'm pretty sure she secretly eats children.\"":
+                                napstablook "um, okay? i don't know why you would think that, but sure"
+            "Give Gift" if len(inventory.items) > 0:
+                napstablook "oh, a gift?"
+                "What should you give them?"
+                $ result = renpy.call_screen("gift_item_menu",owner)
+                if result == 'cancel':
+                    napstablook "oh...... thanks anyway."
+                else:
+                    $ world.add_to_ac(5)
+                show napstablook normal with dissolve
+                
+            "Exit":
+                "okay."
+                return
 
     #return to the world manager event
     return
