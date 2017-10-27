@@ -84,7 +84,6 @@ label skip_to_day_1:
 label Snail_Hunter_Random_Event:
 
     call show_buttons
-    $ renpy.pause()
 
     if player.last_snail_day == False or player.last_snail_day != world.day:
 
