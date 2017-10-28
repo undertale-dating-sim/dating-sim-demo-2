@@ -42,7 +42,7 @@ label toriel_tl_date_1_opening_menu:
                     $ world.add_to_ac(10)
                     $ get_monster('Toriel').set_special_event('toriel_tl_date1_retry')
         "No, actually, I would really like to go on a date with you.":
-            $ get_monster("Toriel").DP += 2
+            $ get_toriel().update_DP(2)
             show toriel laughing with Dissolve(.25)
             toriel "Haha, you are adorable. Why on earth would you want to date {i}me{/i}?"
             menu:

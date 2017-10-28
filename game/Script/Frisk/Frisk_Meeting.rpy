@@ -401,10 +401,6 @@ label looked_around_before_toriel:
 label frisk_meeting_eat:
     call hide_buttons
     $ player.variables['accepted_toriel'] = True
-    if world.current_timezone == "Afternoon":
-        $ world.set_current_time("Evening")
-    else:
-        $ world.set_current_time("Afternoon")
     hide frisk with moveoutleft
     hide toriel with moveoutleft
     "* You follow Toriel and Frisk to the Living Room."
@@ -610,7 +606,7 @@ label frisk_meeting_eat:
     $ player.variables['has_toriel_cell'] = True
     toriel "Do not hesitate to call me if you need me!"
     toriel "Have a good night!"
-
+    $ world.set_current_time("Night")
     #Add Talking to toriel to the living room
     $ get_room("Staircase").clear_events()
     $ set_lock_room("Living Room",False)

@@ -240,7 +240,7 @@ label ruins_first_breakfast_corridor:
     return
 
 label ruins_dinner: #done
-    if world.day != 0 and (world.get_current_timezone() != 'Afternoon' or ('had_dinner_day' in player.variables and player.variables['had_dinner_day'] == world.day)):
+    if world.day != 0 and (world.get_current_timezone() != 'Evening' or ('had_dinner_day' in player.variables and player.variables['had_dinner_day'] == world.day)):
         call show_buttons
         "* Cozy."
         pause
@@ -501,7 +501,7 @@ label ruins_dinner_talk_frisk: #need sprite changes
     
 label ruins_dinner_leftovers: #done
     
-    if (world.get_current_timezone() == 'Evening' or world.get_current_timezone() == 'Night') and eaten_leftover_day != world.day:
+    if (world.get_current_timezone() == 'Night') and eaten_leftover_day != world.day:
         "* You find some leftovers in the fridge, just as Toriel had promised."
         menu:
             "Eat them":

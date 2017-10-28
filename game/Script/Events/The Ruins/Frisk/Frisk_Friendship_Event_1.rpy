@@ -27,7 +27,7 @@ label frisk_friendship_event_1(owner=get_frisk()):
             show frisk smallsmile with Dissolve(.25)
             frisk "I’m sure you’re ready, so here we go."
         "Let's start!":
-            $world.get_monster ('Frisk').FP +=2
+            $ get_frisk().update_FP(2)
             frisk "Yeah... We’re both ready, so here we go."
     #call demo_undersnail
     
@@ -51,8 +51,8 @@ label frisk_friendship_event_1(owner=get_frisk()):
             frisk "I’ll, uhh..."
             frisk "See you later."
             hide frisk with Dissolve(.25)
-
-    $ get_room("Tunnel Divide").set_event('frisk_friendship_event_1_tunnels',False)
+    $ get_frisk().move_to_room("Tunnel Divide")
+    $ get_frisk().set_special_event('frisk_friendship_event_1_tunnels')
     $ move_to_room("Snail Hunting Room")
 
 label frisk_friendship_event_1_tunnels(owner=get_frisk()):
@@ -81,7 +81,7 @@ label frisk_friendship_event_1_tunnels(owner=get_frisk()):
             frisk "You need to leave!"
             frisk "I-it’s not safe f-for you!"
         "Have you gone crazy?":
-            $world.get_monster ('Frisk').FP -=3
+            $ get_frisk().update_FP(-3)
             show frisk panicking with Dissolve(.25)
             frisk "No! I..."
             frisk "I..."
@@ -108,7 +108,7 @@ label frisk_friendship_event_1_tunnels(owner=get_frisk()):
             frisk "Since you’re here, I just..."
             frisk "I need to know you’re there."
         "\"Stop this childish act.\"":
-            $world.get_monster ('Frisk').FP -=3
+            $ get_frisk().update_FP(-3)
             frisk "No. No nonono no."
             frisk "This isn't even an act."
             frisk "It's-"
@@ -118,22 +118,22 @@ label frisk_friendship_event_1_tunnels(owner=get_frisk()):
             
     menu:
         "You're gonna be fine.":
-            $world.get_monster ('Frisk').FP +=1
+            $ get_frisk().update_FP(1)
             frisk "I can’t..."
             frisk "I want to believe that, but..."
             frisk "It won’t g-go away!"
         "I'm not leaving.":
-            $world.get_monster ('Frisk').FP +=3
+            $ get_frisk().update_FP(3)
             frisk "Thank y-you..."
             frisk "D-don’t go..."
             frisk "Please don’t!"
         "I'll go get Toriel.":
-            $world.get_monster ('Frisk').FP -=2
+            $ get_frisk().update_FP(-2)
             frisk "No! Don’t!"
             frisk "She can’t help!"
             frisk "I-I can’t let her see me like this again!"
         "I thought you could handle things by yourself.":
-            $world.get_monster ('Frisk').FP -=3
+            $ get_frisk().update_FP(-3)
             frisk "I..."
             frisk "..."
     #/// If > 7("Have you gone crazy?") and 9.1("Stop this childish act.") and 12.1("I thought you could handle things by yourself.")<
@@ -169,7 +169,7 @@ label frisk_friendship_event_1_tunnels(owner=get_frisk()):
     frisk "..."
     menu:
         "Are you okay?":
-            $world.get_monster ('Frisk').FP +=2
+            $ get_frisk().update_FP(2)
             frisk "..."
             frisk "I..."
             show frisk distant with Dissolve(.25)
@@ -201,7 +201,8 @@ label frisk_friendship_event_1_tunnels(owner=get_frisk()):
     frisk "Please, don’t tell Mom."
     frisk "I’m sorry..."
     hide frisk with Dissolve(.25)
-    $ get_room("Black Tree Room").set_event('frisk_friendship_event_1_blacktree',False)
+    $ get_frisk().move_to_room("Black Tree Room")
+    $ get_frisk().set_special_event('frisk_friendship_event_1_blacktree')
     $ move_to_room("Tunnel Divide")
 
 label frisk_friendship_event_1_blacktree(owner=get_frisk()):
@@ -214,7 +215,7 @@ label frisk_friendship_event_1_blacktree(owner=get_frisk()):
     frisk "It would be best for both of us."
     menu:
         "Are you okay?":
-            $world.get_monster ('Frisk').FP +=1
+            $ get_frisk().update_FP(1)
             frisk "Look, I’m fine."
             frisk "Thanks for your concern, but..."
             frisk "There’s nothing to say."
@@ -222,19 +223,19 @@ label frisk_friendship_event_1_blacktree(owner=get_frisk()):
             frisk "I’ll see you later, okay?"
 
         "I think you owe me an explanation.":
-            $world.get_monster ('Frisk').FP -=2
+            $ get_frisk().update_FP(-2)
             show frisk annoyed with Dissolve(.25)
             frisk "Look, I told you already, it was just..."
             show frisk sad with Dissolve(.25)
             frisk "Do we really have to talk about this now?"
             menu:
                 "Yes, we do.":
-                    $world.get_monster ('Frisk').FP -=2
+                    $ get_frisk().update_FP(-2)
                     frisk "..."
                     frisk "I’d really rather not, okay?"
                     menu:
                         "Don't I deserve an explanation?":
-                            $world.get_monster ('Frisk').FP -=2
+                            $ get_frisk().update_FP(-2)
                             frisk "..."
                             show frisk annoyed with Dissolve(.25)
                             frisk "You know what? No."
@@ -243,26 +244,26 @@ label frisk_friendship_event_1_blacktree(owner=get_frisk()):
                             frisk "...Goodbye."
 
                         "Alright, fine.":
-                            $world.get_monster ('Frisk').FP +=1
+                            $ get_frisk().update_FP(1)
                             frisk "Thank you."
                             frisk "Look, I’m gonna go now."
                             frisk "I’ll talk to you later."
 
                 "Not if you aren't feeling up to it.":
-                    $world.get_monster ('Frisk').FP +=1
+                    $ get_frisk().update_FP(1)
                     frisk "Thank you."
                     frisk "I mean..."
                     frisk "You already think I’m crazy, don’t you?"
                     menu:
                         "I don't think you're crazy.":
-                            $world.get_monster ('Frisk').FP +=3
+                            $ get_frisk().update_FP(3)
                             show frisk smallsmile with Dissolve(.25)
                             frisk "Thanks."
                             frisk "But I don’t get it..."
                             frisk "I just met you, so why are you being so patient with me?"
                             menu:
                                 "Because we're friends.":
-                                    $world.get_monster ('Frisk').FP +=4
+                                    $ get_frisk().update_FP(4)
                                     frisk "Friends..."
                                     show frisk smallsmile with Dissolve(.25)
                                     frisk "Yeah... I guess so."
@@ -283,7 +284,7 @@ label frisk_friendship_event_1_blacktree(owner=get_frisk()):
                                     frisk "See you later."      
  
                                 "That's just the way I am.": #if patience >0
-                                    $world.get_monster ('Frisk').FP +=2
+                                    $ get_frisk().update_FP(2)
                                     frisk "Huh, yeah, I guess that makes sense."
                                     frisk "Well, thanks again."
                                     frisk "Maybe I’ll tell you about it someday."
@@ -291,16 +292,17 @@ label frisk_friendship_event_1_blacktree(owner=get_frisk()):
                                     frisk "I should get going."
                                     frisk "See you later."
                         "Yeah, a bit.":
-                            $world.get_monster ('Frisk').FP -=1
+                            $ get_frisk().update_FP(-1)
                             show frisk sad with Dissolve(.25)
                             frisk "..."
                             frisk "I think I’ll just go now."
                             frisk "Please don’t bring this up again."
                             frisk "See you later."
-                            return
+                            
             
     hide frisk with Dissolve(.25)
     $ player.variables['Hunted_Snails_With_Frisk'] = True
+    $ get_frisk().move_to_room("Frisk's Room")
     $ move_to_room("Black Tree Room")
     return
     

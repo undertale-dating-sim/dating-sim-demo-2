@@ -200,7 +200,7 @@ label .pie_ne:
             show toriel smile
             toriel "Well, anyway. Shall we begin?" 
         "Laugh":
-            $world.get_monster ('Toriel').FP +=2
+            $get_toriel().update_FP(2)
             show toriel blushing
             toriel "Oh, I am glad you liked my little joke." 
             toriel "I have many more, if you would like to hear them!"
