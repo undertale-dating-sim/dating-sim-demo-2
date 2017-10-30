@@ -1,9 +1,3 @@
-
-label call_Frisk_Unknown:
-    frisk "I'm not sure where you are at the moment."
-    frisk "Sorry..."
-    return
-
 label call_Frisk_Cave_Room(monster,call_count):
  
     if call_count == 1:
