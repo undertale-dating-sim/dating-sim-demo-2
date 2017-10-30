@@ -2,6 +2,7 @@
 
 
 init python:
+    title_text = "Credits!"
     credit_text = ["Voice Actor\n","Writers\n","Artists\n"]
     coders_text = ["AnnAisu\n","Chloekat1things (Cece)\n","lzuehsow\n","PayneGray\n","SesuRescue\n"]
     leadership_text = ["Al\n","Blue\n","Becca\n","Louie\n","Nekomayata\n","Sky\n","Wilson\n"]
@@ -9,12 +10,13 @@ init python:
     artist_text = ["LMaruchartista\n","Marci Nehlsen\n","Agenthisui\n","BloodyDragon117\n","Bielek\n","JRO\n","Mint\n","Betraeyal\n"]
     writers_text = ["CelestialSushi\n","Felix\n","Jeffrey\n","Kate\n","Nevran\n","Quinn\n","Riza\n","Ronnie\n","Rose\n","Sage\n","Sam\n","Vunde\n"]
     voice_text = ["Oolay-Tiger\n","Deathykloak\n","Zen\n","Anti-Hero\n"]
-    testers_text = ["Markus The Xeno\n","sophisticatedmarten\n","Oxius\n","Kello\n","Richarad\n","Elis\n","ChaosTheLegend\n","InsanelyADD\n","Kurosidad\n","Sakura\n","Stone\n","Aunti Diluvian\n","Foxgloves\n","ChaosAirlines\n","GoldenScale\n"]
+    testers_text = ["Markus The Xeno\n","sophisticatedmarten\n","Oxius\n","Kello\n","Richarad\n","Elis\n","ChaosTheLegend\n","InsanelyADD\n","Kurosidad\n","Sakura\n","Stone\n","Auntie Diluvian\n","Foxgloves\n","ChaosAirlines\n","GoldenScale\n"]
     credit_speed = 25
     credit_gap = 10
     movecenter = Move((.5,2),(0.5,0.0), credit_speed, repeat=False, bounce=False, xanchor="center", yanchor="bottom")
     moveleft = Move((.33,1),(0.33,0.0), credit_speed, repeat=False, bounce=False, xanchor="center", yanchor="bottom")
     moveright = Move((.66,1),(0.66,0.0), credit_speed, repeat=False, bounce=False, xanchor="center", yanchor="bottom")
+    titlecenter = Move((.5,1),(.5,0.0), credit_speed, repeate =False, bounce = False, xanchor="center",yanchor="bottom")
 
 init:
     image sans_cred = Text(["{size=30}Sans\n"] + credit_text, text_align=0.5)
@@ -35,7 +37,7 @@ label scrolling_credits:
     scene black
     
 
-    show begin at movecenter
+    show begin at titlecenter
     with Pause(credit_gap)
 
     show coder_cred at movecenter
@@ -45,7 +47,7 @@ label scrolling_credits:
     show audio_cred at movecenter
     with Pause(credit_gap)
     show artist_cred at movecenter
-    with Pause(credit_gap)
+    with Pause(credit_gap*1.5)
     show tester_cred at movecenter
     with Pause(credit_gap)
     show leader_cred at movecenter
@@ -61,6 +63,6 @@ label scrolling_credits:
 
 
     show end at Move((.5,1),(0.5,0.5), credit_speed*.7, repeat=False, bounce=False, xanchor="center", yanchor="bottom")
-    with Pause(credit_gap*1.5)
+    with Pause(credit_gap*10)
 
     return
