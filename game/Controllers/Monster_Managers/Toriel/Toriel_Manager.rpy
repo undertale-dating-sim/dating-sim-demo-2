@@ -13,7 +13,7 @@ init -9 python:
             self.d_2 = {"FP > 20": False}
             self.d_3 = {"Plant watered 3 times" : False}
             self.d_4 = {"Mastered Flirting" : False}
-            self.dating_requirements = {"Friendship 1" : self.d_1, "Friendship 2" : self.d_2, "Friendship 3" : self.d_3, "Date 1" : self.d_4}
+            self.dating_requirements = {}
             self.cell_phone_pic = "UI/toriel_cell_face.png"
             self.talk_day = 0
         
@@ -30,36 +30,56 @@ init -9 python:
             red = "#f00"
             green = "#00ff00"
 
-            self.d_1["Decided to Stay"] = 'accepted_toriel' in player.variables and player.variables['accepted_toriel']
+            if 'Toriel_Friendship_1_Complete' in player.variables:
+                self.d_1["Complete!"] = True
+            elif world.day > 3 and 'accepted_toriel' in player.variables and player.variables['accepted_toriel']:
+                self.d_1["Find Toriel!"] = False
+            else:
+                self.d_1["Accepted Your Bedroom"] = 'accepted_toriel' in player.variables and player.variables['accepted_toriel']
+                self.d_1["Day > 3"] = world.day > 3
 
-            self.d_1["Day > 3"] = world.day > 3
+            if 'Toriel_Friendship_Hangout1' in player.variables:
+                self.d_2 = {"Complete!" : True}
+            elif get_toriel().FP > 20:
+                self.d_2 = {"Find Toriel!" : False}
+            else:
+                self.d_2 = {"FP > 20": get_toriel().FP > 20}
 
-            self.d_2 = {"FP > 20": get_toriel().FP > 20}
 
-            self.d_3 = {"Plant watered 3 times": 'toriel_plant_watered_count' in player.variables and  player.variables['toriel_plant_watered_count'] >= 3}
+            if 'Toriel_Friendship_Hangout1' in player.variables:
+                self.d_3 = {"Complete!" : True}
+            elif 'toriel_plant_watered_count' in player.variables and  player.variables['toriel_plant_watered_count'] >= 3:
+                self.d_3 = {"Find Toriel!" : False}
+            else:
+                self.d_3 = {"Plant watered 3 times": 'toriel_plant_watered_count' in player.variables and  player.variables['toriel_plant_watered_count'] >= 3}
             
-            self.d_4 = {"Mastered Flirting": 'Toriel_Flirts_Complete' in player.variables}
+            if 'Toriel_Friendship_Hangout1' in player.variables:
+                self.d_4 = {"Complete!" : True}
+            elif 'Toriel_Flirts_Complete' in player.variables:
+                self.d_4 = {"Find Toriel!" : False}
+            else:
+                self.d_4 = {"All Flirts Complete": 'Toriel_Flirts_Complete' in player.variables}
 
 
             if 'Toriel_Friendship_1_Complete' not in player.variables:
-                self.dating_requirements["{color=%s}Friendship 1{/color}" % red] = self.d_1
+                self.dating_requirements["{color=%s}So how are you settling in?{/color}" % red] = self.d_1
             else:
-                self.dating_requirements["{color=%s}Friendship 1{/color}" % green] = self.d_1
+                self.dating_requirements["{color=%s}So how are you settling in?{/color}" % green] = self.d_1
 
             if 'Toriel_Friendship_Hangout1' not in player.variables:
-                self.dating_requirements["{color=%s}Friendship 2{/color}" % red] = self.d_2
+                self.dating_requirements["{color=%s}Doing Just Piene{/color}" % red] = self.d_2
             else:
-                self.dating_requirements["{color=%s}Friendship 2{/color}" % red] = self.d_2
+                self.dating_requirements["{color=%s}Doing Just Piene{/color}" % red] = self.d_2
 
             if 'Toriel_Friendship_2_Complete' not in player.variables:
-                self.dating_requirements["{color=%s}Flower Event{/color}" % red] = self.d_3
+                self.dating_requirements["{color=%s}The Stunted Flower{/color}" % red] = self.d_3
             else:
-                self.dating_requirements["{color=%s}Flower Event{/color}" % green] = self.d_3
+                self.dating_requirements["{color=%s}The Stunted Flower{/color}" % green] = self.d_3
 
             if 'Toriel_TL_Date_1_Complete' not in player.variables:
-                self.dating_requirements["{color=%s}Date 1{/color}" % red] = self.d_4
+                self.dating_requirements["{color=%s}If You Were A Fruit...{/color}" % red] = self.d_4
             else:
-                self.dating_requirements["{color=%s}Date 1{/color}" % green] = self.d_4
+                self.dating_requirements["{color=%s}If You Were A Fruit...{/color}" % green] = self.d_4
 
             return
 

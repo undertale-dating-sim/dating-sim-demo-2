@@ -67,21 +67,36 @@ init -9 python:
             red = "#f00"
             green = "#00ff00"
 
-            self.d_1["Is Afternoon"] = world.get_current_timezone() == 'Afternoon' or 'frisk_friendship_1_Complete' in player.variables
+            if 'frisk_friendship_1_Complete' in player.variables:
+                text = "Complete!"
+                status = True
+            elif world.get_current_timezone() == 'Afternoon':
+                text = "Go to Frisk's Room!"
+                status = False
+            else:
+                text = "Wait til Afternoon"
+                status = False
 
-            self.d_2["Not Night"] = world.get_current_timezone() != 'Night'
-            self.d_2["Not Same Day"] = 'frisk_friend_hangout2_day' in player.variables and player.variables['frisk_friend_hangout2_day'] != world.day
-            self.d_2['Friendship 1 Complete'] = 'frisk_friendship_1_Complete' in player.variables
+            self.d_1[text] = status
+
+
+            if 'frisk_friendship_2_Complete' in player.variables:
+                self.d_2["Complete!"] = True
+            elif world.get_current_timezone() != 'Night' and world.get_current_timezone() != 'Evening' and 'frisk_friendship_1_Complete' in player.variables:
+                self.d_2["Go to the Kitchen \n    before Dinner"] = False
+            else:
+                self.d_2["Go to Kitchen\n    before Dinner"] = world.get_current_timezone() != 'Night'
+                self.d_2['Friendship 1 Complete'] = 'frisk_friendship_1_Complete' in player.variables
 
             if 'frisk_friendship_1_Complete' not in player.variables:
-                self.dating_requirements["{color=%s}Friendship 1{/color}" % red] = self.d_1
+                self.dating_requirements["{color=%s}Arts and Crafts{/color}" % red] = self.d_1
             else:
-                self.dating_requirements["{color=%s}Friendship 1{/color}" % green] = self.d_1
+                self.dating_requirements["{color=%s}Arts and Crafts{/color}" % green] = self.d_1
 
             if 'frisk_friendship_2_Complete' not in player.variables:
-                self.dating_requirements["{color=%s}Friendship 2{/color}" % red] = self.d_2
+                self.dating_requirements["{color=%s}Having a Knife Time?{/color}" % red] = self.d_2
             else:
-                self.dating_requirements["{color=%s}Friendship 2{/color}" % red] = self.d_2
+                self.dating_requirements["{color=%s}Having a Knife Time?{/color}" % red] = self.d_2
 
             return
 

@@ -26,19 +26,34 @@ init -9 python:
             red = "#f00"
             green = "#00ff00"
 
-            self.d_1["Day > 0"] = world.day > 0
 
-            self.d_2 = {"Hangout 1 Complete": "Flowey_Hangout_1_Complete" in player.variables}
-
-            if 'Flowey_Hangout_1_Complete' not in player.variables:
-                self.dating_requirements["{color=%s}Friendship 1{/color}" % red] = self.d_1
+            if 'Flowey_Hangout_1_Complete' in player.variables:
+                self.d_1["Complete!"] = True
+            elif world.day > 0:
+                self.d_1["Go find Flowey!"] = False
             else:
-                self.dating_requirements["{color=%s}Friendship 1{/color}" % green] = self.d_1
+                self.d_1["Day > 0"] = world.day > 0
+
+
+            if 'Flowey_Hangout_2_Complete' in player.variables:
+                self.d_2["Complete!"] = True
+            elif "Flowey_Hangout_1_Complete" in player.variables:
+                self.d_2 = {"Go find Flowey!" : False}
+            else:
+                self.d_2 = {"Hangout 1 Complete": "Flowey_Hangout_1_Complete" in player.variables}
+
 
             if 'Flowey_Hangout_2_Complete' not in player.variables:
-                self.dating_requirements["{color=%s}Friendship 2{/color}" % red] = self.d_2
+                self.dating_requirements["{color=%s}I'm Not Datable!{/color}" % red] = self.d_2
             else:
-                self.dating_requirements["{color=%s}Friendship 2{/color}" % red] = self.d_2
+                self.dating_requirements["{color=%s}I'm Not Datable!{/color}" % red] = self.d_2
+
+            if 'Flowey_Hangout_1_Complete' not in player.variables:
+                self.dating_requirements["{color=%s}The Not Friendly Flower{/color}" % red] = self.d_1
+            else:
+                self.dating_requirements["{color=%s}The Not Friendly Flower{/color}" % green] = self.d_1
+
+
 
             return
 

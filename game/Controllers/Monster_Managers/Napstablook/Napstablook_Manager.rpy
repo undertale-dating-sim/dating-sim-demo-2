@@ -30,38 +30,44 @@ init -9 python:
             red = "#f00"
             green = "#00ff00"
 
-            self.d_1["Explored ruins"] = world.current_area.explored
-            self.d_1["In Blooky's Room"] = player.current_room == "Blooky Room"
+            if 'Napstablook_Friendship_1_Complete' in player.variables:
+                self.d_1 = {"Complete!" :  True}
+            elif world.current_area.explored and world.day > 3:
+                self.d_1 = {"Go to Blooky's Room!" : False}
+            else:
+                self.d_1 = {"Explore every room" :  world.current_area.explored}
+                self.d_1["Day > 3"] = world.day > 3
 
-            self.d_1["Day > 3"] = world.day > 3
-
-            self.d_2["FP >= 10"] =  self.FP >= 10
-            self.d_2["Play Snail Game 3 Times"] = player.variables['snail_game_count'] >= 3
-            self.d_2["In Snail Room"] =  self.current_room == 'Snail Hunting Room'
+            if "Napstablook_Hangout_1_Complete" in player.variables:
+                self.d_2 = {"Complete!" :  True}
+            elif self.FP >= 10 and  player.variables['snail_game_count'] >= 3:
+                self.d_2 = {"Go to Snail Room!" :  False}
+            else:
+                self.d_2 = {"FP >= 10" :  self.FP >= 10}
+                self.d_2["Play Snail Game 3 Times"] = player.variables['snail_game_count'] >= 3
             
-            self.d_3["DP >= 12"] = self.DP >= 12
-            self.d_3["In Blooky's Room"] =  player.current_room == "Blooky Room"
+            if "Napstablook_TL_Date_1_Complete" in player.variables:
+                self.d_3 = {"Complete!" : True}
+            elif self.DP >= 12:
+                self.d_3 = {"Go to Blooky's Room!" : False}
+            else:
+                self.d_3["DP >= 12"] = self.DP >= 12
 
 
             if 'Napstablook_Friendship_1_Complete' not in player.variables:
-                self.dating_requirements["{color=%s}Friendship 1{/color}" % red] = self.d_1
+                self.dating_requirements["{color=%s}Like Karaoke, But Not{/color}" % red] = self.d_1
             else:
-                self.dating_requirements["{color=%s}Friendship 1{/color}" % green] = self.d_1
+                self.dating_requirements["{color=%s}Like Karaoke, But Not{/color}" % green] = self.d_1
 
             if 'Napstablook_Hangout_1_Complete' not in player.variables:
-                self.dating_requirements["{color=%s}Hangout 1{/color}" % red] = self.d_2
+                self.dating_requirements["{color=%s}Snail Hunting is an Art{/color}" % red] = self.d_2
             else:
-                self.dating_requirements["{color=%s}Hangout 1{/color}" % red] = self.d_2
+                self.dating_requirements["{color=%s}Snail Hunting is an Art{/color}" % red] = self.d_2
 
             if 'Napstablook_TL_Date_1_Complete' not in player.variables:
-                self.dating_requirements["{color=%s}True Love Date 1{/color}" % red] = self.d_3
+                self.dating_requirements["{color=%s}Love at First Fright{/color}" % red] = self.d_3
             else:
-                self.dating_requirements["{color=%s}True Love Date 1{/color}" % green] = self.d_3
-
-            # if 'Napstablook_HB_Date_1_Complete' not in player.variables:
-            #     self.dating_requirements["{color=%s}HeartBreak 1{/color}" % red] = self.d_4
-            # else:
-            #     self.dating_requirements["{color=%s}HeartBreak 1{/color}" % green] = self.d_4
+                self.dating_requirements["{color=%s}Love at First Fright{/color}" % green] = self.d_3
 
             return
 
@@ -74,8 +80,9 @@ init -9 python:
             #Friendship Event 1
                 # Returning to Napstablook's room after all rooms in the Ruins have been explored
             if 'Napstablook_Friendship_1_Complete' not in player.variables:
-                if (world.current_area.explored) and (player.current_room.encode('utf-8') == "Blooky Room"):
+                if (world.current_area.explored):
                     self.special_event = Event('napstablook_event_1',False,0,self)
+                    get_napstablook().move_to_room("Blooky Room")
             
 
             #FP Hangout 1,
@@ -83,15 +90,17 @@ init -9 python:
                 #Having played the snail minigame at least 3 times
                 #Finding Napstablook in Toriel's garden
 
-            if 'Napstablook_Hangout_1_Complete' not in player.variables:
-                if get_napstablook().FP >= 10 and player.variables['snail_game_count'] >= 3 and get_napstablook().current_room == 'Snail Hunting Room':
+            elif 'Napstablook_Hangout_1_Complete' not in player.variables:
+                if get_napstablook().FP >= 10 and player.variables['snail_game_count'] >= 3:
+                    get_napstablook().move_to_room("Snail Hunting Room")
                     self.special_event = Event('napstablook_hangout_1',False,0,self)
             
             #TL Date 1
                 #Player enters the section of the ruins that blooky normally hangs out in.
-            if 'Napstablook_TL_Date_1_Complete' not in player.variables:
-                if (player.current_room is "Blooky Room") and (self.DP >= 12):
+            elif 'Napstablook_TL_Date_1_Complete' not in player.variables:
+                if(self.DP >= 12):
                     self.special_event = Event('napstablook_tl_date',False,0,self)
+                    get_napstablook().move_to_room("Blooky Room")
             #HB Date 1
             #elif player in waterfall???
             # if 'Napstablook_HB_Date_1_Complete' not in player.variables:
