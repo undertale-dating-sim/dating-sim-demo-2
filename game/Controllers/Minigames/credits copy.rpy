@@ -8,7 +8,7 @@ init python:
     audio_text = ["Mitsuko\n","Anna Mangette\n","X2H\n"]
     artist_text = ["LMaruchartista\n","Marci Nehlsen\n","Agenthisui\n","BloodyDragon117\n","Bielek\n","JRO\n","Mint\n","Betraeyal\n"]
     writers_text = ["CelestialSushi\n","Felix\n","Jeffrey\n","Kate\n","Nevran\n","Quinn\n","Riza\n","Ronnie\n","Rose\n","Sage\n","Sam\n","Vunde\n"]
-    voice_text = ["Oolay-Tiger\n","Deathykloak\n","Zen\n"]
+    voice_text = ["Oolay-Tiger\n","Deathykloak\n","Zen\n","Anti-Hero\n"]
     testers_text = ["Markus The Xeno\n","sophisticatedmarten\n","Oxius\n","Kello\n","Richarad\n","Elis\n","ChaosTheLegend\n","InsanelyADD\n","Kurosidad\n","Sakura\n","Stone\n","Aunti Diluvian\n","Foxgloves\n","ChaosAirlines\n","GoldenScale\n"]
     credit_speed = 25
     credit_gap = 10
