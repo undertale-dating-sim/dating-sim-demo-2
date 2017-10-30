@@ -47,13 +47,11 @@ init -9 python:
             #hangout 1, done when the tutorial is over
             if "Flowey_Hangout_1_Complete" not in player.variables and world.day > 0 and world.current_timezone != "Evening":
                 self.special_event = Event('flowey_hangout1',False,0,self)
-                #player.variables['Flowey_Hangout_1_Complete'] = True
             elif "Flowey_Hangout_2_Complete" not in player.variables and world.day > 0:
-                # if "flowey_heartbreak_activated" in player.variables:
-                #     self.special_event = Event('flowey_HB_hangout_1',False,self)
-                # else:
+
                 self.special_event = Event('Flowey_Hangout_1_5',False,0,self)
             self.handle_relationship_requirements()
+            return
 
 
 

@@ -63,6 +63,14 @@ label call_Napstablook_Sassy_Rock_Room(monster,call_count):
         napstablook "..."
     return
 
+label call_Napstablook_Monster_Candy_Room(monster,call_count):
+    
+    if call_count == 1:
+        napstablook "... that bowl of candy is always there... i never take any though... just in case..."
+    else:
+        napstablook "..."
+    return
+
 label call_Napstablook_Blooky_Room(monster,call_count):
 
     if call_count == 1:
@@ -81,11 +89,10 @@ label call_Napstablook_Spider_Bakery(monster,call_count):
 
     return
 
-label call_Napstablook_Snail_Hunter(monster,call_count):
+label call_Napstablook_Snail_Hunting_Room(monster,call_count):
 
     if call_count == 1:
         napstablook "you’re in Toriel’s garden.... there are some snails here...... i guess you already knew that, because you can see them...."
-
     else:
         napstablook "the yellow snail’s my favorite. well, my favorite snail that’s in the ruins...... i have others back home...."
     return

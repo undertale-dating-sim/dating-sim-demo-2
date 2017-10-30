@@ -62,6 +62,9 @@ label call_Monster(monster):
 
     if monster.current_room.name == "Dead Room":
         "But nobody answered..."
+
+    elif monster.current_room.name == player.current_room:
+        call expression "call_%s_Same_Room" % monster.name pass (monster,monster.variables[call_location_variable])
     else:
         play sound "audio/sfx/cellphone.wav"
         "* Ring ring"
@@ -71,12 +74,12 @@ label call_Monster(monster):
                     
             "{color=[text_color]}Chat about [world.current_area.current_room.name]{/color}":
 
-                if renpy.has_label(loc_name):
+                if world.current_area.name == "Toriel House":
+                    call toriel_house_demo
+                elif renpy.has_label(loc_name):
                     call expression loc_name pass (monster,monster.variables[call_location_variable])
-                elif renpy.has_label("call_[monster]_Unknown"):
-                    call expression "call_[monster]_Unknown" pass (loc_name)
                 else:
-                    call unknown_Call
+                    call expression "unknown_Call" pass (monster.name)
                 $ player.variables[monster.name+"_Cellphone_"+location.name.replace(" ","_")+"_Complete"] = True
 
             "Where are you?":
@@ -84,8 +87,14 @@ label call_Monster(monster):
                 $ renpy.say(monster.name,"You should come say 'Hello!'.")
     return
 
-label unknown_Call:
-    "I'm not sure."
-    "Do you hear a cricket?"
-    "It feels like there is some kind of bug in the phone?"
+label unknown_Call(monster):
+    "You hear some kind of automated message."
+    "Cellphone Dialogue Not Found, please contact Wilson."
+    $ renpy.say(None,"Tell him Cellphone, %s, %s" % (monster,player.current_room))
+    return
+
+label toriel_house_demo:
+    "You get a weird sense that for some reason, there isn't any dialogue for inside Toriel's House."
+    "You hear the sound of a dog sweating on the other end of the line."
+    "Wait....is this not in your head???"
     return

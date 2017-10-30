@@ -72,8 +72,8 @@ label call_Frisk_Froggit_Room(monster,call_count):
     return
 
 label call_Frisk_Monster_Candy_Room(monster,call_count):
-    if call_count == 1:
-        frisk   "You shouldn’t take more than one... Leave some for everyone else!"
+
+    frisk  "You shouldn’t take more than one... Leave some for everyone else!"
         
     return
 

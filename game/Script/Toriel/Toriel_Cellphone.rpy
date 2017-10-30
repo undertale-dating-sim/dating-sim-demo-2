@@ -98,12 +98,12 @@ label call_Toriel_Spider_Bakery(owner,call_count):
 
     return
 
-label call_Toriel_Snail_Hunter(owner,call_count):
+label call_Toriel_Snail_Hunting_Room(owner,call_count):
     
     toriel "Hello, Toriel here!"
     toriel "Are you in the mood to catch some snails?" 
     #if the player has caught snails today and gave them to Toriel:
-    toriel "We actually have enough for today, but I do appreciate the enthusiasm!"
+    #toriel "We actually have enough for today, but I do appreciate the enthusiasm!"
     #if the player has not brought snails to Toriel:
     toriel "If you catch any, feel free to bring them back home!"
     return
