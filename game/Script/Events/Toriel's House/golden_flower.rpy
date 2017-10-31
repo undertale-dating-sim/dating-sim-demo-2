@@ -56,7 +56,7 @@ label golden_flower_event:
     return
 
 label toriel_friendship_event_2(owner=get_toriel()):
-
+    play music "audio/ruins/toriel.mp3" fadein 5
     show toriel smile with Dissolve(.25)
     toriel "Oh! I have great news. I do not know if you have noticed, but the stunted golden flower in our corridor has finally bloomed. I had been fretting over that poor thing so long, too. Ah well, no worries now I suppose. Maybe it was just shy."
     toriel "Still, it is quite strange is it not? It flowered only a little after you came. Perhaps you are some sort of good omen?"

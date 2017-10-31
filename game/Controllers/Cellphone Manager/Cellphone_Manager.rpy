@@ -4,16 +4,16 @@ screen cell:
         vbox:
             if 'has_flowey_cell' in player.variables:
                 textbutton "Flowey":
-                    action [SetVariable("selected_caller","Flowey")] background "#000000"
+                    action [get_flowey().handle_relationship_requirements(),SetVariable("selected_caller","Flowey")] background "#000000"
             if 'has_frisk_cell' in player.variables:
                 textbutton "Frisk":
-                    action [SetVariable("selected_caller","Frisk")] background "#000000"
+                    action [get_frisk().handle_relationship_requirements(),SetVariable("selected_caller","Frisk")] background "#000000"
             if 'has_toriel_cell' in player.variables:
                 textbutton "Toriel":
-                    action [SetVariable("selected_caller","Toriel")] background "#000000"
+                    action [get_toriel().handle_relationship_requirements(),SetVariable("selected_caller","Toriel")] background "#000000"
             if 'has_napstablook_cell' in player.variables:
                 textbutton "Napstablook":
-                    action [SetVariable("selected_caller","Napstablook")] background "#000000"
+                    action [get_napstablook().handle_relationship_requirements(),SetVariable("selected_caller","Napstablook")] background "#000000"
     if selected_caller:
         frame pos(.4,.3):
             background Frame("UI/text-box3.png",21, 21)

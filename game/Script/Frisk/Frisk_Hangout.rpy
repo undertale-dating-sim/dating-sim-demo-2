@@ -14,7 +14,8 @@
 #+FP in green
 
 label frisk_friendship_hangout1_main(owner = get_frisk()):
-
+    
+    play music "audio/ruins/frisk.mp3" fadein 5
     python:
         red = False
         yellow = False

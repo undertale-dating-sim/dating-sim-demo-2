@@ -642,6 +642,9 @@ label breakfast_time_flowey: #done
     return
     
 label ruins_basement_door_first_visit: #needs sound effect
+
+    play music "audio/ruins/basement_door.mp3"
+
     frisk "Hey."
     show frisk distant with Dissolve(.25)
     if 'ruins_want_to_leave' in player.variables and player.variables['ruins_want_to_leave'] == True:

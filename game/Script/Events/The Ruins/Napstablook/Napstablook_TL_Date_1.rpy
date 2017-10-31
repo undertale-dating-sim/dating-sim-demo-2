@@ -43,7 +43,7 @@ label napstablook_tl_date(owner=get_napstablook()):
         asked_10 = False
         asked_11 = False
         hobbies_asked = False
-    
+    play music "audio/ruins/blooky.mp3" fadein 5
     show napstablook surprised at napstabob with Dissolve(.25)
     napstablook "really?"
     napstablook "hangout........with me? that'd be nice..."

@@ -227,8 +227,8 @@ init -1 python:
 label port_to_toriel_house:
     stop music fadeout 5.0
     $ renpy.pause(1.0)
-    if world.current_timezone != "Night":
-        play music "audio/ruins/toriels_house.mp3" fadein 5.0
+    # if world.current_timezone != "Night":
+    #     play music "audio/ruins/toriels_house.mp3" fadein 5.0
     $ world.move_to_room("Staircase")
 
 label ruins_mc_get_candy:

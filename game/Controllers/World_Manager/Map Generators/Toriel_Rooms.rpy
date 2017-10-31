@@ -115,7 +115,7 @@ init python:
             self.name = "Toriel's Room"
             self.x = 6
             self.y = 1
-            self.desc = ["* Looks like a pretty normal master bedroom... except for the bucket of snails in the corner."]
+            self.desc = ["* Looks like a pretty normal master bedroom... except for the bucket of snails in the corner.", "* You feel like it could definitely use a little more color though."]
             self.bg = "background toriel_house_toriel_room"
             self.locked = True
 
@@ -137,8 +137,8 @@ label port_to_black_tree_room:
         call ruins_breakfast_leaving
     else:
         pause 1
-        if world.current_timezone != "Night":
-            play music "audio/ruins/the_ruins.mp3" fadein 5.0
+        # if world.current_timezone != "Night":
+        #     play music "audio/ruins/the_ruins.mp3" fadein 5.0
         $ world.move_to_room("Black Tree Room")
     return
     

@@ -1,7 +1,7 @@
 label Flowey_Hangout_1_5(owner = get_flowey()):
     # The hangout occurs the second time the player encounters Flowey after Day 1.
     # If possible, this hangout would not occur in subsequent playthroughs after the first time it occurs.
-    
+    play music "audio/ruins/flowey.mp3" fadein 5
     show flowey annoyed with Dissolve(.25)
     flowey "Oh. It's you again."
     flowey "Great. This is lovely."
@@ -170,7 +170,7 @@ label Flowey_Hangout_1_5(owner = get_flowey()):
                 flowey "If you're not going to leave, then I will."
                 show flowey smug with Dissolve(.25)
                 flowey "Feel free to stand around talking to yourself, though."
-                show flowey laughing with Dissolve(.25)
+                show flowey laugh with Dissolve(.25)
                 flowey "Idiot."
             "You'll be alone forever if you keep acting like that.":
                 $world.get_monster('Flowey').update_HP(3)

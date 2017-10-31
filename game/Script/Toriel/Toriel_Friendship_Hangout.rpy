@@ -7,6 +7,7 @@ init:
     $toriel_hangout_pun_hater = False
 
 label toriel_friendship_hangout_1(owner=get_toriel()):
+    play music "audio/ruins/toriel.mp3" fadein 5
     $ player.variables['Toriel_Friendship_Hangout1'] = True
     if world.current_timezone == "Afternoon":
         $ world.set_current_time("Evening")

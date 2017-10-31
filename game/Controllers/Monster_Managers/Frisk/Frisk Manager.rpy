@@ -85,7 +85,7 @@ init -9 python:
             elif world.get_current_timezone() != 'Night' and world.get_current_timezone() != 'Evening' and 'frisk_friendship_1_Complete' in player.variables:
                 self.d_2["Go to the Kitchen \n    before Dinner"] = False
             else:
-                self.d_2["Go to Kitchen\n    before Dinner"] = world.get_current_timezone() != 'Night'
+                self.d_2["Go to Kitchen\n    before Dinner"] = world.get_current_timezone() != 'Night' and world.get_current_timezone() != 'Evening' and player.current_room == "Kitchen"
                 self.d_2['Friendship 1 Complete'] = 'frisk_friendship_1_Complete' in player.variables
 
             if 'frisk_friendship_1_Complete' not in player.variables:
@@ -116,8 +116,6 @@ init -9 python:
                         get_room("Kitchen").set_event('frisk_friendship_hangout2')
             else:
                 self.remove_event()
-
-            self.handle_relationship_requirements()
 
             return
         def handle_schedule(self):
@@ -204,7 +202,7 @@ label Frisk_manager_default(owner = False,pause = True):
 
 
     call show_buttons from _call_show_buttons_6
-    
+    play music "audio/ruins/frisk.mp3" fadein 5
     show frisk normal:
         xalign 0.5
         yalign 1.0

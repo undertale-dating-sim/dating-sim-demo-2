@@ -1,6 +1,8 @@
 
 
 label frisk_friendship_event_1(owner=get_frisk()):
+    
+    play music "audio/ruins/frisk.mp3" fadein 5
     show frisk smallsmile with Dissolve(.25)
     frisk "Yeah, that sounds fun!"
     frisk "It’s always a lot more interesting with friends."

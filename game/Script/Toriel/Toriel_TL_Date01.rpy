@@ -14,6 +14,7 @@ init:
 
     
 label toriel_tl_date_1(owner='Toriel'):
+    play music "audio/ruins/toriel.mp3" fadein 5
     call show_buttons
     show toriel normal with Dissolve(.25)
     $ renpy.pause()

@@ -35,7 +35,7 @@ init -9 python:
             elif world.current_area.explored and world.day > 3:
                 self.d_1 = {"Go to Blooky's Room!" : False}
             else:
-                self.d_1 = {"Explore every room" :  world.current_area.explored}
+                self.d_1 = {"Explore every room \n    in Ruins" :  world.ruins_explored()}
                 self.d_1["Day > 3"] = world.day > 3
 
             if "Napstablook_Hangout_1_Complete" in player.variables:
@@ -80,7 +80,7 @@ init -9 python:
             #Friendship Event 1
                 # Returning to Napstablook's room after all rooms in the Ruins have been explored
             if 'Napstablook_Friendship_1_Complete' not in player.variables:
-                if (world.current_area.explored):
+                if (world.ruins_explored()):
                     self.special_event = Event('napstablook_event_1',False,0,self)
                     get_napstablook().move_to_room("Blooky Room")
             
@@ -110,7 +110,6 @@ init -9 python:
             #     if (player.current_room is 'Blooky Room') and (owner.HB >= 12):
             #         self.special_event = Event('napstablook_hb_date',False,self)
 
-            self.handle_relationship_requirements()
             return
 
         def seed_default_schedule(self):
@@ -179,7 +178,7 @@ label Napstablook_manager_default(owner = False, pause = True):
 
     #Show the GUI while you talk to him
     call show_buttons from _call_show_buttons_7
-
+    play music "audio/ruins/blooky.mp3" fadein 5
     #Bobbing Animation
     if not renpy.showing("napstablook"):
         show napstablook normal at napstabob with Dissolve(.25)

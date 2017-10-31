@@ -1,4 +1,7 @@
 label flowey_hangout1(owner = get_flowey()):
+
+    play music "audio/ruins/flowey.mp3" fadein 5
+
     #Hangout 1 
     #{After tutorial}
     #This initial "Hangout" dialogue will occur regardless if player has or has not yet met the prerequisites for a friendship with flowey

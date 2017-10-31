@@ -6,6 +6,7 @@ label napstablook_hangout_1(owner=get_napstablook()):
     #Synopsis: Napstablook notices you've been catching a lot of snails recently, and offers to help.
 
     show napstablook normal at napstabob with dissolve
+    play music "audio/ruins/blooky.mp3" fadein 5
     if world.current_timezone == "Afternoon":
         $ world.set_current_time("Evening")
     else:

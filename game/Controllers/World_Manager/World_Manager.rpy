@@ -178,16 +178,22 @@ init -10 python:
                                     # renpy.say(None,"Schedule : %s has no room for %s on %s. Default is %s" % (m.name,timezone,day_of_week,m.default_room))
                                     m.move_to_room(m.default_room)
                             m.handle_special_events()
+                self.seed_random_monsters()
 
             return
 
+        def ruins_explored(self):
+            for rn,r in self.areas['The Ruins'].rooms.items():
+                if r.visited == False:
+                    return rn
+            return True
         def get_current_day(self):
             return self.days[self.day % 7]
 
         #this function will seed all of the random monsters to the various rooms they can be in.
         #rooms with events already in them should be ignored.
         def seed_random_monsters(self):
-            renpy.say(None,"Setting up the random monsters")
+            #renpy.say(None,"Setting up the random monsters")
             for an,a in self.areas.iteritems():
 
                 # #first we get a list of all the rooms in the area
@@ -209,7 +215,7 @@ init -10 python:
                         room_list.remove(room_list[0])
 
         def seed_random_events(self):
-            renpy.say(None,"Seeding Random Events")
+            #renpy.say(None,"Seeding Random Events")
             for an,a in self.areas.iteritems():
                 # renpy.say(None,"Checking %s" % a.name)
                  # #first we get a list of all the rooms in the area
@@ -336,6 +342,13 @@ label load_room(loop=True,transition="fade"):
     
     call hide_buttons from _call_hide_buttons
     python:
+        if world.current_area.name == "The Ruins":
+            if renpy.music.get_playing() != "audio/ruins/the_ruins.mp3":
+                renpy.music.play("audio/ruins/the_ruins.mp3")
+        if world.current_area.name == "Toriel House":
+            if renpy.music.get_playing() != "audio/ruins/toriels_house.mp3":
+                renpy.music.play("audio/ruins/toriels_house.mp3")
+
         cell_convo_count = 0
         renpy.scene()
         if world.current_area.current_room.bg:

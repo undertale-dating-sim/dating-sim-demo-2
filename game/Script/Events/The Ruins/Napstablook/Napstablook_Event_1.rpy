@@ -12,7 +12,7 @@ label napstablook_event_1(owner=get_napstablook()):
     #Synopsis: Napstablook offers to let you listen to a new song he made. How will you respond?
     
     stop music
-
+    
     show napstablook normal at napstabob with dissolve
     if world.current_timezone == "Afternoon":
         $ world.set_current_time("Evening")
@@ -53,7 +53,7 @@ label napstablook_event_1(owner=get_napstablook()):
                 napstablook "ha.... okay.... if you want...."
                 $ issinger = True
         
-        play music "audio/home.mp3" ###### NYI- SPOOKTUNES HERE
+        play music "audio/ruins/blooky.mp3" ###### NYI- SPOOKTUNES HERE
         
         show napstablook normal with dissolve
         napstablook "so.... this is it......."

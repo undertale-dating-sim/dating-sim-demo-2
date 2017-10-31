@@ -1,4 +1,5 @@
 label toriel_friendship_event_1(owner=get_toriel()):
+    play music "audio/ruins/toriel.mp3" fadein 5
     if world.get_monster('Frisk').FP < 5:
         show toriel normal with Dissolve(.25)
         toriel "Actually, I have been meaning to talk to you."

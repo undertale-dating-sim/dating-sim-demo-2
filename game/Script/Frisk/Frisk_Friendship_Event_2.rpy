@@ -16,7 +16,8 @@
     
 label frisk_friendship_hangout2(owner=get_frisk()):
     
-
+    
+    play music "audio/ruins/frisk.mp3" fadein 5
     $ player.variables['frisk_friend_hangout2_day'] = world.day
 
     show frisk smallsmile with Dissolve(.25)

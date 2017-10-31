@@ -46,7 +46,7 @@ init -9 python:
             if 'Flowey_Hangout_2_Complete' not in player.variables:
                 self.dating_requirements["{color=%s}I'm Not Datable!{/color}" % red] = self.d_2
             else:
-                self.dating_requirements["{color=%s}I'm Not Datable!{/color}" % red] = self.d_2
+                self.dating_requirements["{color=%s}I'm Not Datable!{/color}" % green] = self.d_2
 
             if 'Flowey_Hangout_1_Complete' not in player.variables:
                 self.dating_requirements["{color=%s}The Not Friendly Flower{/color}" % red] = self.d_1
@@ -66,7 +66,6 @@ init -9 python:
                 self.special_event = Event('Flowey_Hangout_1_5',False,0,self)
             else:
                 self.remove_event()
-            self.handle_relationship_requirements()
             return
 
 
@@ -149,7 +148,8 @@ label initialize_flowey:
 
 #this is floweys default scene
 label flowey_manager_default(owner = False,pause = True):
-
+    
+    play music "audio/ruins/flowey.mp3" fadein 5
     call show_flowey_sprite(owner)
 
     call show_buttons
