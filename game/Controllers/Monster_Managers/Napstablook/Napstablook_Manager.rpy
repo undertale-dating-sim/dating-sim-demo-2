@@ -101,6 +101,9 @@ init -9 python:
                 if(self.DP >= 12):
                     self.special_event = Event('napstablook_tl_date',False,0,self)
                     get_napstablook().move_to_room("Blooky Room")
+
+            else:
+                self.remove_event()
             #HB Date 1
             #elif player in waterfall???
             # if 'Napstablook_HB_Date_1_Complete' not in player.variables:

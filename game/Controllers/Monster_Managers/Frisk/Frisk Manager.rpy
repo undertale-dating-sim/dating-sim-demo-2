@@ -110,10 +110,12 @@ init -9 python:
                 self.set_special_event('frisk_friendship_hangout1_main')
 
             #knife in kitchen
-            if world.get_current_timezone() == 'Morning' or world.get_current_timezone() == 'Day' or world.get_current_timezone() == 'Afternoon':
+            elif world.get_current_timezone() == 'Morning' or world.get_current_timezone() == 'Day' or world.get_current_timezone() == 'Afternoon':
                 if 'frisk_friendship_1_Complete' in player.variables and 'frisk_friendship_2_Complete' not in player.variables:
                     if 'frisk_friend_hangout2_day' in player.variables and player.variables['frisk_friend_hangout2_day'] != world.day:
                         get_room("Kitchen").set_event('frisk_friendship_hangout2')
+            else:
+                self.remove_event()
 
             self.handle_relationship_requirements()
 

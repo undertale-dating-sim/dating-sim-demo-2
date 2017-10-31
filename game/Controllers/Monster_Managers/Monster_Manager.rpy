@@ -75,6 +75,9 @@ init -10 python:
             else:
                 renpy.notify("Couldn't find event [event]")
 
+        def remove_event(self):
+            self.special_event = None
+
         def get_current_event(self):
             
             if self.special_event and self.special_event.completed == False:

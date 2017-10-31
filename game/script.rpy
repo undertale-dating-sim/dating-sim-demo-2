@@ -66,12 +66,19 @@ label skip_to_day_1:
     $ player.variables['met_toriel'] = True
     $ player.variables['met_frisk'] = True
     $ player.variables['has_frisk_cell'] = True
+    $ player.variables['has_toriel_cell'] = True
+    $ player.variables['has_napstablook_cell'] = True
+    $ player.variables['has_flowey_cell'] = True
     $ player.variables['has_cellphone'] = True
     $ player.variables['accepted_frisk'] = True
+    $ get_flowey().move_to_room("Kitchen")
+    $ get_toriel().move_to_room("Kitchen")
+    $ get_frisk().move_to_room("Kitchen")
+    $ get_napstablook().move_to_room("Kitchen")
 
     
-    call player_sleeping_th
-    $ move_to_room("Your Room")
+    #call player_sleeping_th
+    $ move_to_room("Cave Room")
     return
 
 

@@ -189,9 +189,9 @@ label th_your_room:
 label toriel_house_corridor:
     call show_buttons
     "There are three doors here. There is also a nice little flower."
-    if get_toriel().current_room.name == "Toriel's Room":
+    if get_toriel().current_room.name == "Toriel's Room" and world.current_timezone != "Night":
         "You hear shuffling from Toriel's Room."
-    if get_frisk().current_room.name == "Frisk's Room":
+    if get_frisk().current_room.name == "Frisk's Room"  and world.current_timezone != "Night":
         "You see a light on under Frisk's door."
     while True:
         call show_buttons

@@ -46,25 +46,7 @@ screen show_menu:
                 if 'has_cellphone' in player.variables:
                     textbutton "CELL" action [Play ("sound", "audio/sfx/click.wav"),Show("cell"),Hide("stats"),Hide("items"),SetVariable("selected_caller",False)] background "#000000"
 
-label increment_time(arg = 'day'):
-    python:
-        if arg == 'day':
-            world.day += 1
-        else:
-            world.currentTime += 200
-        world.update_world()
-        renpy.jump("load_room")
-    return
 
-label decrement_time(arg = 'day'):
-    python:
-        if arg == 'day':
-            world.day -= 1
-        else:
-            world.currentTime += 200
-        world.update_world()
-        renpy.jump("load_room")
-    return
 
 label increment_hp:
     python:

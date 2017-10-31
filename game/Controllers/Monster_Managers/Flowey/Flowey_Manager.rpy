@@ -63,8 +63,9 @@ init -9 python:
             if "Flowey_Hangout_1_Complete" not in player.variables and world.day > 0 and world.current_timezone != "Evening":
                 self.special_event = Event('flowey_hangout1',False,0,self)
             elif "Flowey_Hangout_2_Complete" not in player.variables and world.day > 0:
-
                 self.special_event = Event('Flowey_Hangout_1_5',False,0,self)
+            else:
+                self.remove_event()
             self.handle_relationship_requirements()
             return
 

@@ -118,6 +118,8 @@ init -9 python:
             elif 'Toriel_Friendship_1_Complete' in player.variables and 'Toriel_TL_Date_1_Complete' not in player.variables:
                 if 'Toriel_Flirts_Complete' in player.variables:
                     self.special_event = Event('toriel_tl_date_1',False,0,self)
+            else:
+                self.remove_event()
             self.handle_relationship_requirements()
             return
             

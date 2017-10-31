@@ -159,7 +159,7 @@ init -10 python:
             timezone = self.get_current_timezone()
             day_of_week = self.get_current_day()
 
-            if self.day > 0:
+            if self.day > 0 and self.current_timezone != "Night":
                 for an,a in self.areas.items():
                     room_list = list(a.rooms.items())
                     for rn,r in room_list:
