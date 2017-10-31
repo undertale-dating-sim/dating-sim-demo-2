@@ -159,7 +159,7 @@ label toriel_friendship_hangout_1(owner=get_toriel()):
             show toriel blushing with Dissolve(.25)
             toriel "It is just simple fire magic..."
             toriel "But I am glad you liked it!" 
-        "Wow, your backing skills are on {i}fire{/i}!":
+        "Wow, your baking skills are on {i}fire{/i}!":
             $world.get_monster('Toriel').update_FP(3)
             show toriel blushing with Dissolve(.25) 
             toriel "Oh, thank you." 
