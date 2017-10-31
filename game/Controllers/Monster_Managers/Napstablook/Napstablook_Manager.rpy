@@ -258,13 +258,13 @@ label Napstablook_manager_default(owner = False, pause = True):
                         napstablook "oh... well... i have snails. do those count?"
                         menu:
                             "\"Yes, of course they do.\"":
-                                $world.get_monster("Napstablook").update_FP(2)
+                                #$world.get_monster("Napstablook").update_FP(2)
                                 show napstablook smallsmile with Dissolve(.25)
                                 napstablook "oh, that's good..."
                             "\"Why would you have snails?\"":
                                 napstablook "well... i sell them. people usually want them for food..."
                             "\"Snails aren't pets. They're gross.\"":
-                                $world.get_monster("Napstablook").update_FP(-2)
+                                #$world.get_monster("Napstablook").update_FP(-2)
                                 show napstablook sad with Dissolve(.25)
                                 napstablook "oh..............."
                     "\"Have you ever met Toriel?\"":
