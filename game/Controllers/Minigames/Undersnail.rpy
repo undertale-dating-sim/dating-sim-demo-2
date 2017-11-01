@@ -33,6 +33,7 @@ label UnderSnail:
     $ world.add_to_ac(10)
     $ world.update_world()
     stop music
+    $ renpy.music.set_volume(.5)
     if world.current_timezone != "Night":
         play music "audio/ruins/the_ruins.mp3" fadein 5
     return

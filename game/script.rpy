@@ -56,6 +56,7 @@ label skip_to_day_1:
         world = World()
         inventory = Inventory()
         cell_convo_count = 0
+        renpy.music.set_volume(.5)
     scene black
     $ player.variables['tf_scream_count'] = 1
     $ player.variables['satchel_found'] = True

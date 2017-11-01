@@ -8,7 +8,8 @@ label prologue:
     #Pause on commas
     #Elipses go slow
     #pictures fade out and in
-    play music "audio/prologue.mp3" 
+    $ renpy.music.set_volume(.5)
+    play music "audio/prologue.mp3"
     scene black
     show background prologue1 with Dissolve(2)
     "{cps=9}Long ago, two races ruled over Earth:{/cps}"
@@ -26,10 +27,11 @@ label prologue:
     show background prologue4 with Dissolve(2)
     "{cps=9}MT. EBOTT 201X{/cps}"
     "{cps=9}A human fell down to the monsters.{/cps}"
-    stop music
+    stop music fadeout 4
     scene black with Dissolve(4)
     "{cps=9}Their story, however, fell short.{/cps}"
 
+    $ renpy.music.set_volume(1)
     pause 2.0
     wilson "..."
     wilson "We are out of cards?"
@@ -50,11 +52,10 @@ label prologue:
 
 
 label the_fall:
-    
+    $ renpy.music.set_volume(.5)
     scene black
     with fade
     stop music
-    $ renpy.music.set_volume(.2)
     call prologue
     stop music
     #play wind sfx
