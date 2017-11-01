@@ -202,7 +202,9 @@ label Frisk_manager_default(owner = False,pause = True):
 
 
     call show_buttons from _call_show_buttons_6
-    play music "audio/ruins/frisk.mp3" fadein 5
+    if renpy.music.get_playing() != "audio/ruins/frisk.mp3":
+        play music "audio/ruins/frisk.mp3" fadein 5
+    
     show frisk normal:
         xalign 0.5
         yalign 1.0

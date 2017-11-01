@@ -196,7 +196,8 @@ label initialize_toriel:
 label Toriel_manager_default(owner = False,pause = True):
     
     call show_buttons from _call_show_buttons
-    play music "audio/ruins/toriel.mp3" fadein 5
+    if renpy.music.get_playing() != "audio/ruins/toriel.mp3":
+        play music "audio/ruins/toriel.mp3" fadein 5
     show toriel normal with Dissolve(.25)
     # if owner.FP < 20:
     #     show toriel reallysad with Dissolve(.25)

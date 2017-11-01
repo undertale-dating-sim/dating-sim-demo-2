@@ -149,7 +149,8 @@ label initialize_flowey:
 #this is floweys default scene
 label flowey_manager_default(owner = False,pause = True):
     
-    play music "audio/ruins/flowey.mp3" fadein 5
+    if renpy.music.get_playing() != "audio/ruins/flowey.mp3":
+        play music "audio/ruins/flowey.mp3" fadein 5
     call show_flowey_sprite(owner)
 
     call show_buttons

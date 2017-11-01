@@ -178,7 +178,8 @@ label Napstablook_manager_default(owner = False, pause = True):
 
     #Show the GUI while you talk to him
     call show_buttons from _call_show_buttons_7
-    play music "audio/ruins/blooky.mp3" fadein 5
+    if renpy.music.get_playing() != "audio/ruins/blooky.mp3":
+        play music "audio/ruins/blooky.mp3" fadein 5
     #Bobbing Animation
     if not renpy.showing("napstablook"):
         show napstablook normal at napstabob with Dissolve(.25)
