@@ -9,13 +9,15 @@ label frisk_friendship_event_1(owner=get_frisk()):
     show frisk smallsmile with Dissolve(.25)
     frisk "I’m... uh..."
     frisk "Sorry, nevermind."
-    show frisk normal with Dissolve(.25)
-    frisk "Let’s just get going, okay?"
 
-    $ renpy.transition(fade)
-    $ renpy.show(world.get_room("Snail Hunting Room").bg)
 
-    frisk "Alright, we’re here!"
+    if player.current_room != "Snail Hunting Room":
+        show frisk normal with Dissolve(.25)
+        frisk "Let’s just get going, okay?"
+        $ renpy.transition(fade)
+        $ renpy.show(world.get_room("Snail Hunting Room").bg)
+        frisk "Alright, we’re here!"
+        
     frisk "Are you... uhm..."
     frisk "..."
     frisk "Oh, sorry."
