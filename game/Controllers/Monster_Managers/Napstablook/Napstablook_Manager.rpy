@@ -32,10 +32,10 @@ init -9 python:
 
             if 'Napstablook_Friendship_1_Complete' in player.variables:
                 self.d_1 = {"Complete!" :  True}
-            elif world.current_area.explored and world.day > 3:
+            elif world.ruins_explored() == 'True' and world.day > 3:
                 self.d_1 = {"Go to Blooky's Room!" : False}
             else:
-                self.d_1 = {"Explore every room \n    in Ruins" :  world.ruins_explored()}
+                self.d_1 = {"Explore every room \n    in Ruins" :  world.ruins_explored() == 'True'}
                 self.d_1["Day > 3"] = world.day > 3
 
             if "Napstablook_Hangout_1_Complete" in player.variables:
@@ -80,7 +80,7 @@ init -9 python:
             #Friendship Event 1
                 # Returning to Napstablook's room after all rooms in the Ruins have been explored
             if 'Napstablook_Friendship_1_Complete' not in player.variables:
-                if (world.ruins_explored()):
+                if (world.ruins_explored() == 'True' and world.day > 3):
                     self.special_event = Event('napstablook_event_1',False,0,self)
                     get_napstablook().move_to_room("Blooky Room")
             

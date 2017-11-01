@@ -186,7 +186,7 @@ init -10 python:
             for rn,r in self.areas['The Ruins'].rooms.items():
                 if r.visited == False:
                     return rn
-            return True
+            return "True"
         def get_current_day(self):
             return self.days[self.day % 7]
 
@@ -322,7 +322,6 @@ init -10 python:
             self.add_area(TheRuins())
             self.current_area = self.areas["The Ruins"]
             self.current_area.current_room = self.current_area.rooms["Grass Room"]
-            rooms_explored = 1
 
 
 label night_has_fallen:

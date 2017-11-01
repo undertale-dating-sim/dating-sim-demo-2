@@ -222,6 +222,7 @@ init -1 python:
             self.bg = "background toriel_transition_screen"
             self.mappable = False
             self.ignore = True
+            self.visited = True
             self.events["port_to_toriel_house"] = Event("port_to_toriel_house",True)
     
 label port_to_toriel_house:
