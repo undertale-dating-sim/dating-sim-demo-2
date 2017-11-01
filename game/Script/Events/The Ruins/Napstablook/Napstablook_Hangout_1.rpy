@@ -7,10 +7,7 @@ label napstablook_hangout_1(owner=get_napstablook()):
 
     show napstablook normal at napstabob with dissolve
     play music "audio/ruins/blooky.mp3" fadein 5
-    if world.current_timezone == "Afternoon":
-        $ world.set_current_time("Evening")
-    else:
-        $ world.set_current_time("Afternoon")
+    $ world.add_to_ac(10)
 
     $ ruinsnails_asked = False
     $ net_asked = False

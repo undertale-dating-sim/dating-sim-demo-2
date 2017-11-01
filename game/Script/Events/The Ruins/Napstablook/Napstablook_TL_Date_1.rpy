@@ -60,7 +60,7 @@ label napstablook_tl_date(owner=get_napstablook()):
     show napstablook normal with Dissolve(.25)
     napstablook "oh good"
     napstablook "it's empty"
-    
+    $ world.add_to_ac(10)
     menu:
         "\"Just the two of us, then.\"":
             $world.get_monster('Napstablook').update_DP(3)
@@ -1330,10 +1330,6 @@ label end_napstablook_tl_date_1:
         $ player.variables['napstablook_date_success'] = True
         $ player.variables['napstablook_date_friendzoned'] = False
         $ player.variables['Napstablook_TL_Date_1_Complete'] = True
-        if world.current_timezone == "Afternoon":
-            $ world.set_current_time("Evening")
-        else:
-            $ world.set_current_time("Afternoon")
         return
     
     label napstablook_tl_date1_FP_ending:
@@ -1352,10 +1348,6 @@ label end_napstablook_tl_date_1:
         $ player.variables['napstablook_date_success'] = True
         $ player.variables['napstablook_date_friendzoned'] = True
         $ player.variables['Napstablook_TL_Date_1_Complete'] = True
-        if world.current_timezone == "Afternoon":
-            $ world.set_current_time("Evening")
-        else:
-            $ world.set_current_time("Afternoon")
         return
         
     label napstablook_tl_date1_Failed_ending:
@@ -1372,8 +1364,4 @@ label end_napstablook_tl_date_1:
         $ player.variables['napstablook_date_success'] = False
         $ player.variables['napstablook_date_friendzoned'] = False
         $ player.variables['Napstablook_TL_Date_1_Complete'] = True
-        if world.current_timezone == "Afternoon":
-            $ world.set_current_time("Evening")
-        else:
-            $ world.set_current_time("Afternoon")
         return

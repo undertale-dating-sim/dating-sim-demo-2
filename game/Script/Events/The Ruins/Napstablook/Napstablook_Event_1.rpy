@@ -14,10 +14,7 @@ label napstablook_event_1(owner=get_napstablook()):
     stop music
     
     show napstablook normal at napstabob with dissolve
-    if world.current_timezone == "Afternoon":
-        $ world.set_current_time("Evening")
-    else:
-        $ world.set_current_time("Afternoon")
+    $ world.add_to_ac(10)
     
     napstablook "oh...... hi. i didn't think you'd come back here...."
     napstablook "i'm glad you did, though....... i mean, i've been working on a new song and i was wondering if..... maybe....... you'd want to listen to it?"
@@ -31,11 +28,14 @@ label napstablook_event_1(owner=get_napstablook()):
             $ listened_music = True
             napstablook "um...... okay.... this isn't even that good, and it's not done.... i mean, i think it's done, but i always end up changing things later so it's probably not done...."
             napstablook "and... i know it doesn't have lyrics...... and some people don't like that.... but i'm not a very good singer, so...."
+            $ player.variables['Napstablook_Friendship_1_Complete'] = True
             jump blook_hangout_listened_music
             
         "I can't, I'm busy.":
             $world.get_monster('Napstablook').update_FP(-2)
             napstablook "that's okay.... i understand......."
+            hide napstablook with Dissolve(2)
+            $ get_napstablook().move_to_room("Dead Room")
             return
                 
     label blook_hangout_listened_music:
@@ -204,8 +204,6 @@ label napstablook_event_1(owner=get_napstablook()):
         napstablook "well.... that's all i have...."
         napstablook "i should go now.... thanks for listening........"
         hide napstablook with dissolve
-
-        $ player.variables['Napstablook_Friendship_1_Complete'] = True
 
         return
         

@@ -9,10 +9,7 @@ init:
 label toriel_friendship_hangout_1(owner=get_toriel()):
     play music "audio/ruins/toriel.mp3" fadein 5
     $ player.variables['Toriel_Friendship_Hangout1'] = True
-    if world.current_timezone == "Afternoon":
-        $ world.set_current_time("Evening")
-    else:
-        $ world.set_current_time("Afternoon")
+    $ world.add_to_ac(10)
     show toriel smallsmile with Dissolve(.25)
     toriel "Hello, my friend. I am preparing a new pie recipe for dinner. Would you like to help?"
     menu:

@@ -1074,11 +1074,11 @@ label bad_end:
     $ player.variables['toriel_tl_route_open'] = False
     $ get_monster("Toriel").move_to_room("Kitchen")
     $ reload_room()
-    $ world.set_current_time("Afternoon")
+    $ world.add_to_ac(10)
     return
     
 label date_end:
-    $ world.set_current_time("Afternoon")
+    $ world.add_to_ac(10)
     if get_monster("Toriel").DP > 75:
         show toriel smile with Dissolve(.25)
         toriel "I believe this has gone quite well!"
