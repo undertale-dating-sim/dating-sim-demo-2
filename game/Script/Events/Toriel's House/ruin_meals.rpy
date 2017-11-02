@@ -694,7 +694,7 @@ label ruins_basement_door_first_visit: #needs sound effect
     scene black with Dissolve(4)
     #wait a second before having the screen fade to black, play the sound of a heavy door opening
     #end of demo
-    call end_of_demo
+    jump end_of_demo
     return
 
 
@@ -716,6 +716,7 @@ label end_of_demo:
     wilson "Stay Determined. {w=2} ~Wilson"
     call scrolling_credits
     scene background ruins_caveroom
-    show text "To Be Continued..." 
-    $ renpy.pause(120,hard=True)
+    show text "To Be Continued..."
+    while True:
+        $ renpy.pause(120,hard=True)
     return

@@ -30,7 +30,7 @@ screen shop_box(shop):
             textbutton "BUY" background "#000000" action [Play ("sound", "audio/sfx/click.wav"),Show("buy_box")]
             textbutton "SELL" background "#000000" action [Play ("sound", "audio/sfx/click.wav"),ui.callsinnewcontext(shop.shop_sell)]
             textbutton "TALK" background "#000000" action [Play ("sound", "audio/sfx/click.wav"),ui.callsinnewcontext(shop.shop_dialogue)] 
-            textbutton "EXIT" background "#000000" action [Play ("sound", "audio/sfx/click.wav"),Hide("buy_box"),Hide("shop_box"),Show("show_nav_button"),Show("show_menu_button")]
+            textbutton "EXIT" background "#000000" action [Play ("sound", "audio/sfx/click.wav"),Hide("buy_box"),Hide("shop_box"),Show("show_nav_button"),Show("show_menu_button"),Show("show_testing_button"),Show("show_information_overlay")]
             hbox:
                 #anchor(0,0)
                 vbox:
@@ -158,14 +158,16 @@ label Shop_Sell:
 
 
 label Muffet_Shop:
-    call show_buttons
-    if get_timezone() == "Night":
-        "You see a very tiny sign on the ground."
-        "Closed for the night, Please come back in the Morning!"
-    else:
-        python:
-            muffetShop = Shop()
-            muffetShop.enter()
+    
+    while True:
+        call show_buttons
+        if world.current_timezone == "Night":
+            "You see a very tiny sign on the ground."
+            "Closed for the night, Please come back in the Morning!"
+        else:
+            python:
+                muffetShop = Shop()
+                muffetShop.enter()
 
     return
 

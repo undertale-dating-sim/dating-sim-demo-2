@@ -62,14 +62,14 @@ init -9 python:
 
 
             if 'Toriel_Friendship_1_Complete' not in player.variables:
-                self.dating_requirements["{color=%s}So how are you settling in?{/color}" % red] = self.d_1
+                self.dating_requirements["{color=%s}Sleep well?{/color}" % red] = self.d_1
             else:
-                self.dating_requirements["{color=%s}So how are you settling in?{/color}" % green] = self.d_1
+                self.dating_requirements["{color=%s}Sleep well?{/color}" % green] = self.d_1
 
             if 'Toriel_Friendship_Hangout1' not in player.variables:
                 self.dating_requirements["{color=%s}Doing Just Piene{/color}" % red] = self.d_2
             else:
-                self.dating_requirements["{color=%s}Doing Just Piene{/color}" % red] = self.d_2
+                self.dating_requirements["{color=%s}Doing Just Piene{/color}" % green] = self.d_2
 
             if 'Toriel_Friendship_2_Complete' not in player.variables:
                 self.dating_requirements["{color=%s}The Stunted Flower{/color}" % red] = self.d_3

@@ -17,7 +17,7 @@ label frisk_friendship_event_1(owner=get_frisk()):
         $ renpy.transition(fade)
         $ renpy.show(world.get_room("Snail Hunting Room").bg)
         frisk "Alright, we’re here!"
-        
+
     frisk "Are you... uhm..."
     frisk "..."
     frisk "Oh, sorry."
@@ -61,7 +61,9 @@ label frisk_friendship_event_1(owner=get_frisk()):
 
 label frisk_friendship_event_1_tunnels(owner=get_frisk()):
     #player is free to move around the Ruins. Once they go back to the tunnel divide...
+    play music "audio/ruins/frisk.mp3" fadein 5
     show frisk distant with Dissolve(.25)
+
     "* Frisk is standing in the middle of the room, but they don’t appear to have noticed you."
     frisk "..."
     frisk "Please..."
@@ -211,6 +213,7 @@ label frisk_friendship_event_1_tunnels(owner=get_frisk()):
 
 label frisk_friendship_event_1_blacktree(owner=get_frisk()):
     #player is free to move around the Ruins. Once they go back to the black tree room:
+    play music "audio/ruins/frisk.mp3" fadein 5
     show frisk surprised with Dissolve(.25)
     frisk "What?"
     frisk "Why are you following me?!"

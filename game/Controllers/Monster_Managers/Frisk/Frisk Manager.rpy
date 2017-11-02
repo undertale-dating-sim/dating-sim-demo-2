@@ -60,6 +60,7 @@ init -9 python:
 
             self.d_1 = {}
             self.d_2 = {}
+            self.d_3 = {}
 
             self.dating_requirements = {}
 
@@ -88,6 +89,11 @@ init -9 python:
                 self.d_2["Go to Kitchen\n    before Dinner"] = world.get_current_timezone() != 'Night' and world.get_current_timezone() != 'Evening' and player.current_room == "Kitchen"
                 self.d_2['Friendship 1 Complete'] = 'frisk_friendship_1_Complete' in player.variables
 
+            if 'Hunted_Snails_With_Frisk' in player.variables:
+                self.d_3["Complete!"] = True
+            else:
+                self.d_3["Ask Frisk to Hunt Snails"] = False
+
             if 'frisk_friendship_1_Complete' not in player.variables:
                 self.dating_requirements["{color=%s}Arts and Crafts{/color}" % red] = self.d_1
             else:
@@ -96,7 +102,12 @@ init -9 python:
             if 'frisk_friendship_2_Complete' not in player.variables:
                 self.dating_requirements["{color=%s}Having a Knife Time?{/color}" % red] = self.d_2
             else:
-                self.dating_requirements["{color=%s}Having a Knife Time?{/color}" % red] = self.d_2
+                self.dating_requirements["{color=%s}Having a Knife Time?{/color}" % green] = self.d_2
+
+            if 'Hunted_Snails_With_Frisk' not in player.variables:
+                self.dating_requirements["{color=%s}Is Everything Okay?{/color}" % red] = self.d_3
+            else:
+                self.dating_requirements["{color=%s}Is Everything Okay?{/color}" % green] = self.d_3
 
             return
 

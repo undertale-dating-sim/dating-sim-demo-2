@@ -105,7 +105,7 @@ label napstablook_hangout_1(owner=get_napstablook()):
                         
                         call UnderSnail
                         scene background ruins_snailhunting_room
-                        $ snail_score = 0
+                        $ snail_score = 5
                         
                         show napstablook normal at napstabob with dissolve
                         
@@ -119,6 +119,7 @@ label napstablook_hangout_1(owner=get_napstablook()):
                         
                         if snail_score <= 0:
                             napstablook "um...... i'm not a snail......... i'm sorry....."
+                        jump end_blook_hangout2
                     
                     "I'll pass.":
                         $world.get_monster('Napstablook').update_FP(-1)

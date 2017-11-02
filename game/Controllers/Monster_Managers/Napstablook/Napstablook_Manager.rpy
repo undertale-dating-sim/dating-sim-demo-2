@@ -62,7 +62,7 @@ init -9 python:
             if 'Napstablook_Hangout_1_Complete' not in player.variables:
                 self.dating_requirements["{color=%s}Snail Hunting is an Art{/color}" % red] = self.d_2
             else:
-                self.dating_requirements["{color=%s}Snail Hunting is an Art{/color}" % red] = self.d_2
+                self.dating_requirements["{color=%s}Snail Hunting is an Art{/color}" % green] = self.d_2
 
             if 'Napstablook_TL_Date_1_Complete' not in player.variables:
                 self.dating_requirements["{color=%s}Love at First Fright{/color}" % red] = self.d_3
@@ -149,8 +149,12 @@ init -9 python:
             self.update_schedule("Saturday","Afternoon","Snail Hunting Room",self.default_event)
             #evening
             self.update_schedule("Sunday","Evening","Blooky Room",self.default_event)
+            self.update_schedule("Monday","Evening","Blooky Room",self.default_event)
+            self.update_schedule("Tuesday","Evening","Blooky Room",self.default_event)
             self.update_schedule("Wednesday","Evening","Blooky Room",self.default_event)
+            self.update_schedule("Thursday","Evening","Blooky Room",self.default_event)
             self.update_schedule("Friday","Evening","Blooky Room",self.default_event)
+            self.update_schedule("Saturday","Evening","Blooky Room",self.default_event)
 
             
 

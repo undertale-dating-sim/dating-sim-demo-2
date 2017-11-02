@@ -106,10 +106,9 @@ label call_Frisk_Spider_Bakery(monster,call_count):
 
 label call_Frisk_Snail_Hunting_Room(monster,call_count):
 
-    if call_count == 1:
-        frisk  "Did you need something? "
-        frisk  "The Snail Hunting Room, huh? Mom and I come here a lot. She really likes snails. "
-        frisk  "I’m not too big on them myself, but I like seeing Mom happy, so it’s always fun to go."
+    frisk  "Did you need something? "
+    frisk  "The Snail Hunting Room, huh? Mom and I come here a lot. She really likes snails. "
+    frisk  "I’m not too big on them myself, but I like seeing Mom happy, so it’s always fun to go."
         
     return
 
