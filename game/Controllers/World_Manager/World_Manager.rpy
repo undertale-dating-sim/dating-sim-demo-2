@@ -10,10 +10,7 @@ init -10 python:
         get_toriel().move_to_room("Snail Hunting Room")
         get_flowey().move_to_room("Snail Hunting Room")
         get_frisk().move_to_room("Snail Hunting Room")
-        inventory.add(Spider_Donut())
-        inventory.add(Spider_Donut())
-        inventory.add(Spider_Donut())
-        inventory.add(Spider_Donut())
+        world.current_timezone = "Evening"
         move_to_room("Snail Hunting Room")
     def current_room():
         return world.current_area.current_room
@@ -98,6 +95,7 @@ init -10 python:
             self.areas["Toriel_House"] = Toriel_House()
             self.message = ""
             self.timezone_action_count = 0
+            self.night_prompt = False
 
         def get_current_timezone(self):
 
@@ -141,8 +139,8 @@ init -10 python:
                     for en,e in r.events.iteritems():
                         if en in a.random_events:
                             r.events.remove(e)
-
-            renpy.call("night_has_fallen")
+            self.night_prompt = True
+            # renpy.call("night_has_fallen")
 
         #gets the current timezone and the day of the week
         #if set to update the day, cycles through each area,room, monster
@@ -277,11 +275,10 @@ init -10 python:
             for area_name,area in self.areas.iteritems():
                 for room_name,room in area.rooms.iteritems():
                     if room.name == name:
-                        self.current_area = area
-                        self.current_area.current_room = room
                         if self.timezone_action_count >= 10:
                             self.update_world()
-
+                        self.current_area = area
+                        self.current_area.current_room = room
                         renpy.call("load_room",loop,transition)
                         return True
             renpy.notify(name + " not found.")
@@ -358,6 +355,11 @@ label load_room(loop=True,transition="fade"):
     else:
         with Fade(.5,0,.5)
 
+    if world.night_prompt:
+        $ world.night_prompt = False
+        stop music
+        "The Ruins grow quiet."
+        "Night has fallen. You should go to bed."
     #if ADMIN_ROOM_DESC:
     if not world.current_area.current_room.visited and world.current_area.current_room.desc and world.day > 0:
         python:
@@ -365,30 +367,6 @@ label load_room(loop=True,transition="fade"):
             for line in world.current_area.current_room.desc:
                 renpy.say(None,line)
     $ player.current_room = world.current_area.current_room.name
-
-
-
-    # python:
-        
-    #     unexplored_rooms = False
-    #     ruinscounter = 0
-    #     curr_area = current_area()
-    #     for room_name,room in curr_area.rooms.iteritems():              # For a room in the current area,
-    #         if not world.current_area.rooms[room.name].visited:         # Check if it has not been visited.
-    #             world.current_area.current_room.visited = True          # If so, mark as visited.
-    #             if world.current_area.rooms[room.name].ignore:          # Check if it counts for exploration/game completion
-    #                 pass
-    #             else:
-    #                 unexplored_rooms = True                             # If there's still more rooms to be explored, flag area as not fully explored.
-    #                 #ruinscounter += 1 ##### FOR TESTING #####
-    #         else:
-    #             pass
-                    
-    #     if unexplored_rooms is True:                                    # If all rooms have been explored, nothing will have triggered the unexplored_rooms flag.
-    #     #if ruinscounter < 14:
-    #         pass
-    #     else:
-    #         world.current_area.explored = True                          # This means that the player has 100% completed exploration.
 
     $ world.current_area.current_room.reset_permanent_events()
     $ temp_event = world.current_area.current_room.get_event()

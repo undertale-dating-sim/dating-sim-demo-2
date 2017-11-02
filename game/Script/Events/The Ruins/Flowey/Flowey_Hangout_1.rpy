@@ -1,5 +1,6 @@
 label flowey_hangout1(owner = get_flowey()):
-
+    
+    call hide_buttons
     play music "audio/ruins/flowey.mp3" fadein 5
 
     #Hangout 1 
