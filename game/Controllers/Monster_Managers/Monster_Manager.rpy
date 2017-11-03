@@ -80,6 +80,10 @@ init -10 python:
 
         def get_current_event(self):
             
+            self.handle_special_events()
+
+            if self.current_room.name != player.current_room:
+                return None
             if self.special_event and self.special_event.completed == False:
                 return self.special_event
             #get the normal events

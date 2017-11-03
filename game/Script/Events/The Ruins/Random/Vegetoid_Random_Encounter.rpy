@@ -176,7 +176,7 @@ label vegetoid_ruins_re_start:
                     "Vegetoid runs away crying."
                     return
                 "I know, I'm a failure.":
-                    vegetoid "At least some of use are self aware. Now if you don't mind, I'm going to go and become a hard-working member of society!"
+                    vegetoid "At least some of us are self aware. Now if you don't mind, I'm going to go and become a hard-working member of society!"
                     hide vegetoid with moveoutbottom
                     "Vegetoid has left."
                     return

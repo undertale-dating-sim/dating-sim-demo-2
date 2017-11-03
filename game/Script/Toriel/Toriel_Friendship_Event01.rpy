@@ -1,7 +1,9 @@
 label toriel_friendship_event_1(owner=get_toriel()):
     play music "audio/ruins/toriel.mp3" fadein 5
+    show toriel surprised with Dissolve(.25)
+    toriel "Oh! Hello!"
     if world.get_monster('Frisk').FP < 5:
-        show toriel normal with Dissolve(.25)
+        show toriel annoyed with Dissolve(.25)
         toriel "Actually, I have been meaning to talk to you."
         toriel "I wanted to know how you were getting along."
         toriel "Are you having fun in the ruins?"

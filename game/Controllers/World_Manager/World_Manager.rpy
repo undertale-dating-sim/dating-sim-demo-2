@@ -338,12 +338,13 @@ label load_room(loop=True,transition="fade"):
     
     call hide_buttons from _call_hide_buttons
     python:
-        if world.current_area.name == "The Ruins":
-            if renpy.music.get_playing() != "audio/ruins/the_ruins.mp3":
-                renpy.music.play("audio/ruins/the_ruins.mp3")
-        if world.current_area.name == "Toriel House":
-            if renpy.music.get_playing() != "audio/ruins/toriels_house.mp3":
-                renpy.music.play("audio/ruins/toriels_house.mp3")
+        if world.current_timezone != "Night":
+            if world.current_area.name == "The Ruins":
+                if renpy.music.get_playing() != "audio/ruins/the_ruins.mp3":
+                    renpy.music.play("audio/ruins/the_ruins.mp3")
+            if world.current_area.name == "Toriel House":
+                if renpy.music.get_playing() != "audio/ruins/toriels_house.mp3":
+                    renpy.music.play("audio/ruins/toriels_house.mp3")
 
         cell_convo_count = 0
         renpy.scene()

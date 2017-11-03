@@ -2,7 +2,6 @@
 
 label frisk_friendship_event_1(owner=get_frisk()):
     
-    play music "audio/ruins/frisk.mp3" fadein 5
     show frisk smallsmile with Dissolve(.25)
     frisk "Yeah, that sounds fun!"
     frisk "It’s always a lot more interesting with friends."
@@ -56,6 +55,7 @@ label frisk_friendship_event_1(owner=get_frisk()):
             frisk "See you later."
             hide frisk with Dissolve(.25)
     $ get_frisk().move_to_room("Tunnel Divide")
+    $ player.variables['frisk_f1_phase2'] = True
     $ get_frisk().set_special_event('frisk_friendship_event_1_tunnels')
     $ move_to_room("Snail Hunting Room")
 
@@ -207,6 +207,7 @@ label frisk_friendship_event_1_tunnels(owner=get_frisk()):
     frisk "Please, don’t tell Mom."
     frisk "I’m sorry..."
     hide frisk with Dissolve(.25)
+    $ player.variables['frisk_f1_phase3'] = True
     $ get_frisk().move_to_room("Black Tree Room")
     $ get_frisk().set_special_event('frisk_friendship_event_1_blacktree')
     $ move_to_room("Tunnel Divide")

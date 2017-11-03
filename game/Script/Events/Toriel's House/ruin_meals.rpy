@@ -364,7 +364,7 @@ label ruins_dinner: #done
                 toriel "Are you sure? You have barely touched your dinner..."
                 frisk "I’m fine, mom. Just need to catch some z’s, you know?"
                 toriel "Well, alright. Rest well, both of you."
-    $world.set_current_time("Night")                       
+    $world.add_to_ac(10)                       
     $world.move_to_room("Staircase")
     return
     
@@ -454,7 +454,7 @@ label ruins_dinner_talk_toriel: #need sprite changes
         toriel "Their snails are the best in the Underground, and we are lucky that they are willing to travel to the Ruins to sell them to us."
         toriel "But, regardless... You look like you are done eating, dear. Since I have no dessert to offer you, perhaps you should head off to bed."
         toriel "Have a good night."
-    $world.set_current_time("Night")
+    $world.add_to_ac(10)
     $world.move_to_room("Staircase")
     return
     
@@ -495,7 +495,7 @@ label ruins_dinner_talk_frisk: #need sprite changes
         frisk "Oh, hey, are you done eating? So am I... I think I’m gonna head off to bed."
         show toriel smile at right with Dissolve(.25)
         toriel "Goodnight, both of you."
-    $world.set_current_time("Night")
+    $world.add_to_ac(10)
     $world.move_to_room("Staircase")
     return
     

@@ -51,7 +51,7 @@ label scrolling_credits:
     show tester_cred at movecenter
     with Pause(credit_gap)
     show leader_cred at movecenter
-    with Pause(credit_gap)
+    with Pause(credit_gap*1.3)
     #show sans_credit at moveright
     
     

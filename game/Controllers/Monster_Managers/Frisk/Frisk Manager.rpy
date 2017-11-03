@@ -91,6 +91,10 @@ init -9 python:
 
             if 'Hunted_Snails_With_Frisk' in player.variables:
                 self.d_3["Complete!"] = True
+            elif 'frisk_f1_phase3' in player.variables:
+                self.d_3["Go to Black Tree Room!"] = False
+            elif 'frisk_f1_phase2' in player.variables:
+                self.d_3["Go to Tunnel Divide!"] = False
             else:
                 self.d_3["Ask Frisk to Hunt Snails"] = False
 
@@ -112,11 +116,15 @@ init -9 python:
             return
 
         def handle_special_events(self):
-
-            #bad time hunting is set in dialogue
-
+                
+            if 'Hunted_Snails_With_Frisk' not in player.variables and 'frisk_f1_phase2' in player.variables and 'frisk_f1_phase3' not in player.variables:
+                get_frisk().move_to_room("Tunnel Divide")
+                get_frisk().set_special_event('frisk_friendship_event_1_tunnels')
+            elif 'Hunted_Snails_With_Frisk' not in player.variables and 'frisk_f1_phase2' in player.variables and 'frisk_f1_phase3' in player.variables:
+                get_frisk().move_to_room("Black Tree Room")
+                get_frisk().set_special_event('frisk_friendship_event_1_blacktree')
             #painting
-            if world.get_current_timezone() == 'Afternoon' and 'frisk_friendship_1_Complete' not in player.variables:
+            elif world.get_current_timezone() == 'Afternoon' and 'Hunted_Snails_With_Frisk' in player.variables and 'frisk_friendship_1_Complete' not in player.variables:
                 get_frisk().move_to_room("Frisk's Room")
                 self.set_special_event('frisk_friendship_hangout1_main')
 
@@ -124,7 +132,8 @@ init -9 python:
             elif world.get_current_timezone() == 'Morning' or world.get_current_timezone() == 'Day' or world.get_current_timezone() == 'Afternoon':
                 if 'frisk_friendship_1_Complete' in player.variables and 'frisk_friendship_2_Complete' not in player.variables:
                     if 'frisk_friend_hangout2_day' not in player.variables or ('frisk_friend_hangout2_day' in player.variables and player.variables['frisk_friend_hangout2_day'] != world.day):
-                        get_room("Kitchen").set_event('frisk_friendship_hangout2')
+                        self.set_special_event('frisk_friendship_hangout2')
+                        get_frisk().move_to_room("Kitchen")
             else:
                 self.remove_event()
 

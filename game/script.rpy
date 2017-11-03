@@ -86,6 +86,9 @@ label splashscreen:
     "Welcome to the UDS Demo!"
     "Be warned.  While we did test as much as possible, there are still some spots that get kind of sketchy."
     "At the moment, Saving and Loading, as well as Back and other Renpy functions are pretty much broken."
+    "There might be times where you manage to save, but be warned that it will most likely crash your game."
+    "Please let us know what you think!"
+    "So without further"
     scene black
     with Pause(1)
 
